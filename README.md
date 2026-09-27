@@ -6525,6 +6525,33 @@ inline lists that "moved" by one character keep the same cut and lose their trai
 Red first: 16 of the 22 round-112 tests fail on main 98722df7, and 9 of the 14 round-113 tests failed before the
 round-113 code. No live model run and no device run: the next iPhone build measures it.
 
+## iOS build 24: main with round 113's loop guard, on Moshe's iPhone only (branch `ios-build-24`) — 27.9.2026
+
+Build 1.0.0 (24) carries local `main` 22541224 (build 23's main plus round 113) to the iPhone 13 Pro, so the phone has
+round 113's guard before Moshe tests it. Nothing went to a store.
+
+- **The build.** Commit bca4fe61 bumps the build number 23 → 24. Gates exit 0: 1,100 core with 4 skipped, 1,180
+  mobile, 24 i18n, 23 ui, 4 desktop. The first test run timed out once on a site-build test under load, and that file
+  and the full rerun passed. Fresh prebuild and archive, with both models byte-exact to the catalog and round 113's
+  repeat markers in the bundle. The QA-bridge and shipping-bundle gates pass.
+- **On the phone as an update.** The byte copy of the six container files was taken first. After the install, all six
+  are byte-identical and the listing is unchanged. About reads `1.0.0 (24) · bca4fe6132e6`, left on the chat root.
+- **Passed on the phone.** The first answer runs at 33.2 tok/s. Continue restated the stopped clause in 0 of 3 tries
+  (build 23: 2 of 3). Delete everything lands on Welcome with no banner and no `.corrupt` file, again after a cold
+  relaunch. Documents reads 253 B for one .txt.
+- **The 24 stress answers (F427).** No broken seam at any retry or cut: no bare number, open `**`, restart intro,
+  prose after a list cut, numbering going down or instruction echo, where build 23 had three broken seams. There were 8
+  silent retries and 7 notices. Five answers still show a repeat on screen, and pass 22's yardstick misses all five:
+  - a German verb listed again with a new gloss (*"4. sein (to be) / 5. sein (to exist/remain)"*), twice at 0.7. The
+    item rule treats a different note as a different item by design;
+  - under 0.2, an inline Korean list that says five dishes again ten numbers later, and a Hebrew list that says its
+    ten places again with "-המערב" added. The guard logged nothing for either;
+  - under 0.2, a French list that says items 4 and 7 again as 11 and 12, each with a clause added.
+- **Asked repetition.** The fox sentence came back five times in 1 of 3 tries, as in build 23. The guard never touched
+  it.
+
+Evidence: `docs/qa/ios-build-24-2026-09-27.md`, `docs/qa/ios-device-pass-24-2026-09-27.md`, `docs/qa/ios-device-pass-24/`.
+
 ## iOS build 23: main with round 111's loop guard, on Moshe's iPhone only (branch `ios-build-23`) — 27.9.2026
 
 Build 1.0.0 (23) carries local `main` 98722df7 (build 22's main plus round 111) to the iPhone 13 Pro, so the phone has

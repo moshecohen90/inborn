@@ -1,0 +1,452 @@
+{
+  "runId": "d2-continue-again",
+  "startedAt": "2026-09-27T19:09:48.502Z",
+  "finishedAt": "2026-09-27T19:11:37.581Z",
+  "ok": true,
+  "passed": 59,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "onboarding-welcome appeared"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 156,
+      "detail": "onboarding-continue ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "onboarding-model appeared"
+    },
+    {
+      "i": 4,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2502,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 5,
+      "op": "press",
+      "ok": true,
+      "ms": 173,
+      "detail": "start-chatting ← onPress"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-sealed appeared"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4001,
+      "detail": "4000 ms"
+    },
+    {
+      "i": 8,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "sealed-start ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-lock appeared"
+    },
+    {
+      "i": 10,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1503,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 11,
+      "op": "press",
+      "ok": true,
+      "ms": 183,
+      "detail": "lock-start ← onPress"
+    },
+    {
+      "i": 12,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 13,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 10401,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2016,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 15,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 167,
+      "detail": "/chats"
+    },
+    {
+      "i": 16,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 17,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 18,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 19,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 20,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1509,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 22,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 104 chars"
+    },
+    {
+      "i": 23,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 24,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 785,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 25,
+      "op": "sleep",
+      "ok": true,
+      "ms": 7029,
+      "detail": "7000 ms"
+    },
+    {
+      "i": 26,
+      "op": "press",
+      "ok": true,
+      "ms": 153,
+      "detail": "stop ← onPress"
+    },
+    {
+      "i": 27,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2000,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 28,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The history of the spice trade between Asia and Europe is a complex tapestry woven through centuries of conquest, exchange, and eventual suppression. It began in the 6th century CE when Islam established its dominance over the Indian Ocean region, establishing a maritime network that connected East Africa with the Silk Road. This network initially served as a vital lifeline for traders fleeing desert lands and settling in coastal cities like Malacca and Southeast Asia. Early merchants brought silk, porcelain, and rare spices such as cloves, pepper, and cinnamon to Europe's northwestern coast, where they were first traded on the high seas by Portuguese explorers and later via merchant ships carrying cargo from India. During the Renaissance era, European interest in Asian goods grew significantly due to the rise of printing presses, which allowed for the widespread dissemination of information about exotic ingredients. Italian merchants began actively trading spices along the Mediterranean routes, using their wealth to build fortified warehouses on coastal islands like Cyprus and the Azores. These hubs became crucial distribution centers where spices were processed into powders and dried into cakes, creating a market that demanded high quality and consistent supply. The demand fueled the expansion of trade networks beyond traditional land corridors, pushing merchants further south towards the Indian Ocean basin and eastward along the coast of India itself. The pivotal turning",
+        "props": {
+          "source": "The history of the spice trade between Asia and Europe is a complex tapestry woven through centuries of conquest, exchange, and eventual suppression. It began in the 6th century CE when Islam established its dominance over the Indian Ocean region, establishing a maritime network that connected East Africa with the Silk Road. This network initially served as a vital lifeline for traders fleeing desert lands and settling in coastal cities like Malacca and Southeast Asia. Early merchants brought silk, porcelain, and rare spices such as cloves, pepper, and cinnamon to Europe's northwestern coast, where they were first traded on the high seas by Portuguese explorers and later via merchant ships carrying cargo from India.\n\nDuring the Renaissance era, European interest in Asian goods grew significantly due to the rise of printing presses, which allowed for the widespread dissemination of information about exotic ingredients. Italian merchants began actively trading spices along the Mediterranean routes, using their wealth to build fortified warehouses on coastal islands like Cyprus and the Azores. These hubs became crucial distribution centers where spices were processed into powders and dried into cakes, creating a market that demanded high quality and consistent supply. The demand fueled the expansion of trade networks beyond traditional land corridors, pushing merchants further south towards the Indian Ocean basin and eastward along the coast of India itself.\n\nThe pivotal turning",
+          "disabled": false
+        }
+      },
+      "detail": "The history of the spice trade between Asia and Europe is a complex tapestry woven through centuries of conquest, exchange, and eventual suppression. It began in the 6th century CE when Islam establis"
+    },
+    {
+      "i": 29,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 4148,
+      "detail": "K01-stopped-try2"
+    },
+    {
+      "i": 30,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "continue appeared"
+    },
+    {
+      "i": 31,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "continue ← onPress"
+    },
+    {
+      "i": 32,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1525,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 33,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 15070,
+      "detail": "stop gone"
+    },
+    {
+      "i": 34,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1507,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 35,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The history of the spice trade between Asia and Europe is a complex tapestry woven through centuries of conquest, exchange, and eventual suppression. It began in the 6th century CE when Islam established its dominance over the Indian Ocean region, establishing a maritime network that connected East Africa with the Silk Road. This network initially served as a vital lifeline for traders fleeing desert lands and settling in coastal cities like Malacca and Southeast Asia. Early merchants brought silk, porcelain, and rare spices such as cloves, pepper, and cinnamon to Europe's northwestern coast, where they were first traded on the high seas by Portuguese explorers and later via merchant ships carrying cargo from India. During the Renaissance era, European interest in Asian goods grew significantly due to the rise of printing presses, which allowed for the widespread dissemination of information about exotic ingredients. Italian merchants began actively trading spices along the Mediterranean routes, using their wealth to build fortified warehouses on coastal islands like Cyprus and the Azores. These hubs became crucial distribution centers where spices were processed into powders and dried into cakes, creating a market that demanded high quality and consistent supply. The demand fueled the expansion of trade networks beyond traditional land corridors, pushing merchants further south towards the Indian Ocean basin and eastward along the coast of India itself. The pivotal turning point marked the fall of the Ottoman Empire to the Dutch Republic in 1642, which dismantled the entire European spice trade network and forced a massive reorganization of global commerce. The Dutch, initially viewing spices as purely economic resources, soon realized they were crucial for military power and political stability in a rapidly expanding world. This strategic shift transformed their approach from mere traders to powerful naval operators capable of challenging European dominance directly on the high seas. Following this victory, the Dutch established a series of trading posts along the coast of India, including Calicut (Kozhikode) and Surat, effectively opening new frontiers for global supply chains that were previously controlled by independent or fragmented European states. Subsequent decades saw the Dutch continue to expand their reach while maintaining a cautious relationship with Portuguese traders who had already established significant footholds in Southeast Asia. As colonial powers competed for control over these territories, the Dutch often utilized trade agreements and economic incentives to secure advantageous positions without fully integrating into the local economic systems. This dynamic allowed them to build resilient supply lines that connected European ports with Asian markets, creating a more fluid and interconnected global network than ever before. By the mid-18th century, the British had solidified their position by establishing trading posts in major hubs like Calicut, Surat, and Singapore, effectively merging into the Dutch framework. This consolidation of power allowed the British to dominate the spice trade for over a hundred years, ensuring a steady flow of goods from India to European markets while simultaneously securing lucrative profits from Indian exports. The British also began developing sophisticated shipping technologies, including steamships and improved navigation techniques, which further enhanced their ability to navigate vast oceanic distances efficiently across the Indian Ocean and beyond. The Enlightenment era brought about significant changes in how these global networks operated, with thinkers like Voltaire advocating for a more open international system and a focus on trade as an engine of economic prosperity rather than mere protectionism. This philosophical shift encouraged European powers to engage more directly in commercial relations, leading to the expansion of colonies along the Pacific coast of Asia and further westward into North America. As trading rights were granted by colonial authorities, merchants increasingly operated under British legal frameworks, integrating their trade networks with regional economies while simultaneously leveraging international diplomacy for mutual benefit. In the modern era, the historical legacy of the spice trade continues to influence global commerce through its products, which are now widely available in supermarkets across many regions due to centuries of accumulated supply and demand. The technologies developed during this period—such as steamships, ironclad vessels, and advanced navigation systems—remain foundational infrastructure for international shipping today. Furthermore, the cultural exchange that accompanied these trade routes continues to shape modern worldviews and global alliances, ensuring that knowledge and goods continue to circulate seamlessly across continents through centuries of adaptation and innovation.",
+        "props": {
+          "source": "The history of the spice trade between Asia and Europe is a complex tapestry woven through centuries of conquest, exchange, and eventual suppression. It began in the 6th century CE when Islam established its dominance over the Indian Ocean region, establishing a maritime network that connected East Africa with the Silk Road. This network initially served as a vital lifeline for traders fleeing desert lands and settling in coastal cities like Malacca and Southeast Asia. Early merchants brought silk, porcelain, and rare spices such as cloves, pepper, and cinnamon to Europe's northwestern coast, where they were first traded on the high seas by Portuguese explorers and later via merchant ships carrying cargo from India.\n\nDuring the Renaissance era, European interest in Asian goods grew significantly due to the rise of printing presses, which allowed for the widespread dissemination of information about exotic ingredients. Italian merchants began actively trading spices along the Mediterranean routes, using their wealth to build fortified warehouses on coastal islands like Cyprus and the Azores. These hubs became crucial distribution centers where spices were processed into powders and dried into cakes, creating a market that demanded high quality and consistent supply. The demand fueled the expansion of trade networks beyond traditional land corridors, pushing merchants further south towards the Indian Ocean basin and eastward along the coast of India itself.\n\nThe pivotal turning point marked the fall of the Ottoman Empire to the Dutch Republic in 1642, which dismantled the entire European spice trade network and forced a massive reorganization of global commerce. The Dutch, initially viewing spices as purely economic resources, soon realized they were crucial for military power and political stability in a rapidly expanding world. This strategic shift transformed their approach from mere traders to powerful naval operators capable of challenging European dominance directly on the high seas. Following this victory, the Dutch established a series of trading posts along the coast of India, including Calicut (Kozhikode) and Surat, effectively opening new frontiers for global supply chains that were previously controlled by independent or fragmented European states.\n\nSubsequent decades saw the Dutch continue to expand their reach while maintaining a cautious relationship with Portuguese traders who had already established significant footholds in Southeast Asia. As colonial powers competed for control over these territories, the Dutch often utilized trade agreements and economic incentives to secure advantageous positions without fully integrating into the local economic systems. This dynamic allowed them to build resilient supply lines that connected European ports with Asian markets, creating a more fluid and interconnected global network than ever before.\n\nBy the mid-18th century, the British had solidified their position by establishing trading posts in major hubs like Calicut, Surat, and Singapore, effectively merging into the Dutch framework. This consolidation of power allowed the British to dominate the spice trade for over a hundred years, ensuring a steady flow of goods from India to European markets while simultaneously securing lucrative profits from Indian exports. The British also began developing sophisticated shipping technologies, including steamships and improved navigation techniques, which further enhanced their ability to navigate vast oceanic distances efficiently across the Indian Ocean and beyond.\n\nThe Enlightenment era brought about significant changes in how these global networks operated, with thinkers like Voltaire advocating for a more open international system and a focus on trade as an engine of economic prosperity rather than mere protectionism. This philosophical shift encouraged European powers to engage more directly in commercial relations, leading to the expansion of colonies along the Pacific coast of Asia and further westward into North America. As trading rights were granted by colonial authorities, merchants increasingly operated under British legal frameworks, integrating their trade networks with regional economies while simultaneously leveraging international diplomacy for mutual benefit.\n\nIn the modern era, the historical legacy of the spice trade continues to influence global commerce through its products, which are now widely available in supermarkets across many regions due to centuries of accumulated supply and demand. The technologies developed during this period—such as steamships, ironclad vessels, and advanced navigation systems—remain foundational infrastructure for international shipping today. Furthermore, the cultural exchange that accompanied these trade routes continues to shape modern worldviews and global alliances, ensuring that knowledge and goods continue to circulate seamlessly across continents through centuries of adaptation and innovation.",
+          "disabled": false
+        }
+      },
+      "detail": "The history of the spice trade between Asia and Europe is a complex tapestry woven through centuries of conquest, exchange, and eventual suppression. It began in the 6th century CE when Islam establis"
+    },
+    {
+      "i": 36,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 4146,
+      "detail": "K02-continued-try2"
+    },
+    {
+      "i": 37,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 151,
+      "detail": "/chats"
+    },
+    {
+      "i": 38,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 39,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 40,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 41,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 42,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 43,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1508,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 44,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 104 chars"
+    },
+    {
+      "i": 45,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 46,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 534,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 47,
+      "op": "sleep",
+      "ok": true,
+      "ms": 7005,
+      "detail": "7000 ms"
+    },
+    {
+      "i": 48,
+      "op": "press",
+      "ok": true,
+      "ms": 162,
+      "detail": "stop ← onPress"
+    },
+    {
+      "i": 49,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2000,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 50,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The spice trade between Asia and Europe was a complex web of commerce that spanned continents and centuries, evolving from direct coastal routes to massive transcontinental networks. The initial phase began in the 13th century when Portuguese traders established footholds along the Indian Ocean coast, facilitating the exchange of valuable commodities like pepper, cloves, cinnamon, and saffron for European goods such as silk and wool. These early encounters were often marked by cultural exchanges but remained largely transactional, with spices being shipped via small boats navigating the unpredictable waters of the straits between India and China. As maritime technology advanced in Europe, the reliance on direct ocean passage began to wane, leading to the rise of overland trade routes that bypassed the dangers of open seas. The Silk Road emerged as a major artery connecting East Asia with Western Europe, utilizing camels, horses, and mule-drawn caravans to traverse deserts and mountains. This route connected the Roman Empire with Islamic territories in Central Asia, facilitating not only the movement of spices but also the spread of religious texts, technology, and cultural ideas across vast distances. The trade routes were often perilous; desert crossings faced fierce rivalries between civilizations, while mountain passes required skilled guides to traverse treacherous terrain without compromising safety or speed. The medieval era marked a turning",
+        "props": {
+          "source": "The spice trade between Asia and Europe was a complex web of commerce that spanned continents and centuries, evolving from direct coastal routes to massive transcontinental networks. The initial phase began in the 13th century when Portuguese traders established footholds along the Indian Ocean coast, facilitating the exchange of valuable commodities like pepper, cloves, cinnamon, and saffron for European goods such as silk and wool. These early encounters were often marked by cultural exchanges but remained largely transactional, with spices being shipped via small boats navigating the unpredictable waters of the straits between India and China.\n\nAs maritime technology advanced in Europe, the reliance on direct ocean passage began to wane, leading to the rise of overland trade routes that bypassed the dangers of open seas. The Silk Road emerged as a major artery connecting East Asia with Western Europe, utilizing camels, horses, and mule-drawn caravans to traverse deserts and mountains. This route connected the Roman Empire with Islamic territories in Central Asia, facilitating not only the movement of spices but also the spread of religious texts, technology, and cultural ideas across vast distances. The trade routes were often perilous; desert crossings faced fierce rivalries between civilizations, while mountain passes required skilled guides to traverse treacherous terrain without compromising safety or speed.\n\nThe medieval era marked a turning",
+          "disabled": false
+        }
+      },
+      "detail": "The spice trade between Asia and Europe was a complex web of commerce that spanned continents and centuries, evolving from direct coastal routes to massive transcontinental networks. The initial phase"
+    },
+    {
+      "i": 51,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2579,
+      "detail": "K01-stopped-try3"
+    },
+    {
+      "i": 52,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "continue appeared"
+    },
+    {
+      "i": 53,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "continue ← onPress"
+    },
+    {
+      "i": 54,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1527,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 55,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 27209,
+      "detail": "stop gone"
+    },
+    {
+      "i": 56,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 57,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "The spice trade between Asia and Europe was a complex web of commerce that spanned continents and centuries, evolving from direct coastal routes to massive transcontinental networks. The initial phase began in the 13th century when Portuguese traders established footholds along the Indian Ocean coast, facilitating the exchange of valuable commodities like pepper, cloves, cinnamon, and saffron for European goods such as silk and wool. These early encounters were often marked by cultural exchanges but remained largely transactional, with spices being shipped via small boats navigating the unpredictable waters of the straits between India and China. As maritime technology advanced in Europe, the reliance on direct ocean passage began to wane, leading to the rise of overland trade routes that bypassed the dangers of open seas. The Silk Road emerged as a major artery connecting East Asia with Western Europe, utilizing camels, horses, and mule-drawn caravans to traverse deserts and mountains. This route connected the Roman Empire with Islamic territories in Central Asia, facilitating not only the movement of spices but also the spread of religious texts, technology, and cultural ideas across vast distances. The trade routes were often perilous; desert crossings faced fierce rivalries between civilizations, while mountain passes required skilled guides to traverse treacherous terrain without compromising safety or speed. The medieval era marked a turning point where the primary driver of trade shifted from direct ocean voyages to controlled overland corridors. As European powers expanded their territories, they found themselves compelled by the sheer scale and necessity of global supply chains. The Hanseatic League in Northern Europe became a major hub for collecting spices originating from China and India, often using ships that could cross frozen seas or travel through mountain passes guarded by local tribes rather than relying on open ocean routes where piracy was rampant. This shift created a distinct geographical divide: the East Coast of Asia supplied Europe with high-quality textiles and leather goods, while the West Coast of Europe supplied Asia with luxury items like porcelain, glassware, and fine leather products, effectively closing off many previously accessible trade corridors entirely. This divergence in trade directions accelerated the spread of specific spices across different regions. The \"Red Spice\" (cinnamon) moved rapidly along East Asian routes to Europe through the Baltic Sea, while the \"Yellow Spice\" (saffron) traveled via maritime links from India's Moluccas and Central Asia directly into European ports like Lisbon and Venice. These distinct spice flows allowed neighboring cultures to develop specialized markets that mirrored local economies rather than relying on a unified global market, fostering a more localized yet interconnected trading system. The cultural exchange that accompanied these goods was as profound as the commodities themselves, with spices serving as currency for religious festivals, diplomatic treaties, and even artistic patronage in Europe's court. The geopolitical dynamics of the medieval world further shaped the spice trade landscape, leading to intense competition among European powers over access to these resources. The Catholic Church played a pivotal role in regulating this exchange through its monopoly on cloves and cinnamon, effectively restricting trade within its territories while maintaining strict control over supply lines originating from China. As Europe rose into power, it began to assert dominance over the Asian trade routes, eventually establishing fortified ports along the coast of India that served as logistical hubs for European merchants seeking raw materials. Simultaneously, Chinese officials began negotiating direct treaties with rival European powers to secure access to these vital resources, creating a fragile equilibrium between competing commercial interests and religious obligations. The 15th century witnessed one of the most dramatic turning points in this trade network when European powers finally achieved direct control over major chokepoints like the Strait of Malacca, the Suez Canal, and later the Dardine Straits near India's borders. This breakthrough allowed Europe to bypass the complex friction inherent in overland routes and establish a unified maritime monopoly that sustained commerce for centuries. The Dutch East India Company (VOC) emerged as the dominant force on this new stage, utilizing its vast fleet to consolidate control along the Indian Ocean coast while simultaneously expanding trade with the Ottoman Empire's territories in Central Asia. This era marked the transition from isolated coastal trading to a fully integrated global network where spice production and consumption were synchronized across continents within a few decades. The commercial expansion of European nations during this period brought unprecedented wealth and political power to Europe, fundamentally altering its internal economic structures. The influx of spices fueled an extravagant lifestyle that pushed back against traditional dietary restrictions prevalent in many parts of the continent, leading to significant social shifts regarding food consumption patterns and culinary traditions. Simultaneously, large-scale production facilities began to emerge, utilizing advanced techniques like stamping and fermentation to process dried goods into bulk commodities that could be shipped at scale without relying solely on artisanal methods or small boats. This industrialization allowed Europe to manufacture its own version of the spice trade in ways that were more efficient, cheaper, and less dependent on the volatile cargoes of distant oceans. The geopolitical tensions that plagued earlier centuries eventually gave way to a period of relative peace and prosperity known as the Age of Discovery, which fundamentally reshaped global economic maps and religious demographics across Eurasia. As European powers established colonies along the coast of Asia and expanded their own empires into Central Asia, they created a complex web of trade dependencies that would define international relations for centuries. The Columbian Exchange also introduced new crops to Europe including potatoes, maize, and tomatoes, while introducing many diseases to Indigenous populations in North America, creating significant demographic shifts throughout both hemispheres. This era marked the height of global integration, where knowledge from one region could influence another through direct contact rather than just commercial exchange, establishing a symbiotic relationship between East Asian and European cultures that would persist long after trade routes ceased to be open ocean vessels.",
+        "props": {
+          "source": "The spice trade between Asia and Europe was a complex web of commerce that spanned continents and centuries, evolving from direct coastal routes to massive transcontinental networks. The initial phase began in the 13th century when Portuguese traders established footholds along the Indian Ocean coast, facilitating the exchange of valuable commodities like pepper, cloves, cinnamon, and saffron for European goods such as silk and wool. These early encounters were often marked by cultural exchanges but remained largely transactional, with spices being shipped via small boats navigating the unpredictable waters of the straits between India and China.\n\nAs maritime technology advanced in Europe, the reliance on direct ocean passage began to wane, leading to the rise of overland trade routes that bypassed the dangers of open seas. The Silk Road emerged as a major artery connecting East Asia with Western Europe, utilizing camels, horses, and mule-drawn caravans to traverse deserts and mountains. This route connected the Roman Empire with Islamic territories in Central Asia, facilitating not only the movement of spices but also the spread of religious texts, technology, and cultural ideas across vast distances. The trade routes were often perilous; desert crossings faced fierce rivalries between civilizations, while mountain passes required skilled guides to traverse treacherous terrain without compromising safety or speed.\n\nThe medieval era marked a turning point where the primary driver of trade shifted from direct ocean voyages to controlled overland corridors. As European powers expanded their territories, they found themselves compelled by the sheer scale and necessity of global supply chains. The Hanseatic League in Northern Europe became a major hub for collecting spices originating from China and India, often using ships that could cross frozen seas or travel through mountain passes guarded by local tribes rather than relying on open ocean routes where piracy was rampant. This shift created a distinct geographical divide: the East Coast of Asia supplied Europe with high-quality textiles and leather goods, while the West Coast of Europe supplied Asia with luxury items like porcelain, glassware, and fine leather products, effectively closing off many previously accessible trade corridors entirely.\n\nThis divergence in trade directions accelerated the spread of specific spices across different regions. The \"Red Spice\" (cinnamon) moved rapidly along East Asian routes to Europe through the Baltic Sea, while the \"Yellow Spice\" (saffron) traveled via maritime links from India's Moluccas and Central Asia directly into European ports like Lisbon and Venice. These distinct spice flows allowed neighboring cultures to develop specialized markets that mirrored local economies rather than relying on a unified global market, fostering a more localized yet interconnected trading system. The cultural exchange that accompanied these goods was as profound as the commodities themselves, with spices serving as currency for religious festivals, diplomatic treaties, and even artistic patronage in Europe's court.\n\nThe geopolitical dynamics of the medieval world further shaped the spice trade landscape, leading to intense competition among European powers over access to these resources. The Catholic Church played a pivotal role in regulating this exchange through its monopoly on cloves and cinnamon, effectively restricting trade within its territories while maintaining strict control over supply lines originating from China. As Europe rose into power, it began to assert dominance over the Asian trade routes, eventually establishing fortified ports along the coast of India that served as logistical hubs for European merchants seeking raw materials. Simultaneously, Chinese officials began negotiating direct treaties with rival European powers to secure access to these vital resources, creating a fragile equilibrium between competing commercial interests and religious obligations.\n\nThe 15th century witnessed one of the most dramatic turning points in this trade network when European powers finally achieved direct control over major chokepoints like the Strait of Malacca, the Suez Canal, and later the Dardine Straits near India's borders. This breakthrough allowed Europe to bypass the complex friction inherent in overland routes and establish a unified maritime monopoly that sustained commerce for centuries. The Dutch East India Company (VOC) emerged as the dominant force on this new stage, utilizing its vast fleet to consolidate control along the Indian Ocean coast while simultaneously expanding trade with the Ottoman Empire's territories in Central Asia. This era marked the transition from isolated coastal trading to a fully integrated global network where spice production and consumption were synchronized across continents within a few decades.\n\nThe commercial expansion of European nations during this period brought unprecedented wealth and political power to Europe, fundamentally altering its internal economic structures. The influx of spices fueled an extravagant lifestyle that pushed back against traditional dietary restrictions prevalent in many parts of the continent, leading to significant social shifts regarding food consumption patterns and culinary traditions. Simultaneously, large-scale production facilities began to emerge, utilizing advanced techniques like stamping and fermentation to process dried goods into bulk commodities that could be shipped at scale without relying solely on artisanal methods or small boats. This industrialization allowed Europe to manufacture its own version of the spice trade in ways that were more efficient, cheaper, and less dependent on the volatile cargoes of distant oceans.\n\nThe geopolitical tensions that plagued earlier centuries eventually gave way to a period of relative peace and prosperity known as the Age of Discovery, which fundamentally reshaped global economic maps and religious demographics across Eurasia. As European powers established colonies along the coast of Asia and expanded their own empires into Central Asia, they created a complex web of trade dependencies that would define international relations for centuries. The Columbian Exchange also introduced new crops to Europe including potatoes, maize, and tomatoes, while introducing many diseases to Indigenous populations in North America, creating significant demographic shifts throughout both hemispheres. This era marked the height of global integration, where knowledge from one region could influence another through direct contact rather than just commercial exchange, establishing a symbiotic relationship between East Asian and European cultures that would persist long after trade routes ceased to be open ocean vessels.",
+          "disabled": false
+        }
+      },
+      "detail": "The spice trade between Asia and Europe was a complex web of commerce that spanned continents and centuries, evolving from direct coastal routes to massive transcontinental networks. The initial phase"
+    },
+    {
+      "i": 58,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2560,
+      "detail": "K02-continued-try3"
+    }
+  ],
+  "errors": []
+}

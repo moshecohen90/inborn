@@ -1,0 +1,1068 @@
+{
+  "runId": "l07-poem-refrainless-1",
+  "startedAt": "2026-09-27T18:07:03.214Z",
+  "finishedAt": "2026-09-27T18:07:41.697Z",
+  "ok": true,
+  "passed": 105,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 157,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 8,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 159,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1509,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 7,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 50 chars"
+    },
+    {
+      "i": 8,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 542,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 10,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly ▍",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly ▍"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 708,
+      "detail": "700 ms"
+    },
+    {
+      "i": 12,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon un ▍",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon un",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon un ▍"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 701,
+      "detail": "700 ms"
+    },
+    {
+      "i": 14,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores w ▍",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores w",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 15,
+      "op": "sleep",
+      "ok": true,
+      "ms": 720,
+      "detail": "700 ms"
+    },
+    {
+      "i": 16,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weigh ▍",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weigh",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 18,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough ▍",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 708,
+      "detail": "700 ms"
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is go ▍",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is go",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's ed ▍",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's ed",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 717,
+      "detail": "700 ms"
+    },
+    {
+      "i": 24,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was sil ▍",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was sil",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 25,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 26,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its f ▍",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its f",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 27,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 28,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long ▍",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 705,
+      "detail": "700 ms"
+    },
+    {
+      "i": 30,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter ▍",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 31,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 32,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and spl ▍",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and spl",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 33,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 34,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and splash, the rhythmic beating, Of millions who have gone out to find a way, To reach a land that was to ▍",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and splash, the rhythmic beating,\nOf millions who have gone out to find a way,\nTo reach a land that was to",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 35,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 36,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and splash, the rhythmic beating, Of millions who have gone out to find a way, To reach a land that was too far away before, Where only wind and waves could truly belong. Yet even here I feel the pull of dreams that li ▍",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and splash, the rhythmic beating,\nOf millions who have gone out to find a way,\nTo reach a land that was too far away before,\nWhere only wind and waves could truly belong.\n\nYet even here I feel the pull of dreams that li",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 37,
+      "op": "sleep",
+      "ok": true,
+      "ms": 705,
+      "detail": "700 ms"
+    },
+    {
+      "i": 38,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and splash, the rhythmic beating, Of millions who have gone out to find a way, To reach a land that was too far away before, Where only wind and waves could truly belong. Yet even here I feel the pull of dreams that lie, In quiet depths where nothing ever has been yet, And I am just another passenger on this endless path, S ▍",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and splash, the rhythmic beating,\nOf millions who have gone out to find a way,\nTo reach a land that was too far away before,\nWhere only wind and waves could truly belong.\n\nYet even here I feel the pull of dreams that lie,\nIn quiet depths where nothing ever has been yet,\nAnd I am just another passenger on this endless path,\nS",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 39,
+      "op": "sleep",
+      "ok": true,
+      "ms": 703,
+      "detail": "700 ms"
+    },
+    {
+      "i": 40,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and splash, the rhythmic beating, Of millions who have gone out to find a way, To reach a land that was too far away before, Where only wind and waves could truly belong. Yet even here I feel the pull of dreams that lie, In quiet depths where nothing ever has been yet, And I am just another passenger on this endless path, Sailing through water so vast it cannot be measured.",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and splash, the rhythmic beating,\nOf millions who have gone out to find a way,\nTo reach a land that was too far away before,\nWhere only wind and waves could truly belong.\n\nYet even here I feel the pull of dreams that lie,\nIn quiet depths where nothing ever has been yet,\nAnd I am just another passenger on this endless path,\nSailing through water so vast it cannot be measured.",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 41,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 42,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and splash, the rhythmic beating, Of millions who have gone out to find a way, To reach a land that was too far away before, Where only wind and waves could truly belong. Yet even here I feel the pull of dreams that lie, In quiet depths where nothing ever has been yet, And I am just another passenger on this endless path, Sailing through water so vast it cannot be measured.",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and splash, the rhythmic beating,\nOf millions who have gone out to find a way,\nTo reach a land that was too far away before,\nWhere only wind and waves could truly belong.\n\nYet even here I feel the pull of dreams that lie,\nIn quiet depths where nothing ever has been yet,\nAnd I am just another passenger on this endless path,\nSailing through water so vast it cannot be measured.",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 43,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 44,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and splash, the rhythmic beating, Of millions who have gone out to find a way, To reach a land that was too far away before, Where only wind and waves could truly belong. Yet even here I feel the pull of dreams that lie, In quiet depths where nothing ever has been yet, And I am just another passenger on this endless path, Sailing through water so vast it cannot be measured.",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and splash, the rhythmic beating,\nOf millions who have gone out to find a way,\nTo reach a land that was too far away before,\nWhere only wind and waves could truly belong.\n\nYet even here I feel the pull of dreams that lie,\nIn quiet depths where nothing ever has been yet,\nAnd I am just another passenger on this endless path,\nSailing through water so vast it cannot be measured.",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 45,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 46,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and splash, the rhythmic beating, Of millions who have gone out to find a way, To reach a land that was too far away before, Where only wind and waves could truly belong. Yet even here I feel the pull of dreams that lie, In quiet depths where nothing ever has been yet, And I am just another passenger on this endless path, Sailing through water so vast it cannot be measured.",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and splash, the rhythmic beating,\nOf millions who have gone out to find a way,\nTo reach a land that was too far away before,\nWhere only wind and waves could truly belong.\n\nYet even here I feel the pull of dreams that lie,\nIn quiet depths where nothing ever has been yet,\nAnd I am just another passenger on this endless path,\nSailing through water so vast it cannot be measured.",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 47,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 48,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and splash, the rhythmic beating, Of millions who have gone out to find a way, To reach a land that was too far away before, Where only wind and waves could truly belong. Yet even here I feel the pull of dreams that lie, In quiet depths where nothing ever has been yet, And I am just another passenger on this endless path, Sailing through water so vast it cannot be measured.",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and splash, the rhythmic beating,\nOf millions who have gone out to find a way,\nTo reach a land that was too far away before,\nWhere only wind and waves could truly belong.\n\nYet even here I feel the pull of dreams that lie,\nIn quiet depths where nothing ever has been yet,\nAnd I am just another passenger on this endless path,\nSailing through water so vast it cannot be measured.",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 49,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 50,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and splash, the rhythmic beating, Of millions who have gone out to find a way, To reach a land that was too far away before, Where only wind and waves could truly belong. Yet even here I feel the pull of dreams that lie, In quiet depths where nothing ever has been yet, And I am just another passenger on this endless path, Sailing through water so vast it cannot be measured.",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and splash, the rhythmic beating,\nOf millions who have gone out to find a way,\nTo reach a land that was too far away before,\nWhere only wind and waves could truly belong.\n\nYet even here I feel the pull of dreams that lie,\nIn quiet depths where nothing ever has been yet,\nAnd I am just another passenger on this endless path,\nSailing through water so vast it cannot be measured.",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 51,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 52,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and splash, the rhythmic beating, Of millions who have gone out to find a way, To reach a land that was too far away before, Where only wind and waves could truly belong. Yet even here I feel the pull of dreams that lie, In quiet depths where nothing ever has been yet, And I am just another passenger on this endless path, Sailing through water so vast it cannot be measured.",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and splash, the rhythmic beating,\nOf millions who have gone out to find a way,\nTo reach a land that was too far away before,\nWhere only wind and waves could truly belong.\n\nYet even here I feel the pull of dreams that lie,\nIn quiet depths where nothing ever has been yet,\nAnd I am just another passenger on this endless path,\nSailing through water so vast it cannot be measured.",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 53,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 54,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and splash, the rhythmic beating, Of millions who have gone out to find a way, To reach a land that was too far away before, Where only wind and waves could truly belong. Yet even here I feel the pull of dreams that lie, In quiet depths where nothing ever has been yet, And I am just another passenger on this endless path, Sailing through water so vast it cannot be measured.",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and splash, the rhythmic beating,\nOf millions who have gone out to find a way,\nTo reach a land that was too far away before,\nWhere only wind and waves could truly belong.\n\nYet even here I feel the pull of dreams that lie,\nIn quiet depths where nothing ever has been yet,\nAnd I am just another passenger on this endless path,\nSailing through water so vast it cannot be measured.",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 55,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 56,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and splash, the rhythmic beating, Of millions who have gone out to find a way, To reach a land that was too far away before, Where only wind and waves could truly belong. Yet even here I feel the pull of dreams that lie, In quiet depths where nothing ever has been yet, And I am just another passenger on this endless path, Sailing through water so vast it cannot be measured.",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and splash, the rhythmic beating,\nOf millions who have gone out to find a way,\nTo reach a land that was too far away before,\nWhere only wind and waves could truly belong.\n\nYet even here I feel the pull of dreams that lie,\nIn quiet depths where nothing ever has been yet,\nAnd I am just another passenger on this endless path,\nSailing through water so vast it cannot be measured.",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 57,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 58,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and splash, the rhythmic beating, Of millions who have gone out to find a way, To reach a land that was too far away before, Where only wind and waves could truly belong. Yet even here I feel the pull of dreams that lie, In quiet depths where nothing ever has been yet, And I am just another passenger on this endless path, Sailing through water so vast it cannot be measured.",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and splash, the rhythmic beating,\nOf millions who have gone out to find a way,\nTo reach a land that was too far away before,\nWhere only wind and waves could truly belong.\n\nYet even here I feel the pull of dreams that lie,\nIn quiet depths where nothing ever has been yet,\nAnd I am just another passenger on this endless path,\nSailing through water so vast it cannot be measured.",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 59,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 60,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and splash, the rhythmic beating, Of millions who have gone out to find a way, To reach a land that was too far away before, Where only wind and waves could truly belong. Yet even here I feel the pull of dreams that lie, In quiet depths where nothing ever has been yet, And I am just another passenger on this endless path, Sailing through water so vast it cannot be measured.",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and splash, the rhythmic beating,\nOf millions who have gone out to find a way,\nTo reach a land that was too far away before,\nWhere only wind and waves could truly belong.\n\nYet even here I feel the pull of dreams that lie,\nIn quiet depths where nothing ever has been yet,\nAnd I am just another passenger on this endless path,\nSailing through water so vast it cannot be measured.",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 61,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 62,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and splash, the rhythmic beating, Of millions who have gone out to find a way, To reach a land that was too far away before, Where only wind and waves could truly belong. Yet even here I feel the pull of dreams that lie, In quiet depths where nothing ever has been yet, And I am just another passenger on this endless path, Sailing through water so vast it cannot be measured.",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and splash, the rhythmic beating,\nOf millions who have gone out to find a way,\nTo reach a land that was too far away before,\nWhere only wind and waves could truly belong.\n\nYet even here I feel the pull of dreams that lie,\nIn quiet depths where nothing ever has been yet,\nAnd I am just another passenger on this endless path,\nSailing through water so vast it cannot be measured.",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 63,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 64,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and splash, the rhythmic beating, Of millions who have gone out to find a way, To reach a land that was too far away before, Where only wind and waves could truly belong. Yet even here I feel the pull of dreams that lie, In quiet depths where nothing ever has been yet, And I am just another passenger on this endless path, Sailing through water so vast it cannot be measured.",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and splash, the rhythmic beating,\nOf millions who have gone out to find a way,\nTo reach a land that was too far away before,\nWhere only wind and waves could truly belong.\n\nYet even here I feel the pull of dreams that lie,\nIn quiet depths where nothing ever has been yet,\nAnd I am just another passenger on this endless path,\nSailing through water so vast it cannot be measured.",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 65,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 66,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and splash, the rhythmic beating, Of millions who have gone out to find a way, To reach a land that was too far away before, Where only wind and waves could truly belong. Yet even here I feel the pull of dreams that lie, In quiet depths where nothing ever has been yet, And I am just another passenger on this endless path, Sailing through water so vast it cannot be measured.",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and splash, the rhythmic beating,\nOf millions who have gone out to find a way,\nTo reach a land that was too far away before,\nWhere only wind and waves could truly belong.\n\nYet even here I feel the pull of dreams that lie,\nIn quiet depths where nothing ever has been yet,\nAnd I am just another passenger on this endless path,\nSailing through water so vast it cannot be measured.",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 67,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 68,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and splash, the rhythmic beating, Of millions who have gone out to find a way, To reach a land that was too far away before, Where only wind and waves could truly belong. Yet even here I feel the pull of dreams that lie, In quiet depths where nothing ever has been yet, And I am just another passenger on this endless path, Sailing through water so vast it cannot be measured.",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and splash, the rhythmic beating,\nOf millions who have gone out to find a way,\nTo reach a land that was too far away before,\nWhere only wind and waves could truly belong.\n\nYet even here I feel the pull of dreams that lie,\nIn quiet depths where nothing ever has been yet,\nAnd I am just another passenger on this endless path,\nSailing through water so vast it cannot be measured.",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 69,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 70,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and splash, the rhythmic beating, Of millions who have gone out to find a way, To reach a land that was too far away before, Where only wind and waves could truly belong. Yet even here I feel the pull of dreams that lie, In quiet depths where nothing ever has been yet, And I am just another passenger on this endless path, Sailing through water so vast it cannot be measured.",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and splash, the rhythmic beating,\nOf millions who have gone out to find a way,\nTo reach a land that was too far away before,\nWhere only wind and waves could truly belong.\n\nYet even here I feel the pull of dreams that lie,\nIn quiet depths where nothing ever has been yet,\nAnd I am just another passenger on this endless path,\nSailing through water so vast it cannot be measured.",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 71,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 72,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and splash, the rhythmic beating, Of millions who have gone out to find a way, To reach a land that was too far away before, Where only wind and waves could truly belong. Yet even here I feel the pull of dreams that lie, In quiet depths where nothing ever has been yet, And I am just another passenger on this endless path, Sailing through water so vast it cannot be measured.",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and splash, the rhythmic beating,\nOf millions who have gone out to find a way,\nTo reach a land that was too far away before,\nWhere only wind and waves could truly belong.\n\nYet even here I feel the pull of dreams that lie,\nIn quiet depths where nothing ever has been yet,\nAnd I am just another passenger on this endless path,\nSailing through water so vast it cannot be measured.",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 73,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 74,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and splash, the rhythmic beating, Of millions who have gone out to find a way, To reach a land that was too far away before, Where only wind and waves could truly belong. Yet even here I feel the pull of dreams that lie, In quiet depths where nothing ever has been yet, And I am just another passenger on this endless path, Sailing through water so vast it cannot be measured.",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and splash, the rhythmic beating,\nOf millions who have gone out to find a way,\nTo reach a land that was too far away before,\nWhere only wind and waves could truly belong.\n\nYet even here I feel the pull of dreams that lie,\nIn quiet depths where nothing ever has been yet,\nAnd I am just another passenger on this endless path,\nSailing through water so vast it cannot be measured.",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 75,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 76,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and splash, the rhythmic beating, Of millions who have gone out to find a way, To reach a land that was too far away before, Where only wind and waves could truly belong. Yet even here I feel the pull of dreams that lie, In quiet depths where nothing ever has been yet, And I am just another passenger on this endless path, Sailing through water so vast it cannot be measured.",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and splash, the rhythmic beating,\nOf millions who have gone out to find a way,\nTo reach a land that was too far away before,\nWhere only wind and waves could truly belong.\n\nYet even here I feel the pull of dreams that lie,\nIn quiet depths where nothing ever has been yet,\nAnd I am just another passenger on this endless path,\nSailing through water so vast it cannot be measured.",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 77,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 78,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and splash, the rhythmic beating, Of millions who have gone out to find a way, To reach a land that was too far away before, Where only wind and waves could truly belong. Yet even here I feel the pull of dreams that lie, In quiet depths where nothing ever has been yet, And I am just another passenger on this endless path, Sailing through water so vast it cannot be measured.",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and splash, the rhythmic beating,\nOf millions who have gone out to find a way,\nTo reach a land that was too far away before,\nWhere only wind and waves could truly belong.\n\nYet even here I feel the pull of dreams that lie,\nIn quiet depths where nothing ever has been yet,\nAnd I am just another passenger on this endless path,\nSailing through water so vast it cannot be measured.",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 79,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 80,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and splash, the rhythmic beating, Of millions who have gone out to find a way, To reach a land that was too far away before, Where only wind and waves could truly belong. Yet even here I feel the pull of dreams that lie, In quiet depths where nothing ever has been yet, And I am just another passenger on this endless path, Sailing through water so vast it cannot be measured.",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and splash, the rhythmic beating,\nOf millions who have gone out to find a way,\nTo reach a land that was too far away before,\nWhere only wind and waves could truly belong.\n\nYet even here I feel the pull of dreams that lie,\nIn quiet depths where nothing ever has been yet,\nAnd I am just another passenger on this endless path,\nSailing through water so vast it cannot be measured.",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 81,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 82,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and splash, the rhythmic beating, Of millions who have gone out to find a way, To reach a land that was too far away before, Where only wind and waves could truly belong. Yet even here I feel the pull of dreams that lie, In quiet depths where nothing ever has been yet, And I am just another passenger on this endless path, Sailing through water so vast it cannot be measured.",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and splash, the rhythmic beating,\nOf millions who have gone out to find a way,\nTo reach a land that was too far away before,\nWhere only wind and waves could truly belong.\n\nYet even here I feel the pull of dreams that lie,\nIn quiet depths where nothing ever has been yet,\nAnd I am just another passenger on this endless path,\nSailing through water so vast it cannot be measured.",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 83,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 84,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and splash, the rhythmic beating, Of millions who have gone out to find a way, To reach a land that was too far away before, Where only wind and waves could truly belong. Yet even here I feel the pull of dreams that lie, In quiet depths where nothing ever has been yet, And I am just another passenger on this endless path, Sailing through water so vast it cannot be measured.",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and splash, the rhythmic beating,\nOf millions who have gone out to find a way,\nTo reach a land that was too far away before,\nWhere only wind and waves could truly belong.\n\nYet even here I feel the pull of dreams that lie,\nIn quiet depths where nothing ever has been yet,\nAnd I am just another passenger on this endless path,\nSailing through water so vast it cannot be measured.",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 85,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 86,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and splash, the rhythmic beating, Of millions who have gone out to find a way, To reach a land that was too far away before, Where only wind and waves could truly belong. Yet even here I feel the pull of dreams that lie, In quiet depths where nothing ever has been yet, And I am just another passenger on this endless path, Sailing through water so vast it cannot be measured.",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and splash, the rhythmic beating,\nOf millions who have gone out to find a way,\nTo reach a land that was too far away before,\nWhere only wind and waves could truly belong.\n\nYet even here I feel the pull of dreams that lie,\nIn quiet depths where nothing ever has been yet,\nAnd I am just another passenger on this endless path,\nSailing through water so vast it cannot be measured.",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 87,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 88,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and splash, the rhythmic beating, Of millions who have gone out to find a way, To reach a land that was too far away before, Where only wind and waves could truly belong. Yet even here I feel the pull of dreams that lie, In quiet depths where nothing ever has been yet, And I am just another passenger on this endless path, Sailing through water so vast it cannot be measured.",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and splash, the rhythmic beating,\nOf millions who have gone out to find a way,\nTo reach a land that was too far away before,\nWhere only wind and waves could truly belong.\n\nYet even here I feel the pull of dreams that lie,\nIn quiet depths where nothing ever has been yet,\nAnd I am just another passenger on this endless path,\nSailing through water so vast it cannot be measured.",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 89,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 90,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and splash, the rhythmic beating, Of millions who have gone out to find a way, To reach a land that was too far away before, Where only wind and waves could truly belong. Yet even here I feel the pull of dreams that lie, In quiet depths where nothing ever has been yet, And I am just another passenger on this endless path, Sailing through water so vast it cannot be measured.",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and splash, the rhythmic beating,\nOf millions who have gone out to find a way,\nTo reach a land that was too far away before,\nWhere only wind and waves could truly belong.\n\nYet even here I feel the pull of dreams that lie,\nIn quiet depths where nothing ever has been yet,\nAnd I am just another passenger on this endless path,\nSailing through water so vast it cannot be measured.",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 91,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 92,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and splash, the rhythmic beating, Of millions who have gone out to find a way, To reach a land that was too far away before, Where only wind and waves could truly belong. Yet even here I feel the pull of dreams that lie, In quiet depths where nothing ever has been yet, And I am just another passenger on this endless path, Sailing through water so vast it cannot be measured.",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and splash, the rhythmic beating,\nOf millions who have gone out to find a way,\nTo reach a land that was too far away before,\nWhere only wind and waves could truly belong.\n\nYet even here I feel the pull of dreams that lie,\nIn quiet depths where nothing ever has been yet,\nAnd I am just another passenger on this endless path,\nSailing through water so vast it cannot be measured.",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 93,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 94,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and splash, the rhythmic beating, Of millions who have gone out to find a way, To reach a land that was too far away before, Where only wind and waves could truly belong. Yet even here I feel the pull of dreams that lie, In quiet depths where nothing ever has been yet, And I am just another passenger on this endless path, Sailing through water so vast it cannot be measured.",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and splash, the rhythmic beating,\nOf millions who have gone out to find a way,\nTo reach a land that was too far away before,\nWhere only wind and waves could truly belong.\n\nYet even here I feel the pull of dreams that lie,\nIn quiet depths where nothing ever has been yet,\nAnd I am just another passenger on this endless path,\nSailing through water so vast it cannot be measured.",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 95,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 96,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and splash, the rhythmic beating, Of millions who have gone out to find a way, To reach a land that was too far away before, Where only wind and waves could truly belong. Yet even here I feel the pull of dreams that lie, In quiet depths where nothing ever has been yet, And I am just another passenger on this endless path, Sailing through water so vast it cannot be measured.",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and splash, the rhythmic beating,\nOf millions who have gone out to find a way,\nTo reach a land that was too far away before,\nWhere only wind and waves could truly belong.\n\nYet even here I feel the pull of dreams that lie,\nIn quiet depths where nothing ever has been yet,\nAnd I am just another passenger on this endless path,\nSailing through water so vast it cannot be measured.",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 97,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 98,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and splash, the rhythmic beating, Of millions who have gone out to find a way, To reach a land that was too far away before, Where only wind and waves could truly belong. Yet even here I feel the pull of dreams that lie, In quiet depths where nothing ever has been yet, And I am just another passenger on this endless path, Sailing through water so vast it cannot be measured.",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and splash, the rhythmic beating,\nOf millions who have gone out to find a way,\nTo reach a land that was too far away before,\nWhere only wind and waves could truly belong.\n\nYet even here I feel the pull of dreams that lie,\nIn quiet depths where nothing ever has been yet,\nAnd I am just another passenger on this endless path,\nSailing through water so vast it cannot be measured.",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 99,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 100,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "stop gone"
+    },
+    {
+      "i": 101,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1515,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 102,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the salty air smells of salt and forgotten dreams. There are no shores where the current holds its breath, For the ocean is too vast to hold a single shore, And every tide returns with the same heavy weight, To carry nothing back but what it already brought. I see the rocks they scrape against the sand, A rough and jagged line that marks my wandering hand, Like ancient scars where fire has long ago burned, But now the heat is gone and silence is complete. They tell me stories of the land before, Where ships once sailed far beyond the horizon's edge, With sails unfurled and sails not yet tied in place, That they would sail on when the sea was silent deep. But here we are, below this vast and flowing light, A quiet place where time seems to slow its flight, And I feel it in the cold water that I drink now, As if I am returning home from a long flight. The waves roll upon, and break against the shore, Creating an echo for every sound within, Like laughter in a mirror where the glass is white, A promise of what will never come to pass. I hear them crash and splash, the rhythmic beating, Of millions who have gone out to find a way, To reach a land that was too far away before, Where only wind and waves could truly belong. Yet even here I feel the pull of dreams that lie, In quiet depths where nothing ever has been yet, And I am just another passenger on this endless path, Sailing through water so vast it cannot be measured.",
+        "props": {
+          "source": "The wind sweeps through the water, a ghostly whisper that never quite stops,\nAs it kisses the waves before they rise to meet the stars.\nA silver ribbon unspools from the deep blue depths,\nWhere the salty air smells of salt and forgotten dreams.\n\nThere are no shores where the current holds its breath,\nFor the ocean is too vast to hold a single shore,\nAnd every tide returns with the same heavy weight,\nTo carry nothing back but what it already brought.\n\nI see the rocks they scrape against the sand,\nA rough and jagged line that marks my wandering hand,\nLike ancient scars where fire has long ago burned,\nBut now the heat is gone and silence is complete.\n\nThey tell me stories of the land before,\nWhere ships once sailed far beyond the horizon's edge,\nWith sails unfurled and sails not yet tied in place,\nThat they would sail on when the sea was silent deep.\n\nBut here we are, below this vast and flowing light,\nA quiet place where time seems to slow its flight,\nAnd I feel it in the cold water that I drink now,\nAs if I am returning home from a long flight.\n\nThe waves roll upon, and break against the shore,\nCreating an echo for every sound within,\nLike laughter in a mirror where the glass is white,\nA promise of what will never come to pass.\n\nI hear them crash and splash, the rhythmic beating,\nOf millions who have gone out to find a way,\nTo reach a land that was too far away before,\nWhere only wind and waves could truly belong.\n\nYet even here I feel the pull of dreams that lie,\nIn quiet depths where nothing ever has been yet,\nAnd I am just another passenger on this endless path,\nSailing through water so vast it cannot be measured.",
+          "disabled": false
+        }
+      },
+      "detail": "The wind sweeps through the water, a ghostly whisper that never quite stops, As it kisses the waves before they rise to meet the stars. A silver ribbon unspools from the deep blue depths, Where the sa"
+    },
+    {
+      "i": 103,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1926,
+      "detail": "L07-poem-refrainless-1"
+    },
+    {
+      "i": 104,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "loop-notice gone"
+    }
+  ],
+  "errors": []
+}

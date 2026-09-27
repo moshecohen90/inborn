@@ -1,0 +1,66 @@
+22:09:02 launching com.inbornapp.mobile.qa
+22:09:47 pushing 59 steps as d2-continue-again
+22:10:24 shot K01-stopped-try2
+22:10:47 shot K02-continued-try2
+22:11:02 shot K01-stopped-try3
+22:11:35 shot K02-continued-try3
+22:11:39 ok     0 waitFor    onboarding-welcome appeared
+22:11:39 ok     1 sleep      1500 ms
+22:11:39 ok     2 press      onboarding-continue ← onPress
+22:11:39 ok     3 waitFor    onboarding-model appeared
+22:11:39 ok     4 sleep      2500 ms
+22:11:39 ok     5 press      start-chatting ← onPress
+22:11:39 ok     6 waitFor    onboarding-sealed appeared
+22:11:39 ok     7 sleep      4000 ms
+22:11:39 ok     8 press      sealed-start ← onPress
+22:11:39 ok     9 waitFor    onboarding-lock appeared
+22:11:39 ok    10 sleep      1500 ms
+22:11:39 ok    11 press      lock-start ← onPress
+22:11:39 ok    12 waitFor    composer-input appeared
+22:11:39 ok    13 waitFor    Loading gone
+22:11:39 ok    14 sleep      2000 ms
+22:11:39 ok    15 deeplink   /chats
+22:11:39 ok    16 waitFor    new-chat appeared
+22:11:39 ok    17 press      new-chat ← onPress
+22:11:39 ok    18 waitFor    start-chat appeared
+22:11:39 ok    19 press      start-chat ← onPress
+22:11:39 ok    20 waitFor    composer-input appeared
+22:11:39 ok    21 sleep      1500 ms
+22:11:39 ok    22 type       composer-input = 104 chars
+22:11:39 ok    23 send       send ← onPress
+22:11:39 ok    24 waitFor    assistant-text appeared
+22:11:39 ok    25 sleep      7000 ms
+22:11:39 ok    26 press      stop ← onPress
+22:11:39 ok    27 sleep      2000 ms
+22:11:39 ok    28 value      The history of the spice trade between Asia and Europe is a complex tapestry woven through centuries of conque
+22:11:39 ok    29 screenshot K01-stopped-try2
+22:11:39 ok    30 waitFor    continue appeared
+22:11:39 ok    31 press      continue ← onPress
+22:11:39 ok    32 sleep      1500 ms
+22:11:39 ok    33 waitFor    stop gone
+22:11:39 ok    34 sleep      1500 ms
+22:11:39 ok    35 value      The history of the spice trade between Asia and Europe is a complex tapestry woven through centuries of conque
+22:11:39 ok    36 screenshot K02-continued-try2
+22:11:39 ok    37 deeplink   /chats
+22:11:39 ok    38 waitFor    new-chat appeared
+22:11:39 ok    39 press      new-chat ← onPress
+22:11:39 ok    40 waitFor    start-chat appeared
+22:11:39 ok    41 press      start-chat ← onPress
+22:11:39 ok    42 waitFor    composer-input appeared
+22:11:39 ok    43 sleep      1500 ms
+22:11:39 ok    44 type       composer-input = 104 chars
+22:11:39 ok    45 send       send ← onPress
+22:11:39 ok    46 waitFor    assistant-text appeared
+22:11:39 ok    47 sleep      7000 ms
+22:11:39 ok    48 press      stop ← onPress
+22:11:39 ok    49 sleep      2000 ms
+22:11:39 ok    50 value      The spice trade between Asia and Europe was a complex web of commerce that spanned continents and centuries, e
+22:11:39 ok    51 screenshot K01-stopped-try3
+22:11:39 ok    52 waitFor    continue appeared
+22:11:39 ok    53 press      continue ← onPress
+22:11:39 ok    54 sleep      1500 ms
+22:11:39 ok    55 waitFor    stop gone
+22:11:39 ok    56 sleep      1500 ms
+22:11:39 ok    57 value      The spice trade between Asia and Europe was a complex web of commerce that spanned continents and centuries, e
+22:11:39 ok    58 screenshot K02-continued-try3
+22:11:39 59 passed, 0 failed, 4 screenshots → <worktree>/docs/qa/ios-device-pass-24/screens

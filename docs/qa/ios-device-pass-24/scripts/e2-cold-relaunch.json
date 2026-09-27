@@ -1,0 +1,35 @@
+{
+ "steps": [
+  {
+   "op": "waitFor",
+   "testID": "onboarding-welcome",
+   "timeoutMs": 120000
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "screenshot",
+   "name": "E03-cold-relaunch"
+  },
+  {
+   "op": "value",
+   "testID": "onboarding-welcome"
+  },
+  {
+   "op": "assertText",
+   "text": "could not be opened",
+   "absent": true
+  },
+  {
+   "op": "waitFor",
+   "testID": "banner-repair",
+   "gone": true,
+   "timeoutMs": 3000
+  },
+  {
+   "op": "cleanup"
+  }
+ ]
+}

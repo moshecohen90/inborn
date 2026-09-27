@@ -1,0 +1,29 @@
+21:19:03 pushing 25 steps as f-documents
+21:19:14 shot F01-documents-screen
+21:19:19 shot F02-privacy-storage
+21:19:23 ok     0 deeplink   /chats
+21:19:23 ok     1 waitFor    new-chat appeared
+21:19:23 ok     2 press      new-chat ← onPress
+21:19:23 ok     3 waitFor    start-chat appeared
+21:19:23 ok     4 press      start-chat ← onPress
+21:19:23 ok     5 waitFor    composer-input appeared
+21:19:23 ok     6 sleep      1500 ms
+21:19:23 ok     7 devPrompt  attach: greenhouse-notes.txt
+21:19:23 ok     8 waitFor    attached-docs appeared
+21:19:23 ok     9 sleep      3000 ms
+21:19:23 ok    10 value      greenhouse-notes.txt
+21:19:23 ok    11 deeplink   /documents
+21:19:23 ok    12 waitFor    documents-screen appeared
+21:19:23 ok    13 sleep      2000 ms
+21:19:23 ok    14 value      Documents Close Add file 1 document · 253 B on this device Answer only from my documents When nothing relevant
+21:19:23 ok    15 screenshot F01-documents-screen
+21:19:23 ok    16 deeplink   /settings/storage
+21:19:23 ok    17 waitFor    storage appeared
+21:19:23 ok    18 sleep      2000 ms
+21:19:23 ok    19 value      Chats encrypted (SQLCipher) 4.22 MB
+21:19:23 ok    20 value      Documents 253 B
+21:19:23 ok    21 value      Models not backed up 0 B
+21:19:23 ok    22 screenshot F02-privacy-storage
+21:19:23 ok    23 assertText "0 B" absent
+21:19:23 ok    24 assertText "253 B" present
+21:19:23 25 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-24/screens

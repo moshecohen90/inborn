@@ -1,0 +1,1068 @@
+{
+  "runId": "l07-es-list-2",
+  "startedAt": "2026-09-27T18:04:52.797Z",
+  "finishedAt": "2026-09-27T18:05:33.957Z",
+  "ok": true,
+  "passed": 105,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 155,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 7,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 37 chars"
+    },
+    {
+      "i": 8,
+      "op": "send",
+      "ok": true,
+      "ms": 170,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 10,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí ▍",
+        "props": {
+          "source": "Aquí",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí ▍"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 12,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1 ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1 ▍"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 14,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada dí ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada dí",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 15,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 16,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4 ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 702,
+      "detail": "700 ms"
+    },
+    {
+      "i": 18,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 704,
+      "detail": "700 ms"
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón n ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 706,
+      "detail": "700 ms"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuev ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuev",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 24,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nad ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nad",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 25,
+      "op": "sleep",
+      "ok": true,
+      "ms": 717,
+      "detail": "700 ms"
+    },
+    {
+      "i": 26,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potenci ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potenci",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 27,
+      "op": "sleep",
+      "ok": true,
+      "ms": 709,
+      "detail": "700 ms"
+    },
+    {
+      "i": 28,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 1 ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n1",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 707,
+      "detail": "700 ms"
+    },
+    {
+      "i": 30,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La consta ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La consta",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 31,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 32,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tiene ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tiene",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 33,
+      "op": "sleep",
+      "ok": true,
+      "ms": 702,
+      "detail": "700 ms"
+    },
+    {
+      "i": 34,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes. 15. El amor verdadero no requiere permiso; es una fuerza que invierte ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes.\n15. El amor verdadero no requiere permiso; es una fuerza que invierte",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 35,
+      "op": "sleep",
+      "ok": true,
+      "ms": 724,
+      "detail": "700 ms"
+    },
+    {
+      "i": 36,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes. 15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida. 16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión. 17 ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes.\n15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida.\n16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión.\n17",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 37,
+      "op": "sleep",
+      "ok": true,
+      "ms": 743,
+      "detail": "700 ms"
+    },
+    {
+      "i": 38,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes. 15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida. 16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión. 17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti. 18. Tu potencial ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes.\n15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida.\n16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión.\n17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti.\n18. Tu potencial",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 39,
+      "op": "sleep",
+      "ok": true,
+      "ms": 735,
+      "detail": "700 ms"
+    },
+    {
+      "i": 40,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes. 15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida. 16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión. 17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti. 18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\". 19. El momento en que todo vuelve ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes.\n15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida.\n16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión.\n17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti.\n18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\".\n19. El momento en que todo vuelve",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 41,
+      "op": "sleep",
+      "ok": true,
+      "ms": 838,
+      "detail": "700 ms"
+    },
+    {
+      "i": 42,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes. 15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida. 16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión. 17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti. 18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\". 19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar. 20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde esté ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes.\n15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida.\n16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión.\n17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti.\n18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\".\n19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar.\n20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde esté",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 43,
+      "op": "sleep",
+      "ok": true,
+      "ms": 708,
+      "detail": "700 ms"
+    },
+    {
+      "i": 44,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes. 15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida. 16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión. 17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti. 18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\". 19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar. 20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés. 21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú. 22 ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes.\n15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida.\n16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión.\n17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti.\n18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\".\n19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar.\n20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés.\n21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú.\n22",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 45,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1095,
+      "detail": "700 ms"
+    },
+    {
+      "i": 46,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes. 15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida. 16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión. 17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti. 18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\". 19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar. 20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés. 21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú. 22. No te juzgues por lo que has pasado, pues estás en el futuro. 23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes.\n15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida.\n16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión.\n17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti.\n18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\".\n19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar.\n20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés.\n21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú.\n22. No te juzgues por lo que has pasado, pues estás en el futuro.\n23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 47,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1029,
+      "detail": "700 ms"
+    },
+    {
+      "i": 48,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes. 15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida. 16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión. 17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti. 18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\". 19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar. 20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés. 21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú. 22. No te juzgues por lo que has pasado, pues estás en el futuro. 23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta. 24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad. 25. Tu historia no es un fin; es una experiencia que puedes continuar creand ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes.\n15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida.\n16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión.\n17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti.\n18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\".\n19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar.\n20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés.\n21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú.\n22. No te juzgues por lo que has pasado, pues estás en el futuro.\n23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta.\n24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad.\n25. Tu historia no es un fin; es una experiencia que puedes continuar creand",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 49,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1159,
+      "detail": "700 ms"
+    },
+    {
+      "i": 50,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes. 15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida. 16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión. 17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti. 18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\". 19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar. 20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés. 21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú. 22. No te juzgues por lo que has pasado, pues estás en el futuro. 23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta. 24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad. 25. Tu historia no es un fin; es una experiencia que puedes continuar creando. 26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento. 27. El valor de la vida está en lo que haces, no solo en quién eres ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes.\n15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida.\n16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión.\n17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti.\n18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\".\n19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar.\n20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés.\n21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú.\n22. No te juzgues por lo que has pasado, pues estás en el futuro.\n23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta.\n24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad.\n25. Tu historia no es un fin; es una experiencia que puedes continuar creando.\n26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento.\n27. El valor de la vida está en lo que haces, no solo en quién eres",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 51,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1653,
+      "detail": "700 ms"
+    },
+    {
+      "i": 52,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes. 15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida. 16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión. 17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti. 18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\". 19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar. 20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés. 21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú. 22. No te juzgues por lo que has pasado, pues estás en el futuro. 23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta. 24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad. 25. Tu historia no es un fin; es una experiencia que puedes continuar creando. 26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento. 27. El valor de la vida está en lo que haces, no solo en quién eres. 28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy. 29. Cada pequeña acción es una piedra para construir algo tan grande como tú. 30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes.\n15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida.\n16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión.\n17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti.\n18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\".\n19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar.\n20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés.\n21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú.\n22. No te juzgues por lo que has pasado, pues estás en el futuro.\n23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta.\n24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad.\n25. Tu historia no es un fin; es una experiencia que puedes continuar creando.\n26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento.\n27. El valor de la vida está en lo que haces, no solo en quién eres.\n28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy.\n29. Cada pequeña acción es una piedra para construir algo tan grande como tú.\n30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 53,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 54,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes. 15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida. 16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión. 17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti. 18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\". 19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar. 20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés. 21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú. 22. No te juzgues por lo que has pasado, pues estás en el futuro. 23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta. 24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad. 25. Tu historia no es un fin; es una experiencia que puedes continuar creando. 26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento. 27. El valor de la vida está en lo que haces, no solo en quién eres. 28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy. 29. Cada pequeña acción es una piedra para construir algo tan grande como tú. 30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes.\n15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida.\n16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión.\n17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti.\n18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\".\n19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar.\n20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés.\n21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú.\n22. No te juzgues por lo que has pasado, pues estás en el futuro.\n23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta.\n24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad.\n25. Tu historia no es un fin; es una experiencia que puedes continuar creando.\n26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento.\n27. El valor de la vida está en lo que haces, no solo en quién eres.\n28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy.\n29. Cada pequeña acción es una piedra para construir algo tan grande como tú.\n30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 55,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 56,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes. 15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida. 16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión. 17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti. 18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\". 19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar. 20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés. 21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú. 22. No te juzgues por lo que has pasado, pues estás en el futuro. 23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta. 24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad. 25. Tu historia no es un fin; es una experiencia que puedes continuar creando. 26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento. 27. El valor de la vida está en lo que haces, no solo en quién eres. 28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy. 29. Cada pequeña acción es una piedra para construir algo tan grande como tú. 30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes.\n15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida.\n16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión.\n17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti.\n18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\".\n19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar.\n20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés.\n21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú.\n22. No te juzgues por lo que has pasado, pues estás en el futuro.\n23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta.\n24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad.\n25. Tu historia no es un fin; es una experiencia que puedes continuar creando.\n26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento.\n27. El valor de la vida está en lo que haces, no solo en quién eres.\n28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy.\n29. Cada pequeña acción es una piedra para construir algo tan grande como tú.\n30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 57,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 58,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes. 15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida. 16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión. 17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti. 18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\". 19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar. 20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés. 21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú. 22. No te juzgues por lo que has pasado, pues estás en el futuro. 23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta. 24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad. 25. Tu historia no es un fin; es una experiencia que puedes continuar creando. 26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento. 27. El valor de la vida está en lo que haces, no solo en quién eres. 28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy. 29. Cada pequeña acción es una piedra para construir algo tan grande como tú. 30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes.\n15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida.\n16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión.\n17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti.\n18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\".\n19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar.\n20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés.\n21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú.\n22. No te juzgues por lo que has pasado, pues estás en el futuro.\n23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta.\n24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad.\n25. Tu historia no es un fin; es una experiencia que puedes continuar creando.\n26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento.\n27. El valor de la vida está en lo que haces, no solo en quién eres.\n28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy.\n29. Cada pequeña acción es una piedra para construir algo tan grande como tú.\n30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 59,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 60,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes. 15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida. 16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión. 17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti. 18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\". 19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar. 20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés. 21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú. 22. No te juzgues por lo que has pasado, pues estás en el futuro. 23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta. 24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad. 25. Tu historia no es un fin; es una experiencia que puedes continuar creando. 26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento. 27. El valor de la vida está en lo que haces, no solo en quién eres. 28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy. 29. Cada pequeña acción es una piedra para construir algo tan grande como tú. 30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes.\n15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida.\n16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión.\n17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti.\n18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\".\n19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar.\n20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés.\n21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú.\n22. No te juzgues por lo que has pasado, pues estás en el futuro.\n23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta.\n24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad.\n25. Tu historia no es un fin; es una experiencia que puedes continuar creando.\n26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento.\n27. El valor de la vida está en lo que haces, no solo en quién eres.\n28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy.\n29. Cada pequeña acción es una piedra para construir algo tan grande como tú.\n30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 61,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 62,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes. 15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida. 16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión. 17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti. 18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\". 19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar. 20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés. 21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú. 22. No te juzgues por lo que has pasado, pues estás en el futuro. 23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta. 24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad. 25. Tu historia no es un fin; es una experiencia que puedes continuar creando. 26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento. 27. El valor de la vida está en lo que haces, no solo en quién eres. 28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy. 29. Cada pequeña acción es una piedra para construir algo tan grande como tú. 30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes.\n15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida.\n16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión.\n17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti.\n18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\".\n19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar.\n20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés.\n21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú.\n22. No te juzgues por lo que has pasado, pues estás en el futuro.\n23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta.\n24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad.\n25. Tu historia no es un fin; es una experiencia que puedes continuar creando.\n26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento.\n27. El valor de la vida está en lo que haces, no solo en quién eres.\n28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy.\n29. Cada pequeña acción es una piedra para construir algo tan grande como tú.\n30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 63,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 64,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes. 15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida. 16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión. 17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti. 18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\". 19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar. 20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés. 21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú. 22. No te juzgues por lo que has pasado, pues estás en el futuro. 23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta. 24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad. 25. Tu historia no es un fin; es una experiencia que puedes continuar creando. 26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento. 27. El valor de la vida está en lo que haces, no solo en quién eres. 28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy. 29. Cada pequeña acción es una piedra para construir algo tan grande como tú. 30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes.\n15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida.\n16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión.\n17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti.\n18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\".\n19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar.\n20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés.\n21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú.\n22. No te juzgues por lo que has pasado, pues estás en el futuro.\n23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta.\n24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad.\n25. Tu historia no es un fin; es una experiencia que puedes continuar creando.\n26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento.\n27. El valor de la vida está en lo que haces, no solo en quién eres.\n28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy.\n29. Cada pequeña acción es una piedra para construir algo tan grande como tú.\n30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 65,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 66,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes. 15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida. 16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión. 17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti. 18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\". 19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar. 20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés. 21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú. 22. No te juzgues por lo que has pasado, pues estás en el futuro. 23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta. 24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad. 25. Tu historia no es un fin; es una experiencia que puedes continuar creando. 26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento. 27. El valor de la vida está en lo que haces, no solo en quién eres. 28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy. 29. Cada pequeña acción es una piedra para construir algo tan grande como tú. 30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes.\n15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida.\n16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión.\n17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti.\n18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\".\n19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar.\n20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés.\n21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú.\n22. No te juzgues por lo que has pasado, pues estás en el futuro.\n23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta.\n24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad.\n25. Tu historia no es un fin; es una experiencia que puedes continuar creando.\n26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento.\n27. El valor de la vida está en lo que haces, no solo en quién eres.\n28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy.\n29. Cada pequeña acción es una piedra para construir algo tan grande como tú.\n30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 67,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 68,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes. 15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida. 16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión. 17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti. 18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\". 19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar. 20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés. 21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú. 22. No te juzgues por lo que has pasado, pues estás en el futuro. 23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta. 24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad. 25. Tu historia no es un fin; es una experiencia que puedes continuar creando. 26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento. 27. El valor de la vida está en lo que haces, no solo en quién eres. 28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy. 29. Cada pequeña acción es una piedra para construir algo tan grande como tú. 30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes.\n15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida.\n16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión.\n17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti.\n18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\".\n19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar.\n20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés.\n21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú.\n22. No te juzgues por lo que has pasado, pues estás en el futuro.\n23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta.\n24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad.\n25. Tu historia no es un fin; es una experiencia que puedes continuar creando.\n26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento.\n27. El valor de la vida está en lo que haces, no solo en quién eres.\n28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy.\n29. Cada pequeña acción es una piedra para construir algo tan grande como tú.\n30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 69,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 70,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes. 15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida. 16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión. 17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti. 18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\". 19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar. 20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés. 21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú. 22. No te juzgues por lo que has pasado, pues estás en el futuro. 23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta. 24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad. 25. Tu historia no es un fin; es una experiencia que puedes continuar creando. 26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento. 27. El valor de la vida está en lo que haces, no solo en quién eres. 28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy. 29. Cada pequeña acción es una piedra para construir algo tan grande como tú. 30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes.\n15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida.\n16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión.\n17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti.\n18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\".\n19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar.\n20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés.\n21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú.\n22. No te juzgues por lo que has pasado, pues estás en el futuro.\n23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta.\n24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad.\n25. Tu historia no es un fin; es una experiencia que puedes continuar creando.\n26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento.\n27. El valor de la vida está en lo que haces, no solo en quién eres.\n28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy.\n29. Cada pequeña acción es una piedra para construir algo tan grande como tú.\n30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 71,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 72,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes. 15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida. 16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión. 17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti. 18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\". 19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar. 20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés. 21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú. 22. No te juzgues por lo que has pasado, pues estás en el futuro. 23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta. 24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad. 25. Tu historia no es un fin; es una experiencia que puedes continuar creando. 26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento. 27. El valor de la vida está en lo que haces, no solo en quién eres. 28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy. 29. Cada pequeña acción es una piedra para construir algo tan grande como tú. 30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes.\n15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida.\n16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión.\n17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti.\n18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\".\n19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar.\n20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés.\n21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú.\n22. No te juzgues por lo que has pasado, pues estás en el futuro.\n23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta.\n24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad.\n25. Tu historia no es un fin; es una experiencia que puedes continuar creando.\n26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento.\n27. El valor de la vida está en lo que haces, no solo en quién eres.\n28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy.\n29. Cada pequeña acción es una piedra para construir algo tan grande como tú.\n30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 73,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 74,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes. 15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida. 16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión. 17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti. 18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\". 19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar. 20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés. 21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú. 22. No te juzgues por lo que has pasado, pues estás en el futuro. 23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta. 24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad. 25. Tu historia no es un fin; es una experiencia que puedes continuar creando. 26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento. 27. El valor de la vida está en lo que haces, no solo en quién eres. 28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy. 29. Cada pequeña acción es una piedra para construir algo tan grande como tú. 30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes.\n15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida.\n16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión.\n17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti.\n18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\".\n19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar.\n20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés.\n21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú.\n22. No te juzgues por lo que has pasado, pues estás en el futuro.\n23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta.\n24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad.\n25. Tu historia no es un fin; es una experiencia que puedes continuar creando.\n26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento.\n27. El valor de la vida está en lo que haces, no solo en quién eres.\n28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy.\n29. Cada pequeña acción es una piedra para construir algo tan grande como tú.\n30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 75,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 76,
+      "op": "value",
+      "ok": true,
+      "ms": 15,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes. 15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida. 16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión. 17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti. 18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\". 19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar. 20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés. 21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú. 22. No te juzgues por lo que has pasado, pues estás en el futuro. 23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta. 24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad. 25. Tu historia no es un fin; es una experiencia que puedes continuar creando. 26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento. 27. El valor de la vida está en lo que haces, no solo en quién eres. 28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy. 29. Cada pequeña acción es una piedra para construir algo tan grande como tú. 30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes.\n15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida.\n16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión.\n17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti.\n18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\".\n19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar.\n20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés.\n21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú.\n22. No te juzgues por lo que has pasado, pues estás en el futuro.\n23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta.\n24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad.\n25. Tu historia no es un fin; es una experiencia que puedes continuar creando.\n26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento.\n27. El valor de la vida está en lo que haces, no solo en quién eres.\n28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy.\n29. Cada pequeña acción es una piedra para construir algo tan grande como tú.\n30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 77,
+      "op": "sleep",
+      "ok": true,
+      "ms": 701,
+      "detail": "700 ms"
+    },
+    {
+      "i": 78,
+      "op": "value",
+      "ok": true,
+      "ms": 7,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes. 15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida. 16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión. 17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti. 18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\". 19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar. 20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés. 21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú. 22. No te juzgues por lo que has pasado, pues estás en el futuro. 23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta. 24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad. 25. Tu historia no es un fin; es una experiencia que puedes continuar creando. 26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento. 27. El valor de la vida está en lo que haces, no solo en quién eres. 28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy. 29. Cada pequeña acción es una piedra para construir algo tan grande como tú. 30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes.\n15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida.\n16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión.\n17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti.\n18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\".\n19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar.\n20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés.\n21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú.\n22. No te juzgues por lo que has pasado, pues estás en el futuro.\n23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta.\n24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad.\n25. Tu historia no es un fin; es una experiencia que puedes continuar creando.\n26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento.\n27. El valor de la vida está en lo que haces, no solo en quién eres.\n28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy.\n29. Cada pequeña acción es una piedra para construir algo tan grande como tú.\n30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 79,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 80,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes. 15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida. 16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión. 17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti. 18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\". 19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar. 20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés. 21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú. 22. No te juzgues por lo que has pasado, pues estás en el futuro. 23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta. 24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad. 25. Tu historia no es un fin; es una experiencia que puedes continuar creando. 26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento. 27. El valor de la vida está en lo que haces, no solo en quién eres. 28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy. 29. Cada pequeña acción es una piedra para construir algo tan grande como tú. 30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes.\n15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida.\n16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión.\n17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti.\n18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\".\n19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar.\n20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés.\n21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú.\n22. No te juzgues por lo que has pasado, pues estás en el futuro.\n23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta.\n24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad.\n25. Tu historia no es un fin; es una experiencia que puedes continuar creando.\n26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento.\n27. El valor de la vida está en lo que haces, no solo en quién eres.\n28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy.\n29. Cada pequeña acción es una piedra para construir algo tan grande como tú.\n30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 81,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 82,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes. 15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida. 16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión. 17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti. 18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\". 19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar. 20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés. 21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú. 22. No te juzgues por lo que has pasado, pues estás en el futuro. 23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta. 24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad. 25. Tu historia no es un fin; es una experiencia que puedes continuar creando. 26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento. 27. El valor de la vida está en lo que haces, no solo en quién eres. 28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy. 29. Cada pequeña acción es una piedra para construir algo tan grande como tú. 30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes.\n15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida.\n16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión.\n17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti.\n18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\".\n19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar.\n20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés.\n21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú.\n22. No te juzgues por lo que has pasado, pues estás en el futuro.\n23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta.\n24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad.\n25. Tu historia no es un fin; es una experiencia que puedes continuar creando.\n26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento.\n27. El valor de la vida está en lo que haces, no solo en quién eres.\n28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy.\n29. Cada pequeña acción es una piedra para construir algo tan grande como tú.\n30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 83,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 84,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes. 15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida. 16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión. 17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti. 18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\". 19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar. 20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés. 21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú. 22. No te juzgues por lo que has pasado, pues estás en el futuro. 23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta. 24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad. 25. Tu historia no es un fin; es una experiencia que puedes continuar creando. 26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento. 27. El valor de la vida está en lo que haces, no solo en quién eres. 28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy. 29. Cada pequeña acción es una piedra para construir algo tan grande como tú. 30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes.\n15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida.\n16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión.\n17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti.\n18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\".\n19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar.\n20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés.\n21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú.\n22. No te juzgues por lo que has pasado, pues estás en el futuro.\n23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta.\n24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad.\n25. Tu historia no es un fin; es una experiencia que puedes continuar creando.\n26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento.\n27. El valor de la vida está en lo que haces, no solo en quién eres.\n28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy.\n29. Cada pequeña acción es una piedra para construir algo tan grande como tú.\n30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 85,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 86,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes. 15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida. 16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión. 17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti. 18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\". 19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar. 20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés. 21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú. 22. No te juzgues por lo que has pasado, pues estás en el futuro. 23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta. 24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad. 25. Tu historia no es un fin; es una experiencia que puedes continuar creando. 26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento. 27. El valor de la vida está en lo que haces, no solo en quién eres. 28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy. 29. Cada pequeña acción es una piedra para construir algo tan grande como tú. 30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes.\n15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida.\n16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión.\n17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti.\n18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\".\n19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar.\n20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés.\n21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú.\n22. No te juzgues por lo que has pasado, pues estás en el futuro.\n23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta.\n24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad.\n25. Tu historia no es un fin; es una experiencia que puedes continuar creando.\n26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento.\n27. El valor de la vida está en lo que haces, no solo en quién eres.\n28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy.\n29. Cada pequeña acción es una piedra para construir algo tan grande como tú.\n30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 87,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 88,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes. 15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida. 16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión. 17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti. 18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\". 19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar. 20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés. 21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú. 22. No te juzgues por lo que has pasado, pues estás en el futuro. 23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta. 24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad. 25. Tu historia no es un fin; es una experiencia que puedes continuar creando. 26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento. 27. El valor de la vida está en lo que haces, no solo en quién eres. 28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy. 29. Cada pequeña acción es una piedra para construir algo tan grande como tú. 30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes.\n15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida.\n16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión.\n17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti.\n18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\".\n19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar.\n20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés.\n21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú.\n22. No te juzgues por lo que has pasado, pues estás en el futuro.\n23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta.\n24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad.\n25. Tu historia no es un fin; es una experiencia que puedes continuar creando.\n26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento.\n27. El valor de la vida está en lo que haces, no solo en quién eres.\n28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy.\n29. Cada pequeña acción es una piedra para construir algo tan grande como tú.\n30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 89,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 90,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes. 15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida. 16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión. 17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti. 18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\". 19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar. 20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés. 21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú. 22. No te juzgues por lo que has pasado, pues estás en el futuro. 23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta. 24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad. 25. Tu historia no es un fin; es una experiencia que puedes continuar creando. 26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento. 27. El valor de la vida está en lo que haces, no solo en quién eres. 28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy. 29. Cada pequeña acción es una piedra para construir algo tan grande como tú. 30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes.\n15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida.\n16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión.\n17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti.\n18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\".\n19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar.\n20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés.\n21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú.\n22. No te juzgues por lo que has pasado, pues estás en el futuro.\n23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta.\n24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad.\n25. Tu historia no es un fin; es una experiencia que puedes continuar creando.\n26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento.\n27. El valor de la vida está en lo que haces, no solo en quién eres.\n28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy.\n29. Cada pequeña acción es una piedra para construir algo tan grande como tú.\n30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 91,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 92,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes. 15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida. 16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión. 17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti. 18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\". 19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar. 20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés. 21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú. 22. No te juzgues por lo que has pasado, pues estás en el futuro. 23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta. 24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad. 25. Tu historia no es un fin; es una experiencia que puedes continuar creando. 26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento. 27. El valor de la vida está en lo que haces, no solo en quién eres. 28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy. 29. Cada pequeña acción es una piedra para construir algo tan grande como tú. 30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes.\n15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida.\n16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión.\n17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti.\n18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\".\n19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar.\n20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés.\n21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú.\n22. No te juzgues por lo que has pasado, pues estás en el futuro.\n23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta.\n24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad.\n25. Tu historia no es un fin; es una experiencia que puedes continuar creando.\n26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento.\n27. El valor de la vida está en lo que haces, no solo en quién eres.\n28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy.\n29. Cada pequeña acción es una piedra para construir algo tan grande como tú.\n30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 93,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 94,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes. 15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida. 16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión. 17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti. 18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\". 19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar. 20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés. 21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú. 22. No te juzgues por lo que has pasado, pues estás en el futuro. 23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta. 24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad. 25. Tu historia no es un fin; es una experiencia que puedes continuar creando. 26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento. 27. El valor de la vida está en lo que haces, no solo en quién eres. 28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy. 29. Cada pequeña acción es una piedra para construir algo tan grande como tú. 30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes.\n15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida.\n16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión.\n17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti.\n18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\".\n19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar.\n20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés.\n21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú.\n22. No te juzgues por lo que has pasado, pues estás en el futuro.\n23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta.\n24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad.\n25. Tu historia no es un fin; es una experiencia que puedes continuar creando.\n26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento.\n27. El valor de la vida está en lo que haces, no solo en quién eres.\n28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy.\n29. Cada pequeña acción es una piedra para construir algo tan grande como tú.\n30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 95,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 96,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes. 15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida. 16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión. 17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti. 18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\". 19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar. 20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés. 21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú. 22. No te juzgues por lo que has pasado, pues estás en el futuro. 23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta. 24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad. 25. Tu historia no es un fin; es una experiencia que puedes continuar creando. 26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento. 27. El valor de la vida está en lo que haces, no solo en quién eres. 28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy. 29. Cada pequeña acción es una piedra para construir algo tan grande como tú. 30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes.\n15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida.\n16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión.\n17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti.\n18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\".\n19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar.\n20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés.\n21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú.\n22. No te juzgues por lo que has pasado, pues estás en el futuro.\n23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta.\n24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad.\n25. Tu historia no es un fin; es una experiencia que puedes continuar creando.\n26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento.\n27. El valor de la vida está en lo que haces, no solo en quién eres.\n28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy.\n29. Cada pequeña acción es una piedra para construir algo tan grande como tú.\n30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 97,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 98,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes. 15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida. 16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión. 17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti. 18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\". 19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar. 20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés. 21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú. 22. No te juzgues por lo que has pasado, pues estás en el futuro. 23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta. 24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad. 25. Tu historia no es un fin; es una experiencia que puedes continuar creando. 26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento. 27. El valor de la vida está en lo que haces, no solo en quién eres. 28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy. 29. Cada pequeña acción es una piedra para construir algo tan grande como tú. 30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes.\n15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida.\n16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión.\n17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti.\n18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\".\n19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar.\n20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés.\n21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú.\n22. No te juzgues por lo que has pasado, pues estás en el futuro.\n23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta.\n24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad.\n25. Tu historia no es un fin; es una experiencia que puedes continuar creando.\n26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento.\n27. El valor de la vida está en lo que haces, no solo en quién eres.\n28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy.\n29. Cada pequeña acción es una piedra para construir algo tan grande como tú.\n30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 99,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 100,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "stop gone"
+    },
+    {
+      "i": 101,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1514,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 102,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón. 2. Cada día es una oportunidad única para ser lo que eres capaz de hacer. 3. La perseverancia transforma lo pequeño en algo grande. 4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez. 5. El dolor no es parte del camino; es el pie de la escada que lleva al sol. 6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien. 7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo. 8. Tu único objetivo es ser lo mejor que puedes hacer en este momento. 9. La luz brilla donde nadie la ve, incluso cuando está oscura. 10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial. 11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy. 12. No puedes perder lo que hay en ti, solo no dejarlo de existir. 13. La constancia es la única forma de vencer el miedo y el fracaso. 14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes. 15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida. 16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión. 17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti. 18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\". 19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar. 20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés. 21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú. 22. No te juzgues por lo que has pasado, pues estás en el futuro. 23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta. 24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad. 25. Tu historia no es un fin; es una experiencia que puedes continuar creando. 26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento. 27. El valor de la vida está en lo que haces, no solo en quién eres. 28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy. 29. Cada pequeña acción es una piedra para construir algo tan grande como tú. 30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión.\n\n1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de tu corazón.\n2. Cada día es una oportunidad única para ser lo que eres capaz de hacer.\n3. La perseverancia transforma lo pequeño en algo grande.\n4. No importa cuánto sientas o te dices, tu propósito sigue siendo lo mismo cada vez.\n5. El dolor no es parte del camino; es el pie de la escada que lleva al sol.\n6. El silencio de tu corazón no te detiene si tienes ganas de hacerlo bien.\n7. Si te pierdes un día, vuelve a empezar hoy porque mañana es nuevo.\n8. Tu único objetivo es ser lo mejor que puedes hacer en este momento.\n9. La luz brilla donde nadie la ve, incluso cuando está oscura.\n10. Lo pequeño hace el grande; tu pequeña decisión crea tu gran potencial.\n11. El tiempo no avanza a los pasos, pero sí a las acciones que tomas hoy.\n12. No puedes perder lo que hay en ti, solo no dejarlo de existir.\n13. La constancia es la única forma de vencer el miedo y el fracaso.\n14. Tu valor no se mide por cuánto tienes, sino por cuánta calidad tienes.\n15. El amor verdadero no requiere permiso; es una fuerza que invierte tu vida.\n16. Cada día es un refugio donde puedes reinventarte para tu propia mejor versión.\n17. La fe no es algo que necesitas tener, sino el motor que se encarga de ti.\n18. Tu potencial es infinito; el miedo solo te bloquea cuando te dices \"no\".\n19. El momento en que todo vuelve a ser lo mismo es cuando tienes ganas de mejorar.\n20. La verdad es un regalo que puedes dar a tu propio camino sin importar dónde estés.\n21. Tu capacidad para crear algo nuevo o cambiar el mundo es tan grande como tú.\n22. No te juzgues por lo que has pasado, pues estás en el futuro.\n23. El amor se hace sin palabras; es la acción de querer a alguien sin esperar su respuesta.\n24. La calma es un recurso infinito para enfrentar cualquier adversidad o dificultad.\n25. Tu historia no es un fin; es una experiencia que puedes continuar creando.\n26. La perseverancia te convierte en algo increíble incluso cuando estás en el peor momento.\n27. El valor de la vida está en lo que haces, no solo en quién eres.\n28. Si quieres ser mejor ahora mismo, tienes que hacer más hoy.\n29. Cada pequeña acción es una piedra para construir algo tan grande como tú.\n30. Tu propio poder empieza cuando te pides a tu corazón: \"¿qué puedo hacer?\".",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para recordar tu fuerza y propósito en el camino hacia tu mejor versión. 1. Tu esfuerzo no es un destino, es una ruta que puedes tomar con la mano de t"
+    },
+    {
+      "i": 103,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2879,
+      "detail": "L07-es-list-2"
+    },
+    {
+      "i": 104,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "loop-notice gone"
+    }
+  ],
+  "errors": []
+}

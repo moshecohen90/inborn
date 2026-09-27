@@ -1,0 +1,21 @@
+20:46:15 typecheck start
+20:46:24 typecheck rc=0
+20:46:24 lint start
+20:46:31 lint rc=0
+20:46:31 test start
+20:47:02 test rc=1
+GATES-DONE
+20:47:18 test rerun start (run 1: web-badges-persist-r106 timed out at 5000 ms under load 23; alone it passes 8/8 in 1.6 s)
+20:47:40 test rc=0
+
+PASS: all fields within limits.
+PASS: no personal identifier in the history of HEAD
+apps/desktop test: # fail 0
+apps/desktop test: # pass 4
+apps/desktop test: # tests 4
+apps/mobile test:       Tests  1180 passed (1180)
+packages/core test:       Tests  1100 passed | 4 skipped (1104)
+packages/i18n test:       Tests  24 passed (24)
+packages/ui test:       Tests  23 passed (23)
+
+run 1 of test (20:46:31, load average 23): 1 failed of 1180 mobile, test/web-badges-persist-r106.test.ts "the site's download row is the same badges, in the page's language": Test timed out in 5000ms. That file alone then passed 8 of 8 in 1.6 s, and the full rerun above exits 0.
