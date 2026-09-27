@@ -1,0 +1,19 @@
+# fixes-r112.test.ts against origin/main 98722df7 (round 111), before the round 112 fix
+     × list30 #1 as the model wrote it: cut before '18. Dolphin (multiple species)', the first item said again
+     × list30 #2 as the model wrote it: cut before '6. Dolphin' (five distinct animals listed by then)
+     × 'Clownfish (again, as listed before…)' is the same item as 'Clownfish'
+     × an item that says it was listed before is a repeat on its own, with no earlier copy of its words
+     × a bare 'again' marks a repeat only when the item was listed: 'Salmon (again)' first time stays
+     × the 8 app locales' repeat words
+     × a True/False answer key of 30 lines
+     × a Yes/No list and a Yes/No/Maybe list
+     × a multiple-choice key with five options
+     × one short item eight times in a row is a loop, cut back to its first copy
+     × build 23 #1 retry seam: '22. Sponges' + '10. Sponges\n11. Shrimp…' reads '22. Sponges\n23. Shrimp…'
+     × build 23 #1 through the guard: the retry after '17. Blue Whale' goes on at 18
+     × build 23 #2 through the guard: kept 1–5, the retry renumbered from 6, stopped before its own 'Clownfish (again…)'
+     × Continue after Stop: the same seam, with and without the line break on screen
+     × a bulleted list drops a first item that repeats the kept last one
+     × a continuation that numbers correctly, continues the item, or ends the list is untouched
+⎯⎯⎯⎯⎯⎯ Failed Tests 16 ⎯⎯⎯⎯⎯⎯⎯
+      Tests  16 failed | 6 passed (22)

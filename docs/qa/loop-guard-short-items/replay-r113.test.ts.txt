@@ -1,0 +1,120 @@
+/* F425 offline replay: every stored answer through the round-111 guard (origin/main 98722df7) and the round-113 guard, no retry, 3 code points per chunk. */
+import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+import { it } from "vitest";
+import { guardLoops as guard112 } from "../src/chat/loop";
+import { guardLoops as guard111 } from "../src/chat/zz-loop-old";
+/* guard111 is origin/main 98722df7 (round 111). */
+import type { Delta } from "../src/llm/types";
+
+const QA = join(__dirname, "../../../docs/qa");
+const ROOT = join(QA, "fix-loops-root");
+const OUT = join(QA, "loop-guard-short-items");
+const PASS22 = join(QA, "ios-device-pass-22");
+/* Build 23 is read from the device-pass worktree (read-only). */
+const PASS23 = process.env.PASS23 ?? "/Users/moshecohen/dev/inborn-wt/ios-build-23/docs/qa/ios-device-pass-23";
+type Guard = typeof guard112;
+type Item = { set: string; src: string; request: string; text: string };
+
+async function cutBy(guard: Guard, answer: string, request: string) {
+  const cps = Array.from(answer);
+  const stream = (async function* (): AsyncIterable<Delta> {
+    for (let i = 0; i < cps.length; i += 3) yield { text: cps.slice(i, i + 3).join("") };
+    yield { done: { promptTokens: 0, completionTokens: 0, ttftMs: 0, tokPerSec: 0 } };
+  })();
+  for await (const d of guard(stream, () => undefined, { request })) if (d.loop) return d.loop;
+  return null;
+}
+
+function corpus(): Item[] {
+  const ANSWER = /^(answer|reply|content|text|response|assistant|output|shown|final)$/i;
+  const ASK = /^(question|prompt|ask|user|q|input|message|send)$/i;
+  const files = (d: string): string[] =>
+    readdirSync(d).flatMap((f) => {
+      const p = join(d, f);
+      const rel = p.slice(QA.length);
+      if (rel.includes("fix-loops-root") || rel.includes("loop-guard-lists") || rel.includes("loop-guard-short-items") || rel.includes("ios-device-pass-22") || rel.includes("ios-device-pass-23")) return [];
+      return statSync(p).isDirectory() ? files(p) : p.endsWith(".json") ? [p] : [];
+    });
+  const seen = new Set<string>();
+  const rows: Item[] = [];
+  const walk = (v: unknown, file: string) => {
+    if (Array.isArray(v)) return v.forEach((x) => walk(x, file));
+    if (!v || typeof v !== "object") return;
+    const o = v as Record<string, unknown>;
+    const ask = Object.entries(o).find(([k, x]) => ASK.test(k) && typeof x === "string")?.[1] as string | undefined;
+    for (const [k, x] of Object.entries(o)) {
+      if (typeof x === "string" && ANSWER.test(k) && x.length >= 40 && /\p{L}/u.test(x) && !seen.has(x)) {
+        seen.add(x);
+        rows.push({ set: "corpus", src: file.slice(QA.length + 1), request: ask ?? "", text: x });
+      } else walk(x, file);
+    }
+  };
+  for (const f of files(QA)) {
+    try {
+      walk(JSON.parse(readFileSync(f, "utf8")), f);
+    } catch {
+      /* not JSON */
+    }
+  }
+  return rows;
+}
+
+it("replay", async () => {
+  const prompts = new Map((JSON.parse(readFileSync(join(ROOT, "stress-prompts.json"), "utf8")) as { id: string; kind: string; user: string }[]).map((p) => [p.id, p]));
+  const items: Item[] = [];
+  for (const f of readdirSync(join(ROOT, "runs"))) {
+    const d = JSON.parse(readFileSync(join(ROOT, "runs", f), "utf8")) as { rows: { id: string; seed: number; kind: string; text: string; now?: { final: string } }[] };
+    for (const r of d.rows) {
+      if (r.kind === "asked-repeat") continue;
+      const request = prompts.get(r.id)!.user;
+      if (f.startsWith("guard-")) items.push({ set: "shipped107", src: `${f}#${r.id}#${r.seed}`, request, text: r.now!.final });
+      else items.push({ set: "stored", src: `${f}#${r.id}#${r.seed}`, request, text: r.text });
+    }
+  }
+  for (const f of readdirSync(join(ROOT, "e2e")).filter((x) => x.endsWith(".json"))) {
+    const d = JSON.parse(readFileSync(join(ROOT, "e2e", f), "utf8")) as { trials: { id: string; trial: number; q: string; answer: string }[] };
+    for (const t of d.trials) items.push({ set: "stored", src: `e2e/${f}#${t.id}#${t.trial}`, request: t.q, text: t.answer });
+  }
+  items.push(...corpus());
+  for (const [set, PASS] of [["iphone22", PASS22], ["iphone23", PASS23]] as const) {
+    if (!existsSync(PASS)) continue;
+    for (const f of readdirSync(join(PASS, "raw")).filter((x) => /^result-.*\.json$/u.test(x))) {
+      const name = f.slice("result-".length, -".json".length);
+      const script = join(PASS, "scripts", `${name}.json`);
+      if (!existsSync(script)) continue;
+      const steps = JSON.parse(readFileSync(script, "utf8")) as { op: string; text?: string }[] | { steps: { op: string; text?: string }[] };
+      const request = (Array.isArray(steps) ? steps : steps.steps).find((s) => s.op === "type")?.text ?? "";
+      const r = JSON.parse(readFileSync(join(PASS, "raw", f), "utf8")) as { steps: { op: string; value?: { props?: { source?: string } } }[] };
+      const vals = r.steps.filter((s) => s.op === "value" && typeof s.value?.props?.source === "string");
+      if (vals.length) items.push({ set, src: `${PASS.split("/").pop()}/raw/${f}`, request, text: vals.at(-1)!.value!.props!.source! });
+    }
+  }
+  const sets = new Map<string, { answers: number; cut107: number; cut111: number; both: number; only111: number; only107: number; moved: number }>();
+  const lines: string[] = [];
+  for (const it of items) {
+    const s = sets.get(it.set) ?? { answers: 0, cut107: 0, cut111: 0, both: 0, only111: 0, only107: 0, moved: 0 };
+    sets.set(it.set, s);
+    s.answers++;
+    const [a, b] = [await cutBy(guard111, it.text, it.request), await cutBy(guard112, it.text, it.request)];
+    if (a) s.cut107++;
+    if (b) s.cut111++;
+    if (a && b) s.both++;
+    if (a && b && a.text.length !== b.text.length) s.moved++;
+    if (b && !a) s.only111++;
+    if (a && !b) s.only107++;
+    if (b && (!a || a.text.length !== b.text.length)) {
+      const rest = it.text.slice(b.text.trimEnd().length).trimStart();
+      lines.push(
+        `${a ? (a.text.length !== b.text.length ? "MOVED" : "SAME ") : "NEW  "} [${it.set}] ${it.src}\n` +
+          `      unit x${b.hit.repeats}: ${JSON.stringify(b.hit.unit.slice(0, 90))}\n` +
+          `      kept ${b.text.length}/${it.text.length}${a ? ` (r111 kept ${a.text.length})` : ""}; kept ends: ${JSON.stringify(b.text.slice(-90))}\n` +
+          `      cut starts: ${JSON.stringify(rest.slice(0, 90))}`,
+      );
+    }
+    if (a && !b) lines.push(`GONE  [${it.set}] ${it.src}\n      r111 unit ${JSON.stringify(a.hit.unit.slice(0, 90))} kept ${a.text.length}/${it.text.length}`);
+  }
+  const table = ["| Set | Answers | Cut by round 111 (main) | Cut by round 113 | Both | Only round 113 | Only round 111 | Both, cut moved |", "|---|---|---|---|---|---|---|---|"];
+  for (const [k, s] of sets) table.push(`| ${k} | ${s.answers} | ${s.cut107} | ${s.cut111} | ${s.both} | ${s.only111} | ${s.only107} | ${s.moved} |`);
+  writeFileSync(join(OUT, "replay-r113.txt"), `${table.join("\n")}\n\n${lines.join("\n")}\n`);
+}, 1_800_000);

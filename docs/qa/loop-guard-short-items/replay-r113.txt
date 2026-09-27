@@ -1,0 +1,268 @@
+| Set | Answers | Cut by round 111 (main) | Cut by round 113 | Both | Only round 113 | Only round 111 | Both, cut moved |
+|---|---|---|---|---|---|---|---|
+| stored | 1064 | 82 | 97 | 82 | 15 | 0 | 24 |
+| shipped107 | 504 | 35 | 44 | 35 | 9 | 0 | 11 |
+| corpus | 536 | 14 | 15 | 14 | 1 | 0 | 0 |
+| iphone22 | 28 | 4 | 5 | 4 | 1 | 0 | 2 |
+| iphone23 | 28 | 1 | 3 | 1 | 2 | 0 | 0 |
+
+NEW   [stored] after-fast-t0.2.json#list30-animals#1
+      unit x2: "starfish -> 19. sea anemone"
+      kept 286/1321; kept ends: "3. Lobster  \n14. Shrimp  \n15. Krill  \n16. Sea urchin  \n17. Coral polyp  \n18. Sea cucumber\n"
+      cut starts: "19. Starfish (sea star - repeated) -> 19. Sea anemone  \n20. Jellyfish (repeated) -> 20. Se"
+MOVED [stored] after-fast-t0.2.json#list30-animals#3
+      unit x2: "octopus"
+      kept 215/1295 (r111 kept 696); kept ends: "Starfish  \n11. Krill  \n12. Squid  \n13. Seahorse  \n14. Lobster  \n15. Crab  \n16. Sea Urchin\n"
+      cut starts: "17. Octopus (repeated)  \n18. Jellyfish (repeated)  \n19. Sea Turtle (repeated)  \n20. Salmon"
+NEW   [stored] after-fast-t0.2.json#list25-verbs-de#1
+      unit x2: "schreiben – to write"
+      kept 624/727; kept ends: "n** – to learn\n21. **sehen** (again) – to look at / see\n22. **hören** (again) – to listen\n"
+      cut starts: "23. **schreiben** (again) – to write\n24. **lesen** (again) – to read\n25. **sprechen** (aga"
+NEW   [stored] after-fast-t0.2.json#cont-list#1
+      unit x2: "quince"
+      kept 311/454; kept ends: "y Sapote\n30. Nectarine\n31. Olive\n32. Papaya\n33. Persimmon\n34. Pineapple\n35. Passion Fruit\n"
+      cut starts: "36. Quince\n37. Rambutan\n38. Rhamnose (Note: This is a fruit, though less common) -> Let's "
+MOVED [stored] after-fast-t0.2.json#cont-list#3
+      unit x2: "xigua - note: i already listed watermelon above, so this is a"
+      kept 138/2705 (r111 kept 347); kept ends: "eapple\n18. Pomegranate\n19. Quince\n20. Rambutan\n21. Strawberry\n22. Tamarind\n23. Watermelon\n"
+      cut starts: "24. Xigua (Watermelon) - *Note: I already listed watermelon above, so this is a duplicate."
+MOVED [stored] after-fast.json#list30-animals#1
+      unit x2: "octopus"
+      kept 443/487 (r111 kept 457); kept ends: "h  \n23. Pipefish  \n24. Angelfish  \n25. Goldfish (marine)  \n26. Rock lobster  \n27. Abalone\n"
+      cut starts: "28. Octopus  \n29. Jellyfish  \n30. Starfish"
+MOVED [stored] after-fast.json#list30-animals#2
+      unit x2: "octopus"
+      kept 166/449 (r111 kept 271); kept ends: "6. Coral Fish  \n7. Sea Anemone  \n8. Manta Ray  \n9. Sea Urchin  \n10. Blue Whale  \n11. Crab\n"
+      cut starts: "12. Octopus  \n13. Squid  \n14. Starfish  \n15. Seahorse  \n16. Sea Snake  \n17. Cuttlefish  \n1"
+MOVED [stored] after-fast.json#cont-list#3
+      unit x2: "papaya - wait, i missed the number 19 in my mental list above but included it in text? let"
+      kept 185/3340 (r111 kept 594); kept ends: "\n21. Strawberry\n22. Tamarind\n23. Watermelon\n24. Lychee\n25. Avocado\n26. Coconut\n27. Durian\n"
+      cut starts: "28. Papaya (Duplicate, skipped) - Wait, I missed the number 19 in my mental list above but"
+MOVED [stored] after-instant-t0.2.json#list30-animals#2
+      unit x2: "sea turtle species"
+      kept 246/742 (r111 kept 387); kept ends: "een Sea Turtle)\n6. Coral Reefs\n7. Jellyfish Species (e.g. Clownfish)\n8. Manta Ray Species\n"
+      cut starts: "9. Whale Species (e.g. Blue Whale)\n10. Shark Species (e.g. Great White Shark)\n11. Dolphin "
+MOVED [stored] after-instant-t0.2.json#list50-names#1
+      unit x2: "noah"
+      kept 109/382 (r111 kept 189); kept ends: "endly baby names:\n\n1. Leo\n2. Noah\n3. Ethan\n4. Jack\n5. Lucas\n6. Finn\n7. Max\n8. Sam\n9. Liam\n"
+      cut starts: "10. Noah\n11. Jack\n12. Finn\n13. Max\n14. Sam\n15. Leo\n16. Lucas\n17. Noah\n18. Ethan\n19. Jack\n2"
+MOVED [stored] after-instant-t0.2.json#list50-names#3
+      unit x2: "david"
+      kept 235/505 (r111 kept 476); kept ends: " Thomas\n14. Henry\n15. Robert\n16. Paul\n17. John\n18. Peter\n19. Andrew\n20. Matthew\n21. Kevin\n"
+      cut starts: "22. David (again)\n23. James (again)\n24. Michael (again)\n25. William (again)\n26. Thomas (ag"
+NEW   [stored] after-instant-t0.2.json#list25-verbs-de#2
+      unit x2: "zu tun → to do"
+      kept 258/674; kept ends: " hören → to hear\n6. zu sprechen → to speak\n7. zu denken → to think\n8. zu fühlen → to feel\n"
+      cut starts: "9. zu tun → to do\n10. zu machen → to make\n11. zu kommen → to come\n12. zu gehen → to go\n13."
+NEW   [stored] after-instant-t0.2.json#cont-list#2
+      unit x2: "honeydew"
+      kept 238/527; kept ends: "cado\n24. Beetroot\n25. Carrot\n26. Eggplant\n27. Fennel\n28. Garlic\n29. Grapes\n30. Grapefruit\n"
+      cut starts: "31. Honeydew (already listed)\n32. Kiwi (already listed)\n33. Lemon (already listed)\n34. Man"
+NEW   [stored] after-instant.json#list25-verbs-de#3
+      unit x2: "zu kommen"
+      kept 373/670; kept ends: " zu lernen (to learn)\n11. zu tun (to do)\n12. zu gefallen (to please)\n13. zu gehen (to go)\n"
+      cut starts: "14. zu kommen wieder (to come again)\n15. zu vermissen (to miss)\n16. zu finden (to find)\n17"
+MOVED [stored] after-instant.json#cont-list#2
+      unit x2: "elderberry"
+      kept 576/2929 (r111 kept 865); kept ends: "e\n2. Banana\n3. Cherry\n4. Date\n5. Elderberry\n6. Fig\n7. Grape\n8. Honeydew\n9. Kiwi\n10. Lemon\n"
+      cut starts: "11. Mango (Note: Mango is often grouped with citrus or specifically listed; keeping it her"
+MOVED [stored] before-fast-t0.2.json#list30-animals#1
+      unit x2: "jellyfish"
+      kept 306/673 (r111 kept 532); kept ends: " Octopus  \n14. Squid  \n15. Cuttlefish  \n16. Nautilus  \n17. Sea anemone  \n18. Sea cucumber\n"
+      cut starts: "19. Jellyfish (various species)  \n20. Sea snail  \n21. Sea urchin  \n22. Starfish (various s"
+NEW   [stored] before-fast-t0.2.json#list30-animals#2
+      unit x2: "jellyfish"
+      kept 326/644; kept ends: ". Shrimp  \n16. Snail  \n17. Cuttlefish  \n18. Nautilus  \n19. Sea Anemone  \n20. Sea Cucumber\n"
+      cut starts: "21. Jellyfish (various species)  \n22. Starfish (various species)  \n23. Octopus (various sp"
+NEW   [stored] before-fast-t0.2.json#list25-verbs-de#1
+      unit x2: "sehen – to see"
+      kept 549/921; kept ends: "** – to sleep\n18. **laufen** – to run\n19. **spielen** – to play\n20. **lernen** – to learn\n"
+      cut starts: "21. **sehen** – to see (duplicate for variety)\n22. **hören** – to hear (duplicate for vari"
+NEW   [stored] before-fast-t0.2.json#list25-verbs-de#2
+      unit x2: "kommen – to come"
+      kept 399/707; kept ends: "un** – to do\n12. **machen** – to make/do\n13. **geben** – to give\n14. **nehmen** – to take\n"
+      cut starts: "15. **kommen** – to come (again)\n16. **bleiben** – to stay\n17. **gehen** – to go away\n18. "
+MOVED [stored] before-fast-t0.2.json#ko-list#1
+      unit x2: "불고기, 된장찌개, 떡볶이, 감자튀김, 소시지, 짬뽕, 찌개, 반찬, 덮밥, 고구마"
+      kept 98/180 (r111 kept 99); kept ends: " 30 가로는 김치찌개, 불고기, 된장찌개, 떡볶이, 감자튀김, 소시지, 짬뽕, 찌개, 반찬, 덮밥, 고구마, 두부국수, 김밥, 치킨, 생선구이, 삼겹살, 비빔밥"
+      cut starts: ", 불고기, 된장찌개, 떡볶이, 감자튀김, 소시지, 짬뽕, 찌개, 반찬, 덮밥, 고구마, 두부국수, 김밥, 치킨, 생선구이, 삼겹살, 비빔밥입니다."
+NEW   [stored] before-fast-t0.2.json#cont-list#1
+      unit x2: "quince"
+      kept 311/415; kept ends: "y Sapote\n30. Nectarine\n31. Olive\n32. Papaya\n33. Persimmon\n34. Pineapple\n35. Passion Fruit\n"
+      cut starts: "36. Quince\n37. Rambutan\n38. Rhamnose (Note: This is a fruit, though less common)\n39. Sours"
+MOVED [stored] before-fast-t0.2.json#fr-list#2
+      unit x2: "des voyages, des massages, des courses alimentaires, des articles de"
+      kept 562/1067 (r111 kept 563); kept ends: "ts cosmétiques, des objets de décoration, des expériences culturelles, des cours de langue"
+      cut starts: ", des voyages, des massages, des courses alimentaires, des articles de sport, des livres d"
+MOVED [stored] before-fast-t0.2.json#fr-list#3
+      unit x2: "des voyages, des courses alimentaires, des produits ménagers, des jouets"
+      kept 620/982 (r111 kept 621); kept ends: "es bijoux, des montres, des clés de voiture, des tickets de cinéma, des billets de concert"
+      cut starts: ", des voyages, des courses alimentaires, des produits ménagers, des jouets pour enfants, d"
+MOVED [stored] before-fast.json#list30-animals#1
+      unit x2: "squid"
+      kept 227/451 (r111 kept 287); kept ends: ". Monk seal  \n10. Starfish  \n11. Jellyfish  \n12. Clownfish  \n13. Sea urchin  \n14. Octopus\n"
+      cut starts: "15. Squid  \n16. Sea cucumber  \n17. Crab  \n18. Sea anemone  \n19. Jellyfish  \n20. Sea star  "
+MOVED [stored] before-fast.json#list30-animals#2
+      unit x2: "squid"
+      kept 317/644 (r111 kept 581); kept ends: "ahorse  \n16. Stingray  \n17. Blue Shark  \n18. Sea Urchin  \n19. Fishbone Worm  \n20. Lobster\n"
+      cut starts: "21. Squid (various species)  \n22. Clownfish (various species)  \n23. Octopus (various speci"
+MOVED [stored] before-fast.json#list30-animals#3
+      unit x2: "jellyfish"
+      kept 333/1476 (r111 kept 1062); kept ends: " (Sea Urchin - Not a true animal)\n18. Crayfish\n19. Lobster\n20. Clam\n21. Oyster\n22. Sponge\n"
+      cut starts: "23. Jellyfish (Revisited)\n24. Krill\n25. Octopus (Revisited)\n26. Sea Urchin (Not a true ani"
+MOVED [stored] before-fast.json#ja-list-cities#3
+      unit x2: "東京、大阪、京都、名古屋、福岡、札幌、横浜、仙台、千葉、埼"
+      kept 56/106 (r111 kept 57); kept ends: "東京、大阪、京都、名古屋、福岡、札幌、横浜、仙台、千葉、埼玉、愛知、神奈川、東京（重複なし）、名古屋、大阪、京都"
+      cut starts: "、東京、大阪、京都、名古屋、福岡、札幌、横浜、仙台、千葉、埼玉、愛知、神奈川。\n\n（20都道府県名）"
+MOVED [stored] before-fast.json#cont-list#3
+      unit x2: "papaya -> 29. fig -> wait, i need to list unique items from the original list + new ones? "
+      kept 185/3611 (r111 kept 556); kept ends: "\n21. Strawberry\n22. Tamarind\n23. Watermelon\n24. Lychee\n25. Avocado\n26. Coconut\n27. Durian\n"
+      cut starts: "28. Papaya (Duplicate, skipped) -> 29. Fig (Duplicate, skipped) -> Wait, I need to list un"
+MOVED [stored] before-instant-t0.2.json#list30-animals#2
+      unit x2: "whale"
+      kept 117/381 (r111 kept 162); kept ends: " Dolphin\n4. Shark\n5. Sea Turtle\n6. Clownfish\n7. Jellyfish\n8. Octopus\n9. Porpoise\n10. Seal\n"
+      cut starts: "11. Whale\n12. Manta Ray\n13. Hammerhead Shark\n14. Bluefin Tuna\n15. Whale\n16. Dolphin\n17. Sh"
+MOVED [stored] before-instant-t0.2.json#list50-names#1
+      unit x2: "noah"
+      kept 109/386 (r111 kept 242); kept ends: "endly baby names:\n\n1. Leo\n2. Noah\n3. Ethan\n4. Jack\n5. Lucas\n6. Finn\n7. Max\n8. Sam\n9. Liam\n"
+      cut starts: "10. Noah\n11. Leo\n12. Jackson\n13. Finn\n14. Max\n15. Sam\n16. Lucas\n17. Noah\n18. Jack\n19. Leo\n"
+NEW   [stored] before-instant-t0.2.json#list50-names#2
+      unit x2: "finn"
+      kept 317/455; kept ends: "22. Zac\n23. Austin\n24. Avery\n25. Ben\n26. Brayden\n27. Carter\n28. Daniel\n29. Dylan\n30. Ezra\n"
+      cut starts: "31. Finn\n32. Jack\n33. Jordan\n34. Leo\n35. Mason\n36. Noah\n37. Owen\n38. Quinn\n39. Ryan\n40. Sa"
+MOVED [stored] before-instant-t0.2.json#list50-names#3
+      unit x2: "david"
+      kept 235/505 (r111 kept 476); kept ends: " Thomas\n14. Henry\n15. Robert\n16. Paul\n17. John\n18. Peter\n19. Andrew\n20. Matthew\n21. Kevin\n"
+      cut starts: "22. David (again)\n23. James (again)\n24. Michael (again)\n25. William (again)\n26. Thomas (ag"
+NEW   [stored] before-instant-t0.2.json#list25-verbs-de#3
+      unit x2: "zu tun → to do"
+      kept 293/946; kept ends: "en) → to hear\n6. zu sprechen (sprechen) → to speak\n7. zu schreiben (schreiben) → to write\n"
+      cut starts: "8. zu tun (tun) → to do again\n9. zu machen (machen) → to make\n10. zu kommen (kommen) → to "
+MOVED [stored] before-instant-t0.2.json#ja-list-cities#2
+      unit x2: "奄美大島、長崎県、愛媛県、福岡県、熊本県、鹿児島県"
+      kept 208/273 (r111 kept 209); kept ends: "奄美大島、長崎県、愛媛県、福岡県、熊本県、鹿児島県、沖縄県、大分県、高知県、宮城県、山梨県、長野県、新潟県、福井県、秋田県、熊本県、鹿児島県、沖縄県、大分県、高知県、岡山県、那覇市"
+      cut starts: "、奄美大島、長崎県、愛媛県、福岡県、熊本県、鹿児島県、沖縄県、大分県、高知県、宮城県、山梨県、長野県、新潟県、福井県、秋田県、熊本"
+MOVED [stored] before-instant-t0.2.json#he-list#2
+      unit x3: "ה, קרואטי"
+      kept 172/358 (r111 kept 173); kept ends: "ה, קוסמיה, קוריאה השנייה, קרואטיה, קיסריה, קנאה, קיבוץ ישראל, קופת הברזל, קולינדר, קוריאנה"
+      cut starts: ", קרואטיה, קרואטיה, קרואטיה, קרואטיה, קרואטיה, קרואטיה, קרואטיה, קרואטיה, קרואטיה, קרואטיה"
+NEW   [stored] before-instant-t0.2.json#cont-list#2
+      unit x2: "banana"
+      kept 135/509; kept ends: ". Strawberry\n18. Tangerine\n19. Watermelon\n20. Xylophone\n21. Yuzu\n22. Zucchini\n23. Avocado\n"
+      cut starts: "24. Banana (repeated)\n25. Apple (repeated)\n26. Cherry (repeated)\n27. Date (repeated)\n28. E"
+MOVED [stored] before-instant.json#list50-names#2
+      unit x2: "Thomas, Kevin, Ryan, Alexander, Benjamin, Avery, Marcus, Oliver, Felix, William"
+      kept 377/577 (r111 kept 378); kept ends: ", Connor, Jameson, Samuel, Leo, Owen, Elijah, Noah, Liam, Mason, Noah, Caleb, Lucas, Henry"
+      cut starts: ", Thomas, Kevin, Ryan, Alexander, Benjamin, Avery, Marcus, Oliver, Felix, William, Jack, C"
+NEW   [stored] before-instant.json#list25-verbs-de#1
+      unit x2: "to speak"
+      kept 580/980; kept ends: "nken)\n12. to die (sterben)\n13. to love (lieben)\n14. to feel (fühlen)\n15. to know (wissen)\n"
+      cut starts: "16. to speak again (sprechen)\n17. to sleep again (stehen)\n18. to eat again (essen)\n19. to "
+NEW   [stored] before-instant.json#he-list#2
+      unit x2: "דובאליד"
+      kept 203/315; kept ends: "שב קטן\n9. פלרומה\n10. חיהמון\n11. קריית המזרח\n12. רביאניפה\n13. תל אבישי\n14. ירושלים העירייה\n"
+      cut starts: "15. דובאליד\n16. סלנדה\n17. בירקין\n18. לידה\n19. נבואה\n20. פארמאן\n21. אשכנז\n22. שפ\"ת\n23. מוסד"
+MOVED [shipped107] guard-fast-t0.2.json#list30-animals#1
+      unit x2: "jellyfish"
+      kept 306/673 (r111 kept 532); kept ends: " Octopus  \n14. Squid  \n15. Cuttlefish  \n16. Nautilus  \n17. Sea anemone  \n18. Sea cucumber\n"
+      cut starts: "19. Jellyfish (various species)  \n20. Sea snail  \n21. Sea urchin  \n22. Starfish (various s"
+NEW   [shipped107] guard-fast-t0.2.json#list30-animals#2
+      unit x2: "jellyfish"
+      kept 326/644; kept ends: ". Shrimp  \n16. Snail  \n17. Cuttlefish  \n18. Nautilus  \n19. Sea Anemone  \n20. Sea Cucumber\n"
+      cut starts: "21. Jellyfish (various species)  \n22. Starfish (various species)  \n23. Octopus (various sp"
+NEW   [shipped107] guard-fast-t0.2.json#list25-verbs-de#1
+      unit x2: "sehen – to see"
+      kept 549/921; kept ends: "** – to sleep\n18. **laufen** – to run\n19. **spielen** – to play\n20. **lernen** – to learn\n"
+      cut starts: "21. **sehen** – to see (duplicate for variety)\n22. **hören** – to hear (duplicate for vari"
+NEW   [shipped107] guard-fast-t0.2.json#list25-verbs-de#2
+      unit x2: "kommen – to come"
+      kept 399/707; kept ends: "un** – to do\n12. **machen** – to make/do\n13. **geben** – to give\n14. **nehmen** – to take\n"
+      cut starts: "15. **kommen** – to come (again)\n16. **bleiben** – to stay\n17. **gehen** – to go away\n18. "
+NEW   [shipped107] guard-fast-t0.2.json#cont-list#1
+      unit x2: "quince"
+      kept 311/415; kept ends: "y Sapote\n30. Nectarine\n31. Olive\n32. Papaya\n33. Persimmon\n34. Pineapple\n35. Passion Fruit\n"
+      cut starts: "36. Quince\n37. Rambutan\n38. Rhamnose (Note: This is a fruit, though less common)\n39. Sours"
+MOVED [shipped107] guard-fast.json#list30-animals#1
+      unit x2: "squid"
+      kept 227/451 (r111 kept 287); kept ends: ". Monk seal  \n10. Starfish  \n11. Jellyfish  \n12. Clownfish  \n13. Sea urchin  \n14. Octopus\n"
+      cut starts: "15. Squid  \n16. Sea cucumber  \n17. Crab  \n18. Sea anemone  \n19. Jellyfish  \n20. Sea star  "
+MOVED [shipped107] guard-fast.json#list30-animals#2
+      unit x2: "squid"
+      kept 317/644 (r111 kept 581); kept ends: "ahorse  \n16. Stingray  \n17. Blue Shark  \n18. Sea Urchin  \n19. Fishbone Worm  \n20. Lobster\n"
+      cut starts: "21. Squid (various species)  \n22. Clownfish (various species)  \n23. Octopus (various speci"
+MOVED [shipped107] guard-fast.json#list30-animals#3
+      unit x2: "jellyfish"
+      kept 333/1476 (r111 kept 1062); kept ends: " (Sea Urchin - Not a true animal)\n18. Crayfish\n19. Lobster\n20. Clam\n21. Oyster\n22. Sponge\n"
+      cut starts: "23. Jellyfish (Revisited)\n24. Krill\n25. Octopus (Revisited)\n26. Sea Urchin (Not a true ani"
+MOVED [shipped107] guard-fast.json#ja-list-cities#3
+      unit x2: "東京、大阪、京都、名古屋、福岡、札幌、横浜、仙台、千葉、埼"
+      kept 56/106 (r111 kept 57); kept ends: "東京、大阪、京都、名古屋、福岡、札幌、横浜、仙台、千葉、埼玉、愛知、神奈川、東京（重複なし）、名古屋、大阪、京都"
+      cut starts: "、東京、大阪、京都、名古屋、福岡、札幌、横浜、仙台、千葉、埼玉、愛知、神奈川。\n\n（20都道府県名）"
+MOVED [shipped107] guard-fast.json#cont-list#3
+      unit x2: "papaya -> 29. fig -> wait, i need to list unique items from the original list + new ones? "
+      kept 185/3611 (r111 kept 556); kept ends: "\n21. Strawberry\n22. Tamarind\n23. Watermelon\n24. Lychee\n25. Avocado\n26. Coconut\n27. Durian\n"
+      cut starts: "28. Papaya (Duplicate, skipped) -> 29. Fig (Duplicate, skipped) -> Wait, I need to list un"
+MOVED [shipped107] guard-instant-t0.2.json#list30-animals#2
+      unit x2: "whale"
+      kept 117/381 (r111 kept 162); kept ends: " Dolphin\n4. Shark\n5. Sea Turtle\n6. Clownfish\n7. Jellyfish\n8. Octopus\n9. Porpoise\n10. Seal\n"
+      cut starts: "11. Whale\n12. Manta Ray\n13. Hammerhead Shark\n14. Bluefin Tuna\n15. Whale\n16. Dolphin\n17. Sh"
+MOVED [shipped107] guard-instant-t0.2.json#list50-names#1
+      unit x2: "noah"
+      kept 109/386 (r111 kept 242); kept ends: "endly baby names:\n\n1. Leo\n2. Noah\n3. Ethan\n4. Jack\n5. Lucas\n6. Finn\n7. Max\n8. Sam\n9. Liam\n"
+      cut starts: "10. Noah\n11. Leo\n12. Jackson\n13. Finn\n14. Max\n15. Sam\n16. Lucas\n17. Noah\n18. Jack\n19. Leo\n"
+NEW   [shipped107] guard-instant-t0.2.json#list50-names#2
+      unit x2: "finn"
+      kept 317/455; kept ends: "22. Zac\n23. Austin\n24. Avery\n25. Ben\n26. Brayden\n27. Carter\n28. Daniel\n29. Dylan\n30. Ezra\n"
+      cut starts: "31. Finn\n32. Jack\n33. Jordan\n34. Leo\n35. Mason\n36. Noah\n37. Owen\n38. Quinn\n39. Ryan\n40. Sa"
+MOVED [shipped107] guard-instant-t0.2.json#list50-names#3
+      unit x2: "david"
+      kept 235/505 (r111 kept 476); kept ends: " Thomas\n14. Henry\n15. Robert\n16. Paul\n17. John\n18. Peter\n19. Andrew\n20. Matthew\n21. Kevin\n"
+      cut starts: "22. David (again)\n23. James (again)\n24. Michael (again)\n25. William (again)\n26. Thomas (ag"
+NEW   [shipped107] guard-instant-t0.2.json#list25-verbs-de#3
+      unit x2: "zu tun → to do"
+      kept 293/946; kept ends: "en) → to hear\n6. zu sprechen (sprechen) → to speak\n7. zu schreiben (schreiben) → to write\n"
+      cut starts: "8. zu tun (tun) → to do again\n9. zu machen (machen) → to make\n10. zu kommen (kommen) → to "
+MOVED [shipped107] guard-instant-t0.2.json#ja-list-cities#2
+      unit x2: "奄美大島、長崎県、愛媛県、福岡県、熊本県、鹿児島県"
+      kept 208/273 (r111 kept 209); kept ends: "奄美大島、長崎県、愛媛県、福岡県、熊本県、鹿児島県、沖縄県、大分県、高知県、宮城県、山梨県、長野県、新潟県、福井県、秋田県、熊本県、鹿児島県、沖縄県、大分県、高知県、岡山県、那覇市"
+      cut starts: "、奄美大島、長崎県、愛媛県、福岡県、熊本県、鹿児島県、沖縄県、大分県、高知県、宮城県、山梨県、長野県、新潟県、福井県、秋田県、熊本"
+NEW   [shipped107] guard-instant-t0.2.json#cont-list#2
+      unit x2: "banana"
+      kept 135/509; kept ends: ". Strawberry\n18. Tangerine\n19. Watermelon\n20. Xylophone\n21. Yuzu\n22. Zucchini\n23. Avocado\n"
+      cut starts: "24. Banana (repeated)\n25. Apple (repeated)\n26. Cherry (repeated)\n27. Date (repeated)\n28. E"
+MOVED [shipped107] guard-instant.json#list50-names#2
+      unit x2: "Thomas, Kevin, Ryan, Alexander, Benjamin, Avery, Marcus, Oliver, Felix, William"
+      kept 377/577 (r111 kept 378); kept ends: ", Connor, Jameson, Samuel, Leo, Owen, Elijah, Noah, Liam, Mason, Noah, Caleb, Lucas, Henry"
+      cut starts: ", Thomas, Kevin, Ryan, Alexander, Benjamin, Avery, Marcus, Oliver, Felix, William, Jack, C"
+NEW   [shipped107] guard-instant.json#list25-verbs-de#1
+      unit x2: "to speak"
+      kept 580/980; kept ends: "nken)\n12. to die (sterben)\n13. to love (lieben)\n14. to feel (fühlen)\n15. to know (wissen)\n"
+      cut starts: "16. to speak again (sprechen)\n17. to sleep again (stehen)\n18. to eat again (essen)\n19. to "
+NEW   [shipped107] guard-instant.json#he-list#2
+      unit x2: "דובאליד"
+      kept 203/315; kept ends: "שב קטן\n9. פלרומה\n10. חיהמון\n11. קריית המזרח\n12. רביאניפה\n13. תל אבישי\n14. ירושלים העירייה\n"
+      cut starts: "15. דובאליד\n16. סלנדה\n17. בירקין\n18. לידה\n19. נבואה\n20. פארמאן\n21. אשכנז\n22. שפ\"ת\n23. מוסד"
+NEW   [corpus] web-guard-verify/result.json
+      unit x2: "angreifen"
+      kept 199/763; kept ends: "to change)\n4.\nändern sich (changes occur)\n5.\nanfangen (to begin)\n6.\nangreifen (to attack)\n"
+      cut starts: "7.\nangreifen (to attack again)\n8.\nanders (differently)\n9.\nanstatten (to organize/plan)\n10."
+NEW   [iphone22] ios-device-pass-22/raw/result-l02-he-list.json
+      unit x2: "תל אביב"
+      kept 147/325; kept ends: "ים\n4. דרמון\n5. גולדסטרק\n6. כנרת\n7. נאודיה\n8. סטפן\n9. חילון\n10. מלכיון\n11. אריאלה\n12. רעבא\n"
+      cut starts: "13. תל אביב (שם שונה)\n14. ירושלים (שם שונה)\n15. דרמון (שם שונה)\n16. גולדסטרק (שם שונה)\n17."
+MOVED [iphone22] ios-device-pass-22/raw/result-l07-list30-animals-1.json
+      unit x2: "dolphin"
+      kept 152/411 (r111 kept 384); kept ends: "h\n7. coral reef fish\n8. sea turtle\n9. shark\n10. tuna\n11. manta ray\n12. krill\n13. sea bass\n"
+      cut starts: "14. dolphin (repeated)\n15. seahorse\n16. sea urchin\n17. paca\n18. sea slug\n19. angelfish\n20."
+MOVED [iphone22] ios-device-pass-22/raw/result-l07-list30-animals-2.json
+      unit x2: "eel"
+      kept 204/399 (r111 kept 229); kept ends: ". Sea otter\n12. Sea bass\n13. Sea hare\n14. Sea urchin\n15. Hammerhead shark\n16. Tiger shark\n"
+      cut starts: "17. Eel\n18. Bluefin tuna\n19. Clownfish\n20. Sea lion\n21. Sea otter\n22. Sea bass\n23. Sea har"
+NEW   [iphone23] ios-device-pass-23/raw/result-l07-list30-animals-1.json
+      unit x2: "dolphin"
+      kept 206/352; kept ends: "y\n12. Whiting\n13. Jellyfish\n14. Sea Bass\n15. Hammerhead Shark\n16. Sea Lion\n17. Blue Whale\n"
+      cut starts: "18. Dolphin (multiple species)\n19. Coral Reef\n20. Clownfish\n21. Octopus\n22. Sponges\n10. Sp"
+NEW   [iphone23] ios-device-pass-23/raw/result-l07-list30-animals-2.json
+      unit x2: "dolphin"
+      kept 194/559; kept ends: "t marine life items:\n1. Shark (Carcharodon)\n2. Dolphin\n3. Whale\n4. Sea Lion\n5. Sea Turtle\n"
+      cut starts: "6. Dolphin\n7. Sea Eagle\n8. Clownfish\n9. Hammerhead Shark\n10. Blue Whale\n11. Seal\n12. Pelic"
