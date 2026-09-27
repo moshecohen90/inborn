@@ -1,0 +1,240 @@
+{
+ "build": "origin/main 98722df7, apps/web/dist",
+ "model": "Fast (Qwen3.5-2B-Q4_K_M)",
+ "viewport": "1440x900",
+ "exe": "/Users/moshecohen/Library/Caches/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-mac-arm64/chrome-headless-shell",
+ "trials": [
+  {
+   "batch": "S",
+   "id": "list30-animals",
+   "trial": 1,
+   "q": "List 30 animals that live in the ocean, one per line, numbered.",
+   "ms": 24386,
+   "hitDeadline": false,
+   "modelId": "fast",
+   "usage": {
+    "promptTokens": 0,
+    "completionTokens": 15,
+    "ttftMs": 6585.579999923706,
+    "tokPerSec": 19.882165036983846
+   },
+   "tokPerSec": 19.882165036983846,
+   "chars": 401,
+   "itemsAgainScreen": [],
+   "itemsAgainStored": [],
+   "rawMarkupOnScreen": false,
+   "peakScreen": "1.\nBlue whale\n2.\nDolphin\n3.\nShark\n4.\nTurtle\n5.\nOctopus\n6.\nSeahorse\n7.\nWhale shark\n8.\nSea lion\n9.\nJellyfish\n10.\nStarfish\n11.\nCoral reef fish\n12.\nSea otter\n13.\nPenguin (sea)\n14.\nManatee\n15.\nSea snake\n16.\nClownfish\n17.\nManta ray\n18.\nSquid\n19.\nLobster\n20.\nCrab\n21.\nSea urchin\n22.\nSeaweed polyp\n23.\nSea cucumber\n24.\nJelly\n25.\nNautilus\n26.\nCuttlefish\n27.\nOctopus (octopuses)\n28.\nSquid (squids)\n29.\nSea bass  \n30▍",
+   "answer": "1.\nBlue whale\n2.\nDolphin\n3.\nShark\n4.\nTurtle\n5.\nOctopus\n6.\nSeahorse\n7.\nWhale shark\n8.\nSea lion\n9.\nJellyfish\n10.\nStarfish\n11.\nCoral reef fish\n12.\nSea otter\n13.\nPenguin (sea)\n14.\nManatee\n15.\nSea snake\n16.\nClownfish\n17.\nManta ray\n18.\nSquid\n19.\nLobster\n20.\nCrab\n21.\nSea urchin\n22.\nSeaweed polyp\n23.\nSea cucumber\n24.\nJelly\n25.\nNautilus\n26.\nCuttlefish\n27.\nOctopus (octopuses)\n28.\nSquid (squids)\n29.\nSea bass",
+   "raw": "1. Blue whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Octopus\n6. Seahorse\n7. Whale shark\n8. Sea lion\n9. Jellyfish\n10. Starfish\n11. Coral reef fish\n12. Sea otter\n13. Penguin (sea)\n14. Manatee\n15. Sea snake\n16. Clownfish\n17. Manta ray\n18. Squid\n19. Lobster\n20. Crab\n21. Sea urchin\n22. Seaweed polyp\n23. Sea cucumber\n24. Jelly\n25. Nautilus\n26. Cuttlefish\n27. Octopus (octopuses)\n28. Squid (squids)\n29. Sea bass\n",
+   "worstOnScreen": null,
+   "loopNotices": 1,
+   "retries": [
+    {
+     "kept": 388,
+     "unitCp": 19,
+     "copies": 2
+    }
+   ],
+   "cuts": [
+    "log: [chat] loop cut: kept 401 of 421 chars, unit 10 cp x2"
+   ],
+   "chat": [
+    "log: [chat] loop retry: kept 388 chars, unit 19 cp x2",
+    "log: [chat] loop cut: kept 401 of 421 chars, unit 10 cp x2"
+   ],
+   "retryAt": {
+    "keptTail": "s\n26. Cuttlefish\n27. Octopus (octopuses)\n28. Squid (squids)\n",
+    "continuation": "29. Sea bass\n",
+    "keptList": {
+     "items": 28,
+     "first": 1,
+     "last": 28,
+     "gaps": [],
+     "dupes": [
+      "octopus x2",
+      "squid x2"
+     ]
+    },
+    "continuationList": {
+     "items": 1,
+     "first": 29,
+     "last": 29,
+     "gaps": [],
+     "dupes": []
+    }
+   },
+   "list": {
+    "items": 29,
+    "first": 1,
+    "last": 29,
+    "gaps": [],
+    "dupes": [
+     "octopus x2",
+     "squid x2"
+    ]
+   }
+  },
+  {
+   "batch": "S",
+   "id": "list30-animals",
+   "trial": 2,
+   "q": "List 30 animals that live in the ocean, one per line, numbered.",
+   "ms": 38263,
+   "hitDeadline": false,
+   "modelId": "fast",
+   "usage": {
+    "promptTokens": 0,
+    "completionTokens": 454,
+    "ttftMs": 3674.289999961853,
+    "tokPerSec": 15.840539499408886
+   },
+   "tokPerSec": 15.840539499408886,
+   "chars": 1976,
+   "itemsAgainScreen": [],
+   "itemsAgainStored": [],
+   "rawMarkupOnScreen": false,
+   "peakScreen": null,
+   "answer": "1.\nBluefin Tuna  \n2.\nShark  \n3.\nWhale  \n4.\nDolphin  \n5.\nSea Otter  \n6.\nPorcupine Seals  \n7.\nKiller Whales  \n8.\nSea Lion  \n9.\nPenguin  \n10.\nWalrus  \n11.\nHumpback Whale  \n12.\nSeal  \n13.\nShark  \n14.\nDolphin  \n15.\nSea Turtle\n16.\nManatee  \n17.\nClownfish  \n18.\nStarfish  \n19.\nOctopus  \n20.\nJellyfish  \n21.\nSeahorse  \n22.\nSea Snake (Jellyfish) - wait, that's a jellyfish above. Let me correct: 21. Sea Urchin  \n23.\nCrab Crab Crab... no. I need to list new ones from the original list or unique ones not yet listed in my count of 30? The prompt asks for \"List 30 animals\", and I've already provided a few that overlap (like Shark, Dolphin appearing twice). To strictly follow \"Continue exactly where you stopped\" without repeating what already wrote means I must add more to the total set while avoiding duplicates from my first output.\nLet's restart counting properly for this specific continuation task based on the 30 list requirement:\nMy previous answer had ~15 lines (I only listed up to Sea Urchin in the second turn, but that was a mistake because I miscounted). The user asked for \"List 30\". My first response gave me about 12-14 animals. To continue exactly where I stopped without repeating my first answer's specific lines (like Shark or Dolphin if they were repeated), and to reach 30 total, I need to add more unique ones from the ocean world that weren't in my initial short list of ~15.\nLet me generate a fresh long line-by-line continuation starting right after \"Sea Urchin\" but ensuring no duplicates exist between Turn 1 and this Turn (specifically avoiding Shark, Whale, Dolphin if they were there).\nWait, I must check the first response again. First Response: Bluefin Tuna, Shark, Whale... up to Seahorse/Sea Snake/Jellyfish correction? No, my first response stopped at \"20. Jellyfish\" in my thought process but wrote only 15 lines total (Bluefin Tuna to Sea Urchin).\nOkay, so I need to continue from the last line of my first turn's output which was:\n...",
+   "raw": "1. Bluefin Tuna  \n2. Shark  \n3. Whale  \n4. Dolphin  \n5. Sea Otter  \n6. Porcupine Seals  \n7. Killer Whales  \n8. Sea Lion  \n9. Penguin  \n10. Walrus  \n11. Humpback Whale  \n12. Seal  \n13. Shark  \n14. Dolphin  \n15. Sea Turtle\n16. Manatee  \n17. Clownfish  \n18. Starfish  \n19. Octopus  \n20. Jellyfish  \n21. Seahorse  \n22. Sea Snake (Jellyfish) - wait, that's a jellyfish above. Let me correct: 21. Sea Urchin  \n22. Crab Crab Crab... no. I need to list new ones from the original list or unique ones not yet listed in my count of 30? The prompt asks for \"List 30 animals\", and I've already provided a few that overlap (like Shark, Dolphin appearing twice). To strictly follow \"Continue exactly where you stopped\" without repeating what *already wrote* means I must add more to the total set while avoiding duplicates from my first output.\n\nLet's restart counting properly for this specific continuation task based on the 30 list requirement:\nMy previous answer had ~15 lines (I only listed up to Sea Urchin in the second turn, but that was a mistake because I miscounted). The user asked for \"List 30\". My first response gave me about 12-14 animals. To continue exactly where I stopped without repeating my *first* answer's specific lines (like Shark or Dolphin if they were repeated), and to reach 30 total, I need to add more unique ones from the ocean world that weren't in my initial short list of ~15.\n\nLet me generate a fresh long line-by-line continuation starting right after \"Sea Urchin\" but ensuring no duplicates exist between Turn 1 and this Turn (specifically avoiding Shark, Whale, Dolphin if they were there).\nWait, I must check the first response again. First Response: Bluefin Tuna, Shark, Whale... up to Seahorse/Sea Snake/Jellyfish correction? No, my first response stopped at \"20. Jellyfish\" in my thought process but wrote only 15 lines total (Bluefin Tuna to Sea Urchin).\nOkay, so I need to continue from the last line of my *first* turn's output which was:\n...\n",
+   "worstOnScreen": null,
+   "loopNotices": 1,
+   "retries": [
+    {
+     "kept": 221,
+     "unitCp": 9,
+     "copies": 2
+    }
+   ],
+   "cuts": [
+    "log: [chat] loop cut: kept 1976 of 2006 chars, unit 9 cp x2"
+   ],
+   "chat": [
+    "log: [chat] loop retry: kept 221 chars, unit 9 cp x2",
+    "log: [chat] loop cut: kept 1976 of 2006 chars, unit 9 cp x2"
+   ],
+   "retryAt": {
+    "keptTail": "Whale  \n12. Seal  \n13. Shark  \n14. Dolphin  \n15. Sea Turtle\n",
+    "continuation": "16. Manatee  \n17. Clownfish  \n18. Starfish  \n19. Octopus  \n20. Jellyfish  \n21. Seahorse  \n22. Sea Snake (Jellyfish) - wait, that's a jellyfish above. Let me correct: 21. Sea Urchin  \n22. Crab Crab Crab... no. I need to list new ones from the original list or unique ones not yet listed in my count of 30? The prompt asks for \"List 30 animals\", and I've already provided a few that overlap (like Shark",
+    "keptList": {
+     "items": 15,
+     "first": 1,
+     "last": 15,
+     "gaps": [],
+     "dupes": [
+      "shark x2",
+      "dolphin x2"
+     ]
+    },
+    "continuationList": {
+     "items": 8,
+     "first": 16,
+     "last": 22,
+     "gaps": [
+      "22->22"
+     ],
+     "dupes": []
+    }
+   },
+   "list": {
+    "items": 23,
+    "first": 1,
+    "last": 22,
+    "gaps": [
+     "22->22"
+    ],
+    "dupes": [
+     "shark x2",
+     "dolphin x2"
+    ]
+   }
+  },
+  {
+   "batch": "S",
+   "id": "list30-animals",
+   "trial": 3,
+   "q": "List 30 animals that live in the ocean, one per line, numbered.",
+   "ms": 19417,
+   "hitDeadline": false,
+   "modelId": "fast",
+   "usage": {
+    "promptTokens": 0,
+    "completionTokens": 67,
+    "ttftMs": 5342.005000114441,
+    "tokPerSec": 15.145333034028369
+   },
+   "tokPerSec": 15.145333034028369,
+   "chars": 444,
+   "itemsAgainScreen": [],
+   "itemsAgainStored": [],
+   "rawMarkupOnScreen": false,
+   "peakScreen": "1.\nBluefin Tuna\n2.\nHumpback Whale\n3.\nSea Otter\n4.\nSeabird (Albatross)\n5.\nOcean Octopus\n6.\nReef Shark\n7.\nSea Turtle\n8.\nJellyfish\n9.\nStingray\n10.\nSea Anemone (Jellyfish host)\n11.\nSea Urchin\n12.\nLobster\n13.\nCrab\n14.\nPenguin\n15.\nSeagull\n16.\nDolphin\n17.\nManatee\n18.\nSea Cow\n19.\nStarfish\n20.\nClownfish\n21.\nGiant Urchin\n22.\nCrab (Lobster) host species - Cannabis Sativa is a plant, so I will list 3 more distinct animals here:\n23.\nSquid\n24.\nOctopus\n25▍",
+   "answer": "1.\nBluefin Tuna\n2.\nHumpback Whale\n3.\nSea Otter\n4.\nSeabird (Albatross)\n5.\nOcean Octopus\n6.\nReef Shark\n7.\nSea Turtle\n8.\nJellyfish\n9.\nStingray\n10.\nSea Anemone (Jellyfish host)\n11.\nSea Urchin\n12.\nLobster\n13.\nCrab\n14.\nPenguin\n15.\nSeagull\n16.\nDolphin\n17.\nManatee\n18.\nSea Cow\n19.\nStarfish\n20.\nClownfish\n21.\nGiant Urchin\n22.\nCrab (Lobster) host species - Cannabis Sativa is a plant, so I will list 3 more distinct animals here:\n23.\nSquid\n24.\nOctopus",
+   "raw": "1. Bluefin Tuna\n2. Humpback Whale\n3. Sea Otter\n4. Seabird (Albatross)\n5. Ocean Octopus\n6. Reef Shark\n7. Sea Turtle\n8. Jellyfish\n9. Stingray\n10. Sea Anemone (Jellyfish host)\n11. Sea Urchin\n12. Lobster\n13. Crab\n14. Penguin\n15. Seagull\n16. Dolphin\n17. Manatee\n18. Sea Cow\n19. Starfish\n20. Clownfish\n21. Giant Urchin\n22. Crab (Lobster) host species - *Cannabis Sativa* is a plant, so I will list 3 more distinct animals here:\n23. Squid\n24. Octopus\n",
+   "worstOnScreen": null,
+   "loopNotices": 1,
+   "retries": [
+    {
+     "kept": 282,
+     "unitCp": 28,
+     "copies": 2
+    }
+   ],
+   "cuts": [
+    "log: [chat] loop cut: kept 444 of 457 chars, unit 8 cp x2"
+   ],
+   "chat": [
+    "log: [chat] loop retry: kept 282 chars, unit 28 cp x2",
+    "log: [chat] loop cut: kept 444 of 457 chars, unit 8 cp x2"
+   ],
+   "retryAt": {
+    "keptTail": "5. Seagull\n16. Dolphin\n17. Manatee\n18. Sea Cow\n19. Starfish\n",
+    "continuation": "20. Clownfish\n21. Giant Urchin\n22. Crab (Lobster) host species - *Cannabis Sativa* is a plant, so I will list 3 more distinct animals here:\n23. Squid\n24. Octopus\n",
+    "keptList": {
+     "items": 19,
+     "first": 1,
+     "last": 19,
+     "gaps": [],
+     "dupes": []
+    },
+    "continuationList": {
+     "items": 5,
+     "first": 20,
+     "last": 24,
+     "gaps": [],
+     "dupes": []
+    }
+   },
+   "list": {
+    "items": 24,
+    "first": 1,
+    "last": 24,
+    "gaps": [],
+    "dupes": []
+   }
+  }
+ ],
+ "runs": [
+  {
+   "node": 35931,
+   "started": "2026-09-27T16:09:38.808Z",
+   "url": "http://127.0.0.1:8798",
+   "modelStep": "ON-DEVICE\nDownload Fast to this browser\nRECOMMENDED FOR THIS BROWSER\nThe best answers this browser can run.\n1.28 GB, once. It stays on this device. Later visits need no network.\n~4-15 tok/s on your browser\nBest in English, Chinese, Spanish, French and 5 more languages.\nFree in this browser: 11 GB · the browser may clear it when space runs low\nDownload 1.28 GB\nSafari deletes site data after 7 days without a visit. Chrome, Edge and Firefox keep it while you have space.\nOnly the text model downloads now. Photos and document search each bring their own extension later, the first time you use them.\n1 other model runs in this browser",
+   "fastPick": "no choose-fast button: Fast is the step's own pick",
+   "modelStepAfter": "ON-DEVICE\nDownload Fast to this browser\nRECOMMENDED FOR THIS BROWSER\nThe best answers this browser can run.\n1.28 GB, once. It stays on this device. Later visits need no network.\n~4-15 tok/s on your browser\nBest in English, Chinese, Spanish, French and 5 more languages.\nFree in this browser: 11 GB · the browser may clear it when space runs low\nDownload 1.28 GB\nSafari deletes site data after 7 days without a visit. Chrome, Edge and Firefox keep it while you have space.\nOnly the text model downloads now. Photos and document search each bring their own extension later, the first time you use them.\n1 other model runs in this browser\nInstant\n533 MB\nQuick answers, rewrites, summaries. Lightest on battery. Photos: with the photo pack, downloaded on your first photo.\n~7-33 tok/s on your browser\nBest in English, Chinese, Portuguese.\nChoose 533 MB",
+   "loaded": "log: [inborn] wllama loaded model FAST (fast) from opfs://models/fast.gguf in 1891 ms",
+   "engineLines": [
+    "info: [wllama] loaded fast in 1880 ms · threads=6 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+    "log: [inborn] wllama loaded model FAST (fast) from opfs://models/fast.gguf in 1891 ms"
+   ],
+   "console": [
+    "log: [chat] loop retry: kept 388 chars, unit 19 cp x2",
+    "log: [chat] loop cut: kept 401 of 421 chars, unit 10 cp x2",
+    "log: [chat] loop retry: kept 221 chars, unit 9 cp x2",
+    "log: [chat] loop cut: kept 1976 of 2006 chars, unit 9 cp x2",
+    "log: [chat] loop retry: kept 282 chars, unit 28 cp x2",
+    "log: [chat] loop cut: kept 444 of 457 chars, unit 8 cp x2"
+   ],
+   "ended": "2026-09-27T16:11:47.748Z"
+  }
+ ]
+}
