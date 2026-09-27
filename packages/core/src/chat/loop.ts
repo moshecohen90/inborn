@@ -15,6 +15,8 @@ export interface LoopHit {
   asked?: boolean;
   /** A retried list that reached the count it was asked for ends at `keep` with no notice (F426). */
   complete?: boolean;
+  /** The answer ran out on a bare list marker ("…20. אשדוד\n21"): the marker goes, and no retry follows (F428). */
+  truncated?: boolean;
 }
 
 /** Only the tail is searched, so a check costs the same at token 20 and token 2000. */
@@ -58,6 +60,9 @@ const JOINER = /[・·‧'’_\-‐‑]/u;
 const DATA_LINE = /^\s*[[{|<]|"[^"\n]*"\s*:|[;{[(]\s*$|^\s*(?:"[^"\n]*"|[\d.+-]+|true|false|null)\s*,\s*$/u;
 /* F423: every rule reads the words, not the markup: a heading's #s and an item's bullet or number open a line (1. 1) (1) 1、 א. 一、 ①), */
 const HEADING = /#{1,6}(?=[ \t])/uy;
+/* F428: "1. 간장, 2. 김치, 3. 고기": a numbered marker after a separator inside an item line is the next item. */
+const INLINE_SEP = /[,;、，；]/u;
+const INLINE_MARK = /\d{1,3}[.)．](?=[ \t])/uy;
 const ITEM_MARK = /(?:[-*+•·▪◦‣](?=[ \t])|\d{1,3}[.)．](?=\s|[*_]|$)|\d{1,3}、|[(（](?:\d{1,3}|[א-ת]|[一二三四五六七八九十]{1,3})[)）]|[א-ת][.)](?=[ \t])|[一二三四五六七八九十]{1,3}、|[①-⑳])/uy;
 /* and emphasis, inline code and quotation marks stand anywhere ("**האם צריך?** כולם אומרים: האם צריך?" is one phrase twice). */
 const EMPHASIS = /\*\*|__|~~|[*_`]/uy;
@@ -120,8 +125,7 @@ function answerKeyRun(s: string[], text: string, items: Normalized["items"]): (a
   const keyOf: string[] = [];
   const numbered: boolean[] = [];
   for (const [m, { idx, line }] of items.entries()) {
-    let e = idx;
-    while (e < s.length && s[e] !== "\n") e++;
+    const e = itemEnd(s, items, m);
     const it = itemKey(s.slice(idx, e).join(""));
     keyOf.push(itemQualifies(it.full) || !LETTER.test(it.key) ? "" : it.key);
     numbered.push(/^[ \t]*(?:\*\*)?\d/u.test(text.slice(line, line + 8)));
@@ -141,8 +145,16 @@ function answerKeyRun(s: string[], text: string, items: Normalized["items"]): (a
   };
 }
 
+/** Where item m's words end: at its line's end, or at the next item when that one goes on inline. */
+function itemEnd(s: string[], items: Normalized["items"], m: number): number {
+  const stop = items[m + 1]?.inline ? items[m + 1]!.idx : s.length;
+  let e = items[m]!.idx;
+  while (e < s.length && e < stop && s[e] !== "\n") e++;
+  return e;
+}
+
 /** Which list each item belongs to: items at one indent under one parent, until a line of text at that indent or less ends the list. */
-function listIds(text: string, items: { line: number }[]): number[] {
+function listIds(text: string, items: { line: number; inline?: boolean }[]): number[] {
   const itemAt = new Map(items.map((x, m) => [x.line, m]));
   const ids: number[] = [];
   const open: { indent: number; id: number }[] = [];
@@ -166,6 +178,7 @@ function listIds(text: string, items: { line: number }[]): number[] {
     }
     pos = eol + 1;
   }
+  for (const [m, x] of items.entries()) if (x.inline && m > 0) ids[m] = ids[m - 1]!;
   return ids;
 }
 const ITEM_TAIL = /[\s.!?。！？．…,;，、；]+$/u;
@@ -173,6 +186,9 @@ const ITEM_TAIL = /[\s.!?。！？．…,;，、；]+$/u;
 const HEAD_END = /\s*[(（[［]|[:：](?=\s|$)|\s[–—-]\s|\s(?:→|->)\s|[,，](?=\s)|\s·|·\s/u;
 /* A head listed again before its list holds five distinct heads waits off screen this many items for the fifth; an answer key never brings it. */
 const HEAD_WAIT = 3;
+/* An item that goes on from an earlier one this long is that item again; past a space the earlier one must be a phrase this many words long. */
+const PREFIX_MIN = 3;
+const PREFIX_WORDS = 3;
 
 /** F428: the words before the item's gloss or note, keyed like the item; the item's own key when nothing follows its head. */
 function headOf(words: string, it: ItemKey): string {
@@ -238,7 +254,7 @@ interface Normalized {
   /** UTF-16 offset where each normalized code point ends in the input: a cut right after one keeps no markup that follows it. */
   end: number[];
   /** Each list item: the normalized index its words start at, and the input offset its line starts at. */
-  items: { idx: number; line: number }[];
+  items: { idx: number; line: number; inline?: boolean }[];
 }
 
 function markAt(re: RegExp, text: string, i: number): number {
@@ -256,6 +272,8 @@ function normalize(text: string): Normalized {
   let line = 0;
   let heading = false;
   let item = false;
+  /* The number of the line's last item marker: "14. 김치찌개, 15. 간장찌개" goes on inline with the next number (F428). */
+  let lineNum: number | null = null;
   for (let i = 0; i < text.length; ) {
     const cp = String.fromCodePoint(text.codePointAt(i)!);
     if (/\s/u.test(cp)) {
@@ -283,7 +301,13 @@ function normalize(text: string): Normalized {
       else if ((skip = markAt(ITEM_MARK, text, i)) && !heading && !item) {
         item = true;
         items.push({ idx: cps.length, line });
+        lineNum = /^\d{1,3}/u.test(text.slice(i, i + 3)) ? Number(/^\d{1,3}/u.exec(text.slice(i, i + 3))![0]) : null;
       }
+    } else if (item && lineNum !== null && cps.at(-1) === " " && INLINE_SEP.test(cps.at(-2) ?? "") && (skip = markAt(INLINE_MARK, text, i))) {
+      if (Number(/^\d+/u.exec(text.slice(i))![0]) === lineNum + 1) {
+        lineNum++;
+        items.push({ idx: cps.length, line: at[cps.length - 2]!, inline: true });
+      } else skip = 0;
     }
     if (!skip) skip = markAt(EMPHASIS, text, i);
     if (!skip && (QUOTE.test(cp) || (APOSTROPHE.test(cp) && !(WORD_CHAR.test(text[i - 1] ?? "") && WORD_CHAR.test(text[i + 1] ?? ""))))) skip = cp.length;
@@ -627,7 +651,7 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
     /* A short item repeats only in an enumeration: "True" and "False" 30 times over is an answer key, not a loop. */
     const enumerates = (list: number, key: string) => (distinct.get(list)?.size ?? 0) >= ENUMERATION && Array.from(key).length > 1;
     /* F428: heads per list and marker kind ("1." items and "-" items at one indent are two lists); a list shown to be an answer key stops. */
-    const groups = new Map<string, { heads: Map<string, number[]>; distinct: Set<string>; wait: { m: number; line: number; unit: string; since: number } | null; key: boolean }>();
+    const groups = new Map<string, { heads: Map<string, number[]>; said: { full: string; key: string; head: string }[]; distinct: Set<string>; wait: { m: number; line: number; unit: string; since: number } | null; key: boolean }>();
     const lineText = (m: number) => {
       const st = items[m]!.line;
       const nl = text.indexOf("\n", st);
@@ -640,6 +664,10 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
     const lastNum = new Map<string, number>();
     const segment = new Map<string, number>();
     for (let m = 0; m < items.length; m++) {
+      if (items[m]!.inline && m > 0) {
+        groupIds[m] = groupIds[m - 1]!;
+        continue;
+      }
       const list = lists[m] ?? -1;
       const lead = /^[ \t]*(?:\*\*|__)?(?:(\d{1,3})|(\S))/u.exec(lineText(m));
       const num = lead?.[1] === undefined ? undefined : Number(lead[1]);
@@ -655,7 +683,7 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
     const groupOf = (m: number) => {
       const id = groupIds[m]!;
       let g = groups.get(id);
-      if (!g) groups.set(id, (g = { heads: new Map(), distinct: new Set(), wait: null, key: false }));
+      if (!g) groups.set(id, (g = { heads: new Map(), said: [], distinct: new Set(), wait: null, key: false }));
       return g;
     };
     const ends: number[] = [];
@@ -664,14 +692,14 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
       const e = ends[m]!;
       if (e >= n) return { at: n, kids: false };
       const nx = items[m + 1];
+      if (nx?.inline && nx.idx === e) return nx.idx < n ? { at: nx.idx + 1, kids: false } : { at: -1, kids: false };
       if (nx && nx.idx === e + 1) return nx.idx < n ? { at: nx.idx + 1, kids: indentAt(m + 1) > indentAt(m) } : { at: -1, kids: false };
       let x = e + 1;
       while (x < n && s[x] !== "\n") x++;
       return x < n || (final && e + 1 < n) ? { at: Math.min(x + 1, n), kids: false } : final ? { at: n, kids: false } : { at: -1, kids: false };
     };
     for (const [m, { idx, line }] of items.entries()) {
-      let e = idx;
-      while (e < n && s[e] !== "\n") e++;
+      const e = itemEnd(s, items, m);
       ends[m] = e;
       const raw = text.slice(line, e < n ? at[e] : text.length);
       const words = s.slice(idx, e).join("");
@@ -712,7 +740,8 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
         /* F428: in an enumeration the head is the item: "sein (to be)" then "sein (to exist)", or "gehen – to go" then "gehen – to go on a trip", is one verb twice. */
         const g = groupOf(m);
         if (g.key) continue;
-        const h = headOf(words, it);
+        let h = headOf(words, it);
+        if (!g.heads.has(h)) h = g.said.find((x) => goesOnFrom(x.full, it.full) || goesOnFrom(x.key, it.key))?.head ?? h;
         const before = g.heads.get(h) ?? [];
         let again = false;
         if (Array.from(h).length > 1 && before.length >= once && !before.some((x) => kidsOf(x).kids)) {
@@ -732,6 +761,7 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
         }
         if (!again) {
           g.heads.set(h, [...before, m]);
+          g.said.push({ full: it.full, key: it.key, head: h });
           g.distinct.add(h);
         }
         if (g.wait && g.distinct.size >= ENUMERATION) {
@@ -755,6 +785,7 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
           const cut = HEAD_END.exec(words);
           if (cut && cut.index > 0) wait = (g.heads.get(headOf(words, it))?.length ?? 0) >= once;
           else if (!cut) for (const [x, at] of g.heads) if (at.length >= once && x.startsWith(k)) wait = true;
+          wait ||= g.said.some((x) => goesOnFrom(x.full, it.full) || goesOnFrom(x.key, it.key));
         }
         if (wait) itemHold = text.length - line;
       }
@@ -834,7 +865,11 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
 /** An item of two words or more (a CJK character counts half), or of 8 code points, with a letter in it. */
 function itemQualifies(key: string): boolean {
   if (!LETTER.test(key)) return false;
-  if (Array.from(key).length >= ITEM_MIN) return true;
+  return Array.from(key).length >= ITEM_MIN || wordCount(key) >= 2;
+}
+
+/** Words in `key`, a CJK character counting half. */
+function wordCount(key: string): number {
   let words = 0;
   let inWord = false;
   for (const c of key) {
@@ -846,7 +881,19 @@ function itemQualifies(key: string): boolean {
       inWord = true;
     } else inWord = false;
   }
-  return words >= 2;
+  return words;
+}
+
+/**
+ * F428: whether `later` goes on from the whole of `earlier` ("תל אביב-המערב" after "תל אביב", "…un costume de scène pour
+ * créer…" after "…un costume de scène."): past a mark it is the same item; past a space only a phrase of 3+ words is,
+ * since "Whale shark" and "Green tea latte" are new items.
+ */
+function goesOnFrom(earlier: string, later: string): boolean {
+  if (Array.from(earlier).length < PREFIX_MIN || later.length <= earlier.length || !later.startsWith(earlier) || !LETTER.test(earlier)) return false;
+  const c = String.fromCodePoint(later.codePointAt(earlier.length)!);
+  if (WORD_CHAR.test(c)) return false;
+  return !/\s/u.test(c) || wordCount(earlier) >= PREFIX_WORDS;
 }
 
 let itemsMemo: { request: string; copies: number } | null = null;
@@ -856,10 +903,8 @@ export function requestItems(request: string): number {
   const { cps, items } = normalize(request);
   const counts = new Map<string, number>();
   let copies = 1;
-  for (const { idx } of items) {
-    let e = idx;
-    while (e < cps.length && cps[e] !== "\n") e++;
-    const words = cps.slice(idx, e).join("");
+  for (const [m, { idx }] of items.entries()) {
+    const words = cps.slice(idx, itemEnd(cps, items, m)).join("");
     const it = itemKey(words);
     if (!LETTER.test(it.key)) continue;
     /* F428: the answer's rule reads heads, so a head the user listed twice may come twice. */
@@ -1207,11 +1252,29 @@ function listTarget(request: string): number | undefined {
   return n >= 2 && n <= 200 ? n : undefined;
 }
 
+/** The last item number on a list line, counting inline markers ("14. 김치찌개, 15. 간장찌개"), and where that item's words start. */
+function lastNumber(line: string): { num: number; at: number } | null {
+  const m = ITEM_OPEN.exec(line);
+  if (!m?.[2]) return null;
+  let last = { num: Number(m[2]), at: m[0].length };
+  for (const x of line.matchAll(/[,;、，；][ \t]+(\d{1,3})[.)．][ \t]+/gu)) if (Number(x[1]) === last.num + 1) last = { num: last.num + 1, at: x.index + x[0].length };
+  return last;
+}
+
 /** How many items the list ending `text` holds: its last number, or its item count. */
 function listCount(text: string): number {
   const lines = text.split("\n").filter((l) => ITEM_OPEN.test(l));
-  const last = lines.length ? ITEM_OPEN.exec(lines.at(-1)!)![2] : undefined;
-  return last ? Number(last) : lines.length;
+  return lines.length ? (lastNumber(lines.at(-1)!)?.num ?? lines.length) : 0;
+}
+
+/* F428: an answer that ran out of tokens on a bare list marker ("…20. אשדוד\n21", "5. **Société & Économie**\n-") ends before it. */
+const BARE_END = /\n[ \t]*(?:\*\*|__)?(?:(\d{1,3})[.)．]?|[-*•+])(?:\*\*|__)?[ \t]*$/u;
+function bareEnd(text: string, target: number | undefined): LoopHit | null {
+  const m = BARE_END.exec(text);
+  if (!m) return null;
+  const before = text.slice(0, m.index);
+  if (m[1] !== undefined && Number(m[1]) !== listCount(before) + 1) return null;
+  return { unit: m[0].trim(), repeats: 1, start: m.index, keep: m.index, truncated: true, complete: target === undefined || listCount(before) >= target };
 }
 
 /**
@@ -1241,8 +1304,9 @@ export class ListSeam {
     if (!m) return;
     this.active = true;
     this.indent = indentOf(m[1]!);
-    this.last = m[2] ? Number(m[2]) : null;
-    this.lastKey = lineKey(line);
+    const last = lastNumber(line);
+    this.last = last?.num ?? null;
+    this.lastKey = lineKey(last && last.at > m[0].length ? `1. ${line.slice(last.at)}` : line);
   }
 
   /** The part of `piece` that can be shown now; a line start that may still turn out to be a list marker waits. */
@@ -1413,10 +1477,11 @@ export async function* guardLoops(stream: AsyncIterable<Delta>, stop: () => void
     }
     /* he-list build 23: a retry that wrote only "." adds nothing; the answer ends at the cut, with the notice. */
     if (!hit && retried && !/[\p{L}\p{N}]/u.test(text.slice(contFrom))) hit = { unit: "", repeats: 1, start: contFrom, keep: contFrom };
+    if (!hit) hit = bareEnd(text, target);
     if (!hit) break;
     const cut = cutLoop(text, hit);
     /* Five asked, a sixth begun: the five are the whole answer, so a retry would only invent more (F421). */
-    const retry = retried ? undefined : context.retry;
+    const retry = retried || hit.truncated ? undefined : context.retry;
     if (hit.asked || hit.complete || retry) {
       /* Only whitespace past the cut on screen: nothing to take back. */
       if (sent > cut.text.length && !text.slice(cut.text.length, sent).trim()) {

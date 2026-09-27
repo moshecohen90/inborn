@@ -1,10 +1,18 @@
 fixes-r114.test.ts against origin/main 22541224 (round 113), before the round 114 code:
-     × build 24 run 1: 'sein: …' as items 1 and 5 is cut before item 5, which never reaches the screen 227ms
+     × build 24 run 1: 'sein: …' as items 1 and 5 is cut before item 5, which never reaches the screen 214ms
      × build 24 run 2: 'sein (to be)' then 'sein (to exist/remain)' is cut before item 5 7ms
-     × web Fast, stored markdown: '**gehen** – to go on a trip' as item 20 is cut before it 752ms
-     × web Fast, as the screen text reads (number on its own line): cut before '20.' 705ms
+     × web Fast, stored markdown: '**gehen** – to go on a trip' as item 20 is cut before it 781ms
+     × web Fast, as the screen text reads (number on its own line): cut before '20.' 757ms
      × 'verb: gloss', 'verb – gloss', 'verb → gloss' and 'verb, gloss' forms are all read by their head 1ms
-     × 'Dolphin (bottlenose)' and 'Dolphin (river)' in a 30-animal list: now a cut at the second (round 113 kept both) 0ms
-     × a repeated head waits off screen until its next line shows whether a sub-list follows 18ms
-⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
-      Tests  7 failed | 7 passed (14)
+     × 'Dolphin (bottlenose)' and 'Dolphin (river)' in a 30-animal list: now a cut at the second (round 113 kept both) 1ms
+     × a repeated head waits off screen until its next line shows whether a sub-list follows 11ms
+     × he-list: 'תל אביב-המערב' after 'תל אביב' is cut before item 11, and no '-המערב' item reaches the screen 31ms
+     × fr-list: item 11 goes on from item 4 and is cut before it 342ms
+     × fr-list without item 11: item 12 goes on from item 7 ('…un costume de scène.' + ' pour créer…') and is cut 1ms
+     × ko-list: '17. 돼지국' repeats item 7 inside one line and is cut there; the screen never shows it 25ms
+     × a retried inline list goes on from its last inline number 2ms
+     × '…20. City T\n21' short of the 30 asked: the '21' goes and the notice shows, with no retry 23ms
+     × the count is read from '30 idées', '25 Verben', '30가지' and '20 ערים'; a list that reached it ends quietly 22ms
+     × a lone dash after a heading item goes: '5. **Société & Économie**\n-' 1ms
+⎯⎯⎯⎯⎯⎯ Failed Tests 15 ⎯⎯⎯⎯⎯⎯⎯
+      Tests  15 failed | 11 passed (26)

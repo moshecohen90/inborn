@@ -6550,27 +6550,43 @@ with `fixtures/r114-device-answers.json`.
   one indent are separate runs, and a bullet run broken by a numbered title ("**2. フォーマット例**") starts anew.
 - **A number alone on its line takes the next line as its words** ("20.\ngehen – to go on a trip"). Such a list stays
   one list; round 113 split it into one list per item.
+- **An item that goes on from an earlier one is that item again** (build 24 at 0.2). he-list's items 11 to 20 are
+  items 1 to 10 with "-המערב" glued on, and fr-list's item 11 is item 4 plus "et les événements importants". The rule:
+  an item that starts with an earlier item's whole words (3+ code points, trailing punctuation dropped), followed by a
+  mark, is that item's head. When a space follows, the earlier item must be 3+ words long, so "Whale shark" after "Whale"
+  and "Green tea latte" after "Green tea" stay new items, and so does "Level 10" after "Level 1".
+- **A numbered list on one line is read item by item.** ko-list wrote "1. 간장, 2. 김치, … 29. 생선" on one line
+  and said "14. 김치찌개 … 18. 닭고기국" again as 24 to 28 ("돼지국" as 7, 17 and 27). After a comma or semicolon, the
+  next number in sequence starts an item. The cut lands right before ", 17.". A retry goes on from the line's last
+  number. "chapters 1 and 2. Then…" is not split, because no separator comes before the "2.".
+- **An answer that ran out on a bare list marker ends before it.** The token budget left "…20. אשדוד-המערב\n21" and
+  "5. **Société & Économie**\n-". At the end of the answer, a lone next number or a lone dash line goes. When the list
+  is short of the count the request names, the notice shows, with no retry. A list that reached its count ends
+  quietly. The count is the request's number in any language ("30 idées", "25 Verben", "30가지", "30 ערים"). A final
+  number that is not the next item ("The total is:\n42") stays.
 
 Offline replay (`docs/qa/loop-guard-item-heads/replay-r114.txt`), round 113 on main against round 114, no retry, 3 code
 points per chunk.
 
 | Set | Answers | Cut by round 113 | Cut by round 114 | New cuts | Moved cuts | Cuts gone |
 |---|---|---|---|---|---|---|
-| stored stress runs | 1,064 | 97 | 102 | 5 | 5 | 0 |
-| shipped-guard runs | 504 | 44 | 48 | 4 | 2 | 0 |
+| stored stress runs | 1,064 | 97 | 103 | 6 | 5 | 0 |
+| shipped-guard runs | 504 | 44 | 49 | 5 | 2 | 0 |
 | real answers in `docs/qa` | 507 | 14 | 18 | 4 | 2 | 0 |
-| iPhone build 22 | 28 | 5 | 5 | 0 | 0 | 0 |
+| iPhone build 22 | 28 | 5 | 6 | 1 | 0 | 0 |
 | iPhone build 23 | 28 | 3 | 3 | 0 | 0 | 0 |
-| iPhone build 24 | 27 | 0 | 3 | 3 | 0 | 0 |
+| iPhone build 24 | 27 | 0 | 6 | 6 | 0 | 0 |
 
 False cuts: 0. Every new or moved cut is a head listed again: "sein" (build 24, items 1 and 5), "gehen" (web, 3 and 20),
 "haben", "sehen", "zu tun", "Plum" (16 and 17), "Pear", "Zebra", "Octopus (octopuses)", and fr-list's "Un gadget portable
-(smartwatch, bracelet)…" (items 4 and 11). The replay's first pass found one false cut: after-instant ja-nenji #1 cut
+(smartwatch, bracelet)…" (items 4 and 11). Build 24's he-list is cut before "11. תל אביב-המערב" and its ko-list before
+", 17. 돼지국"; build 22's ko-list before ", 25. 양파" (item 3 again). Three are bare markers the budget left: math-fib's
+"27" (40 asked) and fr-list try 1's lone "-" go, with the notice. The replay's first pass found one false cut: after-instant ja-nenji #1 cut
 "目次" because two sections' bullet runs, split by the bold numbered title "**2. フォーマット例**", were read as one
 list. Bullet runs now restart at such a title, and the second pass has no cut there.
 
-Red first: 7 of the 14 round-114 tests fail on main 22541224 (every cut test); the 7 keep tests pass there too
-(`red-r114-main-22541224.txt`). A 15th keep test, the section titles, came from the replay. No live model run and no device run: the next iPhone build measures it.
+Red first: 15 of the 26 round-114 tests fail on main 22541224 (every cut test); the 11 keep tests pass there too
+(`red-r114-main-22541224.txt`). No live model run and no device run: the next iPhone build measures it.
 
 ## iOS build 23: main with round 111's loop guard, on Moshe's iPhone only (branch `ios-build-23`) — 27.9.2026
 

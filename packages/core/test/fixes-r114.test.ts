@@ -8,12 +8,15 @@ import device from "./fixtures/r114-device-answers.json";
  * "4. sein (to be)" then "5. sein (to exist/remain)", "sein: …" as items 1, 5 and 11, "3. gehen – to go" then
  * "20. gehen – to go on a trip". In an enumeration the item's head, the words before its gloss or note, is the item.
  */
-const { guardLoops, tailLoop, cutLoop } = core;
+const { guardLoops, tailLoop, cutLoop, ListSeam } = core;
 const usage = { promptTokens: 1, completionTokens: 1, ttftMs: 1, tokPerSec: 1 };
 const RUN1 = device["l07-list25-verbs-de-1"];
 const RUN2 = device["l07-list25-verbs-de-2"];
 const WEB_RAW = device["web-fast-list25-verbs-de-raw"];
 const WEB_SCREEN = device["web-fast-list25-verbs-de-screen"];
+const KO = device["l02-ko-list"];
+const HE = device["l02-he-list"];
+const FR = device["l02-fr-list"];
 
 function engine(text: string, step = 3): AsyncIterable<Delta> {
   return (async function* () {
@@ -178,5 +181,100 @@ describe("F428 · the head rule changes round 113's parenthetical rule, and keep
     expect(final(refs, "List 6 verses.")).toBeNull();
     const times = "- 08:00 – Breakfast\n- 09:00 – Walk\n- 10:00 – Museum\n- 12:00 – Lunch\n- 14:00 – Museum\n- 16:00 – Walk\n";
     expect(final(times, "Plan my day.")).toBeNull();
+  });
+});
+
+describe("F428 · build 24 at 0.2: an item that goes on from an earlier one is that item again", () => {
+  it("he-list: 'תל אביב-המערב' after 'תל אביב' is cut before item 11, and no '-המערב' item reaches the screen", async () => {
+    const r = await guarded(HE.answer, HE.request);
+    expect(r.loop).toBeDefined();
+    expect(r.shown.trimEnd().split("\n").at(-1)).toBe("10. אשדוד");
+    expect(r.screens.some((x) => x.includes("המערב"))).toBe(false);
+  });
+
+  it("fr-list: item 11 goes on from item 4 and is cut before it", async () => {
+    const r = await guarded(FR.answer, FR.request);
+    expect(r.loop).toBeDefined();
+    expect(r.shown.trimEnd().split("\n").at(-1)).toMatch(/^10\. Une collection de livres d'histoire/u);
+    expect(r.screens.some((x) => x.includes("11. Un gadget"))).toBe(false);
+  });
+
+  it("fr-list without item 11: item 12 goes on from item 7 ('…un costume de scène.' + ' pour créer…') and is cut", () => {
+    const text = FR.answer.replace(/^11\. .*\n/mu, "");
+    const hit = final(text, FR.request);
+    expect(hit).not.toBeNull();
+    expect(cutLoop(text, hit!).text.trimEnd().split("\n").at(-1)).toMatch(/^10\. /u);
+  });
+
+  it("a new compound is a new item: 'Whale shark' after 'Whale', 'Green tea latte' after 'Green tea', 'Level 10' after 'Level 1'", () => {
+    const animals = ["Whale", "Shark", "Dolphin", "Seal", "Octopus", "Squid", "Whale shark", "Sea lion", "Tiger shark"];
+    expect(final(`${animals.map((x, i) => `${i + 1}. ${x}`).join("\n")}\n`, "List 30 animals that live in the ocean.")).toBeNull();
+    const drinks = ["Green tea", "Coffee", "Water", "Milk", "Juice", "Green tea latte", "Lemonade"];
+    expect(final(`${drinks.map((x) => `- ${x}`).join("\n")}\n`, "List 20 drinks.")).toBeNull();
+    const levels = Array.from({ length: 12 }, (_, i) => `${i + 1}. Level ${i + 1}`).join("\n");
+    expect(final(levels, "List the levels.")).toBeNull();
+  });
+});
+
+describe("F428 · build 24 at 0.2: a numbered list on one line is read item by item", () => {
+  it("ko-list: '17. 돼지국' repeats item 7 inside one line and is cut there; the screen never shows it", async () => {
+    const r = await guarded(KO.answer, KO.request);
+    expect(r.loop).toBeDefined();
+    expect(r.shown.trimEnd().endsWith("16. 고기국")).toBe(true);
+    expect(r.screens.some((x) => x.includes("17. 돼지국"))).toBe(false);
+  });
+
+  it("an inline list of distinct items is not cut, and a sentence with 'and 2.' is not split", () => {
+    const foods = ["간장", "김치", "고기", "국물", "양념국", "소고기", "돼지국", "닭고기", "생선", "해산물", "야채", "두부"];
+    expect(final(`한국 음식:\n\n${foods.map((x, i) => `${i + 1}. ${x}`).join(", ")}`, KO.request)).toBeNull();
+    const steps = "1. Read chapters 1 and 2. Then pray\n2. Read chapter 3\n3. Rest\n4. Read chapter 4\n5. Pray\n6. Read chapter 5\n";
+    expect(final(steps, "Plan my week.")).toBeNull();
+  });
+
+  it("a retried inline list goes on from its last inline number", () => {
+    expect(new ListSeam("1. 간장, 2. 김치, 3. 고기").push("\n4. 두부\n", true)).toBe("\n4. 두부\n");
+    expect(new ListSeam("1. 간장, 2. 김치, 3. 고기").push("\n3. 고기\n5. 두부\n", true)).toBe("\n4. 두부\n");
+  });
+});
+
+describe("F428 · an answer that ran out on a bare list marker ends before it", () => {
+  const cities = `${Array.from({ length: 20 }, (_, i) => `${i + 1}. City ${String.fromCharCode(65 + i)}`).join("\n")}\n21`;
+
+  it("'…20. City T\\n21' short of the 30 asked: the '21' goes and the notice shows, with no retry", async () => {
+    let retried = 0;
+    const retry = () => {
+      retried++;
+      return engine("");
+    };
+    const r = await screen(guardLoops(engine(cities), () => undefined, { request: "Nenne 30 Städte in Israel.", retry }));
+    expect(r.loop).toBeDefined();
+    expect(r.shown.trimEnd().split("\n").at(-1)).toBe("20. City T");
+    expect(retried).toBe(0);
+  });
+
+  it("the count is read from '30 idées', '25 Verben', '30가지' and '20 ערים'; a list that reached it ends quietly", async () => {
+    for (const request of ["Nenne 20 Städte.", "Donne-moi 20 idées.", "도시 20가지를 알려주세요.", "תן לי 20 ערים."]) {
+      const r = await screen(guardLoops(engine(cities), () => undefined, { request }));
+      expect(r.loop, request).toBeUndefined();
+      expect(r.shown.trimEnd().split("\n").at(-1)).toBe("20. City T");
+    }
+    for (const request of ["Donne-moi 30 idées de cadeaux.", "Nenne 25 deutsche Verben.", "한국 음식 30가지를 알려주세요."]) {
+      const r = await screen(guardLoops(engine(cities), () => undefined, { request }));
+      expect(r.loop, request).toBeDefined();
+    }
+  });
+
+  it("a lone dash after a heading item goes: '5. **Société & Économie**\\n-'", async () => {
+    const text = "Voici 30 idées :\n\n1. **Art**\n2. **Sport**\n3. **Voyage**\n4. **Cuisine**\n5. **Société & Économie**\n-";
+    const r = await screen(guardLoops(engine(text), () => undefined, { request: "Donne-moi 30 idées de cadeaux." }));
+    expect(r.loop).toBeDefined();
+    expect(r.shown.trimEnd().split("\n").at(-1)).toBe("5. **Société & Économie**");
+  });
+
+  it("an answer ending on a number that is not the next item keeps it", async () => {
+    const text = "1. Add 20\n2. Add 22\n\nThe total is:\n42";
+    const r = await screen(guardLoops(engine(text), () => undefined, { request: "Add 20 and 22." }));
+    expect(r.loop).toBeUndefined();
+    expect(r.shown).toBe(text);
   });
 });
