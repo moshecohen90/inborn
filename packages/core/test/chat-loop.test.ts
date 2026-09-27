@@ -18,10 +18,14 @@ const LOOPS: Record<string, { text: string; keep: string }> = {
   de: { text: "Der Weltmeister von 1998 ist Frankreich. ".repeat(4), keep: "Der Weltmeister von 1998 ist Frankreich." },
 };
 
+/* F423 (round 111): the founder's ruling ends F369's allowance for list items; the same step three times is a loop. */
+const IDENTICAL_STEPS: Record<string, { text: string; keep: string }> = {
+  "numbered list of three identical steps": { text: "1. Stir the batter.\n2. Stir the batter.\n3. Stir the batter.\n\nThen bake it for 20 minutes.", keep: "1. Stir the batter." },
+  "numbered list of three identical steps (ja)": { text: "手順：\n1. 生地をよく混ぜます。\n2. 生地をよく混ぜます。\n3. 生地をよく混ぜます。\n最後に二十分焼きます。", keep: "手順：\n1. 生地をよく混ぜます。" },
+  "bulleted list of three identical steps (de)": { text: "So geht es:\n- Den Teig gut rühren.\n- Den Teig gut rühren.\n- Den Teig gut rühren.\nDann 20 Minuten backen.", keep: "So geht es:\n- Den Teig gut rühren." },
+};
+
 const HEALTHY: Record<string, string> = {
-  "numbered list of three identical steps": "1. Stir the batter.\n2. Stir the batter.\n3. Stir the batter.\n\nThen bake it for 20 minutes.",
-  "numbered list of three identical steps (ja)": "手順：\n1. 生地をよく混ぜます。\n2. 生地をよく混ぜます。\n3. 生地をよく混ぜます。\n最後に二十分焼きます。",
-  "bulleted list of three identical steps (de)": "So geht es:\n- Den Teig gut rühren.\n- Den Teig gut rühren.\n- Den Teig gut rühren.\nDann 20 Minuten backen.",
   "poem refrain twice (he)": "אֵלִי, אֵלִי, שֶׁלֹּא יִגָּמֵר לְעוֹלָם\nהַחוֹל וְהַיָּם\nאֵלִי, אֵלִי, שֶׁלֹּא יִגָּמֵר לְעוֹלָם\nרִשְׁרוּשׁ שֶׁל הַמַּיִם",
   "hymn chorus line twice": "Glory, glory, hallelujah!\nGlory, glory, hallelujah!\nHis truth is marching on.",
   "no no no (en)": "No no no, the museum is closed on Mondays.",
@@ -78,6 +82,14 @@ describe("F369 · detectLoop flags a repeat anywhere in the tail, not only at it
     expect(detectLoop("Sure! " + "ha ".repeat(20))).not.toBeNull();
     expect(detectLoop("The answer is 42. The answer is 42. The answer is 42.")).not.toBeNull();
   });
+
+  for (const [name, { text, keep }] of Object.entries(IDENTICAL_STEPS)) {
+    it(`F423: ${name} is a loop, cut to the first step`, () => {
+      const hit = detectLoop(text);
+      expect(hit).not.toBeNull();
+      expect(text.slice(0, hit!.keep).trimEnd()).toBe(keep);
+    });
+  }
 
   for (const [name, text] of Object.entries(HEALTHY)) {
     it(`leaves healthy text alone: ${name}`, () => {

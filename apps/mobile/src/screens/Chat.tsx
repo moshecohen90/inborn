@@ -629,7 +629,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const base = existingMessageId && messages.at(-1)?.content === CONTINUE_PROMPT ? messages.slice(0, -2) : messages;
       const retry = () => run([...base, { role: "assistant", content: shown() }, { role: "user", content: CONTINUE_PROMPT }], { ...opts, ...LOOP_RETRY });
       const onRetry = (kept: string, hit: LoopHit) => console.log(describeLoopRetry(kept, hit));
-      for await (const d of guardLoops(run(messages, opts), stopLoop, { request: asked, retry, onRetry })) {
+      for await (const d of guardLoops(run(messages, opts), stopLoop, { request: asked, retry, onRetry, prefix })) {
         if (d.trim !== undefined) {
           reply = d.trim;
           const snapshot = shown();

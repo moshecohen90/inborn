@@ -1,0 +1,387 @@
+| Set | Answers | Cut by the shipped guard | Cut by round 111 | Both | Only round 111 | Only the shipped guard | Both, cut moved |
+|---|---|---|---|---|---|---|---|
+| stored | 1064 | 60 | 82 | 58 | 24 | 2 | 29 |
+| shipped107 | 504 | 24 | 35 | 22 | 13 | 2 | 17 |
+| corpus | 536 | 9 | 14 | 9 | 5 | 0 | 1 |
+| iphone22 | 28 | 0 | 4 | 0 | 4 | 0 | 0 |
+
+NEW   [stored] after-fast-t0.2.json#list30-animals#2
+      unit x2: "sea bass"
+      kept 465/494; kept ends: " Urchins)  \n24. Sea Squid  \n25. Sea Octopus  \n26. Sea Crab  \n27. Sea Bass  \n28. Sea Trout\n"
+      cut starts: "29. Sea Bass  \n30. Sea Bass"
+MOVED [stored] after-fast-t0.2.json#list30-animals#3
+      unit x2: "blue whale"
+      kept 696/1295 (r107 kept 695); kept ends: "h (duplicate entry in original list)\n\n*Correction: The user asked for 30 unique animals.*\n"
+      cut starts: "1. Blue Whale\n2. Shark\n3. Dolphin\n4. Seal\n5. Octopus\n6. Jellyfish\n7. Sea Turtle\n8. Salmon\n"
+NEW   [stored] after-fast-t0.2.json#cont-list#2
+      unit x2: "pineapple"
+      kept 586/3508; kept ends: "berry (a type of blueberry)\n6. Fig\n7. Grape\n8. Honeydew melon\n9. Kiwi\n10. Lemon\n11. Mango\n"
+      cut starts: "12. Orange\n13. Papaya\n14. Peach\n15. Pineapple\n16. Plum\n17. Quince\n18. Raspberry\n19. Strawb"
+MOVED [stored] after-fast-t0.2.json#cont-list#3
+      unit x2: "pineapple"
+      kept 347/2705 (r107 kept 1350); kept ends: "40 unique fruits without repeating \"watermelon\" or any others from the previous response:\n"
+      cut starts: "15. Papaya\n16. Peach\n17. Plum\n18. Pineapple\n19. Pomegranate\n20. Quince\n21. Rambutan\n22. St"
+NEW   [stored] after-fast.json#list30-animals#1
+      unit x2: "jellyfish"
+      kept 457/487; kept ends: "sh  \n24. Angelfish  \n25. Goldfish (marine)  \n26. Rock lobster  \n27. Abalone  \n28. Octopus\n"
+      cut starts: "29. Jellyfish  \n30. Starfish"
+NEW   [stored] after-fast.json#list30-animals#2
+      unit x2: "jellyfish"
+      kept 271/449; kept ends: "\n13. Squid  \n14. Starfish  \n15. Seahorse  \n16. Sea Snake  \n17. Cuttlefish  \n18. Sea Horse\n"
+      cut starts: "19. Jellyfish  \n20. Pufferfish  \n21. Sea Snail  \n22. Lobster  \n23. Crab  \n24. Octopus  \n25"
+NEW   [stored] after-fast.json#list30-animals#3
+      unit x2: "jellyfish"
+      kept 257/656; kept ends: ". Sea Anemone  \n14. Clownfish  \n15. Squid  \n16. Eel  \n17. Seahawk (Seagull)  \n18. Manatee\n"
+      cut starts: "19. Jellyfish  \n20. Octopus  \n21. Crab  \n22. Jellyfish  \n23. Starfish  \n24. Sea Urchin  \n2"
+NEW   [stored] after-fast.json#cont-list#3
+      unit x2: "pomegranate"
+      kept 594/3340; kept ends: "the numbering from scratch for accuracy without repetition.\n\nCorrected List:\n20. Plantain\n"
+      cut starts: "21. Pomegranate\n22. Papaya\n23. Persimmon\n24. Pitanga\n25. Plum\n26. Pomelo\n27. Pineapple\n28."
+NEW   [stored] after-instant-t0.2.json#list30-animals#1
+      unit x2: "sea bass"
+      kept 322/492; kept ends: "Lion  \n17. Sea Otter  \n18. Sea Grouper  \n19. Sea Oyster  \n20. Sea Starfish  \n21. Sea Tuna\n"
+      cut starts: "22. Sea Bass  \n23. Sea Herring  \n24. Sea Scallop  \n25. Sea Squid  \n26. Sea Octopus  \n27. S"
+NEW   [stored] after-instant-t0.2.json#list30-animals#2
+      unit x2: "coral reefs"
+      kept 387/742; kept ends: "s (e.g. Great White Shark)\n11. Dolphin Species (e.g. Leopard Seal)\n12. Sea Turtle Species\n"
+      cut starts: "13. Coral Reefs\n14. Jellyfish Species\n15. Manta Ray Species\n16. Whale Species\n17. Shark Sp"
+NEW   [stored] after-instant-t0.2.json#list30-animals#3
+      unit x2: "sea bass"
+      kept 170/406; kept ends: "llyfish\n9. Sea Snake\n10. Sea Bass\n11. Sea Lion\n12. Sea Turtle\n13. Sea Grouper\n14. Sea Oar\n"
+      cut starts: "15. Sea Bass\n16. Sea Herring\n17. Sea Scallop\n18. Sea Squid\n19. Sea Starfish\n20. Sea Urchin"
+NEW   [stored] after-instant-t0.2.json#list50-names#1
+      unit x2: "Jack\nFinn\nMax\nSam\nLeo\nLucas\nNoah\nEthan"
+      kept 189/382; kept ends: "m\n9. Liam\n10. Noah\n11. Jack\n12. Finn\n13. Max\n14. Sam\n15. Leo\n16. Lucas\n17. Noah\n18. Ethan\n"
+      cut starts: "19. Jack\n20. Finn\n21. Max\n22. Sam\n23. Leo\n24. Lucas\n25. Noah\n26. Ethan\n27. Jack\n28. Finn\n2"
+NEW   [stored] after-instant-t0.2.json#list50-names#3
+      unit x2: "david (again)"
+      kept 476/505; kept ends: ". John (again)\n31. Peter (again)\n32. Andrew (again)\n33. Matthew (again)\n34. Kevin (again)\n"
+      cut starts: "35. David (again)\n36. James ("
+NEW   [stored] after-instant.json#list30-animals#2
+      unit x2: "dolphins"
+      kept 221/379; kept ends: "guin chicks\n12. dolphin pups\n13. sharks\n14. finches\n15. seals\n16. gulls\n17. eels\n18. fish\n"
+      cut starts: "19. whales\n20. dolphins\n21. sharks\n22. rays\n23. penguins\n24. sea turtles\n25. jellyfish\n26."
+MOVED [stored] after-instant.json#cont-list#2
+      unit x2: "elderberry"
+      kept 865/2929 (r107 kept 864); kept ends: " more text. Let me recount carefully from scratch to be sure of the list before stopping.\n"
+      cut starts: "1. Apple\n2. Banana\n3. Cherry\n4. Date\n5. Elderberry\n6. Fig\n7. Grape\n8. Honeydew\n9. Kiwi\n10."
+MOVED [stored] before-fast-t0.2.json#list30-animals#1
+      unit x2: "Starfish (various species)"
+      kept 532/673 (r107 kept 534); kept ends: "  \n24. Sea anemone (various species)  \n25. Coral polyp  \n26. Sea urchin (various species)\n"
+      cut starts: "27. Starfish (various species)  \n28. Sea cucumber (various species)  \n29. Sea anemone (var"
+MOVED [stored] before-fast-t0.2.json#he-explain#1
+      unit x2: "מייצר אנרגיה וקרינה באמצעות קשרים בין אלקטרונים, פרוטונים ומגנים. התהליך"
+      kept 460/2087 (r107 kept 480); kept ends: "ש) או ממגנים חיצוניים. לאחר מכן, החורש מייצר קרינה באמצעות תהליך שנקרא \"מחזור פוטוסינתזה\"."
+      cut starts: "בפוטוסינתזה, החורש מייצר אנרגיה וקרינה באמצעות קשרים בין אלקטרונים, פרוטונים ומגנים. התהלי"
+MOVED [stored] before-fast-t0.2.json#he-story#3
+      unit x2: "מתחיל לחשוב על עולם שבו הם יחד: דניאל יוכל ללמד"
+      kept 320/470 (r107 kept 389); kept ends: " שבו הם יחד: דניאל יוכל ללמד את הדרקון טכנולוגיה חדשה בעוד הדרקון יעזור לו להבין את העולם."
+      cut starts: "ברגע שהם נמצאים יחד, הילד מביט בדרקון ומראה לו את האהבה שלו, והדרקון מתחיל לחשוב על עולם ש"
+MOVED [stored] before-fast-t0.2.json#cont-list#2
+      unit x2: "pineapple"
+      kept 517/2739 (r107 kept 640); kept ends: "y, often included in fruit lists)\n6. Fig\n7. Grape\n8. Honeydew\n9. Kiwi\n10. Lemon\n11. Mango\n"
+      cut starts: "12. Orange\n13. Papaya\n14. Peach\n15. Pineapple\n16. Plum\n17. Quince\n18. Raspberry\n19. Strawb"
+GONE  [stored] before-fast-t0.2.json#math-long-div#2
+      r107 unit "123 ≈ 7 (since 123 × 7 = 861). Write 7 in the" kept 799/969
+MOVED [stored] before-fast-t0.2.json#math-long-div#3
+      unit x2: "$987 \\div 123 = 8$ with a remainder of $6$."
+      kept 556/1437 (r107 kept 555); kept ends: "its to make it at least as large as 123. Take **987** again (from the original dividend).\n"
+      cut starts: "*   $987 \\div 123 = 8$ with a remainder of $6$. ($123 \\times 8 = 984$)\n    *   Write anoth"
+NEW   [stored] before-fast.json#list30-animals#1
+      unit x2: "jellyfish"
+      kept 287/451; kept ends: "\n13. Sea urchin  \n14. Octopus  \n15. Squid  \n16. Sea cucumber  \n17. Crab  \n18. Sea anemone\n"
+      cut starts: "19. Jellyfish  \n20. Sea star  \n21. Sea snail  \n22. Sea turtle  \n23. Dolphin  \n24. Porpoise"
+NEW   [stored] before-fast.json#list30-animals#2
+      unit x2: "squid (various species)"
+      kept 581/644; kept ends: "bird (various species)  \n27. Barracuda (various species)  \n28. Starfish (various species)\n"
+      cut starts: "29. Squid (various species)  \n30. Krill (various populations)"
+NEW   [stored] before-fast.json#list30-animals#3
+      unit x2: "blue whale"
+      kept 1062/1476; kept ends: "usually encompasses all living organisms under Kingdom Animalia. To be safe and accurate:\n"
+      cut starts: "1. Blue Whale\n2. Humpback Whale\n3. Dolphin\n4. Shark\n5. Seabird (Albatross)\n6. Penguin\n7. S"
+MOVED [stored] before-fast.json#ja-nenji#1
+      unit x2: "誌内図：図面部分を同前と同様にする"
+      kept 979/1433 (r107 kept 1003); kept ends: "展開し、売上高が Y%増となった。この結果、当社の成長率は前年次より 5% 増加した。」など）\n\n### 5. 補足事項の記載\n*   **誌額**：前年次報告書と同じ金額とする\n"
+      cut starts: "*   **誌内図**：図面部分を同前と同様にする\n\n*   **誌価**：同前項と同じ額とする（金額が不明瞭な場合は明記）\n\n### 6. 記載例の形式（簡易版）\n\n| 項目 |"
+MOVED [stored] before-fast.json#he-explain#3
+      unit x2: "לחומר האורטורטיבי הזה (כמו חלבון) עד שהחלבון הזה משקיע את"
+      kept 1043/1271 (r107 kept 1200); kept ends: "ת מודע לחומר האורטורטיבי הזה (כמו חלבון) עד שהחלבון הזה משקיע את האנרגיה שלו.\n\n**לסיכום:**"
+      cut starts: "פוטוסינתזה היא תהליך שבו צמחיית החוף מקבלים סוכר מהאגמים או החלונות של הים, ומייצרים חלבונ"
+MOVED [stored] before-fast.json#cont-list#2
+      unit x2: "persimmon"
+      kept 796/2694 (r107 kept 795); kept ends: "e\n2. Banana\n3. Cherry\n4. Date\n5. Elderberry\n6. Fig\n7. Grape\n8. Honeydew\n9. Kiwi\n10. Lemon\n"
+      cut starts: "11. Mango\n12. Orange\n13. Papaya\n14. Persimmon\n15. Pineapple\n16. Plum\n17. Peach\n18. Plantai"
+MOVED [stored] before-fast.json#cont-list#3
+      unit x2: "Orange, Papaya, Peach, Plum, Pomegranate, Pineapple, Quince, Raspberry, Strawberry, Tamari"
+      kept 556/3611 (r107 kept 2913); kept ends: "m sequentially without duplicates within that sequence.\n\nLet's re-evaluate the stop point:"
+      cut starts: "Original List: Apple, Banana, Cherry, Date, Elderberry, Fig, Grape, Honeydew, Kiwi, Lemon,"
+GONE  [stored] before-fast.json#math-long-div#3
+      r107 unit "Step**: 123 goes into 542 four times (since $4 \\times 123 = 492$). Subtracting leaves a" kept 1093/1253
+NEW   [stored] before-instant-t0.2.json#list30-animals#1
+      unit x2: "sea bass"
+      kept 210/391; kept ends: "oral Reefs\n12. Manta Ray\n13. Hammerhead Shark\n14. Blue Whale\n15. Sea Grouper\n16. Sea Bass\n"
+      cut starts: "17. Sea Bass\n18. Sea Bass\n19. Sea Bass\n20. Sea Bass\n21. Sea Bass\n22. Sea Bass\n23. Sea Bass"
+NEW   [stored] before-instant-t0.2.json#list30-animals#2
+      unit x2: "bluefin tuna"
+      kept 162/381; kept ends: "7. Jellyfish\n8. Octopus\n9. Porpoise\n10. Seal\n11. Whale\n12. Manta Ray\n13. Hammerhead Shark\n"
+      cut starts: "14. Bluefin Tuna\n15. Whale\n16. Dolphin\n17. Shark\n18. Sea Turtle\n19. Clownfish\n20. Jellyfis"
+NEW   [stored] before-instant-t0.2.json#list30-animals#3
+      unit x2: "sea bass"
+      kept 172/379; kept ends: "yfish\n9. Sea Snake\n10. Sea Turtle\n11. Sea Bass\n12. Sea Lion\n13. Sea Otter\n14. Sea Grouper\n"
+      cut starts: "15. Sea Bass\n16. Sea Bass\n17. Sea Bass\n18. Sea Bass\n19. Sea Bass\n20. Sea Bass\n21. Sea Bass"
+NEW   [stored] before-instant-t0.2.json#list50-names#1
+      unit x2: "Jackson\nFinn\nMax\nSam\nLucas\nNoah\nJack\nLeo\nFinn\nMax"
+      kept 242/386; kept ends: "ax\n15. Sam\n16. Lucas\n17. Noah\n18. Jack\n19. Leo\n20. Finn\n21. Max\n22. Sam\n23. Liam\n24. Noah\n"
+      cut starts: "25. Jackson\n26. Finn\n27. Max\n28. Sam\n29. Lucas\n30. Noah\n31. Jack\n32. Leo\n33. Finn\n34. Max\n"
+NEW   [stored] before-instant-t0.2.json#list50-names#3
+      unit x2: "david (again)"
+      kept 476/505; kept ends: ". John (again)\n31. Peter (again)\n32. Andrew (again)\n33. Matthew (again)\n34. Kevin (again)\n"
+      cut starts: "35. David (again)\n36. James ("
+NEW   [stored] before-instant-t0.2.json#list25-verbs-de#2
+      unit x2: "zu tun (tun)"
+      kept 286/611; kept ends: "7. zu wissen (wissen)\n8. zu fühlen (fühlen)\n9. zu lieben (lieben)\n10. zu gefallen (gehen)\n"
+      cut starts: "11. zu tun (tun)\n12. zu sehen (sehen)\n13. zu hören (hören)\n14. zu denken (denken)\n15. zu w"
+MOVED [stored] before-instant-t0.2.json#ja-nenji#2
+      unit x2: "展望と目標（"
+      kept 499/983 (r107 kept 498); kept ends: "ションプラン」として記載し、実行可能なステップを示します。\n    *   効果的な施策が実際に成果を出しているか検証するプロセスも記述します。\n\n*   **3. 展望と目標**"
+      cut starts: "望と目標）**\n    *   今後の事業の方向性を明確にします。\n    *   具体的な数字や目標値を設定し、達成可能性を分析します。\n    *   目標達成に向けたロードマ"
+MOVED [stored] before-instant-t0.2.json#he-explain#1
+      unit x2: "בשימוש מוגבל, אז חומרים כימיים נוספים משתנים את מספר זהה"
+      kept 798/1164 (r107 kept 878); kept ends: "חומר מתכונן כחומר שמתקיים בשימוש מוגבל, אז חומרים כימיים נוספים משתנים את מספר זהה ל-100%."
+      cut starts: "למשל, אם יש לנו פוטוסינתזה עם 50% מכל האנרגיה המוגבלת (25%), ויש לנו אלקטרונים בשימוש מוגב"
+MOVED [stored] before-instant-t0.2.json#he-list#2
+      unit x3: "ה, קרואטי"
+      kept 173/358 (r107 kept 180); kept ends: ", קוסמיה, קוריאה השנייה, קרואטיה, קיסריה, קנאה, קיבוץ ישראל, קופת הברזל, קולינדר, קוריאנה,"
+      cut starts: "קרואטיה, קרואטיה, קרואטיה, קרואטיה, קרואטיה, קרואטיה, קרואטיה, קרואטיה, קרואטיה, קרואטיה, "
+MOVED [stored] before-instant-t0.2.json#cont-story#2
+      unit x2: "waiting for the perfect moment to turn on the main"
+      kept 2898/4000 (r107 kept 2931); kept ends: " the lantern room was still dim, but he knew that tonight, he would turn it on completely."
+      cut starts: "He had been there for weeks now, waiting for the perfect moment to turn on the main light."
+MOVED [stored] before-instant-t0.2.json#cont-ja#1
+      unit x2: "という名前の市街地が形成され、現在もその地"
+      kept 394/963 (r107 kept 409); kept ends: "規模が大きくなり、現在のような都会としての発展へと進歩しました。\n\nまた、江戸時代には「江戸」という名称が正式に用いられており、これは幕府の権威と地方豪族の地位を象徴した言葉です。"
+      cut starts: "その後、1870年代に「東京」という名前の市街地が形成され、現在もその地域全体として「東京」と呼ばれています。\n\nさらに深く掘り下げるなら、江戸時代は幕府と大名による政治体制が複雑"
+MOVED [stored] before-instant-t0.2.json#cont-ja#3
+      unit x2: "採用されました。この移行過程で、多くの人が東"
+      kept 269/741 (r107 kept 338); kept ends: " 29 年）に廃止され、現在の市名「東京」が正式に採用されました。この移行過程で、多くの人が「東京＝江戸」のイメージを強く持っていたため、その言葉はそのまま使われることも多いです。"
+      cut starts: "また、「東京」という名称は、1860 年代から「大正」の頃まで「東京」の名前として使われていましたが、その後「東京」が正式な市名として採用されました。この移行過程で、多くの人が「東"
+MOVED [stored] before-instant-t0.2.json#math-long-div#1
+      unit x2: "we cannot divide yet. Bring down the next digit, which"
+      kept 691/1373 (r107 kept 742); kept ends: "Repeat the process: place 9 over 1, bring down 8 to get 98, then bring down 7 to make 987."
+      cut starts: "Since 123 > 98 and 123 > 97 (the last two digits), we cannot divide yet. Bring down the ne"
+MOVED [stored] before-instant-t0.2.json#math-long-div#2
+      unit x2: "greater than 65, we cannot divide directly either; look at the next two digits to form a n"
+      kept 434/1817 (r107 kept 452); kept ends: "ing the first digit: 87654321. Now, take the last two digits (65) and subtract it from 12."
+      cut starts: "Since 12 is still greater than 65, we cannot divide directly either; look at the next two "
+MOVED [stored] before-instant-t0.2.json#math-long-div#3
+      unit x2: "by 1: it goes in 6 times (60). Write 6"
+      kept 530/1355 (r107 kept 541); kept ends: " 67 to get a remainder of -66.\n3.  Bring down the next digit (5), making the dividend 656."
+      cut starts: "Divide 656 by 1: it goes in **6** times (60). Write 6 above the 5. Multiply 6 × 123 = 738,"
+NEW   [stored] before-instant.json#list30-animals#1
+      unit x2: "jellyfish"
+      kept 367/429; kept ends: "ardine  \n21. Hammerhead Shark  \n22. Mackerel  \n23. Eel  \n24. Cod  \n25. Herring  \n26. Clam\n"
+      cut starts: "27. Octopus  \n28. Jellyfish  \n29. Clownfish  \n30. Sea Turtle"
+NEW   [stored] before-instant.json#list30-animals#2
+      unit x2: "jellyfish"
+      kept 243/399; kept ends: "13. sand dollar\n14. octopus\n15. pufferfish\n16. barracuda\n17. swordfish\n18. tuna\n19. shark\n"
+      cut starts: "20. jellyfish\n21. whale sharks\n22. dugongs\n23. sea turtles\n24. sea scallops\n25. manta rays"
+NEW   [stored] before-instant.json#list30-animals#3
+      unit x2: "clownfish"
+      kept 303/330; kept ends: "20. Seabird\n21. Puffin\n22. Gull\n23. Tern\n24. Heron\n25. Eagle\n26. Hawk\n27. Owl\n28. Ratfish\n"
+      cut starts: "29. Clownfish\n30. Jellyfish"
+MOVED [stored] before-instant.json#list25-verbs-de#3
+      unit x2: "zu sprechen (sprechen)"
+      kept 402/683 (r107 kept 607); kept ends: "\n12. zu wollen (wollen)\n13. zu tun (tun - noch einmal für Verben wie 'arbeiten', 'gehen')\n"
+      cut starts: "14. zu sprechen (sprechen)\n15. zu denken (denken)\n16. zu fühlen (fühlen)\n17. zu wissen (wi"
+MOVED [stored] before-instant.json#ja-nenji#1
+      unit x2: "セクションは業務概要や業績概要との違いを"
+      kept 922/1589 (r107 kept 927); kept ends: "めの要約です。\n*   例：\n    *   **財務概況**: 年次報告書で重要な財務指標（赤字率、株元株額など）を示すもの。\n\n#### E. 5. 4. 1. 目頭（略称）\n"
+      cut starts: "*   本セクションは「業務概要」や「業績概要」との違いを明確にするための要約です。\n*   例：\n    *   **事業概況**: 当社の主要な事業部門や活動の範囲を示すもの。"
+MOVED [stored] before-instant.json#ja-nenji#2
+      unit x2: "次期計画は次年度で写す：年次報告書として書"
+      kept 662/1747 (r107 kept 661); kept ends: "ては初回請求書を提出する際も可能です（例：初期決算報告など）。\n*   **資料の整理・保管**：財務データは整理され、保管・提供が義務付けられています。\n\n**4. 注意点**\n"
+      cut starts: "*   **「次期計画」は「次年度」で写す**：年次報告書として書くべきことは、当年度の成果と課題を踏まえて、次の年度に向けた目標・アクションプランです。\n*   **財務データは"
+MOVED [stored] before-instant.json#he-explain#2
+      unit x2: "חומר רכיב דרך תלת-מדומה, והוא מכנה את זה כתשולמה"
+      kept 259/334 (r107 kept 282); kept ends: "ינתזה.\n*   **אצילוס** (חיידקים) הם פוטוסינתזה.\n*   **לוגרסטיקה** (בזרחים) היא פוטוסינתזה.\n"
+      cut starts: "כל אחד מהם נותן לבידור חומר רכיב דרך תלת-מדומה, והוא מכנה את זה כ\"תשולמה\"."
+MOVED [stored] before-instant.json#he-explain#3
+      unit x2: "תכונות עיצוביות: פוטוסינתזה זו מופיעה רק אם היסטוריה זו שפועלת"
+      kept 931/1276 (r107 kept 930); kept ends: " תופעות כזו מלוות על ההיסטוריות של כל המוצאי:\n*   **המגע:** קשישים יותר לשרירי האדם החדש.\n"
+      cut starts: "*   **תכונות עיצוביות:** פוטוסינתזה זו מופיעה רק אם היסטוריה זו שפועלת בנקודות אינטראקטיבי"
+MOVED [stored] before-instant.json#cont-ja#3
+      unit x2: "歴史的街並みや市民生活が重なることを目指"
+      kept 640/744 (r107 kept 679); kept ends: "ての再建を伴い、歴史的街並みや市民生活が重なることを目指します。一方で、近年では「東京」の名前を愛する人が増え、その地域と市民が強く結びつくことが多様化しています。\n\n### 結論"
+      cut starts: "東京は、江戸時代から明治維新を経て、現在の「新都構想」としての再建を目指し、歴史的街並みや市民生活が重なることを目指します。これは単に地名の変更ではなく、歴史と市民生活が重なること"
+MOVED [shipped107] guard-fast-t0.2.json#list30-animals#1
+      unit x2: "Starfish (various species)"
+      kept 532/673 (r107 kept 534); kept ends: "  \n24. Sea anemone (various species)  \n25. Coral polyp  \n26. Sea urchin (various species)\n"
+      cut starts: "27. Starfish (various species)  \n28. Sea cucumber (various species)  \n29. Sea anemone (var"
+MOVED [shipped107] guard-fast-t0.2.json#he-story#3
+      unit x2: "מתחיל לחשוב על עולם שבו הם יחד: דניאל יוכל ללמד"
+      kept 320/470 (r107 kept 389); kept ends: " שבו הם יחד: דניאל יוכל ללמד את הדרקון טכנולוגיה חדשה בעוד הדרקון יעזור לו להבין את העולם."
+      cut starts: "ברגע שהם נמצאים יחד, הילד מביט בדרקון ומראה לו את האהבה שלו, והדרקון מתחיל לחשוב על עולם ש"
+MOVED [shipped107] guard-fast-t0.2.json#cont-list#2
+      unit x2: "pineapple"
+      kept 517/826 (r107 kept 684); kept ends: "y, often included in fruit lists)\n6. Fig\n7. Grape\n8. Honeydew\n9. Kiwi\n10. Lemon\n11. Mango\n"
+      cut starts: "12. Orange\n13. Papaya\n14. Peach\n15. Pineapple\n16. Plum\n17. Quince\n18. Raspberry\n19. Strawb"
+GONE  [shipped107] guard-fast-t0.2.json#math-long-div#2
+      r107 unit "123 ≈ 7 (since 123 × 7 = 861). Write 7 in the" kept 799/969
+NEW   [shipped107] guard-fast.json#list30-animals#1
+      unit x2: "jellyfish"
+      kept 287/451; kept ends: "\n13. Sea urchin  \n14. Octopus  \n15. Squid  \n16. Sea cucumber  \n17. Crab  \n18. Sea anemone\n"
+      cut starts: "19. Jellyfish  \n20. Sea star  \n21. Sea snail  \n22. Sea turtle  \n23. Dolphin  \n24. Porpoise"
+NEW   [shipped107] guard-fast.json#list30-animals#2
+      unit x2: "squid (various species)"
+      kept 581/644; kept ends: "bird (various species)  \n27. Barracuda (various species)  \n28. Starfish (various species)\n"
+      cut starts: "29. Squid (various species)  \n30. Krill (various populations)"
+NEW   [shipped107] guard-fast.json#list30-animals#3
+      unit x2: "blue whale"
+      kept 1062/1476; kept ends: "usually encompasses all living organisms under Kingdom Animalia. To be safe and accurate:\n"
+      cut starts: "1. Blue Whale\n2. Humpback Whale\n3. Dolphin\n4. Shark\n5. Seabird (Albatross)\n6. Penguin\n7. S"
+MOVED [shipped107] guard-fast.json#ja-nenji#1
+      unit x2: "する\n誌内図：図面部分を同前と同様にする次に"
+      kept 953/1722 (r107 kept 976); kept ends: "  *   （例：「本年度は、新規事業として X を展開し、売上高が Y%増となった。この結果、当社の成長率は前年次より 5% 増加した。」など）\n\n### 5. 補足事項の記載\n"
+      cut starts: "*   **誌額**：前年次報告書と同じ金額とする\n*   **誌内図**：図面部分を同前と同様にする次に、**決算の報告（重要）**に関する具体的な書き方をまとめます。ここから以"
+MOVED [shipped107] guard-fast.json#he-explain#3
+      unit x2: "לחומר האורטורטיבי הזה (כמו חלבון) עד שהחלבון הזה משקיע את"
+      kept 1043/1271 (r107 kept 1200); kept ends: "ת מודע לחומר האורטורטיבי הזה (כמו חלבון) עד שהחלבון הזה משקיע את האנרגיה שלו.\n\n**לסיכום:**"
+      cut starts: "פוטוסינתזה היא תהליך שבו צמחיית החוף מקבלים סוכר מהאגמים או החלונות של הים, ומייצרים חלבונ"
+MOVED [shipped107] guard-fast.json#cont-list#2
+      unit x2: "persimmon"
+      kept 796/2694 (r107 kept 795); kept ends: "e\n2. Banana\n3. Cherry\n4. Date\n5. Elderberry\n6. Fig\n7. Grape\n8. Honeydew\n9. Kiwi\n10. Lemon\n"
+      cut starts: "11. Mango\n12. Orange\n13. Papaya\n14. Persimmon\n15. Pineapple\n16. Plum\n17. Peach\n18. Plantai"
+MOVED [shipped107] guard-fast.json#cont-list#3
+      unit x2: "Orange, Papaya, Peach, Plum, Pomegranate, Pineapple, Quince, Raspberry, Strawberry, Tamari"
+      kept 556/3611 (r107 kept 2913); kept ends: "m sequentially without duplicates within that sequence.\n\nLet's re-evaluate the stop point:"
+      cut starts: "Original List: Apple, Banana, Cherry, Date, Elderberry, Fig, Grape, Honeydew, Kiwi, Lemon,"
+GONE  [shipped107] guard-fast.json#math-long-div#3
+      r107 unit "Step**: 123 goes into 542 four times (since $4 \\times 123 = 492$). Subtracting leaves a" kept 1093/1253
+NEW   [shipped107] guard-instant-t0.2.json#list30-animals#1
+      unit x2: "sea bass"
+      kept 210/391; kept ends: "oral Reefs\n12. Manta Ray\n13. Hammerhead Shark\n14. Blue Whale\n15. Sea Grouper\n16. Sea Bass\n"
+      cut starts: "17. Sea Bass\n18. Sea Bass\n19. Sea Bass\n20. Sea Bass\n21. Sea Bass\n22. Sea Bass\n23. Sea Bass"
+NEW   [shipped107] guard-instant-t0.2.json#list30-animals#2
+      unit x2: "bluefin tuna"
+      kept 162/381; kept ends: "7. Jellyfish\n8. Octopus\n9. Porpoise\n10. Seal\n11. Whale\n12. Manta Ray\n13. Hammerhead Shark\n"
+      cut starts: "14. Bluefin Tuna\n15. Whale\n16. Dolphin\n17. Shark\n18. Sea Turtle\n19. Clownfish\n20. Jellyfis"
+NEW   [shipped107] guard-instant-t0.2.json#list30-animals#3
+      unit x2: "sea bass"
+      kept 172/379; kept ends: "yfish\n9. Sea Snake\n10. Sea Turtle\n11. Sea Bass\n12. Sea Lion\n13. Sea Otter\n14. Sea Grouper\n"
+      cut starts: "15. Sea Bass\n16. Sea Bass\n17. Sea Bass\n18. Sea Bass\n19. Sea Bass\n20. Sea Bass\n21. Sea Bass"
+NEW   [shipped107] guard-instant-t0.2.json#list50-names#1
+      unit x2: "Jackson\nFinn\nMax\nSam\nLucas\nNoah\nJack\nLeo\nFinn\nMax"
+      kept 242/386; kept ends: "ax\n15. Sam\n16. Lucas\n17. Noah\n18. Jack\n19. Leo\n20. Finn\n21. Max\n22. Sam\n23. Liam\n24. Noah\n"
+      cut starts: "25. Jackson\n26. Finn\n27. Max\n28. Sam\n29. Lucas\n30. Noah\n31. Jack\n32. Leo\n33. Finn\n34. Max\n"
+NEW   [shipped107] guard-instant-t0.2.json#list50-names#3
+      unit x2: "david (again)"
+      kept 476/505; kept ends: ". John (again)\n31. Peter (again)\n32. Andrew (again)\n33. Matthew (again)\n34. Kevin (again)\n"
+      cut starts: "35. David (again)\n36. James ("
+NEW   [shipped107] guard-instant-t0.2.json#list25-verbs-de#2
+      unit x2: "zu tun (tun)"
+      kept 286/611; kept ends: "7. zu wissen (wissen)\n8. zu fühlen (fühlen)\n9. zu lieben (lieben)\n10. zu gefallen (gehen)\n"
+      cut starts: "11. zu tun (tun)\n12. zu sehen (sehen)\n13. zu hören (hören)\n14. zu denken (denken)\n15. zu w"
+MOVED [shipped107] guard-instant-t0.2.json#ja-nenji#2
+      unit x2: "展望と目標（"
+      kept 499/983 (r107 kept 498); kept ends: "ションプラン」として記載し、実行可能なステップを示します。\n    *   効果的な施策が実際に成果を出しているか検証するプロセスも記述します。\n\n*   **3. 展望と目標**"
+      cut starts: "望と目標）**\n    *   今後の事業の方向性を明確にします。\n    *   具体的な数字や目標値を設定し、達成可能性を分析します。\n    *   目標達成に向けたロードマ"
+MOVED [shipped107] guard-instant-t0.2.json#he-explain#1
+      unit x2: "בשימוש מוגבל, אז חומרים כימיים נוספים משתנים את מספר זהה"
+      kept 798/1164 (r107 kept 878); kept ends: "חומר מתכונן כחומר שמתקיים בשימוש מוגבל, אז חומרים כימיים נוספים משתנים את מספר זהה ל-100%."
+      cut starts: "למשל, אם יש לנו פוטוסינתזה עם 50% מכל האנרגיה המוגבלת (25%), ויש לנו אלקטרונים בשימוש מוגב"
+MOVED [shipped107] guard-instant-t0.2.json#cont-story#2
+      unit x2: "waiting for the perfect moment to turn on the main"
+      kept 2898/4000 (r107 kept 2931); kept ends: " the lantern room was still dim, but he knew that tonight, he would turn it on completely."
+      cut starts: "He had been there for weeks now, waiting for the perfect moment to turn on the main light."
+MOVED [shipped107] guard-instant-t0.2.json#cont-ja#1
+      unit x2: "という名前の市街地が形成され、現在もその地"
+      kept 394/1123 (r107 kept 409); kept ends: "規模が大きくなり、現在のような都会としての発展へと進歩しました。\n\nまた、江戸時代には「江戸」という名称が正式に用いられており、これは幕府の権威と地方豪族の地位を象徴した言葉です。"
+      cut starts: "その後、1870年代に「東京」という名前の市街地が形成され、現在もその地域全体として「東京」と呼ばれています。さらに深く掘り下げるには、江戸時代末期から明治維新までの約20年間を視"
+MOVED [shipped107] guard-instant-t0.2.json#math-long-div#1
+      unit x2: "we cannot divide yet. Bring down the next digit, which"
+      kept 691/1762 (r107 kept 742); kept ends: "Repeat the process: place 9 over 1, bring down 8 to get 98, then bring down 7 to make 987."
+      cut starts: "Since 123 > 98 and 123 > 97 (the last two digits), we cannot divide yet. Bring down the ne"
+MOVED [shipped107] guard-instant-t0.2.json#math-long-div#2
+      unit x2: "greater than 65, we cannot divide directly either; look at the next two digits to form a n"
+      kept 434/1890 (r107 kept 452); kept ends: "ing the first digit: 87654321. Now, take the last two digits (65) and subtract it from 12."
+      cut starts: "Since 12 is still greater than 65, we cannot divide directly either; look at the next two "
+MOVED [shipped107] guard-instant-t0.2.json#math-long-div#3
+      unit x2: "by 1: it goes in 6 times (60). Write 6"
+      kept 530/1355 (r107 kept 541); kept ends: " 67 to get a remainder of -66.\n3.  Bring down the next digit (5), making the dividend 656."
+      cut starts: "Divide 656 by 1: it goes in **6** times (60). Write 6 above the 5. Multiply 6 × 123 = 738,"
+NEW   [shipped107] guard-instant.json#list30-animals#1
+      unit x2: "jellyfish"
+      kept 367/429; kept ends: "ardine  \n21. Hammerhead Shark  \n22. Mackerel  \n23. Eel  \n24. Cod  \n25. Herring  \n26. Clam\n"
+      cut starts: "27. Octopus  \n28. Jellyfish  \n29. Clownfish  \n30. Sea Turtle"
+NEW   [shipped107] guard-instant.json#list30-animals#2
+      unit x2: "jellyfish"
+      kept 243/399; kept ends: "13. sand dollar\n14. octopus\n15. pufferfish\n16. barracuda\n17. swordfish\n18. tuna\n19. shark\n"
+      cut starts: "20. jellyfish\n21. whale sharks\n22. dugongs\n23. sea turtles\n24. sea scallops\n25. manta rays"
+NEW   [shipped107] guard-instant.json#list30-animals#3
+      unit x2: "clownfish"
+      kept 303/330; kept ends: "20. Seabird\n21. Puffin\n22. Gull\n23. Tern\n24. Heron\n25. Eagle\n26. Hawk\n27. Owl\n28. Ratfish\n"
+      cut starts: "29. Clownfish\n30. Jellyfish"
+NEW   [shipped107] guard-instant.json#list25-verbs-de#3
+      unit x2: "zu sprechen (sprechen)"
+      kept 402/968; kept ends: "\n12. zu wollen (wollen)\n13. zu tun (tun - noch einmal für Verben wie 'arbeiten', 'gehen')\n"
+      cut starts: "14. zu sprechen (sprechen)\n15. zu denken (denken)\n16. zu fühlen (fühlen)\n17. zu wissen (wi"
+MOVED [shipped107] guard-instant.json#ja-nenji#1
+      unit x2: "セクションは業務概要や業績概要との違いを"
+      kept 922/2642 (r107 kept 927); kept ends: "めの要約です。\n*   例：\n    *   **財務概況**: 年次報告書で重要な財務指標（赤字率、株元株額など）を示すもの。\n\n#### E. 5. 4. 1. 目頭（略称）\n"
+      cut starts: "*   本セクションは「業務概要」や「業績概要」との違いを明確にするための要約です。\n*   例：\n    *   **事業概況**: 当社の主要な事業部門や活動の範囲を示すもの。"
+MOVED [shipped107] guard-instant.json#he-explain#2
+      unit x2: "חומר רכיב דרך תלת-מדומה, והוא מכנה את זה כתשולמה"
+      kept 259/334 (r107 kept 282); kept ends: "ינתזה.\n*   **אצילוס** (חיידקים) הם פוטוסינתזה.\n*   **לוגרסטיקה** (בזרחים) היא פוטוסינתזה.\n"
+      cut starts: "כל אחד מהם נותן לבידור חומר רכיב דרך תלת-מדומה, והוא מכנה את זה כ\"תשולמה\"."
+MOVED [shipped107] guard-instant.json#cont-ja#3
+      unit x2: "歴史的街並みや市民生活が重なることを目指"
+      kept 640/744 (r107 kept 679); kept ends: "ての再建を伴い、歴史的街並みや市民生活が重なることを目指します。一方で、近年では「東京」の名前を愛する人が増え、その地域と市民が強く結びつくことが多様化しています。\n\n### 結論"
+      cut starts: "東京は、江戸時代から明治維新を経て、現在の「新都構想」としての再建を目指し、歴史的街並みや市民生活が重なることを目指します。これは単に地名の変更ではなく、歴史と市民生活が重なること"
+MOVED [stored] e2e/after-2.json#he-explain#5
+      unit x2: "כל עובדה נגועה על ידי זוכר מתוך השורה היא תשובה"
+      kept 1248/2006 (r107 kept 1299); kept ends: " תמורה, זמן, שפה.\n3.\nחוקי החינוך והערכה: חוקי הפסד, ידועות ופיזיונלים.\nמה זה ההשפעה החדשה?"
+      cut starts: "בסוף המאה העשרים, בסיסי של תלמידי \"מגוון החינוכי\", כל עובדה נגועה על ידי זוכר מתוך השורה ה"
+MOVED [stored] e2e/before-2.json#verbs-de#4
+      unit x2: "become): Er wird -> He will / It becomes / They are going"
+      kept 880/1330 (r107 kept 892); kept ends: " wie oben, aber mit etwas mehr Nuance als \"will\".\n13.\nsein (to exist) – ähnlich wie oben.\n"
+      cut starts: "14.\nwerden (become): Er wird -> He will / It becomes / They are going to.\n15.\nbilden (make"
+MOVED [corpus] fix-loop-guard/e2e/trials-before-r83-run2.json
+      unit x2: "アジア選手権（"
+      kept 34/174 (r107 kept 35); kept ends: "一九九八年のワールドカップは「ワールドカップ」ではなく「アジア選手権"
+      cut starts: "（アジア選手権）」という名称で、日本を含むアジア地域で実施されました。\nアフリカ選手権、アジア選手権、アフリカ選手権は、1972 年、1986 年、1990 年、1994 年、19"
+NEW   [corpus] web-guard-verify/result.json
+      unit x2: "sehen (to see)"
+      kept 258/752; kept ends: "now)\n7.\nlernen (to learn)\n8.\nlesen (to read)\n9.\nsprechen (to speak)\n10.\nspielen (to play)\n"
+      cut starts: "11.\nsehen (to see)\n12.\nfinden (to find)\n13.\nwissen (to know)\n14.\nlernen (to learn)\n15.\nles"
+NEW   [corpus] web-guard-verify/result.json
+      unit x2: "haben → have/have"
+      kept 1024/1544; kept ends: "e shape\n14.\nmachen → make/make something happen\n15.\nsein → am/is/are (e.g., seinen Namen)\n"
+      cut starts: "16.\nhaben → have/have\n17.\ngeben → give/gives\n18.\nlassen → let/be allowed to\n19.\nbleiben → "
+NEW   [corpus] web-guard-verify/result.json
+      unit x2: "zu hören"
+      kept 342/367; kept ends: "\nzu werden\n14.\nzu haben (die)\n15.\nzu glauben\n16.\nzu lieben\n17.\nzu verstehen\n18.\nzu fühlen\n"
+      cut starts: "19.\nzu hören\n20.\nzu sehen"
+NEW   [corpus] web-guard-verify/result.json
+      unit x2: "Cat\nDog\nBird\nFish\nBear\nLion\nTiger\nHorse\nGoat\nCow"
+      kept 191/389; kept ends: "oceros\n13.\nWhale\n14.\nDolphin\n15.\nShark\n16.\nTurtle\n17.\nPenguin\n18.\nGoose\n19.\nDuck\n20.\nDuck\n"
+      cut starts: "21.\nCat\n22.\nDog\n23.\nBird\n24.\nFish\n25.\nBear\n26.\nLion\n27.\nTiger\n28.\nHorse\n29.\nGoat\n30.\nCow\n3"
+NEW   [corpus] web-guard-verify/result.json
+      unit x2: "an Elephant\nAsi"
+      kept 157/586; kept ends: "\nHippo\n9.\nRhinoceros\n10.\nLeopard\n11.\nPanthera leo\n12.\nAfrican Elephant\n13.\nAsian Elephant\n"
+      cut starts: "14.\nAsian Elephant (repeated for variety)\n15.\nAfrican Wild Dog\n16.\nAsian Wild Dog\n17.\nAfri"
+NEW   [iphone22] ios-device-pass-22/raw/result-l02-list30-animals.json
+      unit x2: "jellyfish"
+      kept 166/377; kept ends: "a Snake\n9. Sea Turtle\n10. Coral Fish\n11. Jellyfish\n12. Clownfish\n13. Octopus\n14. Starfish\n"
+      cut starts: "15. Jellyfish\n16. Clownfish\n17. Octopus\n18. Starfish\n19. Jellyfish\n20. Clownfish\n21. Octop"
+NEW   [iphone22] ios-device-pass-22/raw/result-l07-he-explain-2.json
+      unit x2: "האם צריך פטין מלאכותי? כולם אומרים:"
+      kept 618/752; kept ends: "ן מתחוללות בפיזיולוגיה של חומרים וצמצם האספקה.\n4.  **האם צריך פטין מלאכותי?** כולם אומרים:"
+      cut starts: "האם צריך פטין מלאכותי? כולם אומרים: **במובן של חוק שיוצאים מהחומר.**\n\nכדי להגיע ל\"פוטוסינת"
+NEW   [iphone22] ios-device-pass-22/raw/result-l07-list30-animals-1.json
+      unit x2: "jellyfish"
+      kept 384/411; kept ends: "23. mackerel\n24. swordfish\n25. sea otter\n26. sea urchin (repeated)\n27. goby\n28. clownfish\n"
+      cut starts: "29. jellyfish\n30. sea snake"
+NEW   [iphone22] ios-device-pass-22/raw/result-l07-list30-animals-2.json
+      unit x2: "clownfish"
+      kept 229/399; kept ends: "13. Sea hare\n14. Sea urchin\n15. Hammerhead shark\n16. Tiger shark\n17. Eel\n18. Bluefin tuna\n"
+      cut starts: "19. Clownfish\n20. Sea lion\n21. Sea otter\n22. Sea bass\n23. Sea hare\n24. Sea urchin\n25. Hamm"
