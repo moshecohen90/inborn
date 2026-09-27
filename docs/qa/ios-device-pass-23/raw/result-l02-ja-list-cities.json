@@ -1,0 +1,1099 @@
+{
+  "runId": "l02-ja-list-cities",
+  "startedAt": "2026-09-27T16:13:31.664Z",
+  "finishedAt": "2026-09-27T16:14:11.227Z",
+  "ok": false,
+  "passed": 107,
+  "failed": 1,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 157,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "persona-chip-9963fb3f-7a19-45aa-8a2d-1904693d4f95 ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "sleep",
+      "ok": true,
+      "ms": 308,
+      "detail": "300 ms"
+    },
+    {
+      "i": 6,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 7,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 8,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1508,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 9,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Assistant 0.2",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Assistant 0.2"
+    },
+    {
+      "i": 10,
+      "op": "type",
+      "ok": true,
+      "ms": 165,
+      "detail": "composer-input = 17 chars"
+    },
+    {
+      "i": 11,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 12,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 534,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 13,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "日本の都市を20個挙げます。東京 ▍",
+        "props": {
+          "source": "日本の都市を20個挙げます。東京",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。東京 ▍"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 717,
+      "detail": "700 ms"
+    },
+    {
+      "i": 15,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "日本の都市を20個挙げます。東京、大阪、京都、名古屋、仙台、札幌、福岡、横浜、神戸、広島、長崎、高知、熊本 ▍",
+        "props": {
+          "source": "日本の都市を20個挙げます。東京、大阪、京都、名古屋、仙台、札幌、福岡、横浜、神戸、広島、長崎、高知、熊本",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。東京、大阪、京都、名古屋、仙台、札幌、福岡、横浜、神戸、広島、長崎、高知、熊本 ▍"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 17,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "日本の都市を20個挙げます。東京、大阪、京都、名古屋、仙台、札幌、福岡、横浜、神戸、広島、長崎、高知、熊本、鹿児島、福井、愛媛、長野、岐阜、三重、鳥取、山口、福冈、岡山、香川 ▍",
+        "props": {
+          "source": "日本の都市を20個挙げます。東京、大阪、京都、名古屋、仙台、札幌、福岡、横浜、神戸、広島、長崎、高知、熊本、鹿児島、福井、愛媛、長野、岐阜、三重、鳥取、山口、福冈、岡山、香川",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。東京、大阪、京都、名古屋、仙台、札幌、福岡、横浜、神戸、広島、長崎、高知、熊本、鹿児島、福井、愛媛、長野、岐阜、三重、鳥取、山口、福冈、岡山、香川 ▍"
+    },
+    {
+      "i": 18,
+      "op": "sleep",
+      "ok": true,
+      "ms": 717,
+      "detail": "700 ms"
+    },
+    {
+      "i": 19,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "日本の都市を20個挙げます。東京、大阪、京都、名古屋、仙台、札幌、福岡、横浜、神戸、広島、長崎、高知、熊本、鹿児島、福井、愛媛、長野、岐阜、三重、鳥取、山口、福冈、岡山、香川、愛知、茨城、新潟、長野、福井 ▍",
+        "props": {
+          "source": "日本の都市を20個挙げます。東京、大阪、京都、名古屋、仙台、札幌、福岡、横浜、神戸、広島、長崎、高知、熊本、鹿児島、福井、愛媛、長野、岐阜、三重、鳥取、山口、福冈、岡山、香川、愛知、茨城、新潟、長野、福井",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。東京、大阪、京都、名古屋、仙台、札幌、福岡、横浜、神戸、広島、長崎、高知、熊本、鹿児島、福井、愛媛、長野、岐阜、三重、鳥取、山口、福冈、岡山、香川、愛知、茨城、新潟、長野、福井 ▍"
+    },
+    {
+      "i": 20,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 21,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "日本の都市を20個挙げます。東京、大阪、京都、名古屋、仙台、札幌、福岡、横浜、神戸、広島、長崎、高知、熊本、鹿児島、福井、愛媛、長野、岐阜、三重、鳥取、山口、福冈、岡山、香川、愛知、茨城、新潟、長野、福井、 ▍",
+        "props": {
+          "source": "日本の都市を20個挙げます。東京、大阪、京都、名古屋、仙台、札幌、福岡、横浜、神戸、広島、長崎、高知、熊本、鹿児島、福井、愛媛、長野、岐阜、三重、鳥取、山口、福冈、岡山、香川、愛知、茨城、新潟、長野、福井、",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。東京、大阪、京都、名古屋、仙台、札幌、福岡、横浜、神戸、広島、長崎、高知、熊本、鹿児島、福井、愛媛、長野、岐阜、三重、鳥取、山口、福冈、岡山、香川、愛知、茨城、新潟、長野、福井、 ▍"
+    },
+    {
+      "i": 22,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 23,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 24,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 25,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 26,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 27,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 28,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 29,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 30,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 31,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 32,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 33,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 34,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 35,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 36,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 37,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 38,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 39,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 40,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 41,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 42,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 43,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 44,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 45,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 46,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 47,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 48,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 49,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 50,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 51,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 52,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 53,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 54,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 55,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 56,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 57,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 58,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 59,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 60,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 61,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 62,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 63,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 64,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 65,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 66,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 67,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 68,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 69,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 70,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 71,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 72,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 73,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 74,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 75,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 76,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 77,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 78,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 79,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 80,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 81,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 82,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 83,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 84,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 85,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 86,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 87,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 88,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 89,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 90,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 91,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 92,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 93,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 94,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 95,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 96,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 97,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 98,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 99,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 100,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 101,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 102,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 103,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "stop gone"
+    },
+    {
+      "i": 104,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1515,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 105,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "日本の都市を20個挙げます。",
+        "props": {
+          "source": "日本の都市を20個挙げます。",
+          "disabled": false
+        }
+      },
+      "detail": "日本の都市を20個挙げます。"
+    },
+    {
+      "i": 106,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1930,
+      "detail": "L02-ja-list-cities"
+    },
+    {
+      "i": 107,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 521,
+      "detail": "waitFor loop-notice never went away in 500 ms"
+    }
+  ],
+  "errors": [
+    "step 107 (waitFor): waitFor loop-notice never went away in 500 ms",
+    "console.log: [chat] loop retry: kept 103 chars, unit 29 cp x2",
+    "console.log: [chat] loop cut: kept 14 of 129 chars, unit 24 cp x2"
+  ]
+}

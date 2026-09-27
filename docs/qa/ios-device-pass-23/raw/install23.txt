@@ -1,0 +1,37 @@
+listing before: 31 lines
+byte copy before 18:53:31:
+  pulled inborn.db 2543616 B
+  pulled inborn.db-wal 4185952 B
+  pulled documents.json 858 B
+  pulled vault.json 559 B
+  pulled device-prefs.json 92 B
+  pulled licence.bin 100 B
+start=18:53:33
+rc=0 end=18:53:54
+after install: com.inbornapp.mobile 1.0.0 23
+listing after: 31 lines; identical to before: yes
+byte copy after:
+  pulled inborn.db 2543616 B
+  pulled inborn.db-wal 4185952 B
+  pulled documents.json 858 B
+  pulled vault.json 559 B
+  pulled device-prefs.json 92 B
+  pulled licence.bin 100 B
+SURVIVED identical: inborn.db (2543616 B)
+SURVIVED identical: inborn.db-wal (4185952 B)
+SURVIVED identical: documents.json (858 B)
+SURVIVED identical: vault.json (559 B)
+SURVIVED identical: device-prefs.json (92 B)
+SURVIVED identical: licence.bin (100 B)
+INSTALL-DONE
+
+sha256 of the byte copy taken before the install (file names only; the files stay out of the repo):
+9c0866c7a83eb47e489357b10e3b1a62dbb8c6a9b48397f4c09dd0712da4db5a  device-prefs.json
+5752b971bdb5caf6ce1a9f7187f23ee49d1d87d8e3072ea9421ff59d0c35fcec  documents.json
+3c93187248e23ba8da3b4d77b037e6a0a4c674e10ab2090494430c29750339c1  inborn.db
+f6fe0f00d30a361eb375e66daa366e5a811cdd842d40aa616d74d3b8721994c6  inborn.db-wal
+4714e340bf28a3188dad7d52ceebf9340204dd6f2838b619912e7660661f0026  licence.bin
+62da3555b3efe34d056dd916e653b7d3023c0b73a7aa8c8ad30f522261ae8994  vault.json
+
+same hash as build 20's record (ios-device-pass-20/raw/backup-before.sha256): device-prefs.json, documents.json, inborn.db
+the Documents/ listing (31 lines) before and after is identical; it stays out of the repo because it is Moshe's container

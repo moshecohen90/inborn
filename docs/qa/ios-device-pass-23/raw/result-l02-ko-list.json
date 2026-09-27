@@ -1,0 +1,1099 @@
+{
+  "runId": "l02-ko-list",
+  "startedAt": "2026-09-27T16:12:49.452Z",
+  "finishedAt": "2026-09-27T16:13:29.590Z",
+  "ok": false,
+  "passed": 107,
+  "failed": 1,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 157,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "persona-chip-9963fb3f-7a19-45aa-8a2d-1904693d4f95 ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "sleep",
+      "ok": true,
+      "ms": 308,
+      "detail": "300 ms"
+    },
+    {
+      "i": 6,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 7,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 8,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 9,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Assistant 0.2",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Assistant 0.2"
+    },
+    {
+      "i": 10,
+      "op": "type",
+      "ok": true,
+      "ms": 165,
+      "detail": "composer-input = 18 chars"
+    },
+    {
+      "i": 11,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 12,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 526,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 13,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다 ▍",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다 ▍"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 707,
+      "detail": "700 ms"
+    },
+    {
+      "i": 15,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 ▍",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 ▍"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 705,
+      "detail": "700 ms"
+    },
+    {
+      "i": 17,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daeje ▍",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daeje",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daeje ▍"
+    },
+    {
+      "i": 18,
+      "op": "sleep",
+      "ok": true,
+      "ms": 704,
+      "detail": "700 ms"
+    },
+    {
+      "i": 19,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yap ▍",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yap",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yap ▍"
+    },
+    {
+      "i": 20,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 21,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우 ▍",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우 ▍"
+    },
+    {
+      "i": 22,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 23,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberg ▍",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberg",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 24,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 25,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 ▍",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 26,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 27,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) ▍",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 28,
+      "op": "sleep",
+      "ok": true,
+      "ms": 703,
+      "detail": "700 ms"
+    },
+    {
+      "i": 29,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 30,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 31,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 32,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 33,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 34,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 35,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 36,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 37,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 38,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 39,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 40,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 41,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 42,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 43,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 44,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 45,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 46,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 47,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 48,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 49,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 50,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 51,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 52,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 53,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 54,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 55,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 56,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 57,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 58,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 59,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 60,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 61,
+      "op": "value",
+      "ok": true,
+      "ms": 7,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 62,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 63,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 64,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 65,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 66,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 67,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 68,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 69,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 70,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 71,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 72,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 73,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 74,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 75,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 76,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 77,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 78,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 79,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 80,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 81,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 82,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 83,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 84,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 85,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 86,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 87,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 88,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 89,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 90,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 91,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 92,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 93,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 94,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 95,
+      "op": "value",
+      "ok": true,
+      "ms": 10,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 96,
+      "op": "sleep",
+      "ok": true,
+      "ms": 707,
+      "detail": "700 ms"
+    },
+    {
+      "i": 97,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 98,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 99,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 100,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 101,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 102,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 103,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "stop gone"
+    },
+    {
+      "i": 104,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1514,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 105,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Chisze) 12. 햄버거 (Hamberge) 13. 피자 (Pizza) 14. 스시 (Sushi) 15. 스테이크 (Steak) 다음은 다음 단계입니다.",
+        "props": {
+          "source": "한국 음식 30 가지를 소개합니다.\n\n1. 간장 (Gangbangal)\n2. 김치 (Kimchi)\n3. 국물 (Nugul)\n4. 소고기 (Sogukki)\n5. 돼지 고기 (Daejeo goegi)\n6. 닭가슴살 (Daegwaesamwal)\n7. 양파 (Yappe)\n8. 파스타 (Paspa)\n9. 요거트 (Yojot)\n10. 우유 (Uyu)\n11. 치즈 (Chisze)\n12. 햄버거 (Hamberge)\n13. 피자 (Pizza)\n14. 스시 (Sushi)\n15. 스테이크 (Steak)\n다음은 다음 단계입니다.\n",
+          "disabled": false
+        }
+      },
+      "detail": "한국 음식 30 가지를 소개합니다. 1. 간장 (Gangbangal) 2. 김치 (Kimchi) 3. 국물 (Nugul) 4. 소고기 (Sogukki) 5. 돼지 고기 (Daejeo goegi) 6. 닭가슴살 (Daegwaesamwal) 7. 양파 (Yappe) 8. 파스타 (Paspa) 9. 요거트 (Yojot) 10. 우유 (Uyu) 11. 치즈 (Ch"
+    },
+    {
+      "i": 106,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2560,
+      "detail": "L02-ko-list"
+    },
+    {
+      "i": 107,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 522,
+      "detail": "waitFor loop-notice never went away in 500 ms"
+    }
+  ],
+  "errors": [
+    "step 107 (waitFor): waitFor loop-notice never went away in 500 ms",
+    "console.log: [chat] loop retry: kept 273 chars, unit 11 cp x2",
+    "console.log: [chat] loop cut: kept 287 of 307 chars, unit 15 cp x2"
+  ]
+}

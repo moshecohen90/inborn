@@ -1,0 +1,24 @@
+store env clean: no EXPO_PUBLIC_* dev switch set
+EXPO_PUBLIC in env: 0
+commit ede6da76a99f dirty=0
+prebuild 18:47:50
+prebuild rc=0
+xcode.env.local: 
+pod install 18:47:52
+pod rc=0 18:48:27
+AskInborn
+Inborn
+Inborn.storekit
+Inborn.xcodeproj
+Inborn.xcworkspace
+InbornUITests
+Podfile
+Podfile.lock
+Podfile.properties.json
+Pods
+build
+start=18:48:27
+rc=0 end=18:52:53
+0
+** ARCHIVE SUCCEEDED **
+ARCHIVE-DONE

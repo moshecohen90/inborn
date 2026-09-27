@@ -1,0 +1,1099 @@
+{
+  "runId": "l02-es-list",
+  "startedAt": "2026-09-27T16:14:13.303Z",
+  "finishedAt": "2026-09-27T16:14:54.105Z",
+  "ok": false,
+  "passed": 107,
+  "failed": 1,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 155,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "persona-chip-9963fb3f-7a19-45aa-8a2d-1904693d4f95 ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "sleep",
+      "ok": true,
+      "ms": 309,
+      "detail": "300 ms"
+    },
+    {
+      "i": 6,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 7,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 8,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 9,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Assistant 0.2",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Assistant 0.2"
+    },
+    {
+      "i": 10,
+      "op": "type",
+      "ok": true,
+      "ms": 166,
+      "detail": "composer-input = 37 chars"
+    },
+    {
+      "i": 11,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 12,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 535,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 13,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cor ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cor",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cor ▍"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 722,
+      "detail": "700 ms"
+    },
+    {
+      "i": 15,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino ▍"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 709,
+      "detail": "700 ms"
+    },
+    {
+      "i": 17,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en ",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 18,
+      "op": "sleep",
+      "ok": true,
+      "ms": 717,
+      "detail": "700 ms"
+    },
+    {
+      "i": 19,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4 ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 20,
+      "op": "sleep",
+      "ok": true,
+      "ms": 717,
+      "detail": "700 ms"
+    },
+    {
+      "i": 21,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; t ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; t",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 22,
+      "op": "sleep",
+      "ok": true,
+      "ms": 704,
+      "detail": "700 ms"
+    },
+    {
+      "i": 23,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 24,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 25,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8 ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 26,
+      "op": "sleep",
+      "ok": true,
+      "ms": 717,
+      "detail": "700 ms"
+    },
+    {
+      "i": 27,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9 ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 28,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 29,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, per ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, per",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 30,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 31,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 32,
+      "op": "sleep",
+      "ok": true,
+      "ms": 707,
+      "detail": "700 ms"
+    },
+    {
+      "i": 33,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy;",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 34,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 35,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza. ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 36,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 37,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 38,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 39,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 40,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 41,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 42,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 43,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 44,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 45,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 46,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 47,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 48,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 49,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 50,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 51,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 52,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 53,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 54,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 55,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 56,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 57,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 58,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 59,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 60,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 61,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 62,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 63,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 64,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 65,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 66,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 67,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 68,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 69,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 70,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 71,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 72,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 73,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 74,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 75,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 76,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 77,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 78,
+      "op": "sleep",
+      "ok": true,
+      "ms": 728,
+      "detail": "700 ms"
+    },
+    {
+      "i": 79,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 80,
+      "op": "sleep",
+      "ok": true,
+      "ms": 700,
+      "detail": "700 ms"
+    },
+    {
+      "i": 81,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 82,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 83,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 84,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 85,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 86,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 87,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 88,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 89,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 90,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 91,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 92,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 93,
+      "op": "value",
+      "ok": true,
+      "ms": 9,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 94,
+      "op": "sleep",
+      "ok": true,
+      "ms": 707,
+      "detail": "700 ms"
+    },
+    {
+      "i": 95,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 96,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 97,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 98,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 99,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 100,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 101,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 102,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 103,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "stop gone"
+    },
+    {
+      "i": 104,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1502,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 105,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia. 3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza. 4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro. 5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer. 6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea. 7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti. 8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo. 9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien. 10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo. 11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea. 12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él.\n2. El camino a la felicidad no se encuentra en las estrellas; se encuentra en el trabajo duro y la paciencia.\n3. No esperes ser alguien extraordinario para empezar hoy; simplemente empieza.\n4. La vida te espera con todo lo que necesitas, pero solo si estás dispuesto a trabajar duro.\n5. Tu potencial es infinito; tu limitación es solo tu miedo a crecer.\n6. El éxito no es un destino, sino una decisión de seguir adelante cuando el mundo te bloquea.\n7. No esperes ser perfecto para empezar; empieza y vea qué hay en ti.\n8. La verdadera resiliencia es la capacidad de volver a lo que antes era sin perderlo todo.\n9. El éxito no se gana por tener muchas cosas, sino por hacer las pocas que tienes bien.\n10. Tu historia comienza hoy, pero tu futuro depende de cómo te enfrentes ahora mismo.\n11. La fuerza no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La fuerza no es tener todo lo que necesitas, sino tener la capacidad de hacerlo sin él. 2. El camino "
+    },
+    {
+      "i": 106,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3193,
+      "detail": "L02-es-list"
+    },
+    {
+      "i": 107,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 536,
+      "detail": "waitFor loop-notice never went away in 500 ms"
+    }
+  ],
+  "errors": [
+    "step 107 (waitFor): waitFor loop-notice never went away in 500 ms",
+    "console.log: [chat] loop retry: kept 1159 chars, unit 47 cp x2",
+    "console.log: [chat] loop cut: kept 1159 of 1218 chars, unit 55 cp x2"
+  ]
+}
