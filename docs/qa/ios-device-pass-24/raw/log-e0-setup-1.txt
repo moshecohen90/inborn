@@ -1,0 +1,24 @@
+22:06:12 launching com.inbornapp.mobile.qa
+22:06:57 pushing 21 steps as e0-setup-1
+22:07:27 ok     0 waitFor    onboarding-welcome appeared
+22:07:27 ok     1 sleep      1500 ms
+22:07:27 ok     2 press      onboarding-continue ← onPress
+22:07:27 ok     3 waitFor    onboarding-model appeared
+22:07:27 ok     4 sleep      2500 ms
+22:07:27 ok     5 press      start-chatting ← onPress
+22:07:27 ok     6 waitFor    onboarding-sealed appeared
+22:07:27 ok     7 sleep      4000 ms
+22:07:27 ok     8 press      sealed-start ← onPress
+22:07:27 ok     9 waitFor    onboarding-lock appeared
+22:07:27 ok    10 sleep      1500 ms
+22:07:27 ok    11 press      lock-start ← onPress
+22:07:27 ok    12 waitFor    composer-input appeared
+22:07:27 ok    13 waitFor    Loading gone
+22:07:27 ok    14 sleep      2000 ms
+22:07:27 ok    15 type       composer-input = 43 chars
+22:07:27 ok    16 send       send ← onPress
+22:07:27 ok    17 waitFor    assistant-text appeared
+22:07:27 ok    18 waitFor    stop gone
+22:07:27 ok    19 sleep      1500 ms
+22:07:27 ok    20 value      A lighthouse provides essential safety and guidance for ships navigating dark waters, illuminating paths to la
+22:07:27 21 passed, 0 failed, 0 screenshots → <worktree>/docs/qa/ios-device-pass-24/screens

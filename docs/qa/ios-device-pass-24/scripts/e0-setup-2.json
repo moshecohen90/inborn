@@ -1,0 +1,96 @@
+{
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "new-chat",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "press",
+   "testID": "new-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "start-chat",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "press",
+   "testID": "start-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "devPrompt",
+   "lines": [
+    "attach: greenhouse-notes.txt"
+   ]
+  },
+  {
+   "op": "waitFor",
+   "testID": "attached-docs",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "value",
+   "testID": "attached-docs"
+  },
+  {
+   "op": "deeplink",
+   "url": "/documents"
+  },
+  {
+   "op": "waitFor",
+   "testID": "documents-screen",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "documents-screen"
+  },
+  {
+   "op": "deeplink",
+   "url": "/settings/storage"
+  },
+  {
+   "op": "waitFor",
+   "testID": "storage",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "storage-chats"
+  },
+  {
+   "op": "value",
+   "testID": "storage-documents"
+  },
+  {
+   "op": "value",
+   "testID": "storage-models"
+  }
+ ]
+}

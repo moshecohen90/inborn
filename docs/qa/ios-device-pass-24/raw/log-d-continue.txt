@@ -1,0 +1,26 @@
+21:18:08 pushing 22 steps as d-continue
+21:18:22 shot K01-stopped
+21:18:58 shot K02-continued
+21:19:02 ok     0 deeplink   /chats
+21:19:02 ok     1 waitFor    new-chat appeared
+21:19:02 ok     2 press      new-chat ← onPress
+21:19:02 ok     3 waitFor    start-chat appeared
+21:19:02 ok     4 press      start-chat ← onPress
+21:19:02 ok     5 waitFor    composer-input appeared
+21:19:02 ok     6 sleep      1500 ms
+21:19:02 ok     7 type       composer-input = 104 chars
+21:19:02 ok     8 send       send ← onPress
+21:19:02 ok     9 waitFor    assistant-text appeared
+21:19:02 ok    10 sleep      7000 ms
+21:19:02 ok    11 press      stop ← onPress
+21:19:02 ok    12 sleep      2000 ms
+21:19:02 ok    13 value      The spice trade between Asia and Europe began not as a single event but rather as a series of interconnected c
+21:19:02 ok    14 screenshot K01-stopped
+21:19:02 ok    15 waitFor    continue appeared
+21:19:02 ok    16 press      continue ← onPress
+21:19:02 ok    17 sleep      1500 ms
+21:19:02 ok    18 waitFor    stop gone
+21:19:02 ok    19 sleep      1500 ms
+21:19:02 ok    20 value      The spice trade between Asia and Europe began not as a single event but rather as a series of interconnected c
+21:19:02 ok    21 screenshot K02-continued
+21:19:02 22 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-24/screens

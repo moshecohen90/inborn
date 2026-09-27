@@ -1,0 +1,1072 @@
+{
+  "runId": "l07-list25-verbs-de-2",
+  "startedAt": "2026-09-27T18:09:11.014Z",
+  "finishedAt": "2026-09-27T18:09:50.501Z",
+  "ok": false,
+  "passed": 104,
+  "failed": 1,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 158,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1508,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 7,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 58 chars"
+    },
+    {
+      "i": 8,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 10,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "25 ▍",
+        "props": {
+          "source": "25",
+          "disabled": false
+        }
+      },
+      "detail": "25 ▍"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 12,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tu ▍",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tu",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tu ▍"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 14,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werd ▍",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werd",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werd ▍"
+    },
+    {
+      "i": 15,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 16,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen) 9 ▍",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n9",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen) 9 ▍"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 18,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 24,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 25,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 26,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 27,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 28,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 30,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 31,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 32,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 33,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 34,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 35,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 36,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 37,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 38,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 39,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 40,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 41,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 42,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 43,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 44,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 45,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 46,
+      "op": "value",
+      "ok": true,
+      "ms": 7,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 47,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 48,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 49,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 50,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 51,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 52,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 53,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 54,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 55,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 56,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 57,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 58,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 59,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 60,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 61,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 62,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 63,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 64,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 65,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 66,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 67,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 68,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 69,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 70,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 71,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 72,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 73,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 74,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 75,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 76,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 77,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 78,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 79,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 80,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 81,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 82,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 83,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 84,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 85,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 86,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 87,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 88,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 89,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 90,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 91,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 92,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 93,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 94,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 95,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 96,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 97,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 98,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 99,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 100,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "stop gone"
+    },
+    {
+      "i": 101,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1502,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 102,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)",
+        "props": {
+          "source": "25 deutsche Verben auf Englisch:\n1. kommen (to come)\n2. gehen (to go)\n3. tun (to do)\n4. sein (to be)\n5. sein (to exist/remain)\n6. werden (to become)\n7. sind (to be)\n8. werden (to happen)\n",
+          "disabled": false
+        }
+      },
+      "detail": "25 deutsche Verben auf Englisch: 1. kommen (to come) 2. gehen (to go) 3. tun (to do) 4. sein (to be) 5. sein (to exist/remain) 6. werden (to become) 7. sind (to be) 8. werden (to happen)"
+    },
+    {
+      "i": 103,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2875,
+      "detail": "L07-list25-verbs-de-2"
+    },
+    {
+      "i": 104,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 520,
+      "detail": "waitFor loop-notice never went away in 500 ms"
+    }
+  ],
+  "errors": [
+    "step 104 (waitFor): waitFor loop-notice never went away in 500 ms",
+    "console.log: [chat] loop retry: kept 187 chars, unit 6 cp x2",
+    "console.log: [chat] loop cut: kept 187 of 198 chars, unit 11 cp x1"
+  ]
+}

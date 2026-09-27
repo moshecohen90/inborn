@@ -1,0 +1,1099 @@
+{
+  "runId": "l02-fr-list",
+  "startedAt": "2026-09-27T18:14:44.792Z",
+  "finishedAt": "2026-09-27T18:15:27.947Z",
+  "ok": false,
+  "passed": 107,
+  "failed": 1,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 158,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "persona-chip-3d6853d4-59ed-4a6a-bed1-3929f728726e ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "sleep",
+      "ok": true,
+      "ms": 309,
+      "detail": "300 ms"
+    },
+    {
+      "i": 6,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 7,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 8,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 9,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Assistant 0.2",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Assistant 0.2"
+    },
+    {
+      "i": 10,
+      "op": "type",
+      "ok": true,
+      "ms": 166,
+      "detail": "composer-input = 45 chars"
+    },
+    {
+      "i": 11,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 12,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 533,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 13,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Voici 30 idées de cadeaux ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux ▍"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 727,
+      "detail": "700 ms"
+    },
+    {
+      "i": 15,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fon ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fon",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fon ▍"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 721,
+      "detail": "700 ms"
+    },
+    {
+      "i": 17,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets déco ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets déco",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 18,
+      "op": "sleep",
+      "ok": true,
+      "ms": 761,
+      "detail": "700 ms"
+    },
+    {
+      "i": 19,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passion ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passion",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 20,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2408,
+      "detail": "700 ms"
+    },
+    {
+      "i": 21,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scè ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scè",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 22,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 23,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8 ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 24,
+      "op": "sleep",
+      "ok": true,
+      "ms": 702,
+      "detail": "700 ms"
+    },
+    {
+      "i": 25,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 26,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 27,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9 ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 28,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 29,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactiv ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactiv",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 30,
+      "op": "sleep",
+      "ok": true,
+      "ms": 703,
+      "detail": "700 ms"
+    },
+    {
+      "i": 31,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10 ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 32,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 33,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 34,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 35,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 36,
+      "op": "sleep",
+      "ok": true,
+      "ms": 703,
+      "detail": "700 ms"
+    },
+    {
+      "i": 37,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. 11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants. ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 38,
+      "op": "sleep",
+      "ok": true,
+      "ms": 706,
+      "detail": "700 ms"
+    },
+    {
+      "i": 39,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. 11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants. 12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous. ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants.\n12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 40,
+      "op": "sleep",
+      "ok": true,
+      "ms": 706,
+      "detail": "700 ms"
+    },
+    {
+      "i": 41,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. 11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants. 12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous. 13. Une collection de livres d'édition limitée ou une carte postale personnalisée. ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants.\n12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous.\n13. Une collection de livres d'édition limitée ou une carte postale personnalisée.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 42,
+      "op": "sleep",
+      "ok": true,
+      "ms": 703,
+      "detail": "700 ms"
+    },
+    {
+      "i": 43,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. 11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants. 12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous. 13. Une collection de livres d'édition limitée ou une carte postale personnalisée. ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants.\n12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous.\n13. Une collection de livres d'édition limitée ou une carte postale personnalisée.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 44,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 45,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. 11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants. 12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous. 13. Une collection de livres d'édition limitée ou une carte postale personnalisée.",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants.\n12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous.\n13. Une collection de livres d'édition limitée ou une carte postale personnalisée.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 46,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 47,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. 11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants. 12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous. 13. Une collection de livres d'édition limitée ou une carte postale personnalisée.",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants.\n12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous.\n13. Une collection de livres d'édition limitée ou une carte postale personnalisée.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 48,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 49,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. 11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants. 12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous. 13. Une collection de livres d'édition limitée ou une carte postale personnalisée.",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants.\n12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous.\n13. Une collection de livres d'édition limitée ou une carte postale personnalisée.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 50,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 51,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. 11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants. 12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous. 13. Une collection de livres d'édition limitée ou une carte postale personnalisée.",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants.\n12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous.\n13. Une collection de livres d'édition limitée ou une carte postale personnalisée.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 52,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 53,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. 11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants. 12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous. 13. Une collection de livres d'édition limitée ou une carte postale personnalisée.",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants.\n12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous.\n13. Une collection de livres d'édition limitée ou une carte postale personnalisée.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 54,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 55,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. 11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants. 12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous. 13. Une collection de livres d'édition limitée ou une carte postale personnalisée.",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants.\n12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous.\n13. Une collection de livres d'édition limitée ou une carte postale personnalisée.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 56,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 57,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. 11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants. 12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous. 13. Une collection de livres d'édition limitée ou une carte postale personnalisée.",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants.\n12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous.\n13. Une collection de livres d'édition limitée ou une carte postale personnalisée.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 58,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 59,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. 11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants. 12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous. 13. Une collection de livres d'édition limitée ou une carte postale personnalisée.",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants.\n12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous.\n13. Une collection de livres d'édition limitée ou une carte postale personnalisée.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 60,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 61,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. 11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants. 12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous. 13. Une collection de livres d'édition limitée ou une carte postale personnalisée.",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants.\n12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous.\n13. Une collection de livres d'édition limitée ou une carte postale personnalisée.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 62,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 63,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. 11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants. 12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous. 13. Une collection de livres d'édition limitée ou une carte postale personnalisée.",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants.\n12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous.\n13. Une collection de livres d'édition limitée ou une carte postale personnalisée.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 64,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 65,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. 11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants. 12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous. 13. Une collection de livres d'édition limitée ou une carte postale personnalisée.",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants.\n12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous.\n13. Une collection de livres d'édition limitée ou une carte postale personnalisée.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 66,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 67,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. 11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants. 12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous. 13. Une collection de livres d'édition limitée ou une carte postale personnalisée.",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants.\n12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous.\n13. Une collection de livres d'édition limitée ou une carte postale personnalisée.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 68,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 69,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. 11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants. 12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous. 13. Une collection de livres d'édition limitée ou une carte postale personnalisée.",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants.\n12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous.\n13. Une collection de livres d'édition limitée ou une carte postale personnalisée.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 70,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 71,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. 11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants. 12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous. 13. Une collection de livres d'édition limitée ou une carte postale personnalisée.",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants.\n12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous.\n13. Une collection de livres d'édition limitée ou une carte postale personnalisée.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 72,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 73,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. 11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants. 12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous. 13. Une collection de livres d'édition limitée ou une carte postale personnalisée.",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants.\n12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous.\n13. Une collection de livres d'édition limitée ou une carte postale personnalisée.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 74,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 75,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. 11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants. 12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous. 13. Une collection de livres d'édition limitée ou une carte postale personnalisée.",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants.\n12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous.\n13. Une collection de livres d'édition limitée ou une carte postale personnalisée.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 76,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 77,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. 11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants. 12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous. 13. Une collection de livres d'édition limitée ou une carte postale personnalisée.",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants.\n12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous.\n13. Une collection de livres d'édition limitée ou une carte postale personnalisée.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 78,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 79,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. 11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants. 12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous. 13. Une collection de livres d'édition limitée ou une carte postale personnalisée.",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants.\n12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous.\n13. Une collection de livres d'édition limitée ou une carte postale personnalisée.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 80,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 81,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. 11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants. 12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous. 13. Une collection de livres d'édition limitée ou une carte postale personnalisée.",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants.\n12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous.\n13. Une collection de livres d'édition limitée ou une carte postale personnalisée.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 82,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 83,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. 11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants. 12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous. 13. Une collection de livres d'édition limitée ou une carte postale personnalisée.",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants.\n12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous.\n13. Une collection de livres d'édition limitée ou une carte postale personnalisée.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 84,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 85,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. 11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants. 12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous. 13. Une collection de livres d'édition limitée ou une carte postale personnalisée.",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants.\n12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous.\n13. Une collection de livres d'édition limitée ou une carte postale personnalisée.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 86,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 87,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. 11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants. 12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous. 13. Une collection de livres d'édition limitée ou une carte postale personnalisée.",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants.\n12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous.\n13. Une collection de livres d'édition limitée ou une carte postale personnalisée.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 88,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 89,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. 11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants. 12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous. 13. Une collection de livres d'édition limitée ou une carte postale personnalisée.",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants.\n12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous.\n13. Une collection de livres d'édition limitée ou une carte postale personnalisée.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 90,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 91,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. 11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants. 12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous. 13. Une collection de livres d'édition limitée ou une carte postale personnalisée.",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants.\n12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous.\n13. Une collection de livres d'édition limitée ou une carte postale personnalisée.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 92,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 93,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. 11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants. 12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous. 13. Une collection de livres d'édition limitée ou une carte postale personnalisée.",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants.\n12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous.\n13. Une collection de livres d'édition limitée ou une carte postale personnalisée.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 94,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 95,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. 11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants. 12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous. 13. Une collection de livres d'édition limitée ou une carte postale personnalisée.",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants.\n12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous.\n13. Une collection de livres d'édition limitée ou une carte postale personnalisée.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 96,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 97,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. 11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants. 12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous. 13. Une collection de livres d'édition limitée ou une carte postale personnalisée.",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants.\n12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous.\n13. Une collection de livres d'édition limitée ou une carte postale personnalisée.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 98,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 99,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. 11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants. 12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous. 13. Une collection de livres d'édition limitée ou une carte postale personnalisée.",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants.\n12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous.\n13. Une collection de livres d'édition limitée ou une carte postale personnalisée.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 100,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 101,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. 11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants. 12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous. 13. Une collection de livres d'édition limitée ou une carte postale personnalisée.",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants.\n12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous.\n13. Une collection de livres d'édition limitée ou une carte postale personnalisée.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 102,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 103,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "stop gone"
+    },
+    {
+      "i": 104,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1515,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 105,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection de livres jeunesse ou un magazine éducatif. 3. Des objets décoratifs en forme de fruits ou de fleurs. 4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions. 5. Un livre d'histoire ou une carte postale unique. 6. Une musique musicale avec des effets sonores personnalisables. 7. Des pièces de théâtre ou un costume de scène. 8. Une collection de livres d'art ou des objets à l'artisanat. 9. Un jeu vidéo en 3D avec des fonctionnalités interactives. 10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable. 11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants. 12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous. 13. Une collection de livres d'édition limitée ou une carte postale personnalisée.",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets :\n\n1. Un jeu vidéo interactif avec des fonctionnalités personnalisables.\n2. Une collection de livres jeunesse ou un magazine éducatif.\n3. Des objets décoratifs en forme de fruits ou de fleurs.\n4. Un gadget portable (smartwatch, bracelet) pour suivre vos passions.\n5. Un livre d'histoire ou une carte postale unique.\n6. Une musique musicale avec des effets sonores personnalisables.\n7. Des pièces de théâtre ou un costume de scène.\n8. Une collection de livres d'art ou des objets à l'artisanat.\n9. Un jeu vidéo en 3D avec des fonctionnalités interactives.\n10. Une collection de livres d'histoire ou une carte postale unique pour un souvenir inoubliable.\n11. Un gadget portable (smartwatch, bracelet) pour suivre vos passions et les événements importants.\n12. Des pièces de théâtre ou un costume de scène pour créer des moments uniques avec vous.\n13. Une collection de livres d'édition limitée ou une carte postale personnalisée.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour être divertissants et adaptés à différents budgets : 1. Un jeu vidéo interactif avec des fonctionnalités personnalisables. 2. Une collection"
+    },
+    {
+      "i": 106,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3828,
+      "detail": "L02-fr-list"
+    },
+    {
+      "i": 107,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 537,
+      "detail": "waitFor loop-notice never went away in 500 ms"
+    }
+  ],
+  "errors": [
+    "step 107 (waitFor): waitFor loop-notice never went away in 500 ms",
+    "console.log: [chat] loop retry: kept 666 chars, unit 58 cp x2",
+    "console.log: [chat] loop cut: kept 1039 of 1132 chars, unit 61 cp x2"
+  ]
+}

@@ -1,0 +1,1068 @@
+{
+  "runId": "l07-es-list-1",
+  "startedAt": "2026-09-27T18:04:10.301Z",
+  "finishedAt": "2026-09-27T18:04:49.716Z",
+  "ok": true,
+  "passed": 105,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 157,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1508,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 7,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 37 chars"
+    },
+    {
+      "i": 8,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 519,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 10,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivado ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivado",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivado ▍"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 12,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. ▍"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 718,
+      "detail": "700 ms"
+    },
+    {
+      "i": 14,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu va ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu va",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 15,
+      "op": "sleep",
+      "ok": true,
+      "ms": 708,
+      "detail": "700 ms"
+    },
+    {
+      "i": 16,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 708,
+      "detail": "700 ms"
+    },
+    {
+      "i": 18,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 702,
+      "detail": "700 ms"
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 722,
+      "detail": "700 ms"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 708,
+      "detail": "700 ms"
+    },
+    {
+      "i": 24,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser ",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 25,
+      "op": "sleep",
+      "ok": true,
+      "ms": 724,
+      "detail": "700 ms"
+    },
+    {
+      "i": 26,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 1 ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n1",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 27,
+      "op": "sleep",
+      "ok": true,
+      "ms": 722,
+      "detail": "700 ms"
+    },
+    {
+      "i": 28,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tu ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tu",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 30,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 31,
+      "op": "sleep",
+      "ok": true,
+      "ms": 703,
+      "detail": "700 ms"
+    },
+    {
+      "i": 32,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16 ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 33,
+      "op": "sleep",
+      "ok": true,
+      "ms": 728,
+      "detail": "700 ms"
+    },
+    {
+      "i": 34,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16. El tiempo es un recurso que debemos preservar, no desperdiciar. 17. Cada día tiene su propio valor y potenci ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16. El tiempo es un recurso que debemos preservar, no desperdiciar.\n17. Cada día tiene su propio valor y potenci",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 35,
+      "op": "sleep",
+      "ok": true,
+      "ms": 717,
+      "detail": "700 ms"
+    },
+    {
+      "i": 36,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16. El tiempo es un recurso que debemos preservar, no desperdiciar. 17. Cada día tiene su propio valor y potencial único. 18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la persev ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16. El tiempo es un recurso que debemos preservar, no desperdiciar.\n17. Cada día tiene su propio valor y potencial único.\n18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la persev",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 37,
+      "op": "sleep",
+      "ok": true,
+      "ms": 726,
+      "detail": "700 ms"
+    },
+    {
+      "i": 38,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16. El tiempo es un recurso que debemos preservar, no desperdiciar. 17. Cada día tiene su propio valor y potencial único. 18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia. 19. Tu pasado te guía, pero tu presente define quién eres. 20. El verdadero crecimiento ocu ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16. El tiempo es un recurso que debemos preservar, no desperdiciar.\n17. Cada día tiene su propio valor y potencial único.\n18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia.\n19. Tu pasado te guía, pero tu presente define quién eres.\n20. El verdadero crecimiento ocu",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 39,
+      "op": "sleep",
+      "ok": true,
+      "ms": 781,
+      "detail": "700 ms"
+    },
+    {
+      "i": 40,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16. El tiempo es un recurso que debemos preservar, no desperdiciar. 17. Cada día tiene su propio valor y potencial único. 18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia. 19. Tu pasado te guía, pero tu presente define quién eres. 20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo. 21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16. El tiempo es un recurso que debemos preservar, no desperdiciar.\n17. Cada día tiene su propio valor y potencial único.\n18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia.\n19. Tu pasado te guía, pero tu presente define quién eres.\n20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo.\n21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 41,
+      "op": "sleep",
+      "ok": true,
+      "ms": 730,
+      "detail": "700 ms"
+    },
+    {
+      "i": 42,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16. El tiempo es un recurso que debemos preservar, no desperdiciar. 17. Cada día tiene su propio valor y potencial único. 18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia. 19. Tu pasado te guía, pero tu presente define quién eres. 20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo. 21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie. 22. La perseverancia es el único camino hacia la excelencia. 23. Cada desafío tiene una solución ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16. El tiempo es un recurso que debemos preservar, no desperdiciar.\n17. Cada día tiene su propio valor y potencial único.\n18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia.\n19. Tu pasado te guía, pero tu presente define quién eres.\n20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo.\n21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie.\n22. La perseverancia es el único camino hacia la excelencia.\n23. Cada desafío tiene una solución",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 43,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 44,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16. El tiempo es un recurso que debemos preservar, no desperdiciar. 17. Cada día tiene su propio valor y potencial único. 18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia. 19. Tu pasado te guía, pero tu presente define quién eres. 20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo. 21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie. 22. La perseverancia es el único camino hacia la excelencia. 23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta. 24. El poder no viene del pasado; se construye con ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16. El tiempo es un recurso que debemos preservar, no desperdiciar.\n17. Cada día tiene su propio valor y potencial único.\n18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia.\n19. Tu pasado te guía, pero tu presente define quién eres.\n20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo.\n21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie.\n22. La perseverancia es el único camino hacia la excelencia.\n23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta.\n24. El poder no viene del pasado; se construye con",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 45,
+      "op": "sleep",
+      "ok": true,
+      "ms": 819,
+      "detail": "700 ms"
+    },
+    {
+      "i": 46,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16. El tiempo es un recurso que debemos preservar, no desperdiciar. 17. Cada día tiene su propio valor y potencial único. 18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia. 19. Tu pasado te guía, pero tu presente define quién eres. 20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo. 21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie. 22. La perseverancia es el único camino hacia la excelencia. 23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta. 24. El poder no viene del pasado; se construye con el presente y el futuro juntos. 25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16. El tiempo es un recurso que debemos preservar, no desperdiciar.\n17. Cada día tiene su propio valor y potencial único.\n18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia.\n19. Tu pasado te guía, pero tu presente define quién eres.\n20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo.\n21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie.\n22. La perseverancia es el único camino hacia la excelencia.\n23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta.\n24. El poder no viene del pasado; se construye con el presente y el futuro juntos.\n25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 47,
+      "op": "sleep",
+      "ok": true,
+      "ms": 741,
+      "detail": "700 ms"
+    },
+    {
+      "i": 48,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16. El tiempo es un recurso que debemos preservar, no desperdiciar. 17. Cada día tiene su propio valor y potencial único. 18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia. 19. Tu pasado te guía, pero tu presente define quién eres. 20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo. 21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie. 22. La perseverancia es el único camino hacia la excelencia. 23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta. 24. El poder no viene del pasado; se construye con el presente y el futuro juntos. 25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti. 26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente. 27 ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16. El tiempo es un recurso que debemos preservar, no desperdiciar.\n17. Cada día tiene su propio valor y potencial único.\n18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia.\n19. Tu pasado te guía, pero tu presente define quién eres.\n20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo.\n21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie.\n22. La perseverancia es el único camino hacia la excelencia.\n23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta.\n24. El poder no viene del pasado; se construye con el presente y el futuro juntos.\n25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti.\n26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente.\n27",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 49,
+      "op": "sleep",
+      "ok": true,
+      "ms": 722,
+      "detail": "700 ms"
+    },
+    {
+      "i": 50,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16. El tiempo es un recurso que debemos preservar, no desperdiciar. 17. Cada día tiene su propio valor y potencial único. 18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia. 19. Tu pasado te guía, pero tu presente define quién eres. 20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo. 21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie. 22. La perseverancia es el único camino hacia la excelencia. 23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta. 24. El poder no viene del pasado; se construye con el presente y el futuro juntos. 25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti. 26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente. 27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida. 28 ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16. El tiempo es un recurso que debemos preservar, no desperdiciar.\n17. Cada día tiene su propio valor y potencial único.\n18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia.\n19. Tu pasado te guía, pero tu presente define quién eres.\n20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo.\n21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie.\n22. La perseverancia es el único camino hacia la excelencia.\n23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta.\n24. El poder no viene del pasado; se construye con el presente y el futuro juntos.\n25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti.\n26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente.\n27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida.\n28",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 51,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1083,
+      "detail": "700 ms"
+    },
+    {
+      "i": 52,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16. El tiempo es un recurso que debemos preservar, no desperdiciar. 17. Cada día tiene su propio valor y potencial único. 18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia. 19. Tu pasado te guía, pero tu presente define quién eres. 20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo. 21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie. 22. La perseverancia es el único camino hacia la excelencia. 23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta. 24. El poder no viene del pasado; se construye con el presente y el futuro juntos. 25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti. 26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente. 27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida. 28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo. 29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16. El tiempo es un recurso que debemos preservar, no desperdiciar.\n17. Cada día tiene su propio valor y potencial único.\n18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia.\n19. Tu pasado te guía, pero tu presente define quién eres.\n20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo.\n21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie.\n22. La perseverancia es el único camino hacia la excelencia.\n23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta.\n24. El poder no viene del pasado; se construye con el presente y el futuro juntos.\n25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti.\n26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente.\n27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida.\n28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo.\n29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 53,
+      "op": "sleep",
+      "ok": true,
+      "ms": 721,
+      "detail": "700 ms"
+    },
+    {
+      "i": 54,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16. El tiempo es un recurso que debemos preservar, no desperdiciar. 17. Cada día tiene su propio valor y potencial único. 18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia. 19. Tu pasado te guía, pero tu presente define quién eres. 20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo. 21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie. 22. La perseverancia es el único camino hacia la excelencia. 23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta. 24. El poder no viene del pasado; se construye con el presente y el futuro juntos. 25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti. 26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente. 27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida. 28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo. 29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien. 30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito. ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16. El tiempo es un recurso que debemos preservar, no desperdiciar.\n17. Cada día tiene su propio valor y potencial único.\n18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia.\n19. Tu pasado te guía, pero tu presente define quién eres.\n20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo.\n21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie.\n22. La perseverancia es el único camino hacia la excelencia.\n23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta.\n24. El poder no viene del pasado; se construye con el presente y el futuro juntos.\n25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti.\n26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente.\n27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida.\n28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo.\n29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien.\n30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 55,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 56,
+      "op": "value",
+      "ok": true,
+      "ms": 14,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16. El tiempo es un recurso que debemos preservar, no desperdiciar. 17. Cada día tiene su propio valor y potencial único. 18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia. 19. Tu pasado te guía, pero tu presente define quién eres. 20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo. 21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie. 22. La perseverancia es el único camino hacia la excelencia. 23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta. 24. El poder no viene del pasado; se construye con el presente y el futuro juntos. 25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti. 26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente. 27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida. 28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo. 29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien. 30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16. El tiempo es un recurso que debemos preservar, no desperdiciar.\n17. Cada día tiene su propio valor y potencial único.\n18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia.\n19. Tu pasado te guía, pero tu presente define quién eres.\n20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo.\n21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie.\n22. La perseverancia es el único camino hacia la excelencia.\n23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta.\n24. El poder no viene del pasado; se construye con el presente y el futuro juntos.\n25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti.\n26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente.\n27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida.\n28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo.\n29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien.\n30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 57,
+      "op": "sleep",
+      "ok": true,
+      "ms": 702,
+      "detail": "700 ms"
+    },
+    {
+      "i": 58,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16. El tiempo es un recurso que debemos preservar, no desperdiciar. 17. Cada día tiene su propio valor y potencial único. 18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia. 19. Tu pasado te guía, pero tu presente define quién eres. 20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo. 21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie. 22. La perseverancia es el único camino hacia la excelencia. 23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta. 24. El poder no viene del pasado; se construye con el presente y el futuro juntos. 25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti. 26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente. 27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida. 28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo. 29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien. 30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16. El tiempo es un recurso que debemos preservar, no desperdiciar.\n17. Cada día tiene su propio valor y potencial único.\n18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia.\n19. Tu pasado te guía, pero tu presente define quién eres.\n20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo.\n21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie.\n22. La perseverancia es el único camino hacia la excelencia.\n23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta.\n24. El poder no viene del pasado; se construye con el presente y el futuro juntos.\n25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti.\n26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente.\n27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida.\n28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo.\n29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien.\n30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 59,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 60,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16. El tiempo es un recurso que debemos preservar, no desperdiciar. 17. Cada día tiene su propio valor y potencial único. 18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia. 19. Tu pasado te guía, pero tu presente define quién eres. 20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo. 21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie. 22. La perseverancia es el único camino hacia la excelencia. 23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta. 24. El poder no viene del pasado; se construye con el presente y el futuro juntos. 25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti. 26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente. 27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida. 28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo. 29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien. 30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16. El tiempo es un recurso que debemos preservar, no desperdiciar.\n17. Cada día tiene su propio valor y potencial único.\n18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia.\n19. Tu pasado te guía, pero tu presente define quién eres.\n20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo.\n21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie.\n22. La perseverancia es el único camino hacia la excelencia.\n23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta.\n24. El poder no viene del pasado; se construye con el presente y el futuro juntos.\n25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti.\n26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente.\n27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida.\n28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo.\n29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien.\n30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 61,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 62,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16. El tiempo es un recurso que debemos preservar, no desperdiciar. 17. Cada día tiene su propio valor y potencial único. 18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia. 19. Tu pasado te guía, pero tu presente define quién eres. 20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo. 21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie. 22. La perseverancia es el único camino hacia la excelencia. 23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta. 24. El poder no viene del pasado; se construye con el presente y el futuro juntos. 25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti. 26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente. 27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida. 28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo. 29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien. 30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16. El tiempo es un recurso que debemos preservar, no desperdiciar.\n17. Cada día tiene su propio valor y potencial único.\n18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia.\n19. Tu pasado te guía, pero tu presente define quién eres.\n20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo.\n21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie.\n22. La perseverancia es el único camino hacia la excelencia.\n23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta.\n24. El poder no viene del pasado; se construye con el presente y el futuro juntos.\n25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti.\n26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente.\n27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida.\n28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo.\n29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien.\n30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 63,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 64,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16. El tiempo es un recurso que debemos preservar, no desperdiciar. 17. Cada día tiene su propio valor y potencial único. 18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia. 19. Tu pasado te guía, pero tu presente define quién eres. 20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo. 21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie. 22. La perseverancia es el único camino hacia la excelencia. 23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta. 24. El poder no viene del pasado; se construye con el presente y el futuro juntos. 25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti. 26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente. 27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida. 28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo. 29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien. 30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16. El tiempo es un recurso que debemos preservar, no desperdiciar.\n17. Cada día tiene su propio valor y potencial único.\n18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia.\n19. Tu pasado te guía, pero tu presente define quién eres.\n20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo.\n21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie.\n22. La perseverancia es el único camino hacia la excelencia.\n23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta.\n24. El poder no viene del pasado; se construye con el presente y el futuro juntos.\n25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti.\n26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente.\n27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida.\n28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo.\n29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien.\n30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 65,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 66,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16. El tiempo es un recurso que debemos preservar, no desperdiciar. 17. Cada día tiene su propio valor y potencial único. 18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia. 19. Tu pasado te guía, pero tu presente define quién eres. 20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo. 21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie. 22. La perseverancia es el único camino hacia la excelencia. 23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta. 24. El poder no viene del pasado; se construye con el presente y el futuro juntos. 25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti. 26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente. 27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida. 28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo. 29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien. 30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16. El tiempo es un recurso que debemos preservar, no desperdiciar.\n17. Cada día tiene su propio valor y potencial único.\n18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia.\n19. Tu pasado te guía, pero tu presente define quién eres.\n20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo.\n21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie.\n22. La perseverancia es el único camino hacia la excelencia.\n23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta.\n24. El poder no viene del pasado; se construye con el presente y el futuro juntos.\n25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti.\n26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente.\n27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida.\n28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo.\n29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien.\n30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 67,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 68,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16. El tiempo es un recurso que debemos preservar, no desperdiciar. 17. Cada día tiene su propio valor y potencial único. 18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia. 19. Tu pasado te guía, pero tu presente define quién eres. 20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo. 21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie. 22. La perseverancia es el único camino hacia la excelencia. 23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta. 24. El poder no viene del pasado; se construye con el presente y el futuro juntos. 25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti. 26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente. 27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida. 28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo. 29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien. 30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16. El tiempo es un recurso que debemos preservar, no desperdiciar.\n17. Cada día tiene su propio valor y potencial único.\n18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia.\n19. Tu pasado te guía, pero tu presente define quién eres.\n20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo.\n21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie.\n22. La perseverancia es el único camino hacia la excelencia.\n23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta.\n24. El poder no viene del pasado; se construye con el presente y el futuro juntos.\n25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti.\n26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente.\n27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida.\n28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo.\n29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien.\n30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 69,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 70,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16. El tiempo es un recurso que debemos preservar, no desperdiciar. 17. Cada día tiene su propio valor y potencial único. 18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia. 19. Tu pasado te guía, pero tu presente define quién eres. 20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo. 21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie. 22. La perseverancia es el único camino hacia la excelencia. 23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta. 24. El poder no viene del pasado; se construye con el presente y el futuro juntos. 25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti. 26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente. 27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida. 28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo. 29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien. 30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16. El tiempo es un recurso que debemos preservar, no desperdiciar.\n17. Cada día tiene su propio valor y potencial único.\n18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia.\n19. Tu pasado te guía, pero tu presente define quién eres.\n20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo.\n21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie.\n22. La perseverancia es el único camino hacia la excelencia.\n23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta.\n24. El poder no viene del pasado; se construye con el presente y el futuro juntos.\n25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti.\n26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente.\n27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida.\n28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo.\n29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien.\n30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 71,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 72,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16. El tiempo es un recurso que debemos preservar, no desperdiciar. 17. Cada día tiene su propio valor y potencial único. 18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia. 19. Tu pasado te guía, pero tu presente define quién eres. 20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo. 21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie. 22. La perseverancia es el único camino hacia la excelencia. 23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta. 24. El poder no viene del pasado; se construye con el presente y el futuro juntos. 25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti. 26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente. 27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida. 28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo. 29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien. 30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16. El tiempo es un recurso que debemos preservar, no desperdiciar.\n17. Cada día tiene su propio valor y potencial único.\n18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia.\n19. Tu pasado te guía, pero tu presente define quién eres.\n20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo.\n21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie.\n22. La perseverancia es el único camino hacia la excelencia.\n23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta.\n24. El poder no viene del pasado; se construye con el presente y el futuro juntos.\n25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti.\n26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente.\n27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida.\n28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo.\n29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien.\n30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 73,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 74,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16. El tiempo es un recurso que debemos preservar, no desperdiciar. 17. Cada día tiene su propio valor y potencial único. 18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia. 19. Tu pasado te guía, pero tu presente define quién eres. 20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo. 21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie. 22. La perseverancia es el único camino hacia la excelencia. 23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta. 24. El poder no viene del pasado; se construye con el presente y el futuro juntos. 25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti. 26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente. 27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida. 28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo. 29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien. 30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16. El tiempo es un recurso que debemos preservar, no desperdiciar.\n17. Cada día tiene su propio valor y potencial único.\n18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia.\n19. Tu pasado te guía, pero tu presente define quién eres.\n20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo.\n21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie.\n22. La perseverancia es el único camino hacia la excelencia.\n23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta.\n24. El poder no viene del pasado; se construye con el presente y el futuro juntos.\n25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti.\n26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente.\n27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida.\n28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo.\n29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien.\n30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 75,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 76,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16. El tiempo es un recurso que debemos preservar, no desperdiciar. 17. Cada día tiene su propio valor y potencial único. 18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia. 19. Tu pasado te guía, pero tu presente define quién eres. 20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo. 21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie. 22. La perseverancia es el único camino hacia la excelencia. 23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta. 24. El poder no viene del pasado; se construye con el presente y el futuro juntos. 25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti. 26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente. 27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida. 28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo. 29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien. 30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16. El tiempo es un recurso que debemos preservar, no desperdiciar.\n17. Cada día tiene su propio valor y potencial único.\n18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia.\n19. Tu pasado te guía, pero tu presente define quién eres.\n20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo.\n21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie.\n22. La perseverancia es el único camino hacia la excelencia.\n23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta.\n24. El poder no viene del pasado; se construye con el presente y el futuro juntos.\n25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti.\n26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente.\n27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida.\n28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo.\n29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien.\n30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 77,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 78,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16. El tiempo es un recurso que debemos preservar, no desperdiciar. 17. Cada día tiene su propio valor y potencial único. 18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia. 19. Tu pasado te guía, pero tu presente define quién eres. 20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo. 21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie. 22. La perseverancia es el único camino hacia la excelencia. 23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta. 24. El poder no viene del pasado; se construye con el presente y el futuro juntos. 25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti. 26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente. 27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida. 28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo. 29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien. 30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16. El tiempo es un recurso que debemos preservar, no desperdiciar.\n17. Cada día tiene su propio valor y potencial único.\n18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia.\n19. Tu pasado te guía, pero tu presente define quién eres.\n20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo.\n21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie.\n22. La perseverancia es el único camino hacia la excelencia.\n23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta.\n24. El poder no viene del pasado; se construye con el presente y el futuro juntos.\n25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti.\n26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente.\n27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida.\n28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo.\n29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien.\n30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 79,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 80,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16. El tiempo es un recurso que debemos preservar, no desperdiciar. 17. Cada día tiene su propio valor y potencial único. 18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia. 19. Tu pasado te guía, pero tu presente define quién eres. 20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo. 21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie. 22. La perseverancia es el único camino hacia la excelencia. 23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta. 24. El poder no viene del pasado; se construye con el presente y el futuro juntos. 25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti. 26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente. 27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida. 28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo. 29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien. 30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16. El tiempo es un recurso que debemos preservar, no desperdiciar.\n17. Cada día tiene su propio valor y potencial único.\n18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia.\n19. Tu pasado te guía, pero tu presente define quién eres.\n20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo.\n21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie.\n22. La perseverancia es el único camino hacia la excelencia.\n23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta.\n24. El poder no viene del pasado; se construye con el presente y el futuro juntos.\n25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti.\n26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente.\n27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida.\n28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo.\n29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien.\n30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 81,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 82,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16. El tiempo es un recurso que debemos preservar, no desperdiciar. 17. Cada día tiene su propio valor y potencial único. 18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia. 19. Tu pasado te guía, pero tu presente define quién eres. 20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo. 21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie. 22. La perseverancia es el único camino hacia la excelencia. 23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta. 24. El poder no viene del pasado; se construye con el presente y el futuro juntos. 25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti. 26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente. 27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida. 28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo. 29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien. 30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16. El tiempo es un recurso que debemos preservar, no desperdiciar.\n17. Cada día tiene su propio valor y potencial único.\n18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia.\n19. Tu pasado te guía, pero tu presente define quién eres.\n20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo.\n21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie.\n22. La perseverancia es el único camino hacia la excelencia.\n23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta.\n24. El poder no viene del pasado; se construye con el presente y el futuro juntos.\n25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti.\n26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente.\n27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida.\n28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo.\n29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien.\n30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 83,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 84,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16. El tiempo es un recurso que debemos preservar, no desperdiciar. 17. Cada día tiene su propio valor y potencial único. 18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia. 19. Tu pasado te guía, pero tu presente define quién eres. 20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo. 21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie. 22. La perseverancia es el único camino hacia la excelencia. 23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta. 24. El poder no viene del pasado; se construye con el presente y el futuro juntos. 25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti. 26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente. 27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida. 28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo. 29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien. 30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16. El tiempo es un recurso que debemos preservar, no desperdiciar.\n17. Cada día tiene su propio valor y potencial único.\n18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia.\n19. Tu pasado te guía, pero tu presente define quién eres.\n20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo.\n21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie.\n22. La perseverancia es el único camino hacia la excelencia.\n23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta.\n24. El poder no viene del pasado; se construye con el presente y el futuro juntos.\n25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti.\n26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente.\n27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida.\n28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo.\n29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien.\n30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 85,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 86,
+      "op": "value",
+      "ok": true,
+      "ms": 8,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16. El tiempo es un recurso que debemos preservar, no desperdiciar. 17. Cada día tiene su propio valor y potencial único. 18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia. 19. Tu pasado te guía, pero tu presente define quién eres. 20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo. 21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie. 22. La perseverancia es el único camino hacia la excelencia. 23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta. 24. El poder no viene del pasado; se construye con el presente y el futuro juntos. 25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti. 26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente. 27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida. 28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo. 29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien. 30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16. El tiempo es un recurso que debemos preservar, no desperdiciar.\n17. Cada día tiene su propio valor y potencial único.\n18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia.\n19. Tu pasado te guía, pero tu presente define quién eres.\n20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo.\n21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie.\n22. La perseverancia es el único camino hacia la excelencia.\n23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta.\n24. El poder no viene del pasado; se construye con el presente y el futuro juntos.\n25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti.\n26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente.\n27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida.\n28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo.\n29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien.\n30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 87,
+      "op": "sleep",
+      "ok": true,
+      "ms": 708,
+      "detail": "700 ms"
+    },
+    {
+      "i": 88,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16. El tiempo es un recurso que debemos preservar, no desperdiciar. 17. Cada día tiene su propio valor y potencial único. 18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia. 19. Tu pasado te guía, pero tu presente define quién eres. 20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo. 21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie. 22. La perseverancia es el único camino hacia la excelencia. 23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta. 24. El poder no viene del pasado; se construye con el presente y el futuro juntos. 25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti. 26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente. 27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida. 28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo. 29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien. 30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16. El tiempo es un recurso que debemos preservar, no desperdiciar.\n17. Cada día tiene su propio valor y potencial único.\n18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia.\n19. Tu pasado te guía, pero tu presente define quién eres.\n20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo.\n21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie.\n22. La perseverancia es el único camino hacia la excelencia.\n23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta.\n24. El poder no viene del pasado; se construye con el presente y el futuro juntos.\n25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti.\n26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente.\n27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida.\n28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo.\n29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien.\n30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 89,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 90,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16. El tiempo es un recurso que debemos preservar, no desperdiciar. 17. Cada día tiene su propio valor y potencial único. 18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia. 19. Tu pasado te guía, pero tu presente define quién eres. 20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo. 21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie. 22. La perseverancia es el único camino hacia la excelencia. 23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta. 24. El poder no viene del pasado; se construye con el presente y el futuro juntos. 25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti. 26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente. 27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida. 28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo. 29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien. 30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16. El tiempo es un recurso que debemos preservar, no desperdiciar.\n17. Cada día tiene su propio valor y potencial único.\n18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia.\n19. Tu pasado te guía, pero tu presente define quién eres.\n20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo.\n21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie.\n22. La perseverancia es el único camino hacia la excelencia.\n23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta.\n24. El poder no viene del pasado; se construye con el presente y el futuro juntos.\n25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti.\n26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente.\n27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida.\n28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo.\n29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien.\n30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 91,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 92,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16. El tiempo es un recurso que debemos preservar, no desperdiciar. 17. Cada día tiene su propio valor y potencial único. 18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia. 19. Tu pasado te guía, pero tu presente define quién eres. 20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo. 21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie. 22. La perseverancia es el único camino hacia la excelencia. 23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta. 24. El poder no viene del pasado; se construye con el presente y el futuro juntos. 25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti. 26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente. 27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida. 28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo. 29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien. 30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16. El tiempo es un recurso que debemos preservar, no desperdiciar.\n17. Cada día tiene su propio valor y potencial único.\n18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia.\n19. Tu pasado te guía, pero tu presente define quién eres.\n20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo.\n21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie.\n22. La perseverancia es el único camino hacia la excelencia.\n23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta.\n24. El poder no viene del pasado; se construye con el presente y el futuro juntos.\n25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti.\n26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente.\n27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida.\n28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo.\n29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien.\n30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 93,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 94,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16. El tiempo es un recurso que debemos preservar, no desperdiciar. 17. Cada día tiene su propio valor y potencial único. 18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia. 19. Tu pasado te guía, pero tu presente define quién eres. 20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo. 21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie. 22. La perseverancia es el único camino hacia la excelencia. 23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta. 24. El poder no viene del pasado; se construye con el presente y el futuro juntos. 25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti. 26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente. 27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida. 28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo. 29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien. 30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16. El tiempo es un recurso que debemos preservar, no desperdiciar.\n17. Cada día tiene su propio valor y potencial único.\n18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia.\n19. Tu pasado te guía, pero tu presente define quién eres.\n20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo.\n21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie.\n22. La perseverancia es el único camino hacia la excelencia.\n23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta.\n24. El poder no viene del pasado; se construye con el presente y el futuro juntos.\n25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti.\n26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente.\n27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida.\n28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo.\n29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien.\n30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 95,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 96,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16. El tiempo es un recurso que debemos preservar, no desperdiciar. 17. Cada día tiene su propio valor y potencial único. 18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia. 19. Tu pasado te guía, pero tu presente define quién eres. 20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo. 21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie. 22. La perseverancia es el único camino hacia la excelencia. 23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta. 24. El poder no viene del pasado; se construye con el presente y el futuro juntos. 25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti. 26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente. 27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida. 28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo. 29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien. 30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16. El tiempo es un recurso que debemos preservar, no desperdiciar.\n17. Cada día tiene su propio valor y potencial único.\n18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia.\n19. Tu pasado te guía, pero tu presente define quién eres.\n20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo.\n21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie.\n22. La perseverancia es el único camino hacia la excelencia.\n23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta.\n24. El poder no viene del pasado; se construye con el presente y el futuro juntos.\n25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti.\n26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente.\n27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida.\n28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo.\n29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien.\n30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 97,
+      "op": "sleep",
+      "ok": true,
+      "ms": 709,
+      "detail": "700 ms"
+    },
+    {
+      "i": 98,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16. El tiempo es un recurso que debemos preservar, no desperdiciar. 17. Cada día tiene su propio valor y potencial único. 18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia. 19. Tu pasado te guía, pero tu presente define quién eres. 20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo. 21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie. 22. La perseverancia es el único camino hacia la excelencia. 23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta. 24. El poder no viene del pasado; se construye con el presente y el futuro juntos. 25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti. 26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente. 27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida. 28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo. 29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien. 30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16. El tiempo es un recurso que debemos preservar, no desperdiciar.\n17. Cada día tiene su propio valor y potencial único.\n18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia.\n19. Tu pasado te guía, pero tu presente define quién eres.\n20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo.\n21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie.\n22. La perseverancia es el único camino hacia la excelencia.\n23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta.\n24. El poder no viene del pasado; se construye con el presente y el futuro juntos.\n25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti.\n26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente.\n27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida.\n28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo.\n29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien.\n30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 99,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 100,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "stop gone"
+    },
+    {
+      "i": 101,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1502,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 102,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma. 4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos. 5. Cada día es un capítulo nuevo en tu vida. 6. No estás condenado por el pasado; estás construyendo para el futuro. 7. Los pequeños cambios generan grandes transformaciones a largo plazo. 8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor. 9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas. 10. El dolor es señal de que algo más grande está esperando ser desafiado. 11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo. 12. Si puedes, hazlo ahora y lo verás pronto. 13. La verdadera superación viene de aceptar tus límites y salir de ellos. 14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo. 15. No es solo tu futuro que importa, es tu presente. 16. El tiempo es un recurso que debemos preservar, no desperdiciar. 17. Cada día tiene su propio valor y potencial único. 18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia. 19. Tu pasado te guía, pero tu presente define quién eres. 20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo. 21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie. 22. La perseverancia es el único camino hacia la excelencia. 23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta. 24. El poder no viene del pasado; se construye con el presente y el futuro juntos. 25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti. 26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente. 27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida. 28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo. 29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien. 30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada:\n\n1. Tu futuro es tu propio destino.\n2. El miedo te detiene; la acción lo mueve.\n3. No esperes a que otros entiendan tu valentía antes de mostrarse ella misma.\n4. La historia no se escribe solo por los protagonistas, sino por todos quienes la escriben juntos.\n5. Cada día es un capítulo nuevo en tu vida.\n6. No estás condenado por el pasado; estás construyendo para el futuro.\n7. Los pequeños cambios generan grandes transformaciones a largo plazo.\n8. Tu capacidad de resolver problemas y superar obstáculos depende de ti, no de lo que sucede alrededor.\n9. La verdadera resiliencia es la capacidad de volver a tu valor cuando fallas.\n10. El dolor es señal de que algo más grande está esperando ser desafiado.\n11. Tu vida es un camino largo; haz cada paso con la intención de hacer algo nuevo.\n12. Si puedes, hazlo ahora y lo verás pronto.\n13. La verdadera superación viene de aceptar tus límites y salir de ellos.\n14. El éxito no se trata de ser el máximo; se trata de estar en el camino correcto a tu ritmo.\n15. No es solo tu futuro que importa, es tu presente.\n16. El tiempo es un recurso que debemos preservar, no desperdiciar.\n17. Cada día tiene su propio valor y potencial único.\n18. La fortaleza no proviene de ser fuerte al inicio; se gana por el esfuerzo constante y la perseverancia.\n19. Tu pasado te guía, pero tu presente define quién eres.\n20. El verdadero crecimiento ocurre cuando empiezas a empezar ahora mismo.\n21. No hagas nada porque ya sabes lo que puedes hacer mejor que nadie.\n22. La perseverancia es el único camino hacia la excelencia.\n23. Cada desafío tiene una solución, pero solo tú tienes el control de tu respuesta.\n24. El poder no viene del pasado; se construye con el presente y el futuro juntos.\n25. No te detienes por los obstáculos que te rodean; avanza hacia ellos y vuelve a ti.\n26. Tu capacidad para crecer es una inversión inmensa, merece ser cuidada constantemente.\n27. La excelencia no es un destino inevitável, sino un esfuerzo constante de tu vida.\n28. No esperes a que el mundo te lo diga; empieza a construir tu propio mundo.\n29. El éxito se trata de ser bueno y hacer lo que necesitas para que otros te vean bien.\n30. La fuerza es la capacidad de seguir adelante cuando los demás se detienen por miedo o falta de propósito.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para grabar en celular o poner en tu portada: 1. Tu futuro es tu propio destino. 2. El miedo te detiene; la acción lo mueve. 3. No esperes a que otros "
+    },
+    {
+      "i": 103,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2234,
+      "detail": "L07-es-list-1"
+    },
+    {
+      "i": 104,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "loop-notice gone"
+    }
+  ],
+  "errors": []
+}

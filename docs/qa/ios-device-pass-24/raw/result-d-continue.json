@@ -1,0 +1,179 @@
+{
+  "runId": "d-continue",
+  "startedAt": "2026-09-27T18:18:09.276Z",
+  "finishedAt": "2026-09-27T18:19:00.841Z",
+  "ok": true,
+  "passed": 22,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 155,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1508,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 7,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 104 chars"
+    },
+    {
+      "i": 8,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 538,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 10,
+      "op": "sleep",
+      "ok": true,
+      "ms": 7017,
+      "detail": "7000 ms"
+    },
+    {
+      "i": 11,
+      "op": "press",
+      "ok": true,
+      "ms": 162,
+      "detail": "stop ← onPress"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2000,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 13,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The spice trade between Asia and Europe began not as a single event but rather as a series of interconnected centuries-long exchanges that shaped the global economy and culture. It started in the mid-2nd century AD with the introduction of cloves by Marco Polo from India, who brought the aromatic leaves from the northern coast of the Indian subcontinent to the Mediterranean world. This initial connection was forged through trade routes constructed along the Silk Road and later expanded via maritime routes connecting Asia and Europe across the vast expanse of the Indian Ocean. These early connections were facilitated by caravan tribes like the Arabs and Mongols who controlled the eastern corridors, allowing spices such as cinnamon, cloves, and nutmeg to cross borders and become part of European culinary habits within a few decades. The middle period saw the consolidation of this trade into a more complex economic structure where merchants established long-term alliances with both Chinese empires and powerful European powers like Portugal and Spain. The Portuguese arrived in China during the 15th century, establishing trading posts along the Malacca Strait that allowed them to access vast quantities of spices from Southeast Asia. This influx significantly boosted European economies, as Europeans began to rely heavily on these goods for flavoring their wines, cheeses, and meats alike. Meanwhile, Chinese merchants expanded further into Europe through the Manila Galleon trade, transporting silk",
+        "props": {
+          "source": "The spice trade between Asia and Europe began not as a single event but rather as a series of interconnected centuries-long exchanges that shaped the global economy and culture. It started in the mid-2nd century AD with the introduction of cloves by Marco Polo from India, who brought the aromatic leaves from the northern coast of the Indian subcontinent to the Mediterranean world. This initial connection was forged through trade routes constructed along the Silk Road and later expanded via maritime routes connecting Asia and Europe across the vast expanse of the Indian Ocean. These early connections were facilitated by caravan tribes like the Arabs and Mongols who controlled the eastern corridors, allowing spices such as cinnamon, cloves, and nutmeg to cross borders and become part of European culinary habits within a few decades.\n\nThe middle period saw the consolidation of this trade into a more complex economic structure where merchants established long-term alliances with both Chinese empires and powerful European powers like Portugal and Spain. The Portuguese arrived in China during the 15th century, establishing trading posts along the Malacca Strait that allowed them to access vast quantities of spices from Southeast Asia. This influx significantly boosted European economies, as Europeans began to rely heavily on these goods for flavoring their wines, cheeses, and meats alike. Meanwhile, Chinese merchants expanded further into Europe through the Manila Galleon trade, transporting silk",
+          "disabled": false
+        }
+      },
+      "detail": "The spice trade between Asia and Europe began not as a single event but rather as a series of interconnected centuries-long exchanges that shaped the global economy and culture. It started in the mid-"
+    },
+    {
+      "i": 14,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3511,
+      "detail": "K01-stopped"
+    },
+    {
+      "i": 15,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "continue appeared"
+    },
+    {
+      "i": 16,
+      "op": "press",
+      "ok": true,
+      "ms": 152,
+      "detail": "continue ← onPress"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 18,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 29661,
+      "detail": "stop gone"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1506,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The spice trade between Asia and Europe began not as a single event but rather as a series of interconnected centuries-long exchanges that shaped the global economy and culture. It started in the mid-2nd century AD with the introduction of cloves by Marco Polo from India, who brought the aromatic leaves from the northern coast of the Indian subcontinent to the Mediterranean world. This initial connection was forged through trade routes constructed along the Silk Road and later expanded via maritime routes connecting Asia and Europe across the vast expanse of the Indian Ocean. These early connections were facilitated by caravan tribes like the Arabs and Mongols who controlled the eastern corridors, allowing spices such as cinnamon, cloves, and nutmeg to cross borders and become part of European culinary habits within a few decades. The middle period saw the consolidation of this trade into a more complex economic structure where merchants established long-term alliances with both Chinese empires and powerful European powers like Portugal and Spain. The Portuguese arrived in China during the 15th century, establishing trading posts along the Malacca Strait that allowed them to access vast quantities of spices from Southeast Asia. This influx significantly boosted European economies, as Europeans began to rely heavily on these goods for flavoring their wines, cheeses, and meats alike. Meanwhile, Chinese merchants expanded further into Europe through the Manila Galleon trade, transporting silk The Manila Galleon trade, a maritime artery that connected the Malacca Strait to China's southern ports, became the most significant commercial corridor of the 16th century. Portuguese traders established major trading posts at the strategic chokepoints along the coast of modern-day Singapore and Malaysia, securing access to massive volumes of spices, particularly cloves, from Southeast Asia. These goods were not merely commodities but symbols of European dominance in Asian markets, where they were often used as currency for local transactions or traded with Chinese merchants who controlled the northern parts of the trade route. The exchange involved a complex web of diplomacy and negotiation, with Portuguese envoys arriving on merchant ships laden with cargo that would eventually form the backbone of European commerce. Simultaneously, this maritime network intersected with earlier Silk Road developments to create a unified economic map that connected East Asia, Central Europe, and the Americas. Chinese merchants operated along these established routes, moving goods from China's southern regions toward the Mediterranean world via Ottoman-controlled caravans that traversed the steppe lands between Europe and India. This parallel movement ensured that European traders had direct access to high-value Asian commodities while relying on established land-based trade links for other essential items like silk, porcelain, and textiles. The resulting interconnectivity allowed for a level of integration where economic transactions flowed seamlessly across continents, fundamentally altering the geopolitical landscape of the time. In the 18th century, the spice trade underwent significant transformations driven by global population shifts and changing political climates. The Great Plague of 1756 drastically reduced European populations in Asia and Africa, creating a vacuum that necessitated more efficient import channels and increased reliance on Asian markets. This period saw the rise of large-scale colonial enterprises, particularly in the Americas and Africa, which sought to expand their trade networks into new territories. The demand for spices surged as European powers sought to fortify against infectious diseases caused by the plague, leading them to seek alternative sources of flavoring agents that could sustain populations without relying solely on limited domestic production. The 19th century marked a pivotal turning point where global trade patterns began to diverge sharply from the earlier Silk Road era. As European powers industrialized their own economies and sought diversification in foreign markets, reliance on Asian spices diminished rapidly. The demand shifted toward more accessible ingredients for food processing, such as saffron and turmeric, and European nations developed domestic production capabilities that reduced long-distance imports. This transition marked the end of the era when spice trade was primarily a source of surplus wealth, transitioning it into a tool for industrial manufacturing and culinary refinement within Europe itself. By the mid-20th century, the global structure of the spice trade had solidified through organized international organizations like the United Nations' Trade in Goods Agreement system and later the World Trade Organization. The 1958 agreement between China and India formalized long-term trading rights for spices, establishing a framework that guaranteed fair terms for Chinese exporters while providing European nations with stable access to essential ingredients. This institutionalized approach ensured that global supply chains remained resilient against political instability in either region, allowing for continued economic interdependence even as geopolitical tensions rose during the Cold War. The modern era continues to define this interconnected web of commerce through digitalization and new transport technologies. Modern trade routes now span oceans and continents with speed and efficiency rivaling ancient caravan networks, facilitated by global shipping lanes and satellite communications that allow merchants in any continent to communicate instantly across vast distances. The advent of robotics and automated logistics systems has reduced the need for manual labor on the roads and markets while increasing productivity and minimizing waste, ensuring that the historical flow of spices persists through more sophisticated infrastructure than ever before.",
+        "props": {
+          "source": "The spice trade between Asia and Europe began not as a single event but rather as a series of interconnected centuries-long exchanges that shaped the global economy and culture. It started in the mid-2nd century AD with the introduction of cloves by Marco Polo from India, who brought the aromatic leaves from the northern coast of the Indian subcontinent to the Mediterranean world. This initial connection was forged through trade routes constructed along the Silk Road and later expanded via maritime routes connecting Asia and Europe across the vast expanse of the Indian Ocean. These early connections were facilitated by caravan tribes like the Arabs and Mongols who controlled the eastern corridors, allowing spices such as cinnamon, cloves, and nutmeg to cross borders and become part of European culinary habits within a few decades.\n\nThe middle period saw the consolidation of this trade into a more complex economic structure where merchants established long-term alliances with both Chinese empires and powerful European powers like Portugal and Spain. The Portuguese arrived in China during the 15th century, establishing trading posts along the Malacca Strait that allowed them to access vast quantities of spices from Southeast Asia. This influx significantly boosted European economies, as Europeans began to rely heavily on these goods for flavoring their wines, cheeses, and meats alike. Meanwhile, Chinese merchants expanded further into Europe through the Manila Galleon trade, transporting silk The Manila Galleon trade, a maritime artery that connected the Malacca Strait to China's southern ports, became the most significant commercial corridor of the 16th century. Portuguese traders established major trading posts at the strategic chokepoints along the coast of modern-day Singapore and Malaysia, securing access to massive volumes of spices, particularly cloves, from Southeast Asia. These goods were not merely commodities but symbols of European dominance in Asian markets, where they were often used as currency for local transactions or traded with Chinese merchants who controlled the northern parts of the trade route. The exchange involved a complex web of diplomacy and negotiation, with Portuguese envoys arriving on merchant ships laden with cargo that would eventually form the backbone of European commerce.\n\nSimultaneously, this maritime network intersected with earlier Silk Road developments to create a unified economic map that connected East Asia, Central Europe, and the Americas. Chinese merchants operated along these established routes, moving goods from China's southern regions toward the Mediterranean world via Ottoman-controlled caravans that traversed the steppe lands between Europe and India. This parallel movement ensured that European traders had direct access to high-value Asian commodities while relying on established land-based trade links for other essential items like silk, porcelain, and textiles. The resulting interconnectivity allowed for a level of integration where economic transactions flowed seamlessly across continents, fundamentally altering the geopolitical landscape of the time.\n\nIn the 18th century, the spice trade underwent significant transformations driven by global population shifts and changing political climates. The Great Plague of 1756 drastically reduced European populations in Asia and Africa, creating a vacuum that necessitated more efficient import channels and increased reliance on Asian markets. This period saw the rise of large-scale colonial enterprises, particularly in the Americas and Africa, which sought to expand their trade networks into new territories. The demand for spices surged as European powers sought to fortify against infectious diseases caused by the plague, leading them to seek alternative sources of flavoring agents that could sustain populations without relying solely on limited domestic production.\n\nThe 19th century marked a pivotal turning point where global trade patterns began to diverge sharply from the earlier Silk Road era. As European powers industrialized their own economies and sought diversification in foreign markets, reliance on Asian spices diminished rapidly. The demand shifted toward more accessible ingredients for food processing, such as saffron and turmeric, and European nations developed domestic production capabilities that reduced long-distance imports. This transition marked the end of the era when spice trade was primarily a source of surplus wealth, transitioning it into a tool for industrial manufacturing and culinary refinement within Europe itself.\n\nBy the mid-20th century, the global structure of the spice trade had solidified through organized international organizations like the United Nations' Trade in Goods Agreement system and later the World Trade Organization. The 1958 agreement between China and India formalized long-term trading rights for spices, establishing a framework that guaranteed fair terms for Chinese exporters while providing European nations with stable access to essential ingredients. This institutionalized approach ensured that global supply chains remained resilient against political instability in either region, allowing for continued economic interdependence even as geopolitical tensions rose during the Cold War.\n\nThe modern era continues to define this interconnected web of commerce through digitalization and new transport technologies. Modern trade routes now span oceans and continents with speed and efficiency rivaling ancient caravan networks, facilitated by global shipping lanes and satellite communications that allow merchants in any continent to communicate instantly across vast distances. The advent of robotics and automated logistics systems has reduced the need for manual labor on the roads and markets while increasing productivity and minimizing waste, ensuring that the historical flow of spices persists through more sophisticated infrastructure than ever before.",
+          "disabled": false
+        }
+      },
+      "detail": "The spice trade between Asia and Europe began not as a single event but rather as a series of interconnected centuries-long exchanges that shaped the global economy and culture. It started in the mid-"
+    },
+    {
+      "i": 21,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3178,
+      "detail": "K02-continued"
+    }
+  ],
+  "errors": []
+}

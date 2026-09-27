@@ -1,0 +1,1097 @@
+{
+  "runId": "l02-math-long-div",
+  "startedAt": "2026-09-27T18:15:31.038Z",
+  "finishedAt": "2026-09-27T18:16:12.169Z",
+  "ok": true,
+  "passed": 108,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 157,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "persona-chip-3d6853d4-59ed-4a6a-bed1-3929f728726e ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "sleep",
+      "ok": true,
+      "ms": 309,
+      "detail": "300 ms"
+    },
+    {
+      "i": 6,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 7,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 8,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 9,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Assistant 0.2",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Assistant 0.2"
+    },
+    {
+      "i": 10,
+      "op": "type",
+      "ok": true,
+      "ms": 166,
+      "detail": "composer-input = 74 chars"
+    },
+    {
+      "i": 11,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 12,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 544,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 13,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654 ▍",
+        "props": {
+          "source": "To divide 987654",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654 ▍"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 15,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) a ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) a",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) a ▍"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 720,
+      "detail": "700 ms"
+    },
+    {
+      "i": 17,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 a ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 a",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 a ▍"
+    },
+    {
+      "i": 18,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 19,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the nex ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the nex",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 20,
+      "op": "sleep",
+      "ok": true,
+      "ms": 747,
+      "detail": "700 ms"
+    },
+    {
+      "i": 21,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 22,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 23,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 7 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 7",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 24,
+      "op": "sleep",
+      "ok": true,
+      "ms": 787,
+      "detail": "700 ms"
+    },
+    {
+      "i": 25,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 26,
+      "op": "sleep",
+      "ok": true,
+      "ms": 755,
+      "detail": "700 ms"
+    },
+    {
+      "i": 27,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 28,
+      "op": "sleep",
+      "ok": true,
+      "ms": 720,
+      "detail": "700 ms"
+    },
+    {
+      "i": 29,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. Since 765 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. Since 765",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 30,
+      "op": "sleep",
+      "ok": true,
+      "ms": 701,
+      "detail": "700 ms"
+    },
+    {
+      "i": 31,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 32,
+      "op": "sleep",
+      "ok": true,
+      "ms": 731,
+      "detail": "700 ms"
+    },
+    {
+      "i": 33,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 34,
+      "op": "sleep",
+      "ok": true,
+      "ms": 829,
+      "detail": "700 ms"
+    },
+    {
+      "i": 35,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 36,
+      "op": "sleep",
+      "ok": true,
+      "ms": 704,
+      "detail": "700 ms"
+    },
+    {
+      "i": 37,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes noth ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes noth",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 38,
+      "op": "sleep",
+      "ok": true,
+      "ms": 723,
+      "detail": "700 ms"
+    },
+    {
+      "i": 39,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 8765 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 8765",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 40,
+      "op": "sleep",
+      "ok": true,
+      "ms": 786,
+      "detail": "700 ms"
+    },
+    {
+      "i": 41,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 42,
+      "op": "sleep",
+      "ok": true,
+      "ms": 707,
+      "detail": "700 ms"
+    },
+    {
+      "i": 43,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group furth ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group furth",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 44,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 45,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 87654 ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 87654",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 46,
+      "op": "sleep",
+      "ok": true,
+      "ms": 907,
+      "detail": "700 ms"
+    },
+    {
+      "i": 47,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for divisio ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for divisio",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 48,
+      "op": "sleep",
+      "ok": true,
+      "ms": 709,
+      "detail": "700 ms"
+    },
+    {
+      "i": 49,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 50,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 51,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 52,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 53,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 54,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 55,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 56,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 57,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 58,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 59,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 60,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 61,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 62,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 63,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 64,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 65,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 66,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 67,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 68,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 69,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 70,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 71,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 72,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 73,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 74,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 75,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 76,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 77,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 78,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 79,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 80,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 81,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 82,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 83,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 84,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 85,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 86,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 87,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 88,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 89,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 90,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 91,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 92,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 93,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 94,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 95,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 96,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 97,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 98,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 99,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 100,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 101,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 102,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 103,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "stop gone"
+    },
+    {
+      "i": 104,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1515,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 105,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+        "props": {
+          "source": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as the quotient's first digit. Then subtract 1 from 9 to get a remainder of 8. Bring down the next digit (6), making the new number 86. Since 86 is still less than 123, we can't divide it further, so we move to the next group of digits starting with 7: 76 divided by 123 also yields a quotient of 0 and leaves a remainder of 76. Bring down the next digit (5), making the number 765. 765 divided by 123 yields a quotient of 4 and leaves a remainder of 90, so we write down 4. Bring down the next digit (4), making it 94; since 94 is less than 123, this group contributes nothing to the quotient but adds its value to the total dividend: now the full number becomes 876543210 and our new remainder is still 90. Bring down the final digit (3), making it 903; since 903 is less than 120, we cannot divide this group further either, so add its value to the total: now the full number is 876540321 and our remainder remains 90. The process ends here as there are no more digits in the dividend to bring down for division.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, we can use long division. Start with the first digit of the dividend (9) and place it over the leading digit of the divisor (1). Since 9 is greater than 1, write down 9 as "
+    },
+    {
+      "i": 106,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3509,
+      "detail": "L02-math-long-div"
+    },
+    {
+      "i": 107,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "loop-notice gone"
+    }
+  ],
+  "errors": [
+    "console.log: [chat] loop retry: kept 579 chars, unit 42 cp x2"
+  ]
+}

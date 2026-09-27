@@ -1,0 +1,196 @@
+{
+  "runId": "e0-setup-2",
+  "startedAt": "2026-09-27T19:07:29.051Z",
+  "finishedAt": "2026-09-27T19:07:39.888Z",
+  "ok": true,
+  "passed": 21,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 157,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1508,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 7,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 167,
+      "detail": "attach: greenhouse-notes.txt"
+    },
+    {
+      "i": 8,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1333,
+      "detail": "attached-docs appeared"
+    },
+    {
+      "i": 9,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3000,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 10,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "greenhouse-notes.txt",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "greenhouse-notes.txt"
+    },
+    {
+      "i": 11,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 165,
+      "detail": "/documents"
+    },
+    {
+      "i": 12,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "documents-screen appeared"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2002,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 14,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Documents Close Add file · PRO 1 document · 253 B on this device Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO DOCUMENT INDEX MODEL Searching your documents needs a small on-device model (468 MB). It runs here and never uploads a word. Install · 468 MB greenhouse-notes.txt TXT · 1 part · 253 B Indexed · 1 passage Select documents to ask INDEXED ON THIS DEVICE · sqlcipher",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Documents Close Add file · PRO 1 document · 253 B on this device Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO DOCUMENT INDEX MODEL Searching yo"
+    },
+    {
+      "i": 15,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 154,
+      "detail": "/settings/storage"
+    },
+    {
+      "i": 16,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "storage appeared"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2008,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 18,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Chats encrypted (SQLCipher) 350 KB",
+        "props": {
+          "value": "350 KB",
+          "label": "Chats",
+          "sub": "encrypted (SQLCipher)",
+          "disabled": false
+        }
+      },
+      "detail": "Chats encrypted (SQLCipher) 350 KB"
+    },
+    {
+      "i": 19,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Documents 253 B",
+        "props": {
+          "value": "253 B",
+          "label": "Documents",
+          "disabled": false
+        }
+      },
+      "detail": "Documents 253 B"
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Models not backed up 0 B",
+        "props": {
+          "value": "0 B",
+          "label": "Models",
+          "sub": "not backed up",
+          "disabled": false
+        }
+      },
+      "detail": "Models not backed up 0 B"
+    }
+  ],
+  "errors": []
+}

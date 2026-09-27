@@ -1,0 +1,1072 @@
+{
+  "runId": "l07-list30-animals-1",
+  "startedAt": "2026-09-27T18:02:44.787Z",
+  "finishedAt": "2026-09-27T18:03:24.532Z",
+  "ok": false,
+  "passed": 104,
+  "failed": 1,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 156,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 7,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 63 chars"
+    },
+    {
+      "i": 8,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 541,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 10,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3 ▍",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3 ▍"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 708,
+      "detail": "700 ms"
+    },
+    {
+      "i": 12,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Hero ▍",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Hero",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Hero ▍"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 14,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13 ▍",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13 ▍"
+    },
+    {
+      "i": 15,
+      "op": "sleep",
+      "ok": true,
+      "ms": 717,
+      "detail": "700 ms"
+    },
+    {
+      "i": 16,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18 ▍",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18 ▍"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 717,
+      "detail": "700 ms"
+    },
+    {
+      "i": 18,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass ▍",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 24,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 25,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 26,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 27,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 28,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 30,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 31,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 32,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 33,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 34,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 35,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 36,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 37,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 38,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 39,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 40,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 41,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 42,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 43,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 44,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 45,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 46,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 47,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 48,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 49,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 50,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 51,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 52,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 53,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 54,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 55,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 56,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 57,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 58,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 59,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 60,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 61,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 62,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 63,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 64,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 65,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 66,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 67,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 68,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 69,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 70,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 71,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 72,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 73,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 74,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 75,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 76,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 77,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 78,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 79,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 80,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 81,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 82,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 83,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 84,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 85,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 86,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 87,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 88,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 89,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 90,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 91,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 92,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 93,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 94,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 95,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 96,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 97,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 98,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 99,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 100,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "stop gone"
+    },
+    {
+      "i": 101,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1514,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 102,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon 19. Sea Bass 20. Sea Eagle 21. Manta Ray 22. Whale Shark",
+        "props": {
+          "source": "1. Blue Whale\n2. Dolphin\n3. Shark\n4. Turtle\n5. Seahorse\n6. Clownfish\n7. Sea Turtle\n8. Heron\n9. Puffin\n10. Seal\n11. Octopus\n12. Whale\n13. Fish\n14. Stingray\n15. Jellyfish\n16. Crab\n17. Octant\n18. Salmon\n19. Sea Bass\n20. Sea Eagle\n21. Manta Ray\n22. Whale Shark\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Blue Whale 2. Dolphin 3. Shark 4. Turtle 5. Seahorse 6. Clownfish 7. Sea Turtle 8. Heron 9. Puffin 10. Seal 11. Octopus 12. Whale 13. Fish 14. Stingray 15. Jellyfish 16. Crab 17. Octant 18. Salmon "
+    },
+    {
+      "i": 103,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2562,
+      "detail": "L07-list30-animals-1"
+    },
+    {
+      "i": 104,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 536,
+      "detail": "waitFor loop-notice never went away in 500 ms"
+    }
+  ],
+  "errors": [
+    "step 104 (waitFor): waitFor loop-notice never went away in 500 ms",
+    "console.log: [chat] loop retry: kept 213 chars, unit 7 cp x2",
+    "console.log: [chat] loop cut: kept 257 of 280 chars, unit 10 cp x2"
+  ]
+}
