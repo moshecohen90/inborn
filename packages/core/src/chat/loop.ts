@@ -147,6 +147,8 @@ function listIds(text: string, items: { line: number }[]): number[] {
   const ids: number[] = [];
   const open: { indent: number; id: number }[] = [];
   let next = 0;
+  /* F428: "1.\nsein – to be": a marker alone on its line takes the next line as its words. */
+  let bare = false;
   for (let pos = 0; pos <= text.length; ) {
     let eol = text.indexOf("\n", pos);
     if (eol < 0) eol = text.length;
@@ -158,13 +160,27 @@ function listIds(text: string, items: { line: number }[]): number[] {
         while (open.length && open.at(-1)!.indent > indent) open.pop();
         if (!open.length || open.at(-1)!.indent < indent) open.push({ indent, id: next++ });
         ids[m] = open.at(-1)!.id;
-      } else while (open.length && open.at(-1)!.indent >= indent) open.pop();
+        bare = /^\s*(?:\*\*)?(?:\d{1,3}[.)．]|[-*•+])(?:\*\*)?\s*$/u.test(lineText);
+      } else if (bare) bare = false;
+      else while (open.length && open.at(-1)!.indent >= indent) open.pop();
     }
     pos = eol + 1;
   }
   return ids;
 }
 const ITEM_TAIL = /[\s.!?。！？．…,;，、；]+$/u;
+/* F428: an item's head ends where its gloss or note starts ("sein (to be)", "sein: zu sein", "gehen – to go", "zu tun → to do"). */
+const HEAD_END = /\s*[(（[［]|[:：](?=\s|$)|\s[–—-]\s|\s(?:→|->)\s|[,，](?=\s)|\s·|·\s/u;
+/* A head listed again before its list holds five distinct heads waits off screen this many items for the fifth; an answer key never brings it. */
+const HEAD_WAIT = 3;
+
+/** F428: the words before the item's gloss or note, keyed like the item; the item's own key when nothing follows its head. */
+function headOf(words: string, it: ItemKey): string {
+  const m = HEAD_END.exec(words);
+  if (!m || m.index === 0) return it.key;
+  const head = itemKey(words.slice(0, m.index)).key;
+  return LETTER.test(head) ? head : it.key;
+}
 /* "**Advantages:**" heads each option's sub-list. */
 const LABEL = /[:：]\s*$/u;
 /* A worked sum repeats its products and phrasing from step to step ("$123 \times 2 = 246$" for 274 and again for 283). */
@@ -610,9 +626,53 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
       (listed.get(key) ?? []).filter((x) => (x.list === list ? x.note === "" || it.note === "" || x.note === it.note || it.marked > 0 : long && x.full === it.full)).length;
     /* A short item repeats only in an enumeration: "True" and "False" 30 times over is an answer key, not a loop. */
     const enumerates = (list: number, key: string) => (distinct.get(list)?.size ?? 0) >= ENUMERATION && Array.from(key).length > 1;
+    /* F428: heads per list and marker kind ("1." items and "-" items at one indent are two lists); a list shown to be an answer key stops. */
+    const groups = new Map<string, { heads: Map<string, number[]>; distinct: Set<string>; wait: { m: number; line: number; unit: string; since: number } | null; key: boolean }>();
+    const lineText = (m: number) => {
+      const st = items[m]!.line;
+      const nl = text.indexOf("\n", st);
+      return text.slice(st, nl < 0 ? text.length : nl);
+    };
+    const indentAt = (m: number) => indentOf(/^[ \t]*/u.exec(lineText(m))![0]);
+    /* A run of one marker kind broken by another starts a new group ("**2. フォーマット例**" between two bullet runs), unless its numbers go on. */
+    const groupIds: string[] = [];
+    const lastKind = new Map<number, string>();
+    const lastNum = new Map<string, number>();
+    const segment = new Map<string, number>();
+    for (let m = 0; m < items.length; m++) {
+      const list = lists[m] ?? -1;
+      const lead = /^[ \t]*(?:\*\*|__)?(?:(\d{1,3})|(\S))/u.exec(lineText(m));
+      const num = lead?.[1] === undefined ? undefined : Number(lead[1]);
+      const kindKey = `${list}\u0001${num === undefined ? (lead?.[2] ?? "") : "n"}`;
+      const prev = lastKind.get(list);
+      let sg = segment.get(kindKey) ?? 0;
+      if (prev !== undefined && prev !== kindKey && !(num !== undefined && num === (lastNum.get(kindKey) ?? -2) + 1)) sg++;
+      segment.set(kindKey, sg);
+      if (num !== undefined) lastNum.set(kindKey, num);
+      lastKind.set(list, kindKey);
+      groupIds[m] = `${kindKey}\u0001${sg}`;
+    }
+    const groupOf = (m: number) => {
+      const id = groupIds[m]!;
+      let g = groups.get(id);
+      if (!g) groups.set(id, (g = { heads: new Map(), distinct: new Set(), wait: null, key: false }));
+      return g;
+    };
+    const ends: number[] = [];
+    /* Whether item m heads a sub-list (a category, not a gloss), and the end at which that is known; -1 while the next line may still be an item. */
+    const kidsOf = (m: number): { at: number; kids: boolean } => {
+      const e = ends[m]!;
+      if (e >= n) return { at: n, kids: false };
+      const nx = items[m + 1];
+      if (nx && nx.idx === e + 1) return nx.idx < n ? { at: nx.idx + 1, kids: indentAt(m + 1) > indentAt(m) } : { at: -1, kids: false };
+      let x = e + 1;
+      while (x < n && s[x] !== "\n") x++;
+      return x < n || (final && e + 1 < n) ? { at: Math.min(x + 1, n), kids: false } : final ? { at: n, kids: false } : { at: -1, kids: false };
+    };
     for (const [m, { idx, line }] of items.entries()) {
       let e = idx;
       while (e < n && s[e] !== "\n") e++;
+      ends[m] = e;
       const raw = text.slice(line, e < n ? at[e] : text.length);
       const words = s.slice(idx, e).join("");
       const it = itemKey(words);
@@ -648,6 +708,39 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
           }
           itemHits.set(done, { line: items[a]!.line, unit: k });
         }
+        if (repeat) continue;
+        /* F428: in an enumeration the head is the item: "sein (to be)" then "sein (to exist)", or "gehen – to go" then "gehen – to go on a trip", is one verb twice. */
+        const g = groupOf(m);
+        if (g.key) continue;
+        const h = headOf(words, it);
+        const before = g.heads.get(h) ?? [];
+        let again = false;
+        if (Array.from(h).length > 1 && before.length >= once && !before.some((x) => kidsOf(x).kids)) {
+          const next = kidsOf(m);
+          if (next.at < 0) {
+            itemHold = Math.max(itemHold, text.length - line);
+            continue;
+          }
+          if (!next.kids) {
+            again = true;
+            if (!g.wait) {
+              if (g.distinct.size < ENUMERATION) g.wait = { m, line, unit: h, since: 0 };
+              else if (!itemHits.has(next.at)) itemHits.set(next.at, { line, unit: h });
+              continue;
+            }
+          }
+        }
+        if (!again) {
+          g.heads.set(h, [...before, m]);
+          g.distinct.add(h);
+        }
+        if (g.wait && g.distinct.size >= ENUMERATION) {
+          if (!itemHits.has(done)) itemHits.set(done, { line: g.wait.line, unit: g.wait.unit });
+          g.wait = null;
+        } else if (g.wait && ++g.wait.since >= HEAD_WAIT) {
+          g.wait = null;
+          g.key = true;
+        }
       } else if (k) {
         /* The item still streaming may turn out a copy: its line waits off screen until it ends. */
         let wait = it.marked > 0;
@@ -657,8 +750,28 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
           const xLong = itemQualifies(x);
           wait = copiesOf(it, x, list, xLong) >= once && (xLong || enumerates(list, x));
         }
+        const g = groupOf(m);
+        if (!wait && !g.key) {
+          const cut = HEAD_END.exec(words);
+          if (cut && cut.index > 0) wait = (g.heads.get(headOf(words, it))?.length ?? 0) >= once;
+          else if (!cut) for (const [x, at] of g.heads) if (at.length >= once && x.startsWith(k)) wait = true;
+        }
         if (wait) itemHold = text.length - line;
       }
+    }
+    /* A repeated head waiting for its list's fifth distinct head stays off screen until then, or until the list ends. */
+    const starts = new Set(items.map((x) => x.idx));
+    for (const g of groups.values()) {
+      if (!g.wait || final) continue;
+      let ended = false;
+      for (let p = ends[g.wait.m]! + 1; p < n && !ended; ) {
+        let q = p;
+        while (q < n && s[q] !== "\n") q++;
+        if (q >= n) break;
+        ended = q > p && !starts.has(p);
+        p = q + 1;
+      }
+      if (!ended) itemHold = Math.max(itemHold, text.length - g.wait.line);
     }
   }
   /* A rotation may start inside a word ("he light … ATP. T"): the cut backs up to the word's start. */
@@ -746,11 +859,15 @@ export function requestItems(request: string): number {
   for (const { idx } of items) {
     let e = idx;
     while (e < cps.length && cps[e] !== "\n") e++;
-    const k = itemKey(cps.slice(idx, e).join("")).key;
-    if (!LETTER.test(k)) continue;
-    const c = (counts.get(k) ?? 0) + 1;
-    counts.set(k, c);
-    copies = Math.max(copies, c);
+    const words = cps.slice(idx, e).join("");
+    const it = itemKey(words);
+    if (!LETTER.test(it.key)) continue;
+    /* F428: the answer's rule reads heads, so a head the user listed twice may come twice. */
+    for (const k of new Set([it.key, `\u0001${headOf(words, it)}`])) {
+      const c = (counts.get(k) ?? 0) + 1;
+      counts.set(k, c);
+      copies = Math.max(copies, c);
+    }
   }
   itemsMemo = { request, copies };
   return copies;
