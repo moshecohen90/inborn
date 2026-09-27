@@ -1,3 +1,4 @@
+/* global indexedDB */
 /* Round 110 (F421): the final round-107 guard, live on main's web export, Instant (wllama), fresh chat per trial.
    usage: node guard-trials.mjs <worktree> <port>   (resumes: trials already in the result file are skipped) */
 import { createRequire } from "node:module";
