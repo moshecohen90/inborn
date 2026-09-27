@@ -100,7 +100,7 @@ const FREE: Entitlement = { tier: "free", purchase: null, fromCache: false, grac
 
 export class LicenceManager {
   private readonly listeners = new Set<() => void>();
-  private readonly key: Uint8Array;
+  private key: Uint8Array;
   private cache: EntitlementCache | null = null;
   private unsubscribe: Array<() => void> = [];
   private readonly now: () => number;
@@ -249,6 +249,11 @@ export class LicenceManager {
     await this.persist();
     this.set({ storeReachable: true, entitlement: resolveEntitlement({ fresh: [result.purchase], cache: this.cache, store: p.store, now: this.now() }), purchase: { kind: "done", productId: result.purchase.productId } });
     return result;
+  }
+
+  /** The storage secret was replaced (Delete everything makes a new database key): later saves seal under the new one. */
+  rekey(storageSecretHex: string): void {
+    this.key = deriveCacheKey(storageSecretHex);
   }
 
   /** Emergency wipe hook (§7.5): the sealed cache goes; the store still knows the purchase, so Restore brings it back. */

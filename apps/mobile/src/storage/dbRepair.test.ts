@@ -7,6 +7,7 @@ const source = (name: string) => readFileSync(join(__dirname, name), "utf8");
 const repository = source("sqliteRepository.ts");
 const openBody = repository.slice(repository.indexOf("static async open()"), repository.indexOf("async listChats()"));
 const banners = readFileSync(join(__dirname, "..", "components", "shell", "Banners.tsx"), "utf8");
+const bannerRules = readFileSync(join(__dirname, "..", "components", "shell", "bannerRows.ts"), "utf8");
 const en = JSON.parse(readFileSync(join(__dirname, "..", "..", "..", "..", "packages", "i18n", "locales", "en.json"), "utf8")) as Record<string, string>;
 
 describe("a damaged chat database is repaired, not deleted (spec §5.3, F58)", () => {
@@ -45,9 +46,9 @@ describe("a damaged chat database is repaired, not deleted (spec §5.3, F58)", (
 
   it("the §8.8 strip is where the user finds out, in every shipped language", () => {
     expect(banners).toContain("useRepairOutcome()");
-    expect(banners).toContain('t("state.dbStartedFresh")');
-    expect(banners).toContain('t("state.dbRepaired", { count: repair.lost })');
-    expect(banners).toContain("onPress: dismissRepair");
+    expect(bannerRules).toContain('t("state.dbStartedFresh")');
+    expect(bannerRules).toContain('t("state.dbRepaired", { count: repair.lost })');
+    expect(bannerRules).toContain("onPress: act.dismissRepair");
     expect(en["state.dbRepaired"]).toContain("plural");
   });
 

@@ -72,6 +72,13 @@ export async function readBytes(uri: string): Promise<Uint8Array> {
   return new Uint8Array(await (await blobOf(uri)).arrayBuffer());
 }
 
+/** What the library's copies take in this browser (the phone walks its documents directory). */
+export function storedBytes(): number {
+  let n = 0;
+  for (const f of held.values()) n += f.size;
+  return n;
+}
+
 export function sizeOf(uri: string): number {
   return blobs.get(uri)?.size ?? held.get(uri)?.size ?? 0;
 }

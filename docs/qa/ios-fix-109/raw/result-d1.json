@@ -1,0 +1,178 @@
+{
+  "runId": "d1",
+  "startedAt": "2026-09-27T13:01:17.424Z",
+  "finishedAt": "2026-09-27T13:01:49.023Z",
+  "ok": true,
+  "passed": 23,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "onboarding-welcome appeared"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 162,
+      "detail": "onboarding-continue ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-model appeared"
+    },
+    {
+      "i": 4,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 5,
+      "op": "press",
+      "ok": true,
+      "ms": 181,
+      "detail": "start-chatting ← onPress"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-sealed appeared"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4002,
+      "detail": "4000 ms"
+    },
+    {
+      "i": 8,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "sealed-start ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "onboarding-lock appeared"
+    },
+    {
+      "i": 10,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 11,
+      "op": "press",
+      "ok": true,
+      "ms": 181,
+      "detail": "lock-start ← onPress"
+    },
+    {
+      "i": 12,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 13,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 10934,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2016,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 15,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 43 chars"
+    },
+    {
+      "i": 16,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 17,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 800,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 18,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1016,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 19,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "stop gone"
+    },
+    {
+      "i": 20,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1515,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 21,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "A lighthouse serves as a beacon for navigators at sea, illuminating dark waters and guiding ships to safe shores or harbors.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "A lighthouse serves as a beacon for navigators at sea, illuminating dark waters and guiding ships to safe shores or harbors."
+    },
+    {
+      "i": 22,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 4781,
+      "detail": "D1-first-answer"
+    }
+  ],
+  "errors": []
+}

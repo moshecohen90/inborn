@@ -1,0 +1,31 @@
+== archive <scratch>/build21/Inborn.xcarchive (copied out of <worktree>/apps/mobile/ios/build)
+CFBundleVersion = 21
+CFBundleShortVersionString = 1.0.0
+CFBundleIdentifier = com.inbornapp.mobile
+MinimumOSVersion = 17.0
+appex = AskInborn.appex id com.inbornapp.mobile.share-extension ver 21
+instant.gguf = 532517120 B sha256 bd258782…
+vision-qwen35.gguf = 204987232 B sha256 56e4c6cf…
+tessdata = eng.traineddata heb.traineddata 
+ExpoBattery strings = 3
+signing = Authority=Apple Development: Moshe Cohen (WUCEF6CXDH)
+main.jsbundle = 6556396 B
+app size = 767M
+app.config: version 1.0.0 buildNumber 21 bundleId com.inbornapp.mobile
+extra.commit 586afa95c802 extra.devVariant False
+== qa-bridge gate on the archive
+OK: <scratch>/build21/Inborn.xcarchive/Products/Applications/Inborn.app contains no QA bridge
+gate rc=0
+== shipping-bundles gate on the archive
+  <scratch>/build21/Inborn.xcarchive (given path): OK: <scratch>/build21/Inborn.xcarchive contains no QA bridge
+
+PASS: 1 shipping artifact(s) carry no QA bridge.
+shipping gate rc=0
+== model gate (--models) on the archive
+  <scratch>/build21/Inborn.xcarchive (models): OK instant instant.gguf 532517120 B sha256 matches the catalog
+  <scratch>/build21/Inborn.xcarchive (models): OK vision-qwen35 vision-qwen35.gguf 204987232 B sha256 matches the catalog
+
+PASS: every model the catalog ships is in the build, byte for byte.
+model gate rc=0
+the document index does not reopen: 1
+chat store not opened yet: 1

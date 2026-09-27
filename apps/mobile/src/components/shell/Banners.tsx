@@ -1,7 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "expo-router";
-import { downloadPercent, formatModelBytes } from "@inborn/core";
 
 import { useTheme } from "../../services/theme";
 import { useDeviceState } from "../../device/useDeviceState";
@@ -12,6 +11,7 @@ import { Mono } from "./primitives";
 import { emitShortcut } from "../../lib/shortcuts";
 import { ownsPausedTurn, usePausedTurn } from "../../lib/pausedTurn";
 import { font } from "../../services/type";
+import { bannerRows } from "./bannerRows";
 
 /** §8.8 system-wide states as one strip under the header. Policy comes from useDeviceState(); this is only how it looks. */
 export function Banners() {
@@ -24,47 +24,21 @@ export function Banners() {
   const { active, delivery, switchToInstant, switchBack, continueGeneration } = useAppServices();
   /* The guard's paused flag is app-wide; the partial answer it kept belongs to one chat (QA F28). */
   const pausedHere = ownsPausedTurn(usePausedTurn(), active.id);
-  const rows: { key: string; tone: "amber" | "danger" | "muted"; text: string; action?: { label: string; onPress: () => void }; icon?: string }[] = [];
-
-  const rec = device.recommendation;
-  /* The database was damaged. The app kept the old file and said so, because a silent recovery reads as "my chats are gone". */
-  if (repair)
-    rows.push({
-      key: "repair",
-      tone: "amber",
-      icon: "▲",
-      text: repair.kind === "started-fresh" ? t("state.dbStartedFresh") : t("state.dbRepaired", { count: repair.lost }),
-      action: { label: t("safety.dismiss"), onPress: dismissRepair },
-    });
-  if (rec.kind === "storageFull" || storageFull)
-    rows.push({ key: "storage", tone: "amber", icon: "▲", text: t("state.storageFull"), action: { label: t("state.manageStorage"), onPress: () => router.push("/settings/storage") } });
-  if (device.thermal === "critical" || (rec.kind === "pause" && rec.reason === "thermal"))
-    rows.push({ key: "thermal-critical", tone: "danger", text: t("state.thermalCritical"), action: { label: t("state.continue"), onPress: continueGeneration } });
-  else if (device.thermal === "serious") rows.push({ key: "thermal", tone: "amber", text: t("state.thermalSerious"), action: { label: t("state.switchToInstant"), onPress: switchToInstant } });
-  if (rec.kind === "pause" && rec.reason === "memory") rows.push({ key: "memory", tone: "danger", text: t("state.memoryStopped"), action: { label: t("state.continue"), onPress: continueGeneration } });
-  if (rec.kind === "paused" && pausedHere)
-    rows.push({
-      key: "paused",
-      tone: "muted",
-      text: t("state.pausedInBackground"),
-      action: {
-        label: t("state.continue"),
-        onPress: () => {
-          continueGeneration();
-          emitShortcut("continue");
-        },
+  const rows = bannerRows(
+    { device, storageFull, repair, pausedHere, delivery },
+    {
+      dismissRepair,
+      manageStorage: () => router.push("/settings/storage"),
+      switchToInstant,
+      switchBack,
+      continueGeneration,
+      continuePaused: () => {
+        continueGeneration();
+        emitShortcut("continue");
       },
-    });
-  if (rec.kind === "switchToInstant" && rec.auto && rec.reason === "fit") rows.push({ key: "memory", tone: "muted", text: t("state.fitSwitched"), action: { label: t("state.switchBack"), onPress: switchBack } });
-  else if (rec.kind === "switchToInstant" && rec.auto && rec.reason === "memory") rows.push({ key: "memory", tone: "amber", text: t("state.memorySwitched"), action: { label: t("state.switchBack"), onPress: switchBack } });
-  else if (rec.kind === "switchToInstant" && rec.auto)
-    rows.push({ key: "lowpower", tone: "muted", text: t("state.lowPowerSwitched"), action: { label: t("state.switchBack"), onPress: switchBack } });
-  else if (rec.kind === "switchToInstant" && rec.reason === "battery" && device.battery.level !== null)
-    rows.push({ key: "battery", tone: "muted", text: t("state.batteryOffer", { pct: Math.round(device.battery.level * 100) }), action: { label: t("state.switch"), onPress: switchToInstant } });
-  if (delivery && delivery.status === "delivering")
-    /* Same bytes as the model card below it (F376): reconstructing them from the fraction AppServices already computed keeps this in exact lockstep instead of re-deriving its own rounding. */
-    rows.push({ key: "delivery", tone: "muted", text: t("state.delivering", { name: delivery.name, pct: downloadPercent(delivery.progress * delivery.totalBytes, delivery.totalBytes), size: formatModelBytes(delivery.totalBytes) }) });
-  else if (delivery && delivery.status === "verifying") rows.push({ key: "delivery", tone: "muted", text: t("state.verifying", { name: delivery.name, size: formatModelBytes(delivery.totalBytes) }) });
+    },
+    t,
+  );
 
   if (rows.length === 0) return null;
   return (

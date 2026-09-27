@@ -85,14 +85,24 @@ type PersonaRow = { id: string; name: string; icon: PersonaIcon; system_prompt: 
 type MemoryRow = { id: string; content: string; source_chat_id: string | null; persona_id: string | null; enabled: number; created_at: number };
 type ReportRow = { id: string; reason: ReportReason; note: string; chat_id: string | null; message_id: string | null; message_text: string | null; model_id: string | null; created_at: number };
 
-/** Random 256-bit raw key, generated once and kept in the Keychain / Android Keystore (spec §5.3). */
-export async function databaseKeyHex(): Promise<string> {
-  const existing = await SecureStore.getItemAsync(KEY_ITEM, KEY_OPTIONS);
-  if (existing) return existing;
+let creating: Promise<string> | null = null;
+
+async function createKey(): Promise<string> {
+  /* Read again under the one creation: a caller that found nothing a moment ago may be behind one that just stored a key. */
+  const stored = await SecureStore.getItemAsync(KEY_ITEM, KEY_OPTIONS);
+  if (stored) return stored;
   const bytes = await Crypto.getRandomBytesAsync(32);
   const hex = Array.from(bytes, (b) => b.toString(16).padStart(2, "0")).join("");
   await SecureStore.setItemAsync(KEY_ITEM, hex, KEY_OPTIONS);
   return hex;
+}
+
+/** Random 256-bit raw key, generated once and kept in the Keychain / Android Keystore (spec §5.3). */
+export async function databaseKeyHex(): Promise<string> {
+  const existing = await SecureStore.getItemAsync(KEY_ITEM, KEY_OPTIONS);
+  if (existing) return existing;
+  /* After a wipe every key reader finds nothing at once (boot, licence, Work): two of them minting keys is F419. */
+  return (creating ??= createKey().finally(() => (creating = null)));
 }
 
 const describe = errorChain;

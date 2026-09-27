@@ -1,0 +1,295 @@
+{
+  "runId": "simwipe1",
+  "startedAt": "2026-09-27T12:18:26.919Z",
+  "finishedAt": "2026-09-27T12:19:07.523Z",
+  "ok": true,
+  "passed": 33,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "onboarding-welcome appeared"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 160,
+      "detail": "onboarding-continue ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-model appeared"
+    },
+    {
+      "i": 4,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2002,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 5,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "start-chatting ← onPress"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-sealed appeared"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4015,
+      "detail": "4000 ms"
+    },
+    {
+      "i": 8,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "sealed-start ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-lock appeared"
+    },
+    {
+      "i": 10,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "lock-start ← onPress"
+    },
+    {
+      "i": 11,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 12,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 9600,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2002,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 14,
+      "op": "type",
+      "ok": true,
+      "ms": 165,
+      "detail": "composer-input = 22 chars"
+    },
+    {
+      "i": 15,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 16,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2406,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1011,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 18,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "stop gone"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1502,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 20,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1267,
+      "detail": "R01-before-wipe"
+    },
+    {
+      "i": 21,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 164,
+      "detail": "/settings/storage"
+    },
+    {
+      "i": 22,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "storage appeared"
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 24,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Chats encrypted (SQLCipher) 318 KB",
+        "props": {
+          "value": "318 KB",
+          "label": "Chats",
+          "sub": "encrypted (SQLCipher)",
+          "disabled": false
+        }
+      },
+      "detail": "Chats encrypted (SQLCipher) 318 KB"
+    },
+    {
+      "i": 25,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "storage-delete-all ← onPress"
+    },
+    {
+      "i": 26,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "wipe-sheet appeared"
+    },
+    {
+      "i": 27,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "wipe-step1 ← onPress"
+    },
+    {
+      "i": 28,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "wipe-step2 appeared"
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 517,
+      "detail": "500 ms"
+    },
+    {
+      "i": 30,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "wipe-step2 ← onPress"
+    },
+    {
+      "i": 31,
+      "op": "sleep",
+      "ok": true,
+      "ms": 10000,
+      "detail": "10000 ms"
+    },
+    {
+      "i": 32,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1609,
+      "detail": "sim-after-wipe"
+    }
+  ],
+  "errors": [
+    "console.warn: [wipe-trace] +36253ms rag openSharedDb key 5803",
+    "console.warn: [wipe-trace] +36265ms rag openSharedDb ok 5803",
+    "console.warn: [wipe-trace] +36265ms rag exec \nCREATE TABLE IF NOT EXISTS documents (\n",
+    "console.warn: [wipe-trace] +57016ms wipeAll begin",
+    "console.warn: [wipe-trace] +57019ms wipeAll licence wiped",
+    "console.warn: [wipe-trace] +57022ms wipeAll store closed",
+    "console.warn: [wipe-trace] +57026ms wipe begin SQLite dir: inborn.db,inborn.db-wal,inborn.db-shm",
+    "console.warn: [wipe-trace] +57034ms deleteDatabaseAsync FAILED FunctionCallException: Calling the 'deleteDatabaseAsync' function has failed (at ExpoModulesCore/AsyncFunctionDefinition.swift:123)\n→ Caused by: DeleteDatabaseException: Unable to delete database <sim-container>/Documents/SQLite/inborn.db that is currently open. Close it prior to deletion (at ExpoSQLite/SQLiteModule.swift:512)",
+    "console.warn: [wipe-trace] +57036ms after deleteDatabaseAsync SQLite dir: inborn.db,inborn.db-wal,inborn.db-shm",
+    "console.warn: [wipe-trace] +57045ms wipe deleted prefs.json",
+    "console.warn: [wipe-trace] +57049ms wipe deleted device-prefs.json",
+    "console.warn: [wipe-trace] +57050ms wipe deleted qa",
+    "console.warn: [wipe-trace] +57051ms wipe deleted SQLite",
+    "console.warn: [wipe-trace] +57051ms wipe deleted prefs.bak.json",
+    "console.warn: [wipe-trace] +57051ms wipe deleted documents.json",
+    "console.warn: [wipe-trace] +57053ms wipe deleted com.inbornapp.mobile.qa",
+    "console.warn: [wipe-trace] +57054ms wipe deleted incognito",
+    "console.warn: [wipe-trace] +57054ms wipe end SQLite dir: missing",
+    "console.warn: [wipe-trace] +57054ms wipeAll wipe done",
+    "console.warn: [wipe-trace] +57058ms wipeAll end",
+    "console.warn: [wipe-trace] +57059ms boot effect generation 1",
+    "console.warn: [wipe-trace] +57059ms boot #2 begin",
+    "console.warn: [wipe-trace] +57066ms boot effect generation 0",
+    "console.warn: [wipe-trace] +57066ms boot #3 begin",
+    "console.warn: [wipe-trace] +57069ms boot #2 openPersistentStorage",
+    "console.warn: [wipe-trace] +57069ms SqliteChatRepository.open begin",
+    "console.warn: [wipe-trace] +57070ms boot #3 openPersistentStorage",
+    "console.warn: [wipe-trace] +57070ms SqliteChatRepository.open begin",
+    "console.warn: [wipe-trace] +57075ms databaseKeyHex read none from at next (native) < at anonymous (address at InternalBytecode.js:1:8987)",
+    "console.warn: [wipe-trace] +57075ms databaseKeyHex read none from at next (native) < at anonymous (address at InternalBytecode.js:1:8987)",
+    "console.warn: [wipe-trace] +57076ms databaseKeyHex GENERATED 4f5e",
+    "console.warn: [wipe-trace] +57076ms openKeyed inborn.db key 4f5e begin",
+    "console.warn: [wipe-trace] +57077ms openKeyed inborn.db key 4f5e ok",
+    "console.warn: [wipe-trace] +57079ms databaseKeyHex GENERATED 0ba5",
+    "console.warn: [wipe-trace] +57079ms openKeyed inborn.db key 0ba5 begin",
+    "console.warn: [wipe-trace] +57082ms openKeyed inborn.db key 0ba5 FAILED FunctionCallException: Calling the 'prepareAsync' function has failed (at ExpoModulesCore/AsyncFunctionDefinition.swift:123)\n→ Caused by: SQLiteErrorException: Error code 26: file is not a database (at ExpoSQLite/SQLiteModule.swift:382)",
+    "console.warn: [wipe-trace] +57089ms openKeyed inborn.db key 0ba5 begin",
+    "console.warn: [wipe-trace] +57090ms openKeyed inborn.db key 0ba5 ok",
+    "console.warn: [wipe-trace] +57092ms SqliteChatRepository.open done v5 repaired=no",
+    "console.warn: [wipe-trace] +57092ms boot #2 storage ready",
+    "console.warn: [storage] chat database started-fresh · kept 0 rows · lost 0 · old file inborn.db.corrupt-2026-09-27T12-18-55-816Z",
+    "console.warn: [wipe-trace] +57094ms SqliteChatRepository.open done v5 repaired=started-fresh",
+    "console.warn: [wipe-trace] +57094ms boot #3 storage ready"
+  ]
+}

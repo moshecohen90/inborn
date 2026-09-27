@@ -4,6 +4,7 @@ import { Directory, File, Paths } from "expo-file-system";
 import { keepOnWipe } from "@inborn/core";
 import { DB_NAME } from "./schema";
 import { wipeSecureItems } from "./secureItems";
+import { closeRagStore } from "../documents/db";
 
 export interface WipeOptions {
   /** Also delete model files the user imported or the dev path pushed (Play-delivered packs belong to Play). */
@@ -18,6 +19,8 @@ export interface WipeReport {
 /** Emergency wipe (spec §5.7): encrypted DB, every Keychain item (key, passcode) and every file in the app's documents; no recovery. */
 export async function wipe(opts: WipeOptions): Promise<WipeReport> {
   const report: WipeReport = { deletedFiles: 0, keptModels: 0 };
+  /* The index's own connection to this file: while it is open expo-sqlite refuses the delete below (F419). */
+  await closeRagStore();
   await SQLite.deleteDatabaseAsync(DB_NAME).catch(() => undefined);
   await wipeSecureItems((item) => SecureStore.deleteItemAsync(item, { keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY }));
   for (const dir of [new Directory(Paths.document), new Directory(Paths.cache)]) {

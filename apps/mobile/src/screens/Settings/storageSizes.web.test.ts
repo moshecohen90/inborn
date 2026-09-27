@@ -43,6 +43,18 @@ describe("web storage sizes (F379)", () => {
     expect(en["storage.models.web"]).toMatch(/extensions included/);
   });
 
+  /* F418's web side: a file kept in the documents database is counted under Documents, never under Chats. */
+  it("counts a document the browser keeps under Documents", async () => {
+    const { copyIntoLibrary, registerBlob, storedBytes, whenStored } = await import("../../documents/files");
+    const picked = registerBlob(new Blob([new Uint8Array(1_773)]), "turbine-report.pdf");
+    const kept = copyIntoLibrary(picked, "d1", "turbine-report.pdf");
+    expect(await whenStored(kept)).toBe(true);
+    expect(storedBytes()).toBe(1_773);
+    const sizes = await storageSizes({ indexedDB: globalThis.indexedDB, storage: opfsWith({}) });
+    expect(sizes.documents).toBeGreaterThanOrEqual(1_773);
+    expect(sizes.chats).toBe(0);
+  });
+
   it("counts vectors by their buffer size", () => {
     expect(valueBytes({ v: new Float32Array(1024) })).toBe(1 + 4096);
   });

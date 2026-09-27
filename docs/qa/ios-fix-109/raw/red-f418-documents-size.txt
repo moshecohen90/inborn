@@ -1,0 +1,12 @@
+     × counts the library's copies under Documents, as the Documents screen does (2 documents · 1.98 KB) 10ms
+     × counts a file in a nested folder too 1ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  src/screens/Settings/storageSizes.native.test.ts > phone storage sizes (F418) > counts the library's copies under Documents, as the Documents screen does (2 documents · 1.98 KB)
+AssertionError: expected +0 to be 2026 // Object.is equality
+- Expected
++ Received
+ FAIL  src/screens/Settings/storageSizes.native.test.ts > phone storage sizes (F418) > counts a file in a nested folder too
+AssertionError: expected +0 to be 12026 // Object.is equality
+- Expected
++ Received
+      Tests  2 failed | 1 passed (3)

@@ -1,0 +1,172 @@
+{
+  "runId": "d4",
+  "startedAt": "2026-09-27T13:04:34.040Z",
+  "finishedAt": "2026-09-27T13:04:51.188Z",
+  "ok": false,
+  "passed": 15,
+  "failed": 3,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 157,
+      "detail": "/settings/storage"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "storage appeared"
+    },
+    {
+      "i": 2,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 3,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Chats encrypted (SQLCipher) 3.02 MB",
+        "props": {
+          "value": "3.02 MB",
+          "label": "Chats",
+          "sub": "encrypted (SQLCipher)",
+          "disabled": false
+        }
+      },
+      "detail": "Chats encrypted (SQLCipher) 3.02 MB"
+    },
+    {
+      "i": 4,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Documents 1.98 KB",
+        "props": {
+          "value": "1.98 KB",
+          "label": "Documents",
+          "disabled": false
+        }
+      },
+      "detail": "Documents 1.98 KB"
+    },
+    {
+      "i": 5,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2244,
+      "detail": "W01-before-delete"
+    },
+    {
+      "i": 6,
+      "op": "press",
+      "ok": true,
+      "ms": 152,
+      "detail": "storage-delete-all ← onPress"
+    },
+    {
+      "i": 7,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "wipe-sheet appeared"
+    },
+    {
+      "i": 8,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "value": false,
+          "label": "Also delete downloaded models",
+          "accessibilityLabel": "Also delete downloaded models",
+          "accessibilityRole": "switch",
+          "accessibilityState": {
+            "checked": false,
+            "disabled": false
+          },
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 9,
+      "op": "press",
+      "ok": true,
+      "ms": 163,
+      "detail": "wipe-step1 ← onPress"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "wipe-step2 appeared"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 507,
+      "detail": "500 ms"
+    },
+    {
+      "i": 12,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "wipe-step2 ← onPress"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 10001,
+      "detail": "10000 ms"
+    },
+    {
+      "i": 14,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2248,
+      "detail": "W02-after-delete"
+    },
+    {
+      "i": 15,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 0,
+      "detail": "the QA bridge never got a fiber: the anchor view is not mounted"
+    },
+    {
+      "i": 16,
+      "op": "assertText",
+      "ok": false,
+      "ms": 0,
+      "detail": "the QA bridge never got a fiber: the anchor view is not mounted"
+    },
+    {
+      "i": 17,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 0,
+      "detail": "the QA bridge never got a fiber: the anchor view is not mounted"
+    }
+  ],
+  "errors": [
+    "step 15 (waitFor): the QA bridge never got a fiber: the anchor view is not mounted",
+    "step 16 (assertText): the QA bridge never got a fiber: the anchor view is not mounted",
+    "step 17 (waitFor): the QA bridge never got a fiber: the anchor view is not mounted"
+  ]
+}

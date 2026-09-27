@@ -4,7 +4,7 @@ import { getLocales } from "expo-localization";
 import { i18next, initI18n } from "@inborn/i18n";
 import { deviceNoun } from "../lib/deviceNoun";
 import { forgetPausedChat } from "../lib/pausedTurn";
-import { getLibrary, resetLibrary } from "../documents/library";
+import { getLibrary, resetLibrary, retireLibrary } from "../documents/library";
 import { setClipboardExpiry } from "../lib/clipboard";
 import { accumulate, ChatStore, InMemoryChatRepository, NetworkLog, type Chat, type ChatRepository, type DeliverySource, type SharePayload } from "@inborn/core";
 import { prepareEngine, type Engine } from "../adapters";
@@ -16,7 +16,7 @@ import { getDeviceGuard } from "../device/guard";
 import { openPersistentStorage } from "../storage/persistent";
 import type { PersistenceKind } from "../storage/types";
 import { wipe, type WipeOptions } from "../storage/wipe";
-import { getLicence, wipeLicence } from "../licence";
+import { getLicence, rekeyLicence, wipeLicence } from "../licence";
 import { useAppLock, type AppLock } from "../lock/useAppLock";
 import { isCaptured, onCapturedChange, setSecure } from "../../modules/secure-screen";
 import { meterKind, sample, type MeterKind } from "../proof/meterSource";
@@ -27,6 +27,8 @@ import { defaultPrefs, mergePrefs, type Prefs } from "./prefsTypes";
 import { deletePrefs, readPrefsRaw, writePrefsRaw } from "./prefsStore";
 import { applyTextScale, applyThemeMode } from "./theme";
 import { RETENTION_TICK_MS, runRetention } from "./retention";
+import { createBootGate } from "./bootGate";
+import { getWork } from "../work/store";
 
 /** `key` remounts the chat screen whenever a different conversation is opened. */
 export interface ActiveChat {
@@ -126,6 +128,8 @@ async function boot(prefs: Prefs): Promise<Booted> {
   }
   return { store: new ChatStore(repository), storageKind, engine: getEngine() };
 }
+
+const bootGate = createBootGate<Booted>();
 
 const METER_POLL_MS = 2000;
 const METER_WRITE_MS = 5000;
@@ -266,10 +270,14 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
 
   useEffect(() => {
     let alive = true;
-    boot(prefsRef.current)
+    bootGate
+      .run(() => boot(prefsRef.current))
       .then((b) => {
-        if (alive) setBooted(b);
-        void getLicence();
+        /* A shared boot may be older than this provider: the engine is read now, not when the boot began. */
+        if (alive) setBooted({ ...b, engine: getEngine() });
+        void getLicence()
+          .then(() => rekeyLicence())
+          .catch((e: unknown) => console.warn("[licence] start", e));
       })
       .catch((e: unknown) => console.error("boot failed", e));
     return () => {
@@ -335,8 +343,12 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
     await wipeLicence();
     /* Closed first: expo-sqlite refuses to delete a cached open file, and the next boot would be handed the old handle on the unlinked one (QA F15). */
     await bootedRef.current?.store.close().catch((e: unknown) => console.warn("[storage] close before wipe", e));
+    /* The library's jobs and records go before the files; the index's own connection closes inside wipe() (F419). */
+    await retireLibrary();
     await wipe(opts);
-    if (Platform.OS === "web") resetLibrary();
+    resetLibrary();
+    getWork().reset();
+    bootGate.next();
     await lockRef.current?.refresh();
     deletePrefs();
     const fresh = defaultPrefs(Date.now());

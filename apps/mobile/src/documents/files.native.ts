@@ -2,11 +2,29 @@ import { Directory, File, Paths } from "expo-file-system";
 import { resolveStoredPath, toStoredPath } from "@inborn/core";
 import { fileSha256 } from "../vault/hash";
 
+const DOCUMENTS_DIR = "documents";
+
 /** The app's own copies of imported documents (spec §5.3: "a copy of the document in the app directory"). */
 export function documentsDir(): Directory {
-  const dir = new Directory(Paths.document, "documents");
+  const dir = new Directory(Paths.document, DOCUMENTS_DIR);
   if (!dir.exists) dir.create({ intermediates: true, idempotent: true });
   return dir;
+}
+
+function bytesUnder(dir: Directory): number {
+  let n = 0;
+  for (const entry of dir.list()) n += entry instanceof Directory ? bytesUnder(entry) : (entry.size ?? 0);
+  return n;
+}
+
+/** What the library's copies take on disk; their passages and vectors live in the SQLCipher file, counted with the chats. */
+export function storedBytes(): number {
+  const dir = new Directory(Paths.document, DOCUMENTS_DIR);
+  try {
+    return dir.exists ? bytesUnder(dir) : 0;
+  } catch {
+    return 0;
+  }
 }
 
 /* iOS moves the data container on every update (QA F11): records keep paths relative to the document directory and resolve them here. */
