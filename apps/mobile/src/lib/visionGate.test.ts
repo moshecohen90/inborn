@@ -146,7 +146,7 @@ describe("F343 · a photo nothing here can see is held in the composer, not sent
 
   it("the card has its words in every locale, and none of them is jargon", () => {
     const repo = join(__dirname, "../../../..");
-    const chatKeys = ["holdTitleModel", "companionMissing", "offerCompanion", "packTitle", "altTitle", "download", "useSeer", "switchTo", "switchToCost", "costReady", "costBoth", "costModel", "costPack", "switchReady", "switchBody", "downloadingSeer"];
+    const chatKeys = ["holdTitleModel", "companionMissing", "offerCompanion", "packTitle", "packBody", "altTitle", "download", "switchTo", "switchToCost", "smaller", "switchReady", "switchBody", "switchBodyModel", "switchBodyPack", "downloadingPack", "downloadingSeer"];
     const keys = [
       ...chatKeys.map((k) => `chat.vision.${k}`),
       ...["why", "downloading", "unavailable", "cancel", "timeHint"].map((k) => `extensions.vision.${k}`),
@@ -155,6 +155,7 @@ describe("F343 · a photo nothing here can see is held in the composer, not sent
       "extensions.download",
       "chat.attach.visionMissing",
       "chat.attach.installVision",
+      "extensions.state.installedNoModel",
     ];
     for (const loc of ["en", "de", "fr", "es", "pt-BR", "ja", "ko", "zh-Hant", "pseudo"]) {
       const json = JSON.parse(readFileSync(join(repo, `packages/i18n/locales/${loc}.json`), "utf8")) as Record<string, string>;
@@ -168,10 +169,10 @@ describe("F343 · a photo nothing here can see is held in the composer, not sent
   /* Round 117: "no photo model installed" was false on a phone with Instant's pack while Fast was selected. */
   it("the missing-pack lines name the model and its own pack's size, and say the photo then goes by itself", () => {
     const en = JSON.parse(readFileSync(join(__dirname, "../../../../packages/i18n/locales/en.json"), "utf8")) as Record<string, string>;
-    expect(en["chat.vision.packTitle"]).toBe("{model} can see photos with the photo pack");
-    expect(en["extensions.vision.why"]).toBe("One download of {size}. Then {count, plural, one {this photo sends by itself} other {these photos send by themselves}}.");
+    expect(en["chat.vision.packTitle"]).toBe("{model} needs its photo pack to see photos");
+    expect(en["chat.vision.packBody"]).toBe("One {size} download, then {count, plural, one {this photo sends by itself} other {these photos send by themselves}}.");
     expect(en["chat.attach.visionMissing"]).toBe("{model} looks at photos with its photo pack: one download of {size}.");
-    for (const k of ["extensions.vision.why", "chat.attach.visionMissing"]) expect(en[k]).not.toMatch(/no photo model installed/);
+    for (const k of ["chat.vision.packBody", "chat.attach.visionMissing"]) expect(en[k]).not.toMatch(/no photo model installed/);
   });
 
   it("the card offers one button for every pack state: a pause or a failure is a Download, never a dead end", () => {

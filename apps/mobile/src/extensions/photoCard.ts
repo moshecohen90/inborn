@@ -1,4 +1,4 @@
-import type { PhotoPath, PhotoPlan } from "@inborn/core";
+import { BUNDLED_MANIFEST, findModel, formatModelBytes, type PhotoPath, type PhotoPlan } from "@inborn/core";
 import { extensionPercent, type ExtensionState } from "./state";
 
 type Msg = { key: string; params?: Record<string, unknown> };
@@ -8,10 +8,11 @@ export type PhotoRoute = "own" | "alt";
 export interface PhotoHoldView {
   title: Msg;
   body: Msg;
-  cost: Msg | null;
+  progress: number | null;
   error: string | null;
   primary: { action: "download" | "switch" | "resume" | "retry" | "vault"; label: Msg } | null;
   secondary: Msg | null;
+  caption: Msg | null;
   keepOpen: boolean;
   cancel: Msg;
 }
@@ -20,59 +21,64 @@ export const seerOf = (plan: PhotoPlan): string | null => (plan.kind === "switch
 
 export const activePath = (held: HeldPhoto, route: PhotoRoute): PhotoPath | null => (held.kind === "none" ? null : held.kind === "switch" || route === "alt" ? held.alt : held.path);
 
-export function pathCost(path: PhotoPath, seer: string, size: (bytes: number) => string): Msg {
+const modelBytes = (id: string): number => findModel(BUNDLED_MANIFEST, id)?.bytes ?? 0;
+
+/** The part in the whole's unit, so the line reads "53 of 668 MB". */
+export function partOf(have: number, total: number): { have: string; total: string } {
+  const unit = total >= 1e9 ? 1e9 : total >= 1e6 ? 1e6 : total >= 1e3 ? 1e3 : 1;
+  const digits = total >= 1e9 && total < 10e9 ? 2 : 0;
+  return { have: (Math.min(Math.max(have, 0), total) / unit).toFixed(digits), total: formatModelBytes(total) };
+}
+
+export function switchLabel(path: PhotoPath, seer: string, size: (bytes: number) => string): Msg {
+  return path.missing.length ? { key: "chat.vision.switchToCost", params: { seer, size: size(path.bytes) } } : { key: "chat.vision.switchTo", params: { seer } };
+}
+
+function switchBody(path: PhotoPath, seer: string, count: number, size: (bytes: number) => string): Msg {
   const model = path.missing.find((p) => p.kind === "model");
   const pack = path.missing.find((p) => p.kind === "pack");
-  if (model && pack) return { key: "chat.vision.costBoth", params: { seer, modelSize: size(model.bytes), packSize: size(pack.bytes), total: size(path.bytes) } };
-  if (model) return { key: "chat.vision.costModel", params: { seer, modelSize: size(model.bytes) } };
-  if (pack) return { key: "chat.vision.costPack", params: { seer, packSize: size(pack.bytes) } };
-  return { key: "chat.vision.costReady", params: { seer } };
+  if (model && pack) return { key: "chat.vision.switchBody", params: { seer, count, modelSize: size(model.bytes), packSize: size(pack.bytes) } };
+  if (model) return { key: "chat.vision.switchBodyModel", params: { seer, count, modelSize: size(model.bytes) } };
+  if (pack) return { key: "chat.vision.switchBodyPack", params: { seer, count, packSize: size(pack.bytes) } };
+  return { key: "chat.vision.switchReady", params: { seer, count } };
 }
 
 export function photoHoldView(held: HeldPhoto, route: PhotoRoute, state: ExtensionState | null, { count, model, seer, size }: { count: number; model: string; seer: string; size: (bytes: number) => string }): PhotoHoldView {
   const cancel = { key: "extensions.vision.cancel", params: { count } };
-  const base = { cost: null, error: null, primary: null, secondary: null, keepOpen: false, cancel };
+  const base = { progress: null, error: null, primary: null, secondary: null, caption: null, keepOpen: false, cancel };
   if (held.kind === "none") return { ...base, title: { key: "chat.vision.holdTitleModel", params: { model } }, body: { key: "chat.attach.noVisionHere", params: { model } } };
   const path = activePath(held, route)!;
   const onAlt = held.kind === "switch" || route === "alt";
   const title = held.kind === "switch" ? { key: "chat.vision.holdTitleModel", params: { model } } : onAlt ? { key: "chat.vision.altTitle", params: { seer } } : { key: "chat.vision.packTitle", params: { model } };
-  const pct = { pct: state ? extensionPercent(state) : 0 };
-  const running = onAlt ? { key: "chat.vision.downloadingSeer", params: { seer, ...pct } } : { key: "extensions.vision.downloading", params: pct };
+  const alt = held.kind === "pack" && !onAlt ? held.alt : null;
+  const selected = held.kind === "pack" ? held.path.model : "";
+  /* A smaller model is a cheaper way out, not a better one, so the card says what it costs in accuracy. */
+  const wayOut = alt ? { secondary: switchLabel(alt, seer, size), caption: modelBytes(alt.model) < modelBytes(selected) ? { key: "chat.vision.smaller" } : null } : {};
+  const running = (have: number): Msg => (onAlt ? { key: "chat.vision.downloadingSeer", params: { seer, ...partOf(have, path.bytes) } } : { key: "chat.vision.downloadingPack", params: partOf(have, path.bytes) });
+  const retry = { action: "retry" as const, label: { key: "extensions.retry" } };
   const s = state ?? { kind: "missing" as const, bytes: path.bytes };
   switch (s.kind) {
     case "downloading":
-      return { ...base, title, keepOpen: !!s.keepOpen, body: running };
+      return { ...base, title, keepOpen: !!s.keepOpen, body: running(s.bytes), progress: extensionPercent(s) / 100 };
     case "ready":
-      return { ...base, title, body: { ...running, params: { ...running.params, pct: 100 } } };
+      return { ...base, title, body: running(path.bytes), progress: 1 };
     case "paused":
-      return { ...base, title, body: running, primary: { action: "resume", label: { key: "chat.vision.download", params: { size: size(path.bytes - s.bytes) } } } };
+      return { ...base, title, body: running(s.bytes), progress: extensionPercent(s) / 100, primary: { action: "resume", label: { key: "chat.vision.download", params: { size: size(path.bytes - s.bytes) } } } };
     case "stuck":
       return { ...base, title, body: { key: "extensions.stuck" }, primary: { action: "vault", label: { key: "voice.openVault" } } };
     case "unavailable":
-      return { ...base, title, body: { key: "extensions.vision.unavailable", params: { count } }, secondary: held.kind === "pack" && !onAlt && held.alt ? { key: "chat.vision.useSeer", params: { seer } } : null, cost: held.kind === "pack" && !onAlt && held.alt ? pathCost(held.alt, seer, size) : null };
+      return { ...base, ...wayOut, title, body: { key: "extensions.vision.unavailable", params: { count } } };
     default:
       break;
   }
   const error = s.kind === "failed" ? s.error : null;
-  if (onAlt) {
-    const ready = path.missing.length === 0;
-    return {
-      ...base,
-      title,
-      error,
-      body: { key: ready ? "chat.vision.switchReady" : "chat.vision.switchBody", params: { seer, count } },
-      cost: ready ? null : pathCost(path, seer, size),
-      primary: error ? { action: "retry", label: { key: "extensions.retry" } } : { action: "switch", label: ready ? { key: "chat.vision.switchTo", params: { seer } } : { key: "chat.vision.switchToCost", params: { seer, size: size(path.bytes) } } },
-    };
-  }
-  const alt = held.kind === "pack" ? held.alt : null;
+  if (onAlt) return { ...base, title, error, body: switchBody(path, seer, count, size), primary: error ? retry : { action: "switch", label: switchLabel(path, seer, size) } };
   return {
     ...base,
+    ...wayOut,
     title,
     error,
-    body: { key: "extensions.vision.why", params: { count, size: size(path.bytes) } },
-    primary: error ? { action: "retry", label: { key: "extensions.retry" } } : { action: "download", label: { key: "chat.vision.download", params: { size: size(path.bytes) } } },
-    secondary: alt ? { key: "chat.vision.useSeer", params: { seer } } : null,
-    cost: alt ? pathCost(alt, seer, size) : null,
+    body: { key: "chat.vision.packBody", params: { count, size: size(path.bytes) } },
+    primary: error ? retry : { action: "download", label: { key: "chat.vision.download", params: { size: size(path.bytes) } } },
   };
 }

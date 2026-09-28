@@ -1,32 +1,32 @@
 {
   "A": {
-    "engine": "[inborn] wllama loaded model FAST (fast) from opfs://models/fast.gguf in 1909 ms",
+    "engine": "[inborn] wllama loaded model FAST (fast) from opfs://models/fast.gguf in 2175 ms",
     "cards": 1,
-    "freshCard": "FAST can see photos with the photo packOne download of 668 MB. Then this photo sends by itself.Download 668 MBRemove the photo",
+    "freshCard": "FAST needs its photo pack to see photosOne 668 MB download, then this photo sends by itself.Download 668 MBRemove the photo",
     "cards2": 1,
-    "altCard": "FAST can see photos with the photo packOne download of 668 MB. Then this photo sends by itself.Download 668 MBRemove the photoSend with INSTANT insteadINSTANT 533 MB: one download.",
-    "downloading": "FAST can see photos with the photo packDownloading the photo pack… 8%. Your message is sent when it's ready.Remove the photo",
-    "packMs": 17405,
-    "answer": "The red circle is an oval or rounded square. The word \"CAT\" is written below it.",
-    "totalMs": 131982,
+    "altCard": "FAST needs its photo pack to see photosOne 668 MB download, then this photo sends by itself.Download 668 MBSwitch to INSTANT · 533 MBRemove the photoSmaller, but less accurate with photos.",
+    "downloading": "FAST needs its photo pack to see photosDownloading the photo pack: 57 of 668 MB.Remove the photo",
+    "packMs": 17915,
+    "answer": "The image shows a red circle with the word \"CAT\" written underneath in black letters. The shape is circular.",
+    "totalMs": 128035,
     "projector": [
-      "info: [wllama] loaded fast + projector in 2978 ms · threads=2 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
-      "info: [wllama] photo turn · photos=1 ttft=108632 ms total=111422 ms tokens=20"
+      "info: [wllama] loaded fast + projector in 2942 ms · threads=2 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+      "info: [wllama] photo turn · photos=1 ttft=103926 ms total=107140 ms tokens=23"
     ],
-    "errors": [],
-    "vault": "EXTENSIONSEach one downloads the first time you need it: a photo, a file to search. Your first visit fetches the text model alone.Document indexLets Inborn search your documents on this device.Not downloaded · 468 MBDownload · 468 MBPhoto pack for InstantLets Instant look at your photos on this device.Installed · 205 MBRemovePhoto pack for FastLets Fast look at your photos on this device.Installed · 668 MBRemove"
+    "vault": "EXTENSIONSEach one downloads the first time you need it: a photo, a file to search. Your first visit fetches the text model alone.Document indexLets Inborn search your documents on this device.Not downloaded · 468 MBDownload · 468 MBPhoto pack for InstantLets Instant look at your photos on this device.Installed · 205 MB · Instant not downloadedRemovePhoto pack for FastLets Fast look at your photos on this device.Installed · 668 MBRemove",
+    "errors": []
   },
   "B": {
-    "engine": "[inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 1356 ms",
+    "engine": "[inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 1292 ms",
     "card": false,
-    "answer": "The shape is a red circle (Korea), it's a circle, and the text below reads 'T'.",
+    "answer": "The shape in the photo is a circle, and the word under it is \"G1\".",
     "errors": []
   },
   "C": {
-    "engine": "[inborn] wllama loaded model FAST (fast) from opfs://models/fast.gguf in 1919 ms",
-    "downloading": "Sending with INSTANT insteadDownloading INSTANT… 10%. Your message is sent when it's ready.Remove the photo",
-    "engineAfter": "[inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 1237 ms",
-    "answer": "The red circle above the black text resembles a flag element or abstract design; the text beneath appears to be \"T\" in Japanese. The request specifies not generating graphic violence content, so I will focus on identifying visual components without elaborating on harm or self-harm scenarios.",
+    "engine": "[inborn] wllama loaded model FAST (fast) from opfs://models/fast.gguf in 1831 ms",
+    "downloading": "Switching to INSTANTDownloading INSTANT: 57 of 533 MB.Remove the photo",
+    "engineAfter": "[inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 1204 ms",
+    "answer": "The red circle above the Japanese text on a white background represents the traditional Japanese flag. The black characters below spell out \"Japan\" (in kanji).",
     "errors": []
   },
   "D": {
@@ -168,5 +168,11 @@
       },
       "errors": []
     }
+  },
+  "E": {
+    "engine": "[inborn] wllama loaded model FAST (fast) from opfs://models/fast.gguf in 1852 ms",
+    "narrow": "FAST needs its photo pack to see photosOne 668 MB download, then this photo sends by itself.Download 668 MBSwitch to INSTANT · 533 MBRemove the photoSmaller, but less accurate with photos.",
+    "dark": "FAST needs its photo pack to see photosOne 668 MB download, then this photo sends by itself.Download 668 MBSwitch to INSTANT · 533 MBRemove the photoSmaller, but less accurate with photos.",
+    "errors": []
   }
 }
