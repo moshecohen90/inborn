@@ -19,6 +19,8 @@ import {
   crisisResources,
   detectCrisis,
   continuationSeparator,
+  continueRequest,
+  prefillText,
   describeLoopCut,
   describeLoopRetry,
   guardLoops,
@@ -66,6 +68,7 @@ import {
   type StoppedBy,
   type Usage,
   reportText,
+  type ContinueFrom,
   type Delta,
   type GenOpts,
   type LoopHit,
@@ -453,7 +456,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
    * One generation: streams into `targetId` (a fresh pending row, or an existing partial when continuing).
    * `history` is the wire conversation to send; `prefix` is content already on the target row.
    */
-  const generate = async (chatIdNow: string, history: Message[], targetId: string, prefix: string, existingMessageId?: string) => {
+  const generate = async (chatIdNow: string, history: Message[], targetId: string, prefix: string, existingMessageId?: string, continueFrom?: ContinueFrom) => {
     const s = session.current;
     if (!s) return;
     setBusy(true);
@@ -461,13 +464,14 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     abort.current = ac;
     stopReason.current = null;
     let reply = "";
-    /* F390: Continue joins the rest to the words on screen with the separator the script uses, decided once on the first text. */
-    let joint: string | null = prefix ? null : "";
+    /* F390: Continue joins the rest to the words on screen with the separator the script uses, decided once on the first text;
+       a resumed turn (F443) needs none, the engine wrote the rest of the same text. */
+    let joint: string | null = prefix && !continueFrom ? null : "";
     const shown = (): string => {
       if (joint === null && reply) joint = continuationSeparator(prefix, reply);
       return prefix + (joint ?? "") + reply;
     };
-    let reasoning = "";
+    let reasoning = continueFrom?.reasoning ?? "";
     let usage: Usage | undefined;
     let tokens = 0;
     let firstAt = 0;
@@ -550,7 +554,9 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         use: detectUse({ text: lastUser, personaId: persona.id, personaIcon: persona.icon, hasDocuments: docs.documents.length > 0, dictated: lastDictated }),
         continuing: !!existingMessageId,
       });
-      const system = turnSystemPrompt({ familySafe, tier: modelTier, photos: history.some((m) => m.images?.length), persona, chatPrompt: settings.systemPrompt, memory: facts, languageHint: languageHint(lastUser), length: length.instruction });
+      /* F443: a resumed turn keeps the stopped turn's system prompt, so the model goes on under the same instructions and the engine's cache still matches. */
+      const lengthLine = continueFrom ? planAnswerLength({ text: lastUser, use: detectUse({ text: lastUser, personaId: persona.id, personaIcon: persona.icon, hasDocuments: docs.documents.length > 0, dictated: lastDictated }), continuing: false }).instruction : length.instruction;
+      const system = turnSystemPrompt({ familySafe, tier: modelTier, photos: history.some((m) => m.images?.length), persona, chatPrompt: settings.systemPrompt, memory: facts, languageHint: languageHint(lastUser), length: lengthLine });
       const prompt = buildPrompt({ system, summary: chat?.summary, summaryUpTo: chat?.summaryUpTo, messages: history.map((m, i) => ({ id: String(i), ...m })), nCtx, scale: tokenScale });
       let messages = prompt.messages;
       /* Attached documents (§7.3, §8.5): retrieve, fence, cite. */
@@ -576,11 +582,12 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           return;
         }
       }
-      const opts = { reasoning: thinkingAvailable && settings.thinking, maxTokens: length.maxTokens, ...(persona.temperature !== undefined ? { temperature: persona.temperature } : {}) };
+      const opts: GenOpts = { reasoning: thinkingAvailable && settings.thinking, maxTokens: length.maxTokens, ...(persona.temperature !== undefined ? { temperature: persona.temperature } : {}) };
       /* Photos in the prompt (§7.1): a projector fits one model's embedding width (QA F36), so a model without its own
          pack would answer as if the picture were not there. Never drop a picture without saying so. */
       if (messages.some((m) => m.images?.length)) {
-        const onLastUserMessage = lastUserAt >= 0 && !!history[lastUserAt]!.images?.length;
+        /* A resumed Continue's last user turn is the photo question itself; Continue still drops a picture it cannot send rather than replacing the answer with a refusal. */
+        const onLastUserMessage = !existingMessageId && lastUserAt >= 0 && !!history[lastUserAt]!.images?.length;
         let scanned = false;
         let attached = false;
         const plan = () =>
@@ -635,7 +642,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const base = existingMessageId && messages.at(-1)?.content === CONTINUE_PROMPT ? messages.slice(0, -2) : messages;
       const retry = () => run([...base, { role: "assistant", content: shown() }, { role: "user", content: CONTINUE_PROMPT }], { ...opts, ...LOOP_RETRY });
       const onRetry = (kept: string, hit: LoopHit) => console.log(describeLoopRetry(kept, hit));
-      for await (const d of guardLoops(run(messages, opts), stopLoop, { request: asked, retry, onRetry, prefix, instruction: CONTINUE_PROMPT })) {
+      /* F443: the resumed turn opens with the text on screen; the retry above stays the round-111 user turn. */
+      for await (const d of guardLoops(run(messages, continueFrom ? { ...opts, continueFrom } : opts), stopLoop, { request: asked, retry, onRetry, prefix, instruction: CONTINUE_PROMPT })) {
         /* F431: the guard dropped a comma the seam left dangling ("capitals," + ". These"). */
         if (d.prefix !== undefined) prefix = d.prefix;
         if (d.trim !== undefined) {
@@ -694,7 +702,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const stopped = !familySafeReplaced && (ac.signal.aborted || guardStopped || loopCut);
       const stoppedBy: StoppedBy | undefined = !stopped ? undefined : loopCut ? "loop" : reason === "system" || guardStopped ? "system" : "user";
       const safety: SafetyMark | undefined = familySafeReplaced ? "family-safe" : undefined;
-      if (usage && !citations) setTokenScale((prev) => calibrate(prompt.used, usage!.promptTokens, prev));
+      /* A resumed turn's prompt tokens include the prefill, which the estimate does not count. */
+      if (usage && !citations && !continueFrom) setTokenScale((prev) => calibrate(prompt.used, usage!.promptTokens, prev));
       if (citations && isNotFoundReply(reply)) {
         reply = t("documents.notFound");
         citations = undefined;
@@ -884,9 +893,12 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     if (!id || busy) return;
     const at = rowsRef.current.findIndex((r) => r.id === row.id);
     const before = wire(rowsRef.current.slice(0, at)).map(toMessage);
-    const history: Message[] = [...before, { role: "assistant", content: row.content }, { role: "user", content: CONTINUE_PROMPT }];
+    /* F443: an engine that resumes the turn goes on from the words on screen, with no "Continue" user turn; any other gets the round-111 request. */
+    const resumes = engine.capabilities().continuation === true;
+    const text = resumes ? prefillText(row.content) : row.content;
+    const { history, continueFrom } = continueRequest(before, { content: text, ...(row.reasoning ? { reasoning: row.reasoning } : {}) }, resumes);
     setRows((all) => all.map((x) => (x.id === row.id ? { ...x, streaming: true, stopped: false, loop: false } : x)));
-    await generate(id, history, row.id, row.content, row.id);
+    await generate(id, history, row.id, text, row.id, continueFrom);
   };
 
   const summarizeAndContinue = async () => {

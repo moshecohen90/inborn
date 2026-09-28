@@ -1,0 +1,23 @@
+import { Wllama, LoggerWithoutDebug } from "/w/index.js";
+window.__log = [];
+const log = (...a) => window.__log.push(a.join(" "));
+window.__ready = (async () => {
+  const w = new Wllama({ default: "/w/wasm/wllama.wasm" }, { logger: LoggerWithoutDebug, allowOffline: true });
+  w.setCompat(null);
+  const t0 = performance.now();
+  await w.loadModelFromUrl({ url: "/models/fast.gguf", mmprojUrl: "/models/mmproj.gguf" }, { n_ctx: 4096, n_threads: 2, jinja: true, n_gpu_layers: 0, image_max_tokens: 512 });
+  log("loaded ms", Math.round(performance.now() - t0), "image", w.supportInputModality("image"));
+  window.__w = w; return true;
+})().catch(e => { log("load error", String(e)); return false; });
+window.__png = async () => { const c = document.createElement("canvas"); c.width = 320; c.height = 320; const x = c.getContext("2d"); x.fillStyle = "#fff"; x.fillRect(0,0,320,320); x.fillStyle = "#d22"; x.beginPath(); x.arc(160,120,70,0,Math.PI*2); x.fill(); x.fillStyle = "#000"; x.font = "bold 64px sans-serif"; x.textAlign = "center"; x.fillText("CAT",160,290); const b = await new Promise(r => c.toBlob(r, "image/png")); return await b.arrayBuffer(); };
+window.__run = async (req, withImage) => {
+  const w = window.__w; const chunks = []; let text = "", reasoning = "", timings = null;
+  const r = { ...req, messages: req.messages.map(m => m.image ? { role: "user", content: [{ type: "image", data: window.__img }, { type: "text", text: m.content }] } : m) };
+  try {
+    for await (const c of await w.createChatCompletion({ ...r, stream: true })) {
+      const d = c.choices[0]?.delta ?? {}; if (chunks.length < 6) chunks.push(JSON.stringify(d).slice(0, 200));
+      if (d.content) text += d.content; if (d.reasoning_content) reasoning += d.reasoning_content; if (c.timings) timings = c.timings;
+    }
+  } catch (e) { return { error: String(e?.message ?? e) }; }
+  return { text, reasoning, first: chunks, timings };
+};

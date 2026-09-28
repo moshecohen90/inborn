@@ -1,0 +1,105 @@
+Round 121 tests run on the unchanged tree (main 91e91773 plus only the two new test files), 28.9.2026 14:3x.
+
+=== packages/core: npx vitest run test/fixes-r121.test.ts
+ ❯ test/fixes-r121.test.ts:77:20
+     75|
+     76|   it("stopped while thinking: the reasoning stays open and goes on", (…
+     77|     const r = core.continuationPrompt(HISTORY + GEN_ON, GEN_ON, { text…
+       |                    ^
+     78|     expect(r.prompt).toBe(`${HISTORY}<|im_start|>assistant\n<think>\nT…
+     79|     expect(r.prompt.includes("</think>")).toBe(false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/10]⎯
+
+ FAIL  test/fixes-r121.test.ts > F443 · the prefill string (the raw-prompt engine, llama.rn) > a template without think tags (Phi-4-mini): the generation prompt, then the text
+TypeError: continuationPrompt is not a function
+ ❯ test/fixes-r121.test.ts:84:20
+     82|   it("a template without think tags (Phi-4-mini): the generation promp…
+     83|     const gen = "<|assistant|>";
+     84|     const r = core.continuationPrompt(`<|user|>Explain tacking.<|end|>…
+       |                    ^
+     85|     expect(r.prompt).toBe(`<|user|>Explain tacking.<|end|><|assistant|…
+     86|     expect(r.generation).toBe(gen);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/10]⎯
+
+ FAIL  test/fixes-r121.test.ts > F443 · the prefill string (the raw-prompt engine, llama.rn) > a trailing space is not sent
+TypeError: continuationPrompt is not a function
+ ❯ test/fixes-r121.test.ts:91:20
+     89|
+     90|   it("a trailing space is not sent", () => {
+     91|     const r = core.continuationPrompt(HISTORY + GEN_OFF, GEN_OFF, { te…
+       |                    ^
+     92|     expect(r.prompt.endsWith("into the wind.")).toBe(true);
+     93|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/10]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  10 failed | 8 passed (18)
+   Start at  14:34:14
+   Duration  559ms (transform 71%, import 21%, tests 8%)
+
+
+=== apps/mobile: npx vitest run src/adapters/continuation.test.ts
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  src/adapters/continuation.test.ts > F443 · llama.rn: the rendered chat plus the prefill as a raw prompt > renders the history with the generation prompt, appends the prefill, and sends no messages
+TypeError: Cannot read properties of undefined (reading 'params')
+ ❯ src/adapters/continuation.test.ts:128:29
+    126|     Object.assign(lm as object, { ctx, session });
+    127|     const out = await collect(lm.generate(session, HISTORY, { reasonin…
+    128|     expect(calls.formatted!.params).toMatchObject({ jinja: true, add_g…
+       |                             ^
+    129|     expect(said(calls.formatted!.messages as { content?: unknown }[]))…
+    130|     const p = calls.completion!;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  src/adapters/continuation.test.ts > F443 · llama.rn: the rendered chat plus the prefill as a raw prompt > thinking on: the reasoning is closed in the prefill and not streamed again
+AssertionError: expected undefined to be '<|im_start|>system\nYou are Inborn.<|…' // Object.is equality
+
+- Expected:
+"<|im_start|>system
+You are Inborn.<|im_end|>
+<|im_start|>user
+Explain in 8 sentences how a sailing ship tacks against the wind.<|im_end|>
+<|im_start|>assistant
+<think>
+Tacking.
+</think>
+
+To tack, the ship turns its bow through the wind. From this point, the captain ste"
+
++ Received:
+undefined
+
+ ❯ src/adapters/continuation.test.ts:147:38
+    145|     Object.assign(lm as object, { ctx, session });
+    146|     const out = await collect(lm.generate(session, HISTORY, { reasonin…
+    147|     expect(calls.completion!.prompt).toBe(`${RENDERED_HISTORY}<|im_sta…
+       |                                      ^
+    148|     expect(out.reasoning).toBe("");
+    149|     expect(out.text).toBe("ers");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  src/adapters/continuation.test.ts > F443 · llama.rn: the rendered chat plus the prefill as a raw prompt > a photo turn keeps its picture: the image part goes to the formatter and its path to the completion
+TypeError: Cannot read properties of undefined (reading 'messages')
+ ❯ src/adapters/continuation.test.ts:159:36
+    157|     const photo: Message = { role: "user", content: "What is in this p…
+    158|     const out = await collect(lm.generate(session, [HISTORY[0]!, photo…
+    159|     const user = (calls.formatted!.messages as { content: { type: stri…
+       |                                    ^
+    160|     expect(user.content.map((p) => p.type)).toEqual(["text", "image_ur…
+    161|     expect(calls.completion!.media_paths).toEqual(["/data/photo.jpg"]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed | 2 passed (8)
+   Start at  14:34:15
+   Duration  613ms (transform 67%, import 18%, tests 14%)
+

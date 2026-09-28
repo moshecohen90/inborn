@@ -1,0 +1,25 @@
+import { createServer } from "node:http";
+import { createReadStream, statSync, readFileSync } from "node:fs";
+import path from "node:path";
+const W = "/Users/moshecohen/dev/inborn/node_modules/.pnpm/@wllama+wllama@3.6.1/node_modules/@wllama/wllama/esm";
+const here = path.dirname(new URL(import.meta.url).pathname);
+const models = { "/models/fast.gguf": "/Users/moshecohen/dev/inborn/.models/Qwen3.5-2B-Q4_K_M.gguf", "/models/mmproj.gguf": "/Users/moshecohen/dev/inborn/.models/mmproj-Qwen3.5-2B-F16.gguf" };
+const port = Number(process.env.PORT ?? 8931);
+createServer((req, res) => {
+  const u = new URL(req.url, "http://x");
+  res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
+  res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
+  let file = null, type = "application/octet-stream";
+  if (u.pathname === "/" || u.pathname === "/probe.html") { file = path.join(here, "probe.html"); type = "text/html"; }
+  else if (u.pathname === "/probe.js") { file = path.join(here, "probe.js"); type = "text/javascript"; }
+  else if (u.pathname === "/probe-vision.js") { file = path.join(here, "probe-vision.js"); type = "text/javascript"; }
+  else if (u.pathname === "/probe-vision.html") { file = path.join(here, "probe-vision.html"); type = "text/html"; }
+  else if (u.pathname.startsWith("/w/")) { file = path.join(W, u.pathname.slice(3)); type = file.endsWith(".js") ? "text/javascript" : file.endsWith(".wasm") ? "application/wasm" : type; }
+  else if (models[u.pathname]) file = models[u.pathname];
+  if (!file) { res.writeHead(404); return res.end(); }
+  let st; try { st = statSync(file); } catch { res.writeHead(404); return res.end(); }
+  const range = /bytes=(\d+)-(\d*)/.exec(req.headers.range ?? "");
+  res.setHeader("Accept-Ranges", "bytes"); res.setHeader("Content-Type", type);
+  if (range) { const s = +range[1], e = range[2] ? +range[2] : st.size - 1; res.writeHead(206, { "Content-Range": `bytes ${s}-${e}/${st.size}`, "Content-Length": e - s + 1 }); if (req.method === "HEAD") return res.end(); return createReadStream(file, { start: s, end: e }).pipe(res); }
+  res.writeHead(200, { "Content-Length": st.size }); if (req.method === "HEAD") return res.end(); createReadStream(file).pipe(res);
+}).listen(port, "127.0.0.1", () => console.log("probe server on", port, "pid", process.pid));
