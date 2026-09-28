@@ -7,6 +7,10 @@ playwright-core in the headless Chromium shell, 1180×820, a fresh browser profi
 `scripts/fixtures/photo/red-circle-cat.png`; the question is "What colour is the shape in this photo, what shape is
 it, and what word is written under it?". Results: `web-check.json`.
 
+Tapping "Photo" closes the Attach sheet before the picker opens. On this layout the sheet fades out: opacity 1 at
+the tap, 0.48 at 210 ms, gone at 299 ms. The card shots wait for the sheet to be gone, and a first run that did not
+wait caught the card behind the fading sheet.
+
 | File | What it shows |
 |---|---|
 | `01-fast-fresh-card.png` | A: fresh browser, Fast downloaded, photo sent. One card: "FAST can see photos with the photo pack", "One download of 668 MB. Then this photo sends by itself.", "Download 668 MB", "Remove the photo". No 205 MB, and no Instant way out (Instant and its pack, 738 MB, cost more than 668 MB). |
