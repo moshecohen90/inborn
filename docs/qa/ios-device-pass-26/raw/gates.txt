@@ -1,0 +1,37 @@
+23:45:47 install start
+23:45:58 install rc=0
+23:45:58 typecheck start
+23:46:06 typecheck rc=0
+23:46:06 lint start
+23:46:12 lint rc=0
+23:46:12 test start
+23:46:37 test rc=1
+GATES-DONE
+
+first test run: 1 failure, a timeout under load:
+  packages/core test:  ❯ test/fixes-r114.test.ts (27 tests | 1 failed) 9511ms
+  packages/core test:      × 25 distinct verbs, each with a gloss, are not cut 6040ms
+  packages/core test: Error: Test timed out in 5000ms.
+  packages/core test:  Test Files  1 failed | 93 passed | 3 skipped (97)
+  packages/core test:       Tests  1 failed | 1143 passed | 4 skipped (1148)
+
+rerun of that file alone, then the full test run again:
+23:46:51 file rerun start
+23:46:57 file rerun rc=0
+load at the full rerun: 19.16 11.48 7.69
+23:47:02 full test rerun start
+23:47:28 full test rerun rc=0
+  file rerun: Tests  27 passed (27)
+
+PASS: all fields within limits.
+PASS: no personal identifier in the history of HEAD
+apps/desktop test: # fail 0
+apps/desktop test: # pass 4
+apps/desktop test: # tests 4
+apps/mobile test:       Tests  1180 passed (1180)
+packages/core test:       Tests  1144 passed | 4 skipped (1148)
+packages/i18n test:       Tests  24 passed (24)
+packages/ui test:       Tests  23 passed (23)
+
+pnpm install --frozen-lockfile: Lockfile is up to date, resolution step is skipped Done in 10.1s using pnpm v10.34.5 
+load average before the gates: 17.98 8.69 6.40

@@ -1,0 +1,1072 @@
+{
+  "runId": "l07-list25-verbs-de-1",
+  "startedAt": "2026-09-27T21:09:13.233Z",
+  "finishedAt": "2026-09-27T21:09:54.819Z",
+  "ok": false,
+  "passed": 104,
+  "failed": 1,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 156,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1509,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 7,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 58 chars"
+    },
+    {
+      "i": 8,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 517,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 10,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Here are 25 German verbs with thei ▍",
+        "props": {
+          "source": "Here are 25 German verbs with thei",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with thei ▍"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 724,
+      "detail": "700 ms"
+    },
+    {
+      "i": 12,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, wa ▍",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, wa",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, wa ▍"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 717,
+      "detail": "700 ms"
+    },
+    {
+      "i": 14,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jede ▍",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jede",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 15,
+      "op": "sleep",
+      "ok": true,
+      "ms": 708,
+      "detail": "700 ms"
+    },
+    {
+      "i": 16,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hi ▍",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHi",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 702,
+      "detail": "700 ms"
+    },
+    {
+      "i": 18,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be ▍",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4 ▍",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. **bequem ▍",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 702,
+      "detail": "700 ms"
+    },
+    {
+      "i": 24,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself 9 ▍",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n9",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 25,
+      "op": "sleep",
+      "ok": true,
+      "ms": 721,
+      "detail": "700 ms"
+    },
+    {
+      "i": 26,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 27,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 28,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 30,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 31,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 32,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 33,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 34,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 35,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 36,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 37,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 38,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 39,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 40,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 41,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 42,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 43,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 44,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 45,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 46,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 47,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 48,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 49,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 50,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 51,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 52,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 53,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 54,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 55,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 56,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 57,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 58,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 59,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 60,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 61,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 62,
+      "op": "value",
+      "ok": true,
+      "ms": 8,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 63,
+      "op": "sleep",
+      "ok": true,
+      "ms": 709,
+      "detail": "700 ms"
+    },
+    {
+      "i": 64,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 65,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 66,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 67,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 68,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 69,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 70,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 71,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 72,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 73,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 74,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 75,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 76,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 77,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 78,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 79,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 80,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 81,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 82,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 83,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 84,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 85,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 86,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 87,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 88,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 89,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 90,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 91,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 92,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 93,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 94,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 95,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 96,
+      "op": "value",
+      "ok": true,
+      "ms": 7,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 97,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 98,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 99,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 100,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "stop gone"
+    },
+    {
+      "i": 101,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1515,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 102,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen. Hier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch: 1. sein -> to be 2. begründen -> to justify 3. verhindern -> to prevent 4. vernehmen -> to notice 5. schreiben -> to write 6. bequem -> comfortably 7. verlassen -> to leave 8. sich selbst -> oneself",
+        "props": {
+          "source": "Here are 25 German verbs with their English equivalents.\n\nIch habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlangt nach einer Liste von 25 deutschen Verben und die Übersetzung jedes in einem separaten Satz, aber er verlangt nur einen Absatzmax. Ich kann daher nur eine der beiden Bedingungen erfüllen.\n\nHier sind die 25 deutschen Verben mit ihrer deutschen Bedeutung auf Englisch:\n\n1.  **sein** -> to be\n2.  **begründen** -> to justify\n3.  **verhindern** -> to prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 25 German verbs with their English equivalents. Ich habe den Satz \"Nenne 25 deutsche Verben mit ihrer Bedeutung auf Englisch\" in dem, was Sie suchen. Der Satz enthält zwei Probleme: Er verlan"
+    },
+    {
+      "i": 103,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 4462,
+      "detail": "L07-list25-verbs-de-1"
+    },
+    {
+      "i": 104,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 536,
+      "detail": "waitFor loop-notice never went away in 500 ms"
+    }
+  ],
+  "errors": [
+    "step 104 (waitFor): waitFor loop-notice never went away in 500 ms",
+    "console.log: [chat] loop retry: kept 710 chars, unit 24 cp x2",
+    "console.log: [chat] loop cut: kept 710 of 714 chars, unit 4 cp x1"
+  ]
+}

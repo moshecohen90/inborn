@@ -1,0 +1,1068 @@
+{
+  "runId": "l07-poem-refrainless-2",
+  "startedAt": "2026-09-27T21:08:32.127Z",
+  "finishedAt": "2026-09-27T21:09:10.156Z",
+  "ok": true,
+  "passed": 105,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 158,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 7,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 50 chars"
+    },
+    {
+      "i": 8,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 10,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The waves ▍",
+        "props": {
+          "source": "The waves",
+          "disabled": false
+        }
+      },
+      "detail": "The waves ▍"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 12,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sand ▍",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sand",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sand ▍"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 723,
+      "detail": "700 ms"
+    },
+    {
+      "i": 14,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To island ▍",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo island",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 15,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 16,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I ri ▍",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI ri",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 722,
+      "detail": "700 ms"
+    },
+    {
+      "i": 18,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a w ▍",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a w",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 706,
+      "detail": "700 ms"
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhyth ▍",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhyth",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 730,
+      "detail": "700 ms"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling ro ▍",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling ro",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 708,
+      "detail": "700 ms"
+    },
+    {
+      "i": 24,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting ▍",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 25,
+      "op": "sleep",
+      "ok": true,
+      "ms": 730,
+      "detail": "700 ms"
+    },
+    {
+      "i": 26,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Throu ▍",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrou",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 27,
+      "op": "sleep",
+      "ok": true,
+      "ms": 701,
+      "detail": "700 ms"
+    },
+    {
+      "i": 28,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace ▍",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 30,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promis ▍",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promis",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 31,
+      "op": "sleep",
+      "ok": true,
+      "ms": 704,
+      "detail": "700 ms"
+    },
+    {
+      "i": 32,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its t ▍",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its t",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 33,
+      "op": "sleep",
+      "ok": true,
+      "ms": 735,
+      "detail": "700 ms"
+    },
+    {
+      "i": 34,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its tide, But knows how deep it goes beneath my feet, A world beyond which I am safe and free, Where the waves are endles ▍",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its tide,\nBut knows how deep it goes beneath my feet,\nA world beyond which I am safe and free,\nWhere the waves are endles",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 35,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 36,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its tide, But knows how deep it goes beneath my feet, A world beyond which I am safe and free, Where the waves are endless stories told.",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its tide,\nBut knows how deep it goes beneath my feet,\nA world beyond which I am safe and free,\nWhere the waves are endless stories told.",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 37,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 38,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its tide, But knows how deep it goes beneath my feet, A world beyond which I am safe and free, Where the waves are endless stories told.",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its tide,\nBut knows how deep it goes beneath my feet,\nA world beyond which I am safe and free,\nWhere the waves are endless stories told.",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 39,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 40,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its tide, But knows how deep it goes beneath my feet, A world beyond which I am safe and free, Where the waves are endless stories told.",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its tide,\nBut knows how deep it goes beneath my feet,\nA world beyond which I am safe and free,\nWhere the waves are endless stories told.",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 41,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 42,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its tide, But knows how deep it goes beneath my feet, A world beyond which I am safe and free, Where the waves are endless stories told.",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its tide,\nBut knows how deep it goes beneath my feet,\nA world beyond which I am safe and free,\nWhere the waves are endless stories told.",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 43,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 44,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its tide, But knows how deep it goes beneath my feet, A world beyond which I am safe and free, Where the waves are endless stories told.",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its tide,\nBut knows how deep it goes beneath my feet,\nA world beyond which I am safe and free,\nWhere the waves are endless stories told.",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 45,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 46,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its tide, But knows how deep it goes beneath my feet, A world beyond which I am safe and free, Where the waves are endless stories told.",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its tide,\nBut knows how deep it goes beneath my feet,\nA world beyond which I am safe and free,\nWhere the waves are endless stories told.",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 47,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 48,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its tide, But knows how deep it goes beneath my feet, A world beyond which I am safe and free, Where the waves are endless stories told.",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its tide,\nBut knows how deep it goes beneath my feet,\nA world beyond which I am safe and free,\nWhere the waves are endless stories told.",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 49,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 50,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its tide, But knows how deep it goes beneath my feet, A world beyond which I am safe and free, Where the waves are endless stories told.",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its tide,\nBut knows how deep it goes beneath my feet,\nA world beyond which I am safe and free,\nWhere the waves are endless stories told.",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 51,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 52,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its tide, But knows how deep it goes beneath my feet, A world beyond which I am safe and free, Where the waves are endless stories told.",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its tide,\nBut knows how deep it goes beneath my feet,\nA world beyond which I am safe and free,\nWhere the waves are endless stories told.",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 53,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 54,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its tide, But knows how deep it goes beneath my feet, A world beyond which I am safe and free, Where the waves are endless stories told.",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its tide,\nBut knows how deep it goes beneath my feet,\nA world beyond which I am safe and free,\nWhere the waves are endless stories told.",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 55,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 56,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its tide, But knows how deep it goes beneath my feet, A world beyond which I am safe and free, Where the waves are endless stories told.",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its tide,\nBut knows how deep it goes beneath my feet,\nA world beyond which I am safe and free,\nWhere the waves are endless stories told.",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 57,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 58,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its tide, But knows how deep it goes beneath my feet, A world beyond which I am safe and free, Where the waves are endless stories told.",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its tide,\nBut knows how deep it goes beneath my feet,\nA world beyond which I am safe and free,\nWhere the waves are endless stories told.",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 59,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 60,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its tide, But knows how deep it goes beneath my feet, A world beyond which I am safe and free, Where the waves are endless stories told.",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its tide,\nBut knows how deep it goes beneath my feet,\nA world beyond which I am safe and free,\nWhere the waves are endless stories told.",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 61,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 62,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its tide, But knows how deep it goes beneath my feet, A world beyond which I am safe and free, Where the waves are endless stories told.",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its tide,\nBut knows how deep it goes beneath my feet,\nA world beyond which I am safe and free,\nWhere the waves are endless stories told.",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 63,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 64,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its tide, But knows how deep it goes beneath my feet, A world beyond which I am safe and free, Where the waves are endless stories told.",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its tide,\nBut knows how deep it goes beneath my feet,\nA world beyond which I am safe and free,\nWhere the waves are endless stories told.",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 65,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 66,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its tide, But knows how deep it goes beneath my feet, A world beyond which I am safe and free, Where the waves are endless stories told.",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its tide,\nBut knows how deep it goes beneath my feet,\nA world beyond which I am safe and free,\nWhere the waves are endless stories told.",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 67,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 68,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its tide, But knows how deep it goes beneath my feet, A world beyond which I am safe and free, Where the waves are endless stories told.",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its tide,\nBut knows how deep it goes beneath my feet,\nA world beyond which I am safe and free,\nWhere the waves are endless stories told.",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 69,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 70,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its tide, But knows how deep it goes beneath my feet, A world beyond which I am safe and free, Where the waves are endless stories told.",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its tide,\nBut knows how deep it goes beneath my feet,\nA world beyond which I am safe and free,\nWhere the waves are endless stories told.",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 71,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 72,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its tide, But knows how deep it goes beneath my feet, A world beyond which I am safe and free, Where the waves are endless stories told.",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its tide,\nBut knows how deep it goes beneath my feet,\nA world beyond which I am safe and free,\nWhere the waves are endless stories told.",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 73,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 74,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its tide, But knows how deep it goes beneath my feet, A world beyond which I am safe and free, Where the waves are endless stories told.",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its tide,\nBut knows how deep it goes beneath my feet,\nA world beyond which I am safe and free,\nWhere the waves are endless stories told.",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 75,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 76,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its tide, But knows how deep it goes beneath my feet, A world beyond which I am safe and free, Where the waves are endless stories told.",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its tide,\nBut knows how deep it goes beneath my feet,\nA world beyond which I am safe and free,\nWhere the waves are endless stories told.",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 77,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 78,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its tide, But knows how deep it goes beneath my feet, A world beyond which I am safe and free, Where the waves are endless stories told.",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its tide,\nBut knows how deep it goes beneath my feet,\nA world beyond which I am safe and free,\nWhere the waves are endless stories told.",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 79,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 80,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its tide, But knows how deep it goes beneath my feet, A world beyond which I am safe and free, Where the waves are endless stories told.",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its tide,\nBut knows how deep it goes beneath my feet,\nA world beyond which I am safe and free,\nWhere the waves are endless stories told.",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 81,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 82,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its tide, But knows how deep it goes beneath my feet, A world beyond which I am safe and free, Where the waves are endless stories told.",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its tide,\nBut knows how deep it goes beneath my feet,\nA world beyond which I am safe and free,\nWhere the waves are endless stories told.",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 83,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 84,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its tide, But knows how deep it goes beneath my feet, A world beyond which I am safe and free, Where the waves are endless stories told.",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its tide,\nBut knows how deep it goes beneath my feet,\nA world beyond which I am safe and free,\nWhere the waves are endless stories told.",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 85,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 86,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its tide, But knows how deep it goes beneath my feet, A world beyond which I am safe and free, Where the waves are endless stories told.",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its tide,\nBut knows how deep it goes beneath my feet,\nA world beyond which I am safe and free,\nWhere the waves are endless stories told.",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 87,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 88,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its tide, But knows how deep it goes beneath my feet, A world beyond which I am safe and free, Where the waves are endless stories told.",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its tide,\nBut knows how deep it goes beneath my feet,\nA world beyond which I am safe and free,\nWhere the waves are endless stories told.",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 89,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 90,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its tide, But knows how deep it goes beneath my feet, A world beyond which I am safe and free, Where the waves are endless stories told.",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its tide,\nBut knows how deep it goes beneath my feet,\nA world beyond which I am safe and free,\nWhere the waves are endless stories told.",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 91,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 92,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its tide, But knows how deep it goes beneath my feet, A world beyond which I am safe and free, Where the waves are endless stories told.",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its tide,\nBut knows how deep it goes beneath my feet,\nA world beyond which I am safe and free,\nWhere the waves are endless stories told.",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 93,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 94,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its tide, But knows how deep it goes beneath my feet, A world beyond which I am safe and free, Where the waves are endless stories told.",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its tide,\nBut knows how deep it goes beneath my feet,\nA world beyond which I am safe and free,\nWhere the waves are endless stories told.",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 95,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 96,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its tide, But knows how deep it goes beneath my feet, A world beyond which I am safe and free, Where the waves are endless stories told.",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its tide,\nBut knows how deep it goes beneath my feet,\nA world beyond which I am safe and free,\nWhere the waves are endless stories told.",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 97,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 98,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its tide, But knows how deep it goes beneath my feet, A world beyond which I am safe and free, Where the waves are endless stories told.",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its tide,\nBut knows how deep it goes beneath my feet,\nA world beyond which I am safe and free,\nWhere the waves are endless stories told.",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 99,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 100,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "stop gone"
+    },
+    {
+      "i": 101,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1502,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 102,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clung to earthy stone, To islands floating in the deep, A journey starts anew for me here, The salty sea is calling for my head. I rise from sand and water's gentle tide, With memory still in the light of day, Where once the waves were crashing through a wall, And now they meet with calm in quiet ways. My heart beats against the softness of the air, A rhythm that no storm can ever make still, For every wave is a sound I love, The song of nature's gentle, rolling roar. I walk along the shoreline where the tide Recedes and reveals the hidden light, With seeds and flowers waiting in the field, Where the sea waits for me to find its way. From dawn until dusk, when shadows stretch, Through mist that lifts and covers deep, To waters of the ocean's vast and wide, My heart is full with peace that I so know. The wind whispers secrets in the air, Of secrets left behind by old days past, And promises made on waters of stone, That will always return to me again. The sea does not hold back its tide, But knows how deep it goes beneath my feet, A world beyond which I am safe and free, Where the waves are endless stories told.",
+        "props": {
+          "source": "The waves have turned their faces to the north,\nWhere ancient reefs and rocky spires stand tall.\nNo more mist rolls across the sandy shore,\nBut only a soft, steady breeze of blue.\n\nFrom rocks that clung to earthy stone,\nTo islands floating in the deep,\nA journey starts anew for me here,\nThe salty sea is calling for my head.\n\nI rise from sand and water's gentle tide,\nWith memory still in the light of day,\nWhere once the waves were crashing through a wall,\nAnd now they meet with calm in quiet ways.\n\nMy heart beats against the softness of the air,\nA rhythm that no storm can ever make still,\nFor every wave is a sound I love,\nThe song of nature's gentle, rolling roar.\n\nI walk along the shoreline where the tide\nRecedes and reveals the hidden light,\nWith seeds and flowers waiting in the field,\nWhere the sea waits for me to find its way.\n\nFrom dawn until dusk, when shadows stretch,\nThrough mist that lifts and covers deep,\nTo waters of the ocean's vast and wide,\nMy heart is full with peace that I so know.\n\nThe wind whispers secrets in the air,\nOf secrets left behind by old days past,\nAnd promises made on waters of stone,\nThat will always return to me again.\n\nThe sea does not hold back its tide,\nBut knows how deep it goes beneath my feet,\nA world beyond which I am safe and free,\nWhere the waves are endless stories told.",
+          "disabled": false
+        }
+      },
+      "detail": "The waves have turned their faces to the north, Where ancient reefs and rocky spires stand tall. No more mist rolls across the sandy shore, But only a soft, steady breeze of blue. From rocks that clun"
+    },
+    {
+      "i": 103,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1925,
+      "detail": "L07-poem-refrainless-2"
+    },
+    {
+      "i": 104,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "loop-notice gone"
+    }
+  ],
+  "errors": []
+}

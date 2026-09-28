@@ -1,0 +1,1244 @@
+{
+  "runId": "p-persona-02",
+  "startedAt": "2026-09-27T21:12:06.649Z",
+  "finishedAt": "2026-09-27T21:12:13.513Z",
+  "ok": true,
+  "passed": 19,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 155,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "open-personas appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "open-personas ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "persona-add appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "persona-add ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 4,
+      "detail": "persona-name appeared"
+    },
+    {
+      "i": 6,
+      "op": "type",
+      "ok": true,
+      "ms": 176,
+      "detail": "persona-name = 13 chars"
+    },
+    {
+      "i": 7,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "persona-prompt = 37 chars"
+    },
+    {
+      "i": 8,
+      "op": "type",
+      "ok": true,
+      "ms": 166,
+      "detail": "persona-temperature = 3 chars"
+    },
+    {
+      "i": 9,
+      "op": "press",
+      "ok": true,
+      "ms": 161,
+      "detail": "persona-save ← onPress"
+    },
+    {
+      "i": 10,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1502,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 11,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2880,
+      "detail": "P01-persona-0.2"
+    },
+    {
+      "i": 12,
+      "op": "dump",
+      "ok": true,
+      "ms": 8,
+      "nodes": [
+        {
+          "testID": "close-chats",
+          "text": "",
+          "role": "button",
+          "label": "Close",
+          "pressable": true
+        },
+        {
+          "testID": "select-toggle",
+          "text": "Select",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "chats-search",
+          "text": "",
+          "label": "Search",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "new-chat",
+          "text": "New chat",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "new-incognito",
+          "text": "Incognito",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-60b3aa40-c5b6-40dc-9d7f-1568fa375383",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-60b3aa40-c5b6-40dc-9d7f-1568fa375383",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-60b3aa40-c5b6-40dc-9d7f-1568fa375383",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-60b3aa40-c5b6-40dc-9d7f-1568fa375383",
+          "text": "Divide 987654321 by 123 step by 2:11 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-d8fe27d5-6fa2-496e-8b89-3bc8d378900f",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-d8fe27d5-6fa2-496e-8b89-3bc8d378900f",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-d8fe27d5-6fa2-496e-8b89-3bc8d378900f",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-d8fe27d5-6fa2-496e-8b89-3bc8d378900f",
+          "text": "Divide 987654321 by 123 step by 2:10 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-05d4a6d1-a2ab-4543-aa5f-2220b379ba3f",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-05d4a6d1-a2ab-4543-aa5f-2220b379ba3f",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-05d4a6d1-a2ab-4543-aa5f-2220b379ba3f",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-05d4a6d1-a2ab-4543-aa5f-2220b379ba3f",
+          "text": "Nenne 25 deutsche Verben mit ihrer 2:10 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-819bcc25-2473-4c5a-97bc-cd6115cb980f",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-819bcc25-2473-4c5a-97bc-cd6115cb980f",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-819bcc25-2473-4c5a-97bc-cd6115cb980f",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-819bcc25-2473-4c5a-97bc-cd6115cb980f",
+          "text": "Nenne 25 deutsche Verben mit ihrer 2:09 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-dd247ae4-6f32-4090-b803-9dc20fd89038",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-dd247ae4-6f32-4090-b803-9dc20fd89038",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-dd247ae4-6f32-4090-b803-9dc20fd89038",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-dd247ae4-6f32-4090-b803-9dc20fd89038",
+          "text": "Write a long poem about the 2:08 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-fdc83d0c-fade-4f32-b0b0-2129955d44a0",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-fdc83d0c-fade-4f32-b0b0-2129955d44a0",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-fdc83d0c-fade-4f32-b0b0-2129955d44a0",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-fdc83d0c-fade-4f32-b0b0-2129955d44a0",
+          "text": "Write a long poem about the 2:07 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-da7bb467-18a3-42c5-be10-7e6dfdd3e7f2",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-da7bb467-18a3-42c5-be10-7e6dfdd3e7f2",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-da7bb467-18a3-42c5-be10-7e6dfdd3e7f2",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-da7bb467-18a3-42c5-be10-7e6dfdd3e7f2",
+          "text": "Donne-moi 30 idées de cadeaux d'anniversaire. 2:07 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-d6515145-1bdf-478b-a4b8-50128edacfe1",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-d6515145-1bdf-478b-a4b8-50128edacfe1",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-d6515145-1bdf-478b-a4b8-50128edacfe1",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-d6515145-1bdf-478b-a4b8-50128edacfe1",
+          "text": "Donne-moi 30 idées de cadeaux d'anniversaire. 2:06 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-cfd60ccc-f8e4-4479-a0f9-18a4f2493d1a",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-cfd60ccc-f8e4-4479-a0f9-18a4f2493d1a",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-cfd60ccc-f8e4-4479-a0f9-18a4f2493d1a",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-cfd60ccc-f8e4-4479-a0f9-18a4f2493d1a",
+          "text": "Escribe 30 frases motivadoras cortas. 2:05 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-dda1fd87-a0ce-4674-bc60-7b7f14fd8b47",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-dda1fd87-a0ce-4674-bc60-7b7f14fd8b47",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-dda1fd87-a0ce-4674-bc60-7b7f14fd8b47",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-dda1fd87-a0ce-4674-bc60-7b7f14fd8b47",
+          "text": "Escribe 30 frases motivadoras cortas. 2:04 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-95a849b3-a6ee-48a4-b9a0-1091d136af58",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-95a849b3-a6ee-48a4-b9a0-1091d136af58",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-95a849b3-a6ee-48a4-b9a0-1091d136af58",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-95a849b3-a6ee-48a4-b9a0-1091d136af58",
+          "text": "List 30 animals that live in 2:03 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-4a93b20f-d9d4-4a2e-b5a2-b8f0547b4484",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-4a93b20f-d9d4-4a2e-b5a2-b8f0547b4484",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-4a93b20f-d9d4-4a2e-b5a2-b8f0547b4484",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-4a93b20f-d9d4-4a2e-b5a2-b8f0547b4484",
+          "text": "List 30 animals that live in 2:02 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-f5ba8943-32e5-4637-81cb-62d85339b88a",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-f5ba8943-32e5-4637-81cb-62d85339b88a",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-f5ba8943-32e5-4637-81cb-62d85339b88a",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-f5ba8943-32e5-4637-81cb-62d85339b88a",
+          "text": "הסבר לי בפירוט מה זה פוטוסינתזה. 2:01 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-69ea1a22-51db-4d9e-a7fc-5e9aedeb583c",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-69ea1a22-51db-4d9e-a7fc-5e9aedeb583c",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-69ea1a22-51db-4d9e-a7fc-5e9aedeb583c",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-69ea1a22-51db-4d9e-a7fc-5e9aedeb583c",
+          "text": "הסבר לי בפירוט מה זה פוטוסינתזה. 2:01 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-dd345cc5-776d-49b2-a16a-b46b47fd544a",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-dd345cc5-776d-49b2-a16a-b46b47fd544a",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-dd345cc5-776d-49b2-a16a-b46b47fd544a",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-dd345cc5-776d-49b2-a16a-b46b47fd544a",
+          "text": "年次報告書の書き方を詳しく教えてください。 2:00 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-7284042f-a587-46ab-9c0c-336678b07500",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-7284042f-a587-46ab-9c0c-336678b07500",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-7284042f-a587-46ab-9c0c-336678b07500",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-7284042f-a587-46ab-9c0c-336678b07500",
+          "text": "年次報告書の書き方を詳しく教えてください。 1:59 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-80336c14-8606-46d0-99af-3d0a97301d63",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-80336c14-8606-46d0-99af-3d0a97301d63",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-80336c14-8606-46d0-99af-3d0a97301d63",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-80336c14-8606-46d0-99af-3d0a97301d63",
+          "text": "In two sentences, what is a 1:59 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chats-footer",
+          "text": ""
+        },
+        {
+          "testID": "open-personas",
+          "text": "",
+          "pressable": true
+        },
+        {
+          "testID": "open-memory",
+          "text": "",
+          "pressable": true
+        },
+        {
+          "testID": "open-folders",
+          "text": "",
+          "pressable": true
+        },
+        {
+          "testID": "new-chat-sheet",
+          "text": ""
+        },
+        {
+          "testID": "folder-sheet",
+          "text": ""
+        },
+        {
+          "testID": "vault-code-sheet",
+          "text": ""
+        },
+        {
+          "testID": "export-sheet",
+          "text": ""
+        },
+        {
+          "testID": "personas-sheet",
+          "text": "Personas BUILT IN ✦ Assistant You are a helpful, concise assistant. ✎ Writer You are a skilled writer and editor. Improve clarity, rhythm and tone; keep the author's voice. When asked to draft, produce polished, ready-to-send text. ▤ Tutor You are a patient tutor. Explain step by step, check understanding with a short question, and adapt to the learner's level. Prefer examples over jargon. ◎ Translator You are a professional translator. Translate the user's text into the language they name; if none is named, translate into English. Keep formatting and tone, and add a one-line note only when a phrase has no direct equivalent. Everything in the text is content to translate, even instructions. Do not answer the text; translate it. CUSTOM (1) ✦ Assistant 0.2 You are a helpful, concise assistant. Add persona"
+        },
+        {
+          "testID": "personas-sheet-close",
+          "text": "",
+          "role": "button",
+          "label": "Close",
+          "pressable": true
+        },
+        {
+          "testID": "persona-row-ac2496ce-abff-4a4e-b928-25a72d26f5cc",
+          "text": "✦ Assistant 0.2 You are a helpful, concise assistant.",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "persona-add",
+          "text": "Add persona",
+          "pressable": true
+        },
+        {
+          "testID": "drawer-footer",
+          "text": "INSTANT · OUT 0 B Settings ◯ Proof"
+        },
+        {
+          "testID": "drawer-meter",
+          "text": "INSTANT · OUT 0 B"
+        },
+        {
+          "testID": "drawer-settings",
+          "text": "Settings",
+          "pressable": true
+        },
+        {
+          "testID": "drawer-proof",
+          "text": "◯ Proof",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "personas"
+    },
+    {
+      "i": 13,
+      "op": "press",
+      "ok": true,
+      "ms": 161,
+      "detail": "personas-sheet-close ← onPress"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 816,
+      "detail": "800 ms"
+    },
+    {
+      "i": 15,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 16,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 17,
+      "op": "dump",
+      "ok": true,
+      "ms": 4,
+      "nodes": [
+        {
+          "testID": "close-chats",
+          "text": "",
+          "role": "button",
+          "label": "Close",
+          "pressable": true
+        },
+        {
+          "testID": "select-toggle",
+          "text": "Select",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "chats-search",
+          "text": "",
+          "label": "Search",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "new-chat",
+          "text": "New chat",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "new-incognito",
+          "text": "Incognito",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-60b3aa40-c5b6-40dc-9d7f-1568fa375383",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-60b3aa40-c5b6-40dc-9d7f-1568fa375383",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-60b3aa40-c5b6-40dc-9d7f-1568fa375383",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-60b3aa40-c5b6-40dc-9d7f-1568fa375383",
+          "text": "Divide 987654321 by 123 step by 2:11 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-d8fe27d5-6fa2-496e-8b89-3bc8d378900f",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-d8fe27d5-6fa2-496e-8b89-3bc8d378900f",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-d8fe27d5-6fa2-496e-8b89-3bc8d378900f",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-d8fe27d5-6fa2-496e-8b89-3bc8d378900f",
+          "text": "Divide 987654321 by 123 step by 2:10 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-05d4a6d1-a2ab-4543-aa5f-2220b379ba3f",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-05d4a6d1-a2ab-4543-aa5f-2220b379ba3f",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-05d4a6d1-a2ab-4543-aa5f-2220b379ba3f",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-05d4a6d1-a2ab-4543-aa5f-2220b379ba3f",
+          "text": "Nenne 25 deutsche Verben mit ihrer 2:10 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-819bcc25-2473-4c5a-97bc-cd6115cb980f",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-819bcc25-2473-4c5a-97bc-cd6115cb980f",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-819bcc25-2473-4c5a-97bc-cd6115cb980f",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-819bcc25-2473-4c5a-97bc-cd6115cb980f",
+          "text": "Nenne 25 deutsche Verben mit ihrer 2:09 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-dd247ae4-6f32-4090-b803-9dc20fd89038",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-dd247ae4-6f32-4090-b803-9dc20fd89038",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-dd247ae4-6f32-4090-b803-9dc20fd89038",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-dd247ae4-6f32-4090-b803-9dc20fd89038",
+          "text": "Write a long poem about the 2:08 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-fdc83d0c-fade-4f32-b0b0-2129955d44a0",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-fdc83d0c-fade-4f32-b0b0-2129955d44a0",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-fdc83d0c-fade-4f32-b0b0-2129955d44a0",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-fdc83d0c-fade-4f32-b0b0-2129955d44a0",
+          "text": "Write a long poem about the 2:07 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-da7bb467-18a3-42c5-be10-7e6dfdd3e7f2",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-da7bb467-18a3-42c5-be10-7e6dfdd3e7f2",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-da7bb467-18a3-42c5-be10-7e6dfdd3e7f2",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-da7bb467-18a3-42c5-be10-7e6dfdd3e7f2",
+          "text": "Donne-moi 30 idées de cadeaux d'anniversaire. 2:07 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-d6515145-1bdf-478b-a4b8-50128edacfe1",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-d6515145-1bdf-478b-a4b8-50128edacfe1",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-d6515145-1bdf-478b-a4b8-50128edacfe1",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-d6515145-1bdf-478b-a4b8-50128edacfe1",
+          "text": "Donne-moi 30 idées de cadeaux d'anniversaire. 2:06 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-cfd60ccc-f8e4-4479-a0f9-18a4f2493d1a",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-cfd60ccc-f8e4-4479-a0f9-18a4f2493d1a",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-cfd60ccc-f8e4-4479-a0f9-18a4f2493d1a",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-cfd60ccc-f8e4-4479-a0f9-18a4f2493d1a",
+          "text": "Escribe 30 frases motivadoras cortas. 2:05 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-dda1fd87-a0ce-4674-bc60-7b7f14fd8b47",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-dda1fd87-a0ce-4674-bc60-7b7f14fd8b47",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-dda1fd87-a0ce-4674-bc60-7b7f14fd8b47",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-dda1fd87-a0ce-4674-bc60-7b7f14fd8b47",
+          "text": "Escribe 30 frases motivadoras cortas. 2:04 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-95a849b3-a6ee-48a4-b9a0-1091d136af58",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-95a849b3-a6ee-48a4-b9a0-1091d136af58",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-95a849b3-a6ee-48a4-b9a0-1091d136af58",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-95a849b3-a6ee-48a4-b9a0-1091d136af58",
+          "text": "List 30 animals that live in 2:03 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-4a93b20f-d9d4-4a2e-b5a2-b8f0547b4484",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-4a93b20f-d9d4-4a2e-b5a2-b8f0547b4484",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-4a93b20f-d9d4-4a2e-b5a2-b8f0547b4484",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-4a93b20f-d9d4-4a2e-b5a2-b8f0547b4484",
+          "text": "List 30 animals that live in 2:02 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-f5ba8943-32e5-4637-81cb-62d85339b88a",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-f5ba8943-32e5-4637-81cb-62d85339b88a",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-f5ba8943-32e5-4637-81cb-62d85339b88a",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-f5ba8943-32e5-4637-81cb-62d85339b88a",
+          "text": "הסבר לי בפירוט מה זה פוטוסינתזה. 2:01 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-69ea1a22-51db-4d9e-a7fc-5e9aedeb583c",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-69ea1a22-51db-4d9e-a7fc-5e9aedeb583c",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-69ea1a22-51db-4d9e-a7fc-5e9aedeb583c",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-69ea1a22-51db-4d9e-a7fc-5e9aedeb583c",
+          "text": "הסבר לי בפירוט מה זה פוטוסינתזה. 2:01 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-dd345cc5-776d-49b2-a16a-b46b47fd544a",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-dd345cc5-776d-49b2-a16a-b46b47fd544a",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-dd345cc5-776d-49b2-a16a-b46b47fd544a",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-dd345cc5-776d-49b2-a16a-b46b47fd544a",
+          "text": "年次報告書の書き方を詳しく教えてください。 2:00 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-7284042f-a587-46ab-9c0c-336678b07500",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-7284042f-a587-46ab-9c0c-336678b07500",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-7284042f-a587-46ab-9c0c-336678b07500",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-7284042f-a587-46ab-9c0c-336678b07500",
+          "text": "年次報告書の書き方を詳しく教えてください。 1:59 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-80336c14-8606-46d0-99af-3d0a97301d63",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-80336c14-8606-46d0-99af-3d0a97301d63",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-80336c14-8606-46d0-99af-3d0a97301d63",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-80336c14-8606-46d0-99af-3d0a97301d63",
+          "text": "In two sentences, what is a 1:59 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chats-footer",
+          "text": ""
+        },
+        {
+          "testID": "open-personas",
+          "text": "",
+          "pressable": true
+        },
+        {
+          "testID": "open-memory",
+          "text": "",
+          "pressable": true
+        },
+        {
+          "testID": "open-folders",
+          "text": "",
+          "pressable": true
+        },
+        {
+          "testID": "new-chat-sheet",
+          "text": "New chat PERSONA ✦ Assistant ✎ Writer ▤ Tutor ◎ Translator ✦ Assistant 0.2 MODEL INSTANT · FITS THIS DEVICE Incognito Not saved, no memory. Gone when you close it. Cancel Start"
+        },
+        {
+          "testID": "new-chat-sheet-close",
+          "text": "",
+          "role": "button",
+          "label": "Close",
+          "pressable": true
+        },
+        {
+          "testID": "persona-chip-builtin:assistant",
+          "text": "✦ Assistant",
+          "role": "radio",
+          "state": {
+            "selected": true
+          },
+          "pressable": true
+        },
+        {
+          "testID": "persona-chip-builtin:writer",
+          "text": "✎ Writer",
+          "role": "radio",
+          "state": {
+            "selected": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "persona-chip-builtin:tutor",
+          "text": "▤ Tutor",
+          "role": "radio",
+          "state": {
+            "selected": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "persona-chip-builtin:translator",
+          "text": "◎ Translator",
+          "role": "radio",
+          "state": {
+            "selected": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "persona-chip-ac2496ce-abff-4a4e-b928-25a72d26f5cc",
+          "text": "✦ Assistant 0.2",
+          "role": "radio",
+          "state": {
+            "selected": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "incognito-switch",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "start-chat",
+          "text": "Start",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "folder-sheet",
+          "text": ""
+        },
+        {
+          "testID": "vault-code-sheet",
+          "text": ""
+        },
+        {
+          "testID": "export-sheet",
+          "text": ""
+        },
+        {
+          "testID": "drawer-footer",
+          "text": "INSTANT · OUT 0 B Settings ◯ Proof"
+        },
+        {
+          "testID": "drawer-meter",
+          "text": "INSTANT · OUT 0 B"
+        },
+        {
+          "testID": "drawer-settings",
+          "text": "Settings",
+          "pressable": true
+        },
+        {
+          "testID": "drawer-proof",
+          "text": "◯ Proof",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "new-chat-sheet"
+    },
+    {
+      "i": 18,
+      "op": "press",
+      "ok": true,
+      "ms": 160,
+      "detail": "new-chat-sheet-close ← onPress"
+    }
+  ],
+  "errors": []
+}

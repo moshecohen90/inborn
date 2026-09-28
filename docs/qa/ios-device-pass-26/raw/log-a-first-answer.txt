@@ -1,0 +1,42 @@
+23:58:21 launching com.inbornapp.mobile.qa
+23:59:06 pushing 37 steps as a-first-answer
+23:59:34 shot A01-first-answer
+23:59:39 shot A02-ledger-detailed
+23:59:43 ok     0 waitFor    onboarding-welcome appeared
+23:59:43 ok     1 sleep      1500 ms
+23:59:43 ok     2 press      onboarding-continue ← onPress
+23:59:43 ok     3 waitFor    onboarding-model appeared
+23:59:43 ok     4 sleep      2500 ms
+23:59:43 ok     5 press      start-chatting ← onPress
+23:59:43 ok     6 waitFor    onboarding-sealed appeared
+23:59:43 ok     7 sleep      4000 ms
+23:59:43 ok     8 press      sealed-start ← onPress
+23:59:43 ok     9 waitFor    onboarding-lock appeared
+23:59:43 ok    10 sleep      1500 ms
+23:59:43 ok    11 press      lock-start ← onPress
+23:59:43 ok    12 waitFor    composer-input appeared
+23:59:43 ok    13 waitFor    Loading gone
+23:59:43 ok    14 sleep      2000 ms
+23:59:43 ok    15 type       composer-input = 43 chars
+23:59:43 ok    16 send       send ← onPress
+23:59:43 ok    17 waitFor    assistant-text appeared
+23:59:43 ok    18 waitFor    stop gone
+23:59:43 ok    19 sleep      1500 ms
+23:59:43 ok    20 value      A lighthouse illuminates navigation routes in the dark.
+23:59:43 ok    21 screenshot A01-first-answer
+23:59:43 ok    22 waitFor    loop-notice gone
+23:59:43 ok    23 press      ledger-toggle ← onPress
+23:59:43 ok    24 sleep      800 ms
+23:59:43 ok    25 value      INSTANT
+23:59:43 ok    26 value      33 ms
+23:59:43 ok    27 value      217 / 4096
+23:59:43 ok    28 setTier    pro
+23:59:43 ok    29 sleep      1200 ms
+23:59:43 ok    30 value      30.0
+23:59:43 ok    31 value      837 ms
+23:59:43 ok    32 value      207 + 10
+23:59:43 ok    33 value      1.2 s
+23:59:43 ok    34 screenshot A02-ledger-detailed
+23:59:43 ok    35 setTier    free
+23:59:43 ok    36 sleep      800 ms
+23:59:43 37 passed, 0 failed, 2 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-26/docs/qa/ios-device-pass-26/screens

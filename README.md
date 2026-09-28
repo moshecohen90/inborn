@@ -6706,6 +6706,34 @@ Red first: 8 of the 17 tests in `fixes-r115.test.ts` fail on main 6312e769, whic
 tests pass there too (`red-r115-main-6312e769.txt`). Round 107's "fenced code with repeated lines" and round 113's
 empty retry after a comma stay green. No live model run and no device run: the next iPhone build measures it.
 
+## iOS build 26: main with round 115's loop guard, on Moshe's iPhone only, device pass partial (branch `ios-build-26`) — 27.9.2026
+
+Build 1.0.0 (26) carries local `main` 4f27a09f (build 25's main plus round 115) to the iPhone 13 Pro. Nothing went to a
+store. The device pass is partial: the phone locked itself at 00:31 after another session's UI test, and the pass
+stopped with rows (c) to (f) not run, because round 116 answers what it found and build 27 will carry it.
+
+- **The build.** Commit 0c9a62a0 bumps the build number 25 → 26. Gates exit 0: 1,144 core with 4 skipped, 1,180
+  mobile, 24 i18n, 23 ui, 4 desktop. The first test run timed out once in `fixes-r114.test.ts` under load, and that
+  file and the full rerun passed. Fresh prebuild and archive, with both models byte-exact to the catalog, and round
+  115's five new function names and four new patterns in the bundle (build 25's bundle has none). The QA-bridge and
+  shipping-bundle gates pass.
+- **On the phone as an update.** The byte copy of the six container files was taken first, and after the install all
+  six are byte-identical. The listing before the install failed (CoreDevice ActionError 3). The listing after has the
+  names and sizes of build 25's. About reads `1.0.0 (26) · 0c9a62a03d53`.
+- **Ran on the phone.** The first answer runs at 30.0 tok/s. 21 of the 24 stress answers ran: at 0.7, 16 of 16 show no
+  repeat. Round 115's two target answers did not come back, since neither long division wrote a code block and he-list
+  wrote an unnumbered list, so its fence and misspelt-word rules were not exercised.
+- **Under the 0.2 persona (F433), 3 of 5 answers show an item said again, and 2 have a broken seam:**
+  - he-list names "ברוזל" twice in an unnumbered comma list (items 6 and 12);
+  - es-list's retry wrote item 17 as item 5 with its verb form changed (*"haciendo"* → *"hacer"*);
+  - fr-list opens item 11 as item 6 in the singular (*"Des objets de décoration maison"* → *"Un objet …"*);
+  - ko-list's retry dropped the comma between items (*"15. 파 16. 오징어"*), and ja-list-cities' retry glued its closing
+    sentence to the list (*"鳥取これらはすべて日本の主要都市です。"*).
+- **Not run.** The fox, Continue, Delete everything and Documents. The `.qa` twin is still installed, and the build-27
+  pass removes it.
+
+Evidence: `docs/qa/ios-build-26-2026-09-27.md`, `docs/qa/ios-device-pass-26-2026-09-27.md`, `docs/qa/ios-device-pass-26/`.
+
 ## iOS build 23: main with round 111's loop guard, on Moshe's iPhone only (branch `ios-build-23`) — 27.9.2026
 
 Build 1.0.0 (23) carries local `main` 98722df7 (build 22's main plus round 111) to the iPhone 13 Pro, so the phone has
