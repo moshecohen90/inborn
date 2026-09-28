@@ -1,0 +1,31 @@
+18:19:25 pushing 25 steps as j6c-after-fast
+18:27:36 shot J6-05-fast-installed
+18:27:43 shot J6-06-fast-pack-after-fast
+18:27:49 shot J6-07-sharp-pack-after-fast
+18:27:52 ok     0 waitFor    model-sheet-use-fast appeared
+18:27:52 ok     1 value      Use this model
+18:27:52 ok     2 screenshot J6-05-fast-installed
+18:27:52 ok     3 deeplink   /vault?focus=vision-qwen35-2b
+18:27:52 ok     4 sleep      3500 ms
+18:27:52 ok     5 screenshot J6-06-fast-pack-after-fast
+18:27:52 ok     6 deeplink   /vault?focus=vision-qwen35-4b
+18:27:52 ok     7 sleep      3500 ms
+18:27:52 ok     8 screenshot J6-07-sharp-pack-after-fast
+18:27:52 ok     9 value      ◉ PHOTO PACK FOR INSTANT Lets Instant look at your photos on this device. Qwen3.5 mmproj 0.1B · 205 MB · F16 ·
+18:27:52 ok    10 value      Qwen3.5 mmproj 0.1B · 205 MB · F16 · Battery: Medium
+18:27:52 ok    11 value      Included with the app
+18:27:52 ok    12 value      ○ PHOTO PACK FOR FAST Lets Fast look at your photos on this device. Qwen3.5 mmproj 0.3B · 668 MB · F16 · Batte
+18:27:52 ok    13 value      Qwen3.5 mmproj 0.3B · 668 MB · F16 · Battery: Medium
+18:27:52 FAIL  14 value      value model-status-vision-qwen35-2b: no node with that testID is mounted
+18:27:52 ok    15 value      ○ PHOTO PACK FOR SHARP Lets Sharp look at your photos on this device. Qwen3.5 mmproj 0.3B · 672 MB · F16 · Bat
+18:27:52 ok    16 value      Qwen3.5 mmproj 0.3B · 672 MB · F16 · Battery: Medium
+18:27:52 ok    17 value      Install Sharp first
+18:27:52 ok    18 value      Install · 668 MB from models.inbornapp.com
+18:27:52 ok    19 assertText "668 MB" present
+18:27:52 ok    20 assertText "Install Fast first" absent
+18:27:52 ok    21 assertText "Install Sharp first" present
+18:27:52 ok    22 waitFor    install-vision-qwen35-4b gone
+18:27:52 ok    23 assertText "Included with the app" present
+18:27:52 ok    24 dump       vault-extensions-after-fast
+18:27:52 24 passed, 1 failed, 3 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-31/docs/qa/ios-device-pass-31/screens
+18:27:52   ! step 14 (value): value model-status-vision-qwen35-2b: no node with that testID is mounted

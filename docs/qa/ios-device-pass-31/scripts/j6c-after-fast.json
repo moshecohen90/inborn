@@ -1,0 +1,113 @@
+{
+ "_": "J6, second half: Fast installed (Use on the sheet, at most 12 min from the start), then the vault again: Fast's pack offers Install · 668 MB, Sharp's still reads 'Install Sharp first'.",
+ "steps": [
+  {
+   "op": "waitFor",
+   "testID": "model-sheet-use-fast",
+   "timeoutMs": 640000
+  },
+  {
+   "op": "value",
+   "testID": "model-sheet-use-fast"
+  },
+  {
+   "op": "screenshot",
+   "name": "J6-05-fast-installed"
+  },
+  {
+   "op": "deeplink",
+   "url": "/vault?focus=vision-qwen35-2b"
+  },
+  {
+   "op": "sleep",
+   "ms": 3500
+  },
+  {
+   "op": "screenshot",
+   "name": "J6-06-fast-pack-after-fast"
+  },
+  {
+   "op": "deeplink",
+   "url": "/vault?focus=vision-qwen35-4b"
+  },
+  {
+   "op": "sleep",
+   "ms": 3500
+  },
+  {
+   "op": "screenshot",
+   "name": "J6-07-sharp-pack-after-fast"
+  },
+  {
+   "op": "value",
+   "testID": "model-card-vision-qwen35"
+  },
+  {
+   "op": "value",
+   "testID": "model-spec-vision-qwen35"
+  },
+  {
+   "op": "value",
+   "testID": "model-status-vision-qwen35"
+  },
+  {
+   "op": "value",
+   "testID": "model-card-vision-qwen35-2b"
+  },
+  {
+   "op": "value",
+   "testID": "model-spec-vision-qwen35-2b"
+  },
+  {
+   "op": "value",
+   "testID": "model-status-vision-qwen35-2b"
+  },
+  {
+   "op": "value",
+   "testID": "model-card-vision-qwen35-4b"
+  },
+  {
+   "op": "value",
+   "testID": "model-spec-vision-qwen35-4b"
+  },
+  {
+   "op": "value",
+   "testID": "model-status-vision-qwen35-4b"
+  },
+  {
+   "op": "value",
+   "testID": "install-vision-qwen35-2b"
+  },
+  {
+   "op": "assertText",
+   "text": "668 MB",
+   "testID": "install-vision-qwen35-2b"
+  },
+  {
+   "op": "assertText",
+   "text": "Install Fast first",
+   "testID": "model-card-vision-qwen35-2b",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "Install Sharp first",
+   "testID": "model-status-vision-qwen35-4b"
+  },
+  {
+   "op": "waitFor",
+   "testID": "install-vision-qwen35-4b",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "assertText",
+   "text": "Included with the app",
+   "testID": "model-status-vision-qwen35"
+  },
+  {
+   "op": "dump",
+   "name": "vault-extensions-after-fast"
+  }
+ ]
+}

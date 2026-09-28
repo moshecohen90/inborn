@@ -7449,6 +7449,36 @@ store app was opened.
 Evidence: `docs/qa/ios-build-30-2026-09-28.md`, `docs/qa/ios-device-pass-30-2026-09-28.md`,
 `docs/qa/ios-device-pass-30/`.
 
+## iOS build 31: main with round 126 (no pack offered for a model you do not have), on Moshe's iPhone only (branch `ios-build-31`) — 28.9.2026
+
+Build 1.0.0 (31) carries `main` 522ad50b (build 30's main plus round 126) to the iPhone 13 Pro. Nothing went to a
+store. J1, J6 and J5 ran on the `.qa` twin built from the same commit, and the twin was removed before the store app was
+opened.
+
+- **The build.** Commit 22d0bc51 bumps the build number 30 → 31 and drops an unused counter from round 126's sampling
+  script, on which `pnpm lint` failed at 522ad50b. Install, typecheck and lint exit 0. The test run met 5000 ms
+  timeouts while the archive compiled (load average 65 to 79); each timed-out file passes alone, and the full run after
+  the archive exits 0: 1,240 core with 4 skipped, 1,266 mobile, 24 i18n, 23 ui, 4 desktop. Fresh prebuild and archive.
+  Instant and its bundled photo pack are byte-exact to the catalog. Round 126's *"Install {model} first"*,
+  `needs-model` and `withoutEchoedLabels` are in the bundle, and build 30's has none of them. `main.jsbundle` carries
+  22d0bc516ab4. The QA-bridge and shipping-bundle gates pass.
+- **On the phone as an update.** The byte copy of the six container files was taken first. After the install the
+  `Documents/` listing is identical and all six files are byte-identical. The `.qa` twin was removed first; only then
+  was the store app opened, and About reads `1.0.0 (31) · 22d0bc516ab4`. It was left on its Chats list.
+- **The photo packs with Fast and Sharp not installed (F456).** *"PHOTO PACK FOR INSTANT"* reads *"Included with the
+  app"*. The packs for Fast and Sharp read *"Install Fast first"* and *"Install Sharp first"*, with no Install or Import
+  button, and keep *"668 MB"* and *"672 MB"* on their spec lines.
+- **After Fast was installed.** Fast downloaded at 2.07 MB/s in its first minute and was ready about 9 min 20 s after
+  Go. Fast's pack then offers **Install · 668 MB from models.inbornapp.com**, and Sharp's still reads *"Install Sharp
+  first"*.
+- **Documents on Instant (F457).** *"The office phone number is 555-0134."* is the answer's first and only line, with no
+  *"[1] office-hours.txt · part 1"* line, and the source chip `office-hours.txt · part 1` under it. *"The capital of
+  Australia is Canberra."* with *"Nothing in your documents matched this question. Answered without them."*
+- **J1.** Instant answers at 33.2 tok/s, first token 773 ms.
+
+Evidence: `docs/qa/ios-build-31-2026-09-28.md`, `docs/qa/ios-device-pass-31-2026-09-28.md`,
+`docs/qa/ios-device-pass-31/`.
+
 ## iOS build 23: main with round 111's loop guard, on Moshe's iPhone only (branch `ios-build-23`) — 27.9.2026
 
 Build 1.0.0 (23) carries local `main` 98722df7 (build 22's main plus round 111) to the iPhone 13 Pro, so the phone has

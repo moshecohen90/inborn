@@ -1,0 +1,93 @@
+{
+ "_": "J6, second half, the probe: Fast from the model sheet; its progress read when it appears and 60 s later. J6c runs only if that read shows 2 MB/s or more.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "new-chat",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "press",
+   "testID": "new-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "start-chat",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "press",
+   "testID": "start-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "press",
+   "testID": "model-chip"
+  },
+  {
+   "op": "waitFor",
+   "testID": "model-sheet",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "sleep",
+   "ms": 1000
+  },
+  {
+   "op": "press",
+   "testID": "model-sheet-download-fast"
+  },
+  {
+   "op": "waitFor",
+   "testID": "model-sheet-confirm-fast",
+   "timeoutMs": 5000
+  },
+  {
+   "op": "sleep",
+   "ms": 500
+  },
+  {
+   "op": "press",
+   "testID": "model-sheet-go-fast"
+  },
+  {
+   "op": "waitFor",
+   "testID": "model-sheet-progress-fast",
+   "timeoutMs": 60000
+  },
+  {
+   "op": "value",
+   "testID": "model-sheet-progress-fast"
+  },
+  {
+   "op": "sleep",
+   "ms": 60000
+  },
+  {
+   "op": "value",
+   "testID": "model-sheet-progress-fast"
+  },
+  {
+   "op": "screenshot",
+   "name": "J6-04-fast-60s"
+  }
+ ]
+}

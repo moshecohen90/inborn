@@ -1,0 +1,50 @@
+17:59:40 install start
+17:59:51 install rc=0
+17:59:51 typecheck start
+17:59:59 typecheck rc=0
+17:59:59 lint start
+18:00:06 lint rc=1
+18:00:06 test start
+18:00:33 test rc=0
+GATES-DONE
+
+rerun at 22d0bc516ab4 (the lint fix amended into the build commit); load average  70.57 28.23 15.75
+18:02:30 install start
+18:02:32 install rc=0
+18:02:32 typecheck start
+18:02:55 typecheck rc=0
+18:02:55 lint start
+18:03:10 lint rc=0
+18:03:10 test start
+18:03:50 test rc=1
+GATES2-DONE
+18:04:01 core test test/fixes-r114.test.ts alone (after the timeout at load  79.11 44.29 23.33 )
+18:04:10 fixes-r114 alone rc=0:  Tests 27 passed (27)
+18:04:16 test (full) start, load  65.14 42.93 23.22
+18:04:48 test (full) rc=1
+18:05:03 full test rc=1: 2 timeouts (5000 ms), fixes-r111 'he-explain B#4' and fixes-r114 '25 distinct verbs', both 'Test timed out in 5000ms' (gate3-test.log); core 1238 passed 2 failed 4 skipped; the archive's xcodebuild is compiling at the same time
+18:05:08 fixes-r111 alone rc=0:  Tests 32 passed (32)
+18:06:37 test (full, after the archive) start, load  12.96 30.62 21.28
+18:07:14 test (full, after the archive) rc=0
+
+first run (efa3b73d, the build number commit before the lint fix was amended in): install 0, typecheck 0, lint 1, test 0
+  lint: 23:82  error  'shownLabel' is assigned a value but never used  @typescript-eslint/no-unused-vars in docs/qa/vault-packs-126/sampling/sample.ts (round 126's sampling script, on main 522ad50b)
+  the fix removes that unused counter (the script's output does not change) and is amended into the build commit 22d0bc51
+second run (22d0bc51): install 0, typecheck 0, lint 0, test 1 (one 5000 ms timeout at load 70-79, the archive compiling and the lead's web walk)
+  the timed-out files alone: fixes-r114 27/27, fixes-r111 32/32; the full run again during the archive: 2 timeouts (fixes-r111, fixes-r114), both 'Test timed out in 5000ms'
+  the full run after the archive ended: rc 0
+
+the last full test run (22d0bc51, after the archive):
+PASS: all fields within limits.
+PASS: 1 shipping artifact(s) carry no QA bridge.
+PASS: no personal identifier in the history of HEAD
+apps/desktop test: # tests 4
+apps/desktop test: # pass 4
+apps/desktop test: # fail 0
+packages/ui test:       Tests  23 passed (23)
+packages/i18n test:       Tests  24 passed (24)
+packages/core test:       Tests  1240 passed | 4 skipped (1244)
+apps/mobile test:       Tests  1266 passed (1266)
+
+pnpm install --frozen-lockfile: Lockfile is up to date, resolution step is skipped Done in 2.2s using pnpm v10.34.5
+load average before the gates:  30.01 13.27 9.55
