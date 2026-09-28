@@ -7028,6 +7028,30 @@ Not covered: no model, browser or phone ran this round; the web case is rebuilt 
 opens with the same capitalised word twice ("One to One hundred") loses its first words when a stop lands inside it.
 Scripts without capitals keep a restarted fragment on screen.
 
+## Fixes round 120: the web vault counts what it stored (branch `web-storage-used`) — 28.9.2026
+
+Seen on the live web app (28.9, 14:00, main e61f222a). Fast, Instant and both photo packs were stored in OPFS, and the
+browser was reopened. The Model vault's web card then read "Used in this browser: 31 MB · free: 11 GB", while Privacy &
+storage read "Models … 2.69 GB". Chromium's `navigator.storage.estimate()` counted 936 bytes of OPFS, the `.json`
+sidecars, and none of the `.gguf` files. Evidence: `docs/qa/web-storage-used/`. Tests: `apps/mobile/src/web/opfs.test.ts` (7).
+
+- **F442 · Used is at least what the app stored.** `storageEstimate` in `apps/mobile/src/web/opfs.ts` takes the larger of
+  `estimate().usage` and the bytes of every file in the app's OPFS directories (`models/` and wllama's `cache/`). Free
+  is quota minus that figure. The walk is `opfsModelBytes`, moved from `apps/mobile/src/screens/Settings/storageSizes.ts`
+  into `opfs.ts`, so Privacy & storage and the space figures read one walk. The vault card, the download door's "Free in
+  this browser" line, its space check and the recommendation's room note all read `storageEstimate`, so they follow.
+  When `estimate()` is missing, used and free stay unknown. When OPFS cannot be walked, the browser's figure stands.
+- **Live, on 127.0.0.1:8799.** Instant was downloaded into a fresh chrome-headless-shell profile. After the browser was
+  reopened, `estimate()` again counted 334 bytes of OPFS, with 532,517,292 on disk. The vault card read "Used in this
+  browser: 533 MB · free: 10 GB", Privacy & storage read "Models 533 MB", and the Fast door read "Free in this browser:
+  10 GB". Main's arithmetic on the same estimate gives "31 MB · free: 11 GB".
+
+Red first: 2 of the 7 tests fail on e61f222a (`red-e61f222a.txt`). Main returned a usage of 30,545,299 with 2.69 GB in
+OPFS, and let an 8 GB download through a 10.77 GB quota. The fix refuses it: 8.08 GB free, 8.27 GB needed with headroom.
+Gates exit 0: `typecheck`, `lint`, `test` (core 1,186 with 4 skipped, mobile 1,200, i18n 24, ui 23), `web:build`,
+`web:smoke`. Not covered: the 2.69 GB state itself ran only in the unit test, and main's build did not run in this session.
+Safari and Firefox were not run.
+
 ## iOS build 23: main with round 111's loop guard, on Moshe's iPhone only (branch `ios-build-23`) — 27.9.2026
 
 Build 1.0.0 (23) carries local `main` 98722df7 (build 22's main plus round 111) to the iPhone 13 Pro, so the phone has

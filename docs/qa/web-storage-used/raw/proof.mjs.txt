@@ -1,0 +1,48 @@
+// node proof.mjs <base> <outDir> <profileDir>: download Instant, then read the vault card, Privacy & storage and the door's free line.
+import { createRequire } from "node:module"; import { readdirSync, mkdirSync, writeFileSync } from "node:fs"; import os from "node:os"; import path from "node:path";
+const req = createRequire("/Users/moshecohen/.npm/_npx/9833c18b2d85bc59/node_modules/");
+const { chromium } = req("playwright-core");
+const [base, outDir, profile] = process.argv.slice(2);
+mkdirSync(outDir, { recursive: true });
+const cache = path.join(os.homedir(), "Library/Caches/ms-playwright");
+const shell = readdirSync(cache).filter(d => /^chromium_headless_shell-\d+$/.test(d)).sort().reverse().map(d => path.join(cache, d, "chrome-headless-shell-mac-arm64", "chrome-headless-shell"))[0];
+const ctx = await chromium.launchPersistentContext(profile, { headless: true, executablePath: shell, viewport: { width: 1280, height: 900 } });
+await ctx.addInitScript(() => { try { if (!localStorage.getItem("inborn.web.model")) localStorage.setItem("inborn.web.model", "instant"); } catch {} });
+const p = await ctx.newPage(); const notes = {};
+const shot = (name) => p.screenshot({ path: path.join(outDir, name + ".png") });
+const text = async () => (await p.locator("body").innerText()).replace(/\s+/g, " ");
+const ids = async () => [...new Set(await p.evaluate(() => [...document.querySelectorAll("[data-testid]")].filter(e => { const r = e.getBoundingClientRect(); const c = getComputedStyle(e); return r.width > 0 && r.height > 0 && c.visibility === "visible" && c.opacity !== "0"; }).map(e => e.getAttribute("data-testid"))))];
+const clickId = async (id) => { const ok = await p.evaluate((id) => { const els = [...document.querySelectorAll(`[data-testid="${id}"]`)]; const el = els.find(e => e.getBoundingClientRect().width > 0) || els[0]; if (!el) return false; el.focus(); return document.activeElement === el; }, id); if (ok) { await p.keyboard.press("Enter"); return; } await p.locator(`[data-testid="${id}"]`).last().click({ timeout: 8000, force: true }).catch(() => {}); };
+const mouseId = async (id) => { const r = await p.evaluate((id) => { const els = [...document.querySelectorAll(`[data-testid="${id}"]`)]; const el = els.find(e => e.getBoundingClientRect().width > 0); if (!el) return null; el.scrollIntoView({ block: "center" }); const b = el.getBoundingClientRect(); return [b.x + b.width / 2, b.y + b.height / 2]; }, id); if (!r) return false; await p.mouse.click(r[0], r[1]); return true; };
+const probe = () => p.evaluate(async () => { const e = await navigator.storage.estimate(); const root = await navigator.storage.getDirectory(); const files = []; async function walk(dir, pre) { for await (const [n, h] of dir) { if (h.kind === "file") files.push([pre + n, (await h.getFile()).size]); else await walk(h, pre + n + "/"); } } await walk(root, ""); return { usage: e.usage, quota: e.quota, details: e.usageDetails ?? null, opfs: files, opfsTotal: files.reduce((a, [, s]) => a + s, 0) }; });
+
+await p.goto(base + "/", { waitUntil: "networkidle" }); await p.waitForTimeout(3000);
+await clickId("onboarding-continue"); await p.waitForTimeout(2500);
+const t0 = Date.now(); let clicked = false;
+while (Date.now() - t0 < 600000) {
+  const cur = await ids();
+  if (cur.includes("composer-input")) break;
+  if (cur.includes("lock-start")) await clickId("lock-start");
+  else if (cur.includes("sealed-start")) { await p.waitForTimeout(4000); await clickId("sealed-start"); }
+  else if (cur.includes("onboarding-continue")) await clickId("onboarding-continue");
+  else if (cur.includes("use-model")) await clickId("use-model");
+  else if (cur.includes("download-model") && !clicked) { await clickId("download-model"); clicked = true; }
+  await p.waitForTimeout(3000);
+}
+notes.download_s = Math.round((Date.now() - t0) / 1000);
+notes.chip = await p.locator('[data-testid="model-chip"]').first().innerText().catch(() => "?");
+notes.probe = await probe();
+await mouseId("drawer-vault"); await p.waitForTimeout(3000); await shot("after-vault");
+notes.vault = (await text()).match(/Used in this browser:[^A-Z]*?free: [\d.]+ [KMGT]?B/)?.[0] ?? "(line not found)";
+await p.goto(base + "/", { waitUntil: "networkidle" }); await p.waitForTimeout(4000);
+for (let k = 0; k < 10 && !(await ids()).includes("composer-input"); k++) { const cur = await ids(); if (cur.includes("lock-start")) await clickId("lock-start"); else if (cur.includes("sealed-start")) await clickId("sealed-start"); await p.waitForTimeout(3000); }
+await mouseId("drawer-settings"); await p.waitForTimeout(2000); await mouseId("row-storage"); await p.waitForTimeout(3000); await shot("after-privacy-storage");
+notes.privacy = (await text()).match(/Models in this browser's private files[^)]*\)[^0-9]*[\d.]+ [KMGT]?B/)?.[0] ?? "(row not found)";
+/* The door for the model not yet stored reads the same corrected free figure. */
+await p.goto(base + "/", { waitUntil: "networkidle" }); await p.waitForTimeout(4000);
+for (let k = 0; k < 10 && !(await ids()).includes("composer-input"); k++) { const cur = await ids(); if (cur.includes("lock-start")) await clickId("lock-start"); else if (cur.includes("sealed-start")) await clickId("sealed-start"); await p.waitForTimeout(3000); }
+await mouseId("drawer-vault"); await p.waitForTimeout(2500);
+if (!(await ids()).includes("web-model-choose-fast")) await mouseId("web-model-options-toggle"), await p.waitForTimeout(1000);
+if (await mouseId("web-model-choose-fast")) { await p.waitForURL(/.*/, { timeout: 10000 }).catch(() => {}); await p.waitForTimeout(5000); for (let k = 0; k < 6 && !(await ids()).includes("download-model"); k++) { const cur = await ids(); if (cur.includes("lock-start")) await clickId("lock-start"); else if (cur.includes("sealed-start")) await clickId("sealed-start"); await p.waitForTimeout(3000); } await shot("after-door-fast"); notes.door = (await text()).match(/Free in this browser: [\d.]+ [KMGT]?B/)?.[0] ?? "(line not found)"; notes.doorIds = (await ids()).filter(i => /download|space|door/.test(i)); }
+writeFileSync(path.join(outDir, "proof.json"), JSON.stringify(notes, null, 1)); console.log(JSON.stringify({ ...notes, probe: { ...notes.probe, opfs: notes.probe.opfs } }, null, 1));
+await ctx.close();

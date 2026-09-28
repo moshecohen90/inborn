@@ -83,12 +83,36 @@ export async function deleteModel(file: string): Promise<void> {
   for (const name of [file, `${file}.json`, `${file}.state.json`]) await dir.removeEntry(name).catch(() => undefined);
 }
 
+/* "cache" is wllama's own OPFS cache: the embedder GGUF it fetched by URL. */
+const STORED_DIRS = [MODELS_DIR, "cache"];
+
+/** Bytes of every file the app keeps in OPFS; Privacy & storage and the space figures read this one walk. */
+export async function opfsModelBytes(storage: StorageManager): Promise<number> {
+  const root = await storage.getDirectory();
+  let n = 0;
+  for (const name of STORED_DIRS) {
+    let dir: FileSystemDirectoryHandle;
+    try {
+      dir = await root.getDirectoryHandle(name);
+    } catch {
+      continue;
+    }
+    for await (const [, h] of (dir as FileSystemDirectoryHandle & { entries(): AsyncIterable<[string, FileSystemHandle]> }).entries()) {
+      if (h.kind === "file") n += (await (h as FileSystemFileHandle).getFile()).size;
+    }
+  }
+  return n;
+}
+
 export async function storageEstimate(): Promise<StorageEstimate> {
   const out: StorageEstimate = { usage: null, quota: null, persisted: null };
   try {
     const e = await navigator.storage.estimate();
     out.usage = e.usage ?? null;
     out.quota = e.quota ?? null;
+    /* After a browser restart Chromium's usage can omit OPFS files, so what the app stored is the floor. */
+    const measured = await opfsModelBytes(navigator.storage).catch(() => 0);
+    if (measured > (out.usage ?? 0)) out.usage = measured;
   } catch {
     /* estimate() missing: leave nulls, the UI says "unknown" */
   }
