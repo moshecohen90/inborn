@@ -1,0 +1,960 @@
+{
+ "s320": {
+  "load": {
+   "image_max_tokens": 512
+  },
+  "loadInfo": {
+   "ms": 2965,
+   "image": true,
+   "threads": 2,
+   "isolated": true,
+   "gpu": true
+  },
+  "image": "cat-320.png",
+  "edge": 512,
+  "upscale": false,
+  "prep": {
+   "w": 320,
+   "h": 320,
+   "bytes": 7366
+  },
+  "runs": [
+   {
+    "k": "t0.7#1",
+    "text": "The shape is a circle and the word underneath is 'S'.",
+    "reasoning": "",
+    "ttftMs": 20299,
+    "totalMs": 21181,
+    "timings": {
+     "cache_n": 0,
+     "prompt_n": 259,
+     "prompt_ms": 20278.41,
+     "prompt_per_token_ms": 78.29501930501931,
+     "prompt_per_second": 12.772204526883517,
+     "predicted_n": 14,
+     "predicted_ms": 882.439,
+     "predicted_per_token_ms": 67.87992307692308,
+     "predicted_per_second": 14.731896482363085
+    },
+    "logs": [
+     "15212ms decoding image batch 1/1, n_tokens_batch = 100",
+     "15213ms find_slot: non-consecutive token position 126 after 125 for sequence 3 with 100 new tokens",
+     "15213ms find_slot: non-consecutive token position 126 after 125 for sequence 3 with 100 new tokens",
+     "18919ms image decoded (batch 1/1) in 3707 ms",
+     "18919ms find_slot: non-consecutive token position 164 after 126 for sequence 3 with 29 new tokens",
+     "18920ms find_slot: non-consecutive token position 164 after 126 for sequence 3 with 29 new tokens"
+    ]
+   },
+   {
+    "k": "t0.7#2",
+    "text": "The shape is a circle. The word under it is 'shape'.",
+    "reasoning": "",
+    "ttftMs": 272,
+    "totalMs": 1151,
+    "timings": {
+     "cache_n": 255,
+     "prompt_n": 4,
+     "prompt_ms": 198.09,
+     "prompt_per_token_ms": 49.5225,
+     "prompt_per_second": 20.192841637639457,
+     "predicted_n": 15,
+     "predicted_ms": 948.519,
+     "predicted_per_token_ms": 67.75135714285715,
+     "predicted_per_second": 14.759851937599564
+    },
+    "logs": []
+   },
+   {
+    "k": "t0.7#3",
+    "text": "The image displays a red circle with three black letters: \"C\", \"O\", and \"M\" arranged vertically. The first letter is C, the second O, and the third M — forming the word COM.\n\nAnswer: Red; Circle; Com",
+    "reasoning": "",
+    "ttftMs": 259,
+    "totalMs": 3690,
+    "timings": {
+     "cache_n": 255,
+     "prompt_n": 4,
+     "prompt_ms": 187.474,
+     "prompt_per_token_ms": 46.8685,
+     "prompt_per_second": 21.33629196581926,
+     "predicted_n": 53,
+     "predicted_ms": 3499.09,
+     "predicted_per_token_ms": 67.29019230769231,
+     "predicted_per_second": 14.861006718889769
+    },
+    "logs": []
+   },
+   {
+    "k": "greedy",
+    "text": "The shape is a circle, and the word written underneath is 'R'.",
+    "reasoning": "",
+    "ttftMs": 258,
+    "totalMs": 1211,
+    "timings": {
+     "cache_n": 255,
+     "prompt_n": 4,
+     "prompt_ms": 187.21,
+     "prompt_per_token_ms": 46.8025,
+     "prompt_per_second": 21.36638000106832,
+     "predicted_n": 16,
+     "predicted_ms": 1020.585,
+     "predicted_per_token_ms": 68.039,
+     "predicted_per_second": 14.697452931406987
+    },
+    "logs": []
+   }
+  ]
+ },
+ "a512": {
+  "load": {
+   "image_max_tokens": 512
+  },
+  "loadInfo": {
+   "ms": 2965,
+   "image": true,
+   "threads": 2,
+   "isolated": true,
+   "gpu": true
+  },
+  "image": "cat-1024x768.png",
+  "edge": 512,
+  "upscale": false,
+  "prep": {
+   "w": 512,
+   "h": 384,
+   "bytes": 10251
+  },
+  "runs": [
+   {
+    "k": "t0.7#1",
+    "text": "The red circle in the image represents a traditional Japanese flag's symbol (Hanko), while the black letter 'T' below stands for Japan. The shape itself is not explicitly colored; however, given the context of this question asking about its color and identity as a recognized symbol, the intended answer would be \"red\" if referring to the Hanko, or simply \"Japan's flag\" if focusing on the overall design elements like colors and national symbols depicted in the image.",
+    "reasoning": "",
+    "ttftMs": 33422,
+    "totalMs": 39830,
+    "timings": {
+     "cache_n": 0,
+     "prompt_n": 351,
+     "prompt_ms": 33410.844,
+     "prompt_per_token_ms": 95.18758974358974,
+     "prompt_per_second": 10.505571185211604,
+     "predicted_n": 96,
+     "predicted_ms": 6407.89,
+     "predicted_per_token_ms": 67.45147368421053,
+     "predicted_per_second": 14.825472971602196
+    },
+    "logs": [
+     "24861ms decoding image batch 1/1, n_tokens_batch = 192",
+     "24861ms find_slot: non-consecutive token position 126 after 125 for sequence 3 with 192 new tokens",
+     "24861ms find_slot: non-consecutive token position 126 after 125 for sequence 3 with 192 new tokens",
+     "31983ms image decoded (batch 1/1) in 7122 ms",
+     "31984ms find_slot: non-consecutive token position 170 after 126 for sequence 3 with 29 new tokens",
+     "31984ms find_slot: non-consecutive token position 170 after 126 for sequence 3 with 29 new tokens"
+    ]
+   },
+   {
+    "k": "t0.7#2",
+    "text": "The shape is a red circle, and the text written underneath is \"GOT\".",
+    "reasoning": "",
+    "ttftMs": 268,
+    "totalMs": 1342,
+    "timings": {
+     "cache_n": 347,
+     "prompt_n": 4,
+     "prompt_ms": 195.93,
+     "prompt_per_token_ms": 48.9825,
+     "prompt_per_second": 20.415454499055784,
+     "predicted_n": 18,
+     "predicted_ms": 1141.046,
+     "predicted_per_token_ms": 67.12035294117648,
+     "predicted_per_second": 14.89861057310573
+    },
+    "logs": []
+   },
+   {
+    "k": "t0.7#3",
+    "text": "The image shows a red circle with black text underneath. The shape is circular, which makes it recognizable as the Japanese flag's traditional emblems. The words beneath are \"JAPAN\".",
+    "reasoning": "",
+    "ttftMs": 265,
+    "totalMs": 2679,
+    "timings": {
+     "cache_n": 347,
+     "prompt_n": 4,
+     "prompt_ms": 193.74,
+     "prompt_per_token_ms": 48.435,
+     "prompt_per_second": 20.646226902033654,
+     "predicted_n": 38,
+     "predicted_ms": 2481.436,
+     "predicted_per_token_ms": 67.06583783783785,
+     "predicted_per_second": 14.91072105023059
+    },
+    "logs": []
+   },
+   {
+    "k": "greedy",
+    "text": "The shape is a red circle (or dot), and the word written underneath is \"GOT\".",
+    "reasoning": "",
+    "ttftMs": 280,
+    "totalMs": 1573,
+    "timings": {
+     "cache_n": 347,
+     "prompt_n": 4,
+     "prompt_ms": 203.675,
+     "prompt_per_token_ms": 50.91875,
+     "prompt_per_second": 19.639130968454644,
+     "predicted_n": 21,
+     "predicted_ms": 1365.17,
+     "predicted_per_token_ms": 68.2585,
+     "predicted_per_second": 14.650190086216368
+    },
+    "logs": []
+   }
+  ]
+ },
+ "b1024": {
+  "load": {
+   "image_max_tokens": 512
+  },
+  "loadInfo": {
+   "ms": 2965,
+   "image": true,
+   "threads": 2,
+   "isolated": true,
+   "gpu": true
+  },
+  "image": "cat-1024x768.png",
+  "edge": 1024,
+  "upscale": false,
+  "prep": {
+   "w": 1024,
+   "h": 768,
+   "bytes": 22351
+  },
+  "runs": [
+   {
+    "k": "t0.7#1",
+    "text": "The red circle has a circular shape, and the text below says \"CAT\".",
+    "reasoning": "",
+    "ttftMs": 80438,
+    "totalMs": 81594,
+    "timings": {
+     "cache_n": 0,
+     "prompt_n": 653,
+     "prompt_ms": 80403.97,
+     "prompt_per_token_ms": 123.13012251148545,
+     "prompt_per_second": 8.121489523465073,
+     "predicted_n": 17,
+     "predicted_ms": 1156.34,
+     "predicted_per_token_ms": 72.27125,
+     "predicted_per_second": 13.836760814293376
+    },
+    "logs": [
+     "59906ms decoding image batch 1/1, n_tokens_batch = 494",
+     "59906ms find_slot: non-consecutive token position 126 after 125 for sequence 3 with 494 new tokens",
+     "59906ms find_slot: non-consecutive token position 126 after 125 for sequence 3 with 494 new tokens",
+     "78787ms image decoded (batch 1/1) in 18882 ms",
+     "78788ms find_slot: non-consecutive token position 180 after 126 for sequence 3 with 29 new tokens",
+     "78788ms find_slot: non-consecutive token position 180 after 126 for sequence 3 with 29 new tokens"
+    ]
+   },
+   {
+    "k": "t0.7#2",
+    "text": "The image displays a red circle with a bold black lettering below. The shape is clearly a circle (circular), and the text underneath reads CAT. Therefore, the answer is: A red circle with a black \"CAT\" letter inside a white background.",
+    "reasoning": "",
+    "ttftMs": 306,
+    "totalMs": 4101,
+    "timings": {
+     "cache_n": 649,
+     "prompt_n": 4,
+     "prompt_ms": 218.665,
+     "prompt_per_token_ms": 54.66625,
+     "prompt_per_second": 18.292822353828917,
+     "predicted_n": 53,
+     "predicted_ms": 3866.756,
+     "predicted_per_token_ms": 74.3606923076923,
+     "predicted_per_second": 13.447965167701298
+    },
+    "logs": []
+   },
+   {
+    "k": "t0.7#3",
+    "text": "The circle is red. The word CAT is below it.",
+    "reasoning": "",
+    "ttftMs": 309,
+    "totalMs": 1107,
+    "timings": {
+     "cache_n": 649,
+     "prompt_n": 4,
+     "prompt_ms": 221.38,
+     "prompt_per_token_ms": 55.345,
+     "prompt_per_second": 18.068479537446922,
+     "predicted_n": 13,
+     "predicted_ms": 870.4,
+     "predicted_per_token_ms": 72.53333333333333,
+     "predicted_per_second": 13.786764705882353
+    },
+    "logs": []
+   },
+   {
+    "k": "greedy",
+    "text": "The red circle is a flag's symbol, and the text below reads \"CAT\".",
+    "reasoning": "",
+    "ttftMs": 305,
+    "totalMs": 1464,
+    "timings": {
+     "cache_n": 649,
+     "prompt_n": 4,
+     "prompt_ms": 217.355,
+     "prompt_per_token_ms": 54.33875,
+     "prompt_per_second": 18.40307331324331,
+     "predicted_n": 18,
+     "predicted_ms": 1231.97,
+     "predicted_per_token_ms": 72.46882352941176,
+     "predicted_per_second": 13.799037314220314
+    },
+    "logs": []
+   }
+  ]
+ },
+ "u320to1024": {
+  "load": {
+   "image_max_tokens": 512
+  },
+  "loadInfo": {
+   "ms": 2965,
+   "image": true,
+   "threads": 2,
+   "isolated": true,
+   "gpu": true
+  },
+  "image": "cat-320.png",
+  "edge": 1024,
+  "upscale": true,
+  "prep": {
+   "w": 1024,
+   "h": 1024,
+   "bytes": 28646
+  },
+  "runs": [
+   {
+    "k": "t0.7#1",
+    "text": "The shape is a red circle with the word \"CAT\" underneath it.",
+    "reasoning": "",
+    "ttftMs": 83664,
+    "totalMs": 84758,
+    "timings": {
+     "cache_n": 0,
+     "prompt_n": 643,
+     "prompt_ms": 83639.35,
+     "prompt_per_token_ms": 130.07674961119753,
+     "prompt_per_second": 7.6877689747708455,
+     "predicted_n": 16,
+     "predicted_ms": 1093.47,
+     "predicted_per_token_ms": 72.898,
+     "predicted_per_second": 13.717797470438146
+    },
+    "logs": [
+     "59787ms decoding image batch 1/1, n_tokens_batch = 484",
+     "59788ms find_slot: non-consecutive token position 126 after 125 for sequence 3 with 484 new tokens",
+     "59788ms find_slot: non-consecutive token position 126 after 125 for sequence 3 with 484 new tokens",
+     "81922ms image decoded (batch 1/1) in 22135 ms",
+     "81922ms find_slot: non-consecutive token position 176 after 126 for sequence 3 with 29 new tokens",
+     "81922ms find_slot: non-consecutive token position 176 after 126 for sequence 3 with 29 new tokens"
+    ]
+   },
+   {
+    "k": "t0.7#2",
+    "text": "The shape is a circle, the word written under it is CAT.",
+    "reasoning": "",
+    "ttftMs": 313,
+    "totalMs": 1265,
+    "timings": {
+     "cache_n": 639,
+     "prompt_n": 4,
+     "prompt_ms": 217.679,
+     "prompt_per_token_ms": 54.41975,
+     "prompt_per_second": 18.3756816229402,
+     "predicted_n": 15,
+     "predicted_ms": 1024.615,
+     "predicted_per_token_ms": 73.18678571428572,
+     "predicted_per_second": 13.663668792668465
+    },
+    "logs": []
+   },
+   {
+    "k": "t0.7#3",
+    "text": "The shape in the photo is a red circle with black text underneath labeled CAT.",
+    "reasoning": "",
+    "ttftMs": 308,
+    "totalMs": 1389,
+    "timings": {
+     "cache_n": 639,
+     "prompt_n": 4,
+     "prompt_ms": 215.319,
+     "prompt_per_token_ms": 53.82975,
+     "prompt_per_second": 18.577087948578622,
+     "predicted_n": 17,
+     "predicted_ms": 1153.335,
+     "predicted_per_token_ms": 72.0834375,
+     "predicted_per_second": 13.872812322525546
+    },
+    "logs": []
+   },
+   {
+    "k": "greedy",
+    "text": "The shape is a red circle, and the word written underneath is CAT.",
+    "reasoning": "",
+    "ttftMs": 307,
+    "totalMs": 1311,
+    "timings": {
+     "cache_n": 639,
+     "prompt_n": 4,
+     "prompt_ms": 216.245,
+     "prompt_per_token_ms": 54.06125,
+     "prompt_per_second": 18.497537515318275,
+     "predicted_n": 16,
+     "predicted_ms": 1077.555,
+     "predicted_per_token_ms": 71.837,
+     "predicted_per_second": 13.920403134874785
+    },
+    "logs": []
+   }
+  ]
+ },
+ "c1024t1024": {
+  "load": {
+   "image_max_tokens": 1024
+  },
+  "loadInfo": {
+   "ms": 1913,
+   "image": true,
+   "threads": 2,
+   "isolated": true,
+   "gpu": true
+  },
+  "image": "cat-1024x768.png",
+  "edge": 1024,
+  "upscale": false,
+  "prep": {
+   "w": 1024,
+   "h": 768,
+   "bytes": 22351
+  },
+  "runs": [
+   {
+    "k": "t0.7#1",
+    "text": "The red circle represents a circle; 'C' stands for CIRCLE and 'A' stands for AROUND.",
+    "reasoning": "",
+    "ttftMs": 141512,
+    "totalMs": 144587,
+    "timings": {
+     "cache_n": 0,
+     "prompt_n": 927,
+     "prompt_ms": 141502.279,
+     "prompt_per_token_ms": 152.6453926645092,
+     "prompt_per_second": 6.551131236550614,
+     "predicted_n": 24,
+     "predicted_ms": 3074.781,
+     "predicted_per_token_ms": 133.6861304347826,
+     "predicted_per_second": 7.4802075334796205
+    },
+    "logs": [
+     "110115ms decoding image batch 1/1, n_tokens_batch = 768",
+     "110116ms find_slot: non-consecutive token position 126 after 125 for sequence 3 with 512 new tokens",
+     "110116ms find_slot: non-consecutive token position 126 after 126 for sequence 3 with 256 new tokens",
+     "110116ms find_slot: non-consecutive token position 126 after 125 for sequence 3 with 512 new tokens",
+     "129477ms find_slot: non-consecutive token position 126 after 126 for sequence 3 with 256 new tokens",
+     "139246ms image decoded (batch 1/1) in 29131 ms",
+     "139246ms find_slot: non-consecutive token position 186 after 126 for sequence 3 with 29 new tokens",
+     "139246ms find_slot: non-consecutive token position 186 after 126 for sequence 3 with 29 new tokens"
+    ]
+   },
+   {
+    "k": "t0.7#2",
+    "text": "The red circle with a black outline is 'C' and 'T'.",
+    "reasoning": "",
+    "ttftMs": 513,
+    "totalMs": 2075,
+    "timings": {
+     "cache_n": 923,
+     "prompt_n": 4,
+     "prompt_ms": 375.556,
+     "prompt_per_token_ms": 93.889,
+     "prompt_per_second": 10.650874969378735,
+     "predicted_n": 16,
+     "predicted_ms": 1677.165,
+     "predicted_per_token_ms": 111.81099999999999,
+     "predicted_per_second": 8.943663861337436
+    },
+    "logs": []
+   },
+   {
+    "k": "t0.7#3",
+    "text": "The red circle above the black text is a circle. The text written below it is 'CAT'.",
+    "reasoning": "",
+    "ttftMs": 447,
+    "totalMs": 2541,
+    "timings": {
+     "cache_n": 923,
+     "prompt_n": 4,
+     "prompt_ms": 327.69,
+     "prompt_per_token_ms": 81.9225,
+     "prompt_per_second": 12.206658732338491,
+     "predicted_n": 21,
+     "predicted_ms": 2200.035,
+     "predicted_per_token_ms": 110.00174999999999,
+     "predicted_per_second": 9.090764465110784
+    },
+    "logs": []
+   },
+   {
+    "k": "greedy",
+    "text": "The red circle is a shape, and the text below reads 'C' followed by 'A' and 'T'.",
+    "reasoning": "",
+    "ttftMs": 422,
+    "totalMs": 2951,
+    "timings": {
+     "cache_n": 923,
+     "prompt_n": 4,
+     "prompt_ms": 307.916,
+     "prompt_per_token_ms": 76.979,
+     "prompt_per_second": 12.9905558658855,
+     "predicted_n": 25,
+     "predicted_ms": 2631.489,
+     "predicted_per_token_ms": 109.645375,
+     "predicted_per_second": 9.120311732255008
+    },
+    "logs": []
+   }
+  ]
+ },
+ "u320to1024t1024": {
+  "load": {
+   "image_max_tokens": 1024
+  },
+  "loadInfo": {
+   "ms": 1913,
+   "image": true,
+   "threads": 2,
+   "isolated": true,
+   "gpu": true
+  },
+  "image": "cat-320.png",
+  "edge": 1024,
+  "upscale": true,
+  "prep": {
+   "w": 1024,
+   "h": 1024,
+   "bytes": 28646
+  },
+  "runs": [
+   {
+    "k": "t0.7#1",
+    "text": "The red circle is a dot or shape, and the text written underneath it is CAT.",
+    "reasoning": "",
+    "ttftMs": 181921,
+    "totalMs": 183405,
+    "timings": {
+     "cache_n": 0,
+     "prompt_n": 1183,
+     "prompt_ms": 181897.95,
+     "prompt_per_token_ms": 153.7598901098901,
+     "prompt_per_second": 6.50364668760698,
+     "predicted_n": 19,
+     "predicted_ms": 1484.399,
+     "predicted_per_token_ms": 82.4666111111111,
+     "predicted_per_second": 12.126119729264168
+    },
+    "logs": [
+     "140945ms decoding image batch 1/1, n_tokens_batch = 1024",
+     "140946ms find_slot: non-consecutive token position 126 after 125 for sequence 3 with 512 new tokens",
+     "140946ms find_slot: non-consecutive token position 126 after 126 for sequence 3 with 512 new tokens",
+     "140946ms find_slot: non-consecutive token position 126 after 125 for sequence 3 with 512 new tokens",
+     "160226ms find_slot: non-consecutive token position 126 after 126 for sequence 3 with 512 new tokens",
+     "179928ms image decoded (batch 1/1) in 38984 ms",
+     "179928ms find_slot: non-consecutive token position 186 after 126 for sequence 3 with 29 new tokens",
+     "179928ms find_slot: non-consecutive token position 186 after 126 for sequence 3 with 29 new tokens"
+    ]
+   },
+   {
+    "k": "t0.7#2",
+    "text": "The red circle represents the Japanese flag (Hana), which has a specific geometric shape of two intersecting lines forming an 'X'. The text beneath it reads \"CAT\".",
+    "reasoning": "",
+    "ttftMs": 362,
+    "totalMs": 3164,
+    "timings": {
+     "cache_n": 1179,
+     "prompt_n": 4,
+     "prompt_ms": 258.915,
+     "prompt_per_token_ms": 64.72875,
+     "prompt_per_second": 15.44908560724562,
+     "predicted_n": 36,
+     "predicted_ms": 2885.94,
+     "predicted_per_token_ms": 82.45542857142857,
+     "predicted_per_second": 12.127764263983313
+    },
+    "logs": []
+   },
+   {
+    "k": "t0.7#3",
+    "text": "The red circle has a perfect round shape, and the text below reads CAT.",
+    "reasoning": "",
+    "ttftMs": 357,
+    "totalMs": 1625,
+    "timings": {
+     "cache_n": 1179,
+     "prompt_n": 4,
+     "prompt_ms": 256.694,
+     "prompt_per_token_ms": 64.1735,
+     "prompt_per_second": 15.58275612207531,
+     "predicted_n": 17,
+     "predicted_ms": 1350.366,
+     "predicted_per_token_ms": 84.397875,
+     "predicted_per_second": 11.848639554017208
+    },
+    "logs": []
+   },
+   {
+    "k": "greedy",
+    "text": "The shape is a red circle, and the word written underneath is CAT.",
+    "reasoning": "",
+    "ttftMs": 351,
+    "totalMs": 1498,
+    "timings": {
+     "cache_n": 1179,
+     "prompt_n": 4,
+     "prompt_ms": 257.139,
+     "prompt_per_token_ms": 64.28475,
+     "prompt_per_second": 15.555788892388941,
+     "predicted_n": 16,
+     "predicted_ms": 1228.536,
+     "predicted_per_token_ms": 81.9024,
+     "predicted_per_second": 12.209654417941355
+    },
+    "logs": []
+   }
+  ]
+ },
+ "s320min1024": {
+  "load": {
+   "image_max_tokens": 1024,
+   "image_min_tokens": 1024
+  },
+  "loadInfo": {
+   "ms": 2184,
+   "image": true,
+   "threads": 2,
+   "isolated": true,
+   "gpu": true
+  },
+  "image": "cat-320.png",
+  "edge": 512,
+  "upscale": false,
+  "prep": {
+   "w": 320,
+   "h": 320,
+   "bytes": 7366
+  },
+  "runs": [
+   {
+    "k": "t0.7#1",
+    "text": "The red circle shape is a flag of Japan, and the words written below are CAT.",
+    "reasoning": "",
+    "ttftMs": 176920,
+    "totalMs": 178405,
+    "timings": {
+     "cache_n": 0,
+     "prompt_n": 1183,
+     "prompt_ms": 176905.195,
+     "prompt_per_token_ms": 149.539471682164,
+     "prompt_per_second": 6.6871976258243855,
+     "predicted_n": 19,
+     "predicted_ms": 1485.159,
+     "predicted_per_token_ms": 82.50883333333334,
+     "predicted_per_second": 12.1199144334041
+    },
+    "logs": [
+     "134002ms decoding image batch 1/1, n_tokens_batch = 1024",
+     "134003ms find_slot: non-consecutive token position 126 after 125 for sequence 3 with 512 new tokens",
+     "134003ms find_slot: non-consecutive token position 126 after 126 for sequence 3 with 512 new tokens",
+     "134003ms find_slot: non-consecutive token position 126 after 125 for sequence 3 with 512 new tokens",
+     "154204ms find_slot: non-consecutive token position 126 after 126 for sequence 3 with 512 new tokens",
+     "174884ms image decoded (batch 1/1) in 40882 ms",
+     "174884ms find_slot: non-consecutive token position 186 after 126 for sequence 3 with 29 new tokens",
+     "174884ms find_slot: non-consecutive token position 186 after 126 for sequence 3 with 29 new tokens"
+    ]
+   },
+   {
+    "k": "t0.7#2",
+    "text": "The shape is a red circle, which is known as a sun symbol or flag, and the word written underneath is CAT.",
+    "reasoning": "",
+    "ttftMs": 383,
+    "totalMs": 2399,
+    "timings": {
+     "cache_n": 1179,
+     "prompt_n": 4,
+     "prompt_ms": 275.145,
+     "prompt_per_token_ms": 68.78625,
+     "prompt_per_second": 14.537789165712626,
+     "predicted_n": 26,
+     "predicted_ms": 2103.24,
+     "predicted_per_token_ms": 84.1296,
+     "predicted_per_second": 11.88642285236112
+    },
+    "logs": []
+   },
+   {
+    "k": "t0.7#3",
+    "text": "The shape is a circle, written as 'CAT' below it.",
+    "reasoning": "",
+    "ttftMs": 359,
+    "totalMs": 1445,
+    "timings": {
+     "cache_n": 1179,
+     "prompt_n": 4,
+     "prompt_ms": 260.96,
+     "prompt_per_token_ms": 65.24,
+     "prompt_per_second": 15.328019619865115,
+     "predicted_n": 15,
+     "predicted_ms": 1168.649,
+     "predicted_per_token_ms": 83.47492857142856,
+     "predicted_per_second": 11.97964487198466
+    },
+    "logs": []
+   },
+   {
+    "k": "greedy",
+    "text": "The shape is a red circle, and the word written underneath is CAT.",
+    "reasoning": "",
+    "ttftMs": 370,
+    "totalMs": 1542,
+    "timings": {
+     "cache_n": 1179,
+     "prompt_n": 4,
+     "prompt_ms": 269.23,
+     "prompt_per_token_ms": 67.3075,
+     "prompt_per_second": 14.85718530624373,
+     "predicted_n": 16,
+     "predicted_ms": 1257.155,
+     "predicted_per_token_ms": 83.81033333333333,
+     "predicted_per_second": 11.931702932414858
+    },
+    "logs": []
+   }
+  ]
+ },
+ "s320min512": {
+  "load": {
+   "image_max_tokens": 512,
+   "image_min_tokens": 512
+  },
+  "loadInfo": {
+   "ms": 3172,
+   "image": true,
+   "threads": 2,
+   "isolated": true,
+   "gpu": true
+  },
+  "image": "cat-320.png",
+  "edge": 512,
+  "upscale": false,
+  "prep": {
+   "w": 320,
+   "h": 320,
+   "bytes": 7366
+  },
+  "runs": [
+   {
+    "k": "t0.7#1",
+    "text": "The red circle is a flag of Japan, and below it, the letters CAT are printed.",
+    "reasoning": "",
+    "ttftMs": 88970,
+    "totalMs": 90350,
+    "timings": {
+     "cache_n": 0,
+     "prompt_n": 688,
+     "prompt_ms": 88932.569,
+     "prompt_per_token_ms": 129.26245494186048,
+     "prompt_per_second": 7.736198422424972,
+     "predicted_n": 20,
+     "predicted_ms": 1380.916,
+     "predicted_per_token_ms": 72.67978947368421,
+     "predicted_per_second": 13.758983167694486
+    },
+    "logs": [
+     "66118ms decoding image batch 1/1, n_tokens_batch = 529",
+     "66119ms find_slot: non-consecutive token position 126 after 125 for sequence 3 with 512 new tokens",
+     "66119ms find_slot: non-consecutive token position 126 after 126 for sequence 3 with 17 new tokens",
+     "66119ms find_slot: non-consecutive token position 126 after 125 for sequence 3 with 512 new tokens",
+     "86478ms find_slot: non-consecutive token position 126 after 126 for sequence 3 with 17 new tokens",
+     "87302ms image decoded (batch 1/1) in 21184 ms",
+     "87302ms find_slot: non-consecutive token position 177 after 126 for sequence 3 with 29 new tokens",
+     "87302ms find_slot: non-consecutive token position 177 after 126 for sequence 3 with 29 new tokens"
+    ]
+   },
+   {
+    "k": "t0.7#2",
+    "text": "The shape is a red circle with the word CAT written underneath.",
+    "reasoning": "",
+    "ttftMs": 308,
+    "totalMs": 1168,
+    "timings": {
+     "cache_n": 684,
+     "prompt_n": 4,
+     "prompt_ms": 223.431,
+     "prompt_per_token_ms": 55.85775,
+     "prompt_per_second": 17.902618705551152,
+     "predicted_n": 14,
+     "predicted_ms": 931.21,
+     "predicted_per_token_ms": 71.63153846153847,
+     "predicted_per_second": 13.960331182010501
+    },
+    "logs": []
+   },
+   {
+    "k": "t0.7#3",
+    "text": "The shape is a red circle, and the word below it is CAT.",
+    "reasoning": "",
+    "ttftMs": 300,
+    "totalMs": 1301,
+    "timings": {
+     "cache_n": 684,
+     "prompt_n": 4,
+     "prompt_ms": 218.691,
+     "prompt_per_token_ms": 54.67275,
+     "prompt_per_second": 18.290647534649345,
+     "predicted_n": 16,
+     "predicted_ms": 1073.09,
+     "predicted_per_token_ms": 71.53933333333333,
+     "predicted_per_second": 13.978324278485497
+    },
+    "logs": []
+   },
+   {
+    "k": "greedy",
+    "text": "The shape is a red circle, and the word written underneath is CAT.",
+    "reasoning": "",
+    "ttftMs": 298,
+    "totalMs": 1300,
+    "timings": {
+     "cache_n": 684,
+     "prompt_n": 4,
+     "prompt_ms": 217.715,
+     "prompt_per_token_ms": 54.42875,
+     "prompt_per_second": 18.372643134372918,
+     "predicted_n": 16,
+     "predicted_ms": 1073.029,
+     "predicted_per_token_ms": 71.53526666666667,
+     "predicted_per_second": 13.979118924092454
+    },
+    "logs": []
+   }
+  ]
+ },
+ "a512min512": {
+  "load": {
+   "image_max_tokens": 512,
+   "image_min_tokens": 512
+  },
+  "loadInfo": {
+   "ms": 3172,
+   "image": true,
+   "threads": 2,
+   "isolated": true,
+   "gpu": true
+  },
+  "image": "cat-1024x768.png",
+  "edge": 512,
+  "upscale": false,
+  "prep": {
+   "w": 512,
+   "h": 384,
+   "bytes": 10251
+  },
+  "runs": [
+   {
+    "k": "t0.7#1",
+    "text": "The red circle symbol signifies that this image contains a cat. The text below indicates \"CAT\", confirming the presence of feline. Therefore, the shape is circular and the word is CAT.",
+    "reasoning": "",
+    "ttftMs": 88487,
+    "totalMs": 91280,
+    "timings": {
+     "cache_n": 0,
+     "prompt_n": 699,
+     "prompt_ms": 88469.88,
+     "prompt_per_token_ms": 126.56635193133047,
+     "prompt_per_second": 7.900994101043202,
+     "predicted_n": 39,
+     "predicted_ms": 2792.43,
+     "predicted_per_token_ms": 73.485,
+     "predicted_per_second": 13.608219364496156
+    },
+    "logs": [
+     "66053ms decoding image batch 1/1, n_tokens_batch = 540",
+     "66054ms find_slot: non-consecutive token position 126 after 125 for sequence 3 with 512 new tokens",
+     "66054ms find_slot: non-consecutive token position 126 after 126 for sequence 3 with 28 new tokens",
+     "66054ms find_slot: non-consecutive token position 126 after 125 for sequence 3 with 512 new tokens",
+     "85420ms find_slot: non-consecutive token position 126 after 126 for sequence 3 with 28 new tokens",
+     "86815ms image decoded (batch 1/1) in 20761 ms",
+     "86815ms find_slot: non-consecutive token position 181 after 126 for sequence 3 with 29 new tokens",
+     "86815ms find_slot: non-consecutive token position 181 after 126 for sequence 3 with 29 new tokens"
+    ]
+   },
+   {
+    "k": "t0.7#2",
+    "text": "The image shows a red circle with \"CAT\" written below it. The red color is the primary one. The shape of the circle is circular. The text written is CAT, which stands for Cat.",
+    "reasoning": "",
+    "ttftMs": 319,
+    "totalMs": 3306,
+    "timings": {
+     "cache_n": 695,
+     "prompt_n": 4,
+     "prompt_ms": 233.685,
+     "prompt_per_token_ms": 58.42125,
+     "prompt_per_second": 17.11705928921411,
+     "predicted_n": 42,
+     "predicted_ms": 3061.28,
+     "predicted_per_token_ms": 74.66536585365854,
+     "predicted_per_second": 13.393090471959441
+    },
+    "logs": []
+   },
+   {
+    "k": "t0.7#3",
+    "text": "The red circle is a Japanese flag symbol (Haicha), shaped like a Japanese flag's design with its white border and horizontal stripes. Underneath, the word CAT is written.",
+    "reasoning": "",
+    "ttftMs": 306,
+    "totalMs": 2876,
+    "timings": {
+     "cache_n": 695,
+     "prompt_n": 4,
+     "prompt_ms": 223.534,
+     "prompt_per_token_ms": 55.8835,
+     "prompt_per_second": 17.8943695366253,
+     "predicted_n": 37,
+     "predicted_ms": 2642.146,
+     "predicted_per_token_ms": 73.39294444444445,
+     "predicted_per_second": 13.62528792882755
+    },
+    "logs": []
+   },
+   {
+    "k": "greedy",
+    "text": "The red circle is a Japanese flag's symbol, which is a specific shape. The text below it reads CAT.",
+    "reasoning": "",
+    "ttftMs": 307,
+    "totalMs": 1914,
+    "timings": {
+     "cache_n": 695,
+     "prompt_n": 4,
+     "prompt_ms": 222.94,
+     "prompt_per_token_ms": 55.735,
+     "prompt_per_second": 17.942047187584105,
+     "predicted_n": 24,
+     "predicted_ms": 1680.634,
+     "predicted_per_token_ms": 73.07104347826088,
+     "predicted_per_second": 13.685311614545464
+    },
+    "logs": []
+   }
+  ]
+ }
+}

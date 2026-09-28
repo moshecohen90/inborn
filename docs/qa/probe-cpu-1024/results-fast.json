@@ -1,0 +1,212 @@
+{
+ "s320": {
+  "load": {
+   "image_max_tokens": 512
+  },
+  "loadInfo": {
+   "ms": 8387,
+   "image": true,
+   "threads": 2,
+   "isolated": true,
+   "gpu": true
+  },
+  "image": "cat-320.png",
+  "edge": 512,
+  "upscale": false,
+  "prep": {
+   "w": 320,
+   "h": 320,
+   "bytes": 7366
+  },
+  "runs": [
+   {
+    "k": "t0.7#1",
+    "text": "The shape is a circle, and its color is red. The text \"CAT\" appears below the shape.",
+    "reasoning": "",
+    "ttftMs": 64430,
+    "totalMs": 67760,
+    "timings": {
+     "cache_n": 0,
+     "prompt_n": 259,
+     "prompt_ms": 64406.491,
+     "prompt_per_token_ms": 248.67371042471044,
+     "prompt_per_second": 4.021333812456884,
+     "predicted_n": 23,
+     "predicted_ms": 3330.214,
+     "predicted_per_token_ms": 151.37336363636362,
+     "predicted_per_second": 6.606182065176593
+    },
+    "logs": [
+     "51211ms decoding image batch 1/1, n_tokens_batch = 100",
+     "51211ms find_slot: non-consecutive token position 126 after 125 for sequence 3 with 100 new tokens",
+     "51211ms find_slot: non-consecutive token position 126 after 125 for sequence 3 with 100 new tokens",
+     "60989ms image decoded (batch 1/1) in 9778 ms",
+     "60989ms find_slot: non-consecutive token position 164 after 126 for sequence 3 with 29 new tokens",
+     "60989ms find_slot: non-consecutive token position 164 after 126 for sequence 3 with 29 new tokens"
+    ]
+   },
+   {
+    "k": "t0.7#2",
+    "text": "The shape is a circle, colored red. The text below it reads \"CAT\".",
+    "reasoning": "",
+    "ttftMs": 587,
+    "totalMs": 3091,
+    "timings": {
+     "cache_n": 255,
+     "prompt_n": 4,
+     "prompt_ms": 435.36,
+     "prompt_per_token_ms": 108.84,
+     "prompt_per_second": 9.187798603454612,
+     "predicted_n": 18,
+     "predicted_ms": 2645.26,
+     "predicted_per_token_ms": 155.60352941176473,
+     "predicted_per_second": 6.4265894467840585
+    },
+    "logs": []
+   },
+   {
+    "k": "t0.7#3",
+    "text": "The red circle is shaped like a sun or flag emblem. The word \"CAT\" is written underneath in black letters.",
+    "reasoning": "",
+    "ttftMs": 776,
+    "totalMs": 4156,
+    "timings": {
+     "cache_n": 255,
+     "prompt_n": 4,
+     "prompt_ms": 609.785,
+     "prompt_per_token_ms": 152.44625,
+     "prompt_per_second": 6.559689070738047,
+     "predicted_n": 25,
+     "predicted_ms": 3540.655,
+     "predicted_per_token_ms": 147.52729166666668,
+     "predicted_per_second": 6.778406820206994
+    },
+    "logs": []
+   },
+   {
+    "k": "greedy",
+    "text": "The shape is a red circle, and the word underneath is \"CAT\".",
+    "reasoning": "",
+    "ttftMs": 613,
+    "totalMs": 2620,
+    "timings": {
+     "cache_n": 255,
+     "prompt_n": 4,
+     "prompt_ms": 447.69,
+     "prompt_per_token_ms": 111.9225,
+     "prompt_per_second": 8.934753959212848,
+     "predicted_n": 16,
+     "predicted_ms": 2166.1,
+     "predicted_per_token_ms": 144.40666666666667,
+     "predicted_per_second": 6.92488804764323
+    },
+    "logs": []
+   }
+  ]
+ },
+ "a512": {
+  "load": {
+   "image_max_tokens": 512
+  },
+  "loadInfo": {
+   "ms": 8387,
+   "image": true,
+   "threads": 2,
+   "isolated": true,
+   "gpu": true
+  },
+  "image": "cat-1024x768.png",
+  "edge": 512,
+  "upscale": false,
+  "prep": {
+   "w": 512,
+   "h": 384,
+   "bytes": 10251
+  },
+  "runs": [
+   {
+    "k": "t0.7#1",
+    "text": "The red circle. The shape is a circle, and the word CAT is written below it.",
+    "reasoning": "",
+    "ttftMs": 108087,
+    "totalMs": 110815,
+    "timings": {
+     "cache_n": 0,
+     "prompt_n": 351,
+     "prompt_ms": 108070.151,
+     "prompt_per_token_ms": 307.89216809116806,
+     "prompt_per_second": 3.2478903448557226,
+     "predicted_n": 20,
+     "predicted_ms": 2727.615,
+     "predicted_per_token_ms": 143.5586842105263,
+     "predicted_per_second": 6.965792459712974
+    },
+    "logs": [
+     "86645ms decoding image batch 1/1, n_tokens_batch = 192",
+     "86645ms find_slot: non-consecutive token position 126 after 125 for sequence 3 with 192 new tokens",
+     "86646ms find_slot: non-consecutive token position 126 after 125 for sequence 3 with 192 new tokens",
+     "104692ms image decoded (batch 1/1) in 18047 ms",
+     "104692ms find_slot: non-consecutive token position 170 after 126 for sequence 3 with 29 new tokens",
+     "104692ms find_slot: non-consecutive token position 170 after 126 for sequence 3 with 29 new tokens"
+    ]
+   },
+   {
+    "k": "t0.7#2",
+    "text": "The image shows a red circle positioned above the black letters CAT. Therefore, the shape is circular, and the words written underneath are \"CAT\".",
+    "reasoning": "",
+    "ttftMs": 636,
+    "totalMs": 4604,
+    "timings": {
+     "cache_n": 347,
+     "prompt_n": 4,
+     "prompt_ms": 454.375,
+     "prompt_per_token_ms": 113.59375,
+     "prompt_per_second": 8.803301237964236,
+     "predicted_n": 30,
+     "predicted_ms": 4140.375,
+     "predicted_per_token_ms": 142.77155172413794,
+     "predicted_per_second": 7.004196479787458
+    },
+    "logs": []
+   },
+   {
+    "k": "t0.7#3",
+    "text": "The shape is a red circle, and the word beneath it is CAT.",
+    "reasoning": "",
+    "ttftMs": 592,
+    "totalMs": 2548,
+    "timings": {
+     "cache_n": 347,
+     "prompt_n": 4,
+     "prompt_ms": 441.986,
+     "prompt_per_token_ms": 110.4965,
+     "prompt_per_second": 9.05006040915323,
+     "predicted_n": 16,
+     "predicted_ms": 2101.325,
+     "predicted_per_token_ms": 140.0883333333333,
+     "predicted_per_second": 7.138353181920931
+    },
+    "logs": []
+   },
+   {
+    "k": "greedy",
+    "text": "The shape is a red circle, and the word underneath is CAT.",
+    "reasoning": "",
+    "ttftMs": 576,
+    "totalMs": 2408,
+    "timings": {
+     "cache_n": 347,
+     "prompt_n": 4,
+     "prompt_ms": 433.234,
+     "prompt_per_token_ms": 108.3085,
+     "prompt_per_second": 9.232885692258687,
+     "predicted_n": 15,
+     "predicted_ms": 1971.131,
+     "predicted_per_token_ms": 140.79507142857145,
+     "predicted_per_second": 7.102521344344947
+    },
+    "logs": []
+   }
+  ]
+ }
+}

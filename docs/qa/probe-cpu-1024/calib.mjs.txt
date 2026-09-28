@@ -1,0 +1,15 @@
+import { createRequire } from "node:module"; import { readdirSync } from "node:fs"; import os from "node:os"; import path from "node:path";
+const req = createRequire("/Users/moshecohen/.npm/_npx/9833c18b2d85bc59/node_modules/");
+const { chromium } = req("playwright-core");
+const cache = path.join(os.homedir(), "Library/Caches/ms-playwright");
+const shell = readdirSync(cache).filter((d) => /^chromium_headless_shell-\d+$/.test(d)).sort().reverse().map((d) => path.join(cache, d, "chrome-headless-shell-mac-arm64", "chrome-headless-shell"))[0];
+const browser = await chromium.launch({ headless: true, executablePath: shell });
+const p = await (await browser.newContext()).newPage(); p.setDefaultTimeout(0);
+await p.goto("http://127.0.0.1:8941/probe.html"); await p.waitForFunction(() => window.__ready === true);
+for (const tier of (process.env.TIERS ?? "instant").split(",")) {
+  await p.evaluate(([t]) => window.__load(t, { image_max_tokens: 512 }), [tier]);
+  const long = "Describe the history of printing in a few paragraphs. ".repeat(12);
+  const r = await p.evaluate((rq) => window.__run(rq), { messages: [{ role: "user", content: long }], max_tokens: 1, temperature: 0, chat_template_kwargs: { enable_thinking: false } });
+  console.log(tier, "text prefill", r.timings.prompt_n, "tokens in", Math.round(r.timings.prompt_ms), "ms =", (r.timings.prompt_ms / r.timings.prompt_n).toFixed(1), "ms/token");
+}
+await browser.close();

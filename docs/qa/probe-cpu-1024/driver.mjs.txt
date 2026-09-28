@@ -1,0 +1,46 @@
+import { createRequire } from "node:module"; import { readdirSync, writeFileSync, existsSync, readFileSync } from "node:fs"; import os from "node:os"; import path from "node:path";
+const req = createRequire("/Users/moshecohen/.npm/_npx/9833c18b2d85bc59/node_modules/");
+const { chromium } = req("playwright-core");
+const cache = path.join(os.homedir(), "Library/Caches/ms-playwright");
+const shell = readdirSync(cache).filter((d) => /^chromium_headless_shell-\d+$/.test(d)).sort().reverse().map((d) => path.join(cache, d, "chrome-headless-shell-mac-arm64", "chrome-headless-shell"))[0];
+const tier = process.env.TIER ?? "instant";
+const only = process.env.ONLY?.split(",");
+const here = path.dirname(new URL(import.meta.url).pathname);
+const outFile = path.join(here, `results-${tier}.json`);
+const out = existsSync(outFile) ? JSON.parse(readFileSync(outFile, "utf8")) : {};
+const Q = "What colour is the shape in this photo, what shape is it, and what word is written under it?";
+/* The web app's Instant photo turn (Chat.tsx + core): thinking off, cap 512, the composed system prompt. */
+const SYS = "You are an AI assistant running entirely on the user's device. Be accurate; say when you are not sure. Do not produce hateful, sexual, or dangerous content. If the user talks about harming themselves, respond with care and suggest talking to someone they trust or a crisis line. Answer in the language the user writes in unless asked otherwise.\n\nYou are a helpful, concise assistant.\n\nKeep the answer as short as the question allows, a paragraph at most, and stop once it is answered. Do not repeat yourself unless the request asks for repetition, and do not pad.";
+const base = { max_tokens: 512, temperature: 0.7, top_p: 0.9, repeat_penalty: 1.1, repeat_last_n: 64, dry_multiplier: 0, presence_penalty: 0, frequency_penalty: 0, chat_template_kwargs: { enable_thinking: tier !== "instant" ? false : false } };
+const messages = [{ role: "system", content: SYS }, { role: "user", content: Q, image: true }];
+const loads = [
+  { params: { image_max_tokens: 512 }, variants: [["s320", "cat-320.png", 512, false], ["a512", "cat-1024x768.png", 512, false], ["b1024", "cat-1024x768.png", 1024, false], ["u320to1024", "cat-320.png", 1024, true]] },
+  { params: { image_max_tokens: 1024 }, variants: [["c1024t1024", "cat-1024x768.png", 1024, false], ["u320to1024t1024", "cat-320.png", 1024, true]] },
+  { params: { image_max_tokens: 1024, image_min_tokens: 1024 }, variants: [["s320min1024", "cat-320.png", 512, false]] },
+  { params: { image_max_tokens: 512, image_min_tokens: 512 }, variants: [["s320min512", "cat-320.png", 512, false], ["a512min512", "cat-1024x768.png", 512, false]] },
+];
+const browser = await chromium.launch({ headless: true, executablePath: shell });
+console.log("browser pid", browser.process?.()?.pid ?? "?");
+const p = await (await browser.newContext()).newPage();
+p.setDefaultTimeout(0);
+await p.goto(`http://127.0.0.1:${process.env.PORT ?? 8941}/probe.html`);
+await p.waitForFunction(() => window.__ready === true);
+for (const L of loads) {
+  const vs = L.variants.filter(([id]) => !only || only.includes(id));
+  if (!vs.length) continue;
+  const load = await p.evaluate(([t, prm]) => window.__load(t, prm), [tier, L.params]);
+  console.log("load", JSON.stringify(L.params), JSON.stringify(load));
+  for (const [id, img, edge, up] of vs) {
+    const prep = await p.evaluate(([n, e, u]) => window.__prep(n, e, u), [img, edge, up]);
+    const runs = [];
+    for (const [k, samp] of [["t0.7#1", {}], ["t0.7#2", {}], ["t0.7#3", {}], ["greedy", { temperature: 0 }]]) {
+      const r = await p.evaluate((rq) => window.__run(rq), { ...base, ...samp, messages });
+      runs.push({ k, ...r });
+      console.log(id, k, JSON.stringify({ text: r.text, ttftMs: r.ttftMs, totalMs: r.totalMs, prompt_n: r.timings?.prompt_n, cache_n: r.timings?.cache_n, prompt_ms: Math.round(r.timings?.prompt_ms ?? 0), error: r.error }));
+      if (k === "t0.7#1") for (const l of r.logs ?? []) console.log("   log", l);
+    }
+    out[id] = { load: L.params, loadInfo: load, image: img, edge, upscale: up, prep, runs };
+    writeFileSync(outFile, JSON.stringify(out, null, 1));
+  }
+}
+await browser.close();
