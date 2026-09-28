@@ -1,0 +1,41 @@
+F448 live proof of round 121 (F443) on the iPhone 13 Pro, build 1.0.0 (29) .qa twin from 8fb33348 (the store archive's commit), model chip INSTANT (Qwen3.5-0.8B Q4_K_M, llama.rn 0.12.9), driven through scripts/ios-qa.mjs.
+Each run: new chat (Chats, new-chat, start-chat), ask, Stop 1.0 s after the answer text appeared, Continue, wait until the answer ended.
+"stopped" is the answer text on screen after Stop; "final" is the answer text on screen after Continue; ⟦…⟧ marks where the continuation starts.
+"kept" is whether the final text starts with the stopped text exactly (the stopped text unchanged on screen).
+"console": the twin is a Release build (__DEV__ false) and llamaRn.ts logs no continue line, so the bridge exposes no llama.rn console line; the ledger of the resumed turn is given instead (the ledger's prompt tokens are llama.rn's tokens_evaluated).
+
+=== r1-tack · Explain in 8 sentences how a sailing ship tacks against the wind.
+kept: true · new chat by: new-chat button · chip: INSTANT
+first 8 words after the cut: These waves create a rolling motion that propels
+console: not exposed · ledger of the resumed turn: model INSTANT · tokPerSec 37.2 · ttft 39 ms · tokens 214 + 125 · time 3.4 s
+--- stopped (229 chars)
+A sailing ship faces the wind by its sail catching it, causing the hull to roll forward. This motion shifts the boat's center of gravity slightly ahead. As the vessel moves, a series of heeling waves forms from the bow and stern.
+--- final (923 chars)
+A sailing ship faces the wind by its sail catching it, causing the hull to roll forward. This motion shifts the boat's center of gravity slightly ahead. As the vessel moves, a series of heeling waves forms from the bow and stern.⟦ These waves create a rolling motion that propels the ship forward through water. The wind pushes against the sails, generating rotational force that turns the boat. This torque accelerates the vessel as it navigates across the sea. A strong wind provides sufficient lift to overcome resistance and speed up the sail. Without this upward push from the air, the engine power would not be effective enough. The interaction between the moving hull and the rising water creates a continuous cycle of motion. Each wave adds energy to the system, gradually increasing the ship's velocity over time. This dynamic exchange ensures that the boat maintains its course despite changing weather conditions.⟧
+
+=== r2-habits · Write a 10-item list of study habits.
+kept: true · new chat by: new-chat button · chip: INSTANT
+first 8 words after the cut: using active recall, connecting with peers for discussion,
+console: not exposed · ledger of the resumed turn: model INSTANT · tokPerSec 39.6 · ttft 38 ms · tokens 189 + 16 · time 0.4 s
+--- stopped (265 chars)
+A 10-item study list includes a structured daily routine covering waking up early, creating a dedicated space for focus, utilizing spaced repetition, reviewing notes before bed, taking breaks between sessions, practicing problem-solving skills, journaling findings,
+--- final (366 chars)
+A 10-item study list includes a structured daily routine covering waking up early, creating a dedicated space for focus, utilizing spaced repetition, reviewing notes before bed, taking breaks between sessions, practicing problem-solving skills, journaling findings,⟦ using active recall, connecting with peers for discussion, and maintaining consistent sleep hygiene.⟧
+
+=== r3-knight · Tell a short story about a knight who fears the dark.
+kept: true · new chat by: new-chat button · chip: INSTANT
+first 8 words after the cut: before he could speak a word. His armor
+console: not exposed · ledger of the resumed turn: model INSTANT · tokPerSec 37.5 · ttft 37 ms · tokens 187 + 91 · time 2.5 s
+--- stopped (176 chars)
+The knight, Kaelen, stood before the darkness he feared most—not in a room, but inside his own chest. He was not afraid of dark, only of night itself, which swallowed him whole
+--- final (576 chars)
+The knight, Kaelen, stood before the darkness he feared most—not in a room, but inside his own chest. He was not afraid of dark, only of night itself, which swallowed him whole⟦ before he could speak a word. His armor gleamed with oil, but his heart hammered against his ribs like a trapped bird. The only light was the torch of dawn that hummed softly around him; it did not hurt to see the dark, yet Kaelan knew that if he let himself go, he would burn with fire in one place and cold blood in another, leaving nothing behind but a hollow heart and a nameless grief for days.⟧
+
+=== r4-tack2 · Explain in 8 sentences how a sailing ship tacks against the wind.
+kept: true · new chat by: new-chat button · chip: INSTANT
+first 8 words after the cut: speed. As the hull turns, water hits one
+console: not exposed · ledger of the resumed turn: model INSTANT · tokPerSec 37.1 · ttft 40 ms · tokens 205 + 156 · time 4.2 s
+--- stopped (209 chars)
+A sailing ship tacks against the wind by rotating its hull around a fixed axis. The crew applies power to rotate the sails, which align them perpendicular to the direction of travel when moving forward at high
+--- final (1045 chars)
+A sailing ship tacks against the wind by rotating its hull around a fixed axis. The crew applies power to rotate the sails, which align them perpendicular to the direction of travel when moving forward at high⟦ speed. As the hull turns, water hits one side of the ship and pushes it sideways into the wind direction. This lateral force creates a counter-torque that balances the rotational momentum of the sails. The engine provides thrust while the powerboat rotates, allowing the entire structure to move with the wind. Eventually, the boat reaches maximum speed, at which point it will tuck in when turning left or right. If the wind shifts too drastically, the ship may lose grip and spin uncontrollably if not stabilized properly. Adjusting rudder angle helps align the hull's heading directly opposite the wind direction. This maneuver is essential for maintaining course while maximizing speed against prevailing conditions. Ultimately, a tacked sailboat follows a predictable path determined by initial wind angle and engine power output.⟧

@@ -1,0 +1,42 @@
+15:53:51 pushing 37 steps as j2-continue-1
+15:53:58 shot J2-1a-tack-stopped
+15:54:05 shot J2-1b-tack-final
+15:54:10 shot J2-1c-tack-ledger
+15:54:13 ok     0 deeplink   /chats
+15:54:13 ok     1 waitFor    new-chat appeared
+15:54:13 ok     2 press      new-chat ← onPress
+15:54:13 ok     3 waitFor    start-chat appeared
+15:54:13 ok     4 press      start-chat ← onPress
+15:54:13 ok     5 waitFor    composer-input appeared
+15:54:13 ok     6 waitFor    Loading gone
+15:54:13 ok     7 sleep      1500 ms
+15:54:13 ok     8 value      INSTANT
+15:54:13 ok     9 type       composer-input = 65 chars
+15:54:13 ok    10 send       send ← onPress
+15:54:13 ok    11 waitFor    assistant-text appeared
+15:54:13 ok    12 sleep      1000 ms
+15:54:13 ok    13 press      stop ← onPress
+15:54:13 ok    14 sleep      2000 ms
+15:54:13 ok    15 value      A sailing ship faces the wind by its sail catching it, causing the hull to roll forward. This motion shifts th
+15:54:13 ok    16 screenshot J2-1a-tack-stopped
+15:54:13 ok    17 waitFor    continue appeared
+15:54:13 ok    18 press      continue ← onPress
+15:54:13 ok    19 sleep      1500 ms
+15:54:13 ok    20 waitFor    stop gone
+15:54:13 ok    21 sleep      1500 ms
+15:54:13 ok    22 value      A sailing ship faces the wind by its sail catching it, causing the hull to roll forward. This motion shifts th
+15:54:13 ok    23 screenshot J2-1b-tack-final
+15:54:13 ok    24 waitFor    loop-notice gone
+15:54:13 ok    25 press      ledger-toggle ← onPress
+15:54:13 ok    26 sleep      800 ms
+15:54:13 ok    27 value      INSTANT
+15:54:13 ok    28 setTier    pro
+15:54:13 ok    29 sleep      1200 ms
+15:54:13 ok    30 value      37.2
+15:54:13 ok    31 value      39 ms
+15:54:13 ok    32 value      214 + 125
+15:54:13 ok    33 value      3.4 s
+15:54:13 ok    34 screenshot J2-1c-tack-ledger
+15:54:13 ok    35 setTier    free
+15:54:13 ok    36 sleep      800 ms
+15:54:13 37 passed, 0 failed, 3 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-29/docs/qa/ios-device-pass-29/screens

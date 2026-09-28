@@ -7242,6 +7242,33 @@ from the same commit, and the twin was removed before the store app was opened.
 Evidence: `docs/qa/ios-build-28-2026-09-28.md`, `docs/qa/ios-device-pass-28-2026-09-28.md`,
 `docs/qa/ios-device-pass-28/`.
 
+## iOS build 29: main with rounds 119–123 (Continue resumes the same answer), on Moshe's iPhone only (branch `ios-build-29`) — 28.9.2026
+
+Build 1.0.0 (29) carries `main` e3d19aca (build 28's main plus round 119's seam restart, rounds 120 and 122's web vault,
+round 121's Continue by prefill and round 123's screens) to the iPhone 13 Pro, so round 121 could be proven on the phone.
+The branch merges `origin/ios-build-28` first and carries both builds' records. Nothing went to a store. J1 to J3 ran on
+the `.qa` twin built from the same commit, and the twin was removed before the store app was opened.
+
+- **The build.** Commit 8fb33348 bumps the build number 28 → 29. Gates exit 0 on the first run: 1,218 core with 4
+  skipped, 1,236 mobile, 24 i18n, 23 ui, 4 desktop. Fresh prebuild and archive. Instant and its bundled photo pack are
+  byte-exact to the catalog. `seamRestart`, `continueFrom`, `continuationPrompt`, `continueRequest`, `pastPrefill` and
+  `prefill_text` are in the bundle once each, and build 28's has none. `continue_final_message` is in neither: it lives
+  only in the web chat adapter, which the native bundle does not carry. The QA-bridge and shipping-bundle gates pass.
+- **On the phone as an update.** The byte copy of the six container files was taken first. After the install the
+  `Documents/` listing is identical and all six files are byte-identical. The `.qa` twin was removed first; only then
+  was the store app opened, and About reads `1.0.0 (29) · 8fb33348c2c6`. It was left on its Chats list.
+- **Continue after Stop resumes mid-sentence (F448).** Four runs on Instant, each stopped about 200 characters in: the
+  stopped text stays on screen byte for byte, and no join says a word or a clause again. Three were cut mid-sentence and
+  go on *"…journaling findings,⟦ using active recall…"*, *"…which swallowed him whole⟦ before he could speak a
+  word…"* and *"…moving forward at high⟦ speed. As the hull turns…"*. The fourth was cut at a sentence end and goes on
+  with the next sentence. The first token came 37 to 40 ms after Continue, against 776 ms for J1's first answer. The
+  Release twin logs no llama.rn console line, so the cached and evaluated counts were not read.
+- **J1 and J3.** Instant answers at 33.5 tok/s, first token 776 ms. The CAT photo on Instant drew no card and none of the
+  banned phrases, and the answer names the red circle and the word CAT, though it calls the circle a *"C"*.
+
+Evidence: `docs/qa/ios-build-29-2026-09-28.md`, `docs/qa/ios-device-pass-29-2026-09-28.md`,
+`docs/qa/ios-device-pass-29/`.
+
 ## iOS build 23: main with round 111's loop guard, on Moshe's iPhone only (branch `ios-build-23`) — 27.9.2026
 
 Build 1.0.0 (23) carries local `main` 98722df7 (build 22's main plus round 111) to the iPhone 13 Pro, so the phone has

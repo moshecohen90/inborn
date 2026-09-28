@@ -1,0 +1,65 @@
+== archive <scratch>/build29/Inborn.xcarchive (copied out of <worktree>/apps/mobile/ios/build)
+CFBundleVersion = 29
+CFBundleShortVersionString = 1.0.0
+CFBundleIdentifier = com.inbornapp.mobile
+MinimumOSVersion = 17.0
+appex = AskInborn.appex id com.inbornapp.mobile.share-extension ver 29
+instant.gguf (catalog file Qwen3.5-0.8B-Q4_K_M.gguf) = 532517120 B sha256 bd258782e35f… catalog 532517120 B bd258782e35f… -> MATCH
+vision-qwen35.gguf (catalog file mmproj-Qwen3.5-0.8B-F16.gguf) = 204987232 B sha256 56e4c6cfe73b… catalog 204987232 B 56e4c6cfe73b… -> MATCH
+ggufs in the .app: instant.gguf, vision-qwen35.gguf
+Fast / Sharp model or their packs in the .app: none
+tessdata = eng.traineddata heb.traineddata
+ExpoBattery strings = 3
+signing = Authority=Apple Development: Moshe Cohen
+main.jsbundle = 6798303 B
+app size = 768M
+app.config: version 1.0.0 buildNumber 29 bundleId com.inbornapp.mobile
+extra.commit 8fb33348c2c6 extra.devVariant False
+bundle strings: INBORN_QA_BRIDGE_V1=0 '[chat] loop retry'=1 '[chat] loop cut'=1
+== qa-bridge gate on the archive
+OK: <scratch>/build29/Inborn.xcarchive/Products/Applications/Inborn.app contains no QA bridge
+gate rc=0
+== shipping-bundles gate on the archive
+  <scratch>/build29/Inborn.xcarchive (given path): OK: <scratch>/build29/Inborn.xcarchive contains no QA bridge
+
+PASS: 1 shipping artifact(s) carry no QA bridge.
+shipping gate rc=0
+== model gate (--models) on the archive
+  <scratch>/build29/Inborn.xcarchive (models): OK instant instant.gguf 532517120 B sha256 matches the catalog
+  <scratch>/build29/Inborn.xcarchive (models): OK vision-qwen35 vision-qwen35.gguf 204987232 B sha256 matches the catalog
+
+PASS: every model the catalog ships is in the build, byte for byte.
+model gate rc=0
+== rounds 117 to 121 in the bundle
+catalog id 'vision-qwen35-2b' (round 117): 4 as ASCII/UTF-8, 0 as UTF-16
+its sha256 7035e9cb8d7c… (round 117): 1 as ASCII/UTF-8, 0 as UTF-16
+catalog id 'vision-qwen35-4b' (round 117): 4 as ASCII/UTF-8, 0 as UTF-16
+its sha256 cd88edcf8d03… (round 117): 1 as ASCII/UTF-8, 0 as UTF-16
+card line 'needs its photo pack to see photos' (round 117): 1 as ASCII/UTF-8, 0 as UTF-16
+seamWord (round 118): 1 as ASCII/UTF-8, 0 as UTF-16
+seamRestart (round 119): 1 as ASCII/UTF-8, 0 as UTF-16
+continue_final_message (round 121): 0 as ASCII/UTF-8, 0 as UTF-16
+continueFrom (round 121): 1 as ASCII/UTF-8, 0 as UTF-16
+continuationPrompt (round 121): 1 as ASCII/UTF-8, 0 as UTF-16
+continueRequest (round 121): 1 as ASCII/UTF-8, 0 as UTF-16
+pastPrefill (round 121): 1 as ASCII/UTF-8, 0 as UTF-16
+prefill_text (round 121): 1 as ASCII/UTF-8, 0 as UTF-16
+generation_prompt (round 121): 1 as ASCII/UTF-8, 0 as UTF-16
+control, build 28's archive bundle:
+  catalog id 'vision-qwen35-2b' (round 117): 4 as ASCII/UTF-8, 0 as UTF-16
+  its sha256 7035e9cb8d7c… (round 117): 1 as ASCII/UTF-8, 0 as UTF-16
+  catalog id 'vision-qwen35-4b' (round 117): 4 as ASCII/UTF-8, 0 as UTF-16
+  its sha256 cd88edcf8d03… (round 117): 1 as ASCII/UTF-8, 0 as UTF-16
+  card line 'needs its photo pack to see photos' (round 117): 1 as ASCII/UTF-8, 0 as UTF-16
+  seamWord (round 118): 1 as ASCII/UTF-8, 0 as UTF-16
+  seamRestart (round 119): 0 as ASCII/UTF-8, 0 as UTF-16
+  continue_final_message (round 121): 0 as ASCII/UTF-8, 0 as UTF-16
+  continueFrom (round 121): 0 as ASCII/UTF-8, 0 as UTF-16
+  continuationPrompt (round 121): 0 as ASCII/UTF-8, 0 as UTF-16
+  continueRequest (round 121): 0 as ASCII/UTF-8, 0 as UTF-16
+  pastPrefill (round 121): 0 as ASCII/UTF-8, 0 as UTF-16
+  prefill_text (round 121): 0 as ASCII/UTF-8, 0 as UTF-16
+  generation_prompt (round 121): 1 as ASCII/UTF-8, 0 as UTF-16
+note on 'continue_final_message': it is written only in apps/mobile/src/adapters/wllama.ts, the web chat adapter. The native bundle does not carry that adapter (native resolves documents/embedder.native.ts; devModel.web.ts is web-only): 'wllama' appears only as a licence URL and the 'wllama-compat' id, 2x in build 29 and 2x in build 28. The iPhone's round-121 path is llama.rn's: continueFrom, continuationPrompt, continueRequest, pastPrefill and prefill_text are 1x each in build 29 and 0x in build 28.
+signing team: TeamIdentifier=NGCHN95667
+VERIFY-DONE

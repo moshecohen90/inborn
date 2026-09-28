@@ -1,0 +1,323 @@
+{
+  "runId": "j2-continue-4",
+  "startedAt": "2026-09-28T12:56:08.483Z",
+  "finishedAt": "2026-09-28T12:56:29.703Z",
+  "ok": true,
+  "passed": 37,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 161,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1508,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "INSTANT",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT"
+    },
+    {
+      "i": 9,
+      "op": "type",
+      "ok": true,
+      "ms": 165,
+      "detail": "composer-input = 65 chars"
+    },
+    {
+      "i": 10,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 11,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 261,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1006,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 13,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "stop ← onPress"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2001,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 15,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "A sailing ship tacks against the wind by rotating its hull around a fixed axis. The crew applies power to rotate the sails, which align them perpendicular to the direction of travel when moving forward at high",
+        "props": {
+          "source": "A sailing ship tacks against the wind by rotating its hull around a fixed axis. The crew applies power to rotate the sails, which align them perpendicular to the direction of travel when moving forward at high",
+          "disabled": false
+        }
+      },
+      "detail": "A sailing ship tacks against the wind by rotating its hull around a fixed axis. The crew applies power to rotate the sails, which align them perpendicular to the direction of travel when moving forwar"
+    },
+    {
+      "i": 16,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2245,
+      "detail": "J2-4a-tack2-stopped"
+    },
+    {
+      "i": 17,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "continue appeared"
+    },
+    {
+      "i": 18,
+      "op": "press",
+      "ok": true,
+      "ms": 152,
+      "detail": "continue ← onPress"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1522,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 20,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2778,
+      "detail": "stop gone"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "A sailing ship tacks against the wind by rotating its hull around a fixed axis. The crew applies power to rotate the sails, which align them perpendicular to the direction of travel when moving forward at high speed. As the hull turns, water hits one side of the ship and pushes it sideways into the wind direction. This lateral force creates a counter-torque that balances the rotational momentum of the sails. The engine provides thrust while the powerboat rotates, allowing the entire structure to move with the wind. Eventually, the boat reaches maximum speed, at which point it will tuck in when turning left or right. If the wind shifts too drastically, the ship may lose grip and spin uncontrollably if not stabilized properly. Adjusting rudder angle helps align the hull's heading directly opposite the wind direction. This maneuver is essential for maintaining course while maximizing speed against prevailing conditions. Ultimately, a tacked sailboat follows a predictable path determined by initial wind angle and engine power output.",
+        "props": {
+          "source": "A sailing ship tacks against the wind by rotating its hull around a fixed axis. The crew applies power to rotate the sails, which align them perpendicular to the direction of travel when moving forward at high speed. As the hull turns, water hits one side of the ship and pushes it sideways into the wind direction. This lateral force creates a counter-torque that balances the rotational momentum of the sails. The engine provides thrust while the powerboat rotates, allowing the entire structure to move with the wind. Eventually, the boat reaches maximum speed, at which point it will tuck in when turning left or right. If the wind shifts too drastically, the ship may lose grip and spin uncontrollably if not stabilized properly. Adjusting rudder angle helps align the hull's heading directly opposite the wind direction. This maneuver is essential for maintaining course while maximizing speed against prevailing conditions. Ultimately, a tacked sailboat follows a predictable path determined by initial wind angle and engine power output.",
+          "disabled": false
+        }
+      },
+      "detail": "A sailing ship tacks against the wind by rotating its hull around a fixed axis. The crew applies power to rotate the sails, which align them perpendicular to the direction of travel when moving forwar"
+    },
+    {
+      "i": 23,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1596,
+      "detail": "J2-4b-tack2-final"
+    },
+    {
+      "i": 24,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "loop-notice gone"
+    },
+    {
+      "i": 25,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "ledger-toggle ← onPress"
+    },
+    {
+      "i": 26,
+      "op": "sleep",
+      "ok": true,
+      "ms": 817,
+      "detail": "800 ms"
+    },
+    {
+      "i": 27,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "INSTANT",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT"
+    },
+    {
+      "i": 28,
+      "op": "setTier",
+      "ok": true,
+      "ms": 198,
+      "detail": "pro"
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1202,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 30,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "37.1",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "37.1"
+    },
+    {
+      "i": 31,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "40 ms",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "40 ms"
+    },
+    {
+      "i": 32,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "205 + 156",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "205 + 156"
+    },
+    {
+      "i": 33,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "4.2 s",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "4.2 s"
+    },
+    {
+      "i": 34,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2239,
+      "detail": "J2-4c-tack2-ledger"
+    },
+    {
+      "i": 35,
+      "op": "setTier",
+      "ok": true,
+      "ms": 186,
+      "detail": "free"
+    },
+    {
+      "i": 36,
+      "op": "sleep",
+      "ok": true,
+      "ms": 816,
+      "detail": "800 ms"
+    }
+  ],
+  "errors": []
+}

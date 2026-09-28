@@ -1,0 +1,42 @@
+15:56:08 pushing 37 steps as j2-continue-4
+15:56:14 shot J2-4a-tack2-stopped
+15:56:22 shot J2-4b-tack2-final
+15:56:27 shot J2-4c-tack2-ledger
+15:56:30 ok     0 deeplink   /chats
+15:56:30 ok     1 waitFor    new-chat appeared
+15:56:30 ok     2 press      new-chat ← onPress
+15:56:30 ok     3 waitFor    start-chat appeared
+15:56:30 ok     4 press      start-chat ← onPress
+15:56:30 ok     5 waitFor    composer-input appeared
+15:56:30 ok     6 waitFor    Loading gone
+15:56:30 ok     7 sleep      1500 ms
+15:56:30 ok     8 value      INSTANT
+15:56:30 ok     9 type       composer-input = 65 chars
+15:56:30 ok    10 send       send ← onPress
+15:56:30 ok    11 waitFor    assistant-text appeared
+15:56:30 ok    12 sleep      1000 ms
+15:56:30 ok    13 press      stop ← onPress
+15:56:30 ok    14 sleep      2000 ms
+15:56:30 ok    15 value      A sailing ship tacks against the wind by rotating its hull around a fixed axis. The crew applies power to rota
+15:56:30 ok    16 screenshot J2-4a-tack2-stopped
+15:56:30 ok    17 waitFor    continue appeared
+15:56:30 ok    18 press      continue ← onPress
+15:56:30 ok    19 sleep      1500 ms
+15:56:30 ok    20 waitFor    stop gone
+15:56:30 ok    21 sleep      1500 ms
+15:56:30 ok    22 value      A sailing ship tacks against the wind by rotating its hull around a fixed axis. The crew applies power to rota
+15:56:30 ok    23 screenshot J2-4b-tack2-final
+15:56:30 ok    24 waitFor    loop-notice gone
+15:56:30 ok    25 press      ledger-toggle ← onPress
+15:56:30 ok    26 sleep      800 ms
+15:56:30 ok    27 value      INSTANT
+15:56:30 ok    28 setTier    pro
+15:56:30 ok    29 sleep      1200 ms
+15:56:30 ok    30 value      37.1
+15:56:30 ok    31 value      40 ms
+15:56:30 ok    32 value      205 + 156
+15:56:30 ok    33 value      4.2 s
+15:56:30 ok    34 screenshot J2-4c-tack2-ledger
+15:56:30 ok    35 setTier    free
+15:56:30 ok    36 sleep      800 ms
+15:56:30 37 passed, 0 failed, 3 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-29/docs/qa/ios-device-pass-29/screens

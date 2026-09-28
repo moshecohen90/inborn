@@ -1,0 +1,50 @@
+15:55:22 pushing 45 steps as j3-photo-cat
+15:55:29 shot J3-cat-a-composer
+15:55:36 shot J3-cat-b-answer
+15:55:41 shot J3-cat-c-ledger
+15:55:44 ok     0 deeplink   /chats
+15:55:44 ok     1 waitFor    new-chat appeared
+15:55:44 ok     2 press      new-chat ← onPress
+15:55:44 ok     3 waitFor    start-chat appeared
+15:55:44 ok     4 press      start-chat ← onPress
+15:55:44 ok     5 waitFor    composer-input appeared
+15:55:44 ok     6 waitFor    Loading gone
+15:55:44 ok     7 sleep      1500 ms
+15:55:44 ok     8 devPrompt  image: red-circle-cat.png
+15:55:44 ok     9 waitFor    pending-images appeared
+15:55:44 ok    10 type       composer-input = 92 chars
+15:55:44 ok    11 sleep      800 ms
+15:55:44 ok    12 screenshot J3-cat-a-composer
+15:55:44 ok    13 send       send ← onPress
+15:55:44 ok    14 sleep      3000 ms
+15:55:44 ok    15 waitFor    vision-hold gone
+15:55:44 ok    16 assertText "photo pack" absent
+15:55:44 ok    17 waitFor    user-images appeared
+15:55:44 ok    18 waitFor    assistant-text appeared
+15:55:44 ok    19 waitFor    stop gone
+15:55:44 ok    20 sleep      1500 ms
+15:55:44 ok    21 value      The red circle represents a 'C' and the black letters below represent an 'A'. The full word is CAT.
+15:55:44 ok    22 waitFor    vision-hold gone
+15:55:44 ok    23 screenshot J3-cat-b-answer
+15:55:44 ok    24 assertText "The request specifies" absent
+15:55:44 ok    25 assertText "I will focus" absent
+15:55:44 ok    26 assertText "as an AI" absent
+15:55:44 ok    27 assertText "family-safe" absent
+15:55:44 ok    28 assertText "violence" absent
+15:55:44 ok    29 assertText "self-harm" absent
+15:55:44 ok    30 assertText "red" present
+15:55:44 ok    31 assertText "circle" present
+15:55:44 ok    32 assertText "CAT" present
+15:55:44 ok    33 press      ledger-toggle ← onPress
+15:55:44 ok    34 sleep      800 ms
+15:55:44 ok    35 value      INSTANT
+15:55:44 ok    36 setTier    pro
+15:55:44 ok    37 sleep      1200 ms
+15:55:44 ok    38 value      35.3
+15:55:44 ok    39 value      1544 ms
+15:55:44 ok    40 value      185 + 24
+15:55:44 ok    41 value      2.2 s
+15:55:44 ok    42 screenshot J3-cat-c-ledger
+15:55:44 ok    43 setTier    free
+15:55:44 ok    44 sleep      800 ms
+15:55:44 45 passed, 0 failed, 3 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-29/docs/qa/ios-device-pass-29/screens
