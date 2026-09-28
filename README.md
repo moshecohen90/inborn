@@ -7052,6 +7052,46 @@ Gates exit 0: `typecheck`, `lint`, `test` (core 1,186 with 4 skipped, mobile 1,2
 `web:smoke`. Not covered: the 2.69 GB state itself ran only in the unit test, and main's build did not run in this session.
 Safari and Firefox were not run.
 
+## Fixes round 123: screens say what is true (Documents, photo bubble, Settings on the web, wipe) (branch `web-polish`) — 28.9.2026
+
+MosheAI reviewed the lead's journey screenshots of main e61f222a (28.9, 13:54–14:00). Evidence, with every before and
+after string: `docs/qa/web-polish/`.
+
+- **Documents.** The index model card read *"Searching your documents needs a small on-device model (468 MB)"* next to
+  *"office.txt · Indexed · 1 passage"*, and the Ask sheet answered from it by exact words. It now reads *"Exact-word
+  search works now. The document index model (468 MB) adds search by meaning: it finds passages worded differently
+  from your question, or in another language. Worth it for long files."* The footer *"INDEXED ON THIS DEVICE ·
+  indexeddb"* reads *"Indexed on this device"*. *"Add file · PRO"* now has the limit under the header: *"Free: 1
+  document of up to 20 pages · Pro: no limit"*, from `limits("free").filesPerChat` and `FREE_PAGE_CAP`
+  (`apps/mobile/src/documents/freeLimit.ts`).
+- **Ask sheet.** The line *"search 1 ms · 1 passages · answer 16683 ms · 14.6 tok/s · prompt 287 tokens"* shows only
+  with Pro's detailed stats, the gate the chat ledger uses (`askStatsLine` in `apps/mobile/src/lib/docsGate.ts`).
+  *"Answer only from my documents"* wears the PRO tag and the panel's gate: on Free the switch opens the paywall.
+- **Sent photo.** The user bubble drew every photo into 160 × 120 with cover, which cut the word *"CAT"* in half. It
+  now keeps the photo's shape inside 240 × 180 with contain (`fitThumb` in `apps/mobile/src/components/chat/bubbleImage.ts`):
+  180 × 180 for the 320 × 320 test photo at 1280 and at 390 px. The composer hint *"FREE SENDS ONE PHOTO PER MESSAGE"*
+  reads *"Free: one photo per message"* in sentence case.
+- **Settings on the web.** *"Hide in app switcher"* (switch on) and *"Screenshot protection"* (switch off), both
+  *"Not available in a browser."*, are left out in a browser; their two web strings left the locales.
+  *"Delete everything after failed unlock attempts"* shows once a lock is on (`securityRows` in
+  `apps/mobile/src/screens/Settings/securityRows.ts`). Privacy & storage: *"Browser cleanup"* gets its round-106 state
+  as a value (*"Protected"*, *"May be cleared"*, *"Unknown"*), and *"Reports 0 B"* gets *"Answers you reported, kept
+  on this device"*.
+- **Delete everything.** The last step said *"The app restarts as if just installed."* while the models stay unless
+  ticked. It now says *"Chats, the key and documents are deleted and Inborn starts over. Downloaded models stay."*, or,
+  with models ticked, *"Chats, the key, documents and downloaded models are deleted and Inborn starts over."* The two
+  confirmations are unchanged.
+
+Strings changed or added in all 8 locales plus pseudo. Red first: all 12 tests of
+`apps/mobile/test/screens-truth-r123.test.ts` fail on the 81388866 sources (`red-81388866.txt`); `fixes-r94.test.ts`
+now expects the row to be left out instead of its web line. Live: `docs/qa/web-polish/shoot.mjs` on 127.0.0.1:8823,
+fresh chrome-headless-shell profile, Instant and its photo pack from the local models folder.
+
+Gates exit 0: `typecheck`, `lint`, `test` (core 1,200 with 4 skipped, mobile 1,212, i18n 24, ui 23), `web:build`,
+`web:smoke`. Not covered: phones were not run (the Documents copy, the Ask gate and the bubble are shared code), nor
+Safari or Firefox; the failed-unlock row with a lock on and the Ask sheet's locked switch were checked in code and
+unit tests only.
+
 ## iOS build 23: main with round 111's loop guard, on Moshe's iPhone only (branch `ios-build-23`) — 27.9.2026
 
 Build 1.0.0 (23) carries local `main` 98722df7 (build 22's main plus round 111) to the iPhone 13 Pro, so the phone has

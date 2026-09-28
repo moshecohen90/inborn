@@ -6,7 +6,7 @@ import { describe, expect, it } from "vitest";
 const dir = join(__dirname, "../../../packages/i18n/locales");
 const LOCALES = ["en", "de", "es", "fr", "ja", "ko", "pt-BR", "zh-Hant"];
 const load = (l: string) => JSON.parse(readFileSync(join(dir, `${l}.json`), "utf8")) as Record<string, string>;
-const WEB_KEYS = ["lock.lockedExplain.web", "lock.lockedExplainPasscode.web", "lock.explain.web", "lock.explain.passcode.web", "settings.security.hideInSwitcher.web", "storage.chats.browser", "storage.models.web"];
+const WEB_KEYS = ["lock.lockedExplain.web", "lock.lockedExplainPasscode.web", "lock.explain.web", "lock.explain.passcode.web", "storage.chats.browser", "storage.models.web"];
 
 describe("F380 · web copy tells the truth", () => {
   it.each(LOCALES)("%s has every web line, and the biometric ones keep their placeholder", (l) => {
@@ -17,7 +17,6 @@ describe("F380 · web copy tells the truth", () => {
     /* The web line must differ from the native promise it replaces. */
     expect(d["lock.lockedExplainPasscode.web"]).not.toBe(d["lock.lockedExplainPasscode"]);
     expect(d["lock.explain.passcode.web"]).not.toBe(d["lock.explain.passcode"]);
-    expect(d["settings.security.hideInSwitcher.web"]).not.toBe(d["settings.security.hideInSwitcher.sub"]);
   });
 
   it("English web lines say what the browser does", () => {
@@ -32,7 +31,8 @@ describe("F380 · web copy tells the truth", () => {
     const src = (p: string) => readFileSync(join(__dirname, "../src", p), "utf8");
     expect(src("lock/LockScreen.tsx")).toMatch(/Platform\.OS === "web" && storageKind !== "sqlcipher" \? "\.web"/);
     expect(src("screens/Onboarding/LockOffer.tsx")).toMatch(/lock\.explain\.passcode\$\{web\}/);
-    expect(src("screens/Settings/Settings.tsx")).toMatch(/settings\.security\.hideInSwitcher\.web/);
+    /* Round 123 (F446): the app-switcher row is left out on the web instead of greyed with a web line. */
+    expect(src("screens/Settings/Settings.tsx")).toContain("securityRows(Platform.OS, prefs.lock.enabled)");
     expect(src("screens/Settings/Storage.tsx")).toMatch(/storage\.chats\.browser/);
   });
 });

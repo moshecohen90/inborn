@@ -62,6 +62,11 @@ export function saysNoneMatched({ continuing, attachedCount, usedPassages }: { c
   return !continuing && attachedCount > 0 && usedPassages === 0;
 }
 
+/** The Ask sheet's timing line is §7.8 "detailed statistics", the Pro row the chat's ledger already gates. */
+export function askStatsLine(stats: string | null, detailed: boolean): string | null {
+  return detailed ? stats : null;
+}
+
 export function planDocsTurn({ strict, hasAttachment, hasIndex, indexing = false, blocked = null }: DocsTurnInput): DocsTurn {
   if (hasAttachment && indexing) return { kind: "wait" };
   if (hasIndex) return { kind: "retrieve" };

@@ -16,6 +16,7 @@ import { openPaywall, useEntitlement } from "../../licence";
 import { Row, Section, Segmented } from "../../components/shell/primitives";
 import { PasscodeSheet } from "../../lock/PasscodeSheet";
 import { WipeSheet } from "./WipeSheet";
+import { securityRows } from "./securityRows";
 import { meterLabel } from "../../lib/models";
 import { lockCopy, timeoutLabel } from "../Onboarding/LockOffer";
 import { useType } from "../../services/type";
@@ -40,6 +41,7 @@ export function Settings() {
   const label = biometricLabel(t, lock.kind);
   const copy = lockCopy(t, lock.kind, label);
   const setLock = (patch: Partial<typeof prefs.lock>) => updatePrefs((p) => ({ lock: { ...p.lock, ...patch } }));
+  const rows = securityRows(Platform.OS, prefs.lock.enabled);
 
   useEffect(() => {
     AccessibilityInfo.isReduceMotionEnabled()
@@ -112,29 +114,35 @@ export function Settings() {
           </View>
         ) : null}
         {lock.kind === "passcode" ? <Row label={lock.passcodeSet ? t("passcode.change") : t("passcode.set")} onPress={() => setPasscodeOpen(true)} chevron /> : null}
-        <Row
-          testID="row-hide"
-          label={t("settings.security.hideInSwitcher")}
-          sub={t(Platform.OS === "android" ? "settings.security.hideInSwitcher.android" : Platform.OS === "web" ? "settings.security.hideInSwitcher.web" : "settings.security.hideInSwitcher.sub")}
-          toggle={prefs.lock.hideInSwitcher}
-          onToggle={(v) => setLock({ hideInSwitcher: v })}
-          disabled={Platform.OS === "web"}
-        />
-        <Row
-          testID="row-screenshots"
-          label={t("settings.security.screenshots")}
-          sub={canBlockScreenshots() ? t("settings.security.screenshots.android") : Platform.OS === "ios" ? t("settings.security.screenshots.ios") : t("settings.security.screenshots.web")}
-          toggle={prefs.lock.screenshotProtection}
-          onToggle={(v) => setLock({ screenshotProtection: v })}
-          disabled={Platform.OS === "web"}
-        />
-        <Text style={[type.bodySmall, styles.label, { color: theme.text2 }]}>{t("settings.security.panicWipe")}</Text>
-        <Segmented<string>
-          testID="wipe-after"
-          options={WIPE_AFTER.map((n) => ({ value: String(n), label: n === null ? t("settings.off") : t("settings.security.attempts", { count: n }) }))}
-          value={String(prefs.lock.wipeAfterFailed)}
-          onChange={(v) => setLock({ wipeAfterFailed: v === "null" ? null : Number(v) })}
-        />
+        {rows.hideInSwitcher ? (
+          <Row
+            testID="row-hide"
+            label={t("settings.security.hideInSwitcher")}
+            sub={t(Platform.OS === "android" ? "settings.security.hideInSwitcher.android" : "settings.security.hideInSwitcher.sub")}
+            toggle={prefs.lock.hideInSwitcher}
+            onToggle={(v) => setLock({ hideInSwitcher: v })}
+          />
+        ) : null}
+        {rows.screenshots ? (
+          <Row
+            testID="row-screenshots"
+            label={t("settings.security.screenshots")}
+            sub={canBlockScreenshots() ? t("settings.security.screenshots.android") : t("settings.security.screenshots.ios")}
+            toggle={prefs.lock.screenshotProtection}
+            onToggle={(v) => setLock({ screenshotProtection: v })}
+          />
+        ) : null}
+        {rows.panicWipe ? (
+          <>
+            <Text style={[type.bodySmall, styles.label, { color: theme.text2 }]}>{t("settings.security.panicWipe")}</Text>
+            <Segmented<string>
+              testID="wipe-after"
+              options={WIPE_AFTER.map((n) => ({ value: String(n), label: n === null ? t("settings.off") : t("settings.security.attempts", { count: n }) }))}
+              value={String(prefs.lock.wipeAfterFailed)}
+              onChange={(v) => setLock({ wipeAfterFailed: v === "null" ? null : Number(v) })}
+            />
+          </>
+        ) : null}
         <Text style={[type.bodySmall, styles.label, { color: theme.text2 }]}>{t("settings.security.autoDelete")}</Text>
         <Segmented<AutoDeleteDays>
           testID="auto-delete"

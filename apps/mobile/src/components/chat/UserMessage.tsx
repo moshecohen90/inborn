@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useEffect, useState } from "react";
 import { Image, Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { directionOf, type ChatMessage } from "@inborn/core";
@@ -7,6 +7,7 @@ import { useTheme } from "../../lib/theme";
 import { useType } from "../../services/type";
 import { imageUri } from "../../images";
 import { actionsMenuProps } from "../../lib/actionKeys";
+import { THUMB_MAX, fitThumb } from "./bubbleImage";
 
 /** Quiet bubble (§9.6): surface-1, radius 14 with a 4 pt bottom corner, no tail, max 85 %, bidi by content. */
 export const UserMessage = memo(function UserMessage({ message, onLongPress }: { message: ChatMessage; onLongPress: () => void }) {
@@ -19,7 +20,7 @@ export const UserMessage = memo(function UserMessage({ message, onLongPress }: {
       {message.images?.length ? (
         <View testID="user-images" style={styles.images}>
           {message.images.map((uri, i) => (
-            <Image key={uri} source={{ uri: imageUri(uri) }} accessibilityLabel={t("chat.image.label", { n: i + 1 })} style={[styles.image, { backgroundColor: theme.surface2 }]} resizeMode="cover" />
+            <BubbleImage key={uri} uri={imageUri(uri)} label={t("chat.image.label", { n: i + 1 })} />
           ))}
         </View>
       ) : null}
@@ -32,8 +33,28 @@ export const UserMessage = memo(function UserMessage({ message, onLongPress }: {
   );
 });
 
+/** The whole photo, in its own shape, inside THUMB_MAX: a word under the picture must not be cut off (F446). */
+function BubbleImage({ uri, label }: { uri: string; label: string }) {
+  const theme = useTheme();
+  const [box, setBox] = useState<{ width: number; height: number }>(THUMB_MAX);
+  useEffect(() => {
+    let alive = true;
+    Image.getSize(
+      uri,
+      (w, h) => {
+        if (alive) setBox(fitThumb(w, h));
+      },
+      () => undefined,
+    );
+    return () => {
+      alive = false;
+    };
+  }, [uri]);
+  return <Image source={{ uri }} accessibilityLabel={label} style={[styles.image, box, { backgroundColor: theme.surface2 }]} resizeMode="contain" />;
+}
+
 const styles = StyleSheet.create({
   bubble: { alignSelf: "flex-end", maxWidth: "85%", paddingHorizontal: 14, paddingVertical: 10, borderRadius: radius.card, borderBottomEndRadius: 4, gap: 8 },
   images: { flexDirection: "row", flexWrap: "wrap", gap: 6 },
-  image: { width: 160, height: 120, borderRadius: 10 },
+  image: { borderRadius: 10 },
 });
