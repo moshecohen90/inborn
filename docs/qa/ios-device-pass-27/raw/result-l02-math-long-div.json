@@ -1,0 +1,1099 @@
+{
+  "runId": "l02-math-long-div",
+  "startedAt": "2026-09-28T06:46:09.528Z",
+  "finishedAt": "2026-09-28T06:46:49.476Z",
+  "ok": false,
+  "passed": 107,
+  "failed": 1,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 160,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "persona-chip-11ae5767-9f4f-41d7-b47c-0bc0d56138d7 ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "sleep",
+      "ok": true,
+      "ms": 308,
+      "detail": "300 ms"
+    },
+    {
+      "i": 6,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 7,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 8,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1508,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 9,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Assistant 0.2",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Assistant 0.2"
+    },
+    {
+      "i": 10,
+      "op": "type",
+      "ok": true,
+      "ms": 166,
+      "detail": "composer-input = 74 chars"
+    },
+    {
+      "i": 11,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 12,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 540,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 13,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654 ▍",
+        "props": {
+          "source": "To divide 987654",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654 ▍"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 15,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend ( ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend ( ▍"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 17,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down ▍"
+    },
+    {
+      "i": 18,
+      "op": "sleep",
+      "ok": true,
+      "ms": 722,
+      "detail": "700 ms"
+    },
+    {
+      "i": 19,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for th ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for th",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 20,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 21,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 22,
+      "op": "sleep",
+      "ok": true,
+      "ms": 717,
+      "detail": "700 ms"
+    },
+    {
+      "i": 23,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 24,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 25,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 26,
+      "op": "sleep",
+      "ok": true,
+      "ms": 723,
+      "detail": "700 ms"
+    },
+    {
+      "i": 27,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 28,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 29,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 30,
+      "op": "sleep",
+      "ok": true,
+      "ms": 791,
+      "detail": "700 ms"
+    },
+    {
+      "i": 31,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 32,
+      "op": "sleep",
+      "ok": true,
+      "ms": 708,
+      "detail": "700 ms"
+    },
+    {
+      "i": 33,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 34,
+      "op": "sleep",
+      "ok": true,
+      "ms": 717,
+      "detail": "700 ms"
+    },
+    {
+      "i": 35,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 36,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 37,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. ▍",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615.",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 38,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 39,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 40,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 41,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 42,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 43,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 44,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 45,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 46,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 47,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 48,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 49,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 50,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 51,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 52,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 53,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 54,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 55,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 56,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 57,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 58,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 59,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 60,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 61,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 62,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 63,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 64,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 65,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 66,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 67,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 68,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 69,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 70,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 71,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 72,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 73,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 74,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 75,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 76,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 77,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 78,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 79,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 80,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 81,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 82,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 83,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 84,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 85,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 86,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 87,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 88,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 89,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 90,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 91,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 92,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 93,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 94,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 95,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 96,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 97,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 98,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 99,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 100,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 101,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 102,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 103,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "stop gone"
+    },
+    {
+      "i": 104,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1515,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 105,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits. 3. Bring down the next digit (5), making the number 54. Still too small for 123. 4. Bring down the next digit (4), making the number 43. Again, too small. 5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002. 6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.",
+        "props": {
+          "source": "To divide 987654321 by 123, perform long division:\n\n1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0.\n2. Bring down the next digit (7), making the number 76. Since 76 is less than 123, we cannot divide further for this position yet; move to the next group of three digits.\n3. Bring down the next digit (5), making the number 54. Still too small for 123.\n4. Bring down the next digit (4), making the number 43. Again, too small.\n5. Bring down the next digit (3), making the number 321. Now divide 321 by 123: 123 × 2 = 246 and 123 × 3 = 369. So, 2 is the quotient for this position, write it down as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.\n",
+          "disabled": false
+        }
+      },
+      "detail": "To divide 987654321 by 123, perform long division: 1. Divide the first three digits of the dividend (98) by 123 to get 0 and write it down as 0. 2. Bring down the next digit (7), making the number 76."
+    },
+    {
+      "i": 106,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2244,
+      "detail": "L02-math-long-div"
+    },
+    {
+      "i": 107,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 522,
+      "detail": "waitFor loop-notice never went away in 500 ms"
+    }
+  ],
+  "errors": [
+    "step 107 (waitFor): waitFor loop-notice never went away in 500 ms",
+    "console.log: [chat] loop retry: kept 756 chars, unit 51 cp x2",
+    "console.log: [chat] loop cut: kept 813 of 864 chars, unit 51 cp x2"
+  ]
+}

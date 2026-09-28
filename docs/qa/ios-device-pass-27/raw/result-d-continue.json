@@ -1,0 +1,179 @@
+{
+  "runId": "d-continue",
+  "startedAt": "2026-09-28T06:48:57.169Z",
+  "finishedAt": "2026-09-28T06:49:32.467Z",
+  "ok": true,
+  "passed": 22,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 156,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1509,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 7,
+      "op": "type",
+      "ok": true,
+      "ms": 172,
+      "detail": "composer-input = 104 chars"
+    },
+    {
+      "i": 8,
+      "op": "send",
+      "ok": true,
+      "ms": 161,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 544,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 10,
+      "op": "sleep",
+      "ok": true,
+      "ms": 7000,
+      "detail": "7000 ms"
+    },
+    {
+      "i": 11,
+      "op": "press",
+      "ok": true,
+      "ms": 156,
+      "detail": "stop ← onPress"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2001,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 13,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The history of the spice trade between Asia and Europe is a complex tapestry woven through centuries of political shifts, geographical changes, and cultural exchanges. This era began in ancient times when Greek traders and sailors discovered the coastlines of India, which eventually expanded into the vast Indian Ocean region known as the Spice Islands. The Mediterranean Sea acted as the bridge connecting Asian markets with European consumers, facilitating the movement of massive quantities of valuable goods across a trans-continental distance. Early medieval spice trading routes were largely controlled by powerful maritime powers such as Venice, the Republic of Genoa, and later the Portuguese Empire, who dominated the region from the 13th century onward. These nations established sophisticated trade networks that relied heavily on the naturalistic winds of the Indian Ocean to transport spices like pepper, cinnamon, cloves, nutmeg, and mace along the Silk Road corridors. The strategic importance of these routes grew with the advent of large-scale commercial ventures by European nations, as they sought to bypass traditional land-based monopolies in Southeast Asia for direct access to Asian markets. The pivotal turning point occurred during the Age of Discovery when Christopher Columbus attempted to establish a sailing route across the Indian Ocean that would eventually lead to China. Although this voyage was ultimately unsuccessful due to political and economic failures, it ignited an intense competition among European powers for control over",
+        "props": {
+          "source": "The history of the spice trade between Asia and Europe is a complex tapestry woven through centuries of political shifts, geographical changes, and cultural exchanges. This era began in ancient times when Greek traders and sailors discovered the coastlines of India, which eventually expanded into the vast Indian Ocean region known as the Spice Islands. The Mediterranean Sea acted as the bridge connecting Asian markets with European consumers, facilitating the movement of massive quantities of valuable goods across a trans-continental distance.\n\nEarly medieval spice trading routes were largely controlled by powerful maritime powers such as Venice, the Republic of Genoa, and later the Portuguese Empire, who dominated the region from the 13th century onward. These nations established sophisticated trade networks that relied heavily on the naturalistic winds of the Indian Ocean to transport spices like pepper, cinnamon, cloves, nutmeg, and mace along the Silk Road corridors. The strategic importance of these routes grew with the advent of large-scale commercial ventures by European nations, as they sought to bypass traditional land-based monopolies in Southeast Asia for direct access to Asian markets.\n\nThe pivotal turning point occurred during the Age of Discovery when Christopher Columbus attempted to establish a sailing route across the Indian Ocean that would eventually lead to China. Although this voyage was ultimately unsuccessful due to political and economic failures, it ignited an intense competition among European powers for control over",
+          "disabled": false
+        }
+      },
+      "detail": "The history of the spice trade between Asia and Europe is a complex tapestry woven through centuries of political shifts, geographical changes, and cultural exchanges. This era began in ancient times "
+    },
+    {
+      "i": 14,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3195,
+      "detail": "K01-stopped"
+    },
+    {
+      "i": 15,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "continue appeared"
+    },
+    {
+      "i": 16,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "continue ← onPress"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 18,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 14001,
+      "detail": "stop gone"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The history of the spice trade between Asia and Europe is a complex tapestry woven through centuries of political shifts, geographical changes, and cultural exchanges. This era began in ancient times when Greek traders and sailors discovered the coastlines of India, which eventually expanded into the vast Indian Ocean region known as the Spice Islands. The Mediterranean Sea acted as the bridge connecting Asian markets with European consumers, facilitating the movement of massive quantities of valuable goods across a trans-continental distance. Early medieval spice trading routes were largely controlled by powerful maritime powers such as Venice, the Republic of Genoa, and later the Portuguese Empire, who dominated the region from the 13th century onward. These nations established sophisticated trade networks that relied heavily on the naturalistic winds of the Indian Ocean to transport spices like pepper, cinnamon, cloves, nutmeg, and mace along the Silk Road corridors. The strategic importance of these routes grew with the advent of large-scale commercial ventures by European nations, as they sought to bypass traditional land-based monopolies in Southeast Asia for direct access to Asian markets. The pivotal turning point occurred during the Age of Discovery when Christopher Columbus attempted to establish a sailing route across the Indian Ocean that would eventually lead to China. Although this voyage was ultimately unsuccessful due to political and economic failures, it ignited an intense competition among European powers for control over The Portuguese Empire, led by figures like Vasco da Gama and Ferdinand Magellan, finally secured the southern strait of the Indian Ocean in the 15th century, establishing a dominant position over all other trading routes. Their fleet carried massive cargoes of precious spices along the eastern coast of India, while also utilizing favorable monsoonal currents to cross the Arabian Sea toward Southeast Asia. This strategic shift allowed European powers to bypass local Chinese monopolies and establish direct commercial links with Asian markets, fundamentally altering the global economic landscape for centuries to come. As trade routes expanded westward across the Mediterranean and eastward through India, new alliances formed between rival European nations to control these waters and secure their trade privileges. The Dutch Republic, initially small but gaining wealth from spice exports, eventually became a major player in Southeast Asian markets, while France and Britain also sought expansionist ventures into Asia during the 16th century. These competing powers often clashed over who had the right to command the spices and which ports could be built for their lucrative economies. The culmination of this rivalry led to the formation of the Spice Islands around 1520, a region that became known as the \"Spice Islands\" due to its rich abundance of precious goods. The Portuguese established trade posts on both sides of this island chain, creating a complex web of dependencies where each nation could profit from the other's resources while managing their own economies. This geopolitical arrangement gave rise to a system where no single country held absolute power; instead, a network of alliances and dependencies maintained the flow of goods and people for generations to come. The historical record is littered with tragic events that reshaped this intricate web of trade relationships. The Dutch-led attempt to seize control of the spice islands in 1608 resulted in the sinking of several Portuguese merchant ships, leading to a devastating economic collapse among the Dutch and a massive exodus of sailors from the region. This event also triggered the Second Dutch Revolt against Spain, which saw Spanish forces besieging Dutch ports and forcing them to cede control over the main trading hub of the Indies for years. Subsequently, European powers found themselves entangled in a cycle of foreign policy struggles that would define modern geopolitics. The Treaty of Utrecht (1703) marked the final settlement of tensions between Britain, France, Spain, and England, creating the first major international diplomatic framework to regulate maritime trade. However, the legacy of these conflicts persisted into modern times as nations continued to negotiate for control over lucrative spice territories, a dynamic that continues today with ongoing geopolitical disputes regarding Southeast Asian markets.",
+        "props": {
+          "source": "The history of the spice trade between Asia and Europe is a complex tapestry woven through centuries of political shifts, geographical changes, and cultural exchanges. This era began in ancient times when Greek traders and sailors discovered the coastlines of India, which eventually expanded into the vast Indian Ocean region known as the Spice Islands. The Mediterranean Sea acted as the bridge connecting Asian markets with European consumers, facilitating the movement of massive quantities of valuable goods across a trans-continental distance.\n\nEarly medieval spice trading routes were largely controlled by powerful maritime powers such as Venice, the Republic of Genoa, and later the Portuguese Empire, who dominated the region from the 13th century onward. These nations established sophisticated trade networks that relied heavily on the naturalistic winds of the Indian Ocean to transport spices like pepper, cinnamon, cloves, nutmeg, and mace along the Silk Road corridors. The strategic importance of these routes grew with the advent of large-scale commercial ventures by European nations, as they sought to bypass traditional land-based monopolies in Southeast Asia for direct access to Asian markets.\n\nThe pivotal turning point occurred during the Age of Discovery when Christopher Columbus attempted to establish a sailing route across the Indian Ocean that would eventually lead to China. Although this voyage was ultimately unsuccessful due to political and economic failures, it ignited an intense competition among European powers for control over The Portuguese Empire, led by figures like Vasco da Gama and Ferdinand Magellan, finally secured the southern strait of the Indian Ocean in the 15th century, establishing a dominant position over all other trading routes. Their fleet carried massive cargoes of precious spices along the eastern coast of India, while also utilizing favorable monsoonal currents to cross the Arabian Sea toward Southeast Asia. This strategic shift allowed European powers to bypass local Chinese monopolies and establish direct commercial links with Asian markets, fundamentally altering the global economic landscape for centuries to come.\n\nAs trade routes expanded westward across the Mediterranean and eastward through India, new alliances formed between rival European nations to control these waters and secure their trade privileges. The Dutch Republic, initially small but gaining wealth from spice exports, eventually became a major player in Southeast Asian markets, while France and Britain also sought expansionist ventures into Asia during the 16th century. These competing powers often clashed over who had the right to command the spices and which ports could be built for their lucrative economies.\n\nThe culmination of this rivalry led to the formation of the Spice Islands around 1520, a region that became known as the \"Spice Islands\" due to its rich abundance of precious goods. The Portuguese established trade posts on both sides of this island chain, creating a complex web of dependencies where each nation could profit from the other's resources while managing their own economies. This geopolitical arrangement gave rise to a system where no single country held absolute power; instead, a network of alliances and dependencies maintained the flow of goods and people for generations to come.\n\nThe historical record is littered with tragic events that reshaped this intricate web of trade relationships. The Dutch-led attempt to seize control of the spice islands in 1608 resulted in the sinking of several Portuguese merchant ships, leading to a devastating economic collapse among the Dutch and a massive exodus of sailors from the region. This event also triggered the Second Dutch Revolt against Spain, which saw Spanish forces besieging Dutch ports and forcing them to cede control over the main trading hub of the Indies for years.\n\nSubsequently, European powers found themselves entangled in a cycle of foreign policy struggles that would define modern geopolitics. The Treaty of Utrecht (1703) marked the final settlement of tensions between Britain, France, Spain, and England, creating the first major international diplomatic framework to regulate maritime trade. However, the legacy of these conflicts persisted into modern times as nations continued to negotiate for control over lucrative spice territories, a dynamic that continues today with ongoing geopolitical disputes regarding Southeast Asian markets.",
+          "disabled": false
+        }
+      },
+      "detail": "The history of the spice trade between Asia and Europe is a complex tapestry woven through centuries of political shifts, geographical changes, and cultural exchanges. This era began in ancient times "
+    },
+    {
+      "i": 21,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2877,
+      "detail": "K02-continued"
+    }
+  ],
+  "errors": []
+}

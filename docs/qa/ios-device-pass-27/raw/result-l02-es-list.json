@@ -1,0 +1,1095 @@
+{
+  "runId": "l02-es-list",
+  "startedAt": "2026-09-28T06:44:21.992Z",
+  "finishedAt": "2026-09-28T06:45:05.275Z",
+  "ok": true,
+  "passed": 108,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 154,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "persona-chip-11ae5767-9f4f-41d7-b47c-0bc0d56138d7 ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "sleep",
+      "ok": true,
+      "ms": 308,
+      "detail": "300 ms"
+    },
+    {
+      "i": 6,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 7,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 8,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 9,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Assistant 0.2",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Assistant 0.2"
+    },
+    {
+      "i": 10,
+      "op": "type",
+      "ok": true,
+      "ms": 165,
+      "detail": "composer-input = 37 chars"
+    },
+    {
+      "i": 11,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 12,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 538,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 13,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cor ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cor",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cor ▍"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 15,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer ▍"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 717,
+      "detail": "700 ms"
+    },
+    {
+      "i": 17,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 18,
+      "op": "sleep",
+      "ok": true,
+      "ms": 704,
+      "detail": "700 ms"
+    },
+    {
+      "i": 19,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 20,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 21,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 22,
+      "op": "sleep",
+      "ok": true,
+      "ms": 706,
+      "detail": "700 ms"
+    },
+    {
+      "i": 23,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y segu ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y segu",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 24,
+      "op": "sleep",
+      "ok": true,
+      "ms": 717,
+      "detail": "700 ms"
+    },
+    {
+      "i": 25,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesit ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesit",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 26,
+      "op": "sleep",
+      "ok": true,
+      "ms": 724,
+      "detail": "700 ms"
+    },
+    {
+      "i": 27,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11 ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 28,
+      "op": "sleep",
+      "ok": true,
+      "ms": 705,
+      "detail": "700 ms"
+    },
+    {
+      "i": 29,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia ",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 30,
+      "op": "sleep",
+      "ok": true,
+      "ms": 753,
+      "detail": "700 ms"
+    },
+    {
+      "i": 31,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14 ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 32,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4029,
+      "detail": "700 ms"
+    },
+    {
+      "i": 33,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar. ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 34,
+      "op": "sleep",
+      "ok": true,
+      "ms": 700,
+      "detail": "700 ms"
+    },
+    {
+      "i": 35,
+      "op": "value",
+      "ok": true,
+      "ms": 12,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 36,
+      "op": "sleep",
+      "ok": true,
+      "ms": 705,
+      "detail": "700 ms"
+    },
+    {
+      "i": 37,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 38,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 39,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 40,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 41,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 42,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 43,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 44,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 45,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 46,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 47,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 48,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 49,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 50,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 51,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 52,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 53,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 54,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 55,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 56,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 57,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 58,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 59,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 60,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 61,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 62,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 63,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 64,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 65,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 66,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 67,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 68,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 69,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 70,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 71,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 72,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 73,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 74,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 75,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 76,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 77,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 78,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 79,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 80,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 81,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 82,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 83,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 84,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 85,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 86,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 87,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 88,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 89,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 90,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 91,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 92,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 93,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 94,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 95,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 96,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 97,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 98,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 99,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 100,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 101,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 102,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 103,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "stop gone"
+    },
+    {
+      "i": 104,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1502,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 105,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el cual la vida te permite crecer. 3. Tu historia es única y nadie puede escribirla otra vez. 4. No estás en el mundo para ser feliz; eres tú para vivirlo. 5. La fuerza no viene de tener más, sino de poder hacer menos. 6. El tiempo no es un recurso que se agota, es una extensión de tu vida. 7. Cada día es una oportunidad para empezar bien y seguir adelante. 8. La perseverancia es la única forma de superar las dificultades. 9. Tu potencial es infinito; solo necesitas dar el primer paso. 10. El éxito no es un destino, sino un camino que puedes elegir. 11. No esperes a que todo sea perfecto para comenzar tu viaje. 12. La resiliencia te permite ver lo mejor en lo peor. 13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo. 14. El mundo no está diseñado para que nadie se sienta seguro. 15. La paz viene cuando la gente se siente valorada y escuchada. 16. No te detengas si el camino te lleva a un lugar nuevo. 17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo. 18. El éxito es lo que haces para hacer algo que importa. 19. Cada pequeño paso hacia adelante es un gran progreso. 20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda.\n\n1. La vida no es un camino a recorrer, sino una ruta que puedes tomar.\n2. El dolor es el precio por el cual la vida te permite crecer.\n3. Tu historia es única y nadie puede escribirla otra vez.\n4. No estás en el mundo para ser feliz; eres tú para vivirlo.\n5. La fuerza no viene de tener más, sino de poder hacer menos.\n6. El tiempo no es un recurso que se agota, es una extensión de tu vida.\n7. Cada día es una oportunidad para empezar bien y seguir adelante.\n8. La perseverancia es la única forma de superar las dificultades.\n9. Tu potencial es infinito; solo necesitas dar el primer paso.\n10. El éxito no es un destino, sino un camino que puedes elegir.\n11. No esperes a que todo sea perfecto para comenzar tu viaje.\n12. La resiliencia te permite ver lo mejor en lo peor.\n13. Tu capacidad de aprender es tan grande como tu capacidad de hacer algo.\n14. El mundo no está diseñado para que nadie se sienta seguro.\n15. La paz viene cuando la gente se siente valorada y escuchada.\n16. No te detengas si el camino te lleva a un lugar nuevo.\n17. La vida es un viaje, no una carrera; tu ritmo importa más que el tiempo.\n18. El éxito es lo que haces para hacer algo que importa.\n19. Cada pequeño paso hacia adelante es un gran progreso.\n20. Tu futuro está en tus manos y ahora es la hora de actuar.",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o desgranda. 1. La vida no es un camino a recorrer, sino una ruta que puedes tomar. 2. El dolor es el precio por el c"
+    },
+    {
+      "i": 106,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2873,
+      "detail": "L02-es-list"
+    },
+    {
+      "i": 107,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "loop-notice gone"
+    }
+  ],
+  "errors": []
+}
