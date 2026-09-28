@@ -1,0 +1,154 @@
+/* F438 seam replay: every stored answer split at its own word boundaries (and inside Han/kana runs), joined by main's seam and by round 118's. A genuine continuation has nothing said again, so any change is a false drop or a false glue. */
+/* zz-loop-old.ts is main's loop.ts: `git show 4be418d9:packages/core/src/chat/loop.ts > packages/core/src/chat/zz-loop-old.ts`. */
+import { readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+import { it } from "vitest";
+import { continuationSeparator } from "../src/chat/join";
+import { seamOverlap, seamWord } from "../src/chat/loop";
+import { seamOverlap as seamOld } from "../src/chat/zz-loop-old";
+
+const QA = join(__dirname, "../../../docs/qa");
+const OUT = join(QA, "continue-seam-word");
+const STEP = 3;
+const WINDOW = 120;
+const BEFORE = 2000;
+const AFTER = 600;
+
+function answers(): string[] {
+  const ANSWER = /^(answer|reply|content|text|response|assistant|output|shown|final|continuation|prefix|continued|stopped)$/i;
+  const files = (d: string): string[] =>
+    readdirSync(d).flatMap((f) => {
+      const p = join(d, f);
+      if (f === "continue-seam-word") return [];
+      return statSync(p).isDirectory() ? files(p) : p.endsWith(".json") ? [p] : [];
+    });
+  const seen = new Set<string>();
+  const walk = (v: unknown) => {
+    if (Array.isArray(v)) return v.forEach(walk);
+    if (!v || typeof v !== "object") return;
+    for (const [k, x] of Object.entries(v as Record<string, unknown>)) {
+      if (typeof x === "string" && ANSWER.test(k) && x.length >= 40 && /\p{L}/u.test(x)) seen.add(x);
+      else walk(x);
+    }
+  };
+  for (const f of files(QA)) {
+    try {
+      walk(JSON.parse(readFileSync(f, "utf8")));
+    } catch {
+      /* not JSON */
+    }
+  }
+  return [...seen];
+}
+
+/** Chat.tsx's screen after the seam: the prefix (maybe with a glued ending), the separator, the rest. The first
+ * WINDOW code points stream 3 at a time, and a seam still held then is decided as at the stream's end. */
+function join2(prefix: string, next: string, r118: boolean): string {
+  const cps = Array.from(next);
+  const limit = Math.min(cps.length, WINDOW);
+  let opening = "";
+  let taken = 0;
+  for (;;) {
+    const final = taken >= limit;
+    if (!final) {
+      opening += cps.slice(taken, Math.min(taken + STEP, limit)).join("");
+      taken = Math.min(taken + STEP, limit);
+    }
+    const tail = cps.slice(taken).join("");
+    const glue = r118 ? seamWord(prefix, opening, final && taken === cps.length) : 0;
+    if (glue < 0 && !final) continue;
+    if (glue > 0) {
+      const head = prefix + opening.slice(0, glue);
+      const rest = opening.slice(glue) + tail;
+      return head + (rest ? continuationSeparator(head, rest) : "") + rest;
+    }
+    const drop = r118 ? seamOverlap(prefix, opening, final) : seamOld(prefix, opening, final);
+    if (drop < 0 && !final) continue;
+    const rest = opening.slice(Math.max(0, drop)) + tail;
+    return prefix + (rest ? continuationSeparator(prefix, rest) : "") + rest;
+  }
+}
+
+const foldw = (w: string) => w.toLowerCase().replace(/’/gu, "'").replace(/^[^\p{L}\p{N}\p{M}]+|[^\p{L}\p{N}\p{M}]+$/gu, "");
+const RUN = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}ー々]+$/u;
+
+/** Where round 118 can differ from main at all: a word of the continuation equal to the stopped text's last word, a
+ * repeated Han/kana suffix of 2+, an English ending glued, or 2+ spaces. Every other seam joins the same by construction. */
+function candidate(prefix: string, next: string): boolean {
+  if (/^[ \t]{2,}/u.test(next)) return true;
+  const body = next.trimStart();
+  const run = Array.from(RUN.exec(prefix.replace(/[\s,;:，、；：—–-]+$/u, ""))?.[0] ?? "");
+  for (let k = 2; k <= run.length; k++) if (body.startsWith(run.slice(-k).join(""))) return true;
+  /* The continuation's first j+1 words equal the prefix's last j+1 words (sentence bounds and leading marks ignored: looser than the rule). */
+  const tail = (prefix.slice(-3000).match(/\S+/gu) ?? []).map(foldw);
+  const words = body.split(/\s+/u, 400).map(foldw);
+  for (let j = 0; j < Math.min(words.length, tail.length); j++) {
+    if (words[j] !== tail[tail.length - 1]) continue;
+    let same = true;
+    for (let i = 0; i <= j && same; i++) same = words[i] === tail[tail.length - 1 - j + i];
+    if (same) return true;
+  }
+  return seamWord(prefix, next, true) !== 0;
+}
+
+it("replay", { timeout: 3_600_000 }, () => {
+  const all = answers();
+  const rows = { answers: all.length, seams: 0, spaced: 0, wide: 0, candidates: 0, sampled: 0, sampledDiffer: 0, oldChanged: 0, newChanged: 0, differ: 0, dropped: 0, glued: 0 };
+  const examples: string[] = [];
+  let tick = 0;
+  for (const text of all) {
+    const cuts: number[] = [];
+    for (const m of text.matchAll(/(?<=[\p{L}\p{N}\p{M}])[ \t]+(?=\S)/gu)) cuts.push(m.index!);
+    for (const m of text.matchAll(/(?<=[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}])(?=[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}])/gu)) cuts.push(-m.index! - 1);
+    for (const c of cuts) {
+      const wide = c < 0;
+      const at = wide ? -c - 1 : c;
+      /* The last BEFORE code units hold the stopped sentence; past AFTER, both joins append the same text. */
+      const prefix = text.slice(Math.max(0, at - BEFORE), at);
+      const after = text.slice(at, at + AFTER);
+      /* A spaced cut is tried twice: the model's own space, and a fresh turn's first word with none (F390). */
+      const nexts = wide ? [after] : [after, after.replace(/^[ \t]+/u, "")];
+      for (const next of nexts) {
+        rows.seams++;
+        if (wide) rows.wide++;
+        else rows.spaced++;
+        const may = candidate(prefix, next);
+        const sample = !may && tick++ % 997 === 0;
+        if (!may && !sample) continue;
+        if (may) rows.candidates++;
+        else rows.sampled++;
+        const expected = prefix + continuationSeparator(prefix, next) + next;
+        const old = join2(prefix, next, false);
+        const now = join2(prefix, next, true);
+        if (sample) {
+          if (now !== old) rows.sampledDiffer++;
+          continue;
+        }
+        if (old !== expected) rows.oldChanged++;
+        if (now !== expected) rows.newChanged++;
+        if (now === old) continue;
+        rows.differ++;
+        if (now.length < old.length) rows.dropped++;
+        else rows.glued++;
+        if (examples.length < 80) {
+          const s = Math.max(0, prefix.length - 60);
+          examples.push(`DIFF  …${JSON.stringify(prefix.slice(-60))} | ${JSON.stringify(next.slice(0, 40))}\n      main: …${JSON.stringify(old.slice(s, prefix.length + 45))}\n      r118: …${JSON.stringify(now.slice(s, prefix.length + 45))}`);
+        }
+      }
+    }
+  }
+  const lines = [
+    "Round 118 seam replay (F438): every stored answer under docs/qa split at each of its own word boundaries (tried with and",
+    "without the space, as a fresh Continue turn writes it) and between any two Han/kana characters, then joined by main's",
+    "seam (4be418d9) and by round 118's, streamed 3 code points at a time for the first 120, with the 2,000 code units",
+    "before the cut and the 600 after it. A genuine continuation says",
+    "nothing again, so every difference below is a word dropped or glued that the answer really had.",
+    "",
+    "| Answers | Seams | Spaced | Han/kana | Could differ (fully compared) | Round 118 differs from main | Dropped | Glued | Main already changed the text | Sampled others (1 in 997) | Sampled that differ |",
+    "|---|---|---|---|---|---|---|---|---|---|---|",
+    `| ${rows.answers} | ${rows.seams} | ${rows.spaced} | ${rows.wide} | ${rows.candidates} | ${rows.differ} | ${rows.dropped} | ${rows.glued} | ${rows.oldChanged} | ${rows.sampled} | ${rows.sampledDiffer} |`,
+    "",
+    ...examples,
+  ];
+  writeFileSync(join(OUT, "replay-r118.txt"), `${lines.join("\n")}\n`);
+});

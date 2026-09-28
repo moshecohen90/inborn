@@ -1,0 +1,133 @@
+
+ RUN  v5.0.0 packages/core
+
+ ❯ test/fixes-r118.test.ts (11 tests | 7 failed) 91ms
+   ❯ F438 · the word at the Continue seam is said once (11)
+     × the web's Continue: '…This maneuver creates' + ' creates a diagonal path…' reads '…This maneuver creates a diagonal path…' 20ms
+     × the same word with no leading space, with a capital, or split across chunks: one 'creates', one space 2ms
+     × two and three words said again at the join go too 3ms
+     × the join has exactly one space, and none before punctuation 2ms
+     × Chinese and Japanese, no spaces: a word said again at the join goes; one character doubled on purpose stays 11ms
+     × a stopped text that ends mid-word: 'creat' + 'es a diagonal' reads 'creates a diagonal', no space inserted 3ms
+     × the seam decides at the stream's end too: a continuation of only the word said again adds nothing 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/fixes-r118.test.ts > F438 · the word at the Continue seam is said once > the web's Continue: '…This maneuver creates' + ' creates a diagonal path…' reads '…This maneuver creates a diagonal path…'
+AssertionError: expected 'Sailing into the wind is called tacki…' to be 'Sailing into the wind is called tacki…' // Object.is equality
+
+Expected: "Sailing into the wind is called tacking. A single sail cannot catch an opposing wind, so sailors must turn the vessel back and forth repeatedly. This maneuver creates a diagonal path that allows the sails to keep catching the wind from the side."
+Received: "Sailing into the wind is called tacking. A single sail cannot catch an opposing wind, so sailors must turn the vessel back and forth repeatedly. This maneuver creates creates a diagonal path that allows the sails to keep catching the wind from the side."
+
+ ❯ test/fixes-r118.test.ts:45:21
+     43|   it("the web's Continue: '…This maneuver creates' + ' creates a diago…
+     44|     const r = await cont(STOPPED, ` creates${REST}`);
+     45|     expect(r.shown).toBe(`${STOPPED}${REST}`);
+       |                     ^
+     46|     expect(r.shown).toContain("This maneuver creates a diagonal path t…
+     47|     for (const s of r.screens) expect(s).not.toMatch(/creates\s+create…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯
+
+ FAIL  test/fixes-r118.test.ts > F438 · the word at the Continue seam is said once > the same word with no leading space, with a capital, or split across chunks: one 'creates', one space
+AssertionError: creates a di / 3: expected 'Sailing into the wind is called tacki…' to be 'Sailing into the wind is called tacki…' // Object.is equality
+
+Expected: "Sailing into the wind is called tacking. A single sail cannot catch an opposing wind, so sailors must turn the vessel back and forth repeatedly. This maneuver creates a diagonal path that allows the sails to keep catching the wind from the side."
+Received: "Sailing into the wind is called tacking. A single sail cannot catch an opposing wind, so sailors must turn the vessel back and forth repeatedly. This maneuver creates creates a diagonal path that allows the sails to keep catching the wind from the side."
+
+ ❯ test/fixes-r118.test.ts:58:57
+     56|     ] as const) {
+     57|       const r = await cont(STOPPED, next, step);
+     58|       expect(r.shown, `${next.slice(0, 12)} / ${step}`).toBe(`${STOPPE…
+       |                                                         ^
+     59|       for (const s of r.screens) expect(s).not.toMatch(/creates\s+crea…
+     60|     }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/7]⎯
+
+ FAIL  test/fixes-r118.test.ts > F438 · the word at the Continue seam is said once > two and three words said again at the join go too
+AssertionError: expected 'Sailing into the wind is called tacki…' to be 'Sailing into the wind is called tacki…' // Object.is equality
+
+Expected: "Sailing into the wind is called tacking. A single sail cannot catch an opposing wind, so sailors must turn the vessel back and forth repeatedly. This maneuver creates a diagonal path that allows the sails to keep catching the wind from the side."
+Received: "Sailing into the wind is called tacking. A single sail cannot catch an opposing wind, so sailors must turn the vessel back and forth repeatedly. This maneuver creates maneuver creates a diagonal path that allows the sails to keep catching the wind from the side."
+
+ ❯ test/fixes-r118.test.ts:65:23
+     63|   it("two and three words said again at the join go too", async () => {
+     64|     const two = await cont(STOPPED, `maneuver creates${REST}`);
+     65|     expect(two.shown).toBe(`${STOPPED}${REST}`);
+       |                       ^
+     66|     const three = await cont(STOPPED, `This maneuver creates${REST}`);
+     67|     expect(three.shown).toBe(`${STOPPED}${REST}`);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/7]⎯
+
+ FAIL  test/fixes-r118.test.ts > F438 · the word at the Continue seam is said once > the join has exactly one space, and none before punctuation
+AssertionError: expected 'Sailing into the wind is called tacki…' to be 'Sailing into the wind is called tacki…' // Object.is equality
+
+Expected: "Sailing into the wind is called tacking. A single sail cannot catch an opposing wind, so sailors must turn the vessel back and forth repeatedly. This maneuver creates a diagonal path that allows the sails to keep catching the wind from the side."
+Received: "Sailing into the wind is called tacking. A single sail cannot catch an opposing wind, so sailors must turn the vessel back and forth repeatedly. This maneuver creates creates a diagonal path that allows the sails to keep catching the wind from the side."
+
+ ❯ test/fixes-r118.test.ts:78:26
+     76|   it("the join has exactly one space, and none before punctuation", as…
+     77|     const spaced = await cont(`${STOPPED} `, `creates${REST}`);
+     78|     expect(spaced.shown).toBe(`${STOPPED}${REST}`);
+       |                          ^
+     79|     const wide = await cont(STOPPED, ` creates  ${REST.trimStart()}`);
+     80|     expect(wide.shown).toBe(`${STOPPED}${REST}`);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/7]⎯
+
+ FAIL  test/fixes-r118.test.ts > F438 · the word at the Continue seam is said once > Chinese and Japanese, no spaces: a word said again at the join goes; one character doubled on purpose stays
+AssertionError: expected '逆风航行时，单帆无法直接受风，所以水手必须反复调转船头。这种操作产生产生一…' to be '逆风航行时，单帆无法直接受风，所以水手必须反复调转船头。这种操作产生一条对…' // Object.is equality
+
+Expected: "逆风航行时，单帆无法直接受风，所以水手必须反复调转船头。这种操作产生一条对角线路径，让帆从侧面受风。"
+Received: "逆风航行时，单帆无法直接受风，所以水手必须反复调转船头。这种操作产生产生一条对角线路径，让帆从侧面受风。"
+
+ ❯ test/fixes-r118.test.ts:122:22
+    120|   it("Chinese and Japanese, no spaces: a word said again at the join g…
+    121|     const zh = await cont("逆风航行时，单帆无法直接受风，所以水手必须反复调转船头。这种操作产生", "产生一条对…
+    122|     expect(zh.shown).toBe("逆风航行时，单帆无法直接受风，所以水手必须反复调转船头。这种操作产生一条对角线路径，让…
+       |                      ^
+    123|     const ja = await cont("帆は一枚では向かい風を受けられないため、この操作は斜めの進路を", "進路を作り出しま…
+    124|     expect(ja.shown).toBe("帆は一枚では向かい風を受けられないため、この操作は斜めの進路を作り出します。");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/7]⎯
+
+ FAIL  test/fixes-r118.test.ts > F438 · the word at the Continue seam is said once > a stopped text that ends mid-word: 'creat' + 'es a diagonal' reads 'creates a diagonal', no space inserted
+AssertionError: expected 'Sailing into the wind is called tacki…' to be 'Sailing into the wind is called tacki…' // Object.is equality
+
+Expected: "Sailing into the wind is called tacking. A single sail cannot catch an opposing wind, so sailors must turn the vessel back and forth repeatedly. This maneuver creates a diagonal path that allows the sails to keep catching the wind from the side."
+Received: "Sailing into the wind is called tacking. A single sail cannot catch an opposing wind, so sailors must turn the vessel back and forth repeatedly. This maneuver creat es a diagonal path that allows the sails to keep catching the wind from the side."
+
+ ❯ test/fixes-r118.test.ts:133:21
+    131|     expect(stopped.endsWith("This maneuver creat")).toBe(true);
+    132|     const r = await cont(stopped, `es${REST}`);
+    133|     expect(r.shown).toBe(`${STOPPED}${REST}`);
+       |                     ^
+    134|     for (const s of r.screens) expect(s).not.toContain("creat es");
+    135|     const one = await cont(stopped, `es${REST}`, 1);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/7]⎯
+
+ FAIL  test/fixes-r118.test.ts > F438 · the word at the Continue seam is said once > the seam decides at the stream's end too: a continuation of only the word said again adds nothing
+AssertionError: expected 'Sailing into the wind is called tacki…' to be 'Sailing into the wind is called tacki…' // Object.is equality
+
+Expected: "Sailing into the wind is called tacking. A single sail cannot catch an opposing wind, so sailors must turn the vessel back and forth repeatedly. This maneuver creates"
+Received: "Sailing into the wind is called tacking. A single sail cannot catch an opposing wind, so sailors must turn the vessel back and forth repeatedly. This maneuver creates creates"
+
+ ❯ test/fixes-r118.test.ts:153:21
+    151|   it("the seam decides at the stream's end too: a continuation of only…
+    152|     const r = await cont(STOPPED, " creates");
+    153|     expect(r.shown).toBe(STOPPED);
+       |                     ^
+    154|     expect(core.seamOverlap(STOPPED, " creates", true)).toBe(" creates…
+    155|     expect(core.seamOverlap(STOPPED, " cre")).toBe(-1);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/7]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  7 failed | 4 passed (11)
+   Start at  13:40:48
+   Duration  1.58s (transform 80%, import 13%, tests 6%)
+

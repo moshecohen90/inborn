@@ -89,7 +89,7 @@ describe("F423 · iPhone build 22: the two answers that reached the screen now s
     expect(Math.max(...out.screens.map((x) => count(x, HE_PHRASE)))).toBe(1);
   });
 
-  it("he-explain #2 as it ran on the phone: the retry's continuation said the phrase again, and now the notice keeps one copy", async () => {
+  it("he-explain #2 as it ran on the phone: the retry's continuation said the phrase again, and one copy stays (F438: the seam drops it)", async () => {
     const before = HE.text.slice(0, HE.kept);
     const continuation = HE.text.slice(HE.kept);
     expect(continuation.startsWith(` ${HE_PHRASE}`)).toBe(true);
@@ -98,7 +98,9 @@ describe("F423 · iPhone build 22: the two answers that reached the screen now s
     let kept = "";
     const out = await screen(guardLoops(engine(first), () => undefined, { request: HE.request, retry: (k) => ((kept = k), engine(continuation)) }));
     expect(kept.startsWith(before)).toBe(true);
-    expect(out.loop).toBeDefined();
+    /* Round 111 cut the retry with the notice; the seam now drops the restated heading, bold aside, and the answer goes on. */
+    expect(out.loop).toBeUndefined();
+    expect(out.shown).toContain(`${HE_PHRASE}** כולם אומרים: **במובן של חוק`);
     expect(Math.max(...out.screens.map((x) => count(x, HE_PHRASE)))).toBe(1);
     expect(count(out.shown, HE_PHRASE)).toBe(1);
   });
@@ -334,11 +336,10 @@ describe("F423 · Continue after Stop: a phrase restarted at the seam is dropped
     expect(joined).toContain(`like ${PHRASE}, discovered the Americas in 1492, marking`);
   });
 
-  it("a continuation that goes on, a prefix that ended its sentence, and a two-word echo are left alone", async () => {
+  it("a continuation that goes on and a prefix that ended its sentence are left alone (a two-word echo goes since F438)", async () => {
     for (const [prefix, next] of [
       [C.prefix, "discovered the Americas in 1492, marking a pivotal moment."],
       ["We love the sea.", "We love the sea breeze too."],
-      ["The fleet sailed west with the fleet", "the fleet reached land."],
     ] as const) {
       const out = await screen(guardLoops(engine(next), () => undefined, { prefix }));
       expect(out.shown, next).toBe(next);

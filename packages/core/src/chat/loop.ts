@@ -1324,7 +1324,8 @@ export interface LoopCut {
 /**
  * `trim`: replace the answer on screen with this text, silently (the silent retry continues after it).
  * `loop`: the retry looped too; the answer is `loop.text` and the "started repeating itself" notice shows.
- * `prefix`: Continue only: the text on screen before this generation now reads this (F431: a dangling comma dropped).
+ * `prefix`: Continue only: the text on screen before this generation now reads this (F431: a dangling comma dropped; F438:
+ * the stopped word's ending joined).
  */
 export type GuardedDelta = Delta & { loop?: LoopCut; trim?: string; prefix?: string };
 
@@ -1407,8 +1408,9 @@ const CLOSES = /^\s*[.!?。！？…]/u;
 
 /**
  * Continue after Stop: "…like Christopher Columbus's fleet," went on "Christopher Columbus's fleet discovered…" on the
- * phone (build 22). When `next` opens with the end of the prefix's unfinished sentence, three words or more, that overlap
- * (and a comma the prefix already has) is how much of `next` to drop; -1 while `next` may still grow into one.
+ * phone (build 22). When `next` opens with the end of the prefix's unfinished sentence (F438: from one word, or two Han or
+ * kana characters), that overlap, a comma the prefix already has and a second space are how much of `next` to drop; -1
+ * while `next` may still grow into one.
  */
 export function seamOverlap(prefix: string, next: string, final = false): number {
   const head = prefix.trimEnd();
@@ -1426,6 +1428,12 @@ export function seamOverlap(prefix: string, next: string, final = false): number
     if (!final && tail.startsWith(body)) return -1;
     if (body.startsWith(tail) && (body.length > tail.length ? !WORD_CHAR.test(body[tail.length]!) : final)) best = tail.length;
   }
+  /* A continuation that opens on a new line starts a new block ("### Photosynthesis" + "\n\nPhotosynthesis is…"). */
+  if (!best && !next.slice(0, lead).includes("\n")) {
+    const said = saidAgain(sentence, body, final);
+    if (said < 0) return -1;
+    best = said;
+  }
   if (!best) {
     const inside = restated(sentence, starts, body, final);
     if (inside <= 0) return inside;
@@ -1433,9 +1441,100 @@ export function seamOverlap(prefix: string, next: string, final = false): number
   }
   let drop = lead + best;
   const rest = next.slice(drop);
+  /* What follows the dropped words decides the join: a comma the prefix has, or how many spaces. */
+  if (!final && !rest.trim()) return -1;
   const mark = rest.trimStart()[0];
   if (mark && ",;:，、；：".includes(mark) && head.endsWith(mark)) drop += rest.length - rest.trimStart().length + 1;
+  else {
+    const gap = /^[ \t]*/u.exec(rest)![0].length;
+    if (gap) drop += /[ \t]$/u.test(prefix) ? gap : gap - 1;
+  }
   return drop;
+}
+
+/* F438 (web, Fast, 28.9): "…This maneuver creates" + "creates a diagonal path" read "creates creates". */
+const WIDE_RUN = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}ー々]+$/u;
+/* One Han or kana character doubled is often a word ("看看", "慢慢"); two or more said again at the join are the seam. */
+const WIDE_SEAM = 2;
+const EDGES = /^[^\p{L}\p{N}\p{M}]+|[^\p{L}\p{N}\p{M}]+$/gu;
+const LEADING = /^[^\p{L}\p{N}\p{M}]+/u;
+const TRAILING = /[^\p{L}\p{N}\p{M}]+$/u;
+/* A mark after a word that may still be part of it ("fleet'" before "s"). */
+const GROWS = /[\p{L}\p{N}\p{M}'’-]/u;
+const fold = (w: string) => w.toLowerCase().replace(/’/gu, "'");
+/* The marks between two words, emphasis aside: "lassen: zu" is not "lassen, zu"; "?**" is "?". */
+const between = (after: string, before: string) => (after + before).replace(/[*_`~]/gu, "");
+/* Said twice on purpose: "die die Bedeutung", "nous nous levons", "that that", "had had". */
+const DOUBLED = new Set(["that", "had", "die", "der", "das", "dat", "nous", "vous"]);
+
+/**
+ * The end of the stopped sentence said again where `body` starts, on one line: its last words in any case, with the same
+ * marks between them, or its last Han or kana characters. The length of `body` to drop, 0 for none, -1 while it may.
+ */
+function saidAgain(sentence: string, body: string, final: boolean): number {
+  const wide = WIDE_RUN.exec(sentence)?.[0];
+  if (wide) {
+    const cps = Array.from(wide);
+    for (let k = cps.length; k >= WIDE_SEAM; k--) {
+      const tail = cps.slice(-k).join("");
+      if (!final && tail.length > body.length && tail.startsWith(body)) return -1;
+      if (body.startsWith(tail)) return tail.length;
+    }
+    return 0;
+  }
+  const toks = sentence.match(/\S+/gu) ?? [];
+  const tail = toks.map((w) => fold(w.replace(EDGES, "")));
+  const seps = toks.map((w, j) => between(TRAILING.exec(w)?.[0] ?? "", LEADING.exec(toks[j + 1] ?? "")?.[0] ?? ""));
+  const got = Array.from(body.matchAll(/\S+/gu));
+  for (let k = tail.length; k >= 1; k--) {
+    const at = tail.length - k;
+    if (k === 1 && DOUBLED.has(tail[at]!)) continue;
+    let state: "match" | "maybe" | "no" = "match";
+    let end = 0;
+    for (let i = 0; i < k && state === "match"; i++) {
+      const m = got[i];
+      if (!m) {
+        state = final ? "no" : "maybe";
+        break;
+      }
+      const w = m[0];
+      const core = w.replace(TRAILING, "");
+      const open = !final && m.index! + w.length === body.length;
+      if (!WORD_CHAR.test(w[0]!) || body.slice(end, m.index).includes("\n")) state = "no";
+      else if (open && (core.length === w.length || GROWS.test(w[core.length]!))) state = tail[at + i]!.startsWith(fold(core)) ? "maybe" : "no";
+      else if (fold(core) !== tail[at + i] || (i < k - 1 && between(w.slice(core.length), "") !== seps[at + i])) state = "no";
+      else end = m.index! + core.length;
+    }
+    if (state === "maybe") return -1;
+    if (state === "match") return end;
+  }
+  return 0;
+}
+
+/* F438: English endings that are no word by themselves; "creat" + "es a diagonal" is one word. */
+const ENDINGS = new Set(
+  "s es ed ing ings ly ers est ies ied ier iest ily tion tions sion sions ation ations ment ments ness ity ities ive ives ous ously ful ence ences ance ances ize izes ized izing ise ises ised ising ical ically ics ible ure ures ture tures ent ents ary ory ery ated ating ual ually".split(" "),
+);
+/* Two of these make the stopped text English; elsewhere "es" is a word ("la vela es", "gibt es"). */
+const ENGLISH = new Set("the and with that this which from they their these those there".split(" "));
+const ENGLISH_MIN = 2;
+
+/**
+ * Continue only: a stopped English text that ends inside a word and a continuation that opens with the rest of it. The
+ * length of `next` that belongs to the prefix's last word, with no space between; 0 for none, -1 while it may.
+ */
+export function seamWord(prefix: string, next: string, final = false): number {
+  if (!/(?:^|[^\p{L}\p{N}\p{M}'’-])[A-Za-z]{2,}$/u.test(prefix)) return 0;
+  const frag = /^[a-z]+/u.exec(next)?.[0];
+  if (!frag) return 0;
+  const after = next[frag.length];
+  const growing = after === undefined && !final;
+  if (growing ? ![...ENDINGS].some((e) => e.startsWith(frag)) : (after !== undefined && GROWS.test(after)) || !ENDINGS.has(frag)) return 0;
+  const all = prefix.toLowerCase().match(/[a-z]+/gu)!;
+  const words = new Set(all.slice(0, -1));
+  /* A stopped word used whole elsewhere ("the", "Das") is a word, not the start of one. */
+  if (words.has(frag) || words.has(all.at(-1)!) || [...ENGLISH].filter((w) => words.has(w)).length < ENGLISH_MIN) return 0;
+  return growing ? -1 : frag.length;
 }
 
 /* F426: a restatement inside the continuation's first sentence counts from five words or 24 code points of the stopped sentence. */
@@ -1758,16 +1857,27 @@ export async function* guardLoops(stream: AsyncIterable<Delta>, stop: () => void
       let piece = d.text;
       if (seam) {
         opening += piece;
-        const drop = seamOverlap(seam, opening);
-        if (drop < 0) continue;
-        piece = opening.slice(drop);
-        const closed = closeSeam(seam, piece);
-        seam = opening = "";
-        if (closed) {
-          piece = closed.piece;
-          yield* closed.deltas;
+        /* F438: "creat" + "es a diagonal": the end of the word joins the prefix, so the chat adds no space. */
+        const glue = !text && prefix ? seamWord(seam, opening) : 0;
+        if (glue < 0) continue;
+        if (glue > 0) {
+          prefix += opening.slice(0, glue);
+          yield { prefix };
+          piece = opening.slice(glue);
+          seam = opening = "";
+          if (!piece) continue;
+        } else {
+          const drop = seamOverlap(seam, opening);
+          if (drop < 0) continue;
+          piece = opening.slice(drop);
+          const closed = closeSeam(seam, piece);
+          seam = opening = "";
+          if (closed) {
+            piece = closed.piece;
+            yield* closed.deltas;
+          }
+          if (!piece) continue;
         }
-        if (!piece) continue;
       }
       if (joinNext) {
         joinBuf += piece;
@@ -1811,8 +1921,13 @@ export async function* guardLoops(stream: AsyncIterable<Delta>, stop: () => void
       }
     }
     if (!hit) {
-      let rest = seam && opening ? opening.slice(Math.max(0, seamOverlap(seam, opening, true))) : "";
-      const closed = seam && rest ? closeSeam(seam, rest) : null;
+      const glue = seam && opening && !text && prefix ? seamWord(seam, opening, true) : 0;
+      if (glue > 0) {
+        prefix += opening.slice(0, glue);
+        yield { prefix };
+      }
+      let rest = !seam || !opening ? "" : glue > 0 ? opening.slice(glue) : opening.slice(Math.max(0, seamOverlap(seam, opening, true)));
+      const closed = seam && rest && !glue ? closeSeam(seam, rest) : null;
       if (closed) {
         rest = closed.piece;
         yield* closed.deltas;

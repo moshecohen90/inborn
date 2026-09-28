@@ -6911,6 +6911,64 @@ names the missing model on a pack that is installed without it: "Installed · 20
 theme) are new. Resizing the window across the phone and desktop breakpoint remounts the chat and drops a held photo
 card, which predates this round.
 
+## Fixes round 118: the word at the Continue seam (branch `continue-seam-word`) — 28.9.2026
+
+Seen on the live web app (28.9, 12:30, Fast): Stop after "…A single sail cannot catch an opposing wind, so sailors
+must turn the vessel back and forth repeatedly. This maneuver creates", then Continue. The screen read "This maneuver
+creates creates a diagonal path…". Round 111's seam dropped a restarted phrase only from three words, and round 113's
+only a restated clause of five words or 24 code points. So a word or two said again at the join got through.
+Evidence: `docs/qa/continue-seam-word/`. Tests: `packages/core/test/fixes-r118.test.ts` (11).
+
+- **F438 · The last words of the stopped sentence, said again at the join, go.** `seamOverlap` in
+  `packages/core/src/chat/loop.ts` now drops them from one word. The continuation's first words must equal the stopped
+  sentence's last words, in any case, with the same marks between them (emphasis aside). The longest such run goes.
+  "…This maneuver creates" + " creates a diagonal path…" now reads "…This maneuver creates a diagonal path…", with or
+  without the model's leading space, and with "Creates". "maneuver creates" goes the same way, and so does "Back and
+  forth" after "…back and forth". While the continuation's first word may still turn into the stopped word ("cre", or
+  "creates" with nothing after it yet), it waits off screen.
+- **One space at the join, none before punctuation.** The seam decides once the next mark after the dropped words has
+  arrived. A second space goes, and so does the model's space when the stopped text already ends in one. "creates, in
+  effect" joins as "…creates, in effect".
+- **What stays.** A stopped text that ends in ".", "!", "?" or a line break keeps round 111's rule, so "…turn the
+  ship." and then "The ship then…" stays as written. A continuation that opens on a new line starts a new block
+  ("### Photosynthesis", then "\n\nPhotosynthesis is…"). Other marks between the words make other words, so "9. lassen:
+  zu" and then "lassen, zu überlassen" stays. A word said twice on purpose stays when it is one of "that", "had", "die", "der", "das", "dat", "nous" and
+  "vous" ("…Verben, die" + "die neutrale Bedeutung").
+- **Chinese and Japanese.** Without spaces, two or more Han or kana characters said again at the join go.
+  "这种操作产生" + "产生一条对角线路径" reads "这种操作产生一条对角线路径", and "進路を" + "進路を作り出します" reads
+  "進路を作り出します". One character doubled stays, because it is often a word: "我们来看" + "看这个例子" reads
+  "我们来看看这个例子".
+- **A word stopped in the middle is finished without a space.** `seamWord` handles an English stopped text that ends
+  inside a word. When the continuation opens with an ending that is no word by itself ("es", "ing", "tion", "s" and 54
+  more), the ending joins the stopped word through the `prefix` delta, and the chat adds no space. "…This maneuver
+  creat" + "es a diagonal" reads "…creates a diagonal". The text counts as English with two of "the", "and", "with",
+  "that", "this", "which", "from", "they", "their", "these", "those" and "there". A stopped word used whole earlier in
+  the text is a word, not the start of one. Spanish "la vela" + "es la clave" and German "gibt" + "es keinen" keep their
+  space, as does any whole word (F390).
+- **Round 111's tests, updated.** Its two-word echo ("…with the fleet" + "the fleet reached land.") was left alone by
+  design, and now goes. In he-explain #2 the silent retry restated the stopped heading without its bold marks. The seam
+  now drops that restatement, so one copy shows and the answer goes on with no notice. Round 111 cut it with the notice.
+
+Seam replay (`replay-r118.txt`, harness `replay-r118.test.ts.txt`). Every stored answer under `docs/qa` was split at each
+of its own word boundaries, with and without the space, and between any two Han or kana characters. Each split was
+joined by main's seam and by round 118's. A genuine continuation says nothing again, so any change is a loss.
+
+| Answers | Seams | Round 118 differs from main | Word endings glued | Main already changes |
+|---|---|---|---|---|
+| 3,958 | 797,580 | 46 (25 places) | 0 | 82 |
+
+Of the 25 places, 18 drop one copy of words the answer itself said twice back to back ("Crab Crab", "petit petit", a
+Tel Aviv loop, "始め始める"). 4 are app screen text where a heading runs into the next line. 3 are real phrases that lose
+a word: Spanish "lo que sea que sea" (2) and "屏東屏東市". A first pass of this replay also dropped a word in "die die"
+and in "lassen: zu" before "lassen, zu", and glued "fully" and "ist" as endings. Those rules were narrowed before this
+commit.
+
+Red first: 7 of the 11 round-118 tests fail on main 4be418d9 (`red-r118-main-4be418d9.txt`), with "creates creates",
+"maneuver creates maneuver creates", "产生产生" and "creat es" on screen. The 4 that pass are the cases that must stay.
+Gates exit 0: `typecheck`, `lint`, `test` (core 1,180 with 4 skipped, mobile 1,192, i18n 24, ui 23) and `web:build`.
+Not covered: no model, browser or phone ran this round. The ending glue reads English only. A stop that lands exactly
+inside a phrase said twice on purpose ("lo que sea que sea") loses one copy.
+
 ## iOS build 23: main with round 111's loop guard, on Moshe's iPhone only (branch `ios-build-23`) — 27.9.2026
 
 Build 1.0.0 (23) carries local `main` 98722df7 (build 22's main plus round 111) to the iPhone 13 Pro, so the phone has
