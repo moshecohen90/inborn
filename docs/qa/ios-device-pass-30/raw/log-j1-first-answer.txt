@@ -1,0 +1,45 @@
+17:21:42 launching com.inbornapp.mobile.qa
+17:22:27 pushing 39 steps as j1-first-answer
+17:23:31 shot J1-00-welcome
+17:23:58 shot J1-01-first-answer
+17:24:02 shot J1-02-ledger
+17:24:05 ok     0 waitFor    onboarding-welcome appeared
+17:24:05 ok     1 sleep      1500 ms
+17:24:05 ok     2 screenshot J1-00-welcome
+17:24:05 ok     3 press      onboarding-continue ← onPress
+17:24:05 ok     4 waitFor    onboarding-model appeared
+17:24:05 ok     5 sleep      2500 ms
+17:24:05 ok     6 value      Choose your model Your model runs entirely on this phone. You can change it later. Instant READY NOW 533 MB ·
+17:24:05 ok     7 press      start-chatting ← onPress
+17:24:05 ok     8 waitFor    onboarding-sealed appeared
+17:24:05 ok     9 sleep      4000 ms
+17:24:05 ok    10 press      sealed-start ← onPress
+17:24:05 ok    11 waitFor    onboarding-lock appeared
+17:24:05 ok    12 sleep      1500 ms
+17:24:05 ok    13 press      lock-start ← onPress
+17:24:05 ok    14 waitFor    composer-input appeared
+17:24:05 ok    15 waitFor    Loading gone
+17:24:05 ok    16 sleep      2000 ms
+17:24:05 ok    17 type       composer-input = 43 chars
+17:24:05 ok    18 send       send ← onPress
+17:24:05 ok    19 waitFor    assistant-text appeared
+17:24:05 ok    20 waitFor    stop gone
+17:24:05 ok    21 sleep      1500 ms
+17:24:05 ok    22 value      A lighthouse is a beacon of guidance and safety for ships navigating dark seas.
+17:24:05 ok    23 screenshot J1-01-first-answer
+17:24:05 ok    24 waitFor    loop-notice gone
+17:24:05 ok    25 press      ledger-toggle ← onPress
+17:24:05 ok    26 sleep      800 ms
+17:24:05 ok    27 value      INSTANT
+17:24:05 ok    28 value      31 ms
+17:24:05 ok    29 value      171 / 4096
+17:24:05 ok    30 setTier    pro
+17:24:05 ok    31 sleep      1200 ms
+17:24:05 ok    32 value      32.1
+17:24:05 ok    33 value      777 ms
+17:24:05 ok    34 value      156 + 15
+17:24:05 ok    35 value      1.2 s
+17:24:05 ok    36 screenshot J1-02-ledger
+17:24:05 ok    37 setTier    free
+17:24:05 ok    38 sleep      800 ms
+17:24:05 39 passed, 0 failed, 3 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-30/docs/qa/ios-device-pass-30/screens

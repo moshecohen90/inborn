@@ -1,0 +1,16 @@
+17:30:16 pushing 12 steps as j6-vault-packs
+17:30:21 shot J6-01-pack-instant
+17:30:27 shot J6-02-index
+17:30:31 ok     0 deeplink   /vault?focus=vision-qwen35
+17:30:31 ok     1 sleep      3500 ms
+17:30:31 ok     2 value      ◉ PHOTO PACK FOR INSTANT Lets Instant look at your photos on this device. Qwen3.5 mmproj 0.1B · 205 MB · F16 ·
+17:30:31 ok     3 value      Included with the app
+17:30:31 ok     4 screenshot J6-01-pack-instant
+17:30:31 ok     5 assertText "Qwen3.5 mmproj 0.1B · 205 MB · F16" present
+17:30:31 ok     6 assertText "0.4B" absent
+17:30:31 ok     7 assertText "Included with the app" present
+17:30:31 ok     8 deeplink   /vault?focus=embed-e5
+17:30:31 ok     9 sleep      3500 ms
+17:30:31 ok    10 value      ◉ DOCUMENT INDEX Lets Inborn search your documents on this device. multilingual-e5-large-instruct 560M · 468 M
+17:30:31 ok    11 screenshot J6-02-index
+17:30:31 12 passed, 0 failed, 2 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-30/docs/qa/ios-device-pass-30/screens

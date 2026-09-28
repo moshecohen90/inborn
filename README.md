@@ -7361,6 +7361,37 @@ the `.qa` twin built from the same commit, and the twin was removed before the s
 Evidence: `docs/qa/ios-build-29-2026-09-28.md`, `docs/qa/ios-device-pass-29-2026-09-28.md`,
 `docs/qa/ios-device-pass-29/`.
 
+## iOS build 30: main with rounds 124–125 (the documents answer, the pack label, the build stamp), on Moshe's iPhone only (branch `ios-build-30`) — 28.9.2026
+
+Build 1.0.0 (30) carries `main` 978fbd63 (build 29's main plus round 124's documents prompt, pack label, switch label and
+build stamp, and round 125's web CPU photo path) to the iPhone 13 Pro. Nothing went to a store. The rows round 124
+touches, plus J1 to J3, ran on the `.qa` twin built from the same commit, and the twin was removed before the store app
+was opened.
+
+- **The build.** Commit cdaf1ca5 bumps the build number 29 → 30. Gates exit 0 on the first run: 1,233 core with 4
+  skipped, 1,252 mobile, 24 i18n, 23 ui, 4 desktop. Fresh prebuild and archive. Instant and its bundled photo pack are
+  byte-exact to the catalog. Round 124's prompt line, its opener sentence, `0.1B` and the *"· installed"* switch label
+  are in the bundle, and build 29's has none of them. The app config no longer carries `extra.commit`; `main.jsbundle`
+  carries cdaf1ca562fc from the generated build-info file. The QA-bridge and shipping-bundle gates pass.
+- **On the phone as an update.** The byte copy of the six container files was taken first. After the install the
+  `Documents/` listing is identical and all six files are byte-identical. The `.qa` twin was removed first; only then
+  was the store app opened, and About reads `1.0.0 (30) · cdaf1ca562fc`. It was left on its Chats list.
+- **Documents on Instant (F449 on the phone).** *"The office phone number is 555-0134."* with the source
+  `office-hours.txt · part 1`, and no sentence about instructions, rules or general knowledge. *"Australia's capital city
+  is Canberra."* with *"Nothing in your documents matched this question. Answered without them."* Instant did not open
+  with the prompt's *"Your documents don't mention this."*
+- **The Instant photo pack's card (F450).** *"Qwen3.5 mmproj 0.1B · 205 MB · F16 · Battery: Medium"*, *"Included with the
+  app"*.
+- **J1 to J3.** Instant answers at 32.1 tok/s, first token 777 ms. Continue after Stop picks up mid-clause: *"…scars
+  from battles lost to⟦ darkness, and his boots…"*. The CAT photo drew no card and no banned phrase in two runs; the
+  first answer named the circle and CAT but no colour, the second *"a red circle (shape) with "CAT" written underneath
+  it"*.
+- **Not run.** J4, and with it the *"Switch to FAST · installed"* label (F451): Fast reached 454 MB of 1.28 GB in the
+  brief's 3 minutes.
+
+Evidence: `docs/qa/ios-build-30-2026-09-28.md`, `docs/qa/ios-device-pass-30-2026-09-28.md`,
+`docs/qa/ios-device-pass-30/`.
+
 ## iOS build 23: main with round 111's loop guard, on Moshe's iPhone only (branch `ios-build-23`) — 27.9.2026
 
 Build 1.0.0 (23) carries local `main` 98722df7 (build 22's main plus round 111) to the iPhone 13 Pro, so the phone has

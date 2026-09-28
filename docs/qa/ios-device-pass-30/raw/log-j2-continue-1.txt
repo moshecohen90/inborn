@@ -1,0 +1,42 @@
+17:24:15 pushing 37 steps as j2-continue-1
+17:24:23 shot J2-1a-knight-stopped
+17:24:29 shot J2-1b-knight-final
+17:24:33 shot J2-1c-knight-ledger
+17:24:37 ok     0 deeplink   /chats
+17:24:37 ok     1 waitFor    new-chat appeared
+17:24:37 ok     2 press      new-chat ← onPress
+17:24:37 ok     3 waitFor    start-chat appeared
+17:24:37 ok     4 press      start-chat ← onPress
+17:24:37 ok     5 waitFor    composer-input appeared
+17:24:37 ok     6 waitFor    Loading gone
+17:24:37 ok     7 sleep      1500 ms
+17:24:37 ok     8 value      INSTANT
+17:24:37 ok     9 type       composer-input = 53 chars
+17:24:37 ok    10 send       send ← onPress
+17:24:37 ok    11 waitFor    assistant-text appeared
+17:24:37 ok    12 sleep      1000 ms
+17:24:37 ok    13 press      stop ← onPress
+17:24:37 ok    14 sleep      2000 ms
+17:24:37 ok    15 value      Once upon a time, in the shadowed lands of Oakhaven, a knight named Silas stood guard at the gates of the grea
+17:24:37 ok    16 screenshot J2-1a-knight-stopped
+17:24:37 ok    17 waitFor    continue appeared
+17:24:37 ok    18 press      continue ← onPress
+17:24:37 ok    19 sleep      1500 ms
+17:24:37 ok    20 waitFor    stop gone
+17:24:37 ok    21 sleep      1500 ms
+17:24:37 ok    22 value      Once upon a time, in the shadowed lands of Oakhaven, a knight named Silas stood guard at the gates of the grea
+17:24:37 ok    23 screenshot J2-1b-knight-final
+17:24:37 ok    24 waitFor    loop-notice gone
+17:24:37 ok    25 press      ledger-toggle ← onPress
+17:24:37 ok    26 sleep      800 ms
+17:24:37 ok    27 value      INSTANT
+17:24:37 ok    28 setTier    pro
+17:24:37 ok    29 sleep      1200 ms
+17:24:37 ok    30 value      37.8
+17:24:37 ok    31 value      40 ms
+17:24:37 ok    32 value      186 + 71
+17:24:37 ok    33 value      1.9 s
+17:24:37 ok    34 screenshot J2-1c-knight-ledger
+17:24:37 ok    35 setTier    free
+17:24:37 ok    36 sleep      800 ms
+17:24:37 37 passed, 0 failed, 3 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-30/docs/qa/ios-device-pass-30/screens

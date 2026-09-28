@@ -1,0 +1,57 @@
+{
+ "_": "J6: the Instant photo pack's card in the native vault (/vault?focus=<id>): round 124's 0.1B label and 'Included with the app'; then the index card, installed by J5.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/vault?focus=vision-qwen35"
+  },
+  {
+   "op": "sleep",
+   "ms": 3500
+  },
+  {
+   "op": "value",
+   "testID": "model-card-vision-qwen35"
+  },
+  {
+   "op": "value",
+   "testID": "model-status-vision-qwen35"
+  },
+  {
+   "op": "screenshot",
+   "name": "J6-01-pack-instant"
+  },
+  {
+   "op": "assertText",
+   "text": "Qwen3.5 mmproj 0.1B · 205 MB · F16",
+   "testID": "model-card-vision-qwen35"
+  },
+  {
+   "op": "assertText",
+   "text": "0.4B",
+   "testID": "model-card-vision-qwen35",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "Included with the app",
+   "testID": "model-status-vision-qwen35"
+  },
+  {
+   "op": "deeplink",
+   "url": "/vault?focus=embed-e5"
+  },
+  {
+   "op": "sleep",
+   "ms": 3500
+  },
+  {
+   "op": "value",
+   "testID": "model-card-embed-e5"
+  },
+  {
+   "op": "screenshot",
+   "name": "J6-02-index"
+  }
+ ]
+}

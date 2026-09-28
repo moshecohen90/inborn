@@ -1,0 +1,164 @@
+{
+ "_": "J2 (knight): Stop about 200 characters in, then Continue (round 121, the same assistant turn by prefill).",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "new-chat",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "press",
+   "testID": "new-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "start-chat",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "press",
+   "testID": "start-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "Tell a short story about a knight who fears the dark."
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "waitFor",
+   "testID": "assistant-text",
+   "timeoutMs": 240000
+  },
+  {
+   "op": "sleep",
+   "ms": 1000
+  },
+  {
+   "op": "press",
+   "testID": "stop"
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "screenshot",
+   "name": "J2-1a-knight-stopped"
+  },
+  {
+   "op": "waitFor",
+   "testID": "continue",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "press",
+   "testID": "continue"
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 400000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "screenshot",
+   "name": "J2-1b-knight-final"
+  },
+  {
+   "op": "waitFor",
+   "testID": "loop-notice",
+   "gone": true,
+   "timeoutMs": 500
+  },
+  {
+   "op": "press",
+   "testID": "ledger-toggle"
+  },
+  {
+   "op": "sleep",
+   "ms": 800
+  },
+  {
+   "op": "value",
+   "testID": "ledger-model"
+  },
+  {
+   "op": "setTier",
+   "tier": "pro"
+  },
+  {
+   "op": "sleep",
+   "ms": 1200
+  },
+  {
+   "op": "value",
+   "testID": "ledger-tokPerSec"
+  },
+  {
+   "op": "value",
+   "testID": "ledger-ttft"
+  },
+  {
+   "op": "value",
+   "testID": "ledger-tokens"
+  },
+  {
+   "op": "value",
+   "testID": "ledger-time"
+  },
+  {
+   "op": "screenshot",
+   "name": "J2-1c-knight-ledger"
+  },
+  {
+   "op": "setTier",
+   "tier": "free"
+  },
+  {
+   "op": "sleep",
+   "ms": 800
+  }
+ ]
+}

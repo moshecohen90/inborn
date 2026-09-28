@@ -1,0 +1,29 @@
+17:30:31 pushing 23 steps as j4-probe-fast
+17:31:37 shot J4-probe-01-60s
+17:33:38 shot J4-probe-02-180s
+17:33:42 ok     0 deeplink   /chats
+17:33:42 ok     1 waitFor    new-chat appeared
+17:33:42 ok     2 press      new-chat ← onPress
+17:33:42 ok     3 waitFor    start-chat appeared
+17:33:42 ok     4 press      start-chat ← onPress
+17:33:42 ok     5 waitFor    composer-input appeared
+17:33:42 ok     6 waitFor    Loading gone
+17:33:42 ok     7 sleep      1500 ms
+17:33:42 ok     8 press      model-chip ← onPress
+17:33:42 ok     9 waitFor    model-sheet appeared
+17:33:42 ok    10 sleep      1000 ms
+17:33:42 ok    11 press      model-sheet-download-fast ← onPress
+17:33:42 ok    12 waitFor    model-sheet-confirm-fast appeared
+17:33:42 ok    13 sleep      500 ms
+17:33:42 ok    14 press      model-sheet-go-fast ← onPress
+17:33:42 ok    15 waitFor    model-sheet-progress-fast appeared
+17:33:42 ok    16 value      0% · 0 B of 1.28 GB
+17:33:42 ok    17 sleep      60000 ms
+17:33:42 ok    18 value      10% · 139 MB of 1.28 GB
+17:33:42 ok    19 screenshot J4-probe-01-60s
+17:33:42 FAIL  20 waitFor    waitFor model-sheet-use-fast never appeared in 118000 ms
+17:33:42 FAIL  21 value      value model-sheet-use-fast: no node with that testID is mounted
+17:33:42 ok    22 screenshot J4-probe-02-180s
+17:33:42 21 passed, 2 failed, 2 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-30/docs/qa/ios-device-pass-30/screens
+17:33:42   ! step 20 (waitFor): waitFor model-sheet-use-fast never appeared in 118000 ms
+17:33:42   ! step 21 (value): value model-sheet-use-fast: no node with that testID is mounted

@@ -1,0 +1,24 @@
+17:10:19 install start
+17:10:30 install rc=0
+17:10:30 typecheck start
+17:10:38 typecheck rc=0
+17:10:38 lint start
+17:10:44 lint rc=0
+17:10:44 test start
+17:11:14 test rc=0
+GATES-DONE
+
+first test run: rc 0, no rerun needed
+
+PASS: all fields within limits.
+PASS: no personal identifier in the history of HEAD
+apps/desktop test: # tests 4
+apps/desktop test: # pass 4
+apps/desktop test: # fail 0
+packages/ui test:       Tests  23 passed (23)
+packages/i18n test:       Tests  24 passed (24)
+packages/core test:       Tests  1233 passed | 4 skipped (1237)
+apps/mobile test:       Tests  1252 passed (1252)
+
+pnpm install --frozen-lockfile: Lockfile is up to date, resolution step is skipped Done in 10.8s using pnpm v10.34.5
+load average before the gates:  8.59 6.77 8.87

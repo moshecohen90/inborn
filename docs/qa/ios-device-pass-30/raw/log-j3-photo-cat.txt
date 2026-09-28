@@ -1,0 +1,51 @@
+17:24:45 pushing 45 steps as j3-photo-cat
+17:24:51 shot J3-cat-a-composer
+17:24:58 shot J3-cat-b-answer
+17:25:03 shot J3-cat-c-ledger
+17:25:06 ok     0 deeplink   /chats
+17:25:06 ok     1 waitFor    new-chat appeared
+17:25:06 ok     2 press      new-chat ← onPress
+17:25:06 ok     3 waitFor    start-chat appeared
+17:25:06 ok     4 press      start-chat ← onPress
+17:25:06 ok     5 waitFor    composer-input appeared
+17:25:06 ok     6 waitFor    Loading gone
+17:25:06 ok     7 sleep      1500 ms
+17:25:06 ok     8 devPrompt  image: red-circle-cat.png
+17:25:06 ok     9 waitFor    pending-images appeared
+17:25:06 ok    10 type       composer-input = 92 chars
+17:25:06 ok    11 sleep      800 ms
+17:25:06 ok    12 screenshot J3-cat-a-composer
+17:25:06 ok    13 send       send ← onPress
+17:25:06 ok    14 sleep      3000 ms
+17:25:06 ok    15 waitFor    vision-hold gone
+17:25:06 ok    16 assertText "photo pack" absent
+17:25:06 ok    17 waitFor    user-images appeared
+17:25:06 ok    18 waitFor    assistant-text appeared
+17:25:06 ok    19 waitFor    stop gone
+17:25:06 ok    20 sleep      1500 ms
+17:25:06 ok    21 value      The shape is a circle, which is commonly known as a dot in some contexts. The text below it reads "CAT".
+17:25:06 ok    22 waitFor    vision-hold gone
+17:25:06 ok    23 screenshot J3-cat-b-answer
+17:25:06 ok    24 assertText "The request specifies" absent
+17:25:06 ok    25 assertText "I will focus" absent
+17:25:06 ok    26 assertText "as an AI" absent
+17:25:06 ok    27 assertText "family-safe" absent
+17:25:06 ok    28 assertText "violence" absent
+17:25:06 ok    29 assertText "self-harm" absent
+17:25:06 FAIL  30 assertText assertText "red" is not on screen under assistant-text
+17:25:06 ok    31 assertText "circle" present
+17:25:06 ok    32 assertText "CAT" present
+17:25:06 ok    33 press      ledger-toggle ← onPress
+17:25:06 ok    34 sleep      800 ms
+17:25:06 ok    35 value      INSTANT
+17:25:06 ok    36 setTier    pro
+17:25:06 ok    37 sleep      1200 ms
+17:25:06 ok    38 value      35.3
+17:25:06 ok    39 value      1553 ms
+17:25:06 ok    40 value      185 + 25
+17:25:06 ok    41 value      2.3 s
+17:25:06 ok    42 screenshot J3-cat-c-ledger
+17:25:06 ok    43 setTier    free
+17:25:06 ok    44 sleep      800 ms
+17:25:06 44 passed, 1 failed, 3 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-30/docs/qa/ios-device-pass-30/screens
+17:25:06   ! step 30 (assertText): assertText "red" is not on screen under assistant-text
