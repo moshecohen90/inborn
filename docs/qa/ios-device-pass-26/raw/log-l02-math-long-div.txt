@@ -1,0 +1,37 @@
+00:16:10 pushing 108 steps as l02-math-long-div
+00:16:11 inbox missing — launching once to create it
+Error: Command failed: xcrun devicectl device copy to --device <udid> --domain-type appDataContainer --domain-identifier com.inbornapp.mobile.qa --source <tmp>/ios-qa-l02-math-long-div/l02-math-long-div.json --destination Documents/qa/in/l02-math-long-div.json
+ERROR: The specified file could not be transferred. (com.apple.dt.CoreDeviceError error 7000 (0x1B58))
+       ----------------------------------------
+           The connection was interrupted. (com.apple.Mercury.error error 1000 (0x3E8))
+           XPCConnectionDescription = <SystemXPCPeerConnection …> { <connection: …> { name = com.apple.coredevice.filesandbox, listener = false, pid = 0, euid = 4294967295, egid = 4294967295, asid = 4294967295 } }
+
+    at genericNodeError (node:internal/errors:984:15)
+    at wrappedFn (node:internal/errors:538:14)
+    at checkExecSyncError (node:child_process:891:11)
+    at execFileSync (node:child_process:927:15)
+    at devicectl (file:///Users/moshecohen/dev/inborn-wt/ios-build-26/scripts/ios-qa.mjs:46:10)
+    at Object.push (file:///Users/moshecohen/dev/inborn-wt/ios-build-26/scripts/ios-qa.mjs:101:9)
+    at push (file:///Users/moshecohen/dev/inborn-wt/ios-build-26/scripts/ios-qa.mjs:120:43)
+    at main (file:///Users/moshecohen/dev/inborn-wt/ios-build-26/scripts/ios-qa.mjs:191:5) {
+  status: 1,
+  signal: null,
+  output: [
+    null,
+    '00:16:25  Acquired tunnel connection to device.\n' +
+      '00:16:25  Enabling developer disk image services.\n' +
+      '00:16:26  Acquired usage assertion.\n',
+    'ERROR: The specified file could not be transferred. (com.apple.dt.CoreDeviceError error 7000 (0x1B58))\n' +
+      '       ----------------------------------------\n' +
+      '           The connection was interrupted. (com.apple.Mercury.error error 1000 (0x3E8))\n' +
+      '           XPCConnectionDescription = <SystemXPCPeerConnection …> { <connection: …> { name = com.apple.coredevice.filesandbox, listener = false, pid = 0, euid = 4294967295, egid = 4294967295, asid = 4294967295 } }\n'
+  ],
+  pid: 59985,
+  stdout: '00:16:25  Acquired tunnel connection to device.\n' +
+    '00:16:25  Enabling developer disk image services.\n' +
+    '00:16:26  Acquired usage assertion.\n',
+  stderr: 'ERROR: The specified file could not be transferred. (com.apple.dt.CoreDeviceError error 7000 (0x1B58))\n' +
+    '       ----------------------------------------\n' +
+    '           The connection was interrupted. (com.apple.Mercury.error error 1000 (0x3E8))\n' +
+    '           XPCConnectionDescription = <SystemXPCPeerConnection …> { <connection: …> { name = com.apple.coredevice.filesandbox, listener = false, pid = 0, euid = 4294967295, egid = 4294967295, asid = 4294967295 } }\n'
+}

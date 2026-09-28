@@ -1,0 +1,218 @@
+[
+ {
+  "run": "l02-es-list",
+  "seams": [
+   {
+    "kind": "retry",
+    "at": 1237,
+    "takenBack": "",
+    "keptTail": "des hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n",
+    "after": "17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n",
+    "flags": []
+   },
+   {
+    "kind": "cut",
+    "at": 1312,
+    "keptTail": "r.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n",
+    "after": "",
+    "flags": []
+   }
+  ],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l02-fr-list",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l02-he-list",
+  "seams": [
+   {
+    "kind": "cut",
+    "at": 113,
+    "keptTail": "הנה רשימה של 30 ערים בישראל: אשדוד, אשנאב, ארצוה, בריאן, ברלין, ברוזל, בורסון, בראגן, בראונד, בראינג, ברוז, ברוזל",
+    "after": "",
+    "flags": []
+   }
+  ],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l02-ja-list-cities",
+  "seams": [
+   {
+    "kind": "retry",
+    "at": 65,
+    "takenBack": "",
+    "keptTail": "日本の都市を20個挙げます。東京、大阪、京都、名古屋、福岡、仙台、札幌、神戸、広島、長崎、高知、愛知、福井、長野、岐阜、三重、鳥取",
+    "after": "これらはすべて日本の主要都市です。",
+    "flags": [
+     "half-item"
+    ]
+   }
+  ],
+  "renumbered": [],
+  "flags": [
+   "half-item"
+  ]
+ },
+ {
+  "run": "l02-ko-list",
+  "seams": [
+   {
+    "kind": "retry",
+    "at": 131,
+    "takenBack": ", 16",
+    "keptTail": "를 소개합니다.\n\n1. 김치, 2. 간장, 3. 소시지, 4. 생선, 5. 고기, 6. 채소, 7. 국물, 8. 통조마, 9. 야채, 10. 국면, 11. 요거트, 12. 빵, 13. 우유, 14. 마늘, 15. 파",
+    "after": " 16. 오징어, 17. 양파, 18. 시금치, 19. 토마토, 20. 바나나, 21. 아몬드, 22. 계란, 23. 치즈, 24. 파스타, 25. 피자, 26. 햄버거, 27. 스낵이, 28. 샌드위치, 29. 구운 반죽, 30. 고기 요리",
+    "flags": [
+     "half-item"
+    ]
+   }
+  ],
+  "renumbered": [],
+  "flags": [
+   "half-item"
+  ]
+ },
+ {
+  "run": "l07-es-list-1",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-es-list-2",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-fr-list-1",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-fr-list-2",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-he-explain-1",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-he-explain-2",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-ja-nenji-1",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-ja-nenji-2",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-list25-verbs-de-1",
+  "seams": [
+   {
+    "kind": "retry",
+    "at": 710,
+    "takenBack": "9",
+    "keptTail": ".  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+    "after": "",
+    "flags": []
+   },
+   {
+    "kind": "cut",
+    "at": 710,
+    "keptTail": "prevent\n4.  **vernehmen** -> to notice\n5.  **schreiben** -> to write\n6.  **bequem** -> comfortably\n7.  **verlassen** -> to leave\n8.  **sich selbst** -> oneself\n",
+    "after": "",
+    "flags": []
+   }
+  ],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-list25-verbs-de-2",
+  "seams": [
+   {
+    "kind": "cut",
+    "at": 545,
+    "keptTail": "ollen)\n18. essen (essen)\n19. trinken (trinken)\n20. kaufen (kaufen)\n21. verkaufen (verkaufen)\n22. tragen (tragen)\n23. halten (halten)\n24. verlieren (verliefern)\n",
+    "after": "",
+    "flags": []
+   }
+  ],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-list30-animals-1",
+  "seams": [
+   {
+    "kind": "cut",
+    "at": 124,
+    "keptTail": "1. shark\n2. whale\n3. dolphin\n4. fish\n5. turtle\n6. penguin\n7. sea turtle\n8. crab\n9. squid\n10. octopus\n11. scallop\n12. shrimp\n",
+    "after": "",
+    "flags": []
+   }
+  ],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-list30-animals-2",
+  "seams": [
+   {
+    "kind": "cut",
+    "at": 261,
+    "keptTail": "lyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+    "after": "",
+    "flags": []
+   }
+  ],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-math-long-div-1",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-math-long-div-2",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-poem-refrainless-1",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-poem-refrainless-2",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ }
+]

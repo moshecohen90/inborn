@@ -1,0 +1,1072 @@
+{
+  "runId": "l07-list30-animals-2",
+  "startedAt": "2026-09-27T21:03:21.478Z",
+  "finishedAt": "2026-09-27T21:04:01.249Z",
+  "ok": false,
+  "passed": 104,
+  "failed": 1,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 157,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 9,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 158,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1508,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 7,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 63 chars"
+    },
+    {
+      "i": 8,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 274,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 10,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Here are 30 animals that live i ▍",
+        "props": {
+          "source": "Here are 30 animals that live i",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live i ▍"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 709,
+      "detail": "700 ms"
+    },
+    {
+      "i": 12,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish ▍",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish ▍"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 717,
+      "detail": "700 ms"
+    },
+    {
+      "i": 14,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 1 ▍",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n1",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 1 ▍"
+    },
+    {
+      "i": 15,
+      "op": "sleep",
+      "ok": true,
+      "ms": 706,
+      "detail": "700 ms"
+    },
+    {
+      "i": 16,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Cor ▍",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Cor",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 18,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid ▍",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 24,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 25,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 26,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 27,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 28,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 30,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 31,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 32,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 33,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 34,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 35,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 36,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 37,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 38,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 39,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 40,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 41,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 42,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 43,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 44,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 45,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 46,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 47,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 48,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 49,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 50,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 51,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 52,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 53,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 54,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 55,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 56,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 57,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 58,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 59,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 60,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 61,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 62,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 63,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 64,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 65,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 66,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 67,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 68,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 69,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 70,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 71,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 72,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 73,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 74,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 75,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 76,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 77,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 78,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 79,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 80,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 81,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 82,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 83,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 84,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 85,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 86,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 87,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 88,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 89,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 90,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 91,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 92,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 93,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 94,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 95,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 96,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 97,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 98,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 99,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 100,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "stop gone"
+    },
+    {
+      "i": 101,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1514,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 102,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blue whale 13. Seamount 14. Coral reef 15. Clownfish 16. Squid",
+        "props": {
+          "source": "Here are 30 animals that live in the ocean, listed one per line:\n\n1. Dolphin\n2. Whale\n3. Shark\n4. Jellyfish\n5. Manta ray\n6. Sea turtle\n7. Seahorse\n8. Lobster\n9. Crab\n10. Octopus\n11. Whale shark\n12. Blue whale\n13. Seamount\n14. Coral reef\n15. Clownfish\n16. Squid\n",
+          "disabled": false
+        }
+      },
+      "detail": "Here are 30 animals that live in the ocean, listed one per line: 1. Dolphin 2. Whale 3. Shark 4. Jellyfish 5. Manta ray 6. Sea turtle 7. Seahorse 8. Lobster 9. Crab 10. Octopus 11. Whale shark 12. Blu"
+    },
+    {
+      "i": 103,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2879,
+      "detail": "L07-list30-animals-2"
+    },
+    {
+      "i": 104,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 536,
+      "detail": "waitFor loop-notice never went away in 500 ms"
+    }
+  ],
+  "errors": [
+    "step 104 (waitFor): waitFor loop-notice never went away in 500 ms",
+    "console.log: [chat] loop retry: kept 261 chars, unit 9 cp x2",
+    "console.log: [chat] loop cut: kept 261 of 275 chars, unit 9 cp x2"
+  ]
+}

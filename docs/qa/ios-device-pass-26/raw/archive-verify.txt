@@ -1,0 +1,54 @@
+== archive <scratch>/build26/Inborn.xcarchive (copied out of <worktree>/apps/mobile/ios/build)
+CFBundleVersion = 26
+CFBundleShortVersionString = 1.0.0
+CFBundleIdentifier = com.inbornapp.mobile
+MinimumOSVersion = 17.0
+appex = AskInborn.appex id com.inbornapp.mobile.share-extension ver 26
+instant.gguf = 532517120 B sha256 bd258782…
+vision-qwen35.gguf = 204987232 B sha256 56e4c6cf…
+tessdata = eng.traineddata heb.traineddata 
+ExpoBattery strings = 3
+signing = Authority=Apple Development: Moshe Cohen
+main.jsbundle = 6637637 B
+app size = 767M
+app.config: version 1.0.0 buildNumber 26 bundleId com.inbornapp.mobile
+extra.commit 0c9a62a03d53 extra.devVariant False
+bundle strings: INBORN_QA_BRIDGE_V1=0 '[chat] loop retry'=1 '[chat] loop cut'=1 'dry_multiplier|dryMultiplier'=1
+== qa-bridge gate on the archive
+OK: <scratch>/build26/Inborn.xcarchive/Products/Applications/Inborn.app contains no QA bridge
+gate rc=0
+== shipping-bundles gate on the archive
+  <scratch>/build26/Inborn.xcarchive (given path): OK: <scratch>/build26/Inborn.xcarchive contains no QA bridge
+
+PASS: 1 shipping artifact(s) carry no QA bridge.
+shipping gate rc=0
+== model gate (--models) on the archive
+  <scratch>/build26/Inborn.xcarchive (models): OK instant instant.gguf 532517120 B sha256 matches the catalog
+  <scratch>/build26/Inborn.xcarchive (models): OK vision-qwen35 vision-qwen35.gguf 204987232 B sha256 matches the catalog
+
+PASS: every model the catalog ships is in the build, byte for byte.
+model gate rc=0
+== rounds 111, 113, 114 and 115 in the bundle
+'unless the request asks for repetition'=2 (round 111)
+HEAD_END (round 114): 0 as ASCII/UTF-8, 1 as UTF-16
+BARE_END (round 114): 0 as ASCII/UTF-8, 1 as UTF-16
+repeat-marker alternation (round 113): 0 as ASCII/UTF-8, 1 as UTF-16
+fencedLines (round 115): 1 as ASCII
+fenceLoop (round 115): 1 as ASCII
+oneEdit (round 115): 1 as ASCII
+misspeltHead (round 115): 1 as ASCII
+closeSeam (round 115): 1 as ASCII
+control, build 25's archive bundle:
+  HEAD_END (round 114): 0 as ASCII/UTF-8, 1 as UTF-16
+  BARE_END (round 114): 0 as ASCII/UTF-8, 1 as UTF-16
+  repeat-marker alternation (round 113): 0 as ASCII/UTF-8, 1 as UTF-16
+  fencedLines (round 115): 0 as ASCII
+  fenceLoop (round 115): 0 as ASCII
+  oneEdit (round 115): 0 as ASCII
+  misspeltHead (round 115): 0 as ASCII
+  closeSeam (round 115): 0 as ASCII
+VERIFY-DONE
+== round 115's new patterns (added after VERIFY-DONE, from the same archive copy)
+build 26 archive bundle: NUMBER_LINE 0 as ASCII/UTF-8, 1 as UTF-16, PARTIAL_NUMBER 0 as ASCII/UTF-8, 1 as UTF-16, DANGLING 0 as ASCII/UTF-8, 1 as UTF-16, CLOSES 0 as ASCII/UTF-8, 1 as UTF-16
+control, build 25's archive bundle: NUMBER_LINE 0 as ASCII/UTF-8, 0 as UTF-16, PARTIAL_NUMBER 0 as ASCII/UTF-8, 0 as UTF-16, DANGLING 0 as ASCII/UTF-8, 0 as UTF-16, CLOSES 0 as ASCII/UTF-8, 0 as UTF-16
+signing team: TeamIdentifier=NGCHN95667

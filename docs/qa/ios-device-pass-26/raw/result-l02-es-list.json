@@ -1,0 +1,1099 @@
+{
+  "runId": "l02-es-list",
+  "startedAt": "2026-09-27T21:14:44.189Z",
+  "finishedAt": "2026-09-27T21:15:26.066Z",
+  "ok": false,
+  "passed": 107,
+  "failed": 1,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 162,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 4,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 163,
+      "detail": "persona-chip-ac2496ce-abff-4a4e-b928-25a72d26f5cc ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "sleep",
+      "ok": true,
+      "ms": 316,
+      "detail": "300 ms"
+    },
+    {
+      "i": 6,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 7,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 8,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1508,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 9,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Assistant 0.2",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Assistant 0.2"
+    },
+    {
+      "i": 10,
+      "op": "type",
+      "ok": true,
+      "ms": 166,
+      "detail": "composer-input = 37 chars"
+    },
+    {
+      "i": 11,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 12,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 542,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 13,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cor ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cor",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cor ▍"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 708,
+      "detail": "700 ms"
+    },
+    {
+      "i": 15,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino un ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino un",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino un ▍"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 17,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 18,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 19,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 20,
+      "op": "sleep",
+      "ok": true,
+      "ms": 709,
+      "detail": "700 ms"
+    },
+    {
+      "i": 21,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buen ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buen",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 22,
+      "op": "sleep",
+      "ok": true,
+      "ms": 704,
+      "detail": "700 ms"
+    },
+    {
+      "i": 23,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado pa ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado pa",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 24,
+      "op": "sleep",
+      "ok": true,
+      "ms": 702,
+      "detail": "700 ms"
+    },
+    {
+      "i": 25,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9 ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 26,
+      "op": "sleep",
+      "ok": true,
+      "ms": 732,
+      "detail": "700 ms"
+    },
+    {
+      "i": 27,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás,",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 28,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 29,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12 ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 30,
+      "op": "sleep",
+      "ok": true,
+      "ms": 776,
+      "detail": "700 ms"
+    },
+    {
+      "i": 31,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar ",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 32,
+      "op": "sleep",
+      "ok": true,
+      "ms": 722,
+      "detail": "700 ms"
+    },
+    {
+      "i": 33,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15 ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 34,
+      "op": "sleep",
+      "ok": true,
+      "ms": 769,
+      "detail": "700 ms"
+    },
+    {
+      "i": 35,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se ago ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se ago",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 36,
+      "op": "sleep",
+      "ok": true,
+      "ms": 717,
+      "detail": "700 ms"
+    },
+    {
+      "i": 37,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo. ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 38,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 39,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo. ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 40,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 41,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo. 17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas. ▍",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 42,
+      "op": "sleep",
+      "ok": true,
+      "ms": 706,
+      "detail": "700 ms"
+    },
+    {
+      "i": 43,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo. 17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 44,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 45,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo. 17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 46,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 47,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo. 17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 48,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 49,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo. 17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 50,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 51,
+      "op": "value",
+      "ok": true,
+      "ms": 13,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo. 17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 52,
+      "op": "sleep",
+      "ok": true,
+      "ms": 704,
+      "detail": "700 ms"
+    },
+    {
+      "i": 53,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo. 17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 54,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 55,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo. 17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 56,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 57,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo. 17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 58,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 59,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo. 17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 60,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 61,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo. 17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 62,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 63,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo. 17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 64,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 65,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo. 17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 66,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 67,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo. 17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 68,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 69,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo. 17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 70,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 71,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo. 17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 72,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 73,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo. 17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 74,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 75,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo. 17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 76,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 77,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo. 17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 78,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 79,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo. 17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 80,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 81,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo. 17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 82,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 83,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo. 17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 84,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 85,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo. 17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 86,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 87,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo. 17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 88,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 89,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo. 17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 90,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 91,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo. 17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 92,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 93,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo. 17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 94,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 95,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo. 17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 96,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 97,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo. 17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 98,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 99,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo. 17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 100,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 101,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo. 17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 102,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 103,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "stop gone"
+    },
+    {
+      "i": 104,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 105,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual. 3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son. 4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo. 5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas. 6. Si quieres ser mejor, hazlo ahora mismo. 7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer. 8. Tu potencial es infinito; solo necesitas dar el primer paso. 9. La perseverancia es la única fuerza capaz de cambiar tu destino. 10. No te preocupes por los demás, solo por ti y tu propio crecimiento. 11. El camino no se vuelve fácil si intentas hacerlo rápido. 12. Cada pequeño esfuerzo es una gran victoria en sí mismo. 13. La vida es un viaje; el objetivo es solo llegar a la otra parte. 14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia. 15. No te sientes si no puedes hacerlo, pero sí puedes intentar. 16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo. 17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.",
+        "props": {
+          "source": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad:\n\n1. La vida no es un camino a recorrer, sino una ruta que se ha hecho.\n2. Tu valor no depende del éxito inmediato, sino de la calidad de tu esfuerzo actual.\n3. El dolor es el precio por el cual creemos que somos mejores que lo que realmente son.\n4. No esperes a que te sientan bien antes de empezar a hacer algo nuevo.\n5. La única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas.\n6. Si quieres ser mejor, hazlo ahora mismo.\n7. El mundo no está diseñado para que nadie sepa lo que tú puedes hacer.\n8. Tu potencial es infinito; solo necesitas dar el primer paso.\n9. La perseverancia es la única fuerza capaz de cambiar tu destino.\n10. No te preocupes por los demás, solo por ti y tu propio crecimiento.\n11. El camino no se vuelve fácil si intentas hacerlo rápido.\n12. Cada pequeño esfuerzo es una gran victoria en sí mismo.\n13. La vida es un viaje; el objetivo es solo llegar a la otra parte.\n14. Tu capacidad de hacer cosas extraordinarias depende de tu voluntad y paciencia.\n15. No te sientes si no puedes hacerlo, pero sí puedes intentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n",
+          "disabled": false
+        }
+      },
+      "detail": "Aquí tienes 30 frases motivadoras cortas, listas para leer en momentos de esfuerzo o necesidad: 1. La vida no es un camino a recorrer, sino una ruta que se ha hecho. 2. Tu valor no depende del éxito i"
+    },
+    {
+      "i": 106,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 4140,
+      "detail": "L02-es-list"
+    },
+    {
+      "i": 107,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 538,
+      "detail": "waitFor loop-notice never went away in 500 ms"
+    }
+  ],
+  "errors": [
+    "step 107 (waitFor): waitFor loop-notice never went away in 500 ms",
+    "console.log: [chat] loop retry: kept 1237 chars, unit 55 cp x2",
+    "console.log: [chat] loop cut: kept 1312 of 1356 chars, unit 40 cp x2"
+  ]
+}
