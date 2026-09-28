@@ -1,0 +1,42 @@
+15:54:52 pushing 37 steps as j2-continue-3
+15:54:58 shot J2-3a-knight-stopped
+15:55:06 shot J2-3b-knight-final
+15:55:10 shot J2-3c-knight-ledger
+15:55:14 ok     0 deeplink   /chats
+15:55:14 ok     1 waitFor    new-chat appeared
+15:55:14 ok     2 press      new-chat ← onPress
+15:55:14 ok     3 waitFor    start-chat appeared
+15:55:14 ok     4 press      start-chat ← onPress
+15:55:14 ok     5 waitFor    composer-input appeared
+15:55:14 ok     6 waitFor    Loading gone
+15:55:14 ok     7 sleep      1500 ms
+15:55:14 ok     8 value      INSTANT
+15:55:14 ok     9 type       composer-input = 53 chars
+15:55:14 ok    10 send       send ← onPress
+15:55:14 ok    11 waitFor    assistant-text appeared
+15:55:14 ok    12 sleep      1000 ms
+15:55:14 ok    13 press      stop ← onPress
+15:55:14 ok    14 sleep      2000 ms
+15:55:14 ok    15 value      The knight, Kaelen, stood before the darkness he feared most—not in a room, but inside his own chest. He was n
+15:55:14 ok    16 screenshot J2-3a-knight-stopped
+15:55:14 ok    17 waitFor    continue appeared
+15:55:14 ok    18 press      continue ← onPress
+15:55:14 ok    19 sleep      1500 ms
+15:55:14 ok    20 waitFor    stop gone
+15:55:14 ok    21 sleep      1500 ms
+15:55:14 ok    22 value      The knight, Kaelen, stood before the darkness he feared most—not in a room, but inside his own chest. He was n
+15:55:14 ok    23 screenshot J2-3b-knight-final
+15:55:14 ok    24 waitFor    loop-notice gone
+15:55:14 ok    25 press      ledger-toggle ← onPress
+15:55:14 ok    26 sleep      800 ms
+15:55:14 ok    27 value      INSTANT
+15:55:14 ok    28 setTier    pro
+15:55:14 ok    29 sleep      1200 ms
+15:55:14 ok    30 value      37.5
+15:55:14 ok    31 value      37 ms
+15:55:14 ok    32 value      187 + 91
+15:55:14 ok    33 value      2.5 s
+15:55:14 ok    34 screenshot J2-3c-knight-ledger
+15:55:14 ok    35 setTier    free
+15:55:14 ok    36 sleep      800 ms
+15:55:14 37 passed, 0 failed, 3 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-29/docs/qa/ios-device-pass-29/screens

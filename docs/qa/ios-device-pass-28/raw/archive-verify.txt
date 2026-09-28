@@ -1,0 +1,69 @@
+== archive <scratch>/build28/Inborn.xcarchive (copied out of <worktree>/apps/mobile/ios/build)
+CFBundleVersion = 28
+CFBundleShortVersionString = 1.0.0
+CFBundleIdentifier = com.inbornapp.mobile
+MinimumOSVersion = 17.0
+appex = AskInborn.appex id com.inbornapp.mobile.share-extension ver 28
+instant.gguf (catalog file Qwen3.5-0.8B-Q4_K_M.gguf) = 532517120 B sha256 bd258782e35f… catalog 532517120 B bd258782e35f… -> MATCH
+vision-qwen35.gguf (catalog file mmproj-Qwen3.5-0.8B-F16.gguf) = 204987232 B sha256 56e4c6cfe73b… catalog 204987232 B 56e4c6cfe73b… -> MATCH
+ggufs in the .app: instant.gguf, vision-qwen35.gguf
+Fast / Sharp model or their packs in the .app: none
+tessdata = eng.traineddata heb.traineddata 
+ExpoBattery strings = 3
+signing = Authority=Apple Development: Moshe Cohen
+main.jsbundle = 6763744 B
+app size = 768M
+app.config: version 1.0.0 buildNumber 28 bundleId com.inbornapp.mobile
+extra.commit 46b8b6f49049 extra.devVariant False
+bundle strings: INBORN_QA_BRIDGE_V1=0 '[chat] loop retry'=1 '[chat] loop cut'=1
+== qa-bridge gate on the archive
+OK: <scratch>/build28/Inborn.xcarchive/Products/Applications/Inborn.app contains no QA bridge
+gate rc=0
+== shipping-bundles gate on the archive
+  <scratch>/build28/Inborn.xcarchive (given path): OK: <scratch>/build28/Inborn.xcarchive contains no QA bridge
+
+PASS: 1 shipping artifact(s) carry no QA bridge.
+shipping gate rc=0
+== model gate (--models) on the archive
+  <scratch>/build28/Inborn.xcarchive (models): OK instant instant.gguf 532517120 B sha256 matches the catalog
+  <scratch>/build28/Inborn.xcarchive (models): OK vision-qwen35 vision-qwen35.gguf 204987232 B sha256 matches the catalog
+
+PASS: every model the catalog ships is in the build, byte for byte.
+model gate rc=0
+== rounds 117 and 118 in the bundle
+catalog id 'vision-qwen35-2b' (round 117): 4 as ASCII/UTF-8, 0 as UTF-16
+its sha256 7035e9cb8d7c… (round 117): 1 as ASCII/UTF-8, 0 as UTF-16
+its file 'mmproj-Qwen3.5-2B-F16.gguf' (round 117): 1 as ASCII/UTF-8, 0 as UTF-16
+catalog id 'vision-qwen35-4b' (round 117): 4 as ASCII/UTF-8, 0 as UTF-16
+its sha256 cd88edcf8d03… (round 117): 1 as ASCII/UTF-8, 0 as UTF-16
+its file 'mmproj-Qwen3.5-4B-F16.gguf' (round 117): 1 as ASCII/UTF-8, 0 as UTF-16
+'Keep it family-safe.' (round 117): 1 as ASCII/UTF-8, 0 as UTF-16
+old clause 'Family-safe mode is on.' (round 117 removes it): 0 as ASCII/UTF-8, 1 as UTF-16
+turnSystemPrompt (round 117): 1 as ASCII/UTF-8, 0 as UTF-16
+familySafeLine (round 117): 1 as ASCII/UTF-8, 0 as UTF-16
+PhotoHoldCard (round 117): 1 as ASCII/UTF-8, 0 as UTF-16
+photoHoldView (round 117): 1 as ASCII/UTF-8, 0 as UTF-16
+installPath (round 117): 1 as ASCII/UTF-8, 0 as UTF-16
+card line 'needs its photo pack to see photos' (round 117): 1 as ASCII/UTF-8, 0 as UTF-16
+seamWord (round 118): 1 as ASCII/UTF-8, 0 as UTF-16
+saidAgain (round 118): 0 as ASCII/UTF-8, 0 as UTF-16
+control, build 27's archive bundle:
+  catalog id 'vision-qwen35-2b' (round 117): 0 as ASCII/UTF-8, 0 as UTF-16
+  its sha256 7035e9cb8d7c… (round 117): 0 as ASCII/UTF-8, 0 as UTF-16
+  its file 'mmproj-Qwen3.5-2B-F16.gguf' (round 117): 0 as ASCII/UTF-8, 0 as UTF-16
+  catalog id 'vision-qwen35-4b' (round 117): 0 as ASCII/UTF-8, 0 as UTF-16
+  its sha256 cd88edcf8d03… (round 117): 0 as ASCII/UTF-8, 0 as UTF-16
+  its file 'mmproj-Qwen3.5-4B-F16.gguf' (round 117): 0 as ASCII/UTF-8, 0 as UTF-16
+  'Keep it family-safe.' (round 117): 0 as ASCII/UTF-8, 0 as UTF-16
+  old clause 'Family-safe mode is on.' (round 117 removes it): 1 as ASCII/UTF-8, 1 as UTF-16
+  turnSystemPrompt (round 117): 0 as ASCII/UTF-8, 0 as UTF-16
+  familySafeLine (round 117): 0 as ASCII/UTF-8, 0 as UTF-16
+  PhotoHoldCard (round 117): 0 as ASCII/UTF-8, 0 as UTF-16
+  photoHoldView (round 117): 0 as ASCII/UTF-8, 0 as UTF-16
+  installPath (round 117): 0 as ASCII/UTF-8, 0 as UTF-16
+  card line 'needs its photo pack to see photos' (round 117): 0 as ASCII/UTF-8, 0 as UTF-16
+  seamWord (round 118): 0 as ASCII/UTF-8, 0 as UTF-16
+  saidAgain (round 118): 0 as ASCII/UTF-8, 0 as UTF-16
+signing team: TeamIdentifier=NGCHN95667
+VERIFY-DONE
+old clause note: the one UTF-16 'Family-safe mode is on.' in build 28 is the UI refusal string chat.familySafe.refused ('I won't help with that while Family-safe mode is on. You can turn it off in Settings → Chat.'), UTF-16 because of the arrow; the prompt clause (ASCII) is 0

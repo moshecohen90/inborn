@@ -1,0 +1,192 @@
+{
+  "runId": "n-vault-resume",
+  "startedAt": "2026-09-28T11:30:30.112Z",
+  "finishedAt": "2026-09-28T11:32:06.324Z",
+  "ok": true,
+  "passed": 19,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 156,
+      "detail": "/vault"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 2,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Paused · 0 B of 1.28 GB",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Paused · 0 B of 1.28 GB"
+    },
+    {
+      "i": 3,
+      "op": "press",
+      "ok": true,
+      "ms": 171,
+      "detail": "resume-fast ← onPress"
+    },
+    {
+      "i": 4,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1000,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 5,
+      "op": "idleTimer",
+      "ok": true,
+      "ms": 1,
+      "detail": "idle timer disabled: true",
+      "value": {
+        "text": "true",
+        "props": {
+          "idleTimerDisabled": true
+        }
+      }
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 15001,
+      "detail": "15000 ms"
+    },
+    {
+      "i": 7,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "2% · 34 MB of 1.28 GB",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "2% · 34 MB of 1.28 GB"
+    },
+    {
+      "i": 8,
+      "op": "sleep",
+      "ok": true,
+      "ms": 15047,
+      "detail": "15000 ms"
+    },
+    {
+      "i": 9,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "4% · 53 MB of 1.28 GB",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "4% · 53 MB of 1.28 GB"
+    },
+    {
+      "i": 10,
+      "op": "sleep",
+      "ok": true,
+      "ms": 15000,
+      "detail": "15000 ms"
+    },
+    {
+      "i": 11,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "6% · 79 MB of 1.28 GB",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "6% · 79 MB of 1.28 GB"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 15014,
+      "detail": "15000 ms"
+    },
+    {
+      "i": 13,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "9% · 115 MB of 1.28 GB",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "9% · 115 MB of 1.28 GB"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 15071,
+      "detail": "15000 ms"
+    },
+    {
+      "i": 15,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "11% · 148 MB of 1.28 GB",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "11% · 148 MB of 1.28 GB"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 15009,
+      "detail": "15000 ms"
+    },
+    {
+      "i": 17,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "14% · 190 MB of 1.28 GB",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "14% · 190 MB of 1.28 GB"
+    },
+    {
+      "i": 18,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2222,
+      "detail": "N03-vault-fast-resumed"
+    }
+  ],
+  "errors": []
+}

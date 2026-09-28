@@ -1,0 +1,106 @@
+{
+ "_": "J6: vault Extensions after J4; J7: Privacy & storage sizes.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/vault"
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "scrollTo",
+   "testID": "vault-extensions"
+  },
+  {
+   "op": "sleep",
+   "ms": 1000
+  },
+  {
+   "op": "screenshot",
+   "name": "J6-01-vault-extensions"
+  },
+  {
+   "op": "value",
+   "testID": "vault-extensions"
+  },
+  {
+   "op": "value",
+   "testID": "ext-state-vision-qwen35"
+  },
+  {
+   "op": "value",
+   "testID": "ext-state-vision-qwen35-2b"
+  },
+  {
+   "op": "value",
+   "testID": "ext-state-embed-e5"
+  },
+  {
+   "op": "assertText",
+   "text": "Included with the app",
+   "testID": "ext-state-vision-qwen35"
+  },
+  {
+   "op": "assertText",
+   "text": "Installed · 668 MB",
+   "testID": "ext-state-vision-qwen35-2b"
+  },
+  {
+   "op": "dump",
+   "name": "vault"
+  },
+  {
+   "op": "deeplink",
+   "url": "/settings/storage"
+  },
+  {
+   "op": "waitFor",
+   "testID": "storage",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "value",
+   "testID": "storage"
+  },
+  {
+   "op": "value",
+   "testID": "storage-chats"
+  },
+  {
+   "op": "value",
+   "testID": "storage-documents"
+  },
+  {
+   "op": "value",
+   "testID": "storage-models"
+  },
+  {
+   "op": "screenshot",
+   "name": "J7-01-privacy-storage"
+  },
+  {
+   "op": "assertText",
+   "text": "0 B",
+   "testID": "storage-chats",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "0 B",
+   "testID": "storage-documents",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "0 B",
+   "testID": "storage-models",
+   "absent": true
+  }
+ ]
+}

@@ -1,0 +1,342 @@
+{
+  "runId": "j3-photo-screenshot",
+  "startedAt": "2026-09-28T11:13:51.613Z",
+  "finishedAt": "2026-09-28T11:14:14.021Z",
+  "ok": true,
+  "passed": 42,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 165,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 4,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 163,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1508,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 167,
+      "detail": "image: photo-text-screenshot.png"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1334,
+      "detail": "pending-images appeared"
+    },
+    {
+      "i": 10,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 67 chars"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 816,
+      "detail": "800 ms"
+    },
+    {
+      "i": 12,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2539,
+      "detail": "J3-screenshot-a-composer"
+    },
+    {
+      "i": 13,
+      "op": "send",
+      "ok": true,
+      "ms": 161,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3000,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 15,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "vision-hold gone"
+    },
+    {
+      "i": 16,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"photo pack\" absent"
+    },
+    {
+      "i": 17,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "user-images appeared"
+    },
+    {
+      "i": 18,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 19,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "stop gone"
+    },
+    {
+      "i": 20,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1510,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 21,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "The community pool opens at 7 a.m. on weekdays and 9 a.m. on weekends, while remaining closed every Monday for cleaning.",
+        "props": {
+          "source": "The community pool opens at 7 a.m. on weekdays and 9 a.m. on weekends, while remaining closed every Monday for cleaning.",
+          "disabled": false
+        }
+      },
+      "detail": "The community pool opens at 7 a.m. on weekdays and 9 a.m. on weekends, while remaining closed every Monday for cleaning."
+    },
+    {
+      "i": 22,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "vision-hold gone"
+    },
+    {
+      "i": 23,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 5078,
+      "detail": "J3-screenshot-b-answer"
+    },
+    {
+      "i": 24,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"The request specifies\" absent"
+    },
+    {
+      "i": 25,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"I will focus\" absent"
+    },
+    {
+      "i": 26,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"as an AI\" absent"
+    },
+    {
+      "i": 27,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"family-safe\" absent"
+    },
+    {
+      "i": 28,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"violence\" absent"
+    },
+    {
+      "i": 29,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"self-harm\" absent"
+    },
+    {
+      "i": 30,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "ledger-toggle ← onPress"
+    },
+    {
+      "i": 31,
+      "op": "sleep",
+      "ok": true,
+      "ms": 816,
+      "detail": "800 ms"
+    },
+    {
+      "i": 32,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "INSTANT",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT"
+    },
+    {
+      "i": 33,
+      "op": "setTier",
+      "ok": true,
+      "ms": 183,
+      "detail": "pro"
+    },
+    {
+      "i": 34,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1216,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 35,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "33.9",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "33.9"
+    },
+    {
+      "i": 36,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "1504 ms",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "1504 ms"
+    },
+    {
+      "i": 37,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "175 + 29",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "175 + 29"
+    },
+    {
+      "i": 38,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "2.4 s",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "2.4 s"
+    },
+    {
+      "i": 39,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2232,
+      "detail": "J3-screenshot-c-ledger"
+    },
+    {
+      "i": 40,
+      "op": "setTier",
+      "ok": true,
+      "ms": 183,
+      "detail": "free"
+    },
+    {
+      "i": 41,
+      "op": "sleep",
+      "ok": true,
+      "ms": 817,
+      "detail": "800 ms"
+    }
+  ],
+  "errors": []
+}

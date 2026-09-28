@@ -7208,6 +7208,67 @@ Gates exit 0: `typecheck`, `lint`, `test` (core 1,200 with 4 skipped, mobile 1,2
 Safari or Firefox; the failed-unlock row with a lock on and the Ask sheet's locked switch were checked in code and
 unit tests only.
 
+## iOS build 28: main with rounds 117 and 118, on Moshe's iPhone only (branch `ios-build-28`) — 28.9.2026
+
+Build 1.0.0 (28) carries local `main` e61f222a (build 27's main plus round 117's photo packs per model and round 118's
+Continue seam word) to the iPhone 13 Pro. Nothing went to a store. The first-user journeys ran on the `.qa` twin built
+from the same commit, and the twin was removed before the store app was opened.
+
+- **The build.** Commit 46b8b6f4 bumps the build number 27 → 28. Gates exit 0 on the first run: 1,186 core with 4
+  skipped, 1,195 mobile, 24 i18n, 23 ui, 4 desktop. Fresh prebuild and archive. Instant and its bundled photo pack
+  (`mmproj-Qwen3.5-0.8B-F16.gguf`, 204,987,232 B) are byte-exact to the catalog, the bundled catalog lists
+  `vision-qwen35-2b` and `vision-qwen35-4b` with their sha256, and build 27's bundle has none of round 117's or 118's
+  strings. The QA-bridge and shipping-bundle gates pass.
+- **On the phone as an update.** The byte copy of the six container files was taken first. After the install the
+  `Documents/` listing is identical and all six files are byte-identical. The `.qa` twin was removed first; only then
+  was the store app opened, and About reads `1.0.0 (28) · 46b8b6f49049`. It was left on its Chats list.
+- **J1 to J8 on the phone.** Instant answers at 32.3 tok/s, and Fast took 9 min 25 s from the model sheet. Four photos
+  on Instant drew no card and none of the banned phrases; the receipt answer invents "EUR", and the CAT answer puts the
+  word inside the circle. On Fast the card reads *"FAST needs its photo pack to see photos / One 668 MB download, then
+  this photo sends by itself."* with **Switch to INSTANT**; the pack took 6 min 22 s with its progress line, the photo
+  sent by itself, and Fast answered *"The shape is a red circle (symbolizing the sun), and the word written underneath
+  is "CAT.""* at 16.6 tok/s, first token 4.4 s, one process throughout. A document answer cites `office-hours.txt · part
+  1`, and an off-document question shows *"Answered without them."* The vault reads *"Photo pack for Instant"* ·
+  *"Included with the app"* and *"Photo pack for Fast"* · *"Installed"*, with 668 MB on the card's detail line. Privacy
+  & storage shows real sizes, and Delete everything with models kept lands on a clean Welcome, also after a cold
+  relaunch, with no `.corrupt` file. J10 (airplane) was skipped: the bridge has no network-off op.
+- **Continue after Stop (F440): no word doubled, but both tries say the stopped clause again.** Try 1 reads *"…This
+  initial discovery The initial discovery of these seeds…"*, a 3-word clause under round 113's 5-word and 24-code-point
+  bar. Try 2 says the stopped sentence's middle phrase again, which `restated()` does not read.
+- **Harness.** The first Fast download from the model sheet ran at 0.04 MB/s, unexplained; the phone measured about 2
+  MB/s through the bridge, Resume kept the bytes, and a second fresh download ran at the normal rate. The bridge's
+  `setTier free` leaves the licence state at Pro (`pretendTier(null)` keeps the pretended tier), a QA-only path.
+
+Evidence: `docs/qa/ios-build-28-2026-09-28.md`, `docs/qa/ios-device-pass-28-2026-09-28.md`,
+`docs/qa/ios-device-pass-28/`.
+
+## iOS build 29: main with rounds 119–123 (Continue resumes the same answer), on Moshe's iPhone only (branch `ios-build-29`) — 28.9.2026
+
+Build 1.0.0 (29) carries `main` e3d19aca (build 28's main plus round 119's seam restart, rounds 120 and 122's web vault,
+round 121's Continue by prefill and round 123's screens) to the iPhone 13 Pro, so round 121 could be proven on the phone.
+The branch merges `origin/ios-build-28` first and carries both builds' records. Nothing went to a store. J1 to J3 ran on
+the `.qa` twin built from the same commit, and the twin was removed before the store app was opened.
+
+- **The build.** Commit 8fb33348 bumps the build number 28 → 29. Gates exit 0 on the first run: 1,218 core with 4
+  skipped, 1,236 mobile, 24 i18n, 23 ui, 4 desktop. Fresh prebuild and archive. Instant and its bundled photo pack are
+  byte-exact to the catalog. `seamRestart`, `continueFrom`, `continuationPrompt`, `continueRequest`, `pastPrefill` and
+  `prefill_text` are in the bundle once each, and build 28's has none. `continue_final_message` is in neither: it lives
+  only in the web chat adapter, which the native bundle does not carry. The QA-bridge and shipping-bundle gates pass.
+- **On the phone as an update.** The byte copy of the six container files was taken first. After the install the
+  `Documents/` listing is identical and all six files are byte-identical. The `.qa` twin was removed first; only then
+  was the store app opened, and About reads `1.0.0 (29) · 8fb33348c2c6`. It was left on its Chats list.
+- **Continue after Stop resumes mid-sentence (F448).** Four runs on Instant, each stopped about 200 characters in: the
+  stopped text stays on screen byte for byte, and no join says a word or a clause again. Three were cut mid-sentence and
+  go on *"…journaling findings,⟦ using active recall…"*, *"…which swallowed him whole⟦ before he could speak a
+  word…"* and *"…moving forward at high⟦ speed. As the hull turns…"*. The fourth was cut at a sentence end and goes on
+  with the next sentence. The first token came 37 to 40 ms after Continue, against 776 ms for J1's first answer. The
+  Release twin logs no llama.rn console line, so the cached and evaluated counts were not read.
+- **J1 and J3.** Instant answers at 33.5 tok/s, first token 776 ms. The CAT photo on Instant drew no card and none of the
+  banned phrases, and the answer names the red circle and the word CAT, though it calls the circle a *"C"*.
+
+Evidence: `docs/qa/ios-build-29-2026-09-28.md`, `docs/qa/ios-device-pass-29-2026-09-28.md`,
+`docs/qa/ios-device-pass-29/`.
+
 ## iOS build 23: main with round 111's loop guard, on Moshe's iPhone only (branch `ios-build-23`) — 27.9.2026
 
 Build 1.0.0 (23) carries local `main` 98722df7 (build 22's main plus round 111) to the iPhone 13 Pro, so the phone has

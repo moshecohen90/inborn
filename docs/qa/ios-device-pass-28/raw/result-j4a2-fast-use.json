@@ -1,0 +1,213 @@
+{
+  "runId": "j4a2-fast-use",
+  "startedAt": "2026-09-28T11:35:22.134Z",
+  "finishedAt": "2026-09-28T11:39:20.773Z",
+  "ok": true,
+  "passed": 25,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 157,
+      "detail": "/vault"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1512,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 2,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "57% · 731 MB of 1.28 GB",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "57% · 731 MB of 1.28 GB"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 221716,
+      "detail": "use-fast appeared"
+    },
+    {
+      "i": 4,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1013,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 5,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Installed",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Installed"
+    },
+    {
+      "i": 6,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 163,
+      "detail": "/chats"
+    },
+    {
+      "i": 7,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 8,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 10,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 11,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 12,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1039,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1011,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 14,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "model-chip ← onPress"
+    },
+    {
+      "i": 15,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "model-sheet appeared"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 17,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "FAST RECOMMENDED Good at: Chat, Writing, Summaries, Translation, Documents, Voice notes, Photos English · Native 1.28 GB Use this model",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "FAST RECOMMENDED Good at: Chat, Writing, Summaries, Translation, Documents, Voice notes, Photos English · Native 1.28 GB Use this model"
+    },
+    {
+      "i": 18,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2885,
+      "detail": "J4-04-fast-installed"
+    },
+    {
+      "i": 19,
+      "op": "press",
+      "ok": true,
+      "ms": 178,
+      "detail": "model-sheet-use-fast ← onPress"
+    },
+    {
+      "i": 20,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3000,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 21,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 22,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2015,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 23,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 24,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1916,
+      "detail": "J4-05-fast-selected"
+    }
+  ],
+  "errors": []
+}

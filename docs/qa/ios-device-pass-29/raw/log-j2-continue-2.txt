@@ -1,0 +1,42 @@
+15:54:21 pushing 37 steps as j2-continue-2
+15:54:28 shot J2-2a-habits-stopped
+15:54:34 shot J2-2b-habits-final
+15:54:39 shot J2-2c-habits-ledger
+15:54:42 ok     0 deeplink   /chats
+15:54:42 ok     1 waitFor    new-chat appeared
+15:54:42 ok     2 press      new-chat ← onPress
+15:54:42 ok     3 waitFor    start-chat appeared
+15:54:42 ok     4 press      start-chat ← onPress
+15:54:42 ok     5 waitFor    composer-input appeared
+15:54:42 ok     6 waitFor    Loading gone
+15:54:42 ok     7 sleep      1500 ms
+15:54:42 ok     8 value      INSTANT
+15:54:42 ok     9 type       composer-input = 37 chars
+15:54:42 ok    10 send       send ← onPress
+15:54:42 ok    11 waitFor    assistant-text appeared
+15:54:42 ok    12 sleep      1000 ms
+15:54:42 ok    13 press      stop ← onPress
+15:54:42 ok    14 sleep      2000 ms
+15:54:42 ok    15 value      A 10-item study list includes a structured daily routine covering waking up early, creating a dedicated space
+15:54:42 ok    16 screenshot J2-2a-habits-stopped
+15:54:42 ok    17 waitFor    continue appeared
+15:54:42 ok    18 press      continue ← onPress
+15:54:42 ok    19 sleep      1500 ms
+15:54:42 ok    20 waitFor    stop gone
+15:54:42 ok    21 sleep      1500 ms
+15:54:42 ok    22 value      A 10-item study list includes a structured daily routine covering waking up early, creating a dedicated space
+15:54:42 ok    23 screenshot J2-2b-habits-final
+15:54:42 ok    24 waitFor    loop-notice gone
+15:54:42 ok    25 press      ledger-toggle ← onPress
+15:54:42 ok    26 sleep      800 ms
+15:54:42 ok    27 value      INSTANT
+15:54:42 ok    28 setTier    pro
+15:54:42 ok    29 sleep      1200 ms
+15:54:42 ok    30 value      39.6
+15:54:42 ok    31 value      38 ms
+15:54:42 ok    32 value      189 + 16
+15:54:42 ok    33 value      0.4 s
+15:54:42 ok    34 screenshot J2-2c-habits-ledger
+15:54:42 ok    35 setTier    free
+15:54:42 ok    36 sleep      800 ms
+15:54:42 37 passed, 0 failed, 3 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-29/docs/qa/ios-device-pass-29/screens

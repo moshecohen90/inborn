@@ -1,0 +1,42 @@
+== QA app
+CFBundleVersion = 28
+CFBundleShortVersionString = 1.0.0
+CFBundleIdentifier = com.inbornapp.mobile.qa
+MinimumOSVersion = 17.0
+appex = none
+instant.gguf (catalog file Qwen3.5-0.8B-Q4_K_M.gguf) = 532517120 B sha256 bd258782e35f… catalog 532517120 B bd258782e35f… -> MATCH
+vision-qwen35.gguf (catalog file mmproj-Qwen3.5-0.8B-F16.gguf) = 204987232 B sha256 56e4c6cfe73b… catalog 204987232 B 56e4c6cfe73b… -> MATCH
+ggufs in the .app: instant.gguf, vision-qwen35.gguf
+Fast / Sharp model or their packs in the .app: none
+tessdata = eng.traineddata heb.traineddata 
+ExpoBattery strings = 3
+signing = Authority=Apple Development: Moshe Cohen
+main.jsbundle = 6809179 B
+app size = 784M
+app.config: version 1.0.0 buildNumber 28 bundleId com.inbornapp.mobile.qa
+extra.commit 46b8b6f49049 extra.devVariant True
+bundle strings: INBORN_QA_BRIDGE_V1=1 '[chat] loop retry'=1 '[chat] loop cut'=1
+OK: <worktree>/apps/mobile/ios/build/qa/Build/Products/Release-iphoneos/Inborndev.app/main.jsbundle is a QA build (1 × INBORN_QA_BRIDGE_V1)
+expect-present rc=0
+== rounds 117 and 118, QA bundle then store bundle
+catalog id 'vision-qwen35-2b' (round 117): 4 as ASCII/UTF-8, 0 as UTF-16   | store: 4 as ASCII/UTF-8, 0 as UTF-16
+its sha256 7035e9cb8d7c… (round 117): 1 as ASCII/UTF-8, 0 as UTF-16   | store: 1 as ASCII/UTF-8, 0 as UTF-16
+its file 'mmproj-Qwen3.5-2B-F16.gguf' (round 117): 1 as ASCII/UTF-8, 0 as UTF-16   | store: 1 as ASCII/UTF-8, 0 as UTF-16
+catalog id 'vision-qwen35-4b' (round 117): 4 as ASCII/UTF-8, 0 as UTF-16   | store: 4 as ASCII/UTF-8, 0 as UTF-16
+its sha256 cd88edcf8d03… (round 117): 1 as ASCII/UTF-8, 0 as UTF-16   | store: 1 as ASCII/UTF-8, 0 as UTF-16
+its file 'mmproj-Qwen3.5-4B-F16.gguf' (round 117): 1 as ASCII/UTF-8, 0 as UTF-16   | store: 1 as ASCII/UTF-8, 0 as UTF-16
+'Keep it family-safe.' (round 117): 1 as ASCII/UTF-8, 0 as UTF-16   | store: 1 as ASCII/UTF-8, 0 as UTF-16
+old clause 'Family-safe mode is on.' (round 117 removes it): 0 as ASCII/UTF-8, 1 as UTF-16   | store: 0 as ASCII/UTF-8, 1 as UTF-16
+turnSystemPrompt (round 117): 1 as ASCII/UTF-8, 0 as UTF-16   | store: 1 as ASCII/UTF-8, 0 as UTF-16
+familySafeLine (round 117): 1 as ASCII/UTF-8, 0 as UTF-16   | store: 1 as ASCII/UTF-8, 0 as UTF-16
+PhotoHoldCard (round 117): 1 as ASCII/UTF-8, 0 as UTF-16   | store: 1 as ASCII/UTF-8, 0 as UTF-16
+photoHoldView (round 117): 1 as ASCII/UTF-8, 0 as UTF-16   | store: 1 as ASCII/UTF-8, 0 as UTF-16
+installPath (round 117): 1 as ASCII/UTF-8, 0 as UTF-16   | store: 1 as ASCII/UTF-8, 0 as UTF-16
+card line 'needs its photo pack to see photos' (round 117): 1 as ASCII/UTF-8, 0 as UTF-16   | store: 1 as ASCII/UTF-8, 0 as UTF-16
+seamWord (round 118): 1 as ASCII/UTF-8, 0 as UTF-16   | store: 1 as ASCII/UTF-8, 0 as UTF-16
+saidAgain (round 118): 0 as ASCII/UTF-8, 0 as UTF-16   | store: 0 as ASCII/UTF-8, 0 as UTF-16
+'console.log: ' QA 1 vs store 0
+'dev-prompt.txt' QA 1 vs store 0
+QA instant.gguf byte-identical to the archive's (which matches the catalog)
+QA vision-qwen35.gguf byte-identical to the archive's (which matches the catalog)
+QAVERIFY-DONE

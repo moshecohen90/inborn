@@ -1,0 +1,47 @@
+14:12:20 pushing 42 steps as j3-photo-cat
+14:12:26 shot J3-cat-a-composer
+14:12:33 shot J3-cat-b-answer
+14:12:37 shot J3-cat-c-ledger
+14:12:40 ok     0 deeplink   /chats
+14:12:40 ok     1 waitFor    new-chat appeared
+14:12:40 ok     2 press      new-chat ← onPress
+14:12:40 ok     3 waitFor    start-chat appeared
+14:12:40 ok     4 press      start-chat ← onPress
+14:12:40 ok     5 waitFor    composer-input appeared
+14:12:40 ok     6 waitFor    Loading gone
+14:12:40 ok     7 sleep      1500 ms
+14:12:40 ok     8 devPrompt  image: red-circle-cat.png
+14:12:40 ok     9 waitFor    pending-images appeared
+14:12:40 ok    10 type       composer-input = 92 chars
+14:12:40 ok    11 sleep      800 ms
+14:12:40 ok    12 screenshot J3-cat-a-composer
+14:12:40 ok    13 send       send ← onPress
+14:12:40 ok    14 sleep      3000 ms
+14:12:40 ok    15 waitFor    vision-hold gone
+14:12:40 ok    16 assertText "photo pack" absent
+14:12:40 ok    17 waitFor    user-images appeared
+14:12:40 ok    18 waitFor    assistant-text appeared
+14:12:40 ok    19 waitFor    stop gone
+14:12:40 ok    20 sleep      1500 ms
+14:12:40 ok    21 value      The red circle contains the word 'CAT'. The circle itself is a red shape.
+14:12:40 ok    22 waitFor    vision-hold gone
+14:12:40 ok    23 screenshot J3-cat-b-answer
+14:12:40 ok    24 assertText "The request specifies" absent
+14:12:40 ok    25 assertText "I will focus" absent
+14:12:40 ok    26 assertText "as an AI" absent
+14:12:40 ok    27 assertText "family-safe" absent
+14:12:40 ok    28 assertText "violence" absent
+14:12:40 ok    29 assertText "self-harm" absent
+14:12:40 ok    30 press      ledger-toggle ← onPress
+14:12:40 ok    31 sleep      800 ms
+14:12:40 ok    32 value      INSTANT
+14:12:40 ok    33 setTier    pro
+14:12:40 ok    34 sleep      1200 ms
+14:12:40 ok    35 value      32.7
+14:12:40 ok    36 value      1625 ms
+14:12:40 ok    37 value      185 + 17
+14:12:40 ok    38 value      2.1 s
+14:12:40 ok    39 screenshot J3-cat-c-ledger
+14:12:40 ok    40 setTier    free
+14:12:40 ok    41 sleep      800 ms
+14:12:40 42 passed, 0 failed, 3 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-28/docs/qa/ios-device-pass-28/screens

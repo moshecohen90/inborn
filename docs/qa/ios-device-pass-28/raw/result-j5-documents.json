@@ -1,0 +1,516 @@
+{
+  "runId": "j5-documents",
+  "startedAt": "2026-09-28T11:46:54.793Z",
+  "finishedAt": "2026-09-28T11:50:40.878Z",
+  "ok": true,
+  "passed": 42,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 165,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 9,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 165,
+      "detail": "attach: office-hours.txt"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1360,
+      "detail": "attached-docs appeared"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3007,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 12,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "office-hours.txt",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "office-hours.txt"
+    },
+    {
+      "i": 13,
+      "op": "type",
+      "ok": true,
+      "ms": 166,
+      "detail": "composer-input = 32 chars"
+    },
+    {
+      "i": 14,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 15,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "docs-hold appeared"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 816,
+      "detail": "800 ms"
+    },
+    {
+      "i": 17,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2230,
+      "detail": "J5-01-index-card"
+    },
+    {
+      "i": 18,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched. Download · 468 MB Send, exact words only Cancel",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched. Download · 468 MB Send, exact words only Cancel"
+    },
+    {
+      "i": 19,
+      "op": "press",
+      "ok": true,
+      "ms": 169,
+      "detail": "docs-hold-download ← onPress"
+    },
+    {
+      "i": 20,
+      "op": "sleep",
+      "ok": true,
+      "ms": 6000,
+      "detail": "6000 ms"
+    },
+    {
+      "i": 21,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Downloading the document index model… 1%. Your message is sent when it's ready.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Downloading the document index model… 1%. Your message is sent when it's ready."
+    },
+    {
+      "i": 22,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2225,
+      "detail": "J5-02-index-downloading"
+    },
+    {
+      "i": 23,
+      "op": "idleTimer",
+      "ok": true,
+      "ms": 0,
+      "detail": "idle timer disabled: true",
+      "value": {
+        "text": "true",
+        "props": {
+          "idleTimerDisabled": true
+        }
+      }
+    },
+    {
+      "i": 24,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 184558,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 25,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2207,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 26,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 7042,
+      "detail": "stop gone"
+    },
+    {
+      "i": 27,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1555,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 28,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "The office phone number is 555-0134.",
+        "props": {
+          "source": "The office phone number is 555-0134.",
+          "disabled": false
+        }
+      },
+      "detail": "The office phone number is 555-0134."
+    },
+    {
+      "i": 29,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "citations appeared"
+    },
+    {
+      "i": 30,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "SOURCES office-hours.txt · part 1",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "SOURCES office-hours.txt · part 1"
+    },
+    {
+      "i": 31,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 5067,
+      "detail": "J5-03-matching-answer"
+    },
+    {
+      "i": 32,
+      "op": "assertText",
+      "ok": true,
+      "ms": 6,
+      "detail": "\"555-0134\" present"
+    },
+    {
+      "i": 33,
+      "op": "type",
+      "ok": true,
+      "ms": 154,
+      "detail": "composer-input = 33 chars"
+    },
+    {
+      "i": 34,
+      "op": "send",
+      "ok": true,
+      "ms": 241,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 35,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3004,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 36,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "stop gone"
+    },
+    {
+      "i": 37,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2015,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 38,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 4,
+      "detail": "none-matched appeared"
+    },
+    {
+      "i": 39,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Nothing in your documents matched this question. Answered without them.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Nothing in your documents matched this question. Answered without them."
+    },
+    {
+      "i": 40,
+      "op": "dump",
+      "ok": true,
+      "ms": 3,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What is the office phone number?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The office phone number is 555-0134. SOURCES office-hours.txt · part 1 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The office phone number is 555-0134."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES office-hours.txt · part 1"
+        },
+        {
+          "testID": "citation-1",
+          "text": "office-hours.txt · part 1",
+          "role": "button",
+          "label": "Open office-hours.txt · part 1",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "none-matched",
+          "text": "Nothing in your documents matched this question. Answered without them."
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "office-hours.txt"
+        },
+        {
+          "testID": "attached-chip-mul6my3i-1-vnwkx92a",
+          "text": "office-hours.txt",
+          "role": "button",
+          "label": "Remove office-hours.txt from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "chat-after-two-questions"
+    },
+    {
+      "i": 41,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1900,
+      "detail": "J5-04-nonmatching-answer"
+    }
+  ],
+  "errors": []
+}

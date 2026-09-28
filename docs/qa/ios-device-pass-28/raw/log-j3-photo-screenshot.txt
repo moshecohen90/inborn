@@ -1,0 +1,47 @@
+14:13:51 pushing 42 steps as j3-photo-screenshot
+14:13:56 shot J3-screenshot-a-composer
+14:14:04 shot J3-screenshot-b-answer
+14:14:11 shot J3-screenshot-c-ledger
+14:14:14 ok     0 deeplink   /chats
+14:14:14 ok     1 waitFor    new-chat appeared
+14:14:14 ok     2 press      new-chat ← onPress
+14:14:14 ok     3 waitFor    start-chat appeared
+14:14:14 ok     4 press      start-chat ← onPress
+14:14:14 ok     5 waitFor    composer-input appeared
+14:14:14 ok     6 waitFor    Loading gone
+14:14:14 ok     7 sleep      1500 ms
+14:14:14 ok     8 devPrompt  image: photo-text-screenshot.png
+14:14:14 ok     9 waitFor    pending-images appeared
+14:14:14 ok    10 type       composer-input = 67 chars
+14:14:14 ok    11 sleep      800 ms
+14:14:14 ok    12 screenshot J3-screenshot-a-composer
+14:14:14 ok    13 send       send ← onPress
+14:14:14 ok    14 sleep      3000 ms
+14:14:14 ok    15 waitFor    vision-hold gone
+14:14:14 ok    16 assertText "photo pack" absent
+14:14:14 ok    17 waitFor    user-images appeared
+14:14:14 ok    18 waitFor    assistant-text appeared
+14:14:14 ok    19 waitFor    stop gone
+14:14:14 ok    20 sleep      1500 ms
+14:14:14 ok    21 value      The community pool opens at 7 a.m. on weekdays and 9 a.m. on weekends, while remaining closed every Monday for
+14:14:14 ok    22 waitFor    vision-hold gone
+14:14:14 ok    23 screenshot J3-screenshot-b-answer
+14:14:14 ok    24 assertText "The request specifies" absent
+14:14:14 ok    25 assertText "I will focus" absent
+14:14:14 ok    26 assertText "as an AI" absent
+14:14:14 ok    27 assertText "family-safe" absent
+14:14:14 ok    28 assertText "violence" absent
+14:14:14 ok    29 assertText "self-harm" absent
+14:14:14 ok    30 press      ledger-toggle ← onPress
+14:14:14 ok    31 sleep      800 ms
+14:14:14 ok    32 value      INSTANT
+14:14:14 ok    33 setTier    pro
+14:14:14 ok    34 sleep      1200 ms
+14:14:14 ok    35 value      33.9
+14:14:14 ok    36 value      1504 ms
+14:14:14 ok    37 value      175 + 29
+14:14:14 ok    38 value      2.4 s
+14:14:14 ok    39 screenshot J3-screenshot-c-ledger
+14:14:14 ok    40 setTier    free
+14:14:14 ok    41 sleep      800 ms
+14:14:14 42 passed, 0 failed, 3 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-28/docs/qa/ios-device-pass-28/screens
