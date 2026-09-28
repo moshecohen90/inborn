@@ -1,0 +1,103 @@
+{
+ "_": "J8 setup, part 1 (fresh twin): onboarding and one answer on Instant, so the wipe has a chat to delete.",
+ "steps": [
+  {
+   "op": "waitFor",
+   "testID": "onboarding-welcome",
+   "timeoutMs": 120000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "press",
+   "testID": "onboarding-continue"
+  },
+  {
+   "op": "waitFor",
+   "testID": "onboarding-model",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "press",
+   "testID": "start-chatting"
+  },
+  {
+   "op": "waitFor",
+   "testID": "onboarding-sealed",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 4000
+  },
+  {
+   "op": "press",
+   "testID": "sealed-start"
+  },
+  {
+   "op": "waitFor",
+   "testID": "onboarding-lock",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "press",
+   "testID": "lock-start"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 60000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 120000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "In two sentences, what is a lighthouse for?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "waitFor",
+   "testID": "assistant-text",
+   "timeoutMs": 240000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 400000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "screenshot",
+   "name": "J8-00a-chat"
+  }
+ ]
+}

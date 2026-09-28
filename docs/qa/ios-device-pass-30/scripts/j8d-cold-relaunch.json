@@ -1,0 +1,53 @@
+{
+ "_": "J8 cold relaunch: Welcome again with no error banner; each shot only after the Welcome testID is mounted; the run sweeps Documents/qa.",
+ "steps": [
+  {
+   "op": "waitFor",
+   "testID": "onboarding-welcome",
+   "timeoutMs": 120000
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "screenshot",
+   "name": "J8-04a-cold-relaunch"
+  },
+  {
+   "op": "sleep",
+   "ms": 8000
+  },
+  {
+   "op": "waitFor",
+   "testID": "onboarding-welcome",
+   "timeoutMs": 5000
+  },
+  {
+   "op": "screenshot",
+   "name": "J8-04b-cold-relaunch"
+  },
+  {
+   "op": "value",
+   "testID": "onboarding-welcome"
+  },
+  {
+   "op": "dump",
+   "name": "cold-relaunch"
+  },
+  {
+   "op": "assertText",
+   "text": "could not be opened",
+   "absent": true
+  },
+  {
+   "op": "waitFor",
+   "testID": "banner-repair",
+   "gone": true,
+   "timeoutMs": 3000
+  },
+  {
+   "op": "cleanup"
+  }
+ ]
+}

@@ -1,0 +1,35 @@
+17:46:07 pushing 25 steps as j8c-delete-everything
+17:46:11 shot J8-01-before-delete
+17:46:14 shot J8-02-wipe-sheet
+17:46:28 shot J8-03a-after-delete
+17:46:37 shot J8-03b-after-delete
+17:46:40 ok     0 deeplink   /settings/storage
+17:46:40 ok     1 waitFor    storage appeared
+17:46:40 ok     2 sleep      1500 ms
+17:46:40 ok     3 value      Chats encrypted (SQLCipher) 515 KB
+17:46:40 ok     4 value      Documents 111 B
+17:46:40 ok     5 value      Models not backed up 468 MB
+17:46:40 ok     6 screenshot J8-01-before-delete
+17:46:40 ok     7 press      storage-delete-all ← onPress
+17:46:40 ok     8 waitFor    wipe-sheet appeared
+17:46:40 ok     9 sleep      800 ms
+17:46:40 ok    10 value      Delete everything Deletes every chat, the encryption key and every document on this device. Nothing was ever a
+17:46:40 ok    11 value
+17:46:40 ok    12 screenshot J8-02-wipe-sheet
+17:46:40 ok    13 press      wipe-step1 ← onPress
+17:46:40 ok    14 waitFor    wipe-step2 appeared
+17:46:40 ok    15 sleep      500 ms
+17:46:40 ok    16 press      wipe-step2 ← onPress
+17:46:40 ok    17 sleep      10000 ms
+17:46:40 ok    18 screenshot J8-03a-after-delete
+17:46:40 ok    19 sleep      6000 ms
+17:46:40 ok    20 screenshot J8-03b-after-delete
+17:46:40 FAIL  21 dump       the QA bridge never got a fiber: the anchor view is not mounted
+17:46:40 FAIL  22 assertText the QA bridge never got a fiber: the anchor view is not mounted
+17:46:40 FAIL  23 waitFor    the QA bridge never got a fiber: the anchor view is not mounted
+17:46:40 FAIL  24 waitFor    the QA bridge never got a fiber: the anchor view is not mounted
+17:46:40 21 passed, 4 failed, 4 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-30/docs/qa/ios-device-pass-30/screens
+17:46:40   ! step 21 (dump): the QA bridge never got a fiber: the anchor view is not mounted
+17:46:40   ! step 22 (assertText): the QA bridge never got a fiber: the anchor view is not mounted
+17:46:40   ! step 23 (waitFor): the QA bridge never got a fiber: the anchor view is not mounted
+17:46:40   ! step 24 (waitFor): the QA bridge never got a fiber: the anchor view is not mounted

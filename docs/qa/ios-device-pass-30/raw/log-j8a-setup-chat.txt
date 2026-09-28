@@ -1,0 +1,26 @@
+17:41:35 launching com.inbornapp.mobile.qa
+17:42:20 pushing 22 steps as j8a-setup-chat
+17:42:47 shot J8-00a-chat
+17:42:50 ok     0 waitFor    onboarding-welcome appeared
+17:42:50 ok     1 sleep      1500 ms
+17:42:50 ok     2 press      onboarding-continue ← onPress
+17:42:50 ok     3 waitFor    onboarding-model appeared
+17:42:50 ok     4 sleep      2500 ms
+17:42:50 ok     5 press      start-chatting ← onPress
+17:42:50 ok     6 waitFor    onboarding-sealed appeared
+17:42:50 ok     7 sleep      4000 ms
+17:42:50 ok     8 press      sealed-start ← onPress
+17:42:50 ok     9 waitFor    onboarding-lock appeared
+17:42:50 ok    10 sleep      1500 ms
+17:42:50 ok    11 press      lock-start ← onPress
+17:42:50 ok    12 waitFor    composer-input appeared
+17:42:50 ok    13 waitFor    Loading gone
+17:42:50 ok    14 sleep      2000 ms
+17:42:50 ok    15 type       composer-input = 43 chars
+17:42:50 ok    16 send       send ← onPress
+17:42:50 ok    17 waitFor    assistant-text appeared
+17:42:50 ok    18 waitFor    stop gone
+17:42:50 ok    19 sleep      1500 ms
+17:42:50 ok    20 value      A lighthouse primarily guides ships safely to their destinations by illuminating dark waters and marking safe
+17:42:50 ok    21 screenshot J8-00a-chat
+17:42:50 22 passed, 0 failed, 1 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-30/docs/qa/ios-device-pass-30/screens

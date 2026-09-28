@@ -211,3 +211,94 @@ write("j4-probe-fast", "J4 probe: Fast from the model sheet, Use awaited for 180
     {"op": "value", "testID": "model-sheet-use-fast"},
     {"op": "screenshot", "name": "J4-probe-02-180s"},
 ])
+
+# J8, added by the lead after the first chain: a fresh twin gets a chat, a document and the index model (a downloaded
+# model the wipe must keep), then Delete everything with "Also delete downloaded models" off, then a cold relaunch.
+# Each Welcome shot is taken twice, after the screen has had time to draw (pass 28's J8-04 was a black frame); the chain
+# checks the pixels. The tree dumps name any banner, the thermal strip (banner-thermal) included.
+ONBOARD = [
+    {"op": "waitFor", "testID": "onboarding-welcome", "timeoutMs": 120000},
+    {"op": "sleep", "ms": 1500},
+    {"op": "press", "testID": "onboarding-continue"},
+    {"op": "waitFor", "testID": "onboarding-model", "timeoutMs": 30000},
+    {"op": "sleep", "ms": 2500},
+    {"op": "press", "testID": "start-chatting"},
+    {"op": "waitFor", "testID": "onboarding-sealed", "timeoutMs": 30000},
+    {"op": "sleep", "ms": 4000},
+    {"op": "press", "testID": "sealed-start"},
+    {"op": "waitFor", "testID": "onboarding-lock", "timeoutMs": 30000},
+    {"op": "sleep", "ms": 1500},
+    {"op": "press", "testID": "lock-start"},
+    {"op": "waitFor", "testID": "composer-input", "timeoutMs": 60000},
+    {"op": "waitFor", "text": "Loading", "gone": True, "timeoutMs": 120000},
+    {"op": "sleep", "ms": 2000},
+]
+
+write("j8a-setup-chat", "J8 setup, part 1 (fresh twin): onboarding and one answer on Instant, so the wipe has a chat to delete.", [
+    *ONBOARD,
+    {"op": "type", "testID": "composer-input", "text": "In two sentences, what is a lighthouse for?"},
+    {"op": "send"},
+    *answer(),
+    {"op": "screenshot", "name": "J8-00a-chat"},
+])
+
+write("j8b-setup-document", "J8 setup, part 2: office-hours.txt attached and asked about, the index model downloaded from the card (the model the wipe must keep).", [
+    *new_chat(),
+    {"op": "devPrompt", "lines": ["attach: office-hours.txt"]},
+    {"op": "waitFor", "testID": "attached-docs", "timeoutMs": 30000},
+    {"op": "sleep", "ms": 3000},
+    {"op": "type", "testID": "composer-input", "text": "What is the office phone number?"},
+    {"op": "send"},
+    {"op": "waitFor", "testID": "docs-hold", "timeoutMs": 15000},
+    {"op": "sleep", "ms": 800},
+    {"op": "press", "testID": "docs-hold-download"},
+    {"op": "idleTimer"},
+    {"op": "waitFor", "testID": "docs-hold", "gone": True, "timeoutMs": 2400000},
+    {"op": "waitFor", "testID": "assistant-text", "timeoutMs": 400000},
+    {"op": "waitFor", "testID": "stop", "gone": True, "timeoutMs": 600000},
+    {"op": "sleep", "ms": 1500},
+    {"op": "value", "testID": "assistant-text"},
+    {"op": "screenshot", "name": "J8-00b-document-answer"},
+])
+
+write("j8c-delete-everything", "J8: Delete everything, models kept (the switch off); Welcome with no error banner.", [
+    {"op": "deeplink", "url": "/settings/storage"},
+    {"op": "waitFor", "testID": "storage", "timeoutMs": 10000},
+    {"op": "sleep", "ms": 1500},
+    {"op": "value", "testID": "storage-chats"},
+    {"op": "value", "testID": "storage-documents"},
+    {"op": "value", "testID": "storage-models"},
+    {"op": "screenshot", "name": "J8-01-before-delete"},
+    {"op": "press", "testID": "storage-delete-all"},
+    {"op": "waitFor", "testID": "wipe-sheet", "timeoutMs": 10000},
+    {"op": "sleep", "ms": 800},
+    {"op": "value", "testID": "wipe-sheet"},
+    {"op": "value", "testID": "wipe-models"},
+    {"op": "screenshot", "name": "J8-02-wipe-sheet"},
+    {"op": "press", "testID": "wipe-step1"},
+    {"op": "waitFor", "testID": "wipe-step2", "timeoutMs": 5000},
+    {"op": "sleep", "ms": 500},
+    {"op": "press", "testID": "wipe-step2"},
+    {"op": "sleep", "ms": 10000},
+    {"op": "screenshot", "name": "J8-03a-after-delete"},
+    {"op": "sleep", "ms": 6000},
+    {"op": "screenshot", "name": "J8-03b-after-delete"},
+    {"op": "dump", "name": "after-delete"},
+    {"op": "assertText", "text": "could not be opened", "absent": True},
+    {"op": "waitFor", "testID": "onboarding-welcome", "timeoutMs": 30000},
+    {"op": "waitFor", "testID": "banner-repair", "gone": True, "timeoutMs": 3000},
+])
+
+write("j8d-cold-relaunch", "J8 cold relaunch: Welcome again with no error banner; each shot only after the Welcome testID is mounted; the run sweeps Documents/qa.", [
+    {"op": "waitFor", "testID": "onboarding-welcome", "timeoutMs": 120000},
+    {"op": "sleep", "ms": 3000},
+    {"op": "screenshot", "name": "J8-04a-cold-relaunch"},
+    {"op": "sleep", "ms": 8000},
+    {"op": "waitFor", "testID": "onboarding-welcome", "timeoutMs": 5000},
+    {"op": "screenshot", "name": "J8-04b-cold-relaunch"},
+    {"op": "value", "testID": "onboarding-welcome"},
+    {"op": "dump", "name": "cold-relaunch"},
+    {"op": "assertText", "text": "could not be opened", "absent": True},
+    {"op": "waitFor", "testID": "banner-repair", "gone": True, "timeoutMs": 3000},
+    {"op": "cleanup"},
+])

@@ -1,0 +1,172 @@
+{
+  "runId": "j8a-setup-chat",
+  "startedAt": "2026-09-28T14:42:20.833Z",
+  "finishedAt": "2026-09-28T14:42:49.144Z",
+  "ok": true,
+  "passed": 22,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-welcome appeared"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1510,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "onboarding-continue ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "onboarding-model appeared"
+    },
+    {
+      "i": 4,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2502,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 5,
+      "op": "press",
+      "ok": true,
+      "ms": 187,
+      "detail": "start-chatting ← onPress"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-sealed appeared"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4002,
+      "detail": "4000 ms"
+    },
+    {
+      "i": 8,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "sealed-start ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-lock appeared"
+    },
+    {
+      "i": 10,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 11,
+      "op": "press",
+      "ok": true,
+      "ms": 173,
+      "detail": "lock-start ← onPress"
+    },
+    {
+      "i": 12,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 13,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 10669,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2016,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 15,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 43 chars"
+    },
+    {
+      "i": 16,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 17,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 788,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 18,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 529,
+      "detail": "stop gone"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "A lighthouse primarily guides ships safely to their destinations by illuminating dark waters and marking safe areas for navigation.",
+        "props": {
+          "source": "A lighthouse primarily guides ships safely to their destinations by illuminating dark waters and marking safe areas for navigation.",
+          "disabled": false
+        }
+      },
+      "detail": "A lighthouse primarily guides ships safely to their destinations by illuminating dark waters and marking safe areas for navigation."
+    },
+    {
+      "i": 21,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2247,
+      "detail": "J8-00a-chat"
+    }
+  ],
+  "errors": []
+}

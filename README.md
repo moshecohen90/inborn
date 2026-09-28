@@ -7365,8 +7365,8 @@ Evidence: `docs/qa/ios-build-29-2026-09-28.md`, `docs/qa/ios-device-pass-29-2026
 
 Build 1.0.0 (30) carries `main` 978fbd63 (build 29's main plus round 124's documents prompt, pack label, switch label and
 build stamp, and round 125's web CPU photo path) to the iPhone 13 Pro. Nothing went to a store. The rows round 124
-touches, plus J1 to J3, ran on the `.qa` twin built from the same commit, and the twin was removed before the store app
-was opened.
+touches, plus J1 to J3 and J8, ran on the `.qa` twin built from the same commit, and the twin was removed before the
+store app was opened.
 
 - **The build.** Commit cdaf1ca5 bumps the build number 29 → 30. Gates exit 0 on the first run: 1,233 core with 4
   skipped, 1,252 mobile, 24 i18n, 23 ui, 4 desktop. Fresh prebuild and archive. Instant and its bundled photo pack are
@@ -7386,6 +7386,10 @@ was opened.
   from battles lost to⟦ darkness, and his boots…"*. The CAT photo drew no card and no banned phrase in two runs; the
   first answer named the circle and CAT but no colour, the second *"a red circle (shape) with "CAT" written underneath
   it"*.
+- **Delete everything (J8).** With *"Also delete downloaded models"* off: Welcome with no error banner, a fresh
+  database, the index model and `vault.json` kept, no `.corrupt` file; a cold relaunch opens Welcome again. Every Welcome
+  shot was taken after the Welcome testID was mounted, and a pixel check shows each is a rendered frame (pass 28's cold
+  relaunch shot was black). No screenshot shows the thermal strip.
 - **Not run.** J4, and with it the *"Switch to FAST · installed"* label (F451): Fast reached 454 MB of 1.28 GB in the
   brief's 3 minutes.
 
