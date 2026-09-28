@@ -1,0 +1,130 @@
+{
+ "_": "J6 (round 126, F456) on a fresh twin, Fast and Sharp not installed: the Extensions section, top to bottom. Instant's pack is included; Fast's and Sharp's show no Install or Import and read 'Install Fast first' / 'Install Sharp first', the size kept on the spec line.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/vault?focus=embed-e5"
+  },
+  {
+   "op": "sleep",
+   "ms": 3500
+  },
+  {
+   "op": "screenshot",
+   "name": "J6-01-extensions-top"
+  },
+  {
+   "op": "deeplink",
+   "url": "/vault?focus=vision-qwen35-2b"
+  },
+  {
+   "op": "sleep",
+   "ms": 3500
+  },
+  {
+   "op": "screenshot",
+   "name": "J6-02-extensions-fast-pack"
+  },
+  {
+   "op": "deeplink",
+   "url": "/vault?focus=vision-qwen35-4b"
+  },
+  {
+   "op": "sleep",
+   "ms": 3500
+  },
+  {
+   "op": "screenshot",
+   "name": "J6-03-extensions-sharp-pack"
+  },
+  {
+   "op": "value",
+   "testID": "model-card-vision-qwen35"
+  },
+  {
+   "op": "value",
+   "testID": "model-spec-vision-qwen35"
+  },
+  {
+   "op": "value",
+   "testID": "model-status-vision-qwen35"
+  },
+  {
+   "op": "value",
+   "testID": "model-card-vision-qwen35-2b"
+  },
+  {
+   "op": "value",
+   "testID": "model-spec-vision-qwen35-2b"
+  },
+  {
+   "op": "value",
+   "testID": "model-status-vision-qwen35-2b"
+  },
+  {
+   "op": "value",
+   "testID": "model-card-vision-qwen35-4b"
+  },
+  {
+   "op": "value",
+   "testID": "model-spec-vision-qwen35-4b"
+  },
+  {
+   "op": "value",
+   "testID": "model-status-vision-qwen35-4b"
+  },
+  {
+   "op": "assertText",
+   "text": "Included with the app",
+   "testID": "model-status-vision-qwen35"
+  },
+  {
+   "op": "assertText",
+   "text": "Install Fast first",
+   "testID": "model-status-vision-qwen35-2b"
+  },
+  {
+   "op": "assertText",
+   "text": "Install Sharp first",
+   "testID": "model-status-vision-qwen35-4b"
+  },
+  {
+   "op": "assertText",
+   "text": "668 MB",
+   "testID": "model-spec-vision-qwen35-2b"
+  },
+  {
+   "op": "assertText",
+   "text": "672 MB",
+   "testID": "model-spec-vision-qwen35-4b"
+  },
+  {
+   "op": "waitFor",
+   "testID": "install-vision-qwen35-2b",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "waitFor",
+   "testID": "import-vision-qwen35-2b",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "waitFor",
+   "testID": "install-vision-qwen35-4b",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "waitFor",
+   "testID": "import-vision-qwen35-4b",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "dump",
+   "name": "vault-extensions-fresh"
+  }
+ ]
+}

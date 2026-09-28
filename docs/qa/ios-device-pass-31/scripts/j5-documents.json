@@ -1,0 +1,237 @@
+{
+ "_": "J5 on Instant (round 126, F457): office-hours.txt attached; the matching answer's first line is the sentence with 555-0134, not a '[1] office-hours.txt · part 1' label, and the source chip shows under it; the non-matching one answers with 'Answered without them'.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "new-chat",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "press",
+   "testID": "new-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "start-chat",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "press",
+   "testID": "start-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "devPrompt",
+   "lines": [
+    "attach: office-hours.txt"
+   ]
+  },
+  {
+   "op": "waitFor",
+   "testID": "attached-docs",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "value",
+   "testID": "attached-docs"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "What is the office phone number?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "waitFor",
+   "testID": "docs-hold",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "sleep",
+   "ms": 800
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-01-index-card"
+  },
+  {
+   "op": "value",
+   "testID": "docs-hold"
+  },
+  {
+   "op": "press",
+   "testID": "docs-hold-download"
+  },
+  {
+   "op": "sleep",
+   "ms": 6000
+  },
+  {
+   "op": "value",
+   "testID": "docs-hold-body"
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-02-index-downloading"
+  },
+  {
+   "op": "idleTimer"
+  },
+  {
+   "op": "waitFor",
+   "testID": "docs-hold",
+   "gone": true,
+   "timeoutMs": 2400000
+  },
+  {
+   "op": "waitFor",
+   "testID": "assistant-text",
+   "timeoutMs": 400000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 600000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "waitFor",
+   "testID": "citations",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-03-matching-answer"
+  },
+  {
+   "op": "assertText",
+   "text": "555-0134",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "assertText",
+   "text": "office-hours.txt · part",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "instruction",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "rules",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "general knowledge",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "documents list",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "NOT_FOUND",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "<<<",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "What is the capital of Australia?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 600000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "waitFor",
+   "testID": "none-matched",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "value",
+   "testID": "none-matched"
+  },
+  {
+   "op": "assertText",
+   "text": "Canberra"
+  },
+  {
+   "op": "dump",
+   "name": "chat-after-two-questions"
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-04-nonmatching-answer"
+  }
+ ]
+}

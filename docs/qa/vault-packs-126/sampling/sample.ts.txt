@@ -12,7 +12,7 @@ const length = planAnswerLength({ text: MATCH, use: "documents" });
 /* The Ask sheet on Instant: length line as system prompt, no cite marks, English, not strict. */
 const p = buildRagPrompt({ question: MATCH, hits: [kept], docs: new Map([[doc.id, doc]]), strict: false, nCtx: 4096, answerLanguage: "en", citeMarkers: false, systemPrompt: length.instruction });
 const lines: string[] = [`prompt: ${JSON.stringify(p.messages)}`, `max_tokens ${length.maxTokens}`, ""];
-let echoed = 0, openMark = 0, shownLabel = 0, has = 0, flashes = 0, subject = 0;
+let echoed = 0, openMark = 0, has = 0, flashes = 0, subject = 0;
 for (let i = 0; i < n; i++) {
   const r = await fetch(`http://127.0.0.1:${port}/v1/chat/completions`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ messages: p.messages, temperature: 0.7, top_p: 0.9, repeat_penalty: 1.1, repeat_last_n: 64, max_tokens: length.maxTokens, chat_template_kwargs: { enable_thinking: false } }) });
   const raw: string = ((await r.json()) as { choices: { message: { content: string } }[] }).choices[0]!.message.content;
@@ -20,7 +20,6 @@ for (let i = 0; i < n; i++) {
   const dropped = shown !== raw;
   if (dropped) echoed++;
   if (/^\s*\[\d+\]\s*[A-Z]/.test(shown) && !/^\s*\[\d+\]\s*office/.test(shown)) openMark++;
-  if (/^[\s*_>#-]*\[\d+\][^\n]*·\s*(part|p\.|page)/.test(shown.split("\n")[0]!)) shownLabel++;
   if (/555-0134/.test(shown) && /\b6\b/.test(shown)) has++;
   if (/^\s*\[\d+\]\s*office\.txt · part 1 \S/.test(raw)) subject++;
   /* The stream, one character at a time: every frame on screen must be the start of the final text. */

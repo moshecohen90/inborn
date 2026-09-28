@@ -1,0 +1,33 @@
+18:13:54 pushing 28 steps as j6a-vault-packs
+18:13:59 shot J6-01-extensions-top
+18:14:05 shot J6-02-extensions-fast-pack
+18:14:11 shot J6-03-extensions-sharp-pack
+18:14:15 ok     0 deeplink   /vault?focus=embed-e5
+18:14:15 ok     1 sleep      3500 ms
+18:14:15 ok     2 screenshot J6-01-extensions-top
+18:14:15 ok     3 deeplink   /vault?focus=vision-qwen35-2b
+18:14:15 ok     4 sleep      3500 ms
+18:14:15 ok     5 screenshot J6-02-extensions-fast-pack
+18:14:15 ok     6 deeplink   /vault?focus=vision-qwen35-4b
+18:14:15 ok     7 sleep      3500 ms
+18:14:15 ok     8 screenshot J6-03-extensions-sharp-pack
+18:14:15 ok     9 value      ◉ PHOTO PACK FOR INSTANT Lets Instant look at your photos on this device. Qwen3.5 mmproj 0.1B · 205 MB · F16 ·
+18:14:15 ok    10 value      Qwen3.5 mmproj 0.1B · 205 MB · F16 · Battery: Medium
+18:14:15 ok    11 value      Included with the app
+18:14:15 ok    12 value      ○ PHOTO PACK FOR FAST Lets Fast look at your photos on this device. Qwen3.5 mmproj 0.3B · 668 MB · F16 · Batte
+18:14:15 ok    13 value      Qwen3.5 mmproj 0.3B · 668 MB · F16 · Battery: Medium
+18:14:15 ok    14 value      Install Fast first
+18:14:15 ok    15 value      ○ PHOTO PACK FOR SHARP Lets Sharp look at your photos on this device. Qwen3.5 mmproj 0.3B · 672 MB · F16 · Bat
+18:14:15 ok    16 value      Qwen3.5 mmproj 0.3B · 672 MB · F16 · Battery: Medium
+18:14:15 ok    17 value      Install Sharp first
+18:14:15 ok    18 assertText "Included with the app" present
+18:14:15 ok    19 assertText "Install Fast first" present
+18:14:15 ok    20 assertText "Install Sharp first" present
+18:14:15 ok    21 assertText "668 MB" present
+18:14:15 ok    22 assertText "672 MB" present
+18:14:15 ok    23 waitFor    install-vision-qwen35-2b gone
+18:14:15 ok    24 waitFor    import-vision-qwen35-2b gone
+18:14:15 ok    25 waitFor    install-vision-qwen35-4b gone
+18:14:15 ok    26 waitFor    import-vision-qwen35-4b gone
+18:14:15 ok    27 dump       vault-extensions-fresh
+18:14:15 28 passed, 0 failed, 3 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-31/docs/qa/ios-device-pass-31/screens
