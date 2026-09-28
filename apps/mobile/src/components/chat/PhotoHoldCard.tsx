@@ -80,10 +80,10 @@ export function PhotoHoldCard({ held, theme, count, model, seer, hint, onCancel,
       <Text testID={ids.body} style={[type.bodySmall, { color: theme.text2 }]}>
         {tr(view.body)}
       </Text>
-      {view.cost && !view.secondary ? (
-        <Text testID={`${ids.card}-cost`} style={[type.bodySmall, { color: theme.text2 }]}>
-          {tr(view.cost)}
-        </Text>
+      {view.progress !== null ? (
+        <View testID={`${ids.card}-progress`} style={[styles.track, { backgroundColor: theme.well }]}>
+          <View style={[styles.fill, { width: `${Math.round(view.progress * 100)}%`, backgroundColor: theme.accent }]} />
+        </View>
       ) : null}
       {view.error !== null ? (
         <Text testID={ids.error} style={[type.bodySmall, { color: theme.danger }]}>
@@ -108,23 +108,21 @@ export function PhotoHoldCard({ held, theme, count, model, seer, hint, onCancel,
             </Text>
           </Pressable>
         ) : null}
-        <Pressable testID={ids.cancel} accessibilityRole="button" onPress={onCancel} hitSlop={8} style={styles.textBtn}>
-          <Text style={[type.bodySmall, { color: theme.text2 }]}>{tr(view.cancel)}</Text>
-        </Pressable>
-      </View>
-      {view.secondary ? (
-        <View testID={`${ids.card}-alt`} style={styles.alt}>
+        {view.secondary ? (
           <Pressable testID={`${ids.card}-switch`} accessibilityRole="button" onPress={takeWayOut} style={[styles.btn, { borderWidth: 1, borderColor: theme.accent }]}>
             <Text numberOfLines={1} style={[type.bodySmall, { color: theme.accent }]}>
               {tr(view.secondary)}
             </Text>
           </Pressable>
-          {view.cost ? (
-            <Text testID={`${ids.card}-cost`} style={[type.caption, { color: theme.text2 }]}>
-              {tr(view.cost)}
-            </Text>
-          ) : null}
-        </View>
+        ) : null}
+        <Pressable testID={ids.cancel} accessibilityRole="button" onPress={onCancel} hitSlop={8} style={styles.textBtn}>
+          <Text style={[type.bodySmall, { color: theme.text2 }]}>{tr(view.cancel)}</Text>
+        </Pressable>
+      </View>
+      {view.caption ? (
+        <Text testID={`${ids.card}-caption`} style={[type.caption, { color: theme.text2 }]}>
+          {tr(view.caption)}
+        </Text>
       ) : null}
     </View>
   );
@@ -133,7 +131,8 @@ export function PhotoHoldCard({ held, theme, count, model, seer, hint, onCancel,
 const styles = StyleSheet.create({
   card: { marginHorizontal: 16, marginTop: 8, padding: 12, gap: 6, borderWidth: 1, borderRadius: radius.card },
   actions: { flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: 10, marginTop: 2 },
-  alt: { gap: 4, marginTop: 2 },
-  btn: { minHeight: MIN_TOUCH, paddingHorizontal: 12, borderRadius: radius.control, alignItems: "center", justifyContent: "center", maxWidth: "100%", alignSelf: "flex-start" },
-  textBtn: { minHeight: MIN_TOUCH, minWidth: MIN_TOUCH, justifyContent: "center", paddingHorizontal: 4 },
+  btn: { minHeight: MIN_TOUCH, paddingHorizontal: 12, borderRadius: radius.control, alignItems: "center", justifyContent: "center", maxWidth: "100%" },
+  textBtn: { minHeight: MIN_TOUCH, minWidth: MIN_TOUCH, justifyContent: "center", paddingHorizontal: 0 },
+  track: { height: 4, borderRadius: 2, overflow: "hidden" },
+  fill: { height: 4, borderRadius: 2 },
 });

@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
-import { extensions, formatModelBytes, type Extension } from "@inborn/core";
+import { BUNDLED_MANIFEST, extensions, findModel, formatModelBytes, type Extension } from "@inborn/core";
 import { MIN_TOUCH, radius, type Theme } from "@inborn/ui";
 import { extKey, vaultRowState } from "../extensions/card";
-import { offeredChatModels } from "../extensions/chatModel";
+import { chatModelState, offeredChatModels } from "../extensions/chatModel";
 import { canRemoveExtensions, cancelExtension, installExtension, refreshExtension, removeExtension } from "../extensions/store";
 import { useExtension } from "../extensions/useExtension";
 import { useType } from "../services/type";
@@ -36,12 +36,20 @@ export function ExtensionsSection({ theme }: { theme: Theme }) {
   );
 }
 
+/* A pack does nothing without its model, so an installed pack names the model that is not here. */
+function absentModel(ext: Extension): string | null {
+  const ids = ext.appliesTo.models;
+  if (!ids?.length || ids.some((id) => chatModelState(id).kind === "ready")) return null;
+  return findModel(BUNDLED_MANIFEST, ids[0]!)?.name ?? null;
+}
+
 function ExtensionRow({ ext, theme }: { ext: Extension; theme: Theme }) {
   const type = useType();
   const { t } = useTranslation();
   const state = useExtension(ext.id);
   const size = formatModelBytes(ext.bytes);
-  const line = vaultRowState(state, size);
+  const missingModel = state.kind === "ready" && !state.bundled ? absentModel(ext) : null;
+  const line = missingModel ? { key: "extensions.state.installedNoModel", params: { size, model: missingModel } } : vaultRowState(state, size);
   const action =
     state.kind === "missing" || state.kind === "failed"
       ? { id: `ext-download-${ext.id}`, label: t("extensions.download", { size }), run: () => void installExtension(ext.id).catch(() => undefined), cta: true }

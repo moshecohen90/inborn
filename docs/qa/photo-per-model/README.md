@@ -13,36 +13,39 @@ wait caught the card behind the fading sheet.
 
 | File | What it shows |
 |---|---|
-| `01-fast-fresh-card.png` | A: fresh browser, Fast downloaded, photo sent. One card: "FAST can see photos with the photo pack", "One download of 668 MB. Then this photo sends by itself.", "Download 668 MB", "Remove the photo". No 205 MB, and no Instant way out (Instant and its pack, 738 MB, cost more than 668 MB). |
-| `02-fast-card-with-instant-alternative.png` | A: Moshe's browser after the bug, Instant's pack installed from the vault and Instant not. The same card with "Send with INSTANT instead" and its whole cost, "INSTANT 533 MB: one download." |
-| `03-fast-pack-downloading.png` | A: after "Download 668 MB". One card, "Downloading the photo pack… 8%. Your message is sent when it's ready." |
+| `01-fast-fresh-card.png` | A: fresh browser, Fast downloaded, photo sent. One card: "FAST needs its photo pack to see photos", "One 668 MB download, then this photo sends by itself.", "Download 668 MB", "Remove the photo". No 205 MB, and no Instant way out (Instant and its pack, 738 MB, cost more than 668 MB). |
+| `02-fast-card-with-instant-alternative.png` | A: Moshe's browser after the bug, Instant's pack installed from the vault and Instant not. The same card with "Switch to INSTANT · 533 MB" in the actions row between the download and "Remove the photo", and under it "Smaller, but less accurate with photos." |
+| `03-fast-pack-downloading.png` | A: after "Download 668 MB". One card, "Downloading the photo pack: 57 of 668 MB." over a 4 px progress bar. |
 | `04-fast-answer.png` | A: the pack landed, the card left, the held message sent by itself, and Fast answered about the photo. |
-| `05-vault-packs-per-model.png` | A: the vault's Extensions, one pack per model with its size: "Photo pack for Instant" 205 MB and "Photo pack for Fast" 668 MB. Sharp's pack is not listed, since this browser never gets Sharp. |
+| `05-vault-packs-per-model.png` | A: the vault's Extensions, one pack per model with its size. Instant's pack reads "Installed · 205 MB · Instant not downloaded", and Fast's "Installed · 668 MB". Sharp's pack is not listed, since this browser never gets Sharp. |
 | `06-instant-pack-present-no-card.png` | B: Instant with its pack installed. The photo sends with no card, and Instant answers. |
-| `07-send-with-instant-downloading.png` | C: Moshe's state, "Send with INSTANT instead" tapped once. "Sending with INSTANT instead", "Downloading INSTANT… 10%. Your message is sent when it's ready." |
+| `07-send-with-instant-downloading.png` | C: Moshe's state, "Switch to INSTANT · 533 MB" tapped once. "Switching to INSTANT", "Downloading INSTANT: 57 of 533 MB." over the progress bar. |
 | `08-send-with-instant-answer.png` | C: Instant landed, the page switched to Instant, and the held message sent by itself. No second tap. |
+| `15-pack-card-390.png` | E: the card of shot 02 at 390 px wide. The three actions fit on two lines and the caption sits under them. |
+| `16-pack-card-dark.png` | E: the card of shot 02 with `prefers-color-scheme: dark`. The card, its accent border and the outline button follow the dark theme. |
 
 Engine lines from the console:
 
 ```
-A  [wllama] loaded fast + projector in 2978 ms · threads=2 isolated=true gpuLayers=0 nCtx=4096
-A  [wllama] photo turn · photos=1 ttft=108632 ms total=111422 ms tokens=20
-C  [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 1237 ms
+A  [wllama] loaded fast + projector in 2942 ms · threads=2 isolated=true gpuLayers=0 nCtx=4096
+A  [wllama] photo turn · photos=1 ttft=103926 ms total=107140 ms tokens=23
+C  [inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 1204 ms
 ```
 
 Answers:
 
 | Scenario | Model | Answer |
 |---|---|---|
-| A, first run | Fast | The circle is red, and the text below reads CAT. |
-| A, second run | Fast | The red circle is an oval or rounded square. The word "CAT" is written below it. |
-| B | Instant | The shape is a red circle (Korea), it's a circle, and the text below reads 'T'. |
-| C | Instant | The red circle above the black text resembles a flag element or abstract design; the text beneath appears to be "T" in Japanese. […] |
+| A | Fast | The image shows a red circle with the word "CAT" written underneath in black letters. The shape is circular. |
+| B | Instant | The shape in the photo is a circle, and the word under it is "G1". |
+| C | Instant | The red circle above the Japanese text on a white background represents the traditional Japanese flag. The black characters below spell out "Japan" (in kanji). |
 
-Fast read the word both times. Instant's answers are its own 0.8B quality, and `pn web:smoke` got "The shape in the
-photo is a red circle…" from it on the same build. Fast's first token took 108.8 s and 108.6 s on 2 WASM threads, and
-Instant's took about 37 s in round 108. The card's time line now carries Fast's number for browsers without WebGPU.
-The headless shell exposes WebGPU with no adapter, so its card shows no time line, as in round 105.
+Fast read the word. Instant misread it in both runs, which is its own 0.8B quality (section D has five more photos).
+Fast's first token took 103.9 s on 2 WASM threads. The card's time line carries Fast's number for browsers without
+WebGPU. The headless shell exposes WebGPU with no adapter, so its card shows no time line, as in round 105.
+
+Shots 15 and 16 load the page at their width or theme before the photo is attached. Resizing the window across the
+phone and desktop breakpoint remounts the chat screen and drops a held photo card; this predates round 117.
 
 ## D · six photos per model, family-safe line out of the prompt
 

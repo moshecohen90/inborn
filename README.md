@@ -6838,7 +6838,7 @@ Moshe (28.9), on the web with Fast selected: a photo offered Instant's 205 MB ph
 and Fast could not use the first. His rules: the app never asks for a download the selected model cannot use; every
 hold card states the whole cost of its path before the first byte, in one card, and the held message sends by itself
 after the download; Fast and Sharp see photos with their own packs. Evidence: `docs/qa/photo-per-model/`. Tests:
-`packages/core/test/fixes-r117.test.ts` (11) and `apps/mobile/src/extensions/photoCard.test.ts` (10).
+`packages/core/test/fixes-r117.test.ts` (11) and `apps/mobile/src/extensions/photoCard.test.ts` (13).
 
 - **F437 · Each model that sees has its own photo pack.** A projector (mmproj) is built for one model's embedding
   width and fits no other, so a pack now names the models it serves (`appliesTo.models` in
@@ -6858,19 +6858,21 @@ after the download; Fast and Sharp see photos with their own packs. Evidence: `d
   step to the cheapest model that can, with the model and its pack counted as one cost. Nothing here sees: say so.
   A path through a file this host cannot fetch is never offered.
 - **One card, three cases** (`apps/mobile/src/components/chat/PhotoHoldCard.tsx`, English copy):
-  - Fast without its pack: "FAST can see photos with the photo pack" / "One download of 668 MB. Then this photo sends
-    by itself." / "Download 668 MB" / "Remove the photo". With Instant's pack already in the browser it adds "Send with
-    INSTANT instead" and "INSTANT 533 MB: one download." On a phone, where Instant and its pack come with the app, the
-    line reads "INSTANT is already installed."
+  - Fast without its pack: "FAST needs its photo pack to see photos" / "One 668 MB download, then this photo sends by
+    itself." / "Download 668 MB" / "Remove the photo". With Instant's pack already in the browser, the actions row adds
+    "Switch to INSTANT · 533 MB" between the download and "Remove the photo", and the caption under the row reads
+    "Smaller, but less accurate with photos." On a phone, where Instant and its pack come with the app, the button
+    reads "Switch to INSTANT".
   - Sharp (Phi) with Instant installed, as phones ship it: "SHARP (PHI) can't see photos" / "INSTANT can see photos and
     is already installed. Switch, and this photo sends by itself." / "Switch to INSTANT". Without Instant: "INSTANT can
-    see photos. After one download, this photo sends by itself." / "INSTANT 533 MB + photo pack 205 MB: 738 MB in one
-    download." / "Switch to INSTANT · 738 MB".
+    see photos. After one download, this photo sends by itself. That is INSTANT (533 MB) and its photo pack (205 MB)." /
+    "Switch to INSTANT · 738 MB".
+  - During the download: "Downloading the photo pack: 53 of 668 MB." or, after a switch, "Switching to INSTANT" /
+    "Downloading INSTANT: 53 of 533 MB.", over a 4 px progress bar.
   - The selected model's pack is here: no card, and the photo sends.
-- **A way out is one tap.** "Send with Instant instead" or "Switch to Instant" fetches Instant, then its pack, as one
-  download with one percent. The card then switches the model, and the held message goes with it. On the web the page
-  reloads onto Instant, and the held turn crosses the reload in `sessionStorage` (`apps/mobile/src/lib/heldTurn.ts`).
-  A phone switches in place.
+- **A way out is one tap.** "Switch to INSTANT" fetches Instant, then its pack, as one download with one progress bar.
+  The card then switches the model, and the held message goes with it. On the web the page reloads onto Instant, and
+  the held turn crosses the reload in `sessionStorage` (`apps/mobile/src/lib/heldTurn.ts`). A phone switches in place.
 - **The same rule everywhere.** The vault's Extensions section lists a pack only where one of its models is offered,
   so a browser never lists Sharp's pack. The web manifest's companions follow the same rule. The attach sheet names
   the selected model's pack and size. llama.rn and wllama load the projector the selected model's pack names. The
@@ -6878,9 +6880,10 @@ after the download; Fast and Sharp see photos with their own packs. Evidence: `d
 
 Web check on port 8797, the worktree's build in headless Chromium (`docs/qa/photo-per-model/README.md`). A fresh
 browser with Fast showed one card at 668 MB and no 205 MB. "Download 668 MB" fetched the pack in 17 s, the card left,
-the photo sent by itself, and wllama logged "loaded fast + projector". Fast answered "The circle is red, and the text
-below reads CAT." Its first token took 109 s on 2 WASM threads. Instant with its pack sent the photo with no card. From
-Moshe's state, "Send with INSTANT instead" fetched Instant, reloaded onto it and sent the photo, with no second tap.
+the photo sent by itself, and wllama logged "loaded fast + projector". Fast answered "The image shows a red circle
+with the word "CAT" written underneath in black letters." Its first token took 104 s on 2 WASM threads. Instant with
+its pack sent the photo with no card. From Moshe's state, "Switch to INSTANT · 533 MB" fetched Instant, reloaded onto
+it and sent the photo, with no second tap.
 
 Red first: the first 10 tests of `fixes-r117.test.ts` all failed on 30d6d791 before the change. Gates exit 0:
 `pn install --frozen-lockfile`, `typecheck`, `lint`, `test`, `web:build`, `web:smoke`. Not covered: the desktop app
@@ -6898,6 +6901,15 @@ Instant (`docs/qa/photo-per-model/`, shots 09 to 14) gave 12 answers with no nar
 Instant still reads "CAT" as "T", which is the 0.8B model's limit. Fast's text turn did not repeat the short line.
 Tests: `packages/core/test/fixes-r117-family-safe.test.ts` (6). Before the fix, 4 of them failed, and the 2 that check
 what must hold either way passed.
+
+**Designer pass on the card.** The way out is a button in the actions row, between the primary and "Remove the photo",
+and it carries its cost ("Switch to INSTANT · 533 MB", "· 738 MB" with the pack, no cost once installed). The separate
+cost line is gone. When the way out is a smaller model, the caption under the row reads "Smaller, but less accurate
+with photos." A download shows "have of total" in the whole's unit over a 4 px bar in the accent colour. The vault
+names the missing model on a pack that is installed without it: "Installed · 205 MB · Instant not downloaded". The
+"cheaper or already installed" rule is unchanged. Shots 01 to 08 are retaken, and shots 15 (390 px) and 16 (dark
+theme) are new. Resizing the window across the phone and desktop breakpoint remounts the chat and drops a held photo
+card, which predates this round.
 
 ## iOS build 23: main with round 111's loop guard, on Moshe's iPhone only (branch `ios-build-23`) — 27.9.2026
 
