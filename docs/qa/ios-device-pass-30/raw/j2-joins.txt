@@ -1,0 +1,14 @@
+Pass 30, build 1.0.0 (30), the .qa twin from cdaf1ca5, Instant, 28.9.2026
+Each run: new chat (Chats, new-chat, start-chat), ask, Stop 1.0 s after the answer text appeared, Continue, wait until the answer ended.
+"stopped" is the answer text on screen after Stop; "final" is the answer text on screen after Continue; ⟦…⟧ marks where the continuation starts.
+"kept" is whether the final text starts with the stopped text exactly (the stopped text unchanged on screen).
+"console": the twin is a Release build (__DEV__ false) and llamaRn.ts logs no continue line, so the bridge exposes no llama.rn console line; the ledger of the resumed turn is given instead (the ledger's prompt tokens are llama.rn's tokens_evaluated).
+
+=== r1-knight · Tell a short story about a knight who fears the dark.
+kept: true · new chat by: new-chat button · chip: INSTANT
+first 8 words after the cut: darkness, and his boots were covered in mud
+console: not exposed · ledger of the resumed turn: model INSTANT · tokPerSec 37.8 · ttft 40 ms · tokens 186 + 71 · time 1.9 s
+--- stopped (171 chars)
+Once upon a time, in the shadowed lands of Oakhaven, a knight named Silas stood guard at the gates of the great castle. His face was etched with scars from battles lost to
+--- final (498 chars)
+Once upon a time, in the shadowed lands of Oakhaven, a knight named Silas stood guard at the gates of the great castle. His face was etched with scars from battles lost to⟦ darkness, and his boots were covered in mud that hid the true color of his armor. When a storm raged outside, Silas would not even blink; he would only shift his weight, keeping his eyes fixed on a low stone circle he carved into the ground, trying to ignore the grey light that seemed to creep toward him like a hungry ghost.⟧

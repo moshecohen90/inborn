@@ -1,0 +1,119 @@
+{
+  "runId": "j6-vault-packs",
+  "startedAt": "2026-09-28T14:30:17.691Z",
+  "finishedAt": "2026-09-28T14:30:29.534Z",
+  "ok": true,
+  "passed": 12,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 162,
+      "detail": "/vault?focus=vision-qwen35"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3508,
+      "detail": "3500 ms"
+    },
+    {
+      "i": 2,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "◉ PHOTO PACK FOR INSTANT Lets Instant look at your photos on this device. Qwen3.5 mmproj 0.1B · 205 MB · F16 · Battery: Medium Included with the app Details",
+        "props": {
+          "accessibilityState": {
+            "selected": false
+          },
+          "disabled": false
+        }
+      },
+      "detail": "◉ PHOTO PACK FOR INSTANT Lets Instant look at your photos on this device. Qwen3.5 mmproj 0.1B · 205 MB · F16 · Battery: Medium Included with the app Details"
+    },
+    {
+      "i": 3,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Included with the app",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Included with the app"
+    },
+    {
+      "i": 4,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1926,
+      "detail": "J6-01-pack-instant"
+    },
+    {
+      "i": 5,
+      "op": "assertText",
+      "ok": true,
+      "ms": 4,
+      "detail": "\"Qwen3.5 mmproj 0.1B · 205 MB · F16\" present"
+    },
+    {
+      "i": 6,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"0.4B\" absent"
+    },
+    {
+      "i": 7,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"Included with the app\" present"
+    },
+    {
+      "i": 8,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 160,
+      "detail": "/vault?focus=embed-e5"
+    },
+    {
+      "i": 9,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3509,
+      "detail": "3500 ms"
+    },
+    {
+      "i": 10,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "◉ DOCUMENT INDEX Lets Inborn search your documents on this device. multilingual-e5-large-instruct 560M · 468 MB · Q6_K · Battery: Low Installed Details",
+        "props": {
+          "accessibilityState": {
+            "selected": false
+          },
+          "disabled": false
+        }
+      },
+      "detail": "◉ DOCUMENT INDEX Lets Inborn search your documents on this device. multilingual-e5-large-instruct 560M · 468 MB · Q6_K · Battery: Low Installed Details"
+    },
+    {
+      "i": 11,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2560,
+      "detail": "J6-02-index"
+    }
+  ],
+  "errors": []
+}

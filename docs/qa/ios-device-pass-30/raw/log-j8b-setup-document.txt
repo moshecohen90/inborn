@@ -1,0 +1,26 @@
+17:42:51 pushing 23 steps as j8b-setup-document
+17:45:55 shot J8-00b-document-answer
+17:46:00 ok     0 deeplink   /chats
+17:46:00 ok     1 waitFor    new-chat appeared
+17:46:00 ok     2 press      new-chat ← onPress
+17:46:00 ok     3 waitFor    start-chat appeared
+17:46:00 ok     4 press      start-chat ← onPress
+17:46:00 ok     5 waitFor    composer-input appeared
+17:46:00 ok     6 waitFor    Loading gone
+17:46:00 ok     7 sleep      1500 ms
+17:46:00 ok     8 devPrompt  attach: office-hours.txt
+17:46:00 ok     9 waitFor    attached-docs appeared
+17:46:00 ok    10 sleep      3000 ms
+17:46:00 ok    11 type       composer-input = 32 chars
+17:46:00 ok    12 send       send ← onPress
+17:46:00 ok    13 waitFor    docs-hold appeared
+17:46:00 ok    14 sleep      800 ms
+17:46:00 ok    15 press      docs-hold-download ← onPress
+17:46:00 ok    16 idleTimer  idle timer disabled: false
+17:46:00 ok    17 waitFor    docs-hold gone
+17:46:00 ok    18 waitFor    assistant-text appeared
+17:46:00 ok    19 waitFor    stop gone
+17:46:00 ok    20 sleep      1500 ms
+17:46:00 ok    21 value      The office phone number is 555-0134.
+17:46:00 ok    22 screenshot J8-00b-document-answer
+17:46:00 23 passed, 0 failed, 1 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-30/docs/qa/ios-device-pass-30/screens

@@ -1,0 +1,24 @@
+store env clean: no EXPO_PUBLIC_* dev switch set
+EXPO_PUBLIC in env: 0
+commit cdaf1ca562fc tracked-changes=0 untracked=docs/qa/ios-device-pass-30/
+prebuild 17:11:58
+prebuild rc=0
+xcode.env.local:
+pod install 17:12:00
+pod rc=0 17:12:27
+AskInborn
+Inborn
+Inborn.storekit
+Inborn.xcodeproj
+Inborn.xcworkspace
+InbornUITests
+Podfile
+Podfile.lock
+Podfile.properties.json
+Pods
+build
+start=17:12:27
+rc=0 end=17:16:12
+0
+** ARCHIVE SUCCEEDED **
+ARCHIVE-DONE

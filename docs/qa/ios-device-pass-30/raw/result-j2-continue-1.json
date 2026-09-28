@@ -1,0 +1,323 @@
+{
+  "runId": "j2-continue-1",
+  "startedAt": "2026-09-28T14:24:16.569Z",
+  "finishedAt": "2026-09-28T14:24:36.194Z",
+  "ok": true,
+  "passed": 37,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 156,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "INSTANT",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT"
+    },
+    {
+      "i": 9,
+      "op": "type",
+      "ok": true,
+      "ms": 166,
+      "detail": "composer-input = 53 chars"
+    },
+    {
+      "i": 10,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 11,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 264,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1003,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 13,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "stop ← onPress"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2001,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 15,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Once upon a time, in the shadowed lands of Oakhaven, a knight named Silas stood guard at the gates of the great castle. His face was etched with scars from battles lost to",
+        "props": {
+          "source": "Once upon a time, in the shadowed lands of Oakhaven, a knight named Silas stood guard at the gates of the great castle. His face was etched with scars from battles lost to",
+          "disabled": false
+        }
+      },
+      "detail": "Once upon a time, in the shadowed lands of Oakhaven, a knight named Silas stood guard at the gates of the great castle. His face was etched with scars from battles lost to"
+    },
+    {
+      "i": 16,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2562,
+      "detail": "J2-1a-knight-stopped"
+    },
+    {
+      "i": 17,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "continue appeared"
+    },
+    {
+      "i": 18,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "continue ← onPress"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1506,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 20,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 530,
+      "detail": "stop gone"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1515,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Once upon a time, in the shadowed lands of Oakhaven, a knight named Silas stood guard at the gates of the great castle. His face was etched with scars from battles lost to darkness, and his boots were covered in mud that hid the true color of his armor. When a storm raged outside, Silas would not even blink; he would only shift his weight, keeping his eyes fixed on a low stone circle he carved into the ground, trying to ignore the grey light that seemed to creep toward him like a hungry ghost.",
+        "props": {
+          "source": "Once upon a time, in the shadowed lands of Oakhaven, a knight named Silas stood guard at the gates of the great castle. His face was etched with scars from battles lost to darkness, and his boots were covered in mud that hid the true color of his armor. When a storm raged outside, Silas would not even blink; he would only shift his weight, keeping his eyes fixed on a low stone circle he carved into the ground, trying to ignore the grey light that seemed to creep toward him like a hungry ghost.",
+          "disabled": false
+        }
+      },
+      "detail": "Once upon a time, in the shadowed lands of Oakhaven, a knight named Silas stood guard at the gates of the great castle. His face was etched with scars from battles lost to darkness, and his boots were"
+    },
+    {
+      "i": 23,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2249,
+      "detail": "J2-1b-knight-final"
+    },
+    {
+      "i": 24,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "loop-notice gone"
+    },
+    {
+      "i": 25,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "ledger-toggle ← onPress"
+    },
+    {
+      "i": 26,
+      "op": "sleep",
+      "ok": true,
+      "ms": 817,
+      "detail": "800 ms"
+    },
+    {
+      "i": 27,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "INSTANT",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT"
+    },
+    {
+      "i": 28,
+      "op": "setTier",
+      "ok": true,
+      "ms": 198,
+      "detail": "pro"
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1200,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 30,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "37.8",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "37.8"
+    },
+    {
+      "i": 31,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "40 ms",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "40 ms"
+    },
+    {
+      "i": 32,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "186 + 71",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "186 + 71"
+    },
+    {
+      "i": 33,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "1.9 s",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "1.9 s"
+    },
+    {
+      "i": 34,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1926,
+      "detail": "J2-1c-knight-ledger"
+    },
+    {
+      "i": 35,
+      "op": "setTier",
+      "ok": true,
+      "ms": 186,
+      "detail": "free"
+    },
+    {
+      "i": 36,
+      "op": "sleep",
+      "ok": true,
+      "ms": 816,
+      "detail": "800 ms"
+    }
+  ],
+  "errors": []
+}

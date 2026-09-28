@@ -1,0 +1,17 @@
+17:46:53 launching com.inbornapp.mobile.qa
+17:47:38 pushing 11 steps as j8d-cold-relaunch
+17:47:44 shot J8-04a-cold-relaunch
+17:47:54 shot J8-04b-cold-relaunch
+17:47:57 ok     0 waitFor    onboarding-welcome appeared
+17:47:57 ok     1 sleep      3000 ms
+17:47:57 ok     2 screenshot J8-04a-cold-relaunch
+17:47:57 ok     3 sleep      8000 ms
+17:47:57 ok     4 waitFor    onboarding-welcome appeared
+17:47:57 ok     5 screenshot J8-04b-cold-relaunch
+17:47:57 ok     6 value      Nothing leaves this phone. AI that runs on your device. No account, no cloud, and nothing you type ever leaves
+17:47:57 ok     7 dump       cold-relaunch
+17:47:57 ok     8 assertText "could not be opened" absent
+17:47:57 ok     9 waitFor    banner-repair gone
+17:47:57 ok    10 cleanup    qa namespace removed
+17:47:57 11 passed, 0 failed, 2 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-30/docs/qa/ios-device-pass-30/screens
+17:47:59 swept: Documents/qa is gone
