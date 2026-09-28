@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "version": 6,
-  "publishedAt": "2026-09-24",
+  "version": 7,
+  "publishedAt": "2026-09-28",
   "baseUrl": "https://models.inbornapp.com/v1",
   "models": [
     {
@@ -23,7 +23,7 @@
       "contextLength": 262144,
       "vision": true,
       "tools": true,
-      "goodFor": "Quick answers, rewrites, summaries. The only model here that can look at a photo. Lightest on battery.",
+      "goodFor": "Quick answers, rewrites, summaries. Lightest on battery.",
       "battery": "low",
       "goodLanguages": [
         "en",
@@ -94,7 +94,7 @@
       "minRamGB": 6,
       "recommendedRamGB": 6,
       "contextLength": 262144,
-      "vision": false,
+      "vision": true,
       "tools": true,
       "goodFor": "Everyday assistant: writing, questions, translation. Best balance on this device.",
       "battery": "medium",
@@ -136,7 +136,7 @@
           "ar": "good",
           "he": "none"
         },
-        "weakAt": "No photos; code, math; German prose and Korean translation; questions across many long documents."
+        "weakAt": "Code, math; German prose and Korean translation; questions across many long documents."
       },
       "delivery": [
         {
@@ -182,7 +182,7 @@
       "minRamGB": 6,
       "recommendedRamGB": 8,
       "contextLength": 262144,
-      "vision": false,
+      "vision": true,
       "tools": true,
       "goodFor": "Complex tasks: analysis, code, long documents. Slower, runs warmer.",
       "battery": "high",
@@ -226,7 +226,7 @@
           "ar": "good",
           "he": "basic"
         },
-        "weakAt": "No photos; slower and warmer than Fast; hard math needs thinking mode."
+        "weakAt": "Slower and warmer than Fast; hard math needs thinking mode."
       },
       "delivery": [
         {
@@ -413,7 +413,7 @@
     {
       "id": "vision-qwen35",
       "role": "vision",
-      "name": "Photo understanding",
+      "name": "Photo understanding for Instant",
       "vendor": "Qwen",
       "family": "Qwen3.5 mmproj",
       "params": "0.4B",
@@ -451,7 +451,71 @@
       ],
       "proOnly": false,
       "minEngine": 1
+    },
+    {
+      "id": "vision-qwen35-2b",
+      "role": "vision",
+      "name": "Photo understanding for Fast",
+      "vendor": "Qwen",
+      "family": "Qwen3.5 mmproj",
+      "params": "0.3B",
+      "quant": "F16",
+      "arch": "clip",
+      "file": "mmproj-Qwen3.5-2B-F16.gguf",
+      "bytes": 668227264,
+      "sha256": "7035e9cb8d7c6a9681d07eef9a364783e86ea4cd73faab2eabb4f43a101830c7",
+      "license": "Apache-2.0",
+      "minRamGB": 6,
+      "recommendedRamGB": 6,
+      "contextLength": 0,
+      "vision": true,
+      "tools": false,
+      "goodFor": "Lets Fast look at your photos on this device.",
+      "battery": "medium",
+      "goodLanguages": [
+        "en"
+      ],
+      "delivery": [
+        {
+          "kind": "https",
+          "path": "mmproj-Qwen3.5-2B-F16.gguf"
+        }
+      ],
+      "proOnly": false,
+      "minEngine": 1
+    },
+    {
+      "id": "vision-qwen35-4b",
+      "role": "vision",
+      "name": "Photo understanding for Sharp",
+      "vendor": "Qwen",
+      "family": "Qwen3.5 mmproj",
+      "params": "0.3B",
+      "quant": "F16",
+      "arch": "clip",
+      "file": "mmproj-Qwen3.5-4B-F16.gguf",
+      "bytes": 672423616,
+      "sha256": "cd88edcf8d031894960bb0c9c5b9b7e1fea6ebee02b9f7ce925a00d12891f864",
+      "license": "Apache-2.0",
+      "minRamGB": 6,
+      "recommendedRamGB": 8,
+      "contextLength": 0,
+      "vision": true,
+      "tools": false,
+      "goodFor": "Lets Sharp look at your photos on this device.",
+      "battery": "medium",
+      "goodLanguages": [
+        "en"
+      ],
+      "delivery": [
+        {
+          "kind": "https",
+          "path": "mmproj-Qwen3.5-4B-F16.gguf"
+        }
+      ],
+      "proOnly": true,
+      "minEngine": 1
     }
   ],
-  "signature": "9fc2116efe506fb02fd53b98007ff9626db48bfcb877bc037e571f46a59539799e3045db028f57d8334aa079d5af82278a50e67b580c402e32cae21db25f470c"
+  "signature": "ec9af94051f5852718a6cbc79cf3b92db8c53489ecf0082a7993c7ce067aa91dfeb308139a3b5ceda170bd783c5d49e18e269bd52d3068b9c45ec49d0a295b0e"
 }

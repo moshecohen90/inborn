@@ -38,7 +38,8 @@ describe("web storage sizes (F379)", () => {
     const files: Record<string, number> = { "Qwen3.5-0.8B-Q4_K_M.gguf": 532_517_120 };
     for (const e of extensions()) files[e.file] = e.bytes;
     const sizes = await storageSizes({ indexedDB: new IDBFactory(), storage: opfsWith(files) });
-    expect(sizes.models).toBe(532_517_120 + 467_958_912 + 204_987_232);
+    /* Round 117: the index model and the three photo packs (Instant, Fast, Sharp). */
+    expect(sizes.models).toBe(532_517_120 + 467_958_912 + 204_987_232 + 668_227_264 + 672_423_616);
     const en = JSON.parse((await import("node:fs")).readFileSync(`${__dirname}/../../../../../packages/i18n/locales/en.json`, "utf8")) as Record<string, string>;
     expect(en["storage.models.web"]).toMatch(/extensions included/);
   });

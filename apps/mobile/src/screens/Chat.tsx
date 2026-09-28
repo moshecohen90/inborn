@@ -76,7 +76,7 @@ import { writeDevResult } from "../adapters/devModel";
 import { File, Paths } from "expo-file-system";
 import { devVoiceRecord } from "../voice/devLive";
 import { DEV_AUTOVOICE, DEV_AUTOVOICE_DICTATE, DEV_AUTOVOICE_TTS, getWhisper, isSpeaking, speak, stopSpeaking, useDictation, whisperInstalled, WHISPER_MODEL_ID } from "../voice";
-import { imageUri, importImageFile, modelHasVision, pickImages, removeImage, resolveVision, storedImagePath, visionChatModel, visionInstalled, visionScanned, VISION_MODEL_ID, type PickedImage } from "../images";
+import { imageUri, importImageFile, modelHasVision, pickImages, removeImage, resolveVision, photoPlanHere, visionPackId, storedImagePath, visionInstalled, visionScanned, type PickedImage } from "../images";
 import { pickIntoComposer } from "../images/intake";
 import { languageName as localeLabel } from "./Settings/Settings";
 import { Seal, type SealState } from "../components/Seal";
@@ -100,8 +100,12 @@ import { isDictatedSend } from "../lib/dictatedDraft";
 import { listClipping } from "../lib/listClipping";
 import { noteGenerationEnded } from "../lib/pausedTurn";
 import { PartialAnswerSaver } from "../lib/partialAnswer";
-import { gatePhotoSend, planPhotoSend, planVisionTurn } from "../lib/visionGate";
+import { gatePhotoSend, planVisionTurn } from "../lib/visionGate";
 import { ExtensionHoldCard } from "../components/chat/ExtensionHoldCard";
+import { PhotoHoldCard } from "../components/chat/PhotoHoldCard";
+import { seerOf, type HeldPhoto } from "../extensions/photoCard";
+import { switchChatModel } from "../extensions/chatModel";
+import { stashHeldTurn, takeHeldTurn } from "../lib/heldTurn";
 import { EMBED_MODEL_ID } from "../documents/embedder";
 import { visionTimeHint } from "../extensions/timeHint";
 import { planDocsTurn, planIndexHold, saysNoneMatched } from "../lib/docsGate";
@@ -264,7 +268,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const [readingDocs, setReadingDocs] = useState(0);
   const [preparingVision, setPreparingVision] = useState(false);
   /* QA F343: Send with a photo nothing here can see keeps the message and the photo in the composer behind this card. */
-  const [photoHold, setPhotoHold] = useState<"switch" | "companion" | null>(null);
+  const [photoHold, setPhotoHold] = useState<HeldPhoto | null>(null);
   const photoGating = useRef(false);
   const [templatesOpen, setTemplatesOpen] = useState(false);
   const [redactOpen, setRedactOpen] = useState(false);
@@ -572,8 +576,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         }
       }
       const opts = { reasoning: thinkingAvailable && settings.thinking, maxTokens: length.maxTokens, ...(persona.temperature !== undefined ? { temperature: persona.temperature } : {}) };
-      /* Photos in the prompt (§7.1): the one projector we ship fits Instant's embedding width, so any other model
-         would answer as if the picture were not there (QA F36). Never drop a picture without saying so. */
+      /* Photos in the prompt (§7.1): a projector fits one model's embedding width (QA F36), so a model without its own
+         pack would answer as if the picture were not there. Never drop a picture without saying so. */
       if (messages.some((m) => m.images?.length)) {
         const onLastUserMessage = lastUserAt >= 0 && !!history[lastUserAt]!.images?.length;
         let scanned = false;
@@ -583,10 +587,10 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
             hasImages: true,
             vaultScanned: scanned,
             modelSees: modelHasVision(model.id),
-            projectorInstalled: resolveVision() !== null,
+            projectorInstalled: resolveVision(model.id) !== null,
             projectorAttached: attached,
             onLastUserMessage,
-            otherModelSees: !!visionChatModel(),
+            otherModelSees: seerOf(photoPlanHere(model.id, tier !== "free")) !== null,
           });
         let turnVision = plan();
         /* The projector is 205 MB and the vault reads the disk at launch: the picture waits for it, on screen, instead of being answered around (QA F294). */
@@ -596,7 +600,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
             await visionScanned();
             scanned = true;
             if (ac.signal.aborted) return;
-            const mmproj = modelHasVision(model.id) ? resolveVision() : null;
+            const mmproj = modelHasVision(model.id) ? resolveVision(model.id) : null;
             attached = mmproj ? await enableVision(mmproj) : false;
           } finally {
             setPreparingVision(false);
@@ -607,8 +611,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           if (turnVision.kind === "wait") turnVision = onLastUserMessage ? { kind: "refuse", offer: "companion" } : { kind: "drop" };
         }
         if (turnVision.kind === "refuse") {
-          const canSee = visionChatModel();
-          await answerWithoutModel(turnVision.offer === "switch" ? "chat.vision.needsOther" : "chat.vision.companionMissing", { seer: canSee ? modelLabel(canSee.id) : "" });
+          const canSee = seerOf(photoPlanHere(model.id, tier !== "free"));
+          await answerWithoutModel(turnVision.offer === "switch" ? "chat.vision.needsOther" : "chat.vision.companionMissing", { seer: canSee ? modelLabel(canSee) : "" });
           setVisionOffer(turnVision.offer);
           return;
         }
@@ -784,7 +788,10 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
             setPreparingVision(false);
           }
         },
-        verdict: () => planPhotoSend({ hasImages: true, modelSees: modelHasVision(model.id), projectorInstalled: resolveVision() !== null, otherModelSees: !!visionChatModel() }),
+        verdict: () => {
+          const plan = photoPlanHere(model.id, tier !== "free");
+          return plan.kind === "send" ? { kind: "send" } : { kind: "hold", offer: plan };
+        },
         hold: setPhotoHold,
         send: async () => {
           setPhotoHold(null);
@@ -1201,20 +1208,28 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       }),
     );
   };
-  const visionReady = visionInstalled();
-  const visionSize = formatModelBytes(findExtension(VISION_MODEL_ID)?.bytes ?? 0);
+  const visionReady = visionInstalled(model.id);
+  const ownPack = visionPackId(model.id);
+  const visionSize = formatModelBytes(ownPack ? (findExtension(ownPack)?.bytes ?? 0) : 0);
   /* Round 105: in a browser the photo pack is an extension fetched on the first photo, so the Photo row stays open. */
   const webPhotos = Platform.OS === "web";
   const modelSees = modelHasVision(model.id);
-  /* Instant is the only card the shipped projector fits; the sheet and the offer both name it (QA F36). */
-  const seer = useMemo(() => (modelSees ? null : visionChatModel()), [modelSees]);
-  const seerLabel = seer ? modelLabel(seer.id) : "";
-  const seerReady = seer ? getVault().state(seer.id).kind === "ready" : false;
+  const photoPlanNow = photoPlanHere(model.id, tier !== "free");
+  const seer = modelSees ? null : seerOf(photoPlanNow);
+  const seerLabel = seer ? modelLabel(seer) : "";
+  const seerPath = photoPlanNow.kind === "switch" ? photoPlanNow.alt : null;
+  const seerReady = !!seerPath && seerPath.missing.length === 0;
+  const sendHeldWith = (modelId: string) => {
+    if (pendingImagesRef.current.length) stashHeldTurn({ model: modelId, text: draftRef.current, images: pendingImagesRef.current });
+    setPhotoHold(null);
+    if (webPhotos) void switchChatModel(modelId);
+    else onSwitchModel?.(modelId);
+  };
   const useSeer = () => {
     const companion = visionOffer === "companion" || !seer;
     setAttachOpen(false);
     setVisionOffer(null);
-    afterSheetClose(() => (seer && seerReady ? onSwitchModel?.(seer.id) : onOpenVault?.(companion ? VISION_MODEL_ID : seer.id)));
+    afterSheetClose(() => (seer && seerReady ? (webPhotos ? void switchChatModel(seer) : onSwitchModel?.(seer)) : onOpenVault?.(companion ? (ownPack ?? seerPath?.pack ?? "") : (seerPath?.missing[0]?.id ?? seer))));
   };
   const imageLimit = limits(tier).imagesPerMessage;
   const addPhoto = (source: "library" | "camera") => {
@@ -1277,6 +1292,20 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     setPhotoHold(null);
     void submitRef.current(draftRef.current);
   }, []);
+  const carried = useRef<number | null>(null);
+  useEffect(() => {
+    if (status.kind !== "ready") return;
+    const turn = takeHeldTurn(model.id);
+    if (!turn) return;
+    carried.current = turn.images.length;
+    setDraft(turn.text);
+    setPendingImages(turn.images);
+  }, [status.kind, model.id]);
+  useEffect(() => {
+    if (carried.current === null || pendingImages.length !== carried.current) return;
+    carried.current = null;
+    void submitRef.current(draftRef.current);
+  }, [pendingImages]);
   /* The index model landed while the turn was held: the library has loaded it, so the message goes out now. */
   useEffect(() => {
     if (!docsHold || libraryState.embedder.kind !== "ready") return;
@@ -1529,25 +1558,18 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       ) : null}
       {docsHold && docs.documents.length ? <ExtensionHoldCard extensionId={EMBED_MODEL_ID} theme={theme} count={docs.documents.length} onFallback={sendWithWords} onCancel={() => setDocsHold(false)} /> : null}
       {photoHold && pendingImages.length ? (
-        <ExtensionHoldCard
-          extensionId={VISION_MODEL_ID}
+        <PhotoHoldCard
+          held={photoHold}
           theme={theme}
           count={pendingImages.length}
+          model={chipLabel(t, model.id)}
+          seer={photoHold.kind === "none" || !photoHold.alt ? "" : chipLabel(t, photoHold.alt.model)}
           onCancel={dropAllPhotos}
           onReady={releaseHeldTurn}
-          onOpenVault={() => onOpenVault?.(VISION_MODEL_ID)}
-          {...(photoHold === "switch" ? { title: t("chat.vision.holdTitleModel", { model: chipLabel(t, model.id) }) } : {})}
-          {...(photoHold === "switch" && visionReady ? { body: t("chat.vision.holdSwitch", { seer: seerLabel }) } : {})}
-          {...(webPhotos && visionTimeHint(t) ? { hint: visionTimeHint(t)! } : {})}
-        >
-          {photoHold === "switch" && seer ? (
-            <Pressable testID="vision-hold-switch" accessibilityRole="button" onPress={useSeer} style={[styles.holdBtn, { borderColor: theme.accent }]}>
-              <Text numberOfLines={1} style={[type.bodySmall, { color: theme.accent }]}>
-                {seerReady ? t("chat.modelAdvice.switch", { model: seerLabel }) : t("voice.openVault")}
-              </Text>
-            </Pressable>
-          ) : null}
-        </ExtensionHoldCard>
+          onSwitch={sendHeldWith}
+          onOpenVault={(focus) => onOpenVault?.(focus)}
+          {...(webPhotos && visionTimeHint(t, model.id) ? { hint: visionTimeHint(t, model.id)! } : {})}
+        />
       ) : null}
       {pendingImages.length ? (
         <View testID="pending-images" style={styles.chips}>
@@ -1835,12 +1857,12 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           afterSheetClose(() => setTemplatesOpen(true));
         }}
         photoDisabled={webPhotos ? !modelSees : !visionReady || !modelSees}
-        onInstallVision={!webPhotos && modelSees && !visionReady ? () => {
+        onInstallVision={!webPhotos && modelSees && !visionReady && ownPack ? () => {
           setAttachOpen(false);
-          afterSheetClose(() => onOpenVault?.(VISION_MODEL_ID));
+          afterSheetClose(() => onOpenVault?.(ownPack));
         } : undefined}
         visionSize={visionSize}
-        photoNote={webPhotos && !modelSees && !seer ? t("chat.attach.photoWeb") : webPhotos && modelSees && !visionReady ? t("chat.attach.photoWebPack", { size: visionSize }) : !modelSees ? (seer ? t("chat.attach.noVision", { model: chipLabel(t, model.id), seer: seerLabel }) : t("chat.attach.noVisionHere", { model: chipLabel(t, model.id) })) : !visionReady ? t("chat.attach.visionMissing", { size: visionSize }) : tier === "free" ? t("chat.attach.photoFree") : undefined}
+        photoNote={webPhotos && !modelSees && !seer ? t("chat.attach.photoWeb") : webPhotos && modelSees && !visionReady ? t("chat.attach.photoWebPack", { size: visionSize }) : !modelSees ? (seer ? t("chat.attach.noVision", { model: chipLabel(t, model.id), seer: seerLabel }) : t("chat.attach.noVisionHere", { model: chipLabel(t, model.id) })) : !visionReady ? t("chat.attach.visionMissing", { model: chipLabel(t, model.id), size: visionSize }) : tier === "free" ? t("chat.attach.photoFree") : undefined}
         {...(seer ? { onUseVisionModel: useSeer, visionModel: seerLabel } : {})}
         {...(webPhotos && !modelSees && !seer ? { onGetApp: getTheApp } : {})}
       />
@@ -1950,7 +1972,6 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
 
 const styles = StyleSheet.create({
   root: { flex: 1 },
-  holdBtn: { minHeight: 44, paddingHorizontal: 12, borderRadius: radius.control, borderWidth: 1, alignItems: "center", justifyContent: "center", maxWidth: "100%" },
   header: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 12, minHeight: 44, gap: 8 },
   /* SC-1: the model name never truncates; at large text sizes the seal label (already told by the ring) gives way first. */
   modelChip: { flexDirection: "row", gap: 6, flexShrink: 0 },

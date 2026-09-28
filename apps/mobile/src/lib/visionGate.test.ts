@@ -140,13 +140,22 @@ describe("F343 · a photo nothing here can see is held in the composer, not sent
     const now = chat.slice(chat.indexOf("const submitNow = async"));
     expect(now.indexOf('setDraft("")')).toBeGreaterThan(-1);
     expect(now.indexOf("setPendingImages([])")).toBeGreaterThan(now.indexOf('setDraft("")'));
-    expect(chat).toContain("extensionId={VISION_MODEL_ID}");
+    expect(chat).toContain("<PhotoHoldCard");
     expect(chat).toContain("onReady={releaseHeldTurn}");
   });
 
   it("the card has its words in every locale, and none of them is jargon", () => {
     const repo = join(__dirname, "../../../..");
-    const keys = [...["holdTitleModel", "holdSwitch", "companionMissing", "offerCompanion"].map((k) => `chat.vision.${k}`), ...["name", "why", "downloading", "unavailable", "cancel", "vault", "timeHint"].map((k) => `extensions.vision-qwen35.${k}`), "extensions.stuck", "extensions.download", "chat.attach.visionMissing", "chat.attach.installVision"];
+    const chatKeys = ["holdTitleModel", "companionMissing", "offerCompanion", "packTitle", "altTitle", "download", "useSeer", "switchTo", "switchToCost", "costReady", "costBoth", "costModel", "costPack", "switchReady", "switchBody", "downloadingSeer"];
+    const keys = [
+      ...chatKeys.map((k) => `chat.vision.${k}`),
+      ...["why", "downloading", "unavailable", "cancel", "timeHint"].map((k) => `extensions.vision.${k}`),
+      ...["vision-qwen35", "vision-qwen35-2b", "vision-qwen35-4b"].flatMap((id) => [`extensions.${id}.name`, `extensions.${id}.vault`]),
+      "extensions.stuck",
+      "extensions.download",
+      "chat.attach.visionMissing",
+      "chat.attach.installVision",
+    ];
     for (const loc of ["en", "de", "fr", "es", "pt-BR", "ja", "ko", "zh-Hant", "pseudo"]) {
       const json = JSON.parse(readFileSync(join(repo, `packages/i18n/locales/${loc}.json`), "utf8")) as Record<string, string>;
       for (const k of keys) {
@@ -156,10 +165,13 @@ describe("F343 · a photo nothing here can see is held in the composer, not sent
     }
   });
 
-  it("the missing-pack line is one sentence a user understands, the same in the card and the attach sheet", () => {
+  /* Round 117: "no photo model installed" was false on a phone with Instant's pack while Fast was selected. */
+  it("the missing-pack lines name the model and its own pack's size, and say the photo then goes by itself", () => {
     const en = JSON.parse(readFileSync(join(__dirname, "../../../../packages/i18n/locales/en.json"), "utf8")) as Record<string, string>;
-    expect(en["extensions.vision-qwen35.why"]).toBe("This device has no photo model installed. Download the {size} photo pack to ask about pictures.");
-    expect(en["chat.attach.visionMissing"]).toBe(en["extensions.vision-qwen35.why"]);
+    expect(en["chat.vision.packTitle"]).toBe("{model} can see photos with the photo pack");
+    expect(en["extensions.vision.why"]).toBe("One download of {size}. Then {count, plural, one {this photo sends by itself} other {these photos send by themselves}}.");
+    expect(en["chat.attach.visionMissing"]).toBe("{model} looks at photos with its photo pack: one download of {size}.");
+    for (const k of ["extensions.vision.why", "chat.attach.visionMissing"]) expect(en[k]).not.toMatch(/no photo model installed/);
   });
 
   it("the card offers one button for every pack state: a pause or a failure is a Download, never a dead end", () => {

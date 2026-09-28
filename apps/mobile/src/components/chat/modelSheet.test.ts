@@ -45,11 +45,12 @@ describe("the Model sheet's recommendation line", () => {
 
 describe("what a row claims the model is good at", () => {
   it("lists the uses the fit map rates best or good, in catalog order", () => {
-    expect(goodAtUses(byId("fast"))).toEqual(["chat", "writing", "summarize", "translate", "documents", "voice"]);
+    expect(goodAtUses(byId("fast"))).toEqual(["chat", "writing", "summarize", "translate", "documents", "voice", "photos"]);
   });
-  it("adds photos only for the model that can see them", () => {
-    expect(goodAtUses(byId("instant"))).toContain("photos");
-    expect(goodAtUses(byId("sharp"))).not.toContain("photos");
+  /* Round 117: Instant, Fast and Sharp each see with their own photo pack; Sharp (Phi) has none. */
+  it("adds photos only for the models that can see them", () => {
+    for (const id of ["instant", "fast", "sharp"]) expect(goodAtUses(byId(id)), id).toContain("photos");
+    expect(goodAtUses(byId("sharp-phi"))).not.toContain("photos");
   });
   it("never claims a weak use: Instant is weak at code, so code is not on its list", () => {
     expect(goodAtUses(byId("instant"))).not.toContain("code");
@@ -61,7 +62,7 @@ describe("what a row claims the model is good at", () => {
   /* F386: the browser has no dictation. Round 105: it sees photos once the photo pack is in, and the label says so. */
   it("drops voice notes in the browser build, keeps photos for the model that can see, and keeps the rest", () => {
     expect(goodAtUses(byId("instant"), WEB_HERE)).toContain("photos");
-    expect(goodAtUses(byId("fast"), WEB_HERE)).toEqual(["chat", "writing", "summarize", "translate", "documents"]);
+    expect(goodAtUses(byId("fast"), WEB_HERE)).toEqual(["chat", "writing", "summarize", "translate", "documents", "photos"]);
     expect(read("ModelSheet.tsx")).toContain('"vault.details.visionWeb"');
   });
 });

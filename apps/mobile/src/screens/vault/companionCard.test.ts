@@ -100,8 +100,9 @@ describe("F346 · 'install X' lands on X's card", () => {
   });
   it("every entry point that offers to install something names it", () => {
     const chat = src("../Chat.tsx");
-    expect(chat).toContain("afterSheetClose(() => onOpenVault?.(VISION_MODEL_ID));");
-    expect(chat).toContain("onOpenVault?.(companion ? VISION_MODEL_ID : seer.id)");
+    /* Round 117: the pack offered is the selected model's own, and the way out opens on the file it still needs. */
+    expect(chat).toContain("afterSheetClose(() => onOpenVault?.(ownPack));");
+    expect(chat).toContain("onOpenVault?.(companion ? (ownPack ?? seerPath?.pack ?? \"\") : (seerPath?.missing[0]?.id ?? seer))");
     expect(chat).toContain("onOpenVault?.(adviceShown.better.model.id);");
     /* Round 93: the index model is installed from the chat's hold card itself, which works on the web too. */
     expect(chat).toContain("<ExtensionHoldCard extensionId={EMBED_MODEL_ID}");
@@ -117,15 +118,20 @@ describe("F346 · 'install X' lands on X's card", () => {
 
 describe("F346 · one name for the photo pack, in every locale", () => {
   const dir = join(__dirname, "../../../../../packages/i18n/locales");
-  /* Round 75's held-photo lines name the pack too. */
-  const KEYS = ["chat.attach.visionMissing", "chat.vision.companionMissing", "chat.vision.offerCompanion", "chat.attach.installVision", "extensions.vision-qwen35.why", "extensions.vision-qwen35.downloading", "chat.attach.photoWebPack", "vault.details.visionWeb"];
+  /* Round 75's held-photo lines name the pack too; round 117's card title names it for the selected model. */
+  const KEYS = ["chat.attach.visionMissing", "chat.vision.companionMissing", "chat.vision.offerCompanion", "chat.attach.installVision", "chat.vision.packTitle", "extensions.vision.downloading", "chat.attach.photoWebPack", "vault.details.visionWeb"];
+  /* Round 117: three packs, one per model ("Photo pack for Fast"); every line says the words all three names share. */
+  const STEM: Record<string, string> = { en: "photo pack", de: "foto-paket", es: "paquete de fotos", fr: "pack photo", ja: "写真パック", ko: "사진 팩", "pt-BR": "pacote de fotos", "zh-Hant": "照片套件" };
   for (const locale of ["en", "de", "es", "fr", "ja", "ko", "pt-BR", "zh-Hant"]) {
     it(`${locale}: every line about the pack uses the name the vault card and the download dialog print`, () => {
       const l = JSON.parse(readFileSync(join(dir, `${locale}.json`), "utf8")) as Record<string, string>;
-      const name = l["models.name.vision-qwen35"]!;
-      expect(name, locale).toBeTruthy();
-      expect(l["extensions.vision-qwen35.name"], locale).toBe(name);
-      for (const k of KEYS) expect(l[k]?.toLocaleLowerCase(locale), `${locale} ${k}`).toContain(name.toLocaleLowerCase(locale));
+      const stem = STEM[locale]!;
+      for (const id of ["vision-qwen35", "vision-qwen35-2b", "vision-qwen35-4b"]) {
+        const name = l[`models.name.${id}`]!;
+        expect(name.toLocaleLowerCase(locale), `${locale} ${id}`).toContain(stem);
+        expect(l[`extensions.${id}.name`], `${locale} ${id}`).toBe(name);
+      }
+      for (const k of KEYS) expect(l[k]?.toLocaleLowerCase(locale), `${locale} ${k}`).toContain(stem);
     });
   }
   it("the card, the download dialog and the details sheet all print that name", () => {

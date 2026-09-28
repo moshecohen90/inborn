@@ -224,7 +224,7 @@ export class WllamaLM implements LocalLM {
     if (photos) {
       /* Time to first token is the photo's encode plus the prompt's prefill: the number the hold card's hint is honest about. */
       this.devInfo = { ...this.devInfo, photoTurn: { photos, ttftMs: Math.round(ttft), totalMs: Math.round(performance.now() - started), completionTokens } };
-      recordPhotoMs(ttft);
+      recordPhotoMs(ttft, session.model.id);
       console.info(`[wllama] photo turn · photos=${photos} ttft=${Math.round(ttft)} ms total=${Math.round(performance.now() - started)} ms tokens=${completionTokens}`);
     }
     this.measureMemory();

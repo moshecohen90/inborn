@@ -6831,6 +6831,61 @@ store. Every row of pass 25 ran, with the same prompts, persona and scripts.
 
 Evidence: `docs/qa/ios-build-27-2026-09-28.md`, `docs/qa/ios-device-pass-27-2026-09-28.md`, `docs/qa/ios-device-pass-27/`.
 
+## Fixes round 117: photo packs per model, one-step hold card (branch `photo-per-model`) — 28.9.2026
+
+Moshe (28.9), on the web with Fast selected: a photo offered Instant's 205 MB photo pack. After it landed, the card said
+"FAST can't see photos. INSTANT can. Switch to it", and the switch asked for Instant's 533 MB. That was two downloads,
+and Fast could not use the first. His rules: the app never asks for a download the selected model cannot use; every
+hold card states the whole cost of its path before the first byte, in one card, and the held message sends by itself
+after the download; Fast and Sharp see photos with their own packs. Evidence: `docs/qa/photo-per-model/`. Tests:
+`packages/core/test/fixes-r117.test.ts` (11) and `apps/mobile/src/extensions/photoCard.test.ts` (10).
+
+- **F437 · Each model that sees has its own photo pack.** A projector (mmproj) is built for one model's embedding
+  width and fits no other, so a pack now names the models it serves (`appliesTo.models` in
+  `packages/core/src/catalog/extensions.json`). Fast and Sharp turn `vision: true` in the signed catalog, now
+  version 7. `sharp-phi` stays without vision. The two new packs come over https from the catalog's base URL, and no
+  build bundles them.
+
+  | Pack | Serves | File | Bytes | sha256 |
+  |---|---|---|---|---|
+  | `vision-qwen35` | Instant | `mmproj-Qwen3.5-0.8B-F16.gguf` | 204,987,232 | unchanged |
+  | `vision-qwen35-2b` | Fast | `mmproj-Qwen3.5-2B-F16.gguf` | 668,227,264 | `7035e9cb…101830c7` |
+  | `vision-qwen35-4b` | Sharp | `mmproj-Qwen3.5-4B-F16.gguf` | 672,423,616 | `cd88edcf…12891f864` |
+
+- **The card is worked out for the selected model.** `photoPlan` in `packages/core/src/catalog/photoPath.ts` returns
+  one of four answers. The model's own pack is here: send, no card. The model sees once its own pack lands: offer that
+  pack, plus another model's path only when that path costs less or is already installed. The model cannot see: one
+  step to the cheapest model that can, with the model and its pack counted as one cost. Nothing here sees: say so.
+  A path through a file this host cannot fetch is never offered.
+- **One card, three cases** (`apps/mobile/src/components/chat/PhotoHoldCard.tsx`, English copy):
+  - Fast without its pack: "FAST can see photos with the photo pack" / "One download of 668 MB. Then this photo sends
+    by itself." / "Download 668 MB" / "Remove the photo". With Instant's pack already in the browser it adds "Send with
+    INSTANT instead" and "INSTANT 533 MB: one download." On a phone, where Instant and its pack come with the app, the
+    line reads "INSTANT is already installed."
+  - Sharp (Phi) with Instant installed, as phones ship it: "SHARP (PHI) can't see photos" / "INSTANT can see photos and
+    is already installed. Switch, and this photo sends by itself." / "Switch to INSTANT". Without Instant: "INSTANT can
+    see photos. After one download, this photo sends by itself." / "INSTANT 533 MB + photo pack 205 MB: 738 MB in one
+    download." / "Switch to INSTANT · 738 MB".
+  - The selected model's pack is here: no card, and the photo sends.
+- **A way out is one tap.** "Send with Instant instead" or "Switch to Instant" fetches Instant, then its pack, as one
+  download with one percent. The card then switches the model, and the held message goes with it. On the web the page
+  reloads onto Instant, and the held turn crosses the reload in `sessionStorage` (`apps/mobile/src/lib/heldTurn.ts`).
+  A phone switches in place.
+- **The same rule everywhere.** The vault's Extensions section lists a pack only where one of its models is offered,
+  so a browser never lists Sharp's pack. The web manifest's companions follow the same rule. The attach sheet names
+  the selected model's pack and size. llama.rn and wllama load the projector the selected model's pack names. The
+  card's time line is kept per model, and Fast's is 109 s for a browser without WebGPU.
+
+Web check on port 8797, the worktree's build in headless Chromium (`docs/qa/photo-per-model/README.md`). A fresh
+browser with Fast showed one card at 668 MB and no 205 MB. "Download 668 MB" fetched the pack in 17 s, the card left,
+the photo sent by itself, and wllama logged "loaded fast + projector". Fast answered "The circle is red, and the text
+below reads CAT." Its first token took 109 s on 2 WASM threads. Instant with its pack sent the photo with no card. From
+Moshe's state, "Send with INSTANT instead" fetched Instant, reloaded onto it and sent the photo, with no second tap.
+
+Red first: the first 10 tests of `fixes-r117.test.ts` all failed on 30d6d791 before the change. Gates exit 0:
+`pn install --frozen-lockfile`, `typecheck`, `lint`, `test`, `web:build`, `web:smoke`. Not covered: the desktop app
+still has no projector path, and no phone ran this round.
+
 ## iOS build 23: main with round 111's loop guard, on Moshe's iPhone only (branch `ios-build-23`) — 27.9.2026
 
 Build 1.0.0 (23) carries local `main` 98722df7 (build 22's main plus round 111) to the iPhone 13 Pro, so the phone has

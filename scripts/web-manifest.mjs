@@ -45,10 +45,11 @@ export function webModel(model, url) {
 
 /**
  * The files a browser installs next to a chat model, never offered as one: every extension of the registry (round
- * 105), the document index model first and the photo projector second. Old clients ignore the key.
+ * 105), the document index model first, then the photo packs whose models a browser gets. Old clients ignore the key.
  */
-export function webCompanions(_catalog = readCatalog(), registry = readExtensions()) {
-  return registry;
+export function webCompanions(catalog = readCatalog(), registry = readExtensions()) {
+  const eligible = new Set(webEligible(catalog).map((m) => m.id));
+  return registry.filter((e) => !e.appliesTo?.models || e.appliesTo.models.some((m) => eligible.has(m)));
 }
 
 const ROLE_OF_KIND = { index: "embedding", vision: "vision", audio: "speech", ocr: "ocr" };

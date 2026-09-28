@@ -20,9 +20,11 @@ beforeAll(async () => {
 describe("F406 · the deployed catalog lists both extensions at the CDN", () => {
   it("index first, projector second, each with its kind, never as a chat model", () => {
     const m = web.webManifest(`${MODELS_ORIGIN}/v1`);
+    /* Round 117: Fast's pack too; Sharp's is left out, since a browser never gets Sharp. */
     expect(m.companions.map((c) => [c.id, c.kind])).toEqual([
       ["embed-e5", "index"],
       ["vision-qwen35", "vision"],
+      ["vision-qwen35-2b", "vision"],
     ]);
     expect(m.models.map((x) => x.id)).not.toContain("vision-qwen35");
     expect(m.companions[1]).toMatchObject({ file: vision.file, bytes: 204_987_232, sha256: vision.sha256, delivery: [{ kind: "cdn", url: `${MODELS_ORIGIN}/v1/${vision.file}` }] });
@@ -33,7 +35,7 @@ describe("F406 · the deployed catalog lists both extensions at the CDN", () => 
     writeFileSync(join(dir, vision.file), "GGUF");
     expect(serve.modelsManifest({ dist: "", modelsDir: dir, aliases: {} }).companions.map((c) => [c.id, c.delivery[0]!.url])).toEqual([["vision-qwen35", `/models/${vision.file}`]]);
     const far = serve.modelsManifest({ dist: "", modelsDir: dir, aliases: {}, indexOrigin: "http://127.0.0.1:9" });
-    expect(far.companions.map((c) => c.delivery[0]!.url)).toEqual([`http://127.0.0.1:9/v1/${findExtension("embed-e5")!.path}`, `http://127.0.0.1:9/v1/${vision.path}`]);
+    expect(far.companions.map((c) => c.delivery[0]!.url)).toEqual([`http://127.0.0.1:9/v1/${findExtension("embed-e5")!.path}`, `http://127.0.0.1:9/v1/${vision.path}`, `http://127.0.0.1:9/v1/${findExtension("vision-qwen35-2b")!.path}`]);
   });
 });
 
