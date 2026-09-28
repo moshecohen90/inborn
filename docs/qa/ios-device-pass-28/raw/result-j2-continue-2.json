@@ -1,0 +1,186 @@
+{
+  "runId": "j2-continue-2",
+  "startedAt": "2026-09-28T11:11:35.966Z",
+  "finishedAt": "2026-09-28T11:12:05.858Z",
+  "ok": true,
+  "passed": 23,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 158,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1510,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 73 chars"
+    },
+    {
+      "i": 9,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 256,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1502,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 12,
+      "op": "press",
+      "ok": true,
+      "ms": 160,
+      "detail": "stop ← onPress"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2001,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 14,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Bicycle gears are mechanical devices designed to transmit rotational force from the pedals to the rear wheel, allowing human effort to be converted into rotary motion. The core of this system is a chain mechanism that connects the crankcase to the cassette, which sits within the frame of the rear derailleur and hub",
+        "props": {
+          "source": "Bicycle gears are mechanical devices designed to transmit rotational force from the pedals to the rear wheel, allowing human effort to be converted into rotary motion. The core of this system is a chain mechanism that connects the crankcase to the cassette, which sits within the frame of the rear derailleur and hub",
+          "disabled": false
+        }
+      },
+      "detail": "Bicycle gears are mechanical devices designed to transmit rotational force from the pedals to the rear wheel, allowing human effort to be converted into rotary motion. The core of this system is a cha"
+    },
+    {
+      "i": 15,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1930,
+      "detail": "J2-2a-stopped"
+    },
+    {
+      "i": 16,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "continue appeared"
+    },
+    {
+      "i": 17,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "continue ← onPress"
+    },
+    {
+      "i": 18,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 19,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 15971,
+      "detail": "stop gone"
+    },
+    {
+      "i": 20,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1507,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 21,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Bicycle gears are mechanical devices designed to transmit rotational force from the pedals to the rear wheel, allowing human effort to be converted into rotary motion. The core of this system is a chain mechanism that connects the crankcase to the cassette, which sits within the frame of the rear derailleur and hub A chain is a flexible link that connects the crankcase to the cassette, allowing the gears to mesh and transfer rotational motion between them. As you pedal with your foot on the crank, the sprocket catches as it turns, pushing the chain forward against its own length while simultaneously rotating the entire system forward in unison. This continuous rotation drives a counterweight that is attached to the rear axle of the wheel, causing the rear wheel to spin whenever the crankshaft rotates. The cassette, located inside the derailleur's frame, holds a collection of metal teeth arranged along its circumference. These specific teeth are designed to catch different sized sprockets and shift gears within the chain mechanism, effectively changing the ratio between the input (crank) and output (wheel) speeds for every step in a specific gear position. By adjusting the angle at which you place your foot on the crank, you can manipulate these shifting teeth so that the system operates efficiently to maximize power transmission across different terrains and conditions. The derailleur is a sliding mechanism mounted on the frame of the rear wheel hub, allowing it to move forward or backward relative to the cassette. This movement changes the angle between the chain and each sprocket, forcing the chain to engage with specific teeth from the set of available gears rather than all at once. As the derailleur shifts, the length of the chain that engages with a particular tooth increases, which directly alters the ratio of speed between the pedal and the wheel. This allows for rapid gear changes without needing to manually flip a gear or reach for each individual sprocket individually. When you switch gears, the shifting teeth on the cassette interact with the corresponding sprockets in different positions within the chain mechanism. A higher gear position requires more chain length to cover the full distance between the pedal and the rear wheel, resulting in slower speed but greater torque, whereas a lower gear position brings less chain into play for a shorter path, allowing faster movement at the expense of reduced power. This trade-off enables the rider to control how quickly they can accelerate or decelerate based on their own strength and terrain preference. The mechanism operates through a series of interlocking links that are not rigid but rather rely on friction and spring tension to hold the chain in place while allowing it to move smoothly. The derailleur itself includes internal gears and springs that guide the shifting teeth into precise locations, ensuring that every time you shift up or down, the chain aligns perfectly with the next set of sprockets for optimal power delivery. This design minimizes wear on the components over time by constantly maintaining the correct engagement ratio required to transfer torque effectively from your feet to the wheel's rotation. Ultimately, this complex system allows a cyclist to adapt their riding style instantly as they encounter different road conditions or switch between trails and paved surfaces. Whether you are commuting in traffic, racing down a steep hill, or simply pedaling uphill for exercise, the gears provide a precise control interface that translates human effort into consistent vehicle motion. By carefully selecting which gear is appropriate for your current needs, riders can optimize performance across various scenarios while maintaining stability throughout their rides.",
+        "props": {
+          "source": "Bicycle gears are mechanical devices designed to transmit rotational force from the pedals to the rear wheel, allowing human effort to be converted into rotary motion. The core of this system is a chain mechanism that connects the crankcase to the cassette, which sits within the frame of the rear derailleur and hub A chain is a flexible link that connects the crankcase to the cassette, allowing the gears to mesh and transfer rotational motion between them. As you pedal with your foot on the crank, the sprocket catches as it turns, pushing the chain forward against its own length while simultaneously rotating the entire system forward in unison. This continuous rotation drives a counterweight that is attached to the rear axle of the wheel, causing the rear wheel to spin whenever the crankshaft rotates.\n\nThe cassette, located inside the derailleur's frame, holds a collection of metal teeth arranged along its circumference. These specific teeth are designed to catch different sized sprockets and shift gears within the chain mechanism, effectively changing the ratio between the input (crank) and output (wheel) speeds for every step in a specific gear position. By adjusting the angle at which you place your foot on the crank, you can manipulate these shifting teeth so that the system operates efficiently to maximize power transmission across different terrains and conditions.\n\nThe derailleur is a sliding mechanism mounted on the frame of the rear wheel hub, allowing it to move forward or backward relative to the cassette. This movement changes the angle between the chain and each sprocket, forcing the chain to engage with specific teeth from the set of available gears rather than all at once. As the derailleur shifts, the length of the chain that engages with a particular tooth increases, which directly alters the ratio of speed between the pedal and the wheel. This allows for rapid gear changes without needing to manually flip a gear or reach for each individual sprocket individually.\n\nWhen you switch gears, the shifting teeth on the cassette interact with the corresponding sprockets in different positions within the chain mechanism. A higher gear position requires more chain length to cover the full distance between the pedal and the rear wheel, resulting in slower speed but greater torque, whereas a lower gear position brings less chain into play for a shorter path, allowing faster movement at the expense of reduced power. This trade-off enables the rider to control how quickly they can accelerate or decelerate based on their own strength and terrain preference.\n\nThe mechanism operates through a series of interlocking links that are not rigid but rather rely on friction and spring tension to hold the chain in place while allowing it to move smoothly. The derailleur itself includes internal gears and springs that guide the shifting teeth into precise locations, ensuring that every time you shift up or down, the chain aligns perfectly with the next set of sprockets for optimal power delivery. This design minimizes wear on the components over time by constantly maintaining the correct engagement ratio required to transfer torque effectively from your feet to the wheel's rotation.\n\nUltimately, this complex system allows a cyclist to adapt their riding style instantly as they encounter different road conditions or switch between trails and paved surfaces. Whether you are commuting in traffic, racing down a steep hill, or simply pedaling uphill for exercise, the gears provide a precise control interface that translates human effort into consistent vehicle motion. By carefully selecting which gear is appropriate for your current needs, riders can optimize performance across various scenarios while maintaining stability throughout their rides.",
+          "disabled": false
+        }
+      },
+      "detail": "Bicycle gears are mechanical devices designed to transmit rotational force from the pedals to the rear wheel, allowing human effort to be converted into rotary motion. The core of this system is a cha"
+    },
+    {
+      "i": 22,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2555,
+      "detail": "J2-2b-continued"
+    }
+  ],
+  "errors": []
+}

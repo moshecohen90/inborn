@@ -1,0 +1,335 @@
+{
+  "runId": "n-sheet-ab",
+  "startedAt": "2026-09-28T11:32:32.873Z",
+  "finishedAt": "2026-09-28T11:34:56.627Z",
+  "ok": true,
+  "passed": 36,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 163,
+      "detail": "/vault"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1508,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 2,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "19% · 248 MB of 1.28 GB",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "19% · 248 MB of 1.28 GB"
+    },
+    {
+      "i": 3,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 163,
+      "detail": "/chats"
+    },
+    {
+      "i": 4,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 5,
+      "op": "press",
+      "ok": true,
+      "ms": 175,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 7,
+      "op": "press",
+      "ok": true,
+      "ms": 157,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 8,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 9,
+      "op": "press",
+      "ok": true,
+      "ms": 158,
+      "detail": "model-chip ← onPress"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "model-sheet appeared"
+    },
+    {
+      "i": 11,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "19% · 250 MB of 1.28 GB",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "19% · 250 MB of 1.28 GB"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 15012,
+      "detail": "15000 ms"
+    },
+    {
+      "i": 13,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "22% · 294 MB of 1.28 GB",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "22% · 294 MB of 1.28 GB"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 15005,
+      "detail": "15000 ms"
+    },
+    {
+      "i": 15,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "24% · 312 MB of 1.28 GB",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "24% · 312 MB of 1.28 GB"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 15015,
+      "detail": "15000 ms"
+    },
+    {
+      "i": 17,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "27% · 354 MB of 1.28 GB",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "27% · 354 MB of 1.28 GB"
+    },
+    {
+      "i": 18,
+      "op": "sleep",
+      "ok": true,
+      "ms": 15015,
+      "detail": "15000 ms"
+    },
+    {
+      "i": 19,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "31% · 398 MB of 1.28 GB",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "31% · 398 MB of 1.28 GB"
+    },
+    {
+      "i": 20,
+      "op": "sleep",
+      "ok": true,
+      "ms": 15014,
+      "detail": "15000 ms"
+    },
+    {
+      "i": 21,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "34% · 438 MB of 1.28 GB",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "34% · 438 MB of 1.28 GB"
+    },
+    {
+      "i": 22,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2938,
+      "detail": "N04-sheet-open-during-download"
+    },
+    {
+      "i": 23,
+      "op": "press",
+      "ok": true,
+      "ms": 159,
+      "detail": "model-sheet-close ← onPress"
+    },
+    {
+      "i": 24,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 25,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 167,
+      "detail": "/vault"
+    },
+    {
+      "i": 26,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1508,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 27,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "35% · 461 MB of 1.28 GB",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "35% · 461 MB of 1.28 GB"
+    },
+    {
+      "i": 28,
+      "op": "sleep",
+      "ok": true,
+      "ms": 15013,
+      "detail": "15000 ms"
+    },
+    {
+      "i": 29,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "40% · 513 MB of 1.28 GB",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "40% · 513 MB of 1.28 GB"
+    },
+    {
+      "i": 30,
+      "op": "sleep",
+      "ok": true,
+      "ms": 15015,
+      "detail": "15000 ms"
+    },
+    {
+      "i": 31,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "43% · 555 MB of 1.28 GB",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "43% · 555 MB of 1.28 GB"
+    },
+    {
+      "i": 32,
+      "op": "sleep",
+      "ok": true,
+      "ms": 15000,
+      "detail": "15000 ms"
+    },
+    {
+      "i": 33,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "45% · 589 MB of 1.28 GB",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "45% · 589 MB of 1.28 GB"
+    },
+    {
+      "i": 34,
+      "op": "sleep",
+      "ok": true,
+      "ms": 15013,
+      "detail": "15000 ms"
+    },
+    {
+      "i": 35,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "50% · 644 MB of 1.28 GB",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "50% · 644 MB of 1.28 GB"
+    }
+  ],
+  "errors": []
+}

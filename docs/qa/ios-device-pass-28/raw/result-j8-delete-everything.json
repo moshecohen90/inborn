@@ -1,0 +1,216 @@
+{
+  "runId": "j8-delete-everything",
+  "startedAt": "2026-09-28T11:51:26.794Z",
+  "finishedAt": "2026-09-28T11:51:49.892Z",
+  "ok": false,
+  "passed": 19,
+  "failed": 3,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 164,
+      "detail": "/settings/storage"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "storage appeared"
+    },
+    {
+      "i": 2,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1502,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 3,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Chats encrypted (SQLCipher) 2.92 MB",
+        "props": {
+          "value": "2.92 MB",
+          "label": "Chats",
+          "sub": "encrypted (SQLCipher)",
+          "disabled": false
+        }
+      },
+      "detail": "Chats encrypted (SQLCipher) 2.92 MB"
+    },
+    {
+      "i": 4,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Documents 111 B",
+        "props": {
+          "value": "111 B",
+          "label": "Documents",
+          "disabled": false
+        }
+      },
+      "detail": "Documents 111 B"
+    },
+    {
+      "i": 5,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Models not backed up 2.42 GB",
+        "props": {
+          "value": "2.42 GB",
+          "label": "Models",
+          "sub": "not backed up",
+          "disabled": false
+        }
+      },
+      "detail": "Models not backed up 2.42 GB"
+    },
+    {
+      "i": 6,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2869,
+      "detail": "J8-01-before-delete"
+    },
+    {
+      "i": 7,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "storage-delete-all ← onPress"
+    },
+    {
+      "i": 8,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "wipe-sheet appeared"
+    },
+    {
+      "i": 9,
+      "op": "sleep",
+      "ok": true,
+      "ms": 806,
+      "detail": "800 ms"
+    },
+    {
+      "i": 10,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Delete everything Deletes every chat, the encryption key and every document on this device. Nothing was ever anywhere else, so nothing can be recovered. Also delete downloaded models Cancel Continue",
+        "props": {
+          "title": "Delete everything",
+          "disabled": false
+        }
+      },
+      "detail": "Delete everything Deletes every chat, the encryption key and every document on this device. Nothing was ever anywhere else, so nothing can be recovered. Also delete downloaded models Cancel Continue"
+    },
+    {
+      "i": 11,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "value": false,
+          "label": "Also delete downloaded models",
+          "accessibilityLabel": "Also delete downloaded models",
+          "accessibilityRole": "switch",
+          "accessibilityState": {
+            "checked": false,
+            "disabled": false
+          },
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 12,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1928,
+      "detail": "J8-02-wipe-sheet"
+    },
+    {
+      "i": 13,
+      "op": "press",
+      "ok": true,
+      "ms": 152,
+      "detail": "wipe-step1 ← onPress"
+    },
+    {
+      "i": 14,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "wipe-step2 appeared"
+    },
+    {
+      "i": 15,
+      "op": "sleep",
+      "ok": true,
+      "ms": 515,
+      "detail": "500 ms"
+    },
+    {
+      "i": 16,
+      "op": "press",
+      "ok": true,
+      "ms": 184,
+      "detail": "wipe-step2 ← onPress"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 10016,
+      "detail": "10000 ms"
+    },
+    {
+      "i": 18,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 4783,
+      "detail": "J8-03-after-delete"
+    },
+    {
+      "i": 19,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 0,
+      "detail": "the QA bridge never got a fiber: the anchor view is not mounted"
+    },
+    {
+      "i": 20,
+      "op": "assertText",
+      "ok": false,
+      "ms": 0,
+      "detail": "the QA bridge never got a fiber: the anchor view is not mounted"
+    },
+    {
+      "i": 21,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 0,
+      "detail": "the QA bridge never got a fiber: the anchor view is not mounted"
+    }
+  ],
+  "errors": [
+    "step 19 (waitFor): the QA bridge never got a fiber: the anchor view is not mounted",
+    "step 20 (assertText): the QA bridge never got a fiber: the anchor view is not mounted",
+    "step 21 (waitFor): the QA bridge never got a fiber: the anchor view is not mounted"
+  ]
+}

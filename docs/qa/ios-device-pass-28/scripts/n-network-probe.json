@@ -1,0 +1,8 @@
+{"_": "Network probe: the phone's own download rate from the model CDN and from a neutral host, in the app's in-process (foreground) session and in nsurlsessiond (background), 20 s each.",
+ "steps": [
+  {"op": "sleep", "ms": 3000},
+  {"op": "probeDownload", "url": "https://models.inbornapp.com/v1/Qwen3.5-2B-Q4_K_M.gguf", "session": "foreground", "seconds": 20},
+  {"op": "probeDownload", "url": "https://speed.cloudflare.com/__down?bytes=200000000", "session": "foreground", "seconds": 20},
+  {"op": "probeDownload", "url": "https://models.inbornapp.com/v1/mmproj-Qwen3.5-2B-F16.gguf", "session": "foreground", "seconds": 20},
+  {"op": "screenshot", "name": "N01-after-probe"}
+ ]}

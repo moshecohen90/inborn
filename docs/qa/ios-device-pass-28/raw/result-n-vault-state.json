@@ -1,0 +1,61 @@
+{
+  "runId": "n-vault-state",
+  "startedAt": "2026-09-28T11:29:58.241Z",
+  "finishedAt": "2026-09-28T11:30:03.648Z",
+  "ok": true,
+  "passed": 5,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 158,
+      "detail": "/vault"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3002,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 2,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "○ FAST · Qwen3.5 2B RECOMMENDED ON THIS phone · CHAT IN ENGLISH Everyday assistant: writing, questions, translation. Best balance on this device. GOOD AT Best · Chat, Voice notes Good · Writing, Summaries, Translation, Documents Weak · Code, Math & reasoning LANGUAGES Native · English, Chinese Good · Spanish, French, Portuguese, Italian, Japanese, Russian, Arabic Basic · German, Korean No · Hebrew Weak at: Code, math; German prose and Korean translation; questions across many long documents. 1.28 GB · Q4_K_M · Battery: Medium ~15-24 tok/s on your phone Paused · 0 B of 1.28 GB Resume Cancel Details",
+        "props": {
+          "accessibilityState": {
+            "selected": false
+          },
+          "disabled": false
+        }
+      },
+      "detail": "○ FAST · Qwen3.5 2B RECOMMENDED ON THIS phone · CHAT IN ENGLISH Everyday assistant: writing, questions, translation. Best balance on this device. GOOD AT Best · Chat, Voice notes Good · Writing, Summa"
+    },
+    {
+      "i": 3,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Paused · 0 B of 1.28 GB",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Paused · 0 B of 1.28 GB"
+    },
+    {
+      "i": 4,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2240,
+      "detail": "N02-vault-fast-after-relaunch"
+    }
+  ],
+  "errors": []
+}

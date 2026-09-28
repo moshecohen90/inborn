@@ -1,0 +1,157 @@
+{
+ "_": "J6 on the native vault (the Extensions section is a SectionList; vault-extensions is the web's testID): onboarding again after J8's wipe (models kept), then each extension card by /vault?focus=<id>.",
+ "steps": [
+  {
+   "op": "waitFor",
+   "testID": "onboarding-welcome",
+   "timeoutMs": 60000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "press",
+   "testID": "onboarding-continue"
+  },
+  {
+   "op": "waitFor",
+   "testID": "onboarding-model",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "value",
+   "testID": "onboarding-model"
+  },
+  {
+   "op": "screenshot",
+   "name": "J6-00-onboarding-models-kept"
+  },
+  {
+   "op": "press",
+   "testID": "start-chatting"
+  },
+  {
+   "op": "waitFor",
+   "testID": "onboarding-sealed",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "press",
+   "testID": "sealed-start"
+  },
+  {
+   "op": "waitFor",
+   "testID": "onboarding-lock",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "press",
+   "testID": "lock-start"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 60000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "deeplink",
+   "url": "/vault?focus=vision-qwen35"
+  },
+  {
+   "op": "sleep",
+   "ms": 3500
+  },
+  {
+   "op": "value",
+   "testID": "model-card-vision-qwen35"
+  },
+  {
+   "op": "value",
+   "testID": "model-status-vision-qwen35"
+  },
+  {
+   "op": "screenshot",
+   "name": "J6-01-pack-instant"
+  },
+  {
+   "op": "deeplink",
+   "url": "/vault?focus=vision-qwen35-2b"
+  },
+  {
+   "op": "sleep",
+   "ms": 3500
+  },
+  {
+   "op": "value",
+   "testID": "model-card-vision-qwen35-2b"
+  },
+  {
+   "op": "value",
+   "testID": "model-status-vision-qwen35-2b"
+  },
+  {
+   "op": "screenshot",
+   "name": "J6-02-pack-fast"
+  },
+  {
+   "op": "deeplink",
+   "url": "/vault?focus=embed-e5"
+  },
+  {
+   "op": "sleep",
+   "ms": 3500
+  },
+  {
+   "op": "value",
+   "testID": "model-card-embed-e5"
+  },
+  {
+   "op": "value",
+   "testID": "model-status-embed-e5"
+  },
+  {
+   "op": "screenshot",
+   "name": "J6-03-index"
+  },
+  {
+   "op": "assertText",
+   "text": "Included",
+   "testID": "model-status-vision-qwen35"
+  },
+  {
+   "op": "assertText",
+   "text": "Installed",
+   "testID": "model-status-vision-qwen35-2b"
+  },
+  {
+   "op": "dump",
+   "name": "vault"
+  },
+  {
+   "op": "cleanup"
+  }
+ ]
+}

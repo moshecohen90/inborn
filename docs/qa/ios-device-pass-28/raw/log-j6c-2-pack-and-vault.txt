@@ -1,0 +1,54 @@
+15:16:39 pushing 46 steps as j6c-2-pack-and-vault
+15:21:58 shot J6-11-fast-answer-2
+15:22:04 shot J6-01-pack-instant
+15:22:09 shot J6-02-pack-fast
+15:22:15 shot J6-03-index
+15:22:18 ok     0 deeplink   /chats
+15:22:18 ok     1 waitFor    new-chat appeared
+15:22:18 ok     2 press      new-chat ← onPress
+15:22:18 ok     3 waitFor    start-chat appeared
+15:22:18 ok     4 press      start-chat ← onPress
+15:22:18 ok     5 waitFor    composer-input appeared
+15:22:18 ok     6 waitFor    Loading gone
+15:22:18 ok     7 sleep      1500 ms
+15:22:18 ok     8 value      FAST
+15:22:18 ok     9 devPrompt  image: red-circle-cat.png
+15:22:18 ok    10 waitFor    pending-images appeared
+15:22:18 ok    11 type       composer-input = 92 chars
+15:22:18 ok    12 sleep      800 ms
+15:22:18 ok    13 send       send ← onPress
+15:22:18 ok    14 waitFor    vision-hold appeared
+15:22:18 ok    15 sleep      1000 ms
+15:22:18 ok    16 value      FAST needs its photo pack to see photos
+15:22:18 ok    17 value      One 668 MB download, then this photo sends by itself.
+15:22:18 ok    18 value      Switch to INSTANT
+15:22:18 ok    19 press      vision-hold-download ← onPress
+15:22:18 ok    20 waitFor    vision-hold-progress appeared
+15:22:18 ok    21 sleep      5000 ms
+15:22:18 ok    22 value      Downloading the photo pack: 11 of 668 MB.
+15:22:18 ok    23 waitFor    vision-hold gone
+15:22:18 ok    24 waitFor    assistant-text appeared
+15:22:18 ok    25 waitFor    stop gone
+15:22:18 ok    26 sleep      1500 ms
+15:22:18 ok    27 value      The shape is a red circle, and the word written underneath is “CAT”.
+15:22:18 ok    28 screenshot J6-11-fast-answer-2
+15:22:18 ok    29 deeplink   /vault?focus=vision-qwen35
+15:22:18 ok    30 sleep      3500 ms
+15:22:18 ok    31 value      ◉ PHOTO PACK FOR INSTANT Lets Instant look at your photos on this device. Qwen3.5 mmproj 0.4B · 205 MB · F16 ·
+15:22:18 ok    32 value      Included with the app
+15:22:18 ok    33 screenshot J6-01-pack-instant
+15:22:18 ok    34 deeplink   /vault?focus=vision-qwen35-2b
+15:22:18 ok    35 sleep      3500 ms
+15:22:18 ok    36 value      ◉ PHOTO PACK FOR FAST Lets Fast look at your photos on this device. Qwen3.5 mmproj 0.3B · 668 MB · F16 · Batte
+15:22:18 ok    37 value      Installed
+15:22:18 ok    38 screenshot J6-02-pack-fast
+15:22:18 ok    39 deeplink   /vault?focus=embed-e5
+15:22:18 ok    40 sleep      3500 ms
+15:22:18 ok    41 value      ○ DOCUMENT INDEX Lets Inborn search your documents on this device. multilingual-e5-large-instruct 560M · 468 M
+15:22:18 FAIL  42 value      value model-status-embed-e5: no node with that testID is mounted
+15:22:18 ok    43 screenshot J6-03-index
+15:22:18 ok    44 assertText "Included" present
+15:22:18 FAIL  45 assertText assertText "Installed · 668 MB" is not on screen under model-status-vision-qwen35-2b
+15:22:18 44 passed, 2 failed, 4 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-28/docs/qa/ios-device-pass-28/screens
+15:22:18   ! step 42 (value): value model-status-embed-e5: no node with that testID is mounted
+15:22:18   ! step 45 (assertText): assertText "Installed · 668 MB" is not on screen under model-status-vision-qwen35-2b

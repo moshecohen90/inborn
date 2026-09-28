@@ -1,0 +1,330 @@
+{
+  "runId": "j6c-1-fast-again",
+  "startedAt": "2026-09-28T12:06:38.280Z",
+  "finishedAt": "2026-09-28T12:16:33.726Z",
+  "ok": true,
+  "passed": 40,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-welcome appeared"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1506,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "onboarding-continue ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-model appeared"
+    },
+    {
+      "i": 4,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 5,
+      "op": "press",
+      "ok": true,
+      "ms": 173,
+      "detail": "start-chatting ← onPress"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-sealed appeared"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3002,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 8,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "sealed-start ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-lock appeared"
+    },
+    {
+      "i": 10,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1502,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 11,
+      "op": "press",
+      "ok": true,
+      "ms": 172,
+      "detail": "lock-start ← onPress"
+    },
+    {
+      "i": 12,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 13,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 11452,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 15,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "model-chip ← onPress"
+    },
+    {
+      "i": 16,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "model-sheet appeared"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1015,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 18,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "model-sheet-download-fast ← onPress"
+    },
+    {
+      "i": 19,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 4,
+      "detail": "model-sheet-confirm-fast appeared"
+    },
+    {
+      "i": 20,
+      "op": "sleep",
+      "ok": true,
+      "ms": 513,
+      "detail": "500 ms"
+    },
+    {
+      "i": 21,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "model-sheet-go-fast ← onPress"
+    },
+    {
+      "i": 22,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "model-sheet-progress-fast appeared"
+    },
+    {
+      "i": 23,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "0% · 0 B of 1.28 GB",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "0% · 0 B of 1.28 GB"
+    },
+    {
+      "i": 24,
+      "op": "sleep",
+      "ok": true,
+      "ms": 15001,
+      "detail": "15000 ms"
+    },
+    {
+      "i": 25,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "2% · 32 MB of 1.28 GB",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "2% · 32 MB of 1.28 GB"
+    },
+    {
+      "i": 26,
+      "op": "sleep",
+      "ok": true,
+      "ms": 15042,
+      "detail": "15000 ms"
+    },
+    {
+      "i": 27,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "5% · 69 MB of 1.28 GB",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "5% · 69 MB of 1.28 GB"
+    },
+    {
+      "i": 28,
+      "op": "sleep",
+      "ok": true,
+      "ms": 15005,
+      "detail": "15000 ms"
+    },
+    {
+      "i": 29,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "7% · 100 MB of 1.28 GB",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "7% · 100 MB of 1.28 GB"
+    },
+    {
+      "i": 30,
+      "op": "sleep",
+      "ok": true,
+      "ms": 15014,
+      "detail": "15000 ms"
+    },
+    {
+      "i": 31,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "11% · 141 MB of 1.28 GB",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "11% · 141 MB of 1.28 GB"
+    },
+    {
+      "i": 32,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2886,
+      "detail": "J6-10-fast-sheet-download-2"
+    },
+    {
+      "i": 33,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 502540,
+      "detail": "model-sheet-use-fast appeared"
+    },
+    {
+      "i": 34,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1015,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 35,
+      "op": "press",
+      "ok": true,
+      "ms": 206,
+      "detail": "model-sheet-use-fast ← onPress"
+    },
+    {
+      "i": 36,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3011,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 37,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 38,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1514,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 39,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    }
+  ],
+  "errors": []
+}

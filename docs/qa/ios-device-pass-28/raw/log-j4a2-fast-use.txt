@@ -1,0 +1,29 @@
+14:35:20 pushing 25 steps as j4a2-fast-use
+14:39:11 shot J4-04-fast-installed
+14:39:19 shot J4-05-fast-selected
+14:39:22 ok     0 deeplink   /vault
+14:39:22 ok     1 sleep      1500 ms
+14:39:22 ok     2 value      57% · 731 MB of 1.28 GB
+14:39:22 ok     3 waitFor    use-fast appeared
+14:39:22 ok     4 sleep      1000 ms
+14:39:22 ok     5 value      Installed
+14:39:22 ok     6 deeplink   /chats
+14:39:22 ok     7 waitFor    new-chat appeared
+14:39:22 ok     8 press      new-chat ← onPress
+14:39:22 ok     9 waitFor    start-chat appeared
+14:39:22 ok    10 press      start-chat ← onPress
+14:39:22 ok    11 waitFor    composer-input appeared
+14:39:22 ok    12 waitFor    Loading gone
+14:39:22 ok    13 sleep      1000 ms
+14:39:22 ok    14 press      model-chip ← onPress
+14:39:22 ok    15 waitFor    model-sheet appeared
+14:39:22 ok    16 sleep      1500 ms
+14:39:22 ok    17 value      FAST RECOMMENDED Good at: Chat, Writing, Summaries, Translation, Documents, Voice notes, Photos English · Nati
+14:39:22 ok    18 screenshot J4-04-fast-installed
+14:39:22 ok    19 press      model-sheet-use-fast ← onPress
+14:39:22 ok    20 sleep      3000 ms
+14:39:22 ok    21 waitFor    Loading gone
+14:39:22 ok    22 sleep      2000 ms
+14:39:22 ok    23 value      FAST
+14:39:22 ok    24 screenshot J4-05-fast-selected
+14:39:22 25 passed, 0 failed, 2 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-28/docs/qa/ios-device-pass-28/screens

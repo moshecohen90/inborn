@@ -1,0 +1,10 @@
+14:27:38 launching com.inbornapp.mobile.qa
+14:28:23 pushing 5 steps as n-network-probe
+14:29:07 shot N01-after-probe
+14:29:10 ok     0 sleep      3000 ms
+14:29:10 ok     1 probeDownload foreground 1.96 MB/s · 24614336 B in 12571 ms
+14:29:10 FAIL   2 probeDownload probeDownload: speed.cloudflare.com is not an allowed model host
+14:29:10 ok     3 probeDownload foreground 2.36 MB/s · 47097482 B in 19990 ms
+14:29:10 ok     4 screenshot N01-after-probe
+14:29:10 4 passed, 1 failed, 1 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-28/docs/qa/ios-device-pass-28/screens
+14:29:10   ! step 2 (probeDownload): probeDownload: speed.cloudflare.com is not an allowed model host

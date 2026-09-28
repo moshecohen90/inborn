@@ -1,0 +1,44 @@
+15:05:52 launching com.inbornapp.mobile.qa
+15:06:37 pushing 40 steps as j6c-1-fast-again
+15:08:03 shot J6-10-fast-sheet-download-2
+15:16:34 ok     0 waitFor    onboarding-welcome appeared
+15:16:34 ok     1 sleep      1500 ms
+15:16:34 ok     2 press      onboarding-continue ← onPress
+15:16:34 ok     3 waitFor    onboarding-model appeared
+15:16:34 ok     4 sleep      2500 ms
+15:16:34 ok     5 press      start-chatting ← onPress
+15:16:34 ok     6 waitFor    onboarding-sealed appeared
+15:16:34 ok     7 sleep      3000 ms
+15:16:34 ok     8 press      sealed-start ← onPress
+15:16:34 ok     9 waitFor    onboarding-lock appeared
+15:16:34 ok    10 sleep      1500 ms
+15:16:34 ok    11 press      lock-start ← onPress
+15:16:34 ok    12 waitFor    composer-input appeared
+15:16:34 ok    13 waitFor    Loading gone
+15:16:34 ok    14 sleep      1500 ms
+15:16:34 ok    15 press      model-chip ← onPress
+15:16:34 ok    16 waitFor    model-sheet appeared
+15:16:34 ok    17 sleep      1000 ms
+15:16:34 ok    18 press      model-sheet-download-fast ← onPress
+15:16:34 ok    19 waitFor    model-sheet-confirm-fast appeared
+15:16:34 ok    20 sleep      500 ms
+15:16:34 ok    21 press      model-sheet-go-fast ← onPress
+15:16:34 ok    22 waitFor    model-sheet-progress-fast appeared
+15:16:34 ok    23 value      0% · 0 B of 1.28 GB
+15:16:34 ok    24 sleep      15000 ms
+15:16:34 ok    25 value      2% · 32 MB of 1.28 GB
+15:16:34 ok    26 sleep      15000 ms
+15:16:34 ok    27 value      5% · 69 MB of 1.28 GB
+15:16:34 ok    28 sleep      15000 ms
+15:16:34 ok    29 value      7% · 100 MB of 1.28 GB
+15:16:34 ok    30 sleep      15000 ms
+15:16:34 ok    31 value      11% · 141 MB of 1.28 GB
+15:16:34 ok    32 screenshot J6-10-fast-sheet-download-2
+15:16:34 ok    33 waitFor    model-sheet-use-fast appeared
+15:16:34 ok    34 sleep      1000 ms
+15:16:34 ok    35 press      model-sheet-use-fast ← onPress
+15:16:34 ok    36 sleep      3000 ms
+15:16:34 ok    37 waitFor    Loading gone
+15:16:34 ok    38 sleep      1500 ms
+15:16:34 ok    39 value      FAST
+15:16:34 40 passed, 0 failed, 1 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-28/docs/qa/ios-device-pass-28/screens

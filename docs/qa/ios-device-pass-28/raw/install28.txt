@@ -1,0 +1,46 @@
+lockState at start: passcodeRequired: false
+listing before: 31 lines
+byte copy before 14:03:28:
+  pulled inborn.db 2543616 B
+  pulled inborn.db-wal 4185952 B
+  pulled documents.json 858 B
+  pulled vault.json 559 B
+  pulled device-prefs.json 92 B
+  pulled licence.bin 100 B
+start=14:03:29
+rc=0 end=14:03:50
+after install: com.inbornapp.mobile 1.0.0 28
+listing after: 31 lines; identical to before: yes
+byte copy after:
+  pulled inborn.db 2543616 B
+  pulled inborn.db-wal 4185952 B
+  pulled documents.json 858 B
+  pulled vault.json 559 B
+  pulled device-prefs.json 92 B
+  pulled licence.bin 100 B
+SURVIVED identical: inborn.db (2543616 B)
+SURVIVED identical: inborn.db-wal (4185952 B)
+SURVIVED identical: documents.json (858 B)
+SURVIVED identical: vault.json (559 B)
+SURVIVED identical: device-prefs.json (92 B)
+SURVIVED identical: licence.bin (100 B)
+INSTALL-DONE
+
+the phone was unlocked through the install (lockState passcodeRequired: false at the start); the store app was not launched
+
+sha256 of the byte copy taken before the install (file names only; the files stay out of the repo):
+9c0866c7a83eb47e489357b10e3b1a62dbb8c6a9b48397f4c09dd0712da4db5a  device-prefs.json
+5752b971bdb5caf6ce1a9f7187f23ee49d1d87d8e3072ea9421ff59d0c35fcec  documents.json
+3c93187248e23ba8da3b4d77b037e6a0a4c674e10ab2090494430c29750339c1  inborn.db
+f6fe0f00d30a361eb375e66daa366e5a811cdd842d40aa616d74d3b8721994c6  inborn.db-wal
+4bf3b775f4fb6d7a8c3aaf0eb9efe05b7fdf383d6477e46768632edbf061865e  licence.bin
+7fbabab562f1d5e4197fe08fe1e0da5a33ab34e469d4f53ec04f81d63e79b291  vault.json
+
+same hash as build 27's record (ios-device-pass-27/raw/install27.txt): device-prefs.json, documents.json, inborn.db, inborn.db-wal
+differs from build 27's record: licence.bin and vault.json (both rewritten at 10:29 when pass 27 launched build 27 on About; after this install each is byte-identical to the copy taken just before it)
+
+the listing before the install: 31 lines, the same names and sizes as the listing taken after build 27's install (04:17)
+  it differs from that one only in four modification times, SQLite/inborn.db-shm, device-prefs.json, licence.bin and
+  models/vault.json, all 28/09/2026 10:29, when pass 27 launched build 27 on About; no entry is newer than 10:29
+the listing after the install is identical to the listing before it (cmp): yes, 31 lines
+the listings stay out of the repo because they are Moshe's container

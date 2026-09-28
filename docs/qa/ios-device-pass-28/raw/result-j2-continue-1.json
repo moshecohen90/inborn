@@ -1,0 +1,186 @@
+{
+  "runId": "j2-continue-1",
+  "startedAt": "2026-09-28T11:10:50.272Z",
+  "finishedAt": "2026-09-28T11:11:26.776Z",
+  "ok": true,
+  "passed": 23,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 162,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 104 chars"
+    },
+    {
+      "i": 9,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 260,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1507,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 12,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "stop ← onPress"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2001,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 14,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "The journey of spice, the most valuable commodity on earth, began in antiquity when nomadic tribes across the vast steppes of Central Asia and the steppes of Siberia discovered that wild grains like sesame and flax could be harvested without fire or plow. This initial discovery",
+        "props": {
+          "source": "The journey of spice, the most valuable commodity on earth, began in antiquity when nomadic tribes across the vast steppes of Central Asia and the steppes of Siberia discovered that wild grains like sesame and flax could be harvested without fire or plow. This initial discovery",
+          "disabled": false
+        }
+      },
+      "detail": "The journey of spice, the most valuable commodity on earth, began in antiquity when nomadic tribes across the vast steppes of Central Asia and the steppes of Siberia discovered that wild grains like s"
+    },
+    {
+      "i": 15,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2249,
+      "detail": "J2-1a-stopped"
+    },
+    {
+      "i": 16,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "continue appeared"
+    },
+    {
+      "i": 17,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "continue ← onPress"
+    },
+    {
+      "i": 18,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 19,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 21618,
+      "detail": "stop gone"
+    },
+    {
+      "i": 20,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1507,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 21,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The journey of spice, the most valuable commodity on earth, began in antiquity when nomadic tribes across the vast steppes of Central Asia and the steppes of Siberia discovered that wild grains like sesame and flax could be harvested without fire or plow. This initial discovery The initial discovery of these seeds sparked an immediate commercial boom that would span several centuries, as traders sought to access ingredients essential for flavoring meats and textiles. By the sixth century, European nations like the Byzantine Empire and the Crusader States were already importing large quantities of sesame oil and saffron from Central Asian markets, utilizing these plants as a primary source of aromatic oils and colorants that defined the culinary landscape of medieval Europe. During this early era, the spice trade was largely restricted to small-scale domestic cooking and limited export routes controlled by powerful empires such as the Mongol Khanate in Mongolia and the Ottoman Sultanate in Anatolia. The central hub for processing these goods was the Silk Road itself, which stretched across Central Asia into Persia, Turkey, and the Levant, allowing trade networks to expand rapidly as trade routes opened up during the medieval period. As trade expanded further into Northern Europe by the 12th century, merchants began establishing permanent trading posts on the coast of Spain and along the coasts of France and Italy, effectively creating a new colonial empire in Asia known as the \"Golden Spices.\" This shift allowed for more sophisticated commercial practices, including the use of trans-Atlantic sea lanes to bypass land-based bottlenecks that had previously blocked the flow of goods. The development of specialized spice processing facilities along the Silk Road and maritime routes led to a significant increase in the volume of dried goods produced and traded annually by the 15th century. By this time, organized trade networks began to emerge where traders would not only move spices but also contribute their own products to supply these vital commodities to European consumers, creating a complex web of interdependent economic relationships. The most critical turning point in this history occurred with the arrival of Vasco da Gama's Portuguese expedition in 1498, which successfully navigated the strait between India and Portugal and reached the port of Calicut on the Kerala coast of South India. This discovery brought a massive influx of spices from Southeast Asia to Europe, transforming the spice trade into one of the largest industries in human history during the Age of Discovery. Following this pivotal moment, European powers began systematically colonizing territories controlled by Asian empires to secure access to these commodities, leading to the establishment of colonial administration systems that would reshape how global commerce operated for centuries. The resulting colonies became major manufacturing hubs where spices were processed into powder and granules suitable for various culinary applications in Europe. As trade networks expanded dramatically with the 17th century, European powers increasingly relied on established trading companies rather than relying solely on local merchants, fostering a more centralized approach to managing vast oceanic routes and establishing permanent commercial bases across Asia. This period marked a shift from purely localized exchanges toward globalized commerce where spices became essential for both domestic consumption and export revenue across the continent of Europe. By the 18th century, the spice trade had evolved into one of the most volatile yet lucrative industries in history, driven by a complex interplay between European demand, Asian production capabilities, and fluctuating geopolitical rivalries. Major trading houses such as the Oriental Company and the Spice Merchant's Company would consolidate their operations to ensure control over the supply chains that defined this global economy for several decades. The 19th century witnessed unprecedented commercial growth through colonial expansion in China, where British East India Companies established permanent trading stations across the Indian Ocean to secure access to vast reserves of spices from Southeast Asia and India. This period also saw the rise of new maritime routes connecting Europe with Africa and South America, further expanding the reach of these valuable commodities beyond their traditional Mediterranean origins. In the modern era, particularly since the mid-20th century, the spice trade has undergone a dramatic transformation as globalization accelerated, allowing spices from diverse parts of Asia to enter European markets through various channels such as direct retail and international distributors. Today, the history of this industry is best exemplified by the massive commercial successes that occurred during the colonial era, which laid the groundwork for today's complex supply chains and global food distribution systems.",
+        "props": {
+          "source": "The journey of spice, the most valuable commodity on earth, began in antiquity when nomadic tribes across the vast steppes of Central Asia and the steppes of Siberia discovered that wild grains like sesame and flax could be harvested without fire or plow. This initial discovery The initial discovery of these seeds sparked an immediate commercial boom that would span several centuries, as traders sought to access ingredients essential for flavoring meats and textiles. By the sixth century, European nations like the Byzantine Empire and the Crusader States were already importing large quantities of sesame oil and saffron from Central Asian markets, utilizing these plants as a primary source of aromatic oils and colorants that defined the culinary landscape of medieval Europe.\n\nDuring this early era, the spice trade was largely restricted to small-scale domestic cooking and limited export routes controlled by powerful empires such as the Mongol Khanate in Mongolia and the Ottoman Sultanate in Anatolia. The central hub for processing these goods was the Silk Road itself, which stretched across Central Asia into Persia, Turkey, and the Levant, allowing trade networks to expand rapidly as trade routes opened up during the medieval period.\n\nAs trade expanded further into Northern Europe by the 12th century, merchants began establishing permanent trading posts on the coast of Spain and along the coasts of France and Italy, effectively creating a new colonial empire in Asia known as the \"Golden Spices.\" This shift allowed for more sophisticated commercial practices, including the use of trans-Atlantic sea lanes to bypass land-based bottlenecks that had previously blocked the flow of goods.\n\nThe development of specialized spice processing facilities along the Silk Road and maritime routes led to a significant increase in the volume of dried goods produced and traded annually by the 15th century. By this time, organized trade networks began to emerge where traders would not only move spices but also contribute their own products to supply these vital commodities to European consumers, creating a complex web of interdependent economic relationships.\n\nThe most critical turning point in this history occurred with the arrival of Vasco da Gama's Portuguese expedition in 1498, which successfully navigated the strait between India and Portugal and reached the port of Calicut on the Kerala coast of South India. This discovery brought a massive influx of spices from Southeast Asia to Europe, transforming the spice trade into one of the largest industries in human history during the Age of Discovery.\n\nFollowing this pivotal moment, European powers began systematically colonizing territories controlled by Asian empires to secure access to these commodities, leading to the establishment of colonial administration systems that would reshape how global commerce operated for centuries. The resulting colonies became major manufacturing hubs where spices were processed into powder and granules suitable for various culinary applications in Europe.\n\nAs trade networks expanded dramatically with the 17th century, European powers increasingly relied on established trading companies rather than relying solely on local merchants, fostering a more centralized approach to managing vast oceanic routes and establishing permanent commercial bases across Asia. This period marked a shift from purely localized exchanges toward globalized commerce where spices became essential for both domestic consumption and export revenue across the continent of Europe.\n\nBy the 18th century, the spice trade had evolved into one of the most volatile yet lucrative industries in history, driven by a complex interplay between European demand, Asian production capabilities, and fluctuating geopolitical rivalries. Major trading houses such as the Oriental Company and the Spice Merchant's Company would consolidate their operations to ensure control over the supply chains that defined this global economy for several decades.\n\nThe 19th century witnessed unprecedented commercial growth through colonial expansion in China, where British East India Companies established permanent trading stations across the Indian Ocean to secure access to vast reserves of spices from Southeast Asia and India. This period also saw the rise of new maritime routes connecting Europe with Africa and South America, further expanding the reach of these valuable commodities beyond their traditional Mediterranean origins.\n\nIn the modern era, particularly since the mid-20th century, the spice trade has undergone a dramatic transformation as globalization accelerated, allowing spices from diverse parts of Asia to enter European markets through various channels such as direct retail and international distributors. Today, the history of this industry is best exemplified by the massive commercial successes that occurred during the colonial era, which laid the groundwork for today's complex supply chains and global food distribution systems.",
+          "disabled": false
+        }
+      },
+      "detail": "The journey of spice, the most valuable commodity on earth, began in antiquity when nomadic tribes across the vast steppes of Central Asia and the steppes of Siberia discovered that wild grains like s"
+    },
+    {
+      "i": 22,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3178,
+      "detail": "J2-1b-continued"
+    }
+  ],
+  "errors": []
+}

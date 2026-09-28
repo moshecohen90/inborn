@@ -7208,6 +7208,40 @@ Gates exit 0: `typecheck`, `lint`, `test` (core 1,200 with 4 skipped, mobile 1,2
 Safari or Firefox; the failed-unlock row with a lock on and the Ask sheet's locked switch were checked in code and
 unit tests only.
 
+## iOS build 28: main with rounds 117 and 118, on Moshe's iPhone only (branch `ios-build-28`) — 28.9.2026
+
+Build 1.0.0 (28) carries local `main` e61f222a (build 27's main plus round 117's photo packs per model and round 118's
+Continue seam word) to the iPhone 13 Pro. Nothing went to a store. The first-user journeys ran on the `.qa` twin built
+from the same commit, and the twin was removed before the store app was opened.
+
+- **The build.** Commit 46b8b6f4 bumps the build number 27 → 28. Gates exit 0 on the first run: 1,186 core with 4
+  skipped, 1,195 mobile, 24 i18n, 23 ui, 4 desktop. Fresh prebuild and archive. Instant and its bundled photo pack
+  (`mmproj-Qwen3.5-0.8B-F16.gguf`, 204,987,232 B) are byte-exact to the catalog, the bundled catalog lists
+  `vision-qwen35-2b` and `vision-qwen35-4b` with their sha256, and build 27's bundle has none of round 117's or 118's
+  strings. The QA-bridge and shipping-bundle gates pass.
+- **On the phone as an update.** The byte copy of the six container files was taken first. After the install the
+  `Documents/` listing is identical and all six files are byte-identical. The `.qa` twin was removed first; only then
+  was the store app opened, and About reads `1.0.0 (28) · 46b8b6f49049`. It was left on its Chats list.
+- **J1 to J8 on the phone.** Instant answers at 32.3 tok/s, and Fast took 9 min 25 s from the model sheet. Four photos
+  on Instant drew no card and none of the banned phrases; the receipt answer invents "EUR", and the CAT answer puts the
+  word inside the circle. On Fast the card reads *"FAST needs its photo pack to see photos / One 668 MB download, then
+  this photo sends by itself."* with **Switch to INSTANT**; the pack took 6 min 22 s with its progress line, the photo
+  sent by itself, and Fast answered *"The shape is a red circle (symbolizing the sun), and the word written underneath
+  is "CAT.""* at 16.6 tok/s, first token 4.4 s, one process throughout. A document answer cites `office-hours.txt · part
+  1`, and an off-document question shows *"Answered without them."* The vault reads *"Photo pack for Instant"* ·
+  *"Included with the app"* and *"Photo pack for Fast"* · *"Installed"*, with 668 MB on the card's detail line. Privacy
+  & storage shows real sizes, and Delete everything with models kept lands on a clean Welcome, also after a cold
+  relaunch, with no `.corrupt` file. J10 (airplane) was skipped: the bridge has no network-off op.
+- **Continue after Stop (F440): no word doubled, but both tries say the stopped clause again.** Try 1 reads *"…This
+  initial discovery The initial discovery of these seeds…"*, a 3-word clause under round 113's 5-word and 24-code-point
+  bar. Try 2 says the stopped sentence's middle phrase again, which `restated()` does not read.
+- **Harness.** The first Fast download from the model sheet ran at 0.04 MB/s, unexplained; the phone measured about 2
+  MB/s through the bridge, Resume kept the bytes, and a second fresh download ran at the normal rate. The bridge's
+  `setTier free` leaves the licence state at Pro (`pretendTier(null)` keeps the pretended tier), a QA-only path.
+
+Evidence: `docs/qa/ios-build-28-2026-09-28.md`, `docs/qa/ios-device-pass-28-2026-09-28.md`,
+`docs/qa/ios-device-pass-28/`.
+
 ## iOS build 23: main with round 111's loop guard, on Moshe's iPhone only (branch `ios-build-23`) — 27.9.2026
 
 Build 1.0.0 (23) carries local `main` 98722df7 (build 22's main plus round 111) to the iPhone 13 Pro, so the phone has
