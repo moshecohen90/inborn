@@ -1,0 +1,11 @@
+fixes-r125.test.ts on main e3d19aca's apps/mobile/src/adapters/wllama.ts
+     × Instant's pack on the CPU gets at least 512 image tokens, the cap unchanged 189ms
+     × Instant's pack on WebGPU gets no minimum: its 1024 px photo is already ~494 tokens 0ms
+     × Fast's and Sharp's packs get no minimum on either path 0ms
+     × the projector load hands wllama the minimum for Instant on the CPU 5ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+TypeError: visionParams is not a function
+TypeError: visionParams is not a function
+TypeError: visionParams is not a function
+AssertionError: expected { n_ctx: 4096, n_threads: 1, …(5) } to match object { n_gpu_layers: +0, …(2) }
+      Tests  4 failed | 3 passed (7)

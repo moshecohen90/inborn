@@ -1,7 +1,7 @@
 /* wllama's package "main" points at its TypeScript sources; esm/ carries the built JS plus .d.ts. */
 import { LoggerWithoutDebug, LogLevel, Wllama } from "@wllama/wllama/esm/index.js";
 import type { ChatCompletionChunk, ChatCompletionMessage, ChatCompletionParams } from "@wllama/wllama/esm/index.js";
-import { ANSWER_CEILING, prefillText, sampling, type Capabilities, type Delta, type Embedder, type GenOpts, type LoadOptions, type LocalLM, type Message, type ModelRef, type Session, type Stats } from "@inborn/core";
+import { ANSWER_CEILING, prefillText, sampling, visionPackFor, type Capabilities, type Delta, type Embedder, type GenOpts, type LoadOptions, type LocalLM, type Message, type ModelRef, type Session, type Stats } from "@inborn/core";
 import { fileOfUri, modelFile } from "../web/opfs";
 import { recordPhotoMs } from "../extensions/timeHint";
 import { photoForEngine } from "../images/vision";
@@ -64,6 +64,14 @@ async function imageBytes(uri: string): Promise<ArrayBuffer> {
 
 /* Photos are 1024 px, or 512 px on the CPU path (F417), when they get here; 512 image tokens is what the phones use, and fewer misread text. */
 const IMAGE_MAX_TOKENS = 512;
+/* F453 (probe-cpu-1024): Instant misreads photo text below ~500 image tokens (a 320 px photo is 100); 512 read 4/4, at ~89 s to the first word instead of 20-33 s. */
+export const CPU_MIN_IMAGE_TOKENS: Readonly<Record<string, number>> = { "vision-qwen35": 512 };
+
+/** The projector's load params for a vision pack, on WebGPU or on the CPU (F453). */
+export function visionParams(packId: string | null, onGpu: boolean): { image_max_tokens: number; image_min_tokens?: number } {
+  const min = onGpu || !packId ? undefined : CPU_MIN_IMAGE_TOKENS[packId];
+  return { image_max_tokens: IMAGE_MAX_TOKENS, ...(min ? { image_min_tokens: min } : {}) };
+}
 /* wllama 3.6.1 never returns from an image encode with 3 or more WASM threads (round 105, headless Chromium); 2 works. */
 const VISION_MAX_THREADS = 2;
 
@@ -93,7 +101,8 @@ export class WllamaLM implements LocalLM {
     const threads = mmproj ? Math.min(VISION_MAX_THREADS, threadCount(opts.threads)) : threadCount(opts.threads);
     const wllama = new Wllama(WASM_PATHS, { logger: LoggerWithoutDebug, allowOffline: true });
     wllama.setCompat(COMPAT_PATHS);
-    const params = { n_ctx: opts.nCtx, n_threads: threads, n_gpu_layers: layers, jinja: true, chat_template: model.chatTemplate, log_level: LogLevel.WARN, ...(mmproj ? { image_max_tokens: IMAGE_MAX_TOKENS } : {}) };
+    const image = mmproj ? visionParams(visionPackFor(model.id)?.id ?? null, layers > 0) : null;
+    const params = { n_ctx: opts.nCtx, n_threads: threads, n_gpu_layers: layers, jinja: true, chat_template: model.chatTemplate, log_level: LogLevel.WARN, ...image };
     const opfs = fileOfUri(model.uri);
     const projector = mmproj ? fileOfUri(mmproj) : null;
     /* opfs:// is the delivered GGUF on this device (src/web/opfs.ts): no network, wllama reads the File in slices.
@@ -101,9 +110,9 @@ export class WllamaLM implements LocalLM {
     if (opfs) await wllama.loadModel([await modelFile(opfs), ...(projector ? [await modelFile(projector)] : [])], params);
     else await wllama.loadModelFromUrl(mmproj ? { url: model.uri, mmprojUrl: mmproj } : model.uri, params);
     const ms = Math.round(performance.now() - started);
-    this.devInfo = { ...this.devInfo, loadMs: ms, gpuLayers: layers, threads: wllama.getNumThreads(), vision: !!mmproj };
+    this.devInfo = { ...this.devInfo, loadMs: ms, gpuLayers: layers, threads: wllama.getNumThreads(), vision: !!mmproj, imageMinTokens: image?.image_min_tokens ?? null };
     console.info(
-      `[wllama] loaded ${model.id}${mmproj ? " + projector" : ""} in ${ms} ms · threads=${wllama.getNumThreads()} isolated=${globalThis.crossOriginIsolated} gpuLayers=${layers} nCtx=${opts.nCtx} libllama=${Wllama.getLibllamaVersion()}`,
+      `[wllama] loaded ${model.id}${image ? ` + projector (image tokens ${image.image_min_tokens ?? 0}-${image.image_max_tokens})` : ""} in ${ms} ms · threads=${wllama.getNumThreads()} isolated=${globalThis.crossOriginIsolated} gpuLayers=${layers} nCtx=${opts.nCtx} libllama=${Wllama.getLibllamaVersion()}`,
     );
     return wllama;
   }

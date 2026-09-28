@@ -1,0 +1,10 @@
+open: http://127.0.0.1:8971/onboarding
+1c download+ready: true after 43 s | url http://127.0.0.1:8971/
+4c model chip after 15 s: INSTANT
+04e download id: vision-hold-download
+04e after 100 s; assistant: INSTANT · ON-DEVICE AI The red circle is the flag of Japan, which has a specific shape and is written as CAT below it. LEDGER
+04f photo turn ttft ms (inborn.vision.photoMs): 86631
+info: [wllama] loaded fast in 1752 ms · threads=6 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c
+info: [wllama] loaded instant in 1304 ms · threads=6 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c
+info: [wllama] loaded instant + projector (image tokens 512-512) in 1622 ms · threads=2 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c
+info: [wllama] photo turn · photos=1 ttft=86631 ms total=88223 ms tokens=22

@@ -4,8 +4,8 @@
  * turn on that model when there was one, else the headless measurement (README, rounds 108 and 117).
  */
 export const PHOTO_MS_KEY = "inborn.vision.photoMs";
-/** Headless Chromium, photo scaled to 512 px for the CPU (F417), Instant + projector, WASM with 2 threads: 35.7, 38.2 and 36.2 s to the first token. */
-export const MEASURED_WASM_PHOTO_MS = 37_000;
+/** Headless Chromium, Instant + projector on the CPU with at least 512 image tokens (F453), WASM with 2 threads: 89.0, 88.5 and 86.6 s to the first token. */
+export const MEASURED_WASM_PHOTO_MS = 88_000;
 /** Per model, since each encodes with its own projector. Fast, measured like Instant: 108.8 s to the first token. */
 export const MEASURED_WASM_PHOTO_MS_BY_MODEL: Readonly<Record<string, number>> = { instant: MEASURED_WASM_PHOTO_MS, fast: 109_000 };
 export const HINT_ABOVE_MS = 20_000;

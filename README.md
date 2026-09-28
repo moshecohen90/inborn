@@ -7268,6 +7268,38 @@ shared length line (*"Do not restate the question, list alternatives, …"*): on
 It also copies the passage label *"[1]"* into its answer. Strict mode on Instant returned the not-found token for about
 half of the matching questions, on main as now.
 
+## Fixes round 125: Instant reads photos on the browser CPU path (branch `web-photo-125`) — 28.9.2026
+
+The lead's web journey on main e3d19aca asked Instant about a 320 px photo of a red circle over the word CAT and got
+*"The red circle has no shape; there are no words associated with it"*. `probe-cpu-1024` found the cause: on the CPU
+path (wllama without WebGPU) the photo reaches Instant's projector with too few image tokens, 100 for a 320 px photo
+and 192 for a 1024 px photo scaled to 512 px (F417). Instant then guessed *"S"*, *"R"*, *"T"* or *"GOT"* in 0 of 4
+samples, and read CAT in 4 of 4 with about 500 tokens. Fast read CAT at the shipped counts.
+
+- **The rule.** `visionParams(packId, onGpu)` in `apps/mobile/src/adapters/wllama.ts` builds the projector's load
+  params. Instant's pack `vision-qwen35` on the CPU gets `image_min_tokens: 512` from `CPU_MIN_IMAGE_TOKENS`, and
+  `image_max_tokens` stays 512. Fast's and Sharp's packs, and every pack on WebGPU, load as before; on WebGPU the
+  1024 px photo already gives about 494 tokens. The pack is the loaded model's (`visionPackFor(model.id)`) and the path
+  is the layers the load got. The load line now names the token range: *"loaded instant + projector (image tokens
+  512-512)"*.
+- **The cost.** The first word of a photo answer on the CPU comes after about 88 s instead of 20 to 33 s. The
+  alternative was a wrong answer in 20 s. The photo card's CPU estimate for Instant (`MEASURED_WASM_PHOTO_MS`) moves
+  from 37 s to 88 s, so a browser without WebGPU is told *"About 88 s per photo in this browser."*
+
+Live on this branch's web build (127.0.0.1:8971, fresh chrome-headless-shell profile, `gpuLayers=0`, 2 threads), the
+lead's walker steps 1 and 4: Fast downloaded, the chat switched to Instant, the 205 MB pack downloaded from the hold
+card, and the 320 px photo was answered *"The red circle is the flag of Japan, which has a specific shape and is
+written as CAT below it."* First word 86.6 s, answer 88.2 s, on screen 100 s after Download. The smoke's photo pass
+(the phones' 1024 × 768 fixture, scaled to 512 px) answered *"The circle is red, and the text under it says CAT."*
+with the first word at 89.1 s. Evidence: `docs/qa/web-photo-125/` (`answer.txt`, `04e-photo-answer.png`,
+`04d-card.png`, `run.txt`, `red-e3d19aca.txt`).
+
+Red first: 4 of 7 tests in `apps/mobile/src/adapters/fixes-r125.test.ts` fail on main e3d19aca's adapter; the other 3
+guard that the GPU path, Fast and text-only loads carry no minimum. Gates exit 0: install --frozen-lockfile,
+typecheck, lint, test (core 1,218 with 4 skipped, mobile 1,243, i18n 24, ui 23, desktop 4), web:build, web:smoke (27
+passes). Not run: a real browser with WebGPU (the rule leaves that path unchanged, covered by unit tests), Safari,
+Firefox, and a second CPU machine; the timings share the Mac with other sessions.
+
 ## iOS build 28: main with rounds 117 and 118, on Moshe's iPhone only (branch `ios-build-28`) — 28.9.2026
 
 Build 1.0.0 (28) carries local `main` e61f222a (build 27's main plus round 117's photo packs per model and round 118's
