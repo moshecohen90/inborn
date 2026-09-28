@@ -1,0 +1,50 @@
+09:48:25 pushing 45 steps as c-asked-repeat
+09:48:34 shot C01-asked-repeat
+09:48:41 shot C02-asked-repeat
+09:48:49 shot C03-asked-repeat
+09:48:53 ok     0 deeplink   /chats
+09:48:53 ok     1 waitFor    new-chat appeared
+09:48:53 ok     2 press      new-chat ← onPress
+09:48:53 ok     3 waitFor    start-chat appeared
+09:48:53 ok     4 press      start-chat ← onPress
+09:48:53 ok     5 waitFor    composer-input appeared
+09:48:53 ok     6 sleep      1500 ms
+09:48:53 ok     7 type       composer-input = 107 chars
+09:48:53 ok     8 send       send ← onPress
+09:48:53 ok     9 waitFor    assistant-text appeared
+09:48:53 ok    10 waitFor    stop gone
+09:48:53 ok    11 sleep      1500 ms
+09:48:53 ok    12 value      The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox 
+09:48:53 ok    13 screenshot C01-asked-repeat
+09:48:53 ok    14 waitFor    loop-notice gone
+09:48:53 ok    15 deeplink   /chats
+09:48:53 ok    16 waitFor    new-chat appeared
+09:48:53 ok    17 press      new-chat ← onPress
+09:48:53 ok    18 waitFor    start-chat appeared
+09:48:53 ok    19 press      start-chat ← onPress
+09:48:53 ok    20 waitFor    composer-input appeared
+09:48:53 ok    21 sleep      1500 ms
+09:48:53 ok    22 type       composer-input = 107 chars
+09:48:53 ok    23 send       send ← onPress
+09:48:53 ok    24 waitFor    assistant-text appeared
+09:48:53 ok    25 waitFor    stop gone
+09:48:53 ok    26 sleep      1500 ms
+09:48:53 ok    27 value      The quick brown fox jumps over the lazy dog.
+09:48:53 ok    28 screenshot C02-asked-repeat
+09:48:53 ok    29 waitFor    loop-notice gone
+09:48:53 ok    30 deeplink   /chats
+09:48:53 ok    31 waitFor    new-chat appeared
+09:48:53 ok    32 press      new-chat ← onPress
+09:48:53 ok    33 waitFor    start-chat appeared
+09:48:53 ok    34 press      start-chat ← onPress
+09:48:53 ok    35 waitFor    composer-input appeared
+09:48:53 ok    36 sleep      1500 ms
+09:48:53 ok    37 type       composer-input = 107 chars
+09:48:53 ok    38 send       send ← onPress
+09:48:53 ok    39 waitFor    assistant-text appeared
+09:48:53 ok    40 waitFor    stop gone
+09:48:53 ok    41 sleep      1500 ms
+09:48:53 ok    42 value      The quick brown fox jumps over the lazy dog.
+09:48:53 ok    43 screenshot C03-asked-repeat
+09:48:53 ok    44 waitFor    loop-notice gone
+09:48:53 45 passed, 0 failed, 3 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-27/docs/qa/ios-device-pass-27/screens

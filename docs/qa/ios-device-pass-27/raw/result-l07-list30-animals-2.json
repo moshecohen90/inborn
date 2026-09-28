@@ -1,0 +1,1072 @@
+{
+  "runId": "l07-list30-animals-2",
+  "startedAt": "2026-09-28T06:33:10.143Z",
+  "finishedAt": "2026-09-28T06:33:49.946Z",
+  "ok": false,
+  "passed": 104,
+  "failed": 1,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 156,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1508,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 7,
+      "op": "type",
+      "ok": true,
+      "ms": 169,
+      "detail": "composer-input = 63 chars"
+    },
+    {
+      "i": 8,
+      "op": "send",
+      "ok": true,
+      "ms": 172,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 10,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "1 ▍",
+        "props": {
+          "source": "1",
+          "disabled": false
+        }
+      },
+      "detail": "1 ▍"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 709,
+      "detail": "700 ms"
+    },
+    {
+      "i": 12,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clown ▍",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clown",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clown ▍"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 704,
+      "detail": "700 ms"
+    },
+    {
+      "i": 14,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11 ▍",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11 ▍"
+    },
+    {
+      "i": 15,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 16,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15 ▍",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15 ▍"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 704,
+      "detail": "700 ms"
+    },
+    {
+      "i": 18,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19 ▍",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 723,
+      "detail": "700 ms"
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Puffer ▍",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Puffer",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 707,
+      "detail": "700 ms"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 24,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 25,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 26,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 27,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 28,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 30,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 31,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 32,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 33,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 34,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 35,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 36,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 37,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 38,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 39,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 40,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 41,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 42,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 43,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 44,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 45,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 46,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 47,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 48,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 49,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 50,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 51,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 52,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 53,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 54,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 55,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 56,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 57,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 58,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 59,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 60,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 61,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 62,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 63,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 64,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 65,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 66,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 67,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 68,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 69,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 70,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 71,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 72,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 73,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 74,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 75,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 76,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 77,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 78,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 79,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 80,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 81,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 82,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 83,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 84,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 85,
+      "op": "sleep",
+      "ok": true,
+      "ms": 711,
+      "detail": "700 ms"
+    },
+    {
+      "i": 86,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 87,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 88,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 89,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 90,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 91,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 92,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 93,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 94,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 95,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 96,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 97,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 98,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 99,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 100,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "stop gone"
+    },
+    {
+      "i": 101,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1515,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 102,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead shark 17. Blue whale 18. Pelagic rays 19. Whale sharks 20. Giant squid 21. Whale toothfish 22. Pufferfish",
+        "props": {
+          "source": "1. Dolphins\n2. Whales\n3. Sharks\n4. Sea turtles\n5. Jellyfish\n6. Clownfish\n7. Octopus\n8. Koi fish\n9. Angelfish\n10. Sardine\n11. Eel\n12. Manta ray\n13. Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+          "disabled": false
+        }
+      },
+      "detail": "1. Dolphins 2. Whales 3. Sharks 4. Sea turtles 5. Jellyfish 6. Clownfish 7. Octopus 8. Koi fish 9. Angelfish 10. Sardine 11. Eel 12. Manta ray 13. Coral reef fish 14. Sea bass 15. Snook 16. Hammerhead"
+    },
+    {
+      "i": 103,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3198,
+      "detail": "L07-list30-animals-2"
+    },
+    {
+      "i": 104,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 534,
+      "detail": "waitFor loop-notice never went away in 500 ms"
+    }
+  ],
+  "errors": [
+    "step 104 (waitFor): waitFor loop-notice never went away in 500 ms",
+    "console.log: [chat] loop retry: kept 307 chars, unit 9 cp x2",
+    "console.log: [chat] loop cut: kept 307 of 319 chars, unit 7 cp x2"
+  ]
+}

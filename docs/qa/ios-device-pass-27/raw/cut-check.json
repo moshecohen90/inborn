@@ -1,0 +1,292 @@
+[
+ {
+  "run": "l02-es-list",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l02-fr-list",
+  "seams": [
+   {
+    "kind": "retry",
+    "at": 661,
+    "takenBack": "10",
+    "keptTail": "l artisanal.\n8. Un jeu vidéo à la console Nintendo ou PlayStation.\n9. Une expérience culinaire avec une cuisine maison.\n",
+    "after": "10. Une expérience culinaire avec un chef local (ex: cuisine maison, repas à la française).\n",
+    "flags": []
+   },
+   {
+    "kind": "cut",
+    "at": 753,
+    "keptTail": "u PlayStation.\n9. Une expérience culinaire avec une cuisine maison.\n10. Une expérience culinaire avec un chef local (ex: cuisine maison, repas à la française).\n",
+    "after": "",
+    "flags": []
+   }
+  ],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l02-he-list",
+  "seams": [
+   {
+    "kind": "retry",
+    "at": 168,
+    "takenBack": "14",
+    "keptTail": "לים\n3. חיפה\n4. בן גורם\n5. נתניה\n6. ארצות הברית\n7. טירייה\n8. דודיה\n9. ניו יורק\n10. פלנסיס\n11. מוסקבה\n12. קייב\n13. רמת גן\n",
+    "after": "",
+    "flags": []
+   },
+   {
+    "kind": "cut",
+    "at": 168,
+    "keptTail": "ה של 30 ערים בישראל:\n\n1. תל אביב\n2. ירושלים\n3. חיפה\n4. בן גורם\n5. נתניה\n6. ארצות הברית\n7. טירייה\n8. דודיה\n9. ניו יורק\n10. פלנסיס\n11. מוסקבה\n12. קייב\n13. רמת גן\n",
+    "after": "",
+    "flags": []
+   }
+  ],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l02-ja-list-cities",
+  "seams": [
+   {
+    "kind": "retry",
+    "at": 78,
+    "takenBack": "、鳥取",
+    "keptTail": "日本の都市を20個挙げます。東京、大阪、名古屋、京都、福岡、広島、長崎、熊本、札幌、仙台、神奈川、愛知、岐阜、長野、静岡、福井、宮城、岡山、佐賀、山口、鳥取",
+    "after": "。これ以上は続けます。",
+    "flags": [
+     "half-item"
+    ]
+   }
+  ],
+  "renumbered": [],
+  "flags": [
+   "half-item"
+  ]
+ },
+ {
+  "run": "l02-ja-nenji",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l02-ko-list",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l02-list30-animals",
+  "seams": [
+   {
+    "kind": "cut",
+    "at": 243,
+    "keptTail": "opus\n9. Sea Snake\n10. Sea Bass\n11. Sea Lion\n12. Sea Turtle\n13. Sea Grouper\n14. Sea Oar\n15. Sea Star\n16. Sea Butterfly\n17. Sea Shrimp\n18. Sea Slug\n19. Sea Snail\n",
+    "after": "",
+    "flags": []
+   }
+  ],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l02-math-long-div",
+  "seams": [
+   {
+    "kind": "retry",
+    "at": 756,
+    "takenBack": "",
+    "keptTail": "own as 002.\n6. Bring down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615.",
+    "after": " 123 × 4 = 492, so the quotient at this position is 004.\n",
+    "flags": [
+     "list-to-prose"
+    ]
+   },
+   {
+    "kind": "cut",
+    "at": 813,
+    "keptTail": "ing down the next digit (6), making the number 543. Divide 543 by 123: 123 × 4 = 492 and 123 × 5 = 615. 123 × 4 = 492, so the quotient at this position is 004.\n",
+    "after": "",
+    "flags": []
+   }
+  ],
+  "renumbered": [],
+  "flags": [
+   "list-to-prose"
+  ]
+ },
+ {
+  "run": "l07-es-list-1",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-es-list-2",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-fr-list-1",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-fr-list-2",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-he-explain-1",
+  "seams": [
+   {
+    "kind": "retry",
+    "at": 1232,
+    "takenBack": "   פוטוסינתזה היא רק סוג של מוצר; המצבים האופטי",
+    "keptTail": "וכל להשתמש בו במידות פירוטת. אם אין לכם מקצוע, אתה יכול לראות גם חלק מהתעשייה.\n\n5. **מה זה אומר אם לא מתאימה למשמעות?**\n",
+    "after": "",
+    "flags": []
+   },
+   {
+    "kind": "cut",
+    "at": 1232,
+    "keptTail": "חת?**\n   אם יש לכם דיון עם איש מקצועי, תוכל להשתמש בו במידות פירוטת. אם אין לכם מקצוע, אתה יכול לראות גם חלק מהתעשייה.\n\n5. **מה זה אומר אם לא מתאימה למשמעות?**\n",
+    "after": "",
+    "flags": []
+   }
+  ],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-he-explain-2",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-ja-nenji-1",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-ja-nenji-2",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-list25-verbs-de-1",
+  "seams": [
+   {
+    "kind": "retry",
+    "at": 488,
+    "takenBack": "",
+    "keptTail": "2. zu essen (to eat)\n13. zu schlafen (to sleep)\n14. zu tragen (to wear)\n15. zu haben (to have)\n16. zu spielen (to play)\n",
+    "after": "17. zu fliegen (to fly)\n18. zu glauben (to believe)\n",
+    "flags": []
+   },
+   {
+    "kind": "cut",
+    "at": 540,
+    "keptTail": "(to eat)\n13. zu schlafen (to sleep)\n14. zu tragen (to wear)\n15. zu haben (to have)\n16. zu spielen (to play)\n17. zu fliegen (to fly)\n18. zu glauben (to believe)\n",
+    "after": "",
+    "flags": []
+   }
+  ],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-list25-verbs-de-2",
+  "seams": [
+   {
+    "kind": "cut",
+    "at": 395,
+    "keptTail": "ight\n15. to run away\n16. to sleep on\n17. to cry\n18. to hide\n19. to talk\n20. to drink water\n21. to eat cake\n22. to work hard\n23. to walk fast\n24. to talk loudly\n",
+    "after": "",
+    "flags": []
+   }
+  ],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-list30-animals-1",
+  "seams": [
+   {
+    "kind": "retry",
+    "at": 176,
+    "takenBack": "",
+    "keptTail": " Jellyfish\n7. Sea Snake\n8. Octopus\n9. Crab\n10. Seahorse\n11. Manta Ray\n12. Whale Shark\n13. Porpoise\n14. Pelican\n15. Seal\n",
+    "after": "16. Cormorant\n17. Baitfish\n18. Sea Lion\n19. Sturgeon\n20. Hammerhead\n21. Shrimp\n22. Mackerel\n23. Octocephalus (Octopus)\n24. Giant Squid\n25. Seagrass\n26. Perch\n27. Whiting\n28. Cusk\n29. Eared Rockfish\n30",
+    "flags": []
+   }
+  ],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-list30-animals-2",
+  "seams": [
+   {
+    "kind": "cut",
+    "at": 307,
+    "keptTail": "Coral reef fish\n14. Sea bass\n15. Snook\n16. Hammerhead shark\n17. Blue whale\n18. Pelagic rays\n19. Whale sharks\n20. Giant squid\n21. Whale toothfish\n22. Pufferfish\n",
+    "after": "",
+    "flags": []
+   }
+  ],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-math-long-div-1",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-math-long-div-2",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-poem-refrainless-1",
+  "seams": [
+   {
+    "kind": "retry",
+    "at": 1183,
+    "takenBack": "",
+    "keptTail": "ep your eyes on the horizon line where waves meet land,\nFor here lies my home in a world of quiet, slow, strange things.",
+    "after": " **The Silent Lagoon of Blackstone (continued)**",
+    "flags": []
+   },
+   {
+    "kind": "cut",
+    "at": 1231,
+    "keptTail": "eyes on the horizon line where waves meet land,\nFor here lies my home in a world of quiet, slow, strange things. **The Silent Lagoon of Blackstone (continued)**",
+    "after": "",
+    "flags": []
+   }
+  ],
+  "renumbered": [],
+  "flags": []
+ },
+ {
+  "run": "l07-poem-refrainless-2",
+  "seams": [],
+  "renumbered": [],
+  "flags": []
+ }
+]

@@ -1,0 +1,1068 @@
+{
+  "runId": "l07-poem-refrainless-2",
+  "startedAt": "2026-09-28T06:37:59.192Z",
+  "finishedAt": "2026-09-28T06:38:37.240Z",
+  "ok": true,
+  "passed": 105,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 153,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1509,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 7,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 50 chars"
+    },
+    {
+      "i": 8,
+      "op": "send",
+      "ok": true,
+      "ms": 172,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 10,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The ocean ▍",
+        "props": {
+          "source": "The ocean",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean ▍"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 703,
+      "detail": "700 ms"
+    },
+    {
+      "i": 12,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against ▍",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against ▍"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 708,
+      "detail": "700 ms"
+    },
+    {
+      "i": 14,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath fee ▍",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath fee",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 15,
+      "op": "sleep",
+      "ok": true,
+      "ms": 724,
+      "detail": "700 ms"
+    },
+    {
+      "i": 16,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endle ▍",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endle",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 700,
+      "detail": "700 ms"
+    },
+    {
+      "i": 18,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhoo ▍",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhoo",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 735,
+      "detail": "700 ms"
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shor ▍",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shor",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 737,
+      "detail": "700 ms"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all o ▍",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all o",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 735,
+      "detail": "700 ms"
+    },
+    {
+      "i": 24,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when i ▍",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when i",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 25,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 26,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 27,
+      "op": "sleep",
+      "ok": true,
+      "ms": 701,
+      "detail": "700 ms"
+    },
+    {
+      "i": 28,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 30,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 31,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 32,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 33,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 34,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 35,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 36,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 37,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 38,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 39,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 40,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 41,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 42,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 43,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 44,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 45,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 46,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 47,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 48,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 49,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 50,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 51,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 52,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 53,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 54,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 55,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 56,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 57,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 58,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 59,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 60,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 61,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 62,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 63,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 64,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 65,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 66,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 67,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 68,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 69,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 70,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 71,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 72,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 73,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 74,
+      "op": "value",
+      "ok": true,
+      "ms": 6,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 75,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 76,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 77,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 78,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 79,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 80,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 81,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 82,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 83,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 84,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 85,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 86,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 87,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 88,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 89,
+      "op": "sleep",
+      "ok": true,
+      "ms": 715,
+      "detail": "700 ms"
+    },
+    {
+      "i": 90,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 91,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 92,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 93,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 94,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 95,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 96,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 97,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 98,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 99,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 100,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "stop gone"
+    },
+    {
+      "i": 101,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1514,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 102,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the sand beneath feet, Waiting for the tide to rise again soon. The wind whispers secrets across the water's surface, While currents dance with an endless grace. We walk on these vast and unending seas, Where time seems far away when we are there. From childhood memories that never truly end, There is no place where life can be found. Though storms rage in the night along the shore, And waves tear through to break the fragile ground, The sea remains a silent guardian friend, Who holds the balance of all our days. It cleanses the lungs from dust and leaves behind, A memory we cannot forget nor erase. Even when it turns into salt and ice, We find no end in its endless embrace.",
+        "props": {
+          "source": "The ocean stretches far beyond the horizon's limit,\nA vast carpet of deep blue and calm gray.\nWhere the waves crash against the rocky shore,\nIt sings a low, rhythmic lullaby.\n\nStones lie buried in the sand beneath feet,\nWaiting for the tide to rise again soon.\nThe wind whispers secrets across the water's surface,\nWhile currents dance with an endless grace.\n\nWe walk on these vast and unending seas,\nWhere time seems far away when we are there.\nFrom childhood memories that never truly end,\nThere is no place where life can be found.\n\nThough storms rage in the night along the shore,\nAnd waves tear through to break the fragile ground,\nThe sea remains a silent guardian friend,\nWho holds the balance of all our days.\n\nIt cleanses the lungs from dust and leaves behind,\nA memory we cannot forget nor erase.\nEven when it turns into salt and ice,\nWe find no end in its endless embrace.",
+          "disabled": false
+        }
+      },
+      "detail": "The ocean stretches far beyond the horizon's limit, A vast carpet of deep blue and calm gray. Where the waves crash against the rocky shore, It sings a low, rhythmic lullaby. Stones lie buried in the "
+    },
+    {
+      "i": 103,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1931,
+      "detail": "L07-poem-refrainless-2"
+    },
+    {
+      "i": 104,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "loop-notice gone"
+    }
+  ],
+  "errors": []
+}

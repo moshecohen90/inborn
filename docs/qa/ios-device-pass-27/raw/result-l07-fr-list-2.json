@@ -1,0 +1,1068 @@
+{
+  "runId": "l07-fr-list-2",
+  "startedAt": "2026-09-28T06:36:27.956Z",
+  "finishedAt": "2026-09-28T06:37:07.905Z",
+  "ok": true,
+  "passed": 105,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 157,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 7,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 45 chars"
+    },
+    {
+      "i": 8,
+      "op": "send",
+      "ok": true,
+      "ms": 171,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 10,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Voici ▍",
+        "props": {
+          "source": "Voici",
+          "disabled": false
+        }
+      },
+      "detail": "Voici ▍"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 710,
+      "detail": "700 ms"
+    },
+    {
+      "i": 12,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un liv ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un liv",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un liv ▍"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 716,
+      "detail": "700 ms"
+    },
+    {
+      "i": 14,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérie ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérie",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 15,
+      "op": "sleep",
+      "ok": true,
+      "ms": 704,
+      "detail": "700 ms"
+    },
+    {
+      "i": 16,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d' ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 706,
+      "detail": "700 ms"
+    },
+    {
+      "i": 18,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 707,
+      "detail": "700 ms"
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décora ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décora",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 721,
+      "detail": "700 ms"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiqu ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiqu",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 772,
+      "detail": "700 ms"
+    },
+    {
+      "i": 24,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectif ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectif",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 25,
+      "op": "sleep",
+      "ok": true,
+      "ms": 703,
+      "detail": "700 ms"
+    },
+    {
+      "i": 26,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soign ▍",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soign",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 27,
+      "op": "sleep",
+      "ok": true,
+      "ms": 703,
+      "detail": "700 ms"
+    },
+    {
+      "i": 28,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 30,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 31,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 32,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 33,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 34,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 35,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 36,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 37,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 38,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 39,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 40,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 41,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 42,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 43,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 44,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 45,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 46,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 47,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 48,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 49,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 50,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 51,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 52,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 53,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 54,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 55,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 56,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 57,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 58,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 59,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 60,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 61,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 62,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 63,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 64,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 65,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 66,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 67,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 68,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 69,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 70,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 71,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 72,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 73,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 74,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 75,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 76,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 77,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 78,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 79,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 80,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 81,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 82,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 83,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 84,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 85,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 86,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 87,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 88,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 89,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 90,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 91,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 92,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 93,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 94,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 95,
+      "op": "sleep",
+      "ok": true,
+      "ms": 713,
+      "detail": "700 ms"
+    },
+    {
+      "i": 96,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 97,
+      "op": "sleep",
+      "ok": true,
+      "ms": 712,
+      "detail": "700 ms"
+    },
+    {
+      "i": 98,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 99,
+      "op": "sleep",
+      "ok": true,
+      "ms": 714,
+      "detail": "700 ms"
+    },
+    {
+      "i": 100,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "stop gone"
+    },
+    {
+      "i": 101,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1514,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 102,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un motif spécial 3. Une expérience créative comme une création personnelle ou une soirée spéciale 4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles) 5. Une bonne robe ou costume élégant pour l'occasion 6. Des accessoires de cuisine ou d'artisanat haut de gamme 7. Des gadgets modernes utiles et divertissants 8. Un objet décoratif personnalisé avec un message personnalisé 9. Des cadeaux qui renforcent la confiance en soi 10. Des objets culturels reconnus comme des classiques 11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine) 12. Des souvenirs collectifs que l'ami ou les amis possèdent 13. Des pièces d'art originales avec un cadre soigné 14. Des objets de qualité et dur",
+        "props": {
+          "source": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur :\n\n1. Un livre d'histoire complet ou une collection rare de livres\n2. Un objet de décoration unique avec un motif spécial\n3. Une expérience créative comme une création personnelle ou une soirée spéciale\n4. Des objets traditionnels mais améliorés (ex: pièce d'or, médailles)\n5. Une bonne robe ou costume élégant pour l'occasion\n6. Des accessoires de cuisine ou d'artisanat haut de gamme\n7. Des gadgets modernes utiles et divertissants\n8. Un objet décoratif personnalisé avec un message personnalisé\n9. Des cadeaux qui renforcent la confiance en soi\n10. Des objets culturels reconnus comme des classiques\n11. Des cadeaux liés à des passions favorites du sujet (ex: sport, cuisine)\n12. Des souvenirs collectifs que l'ami ou les amis possèdent\n13. Des pièces d'art originales avec un cadre soigné\n14. Des objets de qualité et dur",
+          "disabled": false
+        }
+      },
+      "detail": "Voici 30 idées de cadeaux d'anniversaire, sélectionnés pour leur importance et leur valeur : 1. Un livre d'histoire complet ou une collection rare de livres 2. Un objet de décoration unique avec un mo"
+    },
+    {
+      "i": 103,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3833,
+      "detail": "L07-fr-list-2"
+    },
+    {
+      "i": 104,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "loop-notice gone"
+    }
+  ],
+  "errors": []
+}

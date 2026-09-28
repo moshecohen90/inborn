@@ -6798,6 +6798,39 @@ Red first: 8 of the 14 tests in `fixes-r116.test.ts` fail on main 4f27a09f, whic
 keep tests pass there too (`red-r116-main-4f27a09f.txt`). Rounds 107 to 115 stay green. No live model run and no device
 run: the next iPhone build measures it.
 
+## iOS build 27: main with round 116's loop guard, on Moshe's iPhone only (branch `ios-build-27`) — 28.9.2026
+
+Build 1.0.0 (27) carries local `main` 07b0274b (build 26's main plus round 116) to the iPhone 13 Pro. Nothing went to a
+store. Every row of pass 25 ran, with the same prompts, persona and scripts.
+
+- **The build.** Commit a233a44b bumps the build number 26 → 27. Gates exit 0 on the first run: 1,158 core with 4
+  skipped, 1,180 mobile, 24 i18n, 23 ui, 4 desktop. Fresh prebuild and archive, with both models byte-exact to the
+  catalog, and round 116's four new function names and five new patterns in the bundle (build 26's bundle has none).
+  The QA-bridge and shipping-bundle gates pass.
+- **On the phone as an update.** The byte copy of the six container files was taken first. After the install the
+  `Documents/` listing is identical and all six files are byte-identical. About reads `1.0.0 (27) · a233a44b8b57`. The
+  `.qa` twin was removed at the end, and the store app was left on its Chats list.
+- **Ran on the phone.** The first answer runs at 32.9 tok/s. The fox gave the five lines in 1 of 3 tries, with no guard
+  action. Delete everything reaches a clean Welcome with no banner and no `.corrupt` file, also after a cold relaunch.
+  Documents reads 253 B.
+- **The 24 stress answers (F436): 4 show an item or line said again, and 1 of 17 seams is broken.** 11 silent retries
+  and 9 notices, each notice after a repeat and none on a budget end. Two more answers showed a copy for up to 1.4 s
+  before a retry took it back. On screen:
+  - fr-list 0.2's retry wrote item 10 as item 4 again, *"unique"* dropped and examples added (*"Une expérience
+    culinaire avec un chef local (ex: …)"*);
+  - poem-refrainless 0.7 #1's retry wrote the title again, glued to the last verse line (*"…strange things. **The
+    Silent Lagoon of Blackstone (continued)**"*);
+  - list25-verbs-de 0.7 #2 lists five earlier verbs again with a word added (*"to drink water"*, *"to eat cake"*, …);
+  - list30-animals 0.7 #1 names item 8 again as *"23. Octocephalus (Octopus)"*.
+- **Continue after Stop: 2 of 3.** No try restated the stopped clause, and no join reads ",.". Try 2's continuation said
+  the whole 701-character paragraph before the stop again, then went on.
+- **Round 116's targets.** The "。" before prose after an inline list holds (ja-list-cities). The fence rule, the
+  other-form and singular rules on their build-26 cases, the Hebrew inline cut and the Korean ", " were not exercised,
+  because no answer wrote those shapes. math-long-div 0.2's cut is not false: it removed a 51-code-point run said
+  twice that was never shown.
+
+Evidence: `docs/qa/ios-build-27-2026-09-28.md`, `docs/qa/ios-device-pass-27-2026-09-28.md`, `docs/qa/ios-device-pass-27/`.
+
 ## iOS build 23: main with round 111's loop guard, on Moshe's iPhone only (branch `ios-build-23`) — 27.9.2026
 
 Build 1.0.0 (23) carries local `main` 98722df7 (build 22's main plus round 111) to the iPhone 13 Pro, so the phone has
