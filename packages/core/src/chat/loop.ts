@@ -1537,6 +1537,53 @@ export function seamWord(prefix: string, next: string, final = false): number {
   return growing ? -1 : frag.length;
 }
 
+/* F441 (web, Fast, 28.9 13:54): "…from behind. As the" + " As they turn" read "As the As they turn". */
+const RESTART_WORDS = 4;
+const FRAGMENT_END = new Set([...TERMINATORS, ":", ";", "：", "；"]);
+const LINE_MARK = /^[ \t]*(?:\d{1,3}[.)]|[-*•+])[ \t]+/u;
+const KANA_HAN = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]/u;
+/* "17. Peach (Wait, I listed" + "Peach earlier)": a fragment with a bracket or quote is no sentence start. */
+const ENCLOSED = /[()[\]{}"“”„«»]/u;
+const apos = (w: string) => w.replace(/’/gu, "'");
+/* The same word, the first letter's case aside ("the" / "The"); "GOOD" / "Good" is a label, not a restart. */
+const sameStart = (word: string, part: string) =>
+  word.charAt(0).toLowerCase() === part.charAt(0).toLowerCase() && apos(word).slice(1).startsWith(apos(part).slice(1));
+
+/**
+ * Continue only, when the exact rules found nothing: the stopped text ends in a fragment of 1 to 4 words (after a sentence
+ * end, a line break, a list marker or the text's start) and the continuation opens a sentence with the fragment's first
+ * word, capitalised, so the model restarted the sentence. The length of `prefix` that stays (the fragment and the spaces
+ * before it go); `prefix.length` for none, -1 while the first word may still be it.
+ */
+export function seamRestart(prefix: string, next: string, final = false): number {
+  const head = prefix.replace(/[ \t]+$/u, "");
+  if (!/[\p{L}\p{N}\p{M}]$/u.test(head)) return prefix.length;
+  let st = head.length;
+  while (st > 0 && head[st - 1] !== "\n" && !(/\s/u.test(head[st - 1]!) && FRAGMENT_END.has(head[st - 2] ?? ""))) st--;
+  const lineStart = st === 0 || head[st - 1] === "\n";
+  const mark = lineStart ? (LINE_MARK.exec(head.slice(st))?.[0] ?? "") : "";
+  const from = st + mark.length + /^\s*/u.exec(head.slice(st + mark.length))![0].length;
+  const fragment = head.slice(from);
+  const words = fragment.split(/\s+/u);
+  const first = words[0]!.replace(EDGES, "");
+  if (!first || words.length > RESTART_WORDS || KANA_HAN.test(fragment) || ENCLOSED.test(fragment)) return prefix.length;
+  const lead = /^[ \t]*/u.exec(next)![0].length;
+  const body = next.slice(lead);
+  if (body.startsWith("\n")) return prefix.length;
+  const token = /^\S*/u.exec(body)![0];
+  const open = !final && token.length === body.length;
+  const marks = LEADING.exec(words[0]!)?.[0] ?? "";
+  const at = token.search(/[\p{L}\p{N}\p{M}]/u);
+  if (at < 0) return open && marks.startsWith(token) ? -1 : prefix.length;
+  if (token.slice(0, at) !== marks) return prefix.length;
+  const word = /^[\p{L}\p{N}\p{M}'’-]*/u.exec(token.slice(at))![0];
+  if (!/^\p{Lu}/u.test(word)) return prefix.length;
+  if (open && at + word.length === token.length) return sameStart(first, word) ? -1 : prefix.length;
+  const core = word.replace(/['’-]+$/u, "");
+  if (core.length !== first.length || !sameStart(first, core)) return prefix.length;
+  return mark ? st + mark.length : head.slice(0, from).replace(/[ \t]+$/u, "").length;
+}
+
 /* F426: a restatement inside the continuation's first sentence counts from five words or 24 code points of the stopped sentence. */
 const RESTATE_WORDS = 5;
 const RESTATE_CP = 24;
@@ -1869,8 +1916,16 @@ export async function* guardLoops(stream: AsyncIterable<Delta>, stop: () => void
         } else {
           const drop = seamOverlap(seam, opening);
           if (drop < 0) continue;
-          piece = opening.slice(drop);
-          const closed = closeSeam(seam, piece);
+          /* F441: "…behind. As the" + "As they turn": the fragment goes from the prefix and the continuation stands. */
+          const keep = drop === 0 && !text && prefix ? seamRestart(seam, opening) : seam.length;
+          if (keep < 0) continue;
+          const restarted = keep < seam.length;
+          if (restarted) {
+            prefix = seam.slice(0, keep);
+            yield { prefix };
+          }
+          piece = restarted ? opening.replace(/^[ \t]+/u, "") : opening.slice(drop);
+          const closed = restarted ? null : closeSeam(seam, piece);
           seam = opening = "";
           if (closed) {
             piece = closed.piece;
@@ -1926,8 +1981,15 @@ export async function* guardLoops(stream: AsyncIterable<Delta>, stop: () => void
         prefix += opening.slice(0, glue);
         yield { prefix };
       }
-      let rest = !seam || !opening ? "" : glue > 0 ? opening.slice(glue) : opening.slice(Math.max(0, seamOverlap(seam, opening, true)));
-      const closed = seam && rest && !glue ? closeSeam(seam, rest) : null;
+      const drop = !seam || !opening || glue > 0 ? 0 : Math.max(0, seamOverlap(seam, opening, true));
+      const keep = seam && opening && !glue && !drop && !text && prefix ? seamRestart(seam, opening, true) : seam.length;
+      const restarted = keep < seam.length;
+      if (restarted) {
+        prefix = seam.slice(0, keep);
+        yield { prefix };
+      }
+      let rest = !seam || !opening ? "" : glue > 0 ? opening.slice(glue) : restarted ? opening.replace(/^[ \t]+/u, "") : opening.slice(drop);
+      const closed = seam && rest && !glue && !restarted ? closeSeam(seam, rest) : null;
       if (closed) {
         rest = closed.piece;
         yield* closed.deltas;

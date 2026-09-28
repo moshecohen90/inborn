@@ -1,0 +1,34 @@
+Round 119 seam replay (F441): every stored answer under docs/qa split at each of its own word boundaries (tried with and
+without the space, as a fresh Continue turn writes it) and between any two Han/kana characters, then joined by main's
+seam (e61f222a, round 118) and by round 119's, streamed 3 code points at a time for the first 120, with the 2,000 code
+units before the cut and the 600 after it. A genuine continuation does not restart its own sentence, so every
+difference below is a fragment taken back that the answer really had, unless the answer itself restarted there.
+
+| Answers | Seams | Spaced | Han/kana | Restart rule fires on the window (fully compared) | Round 119 differs from main | Sampled others (1 in 997) | Sampled that differ |
+|---|---|---|---|---|---|---|---|
+| 3970 | 797880 | 651876 | 146004 | 16 | 8 | 801 | 0 |
+
+DIFF  …"One to" | " One hundred: one, two, three... ninety-nine,"
+      main: …"One to One hundred: one, two, three... ninety-nine, one "
+      r119: …"One hundred: one, two, three... ninety-nine, one hundred"
+DIFF  …"One to" | "One hundred: one, two, three... ninety-nine, "
+      main: …"One to One hundred: one, two, three... ninety-nine, one "
+      r119: …"One hundred: one, two, three... ninety-nine, one hundred"
+DIFF  …"One to" | " One hundred: one, two, three, four, five, si"
+      main: …"One to One hundred: one, two, three, four, five, six, se"
+      r119: …"One hundred: one, two, three, four, five, six, seven, ei"
+DIFF  …"One to" | "One hundred: one, two, three, four, five, six"
+      main: …"One to One hundred: one, two, three, four, five, six, se"
+      r119: …"One hundred: one, two, three, four, five, six, seven, ei"
+DIFF  …"FOR PROFESSIONALS PRO" | " FOR WORK $69.99 · one-time purchase Prices a"
+      main: …"FOR PROFESSIONALS PRO FOR WORK $69.99 · one-time purchase Prices are US"
+      r119: …"FOR WORK $69.99 · one-time purchase Prices are US list prices. Your sto"
+DIFF  …"FOR PROFESSIONALS PRO" | "FOR WORK $69.99 · one-time purchase Prices ar"
+      main: …"FOR PROFESSIONALS PRO FOR WORK $69.99 · one-time purchase Prices are US"
+      r119: …"FOR WORK $69.99 · one-time purchase Prices are US list prices. Your sto"
+DIFF  …"e routes that crossed oceans more directly than before. The demand for" | " The Portuguese expedition's arrival at the S"
+      main: …"e routes that crossed oceans more directly than before. The demand for The Portuguese expedition's arrival at the Strait"
+      r119: …"e routes that crossed oceans more directly than before. The Portuguese expedition's arrival at the Strait of Magellan in"
+DIFF  …"e routes that crossed oceans more directly than before. The demand for" | "The Portuguese expedition's arrival at the St"
+      main: …"e routes that crossed oceans more directly than before. The demand for The Portuguese expedition's arrival at the Strait"
+      r119: …"e routes that crossed oceans more directly than before. The Portuguese expedition's arrival at the Strait of Magellan in"

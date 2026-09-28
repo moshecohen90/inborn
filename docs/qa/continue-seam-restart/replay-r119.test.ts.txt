@@ -1,0 +1,134 @@
+/* F441 seam replay: every stored answer split at its own word boundaries (and inside Han/kana runs), joined by main's seam (e61f222a, round 118) and by round 119's. A genuine continuation does not restart its own sentence, so any change is a fragment taken back that the answer really had, unless the answer itself stuttered. */
+/* zz-loop-old.ts is main's loop.ts: `git show e61f222a:packages/core/src/chat/loop.ts > packages/core/src/chat/zz-loop-old.ts`. */
+import { readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+import { it } from "vitest";
+import { continuationSeparator } from "../src/chat/join";
+import { seamOverlap, seamRestart, seamWord } from "../src/chat/loop";
+import { seamOverlap as overlapOld, seamWord as wordOld } from "../src/chat/zz-loop-old";
+
+const QA = join(__dirname, "../../../docs/qa");
+const OUT = join(QA, "continue-seam-restart");
+const STEP = 3;
+const WINDOW = 120;
+const BEFORE = 2000;
+const AFTER = 600;
+
+function answers(): string[] {
+  const ANSWER = /^(answer|reply|content|text|response|assistant|output|shown|final|continuation|prefix|continued|stopped)$/i;
+  const files = (d: string): string[] =>
+    readdirSync(d).flatMap((f) => {
+      const p = join(d, f);
+      if (f === "continue-seam-word" || f === "continue-seam-restart") return [];
+      return statSync(p).isDirectory() ? files(p) : p.endsWith(".json") ? [p] : [];
+    });
+  const seen = new Set<string>();
+  const walk = (v: unknown) => {
+    if (Array.isArray(v)) return v.forEach(walk);
+    if (!v || typeof v !== "object") return;
+    for (const [k, x] of Object.entries(v as Record<string, unknown>)) {
+      if (typeof x === "string" && ANSWER.test(k) && x.length >= 40 && /\p{L}/u.test(x)) seen.add(x);
+      else walk(x);
+    }
+  };
+  for (const f of files(QA)) {
+    try {
+      walk(JSON.parse(readFileSync(f, "utf8")));
+    } catch {
+      /* not JSON */
+    }
+  }
+  return [...seen];
+}
+
+/** Chat.tsx's screen after the seam, as guardLoops decides it: the first WINDOW code points stream 3 at a time, and a
+ * seam still held then is decided as at the stream's end. `r119` adds the restart rule after the exact rules. */
+function joinAt(prefix: string, next: string, r119: boolean): string {
+  const word = r119 ? seamWord : wordOld;
+  const overlap = r119 ? seamOverlap : overlapOld;
+  const cps = Array.from(next);
+  const limit = Math.min(cps.length, WINDOW);
+  let opening = "";
+  let taken = 0;
+  for (;;) {
+    const final = taken >= limit;
+    if (!final) {
+      opening += cps.slice(taken, Math.min(taken + STEP, limit)).join("");
+      taken = Math.min(taken + STEP, limit);
+    }
+    const tail = cps.slice(taken).join("");
+    const glue = word(prefix, opening, final && taken === cps.length);
+    if (glue < 0 && !final) continue;
+    if (glue > 0) {
+      const head = prefix + opening.slice(0, glue);
+      const rest = opening.slice(glue) + tail;
+      return head + (rest ? continuationSeparator(head, rest) : "") + rest;
+    }
+    const drop = overlap(prefix, opening, final);
+    if (drop < 0 && !final) continue;
+    const keep = r119 && drop <= 0 ? seamRestart(prefix, opening, final) : prefix.length;
+    if (keep < 0 && !final) continue;
+    if (keep >= 0 && keep < prefix.length) {
+      const head = prefix.slice(0, keep);
+      const rest = opening.replace(/^[ \t]+/u, "") + tail;
+      return head + (rest ? continuationSeparator(head, rest) : "") + rest;
+    }
+    const rest = opening.slice(Math.max(0, drop)) + tail;
+    return prefix + (rest ? continuationSeparator(prefix, rest) : "") + rest;
+  }
+}
+
+it("replay", { timeout: 3_600_000 }, () => {
+  const all = answers();
+  const rows = { answers: all.length, seams: 0, spaced: 0, wide: 0, candidates: 0, sampled: 0, sampledDiffer: 0, differ: 0 };
+  const examples: string[] = [];
+  let tick = 0;
+  for (const text of all) {
+    const cuts: number[] = [];
+    for (const m of text.matchAll(/(?<=[\p{L}\p{N}\p{M}])[ \t]+(?=\S)/gu)) cuts.push(m.index!);
+    for (const m of text.matchAll(/(?<=[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}])(?=[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}])/gu)) cuts.push(-m.index! - 1);
+    for (const c of cuts) {
+      const wide = c < 0;
+      const at = wide ? -c - 1 : c;
+      const prefix = text.slice(Math.max(0, at - BEFORE), at);
+      const after = text.slice(at, at + AFTER);
+      /* A spaced cut is tried twice: the model's own space, and a fresh turn's first word with none (F390). */
+      const nexts = wide ? [after] : [after, after.replace(/^[ \t]+/u, "")];
+      for (const next of nexts) {
+        rows.seams++;
+        if (wide) rows.wide++;
+        else rows.spaced++;
+        /* Round 119 can differ from main only where the restart rule itself would fire on the whole window. */
+        const may = seamRestart(prefix, next.slice(0, WINDOW), true) < prefix.length;
+        const sample = !may && tick++ % 997 === 0;
+        if (!may && !sample) continue;
+        if (may) rows.candidates++;
+        else rows.sampled++;
+        const old = joinAt(prefix, next, false);
+        const now = joinAt(prefix, next, true);
+        if (sample) {
+          if (now !== old) rows.sampledDiffer++;
+          continue;
+        }
+        if (now === old) continue;
+        rows.differ++;
+        const s = Math.max(0, prefix.length - 70);
+        examples.push(`DIFF  …${JSON.stringify(prefix.slice(-70))} | ${JSON.stringify(next.slice(0, 45))}\n      main: …${JSON.stringify(old.slice(s, prefix.length + 50))}\n      r119: …${JSON.stringify(now.slice(s, prefix.length + 50))}`);
+      }
+    }
+  }
+  const lines = [
+    "Round 119 seam replay (F441): every stored answer under docs/qa split at each of its own word boundaries (tried with and",
+    "without the space, as a fresh Continue turn writes it) and between any two Han/kana characters, then joined by main's",
+    "seam (e61f222a, round 118) and by round 119's, streamed 3 code points at a time for the first 120, with the 2,000 code",
+    "units before the cut and the 600 after it. A genuine continuation does not restart its own sentence, so every",
+    "difference below is a fragment taken back that the answer really had, unless the answer itself restarted there.",
+    "",
+    "| Answers | Seams | Spaced | Han/kana | Restart rule fires on the window (fully compared) | Round 119 differs from main | Sampled others (1 in 997) | Sampled that differ |",
+    "|---|---|---|---|---|---|---|---|",
+    `| ${rows.answers} | ${rows.seams} | ${rows.spaced} | ${rows.wide} | ${rows.candidates} | ${rows.differ} | ${rows.sampled} | ${rows.sampledDiffer} |`,
+    "",
+    ...examples,
+  ];
+  writeFileSync(join(OUT, "replay-r119.txt"), `${lines.join("\n")}\n`);
+});
