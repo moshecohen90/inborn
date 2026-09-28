@@ -17,6 +17,7 @@ import { Actions, Button, Mono, MonoLabel, Section } from "../../components/shel
 import { Sheet } from "../../components/shell/Sheet";
 import { font, useType } from "../../services/type";
 import { offlineKey } from "../../lib/offlineWording";
+import { buildHash, builtOn } from "../../work/appInfo";
 
 const EXODUS = "https://reports.exodus-privacy.eu.org/en/reports/search/com.inbornapp.mobile/";
 /* F51: the "Source code" link went to a private repository and 404'd for every user. There is no published
@@ -38,7 +39,6 @@ export function Proof() {
   const sealColor = sealState === "unsealed" ? theme.danger : sealState === "lan" ? theme.accent : theme.sealed;
   const version = Application.nativeApplicationVersion ?? Constants.expoConfig?.version ?? "0.0.1";
   const build = Application.nativeBuildVersion ?? "web";
-  const extra = (Constants.expoConfig?.extra ?? {}) as { commit?: string; builtAt?: string };
   const log = networkLog.list();
 
   return (
@@ -83,7 +83,7 @@ export function Proof() {
       </Section>
 
       <Section title={t("proof.build")}>
-        <Line mono={`${version} (${build}) · ${extra.commit ?? "unknown"}`} text={t("proof.build.line", { date: extra.builtAt ?? "" })} testID="proof-build" />
+        <Line mono={`${version} (${build}) · ${buildHash()}`} text={t("proof.build.line", { date: builtOn() })} testID="proof-build" />
         <Text testID="proof-source-note" style={[type.bodySmall, { color: theme.text3 }]}>
           {t("proof.build.source")}
         </Text>
