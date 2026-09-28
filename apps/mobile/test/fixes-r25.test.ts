@@ -34,8 +34,9 @@ describe("F50 · family-safe mode is on by default and survives an upgrade", () 
     expect(source("screens/Chat.tsx")).toContain("screenText(");
     expect(source("voice/useHandsFree.ts")).toContain("screenText(");
   });
-  it("the clause reaches the model through the same prompt the budget counts", () => {
-    expect(source("screens/Chat.tsx").match(/safetyBaseline\(SAFETY_BASELINE, familySafe\)/g)).toHaveLength(2);
+  it("the family-safe line reaches the model through the same prompt the budget counts", () => {
+    expect(source("screens/Chat.tsx").match(/turnSystemPrompt\(\{ familySafe, tier: modelTier, photos: /g)).toHaveLength(2);
+    expect(source("voice/useHandsFree.ts")).toContain("turnSystemPrompt({");
   });
 });
 

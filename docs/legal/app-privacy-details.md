@@ -114,7 +114,7 @@ Apple's tiers since 31 January 2026: 4+, 9+, **13+**, 16+, 18+. Apple's announce
 | Contests | None | |
 | Unrestricted web access | No | The app has no browser and no INTERNET path on Android |
 | User-generated content / messaging between users | No | Single-user, local; no user-to-user communication |
-| In-app controls / parental controls (new) | Yes: content filter on by default; no account-level parental control | Family-safe mode, Settings → Chat. What it is, stated the same way everywhere: a safety clause added to the on-device system prompt, plus an on-device phrase check of the request and of the finished answer, which replaces an answer that gets through. It reduces this content and does not eliminate it. It is not a classifier model, and an adult can switch it off |
+| In-app controls / parental controls (new) | Yes: content filter on by default; no account-level parental control | Family-safe mode, Settings → Chat. What it is, stated the same way everywhere: an on-device phrase check of the request and of the finished answer, which replaces an answer that gets through, plus one short family-safe line in the on-device system prompt of the larger models' text answers. It reduces this content and does not eliminate it. It is not a classifier model, and an adult can switch it off |
 | App capabilities: AI chatbot | Yes, generative text, on-device | Answer the chatbot capability question honestly (spec: "unrestricted generative text") |
 | Loot boxes | No | |
 | Made for Kids | No | |

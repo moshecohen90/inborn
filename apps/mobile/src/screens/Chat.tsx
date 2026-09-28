@@ -13,10 +13,8 @@ import {
   type RetrievalHit,
   PASTE_OFFER_CHARS,
   PRODUCTS,
-  SAFETY_BASELINE,
   buildPrompt,
   calibrate,
-  composeSystemPrompt,
   contextLevel,
   crisisResources,
   detectCrisis,
@@ -36,6 +34,8 @@ import {
   detectUse,
   fileIntake,
   findExtension,
+  findModel,
+  BUNDLED_MANIFEST,
   formatModelBytes,
   languageTierOf,
   FIT_LANGUAGES,
@@ -46,7 +46,7 @@ import {
   paywallFor,
   planAnswerLength,
   planSummary,
-  safetyBaseline,
+  turnSystemPrompt,
   screenText,
   scriptOf,
   titleFromFirstMessage,
@@ -420,10 +420,11 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   useShortcut("toggle-incognito", () => focused.current && onNewChat?.(!incognito));
   useShortcut("focus-composer", () => focused.current && inputRef.current?.focus());
 
+  const modelTier = findModel(BUNDLED_MANIFEST, model.id)?.tier;
   const budget = useMemo(() => {
-    const system = composeSystemPrompt({ baseline: safetyBaseline(SAFETY_BASELINE, familySafe), persona, chatPrompt: settings.systemPrompt });
+    const system = turnSystemPrompt({ familySafe, tier: modelTier, photos: rows.some((r) => r.images?.length), persona, chatPrompt: settings.systemPrompt });
     return buildPrompt({ system, summary: chat?.summary, summaryUpTo: chat?.summaryUpTo, messages: wire(rows), nCtx, scale: tokenScale, reserve: 0 });
-  }, [rows, chat?.summary, chat?.summaryUpTo, persona, settings.systemPrompt, nCtx, tokenScale, familySafe]);
+  }, [rows, chat?.summary, chat?.summaryUpTo, persona, settings.systemPrompt, nCtx, tokenScale, familySafe, modelTier]);
   const level = contextLevel(budget.fullness);
 
   const ensureChat = async (firstText: string): Promise<string> => {
@@ -549,7 +550,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         use: detectUse({ text: lastUser, personaId: persona.id, personaIcon: persona.icon, hasDocuments: docs.documents.length > 0, dictated: lastDictated }),
         continuing: !!existingMessageId,
       });
-      const system = composeSystemPrompt({ baseline: safetyBaseline(SAFETY_BASELINE, familySafe), persona, chatPrompt: settings.systemPrompt, memory: facts, languageHint: languageHint(lastUser), length: length.instruction });
+      const system = turnSystemPrompt({ familySafe, tier: modelTier, photos: history.some((m) => m.images?.length), persona, chatPrompt: settings.systemPrompt, memory: facts, languageHint: languageHint(lastUser), length: length.instruction });
       const prompt = buildPrompt({ system, summary: chat?.summary, summaryUpTo: chat?.summaryUpTo, messages: history.map((m, i) => ({ id: String(i), ...m })), nCtx, scale: tokenScale });
       let messages = prompt.messages;
       /* Attached documents (§7.3, §8.5): retrieve, fence, cite. */

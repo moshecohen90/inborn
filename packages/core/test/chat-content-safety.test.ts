@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { FAMILY_SAFE_CLAUSE, SAFETY_BASELINE, checkOutput, safetyBaseline, screenText, type SafetyCategory } from "../src";
+import { FAMILY_SAFE_LINE, checkOutput, familySafeLine, screenText, type SafetyCategory } from "../src";
 
 /**
  * F50 · family-safe mode (§11.1 Guideline 1.2, §11.2 AI-content, §11.5 item 8). The mode we ship is a phrase
@@ -92,12 +92,13 @@ describe("the mode switch is honoured in one place", () => {
   });
 });
 
-describe("the system prompt carries the clause only while the mode is on", () => {
-  it("appends the family-safe clause to the shipped baseline", () => {
-    expect(safetyBaseline(SAFETY_BASELINE, true)).toBe(`${SAFETY_BASELINE} ${FAMILY_SAFE_CLAUSE}`);
-    expect(safetyBaseline(SAFETY_BASELINE, false)).toBe(SAFETY_BASELINE);
+describe("the system prompt carries the line only while the mode is on, and only where it is not narrated back (F437)", () => {
+  it("a larger model's text turn gets the one short line", () => {
+    expect(familySafeLine({ familySafe: true, tier: "fast", photos: false })).toBe(FAMILY_SAFE_LINE);
+    expect(familySafeLine({ familySafe: false, tier: "fast", photos: false })).toBeUndefined();
   });
-  it("names all three prohibited kinds, because the store answers name all three", () => {
-    for (const word of ["sexually explicit", "violence", "self-harm", "explosives"]) expect(FAMILY_SAFE_CLAUSE).toContain(word);
+  it("Instant and every photo turn get none", () => {
+    expect(familySafeLine({ familySafe: true, tier: "instant", photos: false })).toBeUndefined();
+    expect(familySafeLine({ familySafe: true, tier: "sharp", photos: true })).toBeUndefined();
   });
 });

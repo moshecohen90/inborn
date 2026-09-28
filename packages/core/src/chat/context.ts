@@ -1,4 +1,7 @@
+import type { Tier } from "../catalog/types";
 import type { Message } from "../llm/types";
+import { familySafeLine } from "./contentSafety";
+import { SAFETY_BASELINE } from "./personas";
 import type { ChatMessage, MemoryFact, Persona } from "./types";
 
 /** Tokens kept free for the reply; generation stops there anyway (§10.5 #39: max tokens with "continue"). */
@@ -53,6 +56,21 @@ export function composeSystemPrompt(parts: SystemPromptParts): string {
   if (parts.languageHint) blocks.push(parts.languageHint);
   if (parts.length?.trim()) blocks.push(parts.length.trim());
   return blocks.join("\n\n");
+}
+
+export interface TurnPromptParts extends SystemPromptParts {
+  familySafe: boolean;
+  /** Catalog tier of the model answering; undefined for an imported file or a browser's built-in model. */
+  tier: Tier | undefined;
+  /** Any photo in the turns the model will see. */
+  photos: boolean;
+}
+
+/** Every chat turn's system prompt; the family-safe line, when there is one, is its last sentence. */
+export function turnSystemPrompt(p: TurnPromptParts): string {
+  const body = composeSystemPrompt({ ...p, baseline: p.baseline ?? SAFETY_BASELINE });
+  const line = familySafeLine(p);
+  return line ? `${body}\n\n${line}` : body;
 }
 
 export interface BudgetInput {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { SAFETY_BASELINE, buildPrompt, checkOutput, composeSystemPrompt, languageHint, planAnswerLength, safetyBaseline, screenText, detectUse, type Message } from "../src/index";
+import { buildPrompt, checkOutput, languageHint, planAnswerLength, screenText, detectUse, turnSystemPrompt, type Message } from "../src/index";
 
 /**
  * Moshe, 23.9.2026: "Why does Hebrew come out as gibberish on purpose?" It is not on purpose and nothing is done to it.
@@ -13,7 +13,7 @@ const ENGLISH = "What is the capital of France? Answer in one sentence please.";
 function send(text: string, familySafe = true): { refused: boolean; system: string; messages: Message[] } {
   if (screenText(text, familySafe).flagged) return { refused: true, system: "", messages: [] };
   const length = planAnswerLength({ text, use: detectUse({ text }), continuing: false });
-  const system = composeSystemPrompt({ baseline: safetyBaseline(SAFETY_BASELINE, familySafe), languageHint: languageHint(text), length: length.instruction });
+  const system = turnSystemPrompt({ familySafe, tier: "instant", photos: false, languageHint: languageHint(text), length: length.instruction });
   const { messages } = buildPrompt({ system, messages: [{ id: "1", role: "user", content: text }], nCtx: 4096 });
   return { refused: false, system, messages };
 }

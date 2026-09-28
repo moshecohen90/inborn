@@ -6886,6 +6886,19 @@ Red first: the first 10 tests of `fixes-r117.test.ts` all failed on 30d6d791 bef
 `pn install --frozen-lockfile`, `typecheck`, `lint`, `test`, `web:build`, `web:smoke`. Not covered: the desktop app
 still has no projector path, and no phone ran this round.
 
+**Family-safe line no longer in the prompt.** MosheAI's review of the web check found Instant answering a photo with
+"The request specifies not generating graphic violence content, so I will focus on identifying visual components…".
+A 0.8B model reads the family-safe clause as part of the question and narrates it. Instant with its pack is the phones'
+default photo path, so every photo would have carried that sentence. The long clause is gone. Every chat turn now
+builds its system prompt in `turnSystemPrompt` (`packages/core/src/chat/context.ts`). A photo turn on any model, and
+every Instant turn, carries no family-safe text. A larger model's text turn ends with one sentence, "Keep it
+family-safe.". The mode keeps working through the request and answer checks in `contentSafety.ts`, which are
+unchanged. `docs/legal/app-privacy-details.md` now describes it that way. In the web check, 6 photos on Fast and 6 on
+Instant (`docs/qa/photo-per-model/`, shots 09 to 14) gave 12 answers with no narrated instruction. Fast read all six.
+Instant still reads "CAT" as "T", which is the 0.8B model's limit. Fast's text turn did not repeat the short line.
+Tests: `packages/core/test/fixes-r117-family-safe.test.ts` (6). Before the fix, 4 of them failed, and the 2 that check
+what must hold either way passed.
+
 ## iOS build 23: main with round 111's loop guard, on Moshe's iPhone only (branch `ios-build-23`) — 27.9.2026
 
 Build 1.0.0 (23) carries local `main` 98722df7 (build 22's main plus round 111) to the iPhone 13 Pro, so the phone has
