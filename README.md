@@ -7208,10 +7208,10 @@ Gates exit 0: `typecheck`, `lint`, `test` (core 1,200 with 4 skipped, mobile 1,2
 Safari or Firefox; the failed-unlock row with a lock on and the Ask sheet's locked switch were checked in code and
 unit tests only.
 
-## Fixes round 124: the documents answer stops narrating, the pack label, the switch label (branch `web-copy-124`) — 28.9.2026
+## Fixes round 124: the documents answer stops narrating, the pack label, the switch label, the build stamp (branch `web-copy-124`) — 28.9.2026
 
 The lead's ten-journey walk of main e3d19aca on the web (127.0.0.1:8787). Evidence: `docs/qa/web-copy-124/`
-(`answers.txt`, `sampling.txt`, `red-first.txt`, screenshots before and after).
+(`answers.txt`, `sampling.txt`, `red-first.txt`, `commit-stamp.txt`, screenshots before and after).
 
 - **Ask your documents on Instant (F449).** Asked *"What is the support phone number and when does the office
   close?"* over one office.txt, Instant (Qwen3.5-0.8B) answered and then reported on its prompt: *"While specific
@@ -7243,12 +7243,24 @@ The lead's ten-journey walk of main e3d19aca on the web (127.0.0.1:8787). Eviden
   paid way out reads *"Switch to INSTANT · 533 MB"*. `chat.vision.switchTo` now reads *"Switch to {seer} ·
   installed"*, with the same word in all 8 locales plus pseudo. Live: *"Download 205 MB · Switch to FAST · installed
   · Remove the photo"*.
+- **The build stamp (F452).** The dist `pn web:build` made at e3d19aca printed another commit: 91e91773d705 for the
+  lead, and 0d6c9b95bb88 here, a merge made later in another checkout. On web, babel-preset-expo inlines the public
+  app config into expo-constants at transform time, and Metro caches that transform in the machine-wide
+  `$TMPDIR/metro-cache` under a key that leaves the config out, so every export reused the first build's commit.
+  - `apps/mobile/scripts/build-info.cjs` writes the git-ignored `src/work/buildInfo.generated.json` with the commit
+    and date. `app.config.ts` runs it on every expo command (web export, prebuild, `export:embed` in the Xcode bundle
+    phase), and typecheck and vitest run it too. `work/appInfo.ts` imports it, About and Proof read it, and
+    `extra.commit` is gone: one source for web and native.
+  - `metro/mdTransformer.js` adds the public config's hash to the transform cache key, so `version` and
+    `extra.devVariant` cannot go stale either. The key changes when the config does, not per commit.
+  - Proof with no cache cleared (`commit-stamp.txt`): the build at 83b89883ea22 carries it and not 0d6c9b95bb88.
+    After `git commit --allow-empty`, the warm build (bundled in 1.1 s) carries fd14310e9a1f and not 83b89883ea22.
 
 Red first: the first 13 tests of `packages/core/test/fixes-r124.test.ts` ran on the e3d19aca sources and 10 failed
 (`red-first.txt`).
-`apps/mobile/test/fixes-r124.test.ts` covers the switch label and the locale sentences. `rag-cjk.test.ts` now expects
-the new sentence. Gates exit 0: `install --frozen-lockfile`, `typecheck`, `lint`, `test` (core 1,233 with 4 skipped,
-mobile 1,241, i18n 24, ui 23), `web:build`, `web:smoke`.
+`apps/mobile/test/fixes-r124.test.ts` covers the switch label, the locale sentences and the build stamp.
+`rag-cjk.test.ts` now expects the new sentence. Gates exit 0: `install --frozen-lockfile`, `typecheck`, `lint`, `test`
+(core 1,233 with 4 skipped, mobile 1,245, i18n 24, ui 23), `web:build`, `web:smoke`.
 
 Not covered: phones, Safari and Firefox were not run. The chat path uses the same sentences but was checked only in
 code and unit tests. Two things stay as they were. Instant still lists *"Alternatives:"* now and then, prompted by the
