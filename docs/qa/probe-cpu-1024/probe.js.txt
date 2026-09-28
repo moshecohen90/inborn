@@ -1,0 +1,47 @@
+import { Wllama } from "/w/index.js";
+window.__log = [];
+const stamp = (lvl) => (...a) => window.__log.push({ t: performance.now(), lvl, msg: a.map(String).join(" ") });
+const logger = { debug: stamp("debug"), log: stamp("log"), info: stamp("info"), warn: stamp("warn"), error: stamp("error") };
+window.__ready = true;
+/* Mirrors the app: the picker stores <=1024 px JPEG 0.9 on white (images/pick.ts), the CPU path re-scales to the engine edge (images/vision.ts). upscale=true forces the edge even above the source size. */
+async function jpeg(blob, max, upscale) {
+  const bm = await createImageBitmap(blob);
+  const long = Math.max(bm.width, bm.height);
+  const k = upscale || long > max ? max / long : 1;
+  const w = Math.max(1, Math.round(bm.width * k)), h = Math.max(1, Math.round(bm.height * k));
+  const c = document.createElement("canvas"); c.width = w; c.height = h;
+  const x = c.getContext("2d"); x.fillStyle = "#fff"; x.fillRect(0, 0, w, h); x.drawImage(bm, 0, 0, w, h); bm.close();
+  const b = await new Promise((r) => c.toBlob(r, "image/jpeg", 0.9));
+  return { blob: b, w, h };
+}
+window.__prep = async (name, edge, upscale) => {
+  const src = await (await fetch(`/img/${name}`)).blob();
+  const stored = await jpeg(src, 1024, false);
+  const eng = edge >= 1024 && !upscale ? stored : await jpeg(stored.blob, edge, upscale);
+  window.__img = await eng.blob.arrayBuffer();
+  return { w: eng.w, h: eng.h, bytes: window.__img.byteLength };
+};
+window.__load = async (tier, params) => {
+  if (window.__w) await window.__w.exit();
+  const w = new Wllama({ default: "/w/wasm/wllama.wasm" }, { logger, allowOffline: true });
+  w.setCompat(null);
+  const t0 = performance.now();
+  await w.loadModelFromUrl({ url: `/models/${tier}.gguf`, mmprojUrl: `/models/${tier}-mmproj.gguf` }, { n_ctx: 4096, n_threads: 2, jinja: true, n_gpu_layers: 0, log_level: 2, ...params });
+  window.__w = w;
+  return { ms: Math.round(performance.now() - t0), image: w.supportInputModality("image"), threads: w.getNumThreads(), isolated: globalThis.crossOriginIsolated, gpu: !!navigator.gpu };
+};
+window.__run = async (req) => {
+  const w = window.__w; let text = "", reasoning = "", timings = null, ttft = 0;
+  const logFrom = window.__log.length;
+  const r = { ...req, messages: req.messages.map((m) => (m.image ? { role: "user", content: [{ type: "image", data: window.__img }, { type: "text", text: m.content }] } : m)) };
+  const t0 = performance.now();
+  try {
+    for await (const c of await w.createChatCompletion({ ...r, stream: true })) {
+      const d = c.choices[0]?.delta ?? {};
+      if (!ttft && (d.content || d.reasoning_content)) ttft = performance.now() - t0;
+      if (d.content) text += d.content; if (d.reasoning_content) reasoning += d.reasoning_content; if (c.timings) timings = c.timings;
+    }
+  } catch (e) { return { error: String(e?.message ?? e) }; }
+  const logs = window.__log.slice(logFrom).filter((l) => /image|encod|decod|slice|token|clip|mtmd/i.test(l.msg)).map((l) => `${Math.round(l.t - t0)}ms ${l.msg}`.slice(0, 240));
+  return { text, reasoning, ttftMs: Math.round(ttft), totalMs: Math.round(performance.now() - t0), timings, logs };
+};

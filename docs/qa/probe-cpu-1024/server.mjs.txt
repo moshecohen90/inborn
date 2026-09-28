@@ -1,0 +1,22 @@
+import { createServer } from "node:http";
+import { createReadStream, statSync } from "node:fs";
+import path from "node:path";
+const W = "/Users/moshecohen/dev/inborn/node_modules/.pnpm/@wllama+wllama@3.6.1/node_modules/@wllama/wllama/esm";
+const M = "/Users/moshecohen/dev/inborn/.models";
+const here = path.dirname(new URL(import.meta.url).pathname);
+const files = { "/": "probe.html", "/probe.html": "probe.html", "/probe.js": "probe.js", "/img/cat-320.png": "cat-320.png", "/img/cat-1024x768.png": "cat-1024x768.png" };
+const models = { "/models/instant.gguf": `${M}/Qwen3.5-0.8B-Q4_K_M.gguf`, "/models/instant-mmproj.gguf": `${M}/mmproj-Qwen3.5-0.8B-F16.gguf`, "/models/fast.gguf": `${M}/Qwen3.5-2B-Q4_K_M.gguf`, "/models/fast-mmproj.gguf": `${M}/mmproj-Qwen3.5-2B-F16.gguf` };
+const types = { ".html": "text/html", ".js": "text/javascript", ".wasm": "application/wasm", ".png": "image/png" };
+const port = Number(process.env.PORT ?? 8941);
+createServer((req, res) => {
+  const u = new URL(req.url, "http://x");
+  res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
+  res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
+  let file = files[u.pathname] ? path.join(here, files[u.pathname]) : u.pathname.startsWith("/w/") ? path.join(W, u.pathname.slice(3)) : models[u.pathname] ?? null;
+  if (!file) { res.writeHead(404); return res.end(); }
+  let st; try { st = statSync(file); } catch { res.writeHead(404); return res.end(); }
+  res.setHeader("Accept-Ranges", "bytes"); res.setHeader("Content-Type", types[path.extname(file)] ?? "application/octet-stream");
+  const range = /bytes=(\d+)-(\d*)/.exec(req.headers.range ?? "");
+  if (range) { const s = +range[1], e = range[2] ? +range[2] : st.size - 1; res.writeHead(206, { "Content-Range": `bytes ${s}-${e}/${st.size}`, "Content-Length": e - s + 1 }); if (req.method === "HEAD") return res.end(); return createReadStream(file, { start: s, end: e }).pipe(res); }
+  res.writeHead(200, { "Content-Length": st.size }); if (req.method === "HEAD") return res.end(); createReadStream(file).pipe(res);
+}).listen(port, "127.0.0.1", () => console.log("probe server on", port, "pid", process.pid));
