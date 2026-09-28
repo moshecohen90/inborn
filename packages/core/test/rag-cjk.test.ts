@@ -79,7 +79,7 @@ describe("F195 · an on-topic CJK question keeps its passages and its citations"
       const p = buildRagPrompt({ question, hits: hitsFor(question, [passage]), docs, strict: false, nCtx: 4096, nonce: "n" });
       expect(p.used.map((h) => h.chunk.id)).toEqual([passage.id]);
       expect(p.citations).toHaveLength(1);
-      expect(p.messages[0]!.content).not.toContain("contain nothing about this question");
+      expect(p.messages[0]!.content).not.toContain("Your documents don't mention this.");
     });
 
     it(`${label}: an unrelated passage in the same language is still dropped`, () => {
@@ -133,7 +133,7 @@ describe("F278 · a one-passage CJK document does not cite itself for an off-top
       const p = buildRagPrompt({ question: offTopic, hits: hitsFor(offTopic, [only]), docs, strict: false, nCtx: 4096, nonce: "n" });
       expect(p.used).toEqual([]);
       expect(p.citations).toEqual([]);
-      expect(p.messages[0]!.content).toContain("contain nothing about this question");
+      expect(p.messages[0]!.content).toContain("Your documents don't mention this.");
     });
 
     it(`${label}: strict mode answers nothing rather than quoting the one passage`, () => {
@@ -216,7 +216,7 @@ describe("F327 · the cosine cannot carry a one-passage document up to the door 
         expect(p.used).toEqual([]);
         expect(p.citations).toEqual([]);
         expect(p.messages[1]?.content ?? "").not.toContain(text);
-        expect(strict ? p.noAnswer : p.messages[0]!.content).toStrictEqual(strict ? true : expect.stringContaining("contain nothing about this question"));
+        expect(strict ? p.noAnswer : p.messages[0]!.content).toStrictEqual(strict ? true : expect.stringContaining("Your documents don't mention this."));
       });
 
       it(`${label}: strict=${strict}, the on-topic question is cited whichever side of the floor the cosine is on`, () => {

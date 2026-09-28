@@ -1,0 +1,52 @@
+F452 · the web build's commit stamp is always HEAD
+Round 124, branch web-copy-124, 2026-09-28. Built with `pn web:build` (apps/web/build.mjs: expo export -p web,
+then the dev export to web-build/dev). No cache was cleared at any point: no --clear, no rm of $TMPDIR/metro-cache.
+
+CAUSE
+The web read the commit from Constants.expoConfig.extra.commit. On web, babel-preset-expo's
+expo-inline-manifest-plugin replaces process.env.APP_MANIFEST inside expo-constants/build/ExponentConstants.web.js
+with the public app config at transform time. Metro stores that transform in os.tmpdir()/metro-cache
+(@expo/metro-config ExpoMetroConfig.js, FileStore), one cache for every checkout on the machine, under a key made
+of the transformer files, the babel config and the file's own bytes (metro-transform-worker.js getCacheKey). The
+app config is not in the key, so every export reused the config of whichever build first filled that entry.
+
+BEFORE (the stale stamp, two checkouts)
+- Lead: dist built at e3d19aca (round 121) carried 91e91773d705 = main 14:09 "Merge origin/continue-seam-restart
+  (round 119, F441)", an older commit.
+- This worktree: dist built at e3d19aca at 13:32Z carried "commit":"0d6c9b95bb88" = main 16:06 "Merge
+  origin/ios-build-29", a commit made later in /Users/moshecohen/dev/inborn, never checked out here.
+  The cache is shared across checkouts in both directions.
+
+FIX
+1. apps/mobile/scripts/build-info.cjs writes src/work/buildInfo.generated.json ({commit, builtAt}, git-ignored).
+   app.config.ts calls it at load, so every expo command writes it before Metro starts: expo export (web),
+   expo prebuild, and expo export:embed, the Xcode bundle phase (@expo/cli exportEmbedAsync.js calls getConfig).
+   typecheck and vitest write it too. It rewrites only when the bytes differ.
+2. work/appInfo.ts imports the JSON; About.tsx and Proof.tsx read buildHash() and builtOn(). One source of truth
+   for web and native, and extra.commit / extra.builtAt are gone from the app config.
+   The JSON is an ordinary module, so its contents are part of Metro's key: a new HEAD is a new transform.
+3. metro/mdTransformer.js getCacheKey adds the sha256 of the public app config, so the inlined expoConfig
+   (version, extra.devVariant) cannot go stale either. It changes only when the config changes, not per commit:
+   release 3c9decd1..., APP_VARIANT=development f8d564bc....
+
+PROOF
+Build 1 at C2 = 83b89883ea22 (the F452 commit), 24 s, "Web Bundled 12053ms" (the new transformer key re-keyed it).
+  apps/web/dist/_expo/static/js/web/index-cad55497c8669d16aa51151e96827b5d.js
+    __d(function(t,i,o,b,c,e,m){c.exports={commit:"83b89883ea22",builtAt:"2026-09-28"}},1236,[]);
+    83b89883ea22 x1   0d6c9b95bb88 x0   b16e4c98611f x0
+  web-build/dev bundle: module.exports = {"commit":"83b89883ea22","builtAt":"2026-09-28"}
+
+git commit --allow-empty -m "stamp probe"  ->  fd14310e9a1f
+
+Build 2 at the probe, 14 s, "Web Bundled 1095ms" (warm cache, nothing cleared).
+  apps/web/dist/_expo/static/js/web/index-79451157f135b20d3f8b48f14db94c2f.js
+    __d(function(t,f,i,o,c,d,e){c.exports={commit:"fd14310e9a1f",builtAt:"2026-09-28"}}
+    fd14310e9a1f x1   83b89883ea22 x0   0d6c9b95bb88 x0
+  web-build/dev bundle: module.exports = {"commit":"fd14310e9a1f","builtAt":"2026-09-28"}
+
+git reset --hard HEAD~1 (tree was clean; the probe was empty)  ->  HEAD 83b89883 again.
+
+TEST
+apps/mobile/test/fixes-r124.test.ts, "F452 · the build stamp is always HEAD" (4 tests): the stamp equals
+git rev-parse --short=12 HEAD and today; the file is rewritten only on change and is git-ignored; About, Proof
+and appInfo read the generated file and the config has no commit; the transformer key follows the app config.

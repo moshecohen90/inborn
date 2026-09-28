@@ -1,0 +1,30 @@
+F449 / F451 · live answers on the web, Instant (Qwen3.5-0.8B), 28.9.2026
+
+Build: branch web-copy-124, `pnpm web:build` (apps/web/dist) served by scripts/serve-web.mjs on 127.0.0.1:8964 with
+MODELS_DIR=.models. The lead's walker (journeys/walk.mjs) on a fresh chrome-headless-shell profile: Fast downloaded,
+step 4 switches to Instant and downloads it and its 205 MB pack, step 5 adds office.txt and asks in Ask your
+documents ("Answer only from my documents" off, no document index model: exact-word search).
+Question 1: "What is the support phone number and when does the office close?"
+Question 2: "What is the capital of Australia?"
+
+BEFORE · main e3d19aca, the lead's walk (127.0.0.1:8787)
+  Q1: Based on the attached document, the support phone number is 555-0134 and the office closes at 6 in the evening. While specific instructions were provided regarding lunch break times, no general knowledge was used to answer this question because the relevant information (phone number and closing time) appears directly under the "office.txt" file within the documents list itself.
+  Q2: Australia's capital city is Canberra.
+  Card: Download 205 MB Switch to FAST Remove …
+
+LIVE 1 · first round-124 build (kept-passages rule as now; no-match rule "Start with "Your documents don't mention
+this." Then give the full answer to the question."), steps 1,4,5, profile-R124
+  Q1: The support phone number is 555-0134, and the office closes at evening. Alternatives for this question: • Ask about lunch break hours instead of closing time. • Ask which Wi-Fi password is printed on the board instead of asking "what is the password."
+  Q2: Your documents don't mention this. The capital city of Australia is Canberra, located in the state of New South Wales.
+
+LIVE 2 · final build (the committed prompt), steps 1,3,3b,4,5, profile-R124b
+  Q1: [1] The support phone number is 555-0134, and the office closes at 6 in the evening.
+  Q2: Your documents don't mention this. The capital of Australia is Canberra.
+      Notice under it: Nothing in your documents matched this question. Answered without them.
+  Card (Instant in use, Fast and its pack installed): Download 205 MB Switch to FAST · installed Remove …
+
+Screenshots: before-05c-ask-answer.png, before-04d-card.png, live1-05c-ask-answer.png, live1-05d-ask-nomatch.png,
+live2-05c-ask-answer.png, live2-05d-ask-nomatch.png, live2-04d-card.png.
+Live 1 missed the "6" and added an "Alternatives for this question:" list; that list comes from the shared length line
+("Do not restate the question, list alternatives, …"), which this round leaves alone (sampling.txt). The "[1]" in
+live 2 is Instant copying the passage label; Instant is not asked for marks and the chip below is the source.

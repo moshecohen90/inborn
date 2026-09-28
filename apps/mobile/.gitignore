@@ -9,6 +9,8 @@ dist/
 web-build/
 # copied out of node_modules by `pnpm wasm`
 /public/wllama/
+# written by scripts/build-info.cjs on every expo command, typecheck and test run
+/src/work/buildInfo.generated.json
 expo-env.d.ts
 
 # Native

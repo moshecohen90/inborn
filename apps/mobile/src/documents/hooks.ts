@@ -1,8 +1,10 @@
 import { useCallback, useMemo, useSyncExternalStore } from "react";
+import { useTranslation } from "react-i18next";
 import { isSearchable, type Citation, type DocumentRecord, type Message } from "@inborn/core";
 import { useEntitlement } from "../licence";
 import { peekEngine } from "../engine";
 import { canCiteMarkers, getLibrary, type AskResult, type DocumentLibrary, type LibraryState } from "./library";
+import { noPassageOpeners } from "../lib/docsGate";
 
 /* useSyncExternalStore needs a changing snapshot; a counter bumped per notification is enough (same trick as the vault). */
 let version = 0;
@@ -54,6 +56,7 @@ export interface DocumentContext {
 export function useDocumentContext(chatId: string | null): DocumentContext {
   const { library, state } = useDocuments();
   const { can } = useEntitlement();
+  const { t } = useTranslation();
   /* §7.3 Pro. Masked here rather than at the switch so a lapsed licence stops changing answers, not just the UI. */
   const strict = state.strict && can("strictDocuments");
   const key = chatId ?? "";
@@ -67,7 +70,7 @@ export function useDocumentContext(chatId: string | null): DocumentContext {
     attach: (docId) => library.attach(key, docId),
     detach: (docId) => library.detach(key, docId),
     ready,
-    buildPrompt: (question, history, nCtx, systemPrompt) => library.ask(question, { docIds, history, nCtx, systemPrompt, strict, citeMarkers: canCiteMarkers(peekEngine()?.model.id) }),
+    buildPrompt: (question, history, nCtx, systemPrompt) => library.ask(question, { docIds, history, nCtx, systemPrompt, strict, citeMarkers: canCiteMarkers(peekEngine()?.model.id), openers: noPassageOpeners(t) }),
     citationsFor: (answer, citations) => library.citationsFor(answer, citations),
     context: { docIds, strict },
   };

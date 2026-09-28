@@ -15,7 +15,7 @@ import { Toggle } from "../../components/shell/primitives";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useKeyboardLift } from "../../lib/keyboard";
 import { useOpenSheet } from "../../lib/openSheets";
-import { askSheetRoute, askStatsLine, saysNoneMatched } from "../../lib/docsGate";
+import { askSheetRoute, askStatsLine, noPassageOpeners, saysNoneMatched } from "../../lib/docsGate";
 import { useEntitlement } from "../../licence";
 import { ProTag } from "../../components/chat/Sheet";
 import { reindexNotice, type AnsweredMidReindex } from "../../lib/reindexNotice";
@@ -96,7 +96,7 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult, str
       setPhase({ kind: "retrieving" });
       /* F38: a one-line question over documents gets a one-line answer; a wider one keeps room for the passages it must join. */
       const length = planAnswerLength({ text, use: "documents" });
-      const { prompt, retrieveMs, reindexing: rebuilding, lexical } = await library.ask(text, { docIds: docs.map((d) => d.id), strict: strict && !strictLocked, nCtx: s.nCtx, answerLanguage: i18n.language, citeMarkers: canCiteMarkers(model.id), systemPrompt: length.instruction });
+      const { prompt, retrieveMs, reindexing: rebuilding, lexical } = await library.ask(text, { docIds: docs.map((d) => d.id), strict: strict && !strictLocked, nCtx: s.nCtx, answerLanguage: i18n.language, citeMarkers: canCiteMarkers(model.id), systemPrompt: length.instruction, openers: noPassageOpeners(t) });
       setReindexing(rebuilding ?? null);
       setWordsOnly(!!lexical);
       const used = prompt.used.map((h) => ({ doc: library.document(h.chunk.docId)?.name ?? h.chunk.docId, page: h.chunk.page, cosine: Number(h.cosine.toFixed(3)), bm25: Number(h.bm25.toFixed(2)) }));

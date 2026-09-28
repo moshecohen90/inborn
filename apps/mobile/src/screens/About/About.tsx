@@ -9,6 +9,7 @@ import { useAppServices } from "../../services/AppServices";
 import { Screen } from "../../components/shell/Screen";
 import { Row, Section } from "../../components/shell/primitives";
 import { useType } from "../../services/type";
+import { buildHash } from "../../work/appInfo";
 
 const SUPPORT = "support@inbornapp.com";
 
@@ -21,11 +22,11 @@ export function About() {
   const { engine, storageKind } = useAppServices();
   const version = Application.nativeApplicationVersion ?? Constants.expoConfig?.version ?? "0.0.1";
   const build = Application.nativeBuildVersion ?? "web";
-  const extra = (Constants.expoConfig?.extra ?? {}) as { commit?: string };
+  const commit = buildHash();
 
   // Diagnostics carry the device and engine, never a chat (spec §10.9 #59).
   const diagnostics = [
-    `Inborn ${version} (${build}) ${extra.commit ?? ""}`,
+    `Inborn ${version} (${build}) ${commit}`,
     `${Platform.OS} ${Device.osVersion ?? ""} · ${Device.modelName ?? ""}`,
     `engine ${engine.engine.id} · model ${engine.model.id} · storage ${storageKind}`,
   ].join("\n");
@@ -34,7 +35,7 @@ export function About() {
   return (
     <Screen header={{ back: true, title: t("about.title") }} testID="about">
       <Section title={t("about.version")}>
-        <Row label={`${version} (${build})`} value={extra.commit ?? ""} />
+        <Row label={`${version} (${build})`} value={commit} />
       </Section>
       <Section title={t("about.licenses")}>
         <Row label={t("about.modelLicenses")} onPress={() => router.push("/settings/licenses")} chevron />

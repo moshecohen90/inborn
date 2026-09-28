@@ -1,8 +1,8 @@
-import { execSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import type { ConfigContext, ExpoConfig } from "expo/config";
 import PICK_TYPES from "./src/documents/pickTypes.json";
+import { writeBuildInfo } from "./scripts/build-info.cjs";
 
 /* Release Android builds must not declare INTERNET (spec §5.1, D3). Metro needs it in development only. */
 const dev = process.env.APP_VARIANT === "development";
@@ -57,14 +57,9 @@ const iosShareExtension = process.env.INBORN_IOS_SHARE_EXT !== "0";
 const USAGE = (JSON.parse(readFileSync(path.join(__dirname, "locales/en.json"), "utf8")) as { ios: Record<string, string> }).ios;
 const LOCALES = Object.fromEntries(["de", "es", "fr", "ja", "pt-BR", "ko", "zh-Hant"].map((l) => [l, `./locales/${l}.json`]));
 
-/* The proof screen shows the commit the build came from so a reader can match it against the published hash (S50). */
-const commit = (() => {
-  try {
-    return execSync("git rev-parse --short=12 HEAD", { stdio: ["ignore", "pipe", "ignore"] }).toString().trim();
-  } catch {
-    return "unknown";
-  }
-})();
+/* The proof screen shows the commit the build came from so a reader can match it against the published hash (S50).
+   Written before Metro starts, on every expo command: export, prebuild and the native bundle phase (F452). */
+writeBuildInfo();
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
@@ -134,7 +129,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   /* `devVariant` is decided here, at config time, and baked into the bundle: a store build cannot be given it by an
      environment variable later, and an APP_VARIANT that flips it also declares INTERNET, which the Android permission
      gate refuses. It is what lets the licence verifier accept sandbox proofs in a QA build and never in a store one. */
-  extra: { commit, builtAt: new Date().toISOString().slice(0, 10), devVariant: dev },
+  extra: { devVariant: dev },
   plugins: [
     ["expo-router", { root: "./src/app" }],
     "llama.rn",

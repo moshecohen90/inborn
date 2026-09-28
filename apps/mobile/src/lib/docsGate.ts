@@ -1,3 +1,5 @@
+import type { NoPassageOpeners } from "@inborn/core";
+
 /**
  * What a chat turn does about attached documents, decided before anything reaches the model (§7.3 "answer only from my documents").
  *
@@ -61,6 +63,9 @@ export function askSheetRoute({ noAnswer }: { noAnswer: boolean }): "not-found" 
 export function saysNoneMatched({ continuing, attachedCount, usedPassages }: { continuing: boolean; attachedCount: number; usedPassages: number }): boolean {
   return !continuing && attachedCount > 0 && usedPassages === 0;
 }
+
+/** The sentences a documents answer with no passage opens with, in the UI language: a quoted English one pulled other languages into English (F449). */
+export const noPassageOpeners = (t: (key: string) => string): NoPassageOpeners => ({ nothingRelevant: t("documents.opener.nothingRelevant"), nothingFits: t("documents.opener.nothingFits") });
 
 /** The Ask sheet's timing line is §7.8 "detailed statistics", the Pro row the chat's ledger already gates. */
 export function askStatsLine(stats: string | null, detailed: boolean): string | null {
