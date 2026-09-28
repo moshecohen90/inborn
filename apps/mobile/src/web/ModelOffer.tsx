@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { MIN_TOUCH, radius, type Theme } from "@inborn/ui";
 import { downloadPercent, formatModelBytes } from "@inborn/core";
 import { joinList } from "@inborn/i18n";
-import { chooseWebModel, delivery, settleModelStatus, type WebBoot } from "./boot";
+import { chooseWebModel, delivery, settleModelStatus, webStoredState, type WebBoot } from "./boot";
 import { ModelOptions } from "./ModelOptions";
 import { deviceNoun } from "../lib/deviceNoun";
 import { languagesLine } from "../screens/Onboarding/modelStep";
@@ -17,6 +17,7 @@ import { installFailureText } from "../vault/failureText";
 import { useUpdateHold } from "./updateHold";
 import { protectStorage } from "./durable";
 import { InstallHint } from "./DurableStorage";
+import { Header } from "../components/shell/Screen";
 
 type Phase =
   | { kind: "idle" }
@@ -37,6 +38,8 @@ export interface ModelOfferProps {
   note?: string | null;
   /** The engine already runs without a file (Chrome's built-in model): the step may go on without a download. */
   onContinue?: () => void;
+  /** The framed door opened from the Model sheet or the vault: the arrow back there, as the onboarding step has. */
+  onBack?: () => void;
 }
 
 /**
@@ -44,7 +47,7 @@ export interface ModelOfferProps {
  * its progress and errors, and the other models folded below. Onboarding's model step on the web renders it, and so
  * does the page a returning reader meets when the model has left this browser: one list, `WebBoot.choices` (F312).
  */
-export function ModelOffer({ boot, theme, onReady, framed, note, onContinue }: ModelOfferProps) {
+export function ModelOffer({ boot, theme, onReady, framed, note, onContinue, onBack }: ModelOfferProps) {
   const { t, i18n } = useTranslation();
   /* The pick drives the render; chooseWebModel() keeps the boot and the saved preference on the same model. */
   const [chosenId, setChosenId] = useState<string | null>(boot.source?.id ?? null);
@@ -208,15 +211,19 @@ export function ModelOffer({ boot, theme, onReady, framed, note, onContinue }: M
           <Text style={[styles.body, { color: theme.text2 }]}>{t("onboarding.model.start")}</Text>
         </Pressable>
       ) : null}
-      <ModelOptions choices={boot.choices} currentId={source.id} onChoose={(id) => void choose(id)} theme={theme} disabled={busy} />
+      <ModelOptions choices={boot.choices} currentId={source.id} onChoose={(id) => void choose(id)} theme={theme} disabled={busy} stateOf={(id) => webStoredState(boot, id)} />
     </>
   );
   if (!framed) return <View testID="download-door" style={styles.inStep}>{body}</View>;
   return (
-    /* The card grows when the option list opens; at 390 that is taller than the viewport, so the page scrolls. */
-    <ScrollView testID="download-door" contentContainerStyle={styles.doorScroll}>
-      <View style={[styles.card, { borderColor: theme.border, backgroundColor: theme.surface1 }]}>{body}</View>
-    </ScrollView>
+    <>
+      {/* While bytes move the way out is Cancel; the header keeps its height so the card does not jump. */}
+      {onBack ? <Header back={!busy} onBack={onBack} /> : null}
+      {/* The card grows when the option list opens; at 390 that is taller than the viewport, so the page scrolls. */}
+      <ScrollView testID="download-door" contentContainerStyle={styles.doorScroll}>
+        <View style={[styles.card, { borderColor: theme.border, backgroundColor: theme.surface1 }]}>{body}</View>
+      </ScrollView>
+    </>
   );
 }
 

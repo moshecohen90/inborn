@@ -138,8 +138,11 @@ describe("the browser's sheet reads the door's list (F345)", () => {
     expect(browser).toContain("choices: webSheetChoices(input)");
   });
   it("a model the door offers is chosen here the way the vault chooses it: remembered, then the door delivers it", () => {
-    expect(browser).toContain("chooseWebModel(id)");
-    expect(browser).toContain('location.assign("/")');
+    /* F445: through the switch that also records the way back from the door. */
+    expect(browser).toContain('switchWebModel(id, { to: "/", sheet: true })');
+    const boot = read("../../web/boot.ts");
+    expect(boot).toContain("if (!(await chooseWebModel(id))) return;");
+    expect(boot).toContain('location.assign("/");');
     expect(sheet).toContain("model-sheet-choose-");
   });
   it("'In the app' heads only the models the browser is never offered", () => {

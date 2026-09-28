@@ -52,7 +52,7 @@ function ExtensionRow({ ext, theme }: { ext: Extension; theme: Theme }) {
   const line = missingModel ? { key: "extensions.state.installedNoModel", params: { size, model: missingModel } } : vaultRowState(state, size);
   const action =
     state.kind === "missing" || state.kind === "failed"
-      ? { id: `ext-download-${ext.id}`, label: t("extensions.download", { size }), run: () => void installExtension(ext.id).catch(() => undefined), cta: true }
+      ? { id: `ext-download-${ext.id}`, label: t("extensions.downloadNow"), run: () => void installExtension(ext.id).catch(() => undefined), cta: true }
       : state.kind === "downloading"
         ? { id: `ext-cancel-${ext.id}`, label: t("vault.cancel"), run: () => cancelExtension(ext.id), cta: false }
         : state.kind === "ready" && !state.bundled && canRemoveExtensions

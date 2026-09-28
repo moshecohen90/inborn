@@ -4,7 +4,8 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useTheme } from "../services/theme";
 import { useTranslation } from "react-i18next";
 import { Icon, MIN_TOUCH, radius, type Theme } from "@inborn/ui";
-import { webBoot, webReady, type WebBoot } from "./boot";
+import { leaveDoor, webBoot, webReady, type WebBoot } from "./boot";
+import { doorBack, readDoorReturn, saveDoorReturn } from "./doorReturn";
 import { ModelOffer } from "./ModelOffer";
 import { useAppServices } from "../services/AppServices";
 import { writeEnginePref } from "./prefs";
@@ -30,11 +31,14 @@ function BrowserShell({ children }: { children: ReactNode }) {
   const { t } = useTranslation();
   const { prefs, updatePrefs } = useAppServices();
   const [ready] = useState(() => webReady(boot));
+  const [back] = useState(() => doorBack(readDoorReturn(), boot.choices.filter((c) => c.installed).map((c) => c.source.id), boot.source?.id ?? null));
   const [offline, setOffline] = useState<OfflineState>("installing");
   const [updateReady, setUpdateReady] = useState(false);
-  const [keeps, setKeeps] = useState<boolean | null>(null);
+  /* A model still in OPFS means the browser cleared nothing: the reader picked another one, and onboarding must not restart. */
+  const holdsModel = boot.choices.some((c) => c.installed) || boot.status.kind === "partial";
+  const [keeps, setKeeps] = useState<boolean | null>(holdsModel ? true : null);
   const route = webRoute(usePathname(), { ready, onboarded: prefs.onboarded, hasSource: !!boot.source, keeps });
-  const askKeeps = prefs.onboarded && !ready;
+  const askKeeps = prefs.onboarded && !ready && !holdsModel;
   /* A full load, not a router hop: the web boot (catalog, OPFS state, engine) is read once per page, and a wipe or a deep link must meet a fresh one. */
   const redirect = route.kind === "redirect" ? route.to : null;
 
@@ -57,7 +61,7 @@ function BrowserShell({ children }: { children: ReactNode }) {
   }, [redirect]);
 
   /* Onboarded, and no model file any more: nothing on this browser was ever downloaded, so the browser cleared it. */
-  const gone = !boot.choices.some((c) => c.installed) && boot.status.kind !== "partial";
+  const gone = !holdsModel;
   return (
     <View style={[styles.root, { backgroundColor: theme.bg }]}>
       <Strip boot={boot} theme={theme} offline={offline} />
@@ -66,7 +70,17 @@ function BrowserShell({ children }: { children: ReactNode }) {
       {route.kind === "children" ? (
         children
       ) : route.kind === "model-step" ? (
-        <ModelOffer framed boot={boot} theme={theme} note={gone ? t("web.modelGone") : null} onReady={() => location.reload()} />
+        <ModelOffer
+          framed
+          boot={boot}
+          theme={theme}
+          note={gone ? t("web.modelGone") : null}
+          onBack={back ? () => leaveDoor(back) : undefined}
+          onReady={() => {
+            saveDoorReturn(null);
+            location.reload();
+          }}
+        />
       ) : route.kind === "catalog" ? (
         <CatalogDoor theme={theme} />
       ) : null}

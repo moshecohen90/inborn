@@ -29,6 +29,8 @@ vi.mock("../web/boot", () => ({
     ],
   }),
   chooseWebModel: async () => null,
+  onStoredModels: () => () => undefined,
+  refreshStoredModels: async () => undefined,
 }));
 const downloads: string[] = [];
 vi.mock("../web/modelDelivery", async (orig) => {

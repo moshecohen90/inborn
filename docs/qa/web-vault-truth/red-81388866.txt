@@ -1,0 +1,18 @@
+# Red first: branch web-vault-truth's tests run on 81388866 (28.9.2026)
+
+## storedModels.test.ts as committed (imports the new modules)
+ FAIL  src/web/storedModels.test.ts [ src/web/storedModels.test.ts ]
+Error: Cannot find module './storedModels' imported from <checkout of 81388866>/apps/mobile/src/web/storedModels.test.ts
+ Test Files  1 failed (1)
+      Tests  no tests
+
+## the same file's copy and wiring block alone (no new imports)
+     × no screen claims that choosing another model replaces the stored one 3ms
+     × the vault's tier card no longer prints the file name 5ms
+     × an extension row says its size once: in the state line, not again on the button 5ms
+     × the framed door keeps a back arrow except while bytes move, and the shell wires it to the recorded way back 5ms
+     × a browser that still holds a model is not a wiped one: choosing another does not restart onboarding 7ms
+     × the vault offers Remove on stored models and the sheet prints the same state 2ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+ Test Files  1 failed (1)
+      Tests  6 failed (6)

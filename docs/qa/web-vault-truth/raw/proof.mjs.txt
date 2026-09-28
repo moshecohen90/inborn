@@ -1,0 +1,158 @@
+// F445 live walk: node wvt-proof.mjs <baseUrl> <outDir> <profileDir>
+import { createRequire } from "node:module";
+import { readdirSync, mkdirSync, writeFileSync, rmSync } from "node:fs";
+import os from "node:os";
+import path from "node:path";
+const req = createRequire("/Users/moshecohen/.npm/_npx/9833c18b2d85bc59/node_modules/");
+const { chromium } = req("playwright-core");
+const [base, outDir, profile] = process.argv.slice(2);
+mkdirSync(outDir, { recursive: true });
+rmSync(profile, { recursive: true, force: true });
+const cache = path.join(os.homedir(), "Library/Caches/ms-playwright");
+const shell = readdirSync(cache).filter((d) => /^chromium_headless_shell-\d+$/.test(d)).sort().reverse().map((d) => path.join(cache, d, "chrome-headless-shell-mac-arm64", "chrome-headless-shell"))[0];
+const ctx = await chromium.launchPersistentContext(profile, { headless: true, executablePath: shell, viewport: { width: 1280, height: 900 } });
+const p = ctx.pages()[0] ?? (await ctx.newPage());
+const log = [];
+const errors = [];
+p.on("pageerror", (e) => errors.push(String(e).slice(0, 200)));
+const note = (s) => { log.push(s); console.log(s); };
+const shot = async (name, tall = false) => {
+  if (tall) await p.setViewportSize({ width: 1280, height: 1900 });
+  await p.screenshot({ path: path.join(outDir, `${name}.png`) });
+  if (tall) await p.setViewportSize({ width: 1280, height: 900 });
+};
+const ids = async () => [...new Set(await p.evaluate(() => [...document.querySelectorAll("[data-testid]")].filter((e) => { const r = e.getBoundingClientRect(); const c = getComputedStyle(e); return r.width > 0 && r.height > 0 && c.visibility === "visible" && c.opacity !== "0"; }).map((e) => e.getAttribute("data-testid"))).catch(() => []))];
+const txt = async (id) => ((await p.locator(`[data-testid="${id}"]`).first().textContent({ timeout: 5000 }).catch(() => null)) ?? "").replace(/\s+/g, " ").trim();
+const has = async (id) => (await ids()).includes(id);
+const click = async (id) => {
+  const r = await p.evaluate((id) => { const el = [...document.querySelectorAll(`[data-testid="${id}"]`)].find((e) => e.getBoundingClientRect().width > 0); if (!el) return null; el.scrollIntoView({ block: "center" }); const b = el.getBoundingClientRect(); return [b.x + b.width / 2, b.y + b.height / 2]; }, id);
+  if (!r) throw new Error(`no visible ${id}; ids: ${(await ids()).join(" ")}`);
+  await p.mouse.click(r[0], r[1]);
+};
+const waitId = async (id, ms = 60000) => { const t0 = Date.now(); while (Date.now() - t0 < ms) { if (await has(id)) return true; await p.waitForTimeout(400); } throw new Error(`timeout waiting for ${id}; ids: ${(await ids()).join(" ")}`); };
+const waitChat = async (ms = 600000) => {
+  const t0 = Date.now();
+  while (Date.now() - t0 < ms) {
+    const cur = await ids();
+    if (cur.includes("composer-input") && cur.includes("model-chip")) return;
+    if (cur.includes("lock-start")) await click("lock-start");
+    else if (cur.includes("sealed-start")) { await p.waitForTimeout(3000); if (await has("sealed-start")) await click("sealed-start"); }
+    await p.waitForTimeout(1500);
+  }
+  throw new Error("no chat");
+};
+const storedModelsFigure = async () => {
+  await p.goto(base + "/settings/storage", { waitUntil: "networkidle" });
+  await waitId("storage-models");
+  await p.waitForTimeout(1500);
+  return txt("storage-models");
+};
+const opfsFiles = async () => p.evaluate(async () => { const out = {}; const root = await navigator.storage.getDirectory(); for (const d of ["models", "cache"]) { try { const h = await root.getDirectoryHandle(d); for await (const [n, f] of h.entries()) if (f.kind === "file") out[`${d}/${n}`] = (await f.getFile()).size; } catch {} } return out; });
+
+try {
+  /* 1. First run: onboarding, the model step's download (the recommended model), Sealed, Lock, chat. */
+  await p.goto(base + "/", { waitUntil: "networkidle" });
+  await waitId("onboarding-continue");
+  await click("onboarding-continue");
+  await waitId("download-model");
+  note("1 first-run door: " + (await p.locator('[data-testid="download-door"]').innerText()).replace(/\s+/g, " ").slice(0, 120));
+  await click("download-model");
+  await waitChat();
+  note("1 chat chip: " + (await txt("model-chip")));
+
+  /* 2. The vault: the model in use. */
+  await p.goto(base + "/vault", { waitUntil: "networkidle" });
+  await waitId("vault-web-door");
+  await p.waitForTimeout(1500);
+  note("2 vault current: " + (await txt("vault-web-current")));
+  note("2 vault instant row: " + (await txt("web-model-state-instant")));
+  await shot("01-vault-fast-in-use", true);
+
+  /* 3. The Model sheet, then Instant's door from it: the back arrow, and back on the sheet. */
+  await p.goto(base + "/", { waitUntil: "networkidle" });
+  await waitChat();
+  await click("model-chip");
+  await waitId("model-sheet");
+  await p.waitForTimeout(800);
+  note("3 sheet fast: " + (await txt("model-sheet-stored-fast")) + " | instant: " + (await txt("model-sheet-stored-instant")));
+  await shot("02-sheet-fast-in-use");
+  await click("model-sheet-choose-instant");
+  await waitId("download-door");
+  await p.waitForTimeout(1000);
+  note("3 door: back visible " + (await has("back")) + " | " + (await p.locator('[data-testid="download-door"]').innerText()).replace(/\s+/g, " ").slice(0, 80));
+  await shot("03-door-instant-back-arrow");
+  await click("back");
+  await p.waitForTimeout(2500);
+  await waitChat();
+  await waitId("model-sheet", 15000);
+  await p.waitForTimeout(800);
+  note("3 after back: url " + p.url() + " | sheet open " + (await has("model-sheet")) + " | chip " + (await txt("model-chip")));
+  await shot("04-back-on-the-sheet");
+
+  /* 4. Choose Instant for real: the arrow goes while bytes move, Cancel stays. */
+  await click("model-sheet-choose-instant");
+  await waitId("download-model");
+  await click("download-model");
+  await waitId("download-progress", 30000);
+  note("4 downloading: back visible " + (await has("back")) + " | cancel visible " + (await has("download-cancel")) + " | " + (await txt("download-progress")));
+  await shot("05-door-downloading-no-arrow");
+  await waitChat();
+  note("4 chat chip: " + (await txt("model-chip")));
+  note("4 OPFS: " + JSON.stringify(await opfsFiles()));
+
+  /* 5. The vault with both: Instant in use, Fast installed with Remove. */
+  await p.goto(base + "/vault", { waitUntil: "networkidle" });
+  await waitId("vault-web-door");
+  await p.waitForTimeout(1500);
+  note("5 vault current: " + (await txt("vault-web-current")) + " | fast row: " + (await txt("web-model-state-fast")) + " | fast remove " + (await has("web-model-remove-fast")) + " | used line: " + (await p.getByText(/^Used in this browser/).first().textContent().catch(() => "?")));
+  note("5 extension row: " + (await txt("ext-state-embed-e5")) + " | button: " + (await txt("ext-download-embed-e5")));
+  await shot("06-vault-instant-in-use-fast-installed", true);
+  const before = await storedModelsFigure();
+  note("5 privacy before: " + before);
+  await shot("07-privacy-before-remove");
+
+  /* 6. Remove Fast: confirm inline, then the vault and Privacy & storage. */
+  await p.goto(base + "/vault", { waitUntil: "networkidle" });
+  await waitId("web-model-remove-fast");
+  await click("web-model-remove-fast");
+  await waitId("web-model-remove-confirm-fast");
+  note("6 confirm: " + (await txt("web-model-remove-confirm-fast")));
+  await shot("08-remove-confirm", true);
+  const usedBefore = await p.getByText(/^Used in this browser/).first().textContent().catch(() => "?");
+  await click("web-model-remove-go-fast");
+  const t0 = Date.now();
+  while (Date.now() - t0 < 15000 && !/Not downloaded/.test(await txt("web-model-state-fast"))) await p.waitForTimeout(300);
+  await p.waitForTimeout(1500);
+  note("6 vault after remove: fast row " + (await txt("web-model-state-fast")) + " | fast remove " + (await has("web-model-remove-fast")) + " | used " + usedBefore + " -> " + (await p.getByText(/^Used in this browser/).first().textContent().catch(() => "?")));
+  await shot("09-vault-after-remove", true);
+  note("6 OPFS: " + JSON.stringify(await opfsFiles()));
+  const after = await storedModelsFigure();
+  note("6 privacy after: " + after);
+  await shot("10-privacy-after-remove");
+
+  /* 7. The sheet and the door offer Fast again as a download. */
+  await p.goto(base + "/", { waitUntil: "networkidle" });
+  await waitChat();
+  await click("model-chip");
+  await waitId("model-sheet");
+  await p.waitForTimeout(800);
+  note("7 sheet fast: " + (await txt("model-sheet-stored-fast")) + " | instant: " + (await txt("model-sheet-stored-instant")) + " | fast button: " + (await txt("model-sheet-choose-fast")));
+  await shot("11-sheet-fast-download-again");
+  await click("model-sheet-choose-fast");
+  await waitId("download-model");
+  await p.waitForTimeout(800);
+  note("7 door: back " + (await has("back")) + " | button " + (await txt("download-model")));
+  await shot("12-door-fast-again");
+  await click("back");
+  await p.waitForTimeout(2500);
+  await waitChat();
+  await waitId("model-sheet", 15000);
+  note("7 back: chip " + (await txt("model-chip")) + " | sheet " + (await has("model-sheet")));
+} catch (e) {
+  note("FAILED: " + String(e).slice(0, 400));
+  await shot("zz-failure").catch(() => {});
+} finally {
+  note("page errors: " + JSON.stringify(errors));
+  writeFileSync(path.join(outDir, "walk.txt"), log.join("\n") + "\n");
+  await ctx.close();
+}

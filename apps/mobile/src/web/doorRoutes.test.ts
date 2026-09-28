@@ -120,7 +120,8 @@ describe("F405 · a returning visit with nothing kept gets the whole onboarding"
 
   it("the shell reads the browser only when it matters, and clears the flag to restart", () => {
     const shell = readFileSync(join(__dirname, "WebShell.tsx"), "utf8");
-    expect(shell).toContain("const askKeeps = prefs.onboarded && !ready;");
+    /* F445: a model still in OPFS is data the browser kept, so picking another model never restarts onboarding. */
+    expect(shell).toContain("const askKeeps = prefs.onboarded && !ready && !holdsModel;");
     expect(shell).toContain("if (restart) updatePrefs({ onboarded: false });");
   });
 });

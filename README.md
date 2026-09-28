@@ -7052,6 +7052,45 @@ Gates exit 0: `typecheck`, `lint`, `test` (core 1,186 with 4 skipped, mobile 1,2
 `web:smoke`. Not covered: the 2.69 GB state itself ran only in the unit test, and main's build did not run in this session.
 Safari and Firefox were not run.
 
+## Fixes round 122: the web vault tells the truth about installed models (branch `web-vault-truth`) — 28.9.2026
+
+MosheAI read the lead's walk of main e61f222a. After Fast → Instant, both models stayed in OPFS (Privacy & storage:
+Models 2.69 GB), yet the vault said *"The browser runs one model at a time, kept in its own private storage. Choosing
+another here replaces it."* Fast was listed as *"Fast · 1.28 GB · Use this model"*, with no installed state and no
+Remove, so a reader could not free 1.28 GB. The sheet printed the same sentence and no installed state. Instant's door,
+opened from the sheet, had no back arrow, unlike the first-run door. The tier card printed the file name
+(*"533 MB · instant.gguf"*), and an extension row said its size twice (*"Not downloaded · 468 MB"* over *"Download · 468
+MB"*). Evidence: `docs/qa/web-vault-truth/`. Tests: `apps/mobile/src/web/storedModels.test.ts` (16).
+
+- **F445 · One OPFS walk says what is stored.** `opfsInventory` in `apps/mobile/src/web/opfs.ts` lists every file the
+  app keeps with its size and each model's verified-download record. `inventoryStatus` gives `modelStatus`'s verdict from
+  that walk, and Privacy & storage's Models figure is its total. The boot keeps the verdict per model, and
+  `webStoredState` makes it one of in use, installed, half-downloaded or not here. The vault's tier card and rows, the
+  Model sheet's rows and the door's list all print that state, with the size once.
+- **On screen.** The sentence is now *"Models you download stay in this browser's private storage until you remove
+  them."* The tier card reads *"In use · 533 MB"*, then *"To remove the model in use, switch to another one first."* A
+  stored model reads *"Installed · 1.28 GB"* with *"Use this model"* and *"Remove"*. Remove asks inline: *"Remove Fast
+  from this browser? Using it again means downloading 1.28 GB."* A missing one reads *"Not downloaded · 533 MB"* over
+  *"Choose"*. Extension rows read *"Not downloaded · 468 MB"* over *"Download"*.
+- **Remove.** It deletes the GGUF, `<file>.json` and `<file>.state.json`, walks OPFS again, and the open screens follow.
+  The model in use cannot be removed. A half-downloaded file can. Photo packs keep their own Remove.
+- **The door's way back.** Choosing a model that is not stored, from the sheet or the vault, records where the reader
+  was and which model was in use (`apps/mobile/src/web/doorReturn.ts`). The door then shows the first-run door's back
+  arrow. It puts the previous model back and returns to the vault, or to the chat with the sheet open. While a download
+  runs the arrow is hidden and Cancel stays.
+- **Also fixed on the way.** A browser holding Fast but no chats restarted onboarding when Instant was chosen from the
+  sheet: the shell took it for a browser that cleared its data (F405). A stored model now counts as kept data.
+- **Live, on 127.0.0.1:8845.** A fresh chrome-headless-shell profile downloaded Fast in onboarding. The vault read
+  *"In use · 1.28 GB"*. From the sheet, Instant's door had the arrow, and the arrow returned to the sheet on FAST. Instant
+  downloaded with no arrow and Cancel shown. The vault then read Instant *"In use · 533 MB"* and Fast *"Installed · 1.28
+  GB"* with Remove. After Remove, OPFS held only Instant's two files. Privacy & storage went from Models 1.81 GB to 533
+  MB, and the vault's used line from 1.84 GB to 563 MB. The sheet and the door offered Fast again as a 1.28 GB download.
+
+Red first: on 81388866 the test file cannot load, since `storedModels.ts` and `doorReturn.ts` are new. Its copy and
+wiring block run alone fails 6 of 6 (`docs/qa/web-vault-truth/red-81388866.txt`). Gates exit 0: typecheck, lint, test (core 1,200 with 4 skipped, mobile 1,216, i18n 24, ui 23), web:build, web:smoke (27 passes). A first `test` run beside two smoke runs timed out 7 core loop-guard tests at 5 s; the rerun passed them.
+Not covered: the phones are unchanged. The native vault is its own component, and the shared sheet changes only when
+the browser passes the stored state. Safari and Firefox were not run.
+
 ## iOS build 23: main with round 111's loop guard, on Moshe's iPhone only (branch `ios-build-23`) — 27.9.2026
 
 Build 1.0.0 (23) carries local `main` 98722df7 (build 22's main plus round 111) to the iPhone 13 Pro, so the phone has

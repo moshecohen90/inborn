@@ -56,6 +56,7 @@ export function ChatModelSheet({ visible, onClose, theme, currentId, use, langua
       deviceRamGB={vault.device.ramGB}
       managed={managed}
       inTheApp={browser?.choices.inTheApp}
+      storedOf={browser?.stored}
       onChoose={browser ? (id) => {
         onClose();
         browser.choose(id);

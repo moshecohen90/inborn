@@ -1,5 +1,5 @@
 import { BUNDLED_MANIFEST, type CatalogModel } from "@inborn/core";
-import { chooseWebModel, webBoot, type WebBoot } from "../web/boot";
+import { chooseWebModel, onStoredModels, refreshStoredModels, webBoot, type WebBoot } from "../web/boot";
 import { WebModelDelivery } from "../web/modelDelivery";
 import { readyModelStatus } from "../web/opfs";
 import { recordWebTransfer } from "../web/transfers";
@@ -32,6 +32,12 @@ export function subscribeChatModels(listener: () => void): () => void {
   listeners.add(listener);
   return () => void listeners.delete(listener);
 }
+
+/* A model removed in the vault is not "ready" because this page once downloaded it: the OPFS walk decides. */
+onStoredModels(() => {
+  for (const [id, s] of states) if (s.kind === "ready" || s.kind === "missing") states.delete(id);
+  for (const l of listeners) l();
+});
 
 /* Chrome's built-in engine has no projector to hand, so it offers none. */
 export function offeredChatModels(_pro: boolean): SeeingModel[] {
@@ -66,6 +72,7 @@ export async function installChatModel(id: string): Promise<ExtensionState> {
   const status = await readyModelStatus(c.source.file);
   if (status.kind !== "ready") return set(id, { kind: "failed", error: "stored file does not match after verification", bytes });
   c.installed = true;
+  await refreshStoredModels().catch(() => undefined);
   return set(id, { kind: "ready" });
 }
 

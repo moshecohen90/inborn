@@ -9,6 +9,7 @@ import { deviceNoun } from "../lib/deviceNoun";
 import { modelCopy } from "../lib/models";
 import { languagesLine } from "../screens/Onboarding/modelStep";
 import type { WebModelChoice } from "./modelChoice";
+import { removable, storedLine, type StoredState } from "./storedModels";
 
 export interface ModelOptionsProps {
   choices: readonly WebModelChoice[];
@@ -20,6 +21,10 @@ export interface ModelOptionsProps {
   open?: boolean;
   /** No switching while a download runs: the worker holds one job. */
   disabled?: boolean;
+  /** Each row's line from the OPFS walk (`webStoredState`): installed, half-downloaded or not here, with its size once. */
+  stateOf: (id: string) => StoredState;
+  /** The vault frees an installed model here; the door and onboarding do not offer it. */
+  onRemove?: (id: string) => void;
 }
 
 /**
@@ -27,7 +32,7 @@ export interface ModelOptionsProps {
  * below it). One list for the download door, the browser vault and the onboarding step, so the three cannot
  * disagree about what is on offer here. Every number comes from the catalog: size, measured speed, languages.
  */
-export function ModelOptions({ choices, currentId, onChoose, theme, open: initialOpen = false, disabled }: ModelOptionsProps) {
+export function ModelOptions({ choices, currentId, onChoose, theme, open: initialOpen = false, disabled, stateOf, onRemove }: ModelOptionsProps) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(initialOpen);
   const others = choices.filter((c) => c.source.id !== currentId);
@@ -39,25 +44,23 @@ export function ModelOptions({ choices, currentId, onChoose, theme, open: initia
         <Text style={[styles.caption, styles.strong, { color: theme.text2 }]}>{t("web.models.more", { count: others.length })}</Text>
       </Pressable>
       {open
-        ? others.map((choice) => <OptionRow key={choice.source.id} choice={choice} theme={theme} onChoose={onChoose} disabled={disabled} />)
+        ? others.map((choice) => <OptionRow key={choice.source.id} choice={choice} state={stateOf(choice.source.id)} theme={theme} onChoose={onChoose} onRemove={onRemove} disabled={disabled} />)
         : null}
     </View>
   );
 }
 
-function OptionRow({ choice, theme, onChoose, disabled }: { choice: WebModelChoice; theme: Theme; onChoose: (id: string) => void; disabled?: boolean }) {
+function OptionRow({ choice, state, theme, onChoose, onRemove, disabled }: { choice: WebModelChoice; state: StoredState; theme: Theme; onChoose: (id: string) => void; onRemove?: (id: string) => void; disabled?: boolean }) {
   const { t, i18n } = useTranslation();
-  const { source, model, speed, languages, installed, recommended } = choice;
+  const [confirming, setConfirming] = useState(false);
+  const { source, model, speed, languages, recommended } = choice;
   const names = languagesLine(languages.map((c) => t(`language.${c}`, { defaultValue: c })));
+  const line = storedLine(state, formatModelBytes);
+  const canRemove = !!onRemove && removable(state);
   return (
     <View testID={`web-model-${source.id}`} style={[styles.row, { borderColor: theme.border, backgroundColor: theme.surface1 }]}>
-      <View style={styles.rowHead}>
-        <Text style={[styles.name, { color: theme.text }]}>{source.name}</Text>
-        <Text style={[styles.mono, { color: theme.text3 }]}>{formatModelBytes(source.bytes)}</Text>
-      </View>
-      {recommended || installed ? (
-        <Text style={[styles.monoLabel, { color: recommended ? theme.accent : theme.sealed }]}>{recommended ? t("models.recommended", { device: deviceNoun() }) : t("vault.installed")}</Text>
-      ) : null}
+      <Text style={[styles.name, { color: theme.text }]}>{source.name}</Text>
+      {recommended ? <Text style={[styles.monoLabel, { color: theme.accent }]}>{t("models.recommended", { device: deviceNoun() })}</Text> : null}
       {model ? <Text style={[styles.caption, { color: theme.text2 }]}>{modelCopy(t, model, { photos: false }).goodFor}</Text> : null}
       <Text testID={`web-model-speed-${source.id}`} style={[styles.mono, { color: theme.text3 }]}>
         {speed ? t("vault.speed", { min: speed[0], max: speed[1], device: deviceNoun() }) : t("vault.speedUnknown", { device: deviceNoun() })}
@@ -67,15 +70,39 @@ function OptionRow({ choice, theme, onChoose, disabled }: { choice: WebModelChoi
           {names.more ? t("onboarding.model.languagesMore", { list: joinList(i18n.language, names.list), count: names.more }) : t("onboarding.model.languages", { list: joinList(i18n.language, names.list) })}
         </Text>
       ) : null}
-      <Pressable
-        testID={`web-model-choose-${source.id}`}
-        accessibilityRole="button"
-        disabled={disabled}
-        onPress={() => onChoose(source.id)}
-        style={[styles.choose, { borderColor: theme.border, opacity: disabled ? 0.5 : 1 }]}
-      >
-        <Text style={[styles.caption, styles.strong, { color: theme.text }]}>{installed ? t("vault.use") : t("web.models.choose", { size: formatModelBytes(source.bytes) })}</Text>
-      </Pressable>
+      <Text testID={`web-model-state-${source.id}`} style={[styles.mono, { color: state.kind === "installed" ? theme.sealed : theme.text2 }]}>
+        {t(line.key, line.params)}
+      </Text>
+      {confirming ? (
+        <View testID={`web-model-remove-confirm-${source.id}`} style={styles.confirm}>
+          <Text style={[styles.caption, { color: theme.text }]}>{t("vault.web.remove.confirm", { model: source.name, size: formatModelBytes(source.bytes) })}</Text>
+          <View style={styles.actions}>
+            <Pressable testID={`web-model-remove-go-${source.id}`} accessibilityRole="button" onPress={() => { setConfirming(false); onRemove?.(source.id); }} style={[styles.choose, styles.action, { borderColor: theme.danger }]}>
+              <Text style={[styles.caption, styles.strong, { color: theme.danger }]}>{t("vault.remove")}</Text>
+            </Pressable>
+            <Pressable testID={`web-model-remove-cancel-${source.id}`} accessibilityRole="button" onPress={() => setConfirming(false)} style={[styles.choose, styles.action, { borderColor: theme.border }]}>
+              <Text style={[styles.caption, styles.strong, { color: theme.text }]}>{t("vault.cancel")}</Text>
+            </Pressable>
+          </View>
+        </View>
+      ) : (
+        <View style={styles.actions}>
+          <Pressable
+            testID={`web-model-choose-${source.id}`}
+            accessibilityRole="button"
+            disabled={disabled}
+            onPress={() => onChoose(source.id)}
+            style={[styles.choose, styles.action, { borderColor: theme.border, opacity: disabled ? 0.5 : 1 }]}
+          >
+            <Text style={[styles.caption, styles.strong, { color: theme.text }]}>{state.kind === "installed" ? t("vault.use") : t("web.models.choose")}</Text>
+          </Pressable>
+          {canRemove ? (
+            <Pressable testID={`web-model-remove-${source.id}`} accessibilityRole="button" disabled={disabled} onPress={() => setConfirming(true)} style={[styles.choose, styles.action, { borderColor: theme.border }]}>
+              <Text style={[styles.caption, styles.strong, { color: theme.text }]}>{t("vault.remove")}</Text>
+            </Pressable>
+          ) : null}
+        </View>
+      )}
     </View>
   );
 }
@@ -84,11 +111,13 @@ const styles = StyleSheet.create({
   wrap: { gap: 8 },
   toggle: { flexDirection: "row", alignItems: "center", gap: 4, minHeight: MIN_TOUCH },
   row: { borderWidth: 1, borderRadius: radius.card, padding: 12, gap: 4 },
-  rowHead: { flexDirection: "row", alignItems: "baseline", gap: 8 },
-  name: { ...font("sans", "600"), fontSize: 15, flex: 1 },
+  name: { ...font("sans", "600"), fontSize: 15 },
   caption: { ...font("sans"), fontSize: 12, lineHeight: 16 },
   strong: { fontWeight: "600" },
   mono: { ...font("mono"), fontSize: 11, letterSpacing: 0.3 },
   monoLabel: { ...font("mono", "500"), fontSize: 10, letterSpacing: 0.9, textTransform: "uppercase" },
   choose: { minHeight: MIN_TOUCH, marginTop: 4, paddingHorizontal: 14, borderWidth: 1, borderRadius: radius.control, alignItems: "center", justifyContent: "center" },
+  actions: { flexDirection: "row", flexWrap: "wrap", gap: 8 },
+  action: { flexGrow: 1, flexBasis: 120 },
+  confirm: { gap: 4 },
 });
