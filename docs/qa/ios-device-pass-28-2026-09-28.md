@@ -91,6 +91,15 @@ Download at 15:07:02, 32, 69, 100 and 141 MB at 15 s steps, and **Use** at 15:16
 the resume nor the fresh download slowed like that. The `probeDownload` op refused `speed.cloudflare.com` as *"not an
 allowed model host"*, so no neutral host was measured from the phone.
 
+**Not a lock, and not the sheet's keep-awake.** The phone was not locked during the crawl: `lockState` read
+`passcodeRequired: false` at 14:24:48, mid-crawl. The twin's model sheet was on screen and lit at every observation:
+14:14:40 (`J4-03`, 8 MB), 14:24:55 (`N00a-crawl-1424-sheet`, 27 MB), 14:25:20 (`N00b-crawl-1425-28mb`, 28 MB) and
+14:27:20 (`N00c-crawl-1427-33mb`, 33 MB). Nothing was observed between 14:14:40 and 14:24:55, because J4a sat in one
+long wait. Keep-awake covers this path: the chat's model sheet calls the vault store's `install()`, which holds the
+screen awake on every progress event, as the vault screen does. J4a's own idle-timer read was lost with its result file.
+Every status bar shows Wi-Fi and no cellular service; `devicectl` exposes only the phone's USB link to the Mac. The
+download began at a normal rate, 8 MB in its first 6 s, and then moved 19 MB in about 10 minutes.
+
 **The photo on Fast.** `j4a2-fast-use` chose Fast in the sheet (`J4-05`: the chip reads FAST). `j4b-fast-photo`
 opened a new chat, put the CAT photo in and asked J3's question. The card came at once (`J4-06`), with the strings in
 the table above, each asserted. Download was pressed at 14:40:03. Five seconds later the card read *"Downloading the
