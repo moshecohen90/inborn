@@ -1,6 +1,7 @@
 import type { UseCase } from "@inborn/core";
-import { chooseWebModel, webBoot } from "../../web/boot";
+import { switchWebModel, webBoot, webStoredState } from "../../web/boot";
 import { webDoorsApply } from "../../web/doors";
+import { takeSheetReopen } from "../../web/doorReturn";
 import { webLanguageUpgrade, webSheetChoices } from "../../web/modelChoice";
 import type { BrowserModels } from "./browserModels";
 
@@ -22,9 +23,13 @@ export function browserModels(use: UseCase, languageCode: string | null, current
     upgrade: webLanguageUpgrade(input),
     choose: (id) => {
       if (id === currentId) return;
-      void chooseWebModel(id).then((source) => {
-        if (source) location.assign("/");
-      });
+      void switchWebModel(id, { to: "/", sheet: true });
     },
+    stored: (id) => webStoredState(boot, id),
   };
+}
+
+/** The reader left this sheet for a model's door and took its back arrow: the chat opens with the sheet up again. */
+export function reopenModelSheet(): boolean {
+  return webDoorsApply() && takeSheetReopen();
 }

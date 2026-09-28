@@ -28,6 +28,8 @@ vi.mock("../web/boot", () => ({
     ],
   }),
   chooseWebModel: async () => null,
+  onStoredModels: () => () => undefined,
+  refreshStoredModels: async () => undefined,
 }));
 
 const downloads: { url: string; file: string; bytes: number; sha256?: string }[] = [];

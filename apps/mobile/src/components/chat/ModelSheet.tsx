@@ -11,6 +11,7 @@ import { modelLabel } from "../../lib/models";
 import { WEB_HERE, goodAtUses, recommendationKey, roomNoteParams } from "../../lib/modelSheetLines";
 import { Toggle } from "../shell/primitives";
 import { ChipGlyph } from "../shell/ChipGlyph";
+import { storedLine, type StoredState } from "../../web/storedModels";
 
 export interface ModelSheetProps {
   visible: boolean;
@@ -43,13 +44,15 @@ export interface ModelSheetProps {
   onChoose?: (id: string) => void;
   /** Browser tier: the catalog models only the app runs, the one section that honestly says "In the app". */
   inTheApp?: ModelChoice[];
+  /** Browser tier: each offered row's state from the OPFS walk the vault prints (in use, installed, or the size to download). */
+  storedOf?: (id: string) => StoredState;
 }
 
 /**
  * §7.8 model switching where the user is: the chat header's chip opens this. Installed models first (one tap switches),
  * then what this device can still download, each with what it is good at, how it rates this chat's language, and its size.
  */
-export function ModelSheet({ visible, onClose, choices, recommendedFor, theme, deviceRamGB, stateOf, originOf, wifiOnly, onWifiOnly, lockedFor, onSwitch, onDownload, onUnlock, onManage, onChatSettings, managed, onChoose, inTheApp, tier, onSeePro }: ModelSheetProps) {
+export function ModelSheet({ visible, onClose, choices, recommendedFor, theme, deviceRamGB, stateOf, originOf, wifiOnly, onWifiOnly, lockedFor, onSwitch, onDownload, onUnlock, onManage, onChatSettings, managed, onChoose, inTheApp, storedOf, tier, onSeePro }: ModelSheetProps) {
   const type = useType();
   const { t, i18n } = useTranslation();
   const [confirmId, setConfirmId] = useState<string | null>(null);
@@ -75,6 +78,7 @@ export function ModelSheet({ visible, onClose, choices, recommendedFor, theme, d
       locale={i18n.language}
       recommended={recommended?.model.id === choice.model.id && !choices.recommendedWeak}
       state={stateOf?.(choice.model.id)}
+      stored={storedOf?.(choice.model.id)}
       origin={originOf?.(choice.model.id) ?? null}
       locked={!!lockedFor?.(choice.model)}
       managed={!!managed}
@@ -173,6 +177,8 @@ interface RowProps {
   locale: string;
   recommended: boolean;
   state: InstallState | undefined;
+  /** Browser tier only: replaces the bare size with "In use · …", "Installed · …" or "Not downloaded · …". */
+  stored?: StoredState;
   origin: string | null;
   locked: boolean;
   managed: boolean;
@@ -190,7 +196,7 @@ interface RowProps {
 
 const TIER_KEY: Record<LanguageTier, string> = { native: "vault.fit.tier.native", good: "vault.fit.tier.good", basic: "vault.fit.tier.basic", none: "vault.fit.tier.none" };
 
-function ModelRow({ choice, theme, deviceRamGB, languageCode, languageName, locale, recommended, state, origin, locked, managed, onChoose, confirming, wifiOnly, onWifiOnly, onSwitch, onAskDownload, onCancelDownload, onDownload, onUnlock }: RowProps) {
+function ModelRow({ choice, theme, deviceRamGB, languageCode, languageName, locale, recommended, state, stored, origin, locked, managed, onChoose, confirming, wifiOnly, onWifiOnly, onSwitch, onAskDownload, onCancelDownload, onDownload, onUnlock }: RowProps) {
   const type = useType();
   const { t } = useTranslation();
   const { model, reason } = choice;
@@ -203,6 +209,7 @@ function ModelRow({ choice, theme, deviceRamGB, languageCode, languageName, loca
   const percent = state?.kind === "delivering" ? downloadPercent(state.bytes, state.total || model.bytes) : 0;
   /* A model this tier cannot install is not offered at the weight of the one in use (QA F248). */
   const dim = !!choice.blocked || (managed && !choice.current && !onChoose);
+  const storedText = stored ? storedLine(stored, formatModelBytes) : null;
 
   return (
     <View testID={`model-sheet-row-${model.id}`} style={[styles.row, { borderColor: choice.current ? theme.text : theme.border, backgroundColor: theme.surface1, opacity: dim ? 0.5 : 1 }]}>
@@ -226,10 +233,16 @@ function ModelRow({ choice, theme, deviceRamGB, languageCode, languageName, loca
           {languageName(languageCode)} · <Text style={{ color: tier ? tierColor : theme.text3 }}>{tier ? t(TIER_KEY[tier]) : t("modelSheet.languageUnrated")}</Text>
         </Text>
       ) : null}
-      <Text style={[type.mono, { color: theme.text3 }]}>
-        {formatModelBytes(model.bytes)}
-        {choice.blocked === "engine" ? ` · ${t("vault.state.updateApp")}` : choice.blocked === "ram" ? ` · ${t("vault.willNotRun", { ram: deviceRamGB })}` : choice.blocked === "slow" ? ` · ${t("vault.tooSlowHere", { device: deviceNoun() })}` : ""}
-      </Text>
+      {storedText ? (
+        <Text testID={`model-sheet-stored-${model.id}`} style={[type.mono, { color: stored?.kind === "missing" ? theme.text3 : theme.text2 }]}>
+          {t(storedText.key, storedText.params)}
+        </Text>
+      ) : (
+        <Text style={[type.mono, { color: theme.text3 }]}>
+          {formatModelBytes(model.bytes)}
+          {choice.blocked === "engine" ? ` · ${t("vault.state.updateApp")}` : choice.blocked === "ram" ? ` · ${t("vault.willNotRun", { ram: deviceRamGB })}` : choice.blocked === "slow" ? ` · ${t("vault.tooSlowHere", { device: deviceNoun() })}` : ""}
+        </Text>
+      )}
       {downloading ? (
         <Text testID={`model-sheet-progress-${model.id}`} style={[type.mono, { color: theme.text2 }]}>
           {state?.kind === "verifying" ? t("vault.state.verifying") : t("vault.state.delivering", { percent, done: formatModelBytes(state?.kind === "delivering" ? state.bytes : 0), total: formatModelBytes(model.bytes) })}
@@ -258,13 +271,13 @@ function ModelRow({ choice, theme, deviceRamGB, languageCode, languageName, loca
         <View style={styles.actions}>
           <Pressable testID={`model-sheet-choose-${model.id}`} accessibilityRole="button" onPress={onChoose} style={[styles.btn, { backgroundColor: theme.ctaFill }]}>
             <Text numberOfLines={1} style={[type.bodySmall, type.strong, { color: theme.ctaText }]}>
-              {choice.installed ? t("vault.use") : t("web.models.choose", { size: formatModelBytes(model.bytes) })}
+              {choice.installed ? t("vault.use") : t("web.models.choose")}
             </Text>
           </Pressable>
         </View>
       ) : (
         <View style={styles.actions}>
-          {choice.current ? (
+          {choice.current && stored ? null : choice.current ? (
             <Text testID={`model-sheet-inuse-${model.id}`} style={[type.mono, { color: theme.text2 }]}>
               {t("vault.inUse")}
             </Text>

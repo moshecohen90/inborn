@@ -1101,7 +1101,6 @@ price line + WORK tag.
   project). Build with `GRADLE_USER_HOME=~/.gradle-r4a` (APFS-cloned `caches/modules-2` + `wrapper`, instant) or agree on a
   no-`--stop` rule while several streams build.
 
-
 ## Models run on the OnePlus 6T (spec §5, §6.3–6.5, branch `models-verify`) — status 7.9.2026
 
 Every catalog entry (Instant, Fast, Sharp two-shard, Sharp-Phi, nomic embed, whisper base, vision mmproj) plus an external GGUF import was installed through the vault's HTTPS path with SHA-256 verification and exercised on the OnePlus 6T (Snapdragon 845, 8 GB, Android 11). Full table, defects and repro: `docs/qa/models-run-2026-09-06.md`.
@@ -1548,7 +1547,6 @@ flag a dictated message); the snooze memory lives for the app run, not in the ch
   server (two shards verified); vault Best for Chat · Hebrew → Fast tagged "NOTHING … CLOSEST: FAST", Code · Hebrew → "CLOSEST: SHARP (PHI)";
   Hebrew on Instant → "FAST handles Hebrew better than INSTANT, but not fluently." + Switch to FAST + Not now; Not now → force-stop →
   relaunch → same chat → another Hebrew message → no card (weak line stays); a new chat shows the card again.
-
 
 ## Fixes round 12: QA run 3 pass 5 follow-ups (branch `fixes-r12`) — 20.9.2026
 Findings F22–F26 of `docs/qa/qa-run-2026-09-11.md` (pass 5, `qa-r6`).
@@ -3524,8 +3522,6 @@ decisions already taken, not a choice, and S03 asked for something before it had
   platform forced to iOS, then reverted); a real iPhone or a 6T was not in this stream's scope, so nobody has yet
   seen Play's `playPending` line or the Android notice on a device.
 
-
-
 ## Fixes round 34: "Add a file" was dead in the browser, and the toggle would not say which side was on (branch `web-bugs`) — 23.9.2026
 
 Moshe tested the web build (`apps/web`, the same RN-web bundle the Tauri desktop runs) and reported four things:
@@ -4394,7 +4390,6 @@ node apps/site/check.mjs` green on all 13 pages including the new measurement. E
 (114 before, 116 after, 68 site images and the measurement logs, `measure-merged-*.txt` for the merged build), rows
 F240–F254 in `docs/qa/qa-run-2026-09-11.md`.
 
-
 ## Fixes round 53: the $69.99 Work card, proven on the OnePlus 6T (branch `work-tier-6t`) — 24.9.2026
 
 The MosheAI review of 24.9 opened its third blocker with *"Nobody has ever run the Work tier on hardware, and its
@@ -4735,7 +4730,6 @@ in `docs/qa/fix-phone-r58/`.
   document still cites it.
 
 Suite on the merged tree: core 734 · mobile 726 · i18n 20 · ui 13, `typecheck` and `lint` clean.
-
 
 ## Fixes round 58b: the Android QA build could still land on the real app (branch `fix-phone-r58b`) — 24.9.2026
 
@@ -5224,7 +5218,6 @@ languages, so a reader who found us through a store listing in their own languag
   (`guard-red-support-price.txt`).
   **Nothing is deployed**; the lead deploys.
 
-
 ## Fixes round 70b: a centred cosine does not win the recall back, and the embedder is the reason (branch `fix-cjk-floor`) — 24.9.2026
 
 Round 70 left 29 of 57 on-topic questions cited, German and French none of three. This round was asked to give the
@@ -5422,7 +5415,6 @@ model for it first, the rest below.
   manifest re-signed. The site said Fast is for "capable desktops"; the gate also offers it on tablets, so all eight
   site languages now say "computers and tablets", and a test holds that sentence to the gate.
 
-
 Evidence in `docs/qa/fix-model-sheet/`: `before-*` (main) and `after-*` screenshots with `*-summary.json`, the driver
 `proof.mjs`, three `guard-red-*.txt` files (every new guard watched red), and `web-smoke.txt` (11 PASS).
 ## Fixes round 76b: the photo pack is a companion, has one name, and every install link lands on it (branch `fix-model-sheet`) — 24.9.2026
@@ -5483,7 +5475,6 @@ harness had no Windows channel. One manual run, `platform=windows`, now proves t
   manual runs, like `ci.yml`. A `platform` input (all, windows or macos) keeps a manual run to the builds that are needed.
 - The site still says "Not yet" for Windows and macOS downloads. Distribution waits for Moshe's gate C decision, and a
   Windows code-signing certificate does not exist yet.
-
 
 ## Fixes round 81: the RAG measurement covers zh-Hant and accented typing (branch `fix-rag-fixtures`) — 24.9.2026
 
@@ -7051,6 +7042,45 @@ OPFS, and let an 8 GB download through a 10.77 GB quota. The fix refuses it: 8.0
 Gates exit 0: `typecheck`, `lint`, `test` (core 1,186 with 4 skipped, mobile 1,200, i18n 24, ui 23), `web:build`,
 `web:smoke`. Not covered: the 2.69 GB state itself ran only in the unit test, and main's build did not run in this session.
 Safari and Firefox were not run.
+
+## Fixes round 122: the web vault tells the truth about installed models (branch `web-vault-truth`) — 28.9.2026
+
+MosheAI read the lead's walk of main e61f222a. After Fast → Instant, both models stayed in OPFS (Privacy & storage:
+Models 2.69 GB), yet the vault said *"The browser runs one model at a time, kept in its own private storage. Choosing
+another here replaces it."* Fast was listed as *"Fast · 1.28 GB · Use this model"*, with no installed state and no
+Remove, so a reader could not free 1.28 GB. The sheet printed the same sentence and no installed state. Instant's door,
+opened from the sheet, had no back arrow, unlike the first-run door. The tier card printed the file name
+(*"533 MB · instant.gguf"*), and an extension row said its size twice (*"Not downloaded · 468 MB"* over *"Download · 468
+MB"*). Evidence: `docs/qa/web-vault-truth/`. Tests: `apps/mobile/src/web/storedModels.test.ts` (16).
+
+- **F445 · One OPFS walk says what is stored.** `opfsInventory` in `apps/mobile/src/web/opfs.ts` lists every file the
+  app keeps with its size and each model's verified-download record. `inventoryStatus` gives `modelStatus`'s verdict from
+  that walk, and Privacy & storage's Models figure is its total. The boot keeps the verdict per model, and
+  `webStoredState` makes it one of in use, installed, half-downloaded or not here. The vault's tier card and rows, the
+  Model sheet's rows and the door's list all print that state, with the size once.
+- **On screen.** The sentence is now *"Models you download stay in this browser's private storage until you remove
+  them."* The tier card reads *"In use · 533 MB"*, then *"To remove the model in use, switch to another one first."* A
+  stored model reads *"Installed · 1.28 GB"* with *"Use this model"* and *"Remove"*. Remove asks inline: *"Remove Fast
+  from this browser? Using it again means downloading 1.28 GB."* A missing one reads *"Not downloaded · 533 MB"* over
+  *"Choose"*. Extension rows read *"Not downloaded · 468 MB"* over *"Download"*.
+- **Remove.** It deletes the GGUF, `<file>.json` and `<file>.state.json`, walks OPFS again, and the open screens follow.
+  The model in use cannot be removed. A half-downloaded file can. Photo packs keep their own Remove.
+- **The door's way back.** Choosing a model that is not stored, from the sheet or the vault, records where the reader
+  was and which model was in use (`apps/mobile/src/web/doorReturn.ts`). The door then shows the first-run door's back
+  arrow. It puts the previous model back and returns to the vault, or to the chat with the sheet open. While a download
+  runs the arrow is hidden and Cancel stays.
+- **Also fixed on the way.** A browser holding Fast but no chats restarted onboarding when Instant was chosen from the
+  sheet: the shell took it for a browser that cleared its data (F405). A stored model now counts as kept data.
+- **Live, on 127.0.0.1:8845.** A fresh chrome-headless-shell profile downloaded Fast in onboarding. The vault read
+  *"In use · 1.28 GB"*. From the sheet, Instant's door had the arrow, and the arrow returned to the sheet on FAST. Instant
+  downloaded with no arrow and Cancel shown. The vault then read Instant *"In use · 533 MB"* and Fast *"Installed · 1.28
+  GB"* with Remove. After Remove, OPFS held only Instant's two files. Privacy & storage went from Models 1.81 GB to 533
+  MB, and the vault's used line from 1.84 GB to 563 MB. The sheet and the door offered Fast again as a 1.28 GB download.
+
+Red first: on 81388866 the test file cannot load, since `storedModels.ts` and `doorReturn.ts` are new. Its copy and
+wiring block run alone fails 6 of 6 (`docs/qa/web-vault-truth/red-81388866.txt`). Gates exit 0: typecheck, lint, test (core 1,200 with 4 skipped, mobile 1,216, i18n 24, ui 23), web:build, web:smoke (27 passes). A first `test` run beside two smoke runs timed out 7 core loop-guard tests at 5 s; the rerun passed them.
+Not covered: the phones are unchanged. The native vault is its own component, and the shared sheet changes only when
+the browser passes the stored state. Safari and Firefox were not run.
 
 ## Fixes round 123: screens say what is true (Documents, photo bubble, Settings on the web, wipe) (branch `web-polish`) — 28.9.2026
 

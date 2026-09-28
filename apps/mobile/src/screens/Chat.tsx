@@ -94,7 +94,7 @@ import { ChipGlyph } from "../components/shell/ChipGlyph";
 import { ChatSettingsSheet, type ChatSettings } from "../components/chat/ChatSettingsSheet";
 import { ModelAdviceCard } from "../components/chat/ModelAdvice";
 import { ChatModelSheet } from "../components/chat/ChatModelSheet";
-import { browserModels } from "../components/chat/browserModels";
+import { browserModels, reopenModelSheet } from "../components/chat/browserModels";
 import { adviceToShow } from "../lib/modelAdviceMemory";
 import { isDictatedSend } from "../lib/dictatedDraft";
 import { listClipping } from "../lib/listClipping";
@@ -247,7 +247,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const [actionRow, setActionRow] = useState<Row | null>(null);
   const [reportRow, setReportRow] = useState<ChatMessage | null>(null);
   const [settingsOpen, setSettingsOpen] = useState(false);
-  const [modelSheetOpen, setModelSheetOpen] = useState(false);
+  const [modelSheetOpen, setModelSheetOpen] = useState(reopenModelSheet);
   const [safety, setSafety] = useState<CrisisResource[] | null>(null);
   const [notice, setNotice] = useState(false);
   const [shortfallDismissed, setShortfallDismissed] = useState<string | null>(null);

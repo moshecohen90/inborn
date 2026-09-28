@@ -44,6 +44,11 @@ async function readJson<T>(dir: FileSystemDirectoryHandle, name: string): Promis
 }
 
 /** Ready only when the meta written after verification matches the bytes on disk; a size mismatch is a partial file. */
+export function statusFrom(size: number | undefined, meta: ModelMeta | null): ModelStatus {
+  if (!size) return { kind: "missing" };
+  return meta && meta.bytes === size ? { kind: "ready", meta } : { kind: "partial", have: size };
+}
+
 export async function modelStatus(file: string): Promise<ModelStatus> {
   const dir = await modelsDir(false);
   if (!dir) return { kind: "missing" };
@@ -53,9 +58,7 @@ export async function modelStatus(file: string): Promise<ModelStatus> {
   } catch {
     return { kind: "missing" };
   }
-  const meta = await readJson<ModelMeta>(dir, `${file}.json`);
-  if (meta && meta.bytes === size && size > 0) return { kind: "ready", meta };
-  return size > 0 ? { kind: "partial", have: size } : { kind: "missing" };
+  return statusFrom(size, await readJson<ModelMeta>(dir, `${file}.json`));
 }
 
 /** Same verdict, but allowing for the moment OPFS needs to publish a file a worker has just closed (QA F22): a verified download must not read as a failure.
@@ -86,10 +89,18 @@ export async function deleteModel(file: string): Promise<void> {
 /* "cache" is wllama's own OPFS cache: the embedder GGUF it fetched by URL. */
 const STORED_DIRS = [MODELS_DIR, "cache"];
 
-/** Bytes of every file the app keeps in OPFS; Privacy & storage and the space figures read this one walk. */
-export async function opfsModelBytes(storage: StorageManager): Promise<number> {
+/** One walk of what the app keeps in OPFS: every file's size, and the verified-download record beside each model. */
+export interface OpfsInventory {
+  /** Bytes by "<dir>/<name>". */
+  files: ReadonlyMap<string, number>;
+  /** `<file>.json` records by the model file they describe. */
+  metas: ReadonlyMap<string, ModelMeta>;
+}
+
+export async function opfsInventory(storage: StorageManager): Promise<OpfsInventory> {
   const root = await storage.getDirectory();
-  let n = 0;
+  const files = new Map<string, number>();
+  const metas = new Map<string, ModelMeta>();
   for (const name of STORED_DIRS) {
     let dir: FileSystemDirectoryHandle;
     try {
@@ -97,11 +108,30 @@ export async function opfsModelBytes(storage: StorageManager): Promise<number> {
     } catch {
       continue;
     }
-    for await (const [, h] of (dir as FileSystemDirectoryHandle & { entries(): AsyncIterable<[string, FileSystemHandle]> }).entries()) {
-      if (h.kind === "file") n += (await (h as FileSystemFileHandle).getFile()).size;
+    for await (const [entry, h] of (dir as FileSystemDirectoryHandle & { entries(): AsyncIterable<[string, FileSystemHandle]> }).entries()) {
+      if (h.kind !== "file") continue;
+      const file = await (h as FileSystemFileHandle).getFile();
+      files.set(`${name}/${entry}`, file.size);
+      if (name === MODELS_DIR && entry.endsWith(".json") && !entry.endsWith(".state.json")) {
+        try {
+          metas.set(entry.slice(0, -".json".length), JSON.parse(await file.text()) as ModelMeta);
+        } catch {
+          /* an unreadable record leaves its model half-downloaded, as modelStatus reads it */
+        }
+      }
     }
   }
-  return n;
+  return { files, metas };
+}
+
+export const inventoryBytes = (inv: OpfsInventory): number => [...inv.files.values()].reduce((a, b) => a + b, 0);
+
+/** The same verdict as `modelStatus`, read from the walk instead of a second look at the disk. */
+export const inventoryStatus = (inv: OpfsInventory, file: string): ModelStatus => statusFrom(inv.files.get(`${MODELS_DIR}/${file}`), inv.metas.get(file) ?? null);
+
+/** Bytes of every file the app keeps in OPFS; Privacy & storage, the space figures and the vault's model rows read this one walk. */
+export async function opfsModelBytes(storage: StorageManager): Promise<number> {
+  return inventoryBytes(await opfsInventory(storage));
 }
 
 export async function storageEstimate(): Promise<StorageEstimate> {
