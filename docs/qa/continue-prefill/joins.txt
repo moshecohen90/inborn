@@ -1,0 +1,88 @@
+F443 live proof, round 121 (branch continue-prefill), web build of this branch served on 127.0.0.1:8934, chrome-headless-shell, model chip FAST (Qwen3.5-2B Q4_K_M, wllama 3.6.1, CPU, 6 threads).
+Each run: new chat, ask, Stop once the answer text reached 200 characters, Continue, wait until the answer ended.
+"stopped" is the answer text on screen after Stop; "final" is the answer text on screen after Continue; ⟦…⟧ marks where the continuation starts.
+"kept" is whether the final text starts with the stopped text exactly (the stopped text unchanged on screen).
+
+=== r1-tack · Explain in 8 sentences how a sailing ship tacks against the wind.
+kept: true · new chat by: meta+n · chip: FAST
+first 8 words after the cut: the ship's center, the sail catches a sliver
+console: [wllama] continue · prefill=212 chars cached=216 evaluated=1 ttft=199 ms tokens=137
+--- stopped (212 chars)
+A sailing ship tacks by using its sails to push against the wind rather than relying on it directly. The crew lowers the mainsail and jib, which are angled so their edges face into the wind. As they rotate around
+--- final (917 chars)
+A sailing ship tacks by using its sails to push against the wind rather than relying on it directly. The crew lowers the mainsail and jib, which are angled so their edges face into the wind. As they rotate around⟦ the ship's center, the sail catches a sliver of air at an angle instead of head-on. This angled airflow creates lift that propels the vessel forward along its curved hull. Once the sails turn away from the wind, the ship continues sailing smoothly without needing to point directly at it. The crew then flips the sails back over their heads to catch the wind again on a new side. By repeatedly swinging the sail edges through the wind like an arrow, the ship moves steadily across open water. This technique allows sailors to reach destinations far beyond the reach of a single direction of travel. It is a method that turns the challenge of sailing into a controlled and efficient journey for centuries.⟧
+
+=== r2-tack · Explain in 8 sentences how a sailing ship tacks against the wind.
+kept: true · new chat by: meta+n · chip: FAST
+first 8 words after the cut: . The first tack is made by swinging
+console: [wllama] continue · prefill=207 chars cached=209 evaluated=1 ttft=131 ms tokens=132
+--- stopped (207 chars)
+A sailing ship does not sail directly into the wind because sails cannot catch true headwind force alone. Instead, the crew uses two sails working at an angle to push water sideways and create forward motion
+--- final (876 chars)
+A sailing ship does not sail directly into the wind because sails cannot catch true headwind force alone. Instead, the crew uses two sails working at an angle to push water sideways and create forward motion⟦. The first tack is made by swinging the windward side of the bow around a fixed point called the yard or yardarm. As the ship turns toward the wind, it catches a fresh breeze on the new leeward sail while losing the old one. This process repeats continuously as the crew rotates both sails over and under the hull to maintain balance. The alternating movement creates a rhythmic turning motion known as a tack that pushes the vessel forward steadily. Without this precise maneuvering technique, the ship would slip sideways or even fall into a gale-force wind. Ultimately, tacking is an essential skill for navigating safely across choppy waters and long ocean routes.⟧
+
+=== r3-tack · Explain in 8 sentences how a sailing ship tacks against the wind.
+kept: true · new chat by: meta+n · chip: FAST
+first 8 words after the cut: lowers the sails on the side facing away
+console: [wllama] continue · prefill=208 chars cached=167 evaluated=49 ttft=2035 ms tokens=126
+--- stopped (208 chars)
+A sailor spots an angle where they can sail downwind and then turn to sail upwind, a maneuver called tacking. This requires moving from one side of the boat to the other using a temporary centerline. The crew
+--- final (910 chars)
+A sailor spots an angle where they can sail downwind and then turn to sail upwind, a maneuver called tacking. This requires moving from one side of the boat to the other using a temporary centerline. The crew⟦ lowers the sails on the side facing away from the wind to reduce resistance. They raise those same sails on the opposite side so the wind pushes them forward again. By alternating sides repeatedly, the ship zig-zags through the air much like two arrows hitting targets at different points. This allows the vessel to progress against a strong headwind that would otherwise stall it completely. The skilled captain adjusts sail trim and crew timing to maintain steady speed throughout this complex dance. Each turn costs time but is necessary for navigating challenging weather conditions safely. Without tacking, a ship's engine or oars alone cannot overcome such a powerful opposing force effectively.⟧
+
+=== r4-list · Give me a numbered list of 10 tips for staying focused while studying, one sentence each.
+kept: true · new chat by: meta+n · chip: FAST
+first 8 words after the cut: the time is up. 4. Use noise-canceling headphones
+console: [wllama] continue · prefill=210 chars cached=221 evaluated=1 ttft=175 ms tokens=133
+--- stopped (210 chars)
+1.
+Start your session with a fresh glass of water to wake up your brain.  
+2.
+Close all other tabs and apps so you can't be distracted by anything else.  
+3.
+Set a timer for 25 minutes and reward yourself after
+--- final (833 chars)
+1.
+Start your session with a fresh glass of water to wake up your brain.  
+2.
+Close all other tabs and apps so you can't be distracted by anything else.  
+3.
+Set a timer for 25 minutes and reward yourself after⟦ the time is up.  
+4.
+Use noise-canceling headphones to block out distracting sounds during study hours.  
+5.
+Take short breaks every few minutes to stretch your hands, eyes, and body.  
+6.
+Write down any ideas or notes in a notebook while you are actively studying.  
+7.
+Avoid multitasking by finishing one task completely before moving on to the next.  
+8.
+Turn off phone notifications so you don't accidentally check social media during study.  
+9.
+Keep your workspace organized with only the items necessary for your current task.  
+10.
+If you lose focus, remind yourself of why you started studying in the first place.⟧
+
+=== r5-story · Write a short story about a lighthouse keeper who finds a message in a bottle.
+kept: true · new chat by: meta+n · chip: FAST
+first 8 words after the cut: single night. He spent his days repairing creaking
+console: [wllama] continue · prefill=209 chars cached=192 evaluated=1 ttft=159 ms tokens=391
+--- stopped (209 chars)
+In the misty town of Oakhaven, Elias was more than just a keeper; he was the guardian of the sea's edge. His lighthouse stood tall against the dark ocean, beam cutting through the fog like a silver sword every
+--- final (1960 chars)
+In the misty town of Oakhaven, Elias was more than just a keeper; he was the guardian of the sea's edge. His lighthouse stood tall against the dark ocean, beam cutting through the fog like a silver sword every⟦ single night. He spent his days repairing creaking gears and cleaning lanterns, and his evenings were filled with stories of storms, tides, and the endless gray waves that crashed forever.
+One crisp autumn morning, as he walked to the base of the tower to check the wind vane, a small wooden box washed up on the shore near the lighthouse. It was smooth, carved from driftwood, and held no inscription but for one single, glowing line: "I am the keeper now. The old light is gone."
+Elias frowned, his heart skipping a beat. He knew that voice; it sounded exactly like his own. He picked up the box, feeling its cool wood against his palm, and looked around at the empty tower. Who could have left this? Had he been visited by an old friend who had never sailed out of sight before?
+That night, as he stood on the balcony overlooking the churning Atlantic, he lit a small candle. The beam flickered softly to life. He held the box up against the dark sky until it glowed in his hand, warm and steady. A strange sensation washed over him—not fear, but a profound sense of peace.
+The wind howled louder than usual that night, battering the railing with sheets of water. But Elias didn't flinch. He walked to the window, opened the door slightly, and let a gentle breeze in. The smell of salt air filled his lungs, and for the first time since he took up this post, the world felt less like a battle against nature and more like a conversation with it.
+When dawn broke, casting long shadows across the water, Elias extinguished the candle. He placed the wooden box on the porch, closed the door carefully, and climbed back inside to his work. The lighthouse continued to shine, and for the first time in years, Elias felt truly safe watching the horizon.⟧
+
+=== r6-howto · How do I change a flat tyre on a car? Explain it step by step.
+kept: true · new chat by: meta+n · chip: FAST
+first 8 words after the cut: spot, then loosen the wheel nuts by turning
+console: [wllama] continue · prefill=211 chars cached=208 evaluated=1 ttft=197 ms tokens=157
+--- stopped (211 chars)
+You can safely change a flat tire at home if you have the right tools: a jack, a lug wrench, spare tire, and a pump or CO2 inflator. First, find a level patch of grass or ground away from traffic to park in safe
+--- final (971 chars)
+You can safely change a flat tire at home if you have the right tools: a jack, a lug wrench, spare tire, and a pump or CO2 inflator. First, find a level patch of grass or ground away from traffic to park in safe⟦ spot, then loosen the wheel nuts by turning them counter-clockwise one-quarter turn while the car is still on the ground. Lift the car using the jack, place it on a stand or sturdy block so the tire rests flat against the surface rather than tilted, and remove the nut with your wrench before fully detaching the hubcap. Place the spare tire in its spot, align the wheel nuts with their holes, hand-tighten them first for safety, then use your wrench to torque them properly while holding the tire down to prevent it from rolling away. Finally, inflate the tire to the correct pressure using a pump or CO2 inflator and reinstall the nut tightening sequence (pattern) before finally retightening all nuts fully by hand on the ground before lifting the car off.⟧
+

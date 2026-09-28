@@ -7028,6 +7028,92 @@ Not covered: no model, browser or phone ran this round; the web case is rebuilt 
 opens with the same capitalised word twice ("One to One hundred") loses its first words when a stop lands inside it.
 Scripts without capitals keep a restarted fragment on screen.
 
+## Fixes round 121: Continue resumes the same answer (branch `continue-prefill`) — 28.9.2026
+
+Seen on the live web app (28.9, Fast, main 91e91773): Continue after Stop broke the answer in 4 of 4 runs. The screens
+read "…From this point, the captain ste The ship then shifts…", "…when sliding down stairs As the wind pushes
+harder…", "…to head downwind by about 45 By swinging one side…", and earlier "…This maneuver creates creates a
+diagonal path" and "…from behind. As the As they turn". Continue was a new user turn: the partial answer as an assistant
+message, then "Continue exactly where you stopped. Do not repeat what you already wrote." as the user's. A 2B model
+answered that turn as a new question and began a new sentence. Rounds 111 to 119 repaired the seam afterwards and could
+not stop the model from starting over. Evidence: `docs/qa/continue-prefill/`. Tests:
+`packages/core/test/fixes-r121.test.ts` (18) and `apps/mobile/src/adapters/continuation.test.ts` (8).
+
+- **F443 · Continue goes on inside the same assistant turn.** `GenOpts.continueFrom` (`{ text, reasoning? }`, in
+  `packages/core/src/llm/types.ts`) asks the engine to render the chat as usual, the last message being the user's
+  question, open the assistant turn with the answer so far and keep generating in it. No "Continue" user turn is sent.
+  `continueRow` in `apps/mobile/src/screens/Chat.tsx` sends the history up to the question and passes the text on
+  screen, with the row's reasoning, as `continueFrom` (`continueRequest` in `packages/core/src/chat/continuation.ts`). The
+  rest is joined with no separator, since the engine wrote the rest of the same text. The guard still gets
+  `{ prefix }`, so rounds 111 to 119's seam rules stay as a safety net. F389's `asked` is now the real question. A trailing
+  space on screen is not sent (a line break is), so the model writes its own space.
+- **wllama (web).** wllama 3.6.1 has no `formatChat`; its llama-server has llama.cpp's own continuation. The adapter
+  appends the partial as the last message, `{ role: "assistant", content, reasoning_content }`, and sends
+  `continue_final_message: true, add_generation_prompt: false`. llama-server renders the history, opens the assistant
+  turn with that message and streams only the new tokens. A probe against the same wasm (`probe-wllama-continue.json`)
+  showed the difference. A bare trailing assistant message continues too, but its first delta repeats the whole prefill.
+  With `continue_final_message` nothing is repeated, and the stopped answer's KV cache is reused. In the live runs, 1 to
+  49 prompt tokens were evaluated again.
+- **llama.rn (iOS, Android).** llama.rn 0.12.9's JSI does not expose `continue_final_message`. The adapter calls
+  `getFormattedChat(history, { jinja, enable_thinking, reasoning_format: "auto", add_generation_prompt: true })`, appends
+  the prefill built by `continuationPrompt`, and completes the raw prompt. It passes the template's `chat_format`,
+  `chat_parser`, `preserved_tokens` and extra stops. `generation_prompt` and `prefill_text` let llama.rn's parser read the
+  whole turn, and the adapter emits only what lies past the prefill (`pastPrefill`).
+- **Reasoning.** The prefill is written the way Qwen3.5-2B's own template (`tokenizer.chat_template` in the GGUF) writes a
+  finished assistant turn: `<think>\n{reasoning}\n</think>\n\n{text}`. With thinking off, the template's generation prompt
+  is `<think>\n\n</think>\n\n`, and the prefill is the same string with an empty reasoning. With thinking on, it is
+  `<think>\n`, so the reasoning is closed after it. llama.cpp's continuation for this template family builds the same
+  string. A stop while the model was still thinking leaves the block open, and the reasoning goes on. Phi-4-mini has no
+  think tags and gets the text only. The row keeps its stored reasoning; new reasoning is appended to it.
+- **Same system prompt.** A resumed turn uses the stopped turn's length line, not Continue's "long" one. The model goes
+  on under the same instructions, and the engine's cache still matches the prompt.
+- **Photos.** On the web the photo question stays a user message with its image parts, and the partial follows it.
+  llama.rn's formatter turns image parts into media markers, and their paths go to the completion as `media_paths`, as
+  `completion({ messages })` does. No user-turn fallback was needed in either adapter. Continue still drops a picture it
+  cannot send rather than replacing the answer with a refusal.
+- **Other engines.** `Capabilities.continuation` is true for wllama and llama.rn. The desktop shell (`tauri`) and Apple
+  FM do not set it, so their Continue stays the round-111 user turn. The silent loop retry is unchanged: a user turn
+  with the text on screen, without `continueFrom`.
+
+Live proof on the web (`joins.txt`, screenshots `r1…r6-*.png` with `sm-*` 500 px copies, driver
+`live-driver.mjs.txt`). This branch's `web:build` was served on 127.0.0.1:8934 and driven in chrome-headless-shell. Each
+run used a new chat on Fast, Stop once 200 characters were on screen, then Continue. In all six the continuation goes on
+mid-sentence from the cut: no new sentence, no restated or doubled word. The stopped text stays unchanged on screen.
+"Cached / evaluated" is llama-server's prompt tokens reused from the KV cache and evaluated again.
+
+| Run | Question | Before the cut | First 8 words after it | Cached / evaluated | Stopped text kept |
+|---|---|---|---|---|---|
+| 1 | tacking, 8 sentences | …wind. As they rotate around | the ship's center, the sail catches a sliver | 216 / 1 | yes |
+| 2 | tacking, 8 sentences | …sideways and create forward motion | . The first tack is made by swinging | 209 / 1 | yes |
+| 3 | tacking, 8 sentences | …a temporary centerline. The crew | lowers the sails on the side facing away | 167 / 49 | yes |
+| 4 | 10-item numbered list | …minutes and reward yourself after | the time is up. 4. Use noise-canceling headphones | 221 / 1 | yes |
+| 5 | short story | …like a silver sword every | single night. He spent his days repairing creaking | 192 / 1 | yes |
+| 6 | how-to (flat tyre) | …traffic to park in safe | spot, then loosen the wheel nuts by turning | 208 / 1 | yes |
+
+Photo Continue (`probe-wllama-photo-thinking.json`, script `probe-wllama-photo-thinking.mjs.txt`). The app's attach sheet
+did not open in headless Chromium, so the one photo run through the app sent no picture and is not counted. The same
+request the adapter sends was run against wllama 3.6.1 with Fast and its projector: the CAT image (a red circle, "CAT"
+under it) in the user message, stopped after 48 tokens, then continued. The first part read "…a solid crimson red
+fill… the word "CAT"… The combination of these elements", and the continuation went on " suggests an illustration of a
+cat or serves as a logo for a brand named CAT." The KV cache held 202 prompt tokens, including the image, and 1 was
+evaluated. The same file holds the thinking-on cases. "Seventeen multiplied by three equ" plus reasoning went on "ates
+to a total of fifty-one." as answer text. A turn stopped while thinking went on as reasoning (" = 51. Next, I need…").
+The earlier probe (`probe-wllama-continue.json`) holds the trailing-assistant runs with and without
+`continue_final_message`.
+
+Red first (`red-r121-main-91e91773.txt`): with only the two new test files on main 91e91773, 10 of 18 core tests and 6
+of 8 adapter tests fail. The ones that pass are the 7 seam cases that a true continuation must keep, the `GenOpts`
+shape, and the 2 adapter cases without `continueFrom`.
+Gates exit 0 on the final tree: `typecheck`, `lint`, `test` (core 1,218 with 4 skipped, mobile 1,203, i18n 24, ui 23,
+desktop 4), `web:build`, `web:smoke`. The earlier full `test` runs were not clean. First, 4 core loop-guard tests (rounds
+111, 114, 115, 116) hit vitest's 5 s timeout while the live browser ran the model on 6 threads. Then 1 (round 114) hit it
+at a load average of 40 after the browser closed. `fixes-r114.test.ts` passes alone (27), and `loop.ts` is unchanged. After
+that, `apps/mobile/test/loop-guard-r86.test.ts` failed: it pins the source line of the guarded call. Its pattern now
+includes the `continueFrom` opts, and the retry's pattern is unchanged.
+Not covered: no phone ran this round. The llama.rn path is proven by unit tests with a mocked context only, including its
+photo path. Photo and thinking-on Continue were run against the wasm engine directly, not through the app's screens. The
+desktop shell keeps the old Continue.
+
 ## iOS build 23: main with round 111's loop guard, on Moshe's iPhone only (branch `ios-build-23`) — 27.9.2026
 
 Build 1.0.0 (23) carries local `main` 98722df7 (build 22's main plus round 111) to the iPhone 13 Pro, so the phone has

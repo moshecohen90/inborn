@@ -15,6 +15,8 @@ export interface Capabilities {
   tools: boolean;
   embeddings: boolean;
   maxContext: number;
+  /** Honours `GenOpts.continueFrom` (F443); without it the chat sends Continue as a user turn. */
+  continuation?: boolean;
 }
 
 export interface LoadOptions {
@@ -36,6 +38,12 @@ export interface Message {
   images?: string[];
 }
 
+/** The assistant turn Continue resumes (F443): the answer on screen and the reasoning written before it. */
+export interface ContinueFrom {
+  text: string;
+  reasoning?: string;
+}
+
 export interface GenOpts {
   maxTokens?: number;
   temperature?: number;
@@ -52,6 +60,8 @@ export interface GenOpts {
   reasoning?: boolean;
   /** Threads for this answer (device guard, spec §6.5); engines that fix threads at load apply it on the next load. */
   threads?: number;
+  /** Continue after Stop (F443): `messages` end with the user's turn; the assistant turn opens with this and generation goes on inside it. */
+  continueFrom?: ContinueFrom;
 }
 
 export interface Usage {

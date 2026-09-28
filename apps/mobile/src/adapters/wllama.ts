@@ -1,7 +1,7 @@
 /* wllama's package "main" points at its TypeScript sources; esm/ carries the built JS plus .d.ts. */
 import { LoggerWithoutDebug, LogLevel, Wllama } from "@wllama/wllama/esm/index.js";
 import type { ChatCompletionChunk, ChatCompletionMessage, ChatCompletionParams } from "@wllama/wllama/esm/index.js";
-import { ANSWER_CEILING, sampling, type Capabilities, type Delta, type Embedder, type GenOpts, type LoadOptions, type LocalLM, type Message, type ModelRef, type Session, type Stats } from "@inborn/core";
+import { ANSWER_CEILING, prefillText, sampling, type Capabilities, type Delta, type Embedder, type GenOpts, type LoadOptions, type LocalLM, type Message, type ModelRef, type Session, type Stats } from "@inborn/core";
 import { fileOfUri, modelFile } from "../web/opfs";
 import { recordPhotoMs } from "../extensions/timeHint";
 import { photoForEngine } from "../images/vision";
@@ -84,7 +84,7 @@ export class WllamaLM implements LocalLM {
 
   capabilities(): Capabilities {
     /* One llama-server context is either chat or embeddings, never both; RAG gets its own session later. */
-    return { vision: this.vision, tools: false, embeddings: false, maxContext: this.session?.nCtx ?? 4096 };
+    return { vision: this.vision, tools: false, embeddings: false, maxContext: this.session?.nCtx ?? 4096, continuation: true };
   }
 
   private async start(model: ModelRef, opts: LoadOptions, mmproj: string | null): Promise<Wllama> {
@@ -174,11 +174,15 @@ export class WllamaLM implements LocalLM {
     let promptTokens = 0;
     let completionTokens = 0;
     let chunks = 0;
+    let timings: { cache_n?: number; prompt_n?: number } | null = null;
     const sampler = sampling(opts);
     const photos = messages.reduce((n, m) => n + (this.vision && m.role === "user" ? (m.images?.length ?? 0) : 0), 0);
     const wireMessages = await this.toRequestMessages(messages);
+    /* F443: llama-server opens the assistant turn with this message (continue_final_message) and streams only what follows. */
+    const cont = opts.continueFrom;
+    if (cont) wireMessages.push({ role: "assistant", content: prefillText(cont.text), ...(cont.reasoning ? { reasoning_content: cont.reasoning } : {}) } as ChatCompletionMessage);
     /* The wasm server reads llama-server's names (repeat_penalty, dry_*, presence_penalty…); the typed penalty_* fields are ignored. */
-    const request: ChatCompletionParams & { stream: true; stop?: string[]; repeat_penalty: number; repeat_last_n: number } & ServerSampling = {
+    const request: ChatCompletionParams & { stream: true; stop?: string[]; repeat_penalty: number; repeat_last_n: number; continue_final_message?: boolean; add_generation_prompt?: boolean } & ServerSampling = {
       messages: wireMessages,
       stream: true,
       abortSignal: signal,
@@ -196,6 +200,7 @@ export class WllamaLM implements LocalLM {
       frequency_penalty: sampler.frequencyPenalty,
       stop: opts.stop,
       chat_template_kwargs: { enable_thinking: opts.reasoning ?? true },
+      ...(cont ? { continue_final_message: true, add_generation_prompt: false } : {}),
     };
     try {
       for await (const chunk of await wllama.createChatCompletion(request)) {
@@ -212,7 +217,10 @@ export class WllamaLM implements LocalLM {
           promptTokens = chunk.usage.prompt_tokens;
           completionTokens = chunk.usage.completion_tokens;
         }
-        if (chunk.timings) tokPerSec = chunk.timings.predicted_per_second;
+        if (chunk.timings) {
+          tokPerSec = chunk.timings.predicted_per_second;
+          timings = chunk.timings as { cache_n?: number; prompt_n?: number };
+        }
       }
     } catch (e: unknown) {
       if (!isAbort(e)) throw e;
@@ -227,6 +235,8 @@ export class WllamaLM implements LocalLM {
       recordPhotoMs(ttft, session.model.id);
       console.info(`[wllama] photo turn · photos=${photos} ttft=${Math.round(ttft)} ms total=${Math.round(performance.now() - started)} ms tokens=${completionTokens}`);
     }
+    /* Not behind a flag: the QA harness reads how much of a resumed turn the cache already held. */
+    if (cont) console.info(`[wllama] continue · prefill=${cont.text.length} chars cached=${timings?.cache_n ?? "?"} evaluated=${timings?.prompt_n ?? "?"} ttft=${Math.round(ttft)} ms tokens=${completionTokens}`);
     this.measureMemory();
     yield { done: { promptTokens, completionTokens, ttftMs: ttft, tokPerSec } };
   }

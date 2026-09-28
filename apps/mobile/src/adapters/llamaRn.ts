@@ -1,7 +1,7 @@
-import { initLlama } from "llama.rn";
+import { initLlama, type JinjaFormattedChatResult } from "llama.rn";
 import { isDevice } from "expo-device";
 import { Platform } from "react-native";
-import { ANSWER_CEILING, sampling } from "@inborn/core";
+import { ANSWER_CEILING, continuationPrompt, pastPrefill, prefillText, sampling } from "@inborn/core";
 import type { BenchTimings, Capabilities, Delta, Embedder, GenOpts, LoadOptions, LocalLM, Message, ModelRef, Session, Stats } from "@inborn/core";
 
 type Ctx = Awaited<ReturnType<typeof initLlama>>;
@@ -18,7 +18,7 @@ export class LlamaRnLM implements LocalLM {
   devInfo: Record<string, unknown> = {};
 
   capabilities(): Capabilities {
-    return { vision: this.vision, tools: false, embeddings: true, maxContext: this.session?.nCtx ?? 4096 };
+    return { vision: this.vision, tools: false, embeddings: true, maxContext: this.session?.nCtx ?? 4096, continuation: true };
   }
 
   /** Attaches the multimodal projector (spec §6.2 vision companion) to the loaded model; false when the model has no vision. */
@@ -81,10 +81,15 @@ export class LlamaRnLM implements LocalLM {
     };
     const started = Date.now();
     let ttft = 0;
-    /* llama.rn streams the parsed content/reasoning as accumulated strings, so emit only what is new. */
+    /* llama.rn streams the parsed content/reasoning as accumulated strings, so emit only what is new; with a prefill (F443) they start with it. */
+    const cont = opts.continueFrom;
+    const baseText = cont ? prefillText(cont.text) : "";
+    const baseReasoning = cont?.reasoning?.trim() ?? "";
     let sentText = 0;
     let sentReasoning = 0;
-    const emit = (content: string | undefined, reasoning: string | undefined) => {
+    const emit = (parsedContent: string | undefined, parsedReasoning: string | undefined) => {
+      const content = parsedContent === undefined ? undefined : pastPrefill(parsedContent, baseText);
+      const reasoning = parsedReasoning === undefined ? undefined : pastPrefill(parsedReasoning, baseReasoning);
       if (reasoning && reasoning.length > sentReasoning) {
         push({ reasoning: reasoning.slice(sentReasoning) });
         sentReasoning = reasoning.length;
@@ -97,10 +102,33 @@ export class LlamaRnLM implements LocalLM {
     const onAbort = () => void ctx.stopCompletion();
     signal.addEventListener("abort", onAbort, { once: true });
     const sampler = sampling(opts);
+    const wire = messages.map((m) => (m.images?.length && this.vision ? { role: m.role, content: [{ type: "text", text: m.content }, ...m.images.map((url) => ({ type: "image_url", image_url: { url } }))] } : { role: m.role, content: m.content }));
+    const enableThinking = opts.reasoning ?? true;
+    /* F443: this JSI has no continue_final_message, so the rendered history plus the prefill goes as a raw prompt; prefill_text lets the parser read the whole turn. */
+    let input: Record<string, unknown> = { messages: wire };
+    let stop = opts.stop ?? [];
+    if (cont) {
+      const formatted = await ctx.getFormattedChat(wire, undefined, { jinja: true, enable_thinking: enableThinking, reasoning_format: "auto", add_generation_prompt: true });
+      if (formatted.type === "jinja") {
+        const j = formatted as JinjaFormattedChatResult;
+        const tags = j.thinking_start_tag && j.thinking_end_tag ? { start: j.thinking_start_tag, end: j.thinking_end_tag } : undefined;
+        const turn = continuationPrompt(j.prompt, j.generation_prompt ?? "", cont, tags);
+        input = {
+          prompt: turn.prompt,
+          generation_prompt: turn.generation,
+          prefill_text: turn.prefill,
+          ...(typeof j.chat_format === "number" ? { chat_format: j.chat_format } : {}),
+          ...(j.chat_parser ? { chat_parser: j.chat_parser } : {}),
+          ...(j.preserved_tokens ? { preserved_tokens: j.preserved_tokens } : {}),
+          ...(j.has_media ? { media_paths: j.media_paths } : {}),
+        };
+        stop = [...stop, ...(j.additional_stops ?? [])];
+      } else input = { prompt: formatted.prompt + prefillText(cont.text), ...(formatted.has_media ? { media_paths: formatted.media_paths } : {}) };
+    }
     this.inflight = ctx
       .completion(
         {
-          messages: messages.map((m) => (m.images?.length && this.vision ? { role: m.role, content: [{ type: "text", text: m.content }, ...m.images.map((url) => ({ type: "image_url", image_url: { url } }))] } : { role: m.role, content: m.content })),
+          ...input,
           n_predict: opts.maxTokens ?? ANSWER_CEILING,
           n_threads: opts.threads,
           temperature: sampler.temperature,
@@ -114,8 +142,8 @@ export class LlamaRnLM implements LocalLM {
           dry_allowed_length: sampler.dryAllowedLength,
           dry_penalty_last_n: sampler.dryPenaltyLastN,
           dry_sequence_breakers: sampler.drySequenceBreakers,
-          stop: opts.stop ?? [],
-          enable_thinking: opts.reasoning ?? true,
+          stop,
+          enable_thinking: enableThinking,
           reasoning_format: "auto",
         },
         (data) => {
