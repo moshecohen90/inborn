@@ -1,0 +1,12 @@
+Round 125 (F453), live web build of branch web-photo-125 on 127.0.0.1:8971, 28.9.2026 16:46
+chrome-headless-shell, fresh profile, CPU path (gpuLayers=0, 2 threads), Instant (Qwen3.5-0.8B) + vision-qwen35 pack
+Photo: the walker's 320 x 320 red circle over "CAT" (cat-320.png)
+Question: What colour is the shape in this photo, what shape is it, and what word is written under it?
+
+Answer, verbatim:
+The red circle is the flag of Japan, which has a specific shape and is written as CAT below it.
+
+Load line: [wllama] loaded instant + projector (image tokens 512-512) in 1622 ms · threads=2 isolated=true gpuLayers=0 nCtx=4096
+Photo turn: ttft 86.6 s, total 88.2 s, 22 tokens ([wllama] photo turn · photos=1 ttft=86631 ms total=88223 ms tokens=22)
+Walker 04e: answer on screen 100 s after Download 205 MB was pressed (pack download + projector load + encode + answer)
+Before the fix (main e3d19aca, same photo): "The red circle has no shape; there are no words associated with it" (lead's journey), and 0/4 in probe-cpu-1024 at 100 image tokens.

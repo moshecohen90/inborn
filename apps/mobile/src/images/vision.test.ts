@@ -43,11 +43,11 @@ describe("F417 · photos on the WASM path are encoded at 512 px", () => {
 });
 
 describe("F417 · the card's time line uses the 512 px measurement", () => {
-  it("a browser without WebGPU and no photo of its own yet is told about 37 s", async () => {
+  it("a browser without WebGPU and no photo of its own yet is told about 88 s (F453's 512 image tokens)", async () => {
     const { MEASURED_WASM_PHOTO_MS, visionTimeHint } = await import("../extensions/timeHint");
-    expect(MEASURED_WASM_PHOTO_MS).toBe(37_000);
+    expect(MEASURED_WASM_PHOTO_MS).toBe(88_000);
     const t = (k: string, o?: Record<string, unknown>) => `${k}:${String(o?.seconds)}`;
-    expect(visionTimeHint(t)).toBe("extensions.vision.timeHint:37");
+    expect(visionTimeHint(t)).toBe("extensions.vision.timeHint:88");
     /* Round 117: Fast's own projector, measured the same way; a model nobody measured in a browser gets no invented number. */
     expect(visionTimeHint(t, "fast")).toBe("extensions.vision.timeHint:109");
     expect(visionTimeHint(t, "sharp")).toBeNull();
