@@ -50,7 +50,7 @@ export function Storage() {
         <Row testID="storage-documents" label={t("storage.documents")} sub={storageKind === "indexeddb" ? t("storage.chats.browser") : undefined} value={size(sizes?.documents)} />
         <Row testID="storage-models" label={t("storage.models")} sub={t(Platform.OS === "web" && storageKind !== "sqlcipher" ? "storage.models.web" : "storage.models.sub")} value={sizes?.models === null || sizes?.models === undefined ? "—" : formatModelBytes(sizes.models)} />
         <Row label={t("storage.memory")} value={size(sizes?.memory)} />
-        <Row label={t("storage.reports")} value={size(sizes?.reports)} />
+        <Row label={t("storage.reports")} sub={t("reports.row")} value={size(sizes?.reports)} />
         <DurableStorage theme={theme} />
       </Section>
       <Text testID="storage-backup" style={[type.bodySmall, styles.note, { color: theme.text2 }]}>{t(Platform.OS === "web" ? "storage.backup.web" : Platform.OS === "android" ? "storage.backup.android" : "storage.backup")}</Text>

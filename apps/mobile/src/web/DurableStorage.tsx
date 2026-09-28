@@ -5,7 +5,7 @@ import type { Theme } from "@inborn/ui";
 import { Row } from "../components/shell/primitives";
 import { useType } from "../services/type";
 import { webDoorsApply } from "./doors";
-import { installHint, lastProtection, storageProtected } from "./durable";
+import { durableStateKey, installHint, lastProtection, storageProtected } from "./durable";
 
 /** F411, Settings -> Privacy & storage on the browser tier: whether this browser keeps the model through a cleanup. */
 export function DurableStorage({ theme }: { theme: Theme }) {
@@ -23,6 +23,7 @@ export function DurableStorage({ theme }: { theme: Theme }) {
         testID="storage-durable"
         label={t("storage.durable.label")}
         sub={t(kept === null ? "storage.durable.unknown" : kept ? "storage.durable.protected" : "storage.durable.notProtected")}
+        value={t(durableStateKey(kept))}
       />
       <InstallHint theme={theme} />
     </>

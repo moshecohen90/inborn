@@ -18,6 +18,8 @@ import { listClipping } from "../../lib/listClipping";
 import { useContentMaxWidth } from "../../lib/useLayout";
 import { useDocuments } from "../../documents/hooks";
 import { FREE_PAGE_CAP } from "../../documents/library";
+import { freeDocumentLimit } from "../../documents/freeLimit";
+import { afterSheetClose } from "../../lib/sheetHandover";
 import { PICK_TYPES, pickedName, sniffPicked } from "../../documents/office";
 import { chooseFile } from "../../documents/chooseFile";
 import { planDrop } from "../../documents/dropped";
@@ -57,6 +59,7 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
   /* §7.3: "answer only from my documents" and on-device OCR are both Pro rows; the headless override stands in for a licence. */
   const strictLocked = proOverride === undefined && !can("strictDocuments");
   const ocrLocked = proOverride === undefined && !can("ocr");
+  const freeLimit = proOverride === undefined ? freeDocumentLimit(tier, FREE_PAGE_CAP) : null;
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [details, setDetails] = useState<DocumentRecord | null>(null);
   const [ask, setAsk] = useState<{ docs: DocumentRecord[]; auto?: string } | null>(null);
@@ -212,6 +215,7 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
       </View>
       <BannerSpacer />
       {state.documents.length ? <Text style={[styles.mono, styles.centered, { color: theme.text3 }]}>{t("documents.storage", { count: state.documents.length, size: formatBytes(totalBytes) })}</Text> : null}
+      {freeLimit ? <Text testID="documents-free-limit" style={[styles.limit, styles.centered, { color: theme.text2 }]}>{t("documents.freeLimit", freeLimit)}</Text> : null}
       <View style={[styles.strictRow, { backgroundColor: theme.surface1, borderColor: theme.border }]}>
         <View style={styles.strictText}>
           <Text style={[styles.strictTitle, { color: theme.text }]}>{t("documents.strict.title")}</Text>
@@ -299,7 +303,7 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
           <Text style={[styles.btnText, { color: selected.size ? theme.ctaText : theme.text3 }]}>{t("documents.askSelected", { count: selected.size })}</Text>
         </Pressable>
         </Actions>
-        <Text style={[styles.mono, styles.centered, { color: theme.text3 }]}>{t("documents.onDevice", { store: state.storeKind })}</Text>
+        <Text style={[styles.mono, styles.centered, { color: theme.text3 }]}>{t("documents.onDevice")}</Text>
       </View>
       </View>
       {toast ? (
@@ -330,7 +334,21 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
           }}
         />
       ) : null}
-      {ask ? <AskDocuments docs={ask.docs} theme={theme} autoQuestion={ask.auto} onResult={onDevResult} onClose={() => setAsk(null)} /> : null}
+      {ask ? (
+        <AskDocuments
+          docs={ask.docs}
+          theme={theme}
+          autoQuestion={ask.auto}
+          onResult={onDevResult}
+          onClose={() => setAsk(null)}
+          /* Headless proofs (bundle-time flags) ask strict whatever the licence. */
+          strictLocked={strictLocked && !ask.auto}
+          onUnlock={(why) => {
+            setAsk(null);
+            afterSheetClose(() => onUnlock?.(why));
+          }}
+        />
+      ) : null}
     </View>
   );
 }
@@ -352,6 +370,7 @@ const styles = StyleSheet.create({
   strictText: { flex: 1, gap: 2 },
   strictTitle: { ...font("sans", "600"), fontSize: 15 },
   strictHint: { ...font("sans"), fontSize: 12 },
+  limit: { ...font("sans"), fontSize: 12, paddingHorizontal: 12 },
   card: { marginHorizontal: 12, marginBottom: 8, padding: 14, borderRadius: radius.card, borderWidth: 1, gap: 8 },
   body: { ...font("sans"), fontSize: 14, lineHeight: 20 },
   list: { paddingHorizontal: 12, paddingBottom: 12, gap: 8, flexGrow: 1 },

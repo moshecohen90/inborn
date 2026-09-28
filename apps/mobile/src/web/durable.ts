@@ -54,6 +54,11 @@ export async function storageProtected(env: DurableEnv = pageEnv()): Promise<boo
   }
 }
 
+/** The one-word state Privacy & storage prints beside "Browser cleanup". */
+export function durableStateKey(kept: boolean | null): "storage.durable.state.protected" | "storage.durable.state.notProtected" | "storage.durable.state.unknown" {
+  return kept === null ? "storage.durable.state.unknown" : kept ? "storage.durable.state.protected" : "storage.durable.state.notProtected";
+}
+
 /** Asks once per call unless already granted, and records the answer so Settings can show it. Null: no API. */
 export async function protectStorage(reason: PersistReason, env: DurableEnv = pageEnv()): Promise<boolean | null> {
   let granted = await storageProtected(env);

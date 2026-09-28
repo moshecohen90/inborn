@@ -4,7 +4,7 @@ import { AppModal } from "../../components/shell/AppModal";
 import { useTranslation } from "react-i18next";
 import { joinList } from "@inborn/i18n";
 import { radius, type Theme } from "@inborn/ui";
-import { isNotFoundReply, groundedCitations, directionOf, planAnswerLength, type Citation, type DocumentRecord, type Session } from "@inborn/core";
+import { isNotFoundReply, groundedCitations, directionOf, planAnswerLength, type Citation, type DocumentRecord, type PaywallReason, type Session } from "@inborn/core";
 import { getEngine, loadSession } from "../../engine";
 import { chipLabel } from "../../lib/models";
 import { Citations } from "../../documents/Citations";
@@ -15,7 +15,9 @@ import { Toggle } from "../../components/shell/primitives";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useKeyboardLift } from "../../lib/keyboard";
 import { useOpenSheet } from "../../lib/openSheets";
-import { askSheetRoute, saysNoneMatched } from "../../lib/docsGate";
+import { askSheetRoute, askStatsLine, saysNoneMatched } from "../../lib/docsGate";
+import { useEntitlement } from "../../licence";
+import { ProTag } from "../../components/chat/Sheet";
 import { reindexNotice, type AnsweredMidReindex } from "../../lib/reindexNotice";
 import { useDocuments } from "../../documents/hooks";
 
@@ -26,6 +28,9 @@ export interface AskDocumentsProps {
   /** Dev proofs: ask this at once and report the outcome. */
   autoQuestion?: string;
   onResult?: (r: AskOutcome) => void;
+  /** Free meets "Answer only from my documents" as the Pro row it is in the Documents panel (§7.3). */
+  strictLocked?: boolean;
+  onUnlock?: (reason: PaywallReason) => void;
 }
 
 export interface AskOutcome {
@@ -50,7 +55,7 @@ const errorText = (e: unknown) => (e instanceof Error ? e.message : String(e));
  * citation chips, strict-mode "not found" without the model. The Chat screen gets the same pieces through
  * `useDocumentContext`; this sheet exists so the library works on its own.
  */
-export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: AskDocumentsProps) {
+export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult, strictLocked = false, onUnlock }: AskDocumentsProps) {
   const { t, i18n } = useTranslation();
   const library = getLibrary();
   const { engine, model } = getEngine();
@@ -68,6 +73,9 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
   const { state: libraryState } = useDocuments();
   const reindexLine = reindexNotice(reindexing, libraryState.documents);
   const [stats, setStats] = useState<string | null>(null);
+  const { can } = useEntitlement();
+  const detailed = can("detailedStats");
+  const statsLine = askStatsLine(stats, detailed);
   const autoFired = useRef(false);
 
   const ask = async (q: string) => {
@@ -88,7 +96,7 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
       setPhase({ kind: "retrieving" });
       /* F38: a one-line question over documents gets a one-line answer; a wider one keeps room for the passages it must join. */
       const length = planAnswerLength({ text, use: "documents" });
-      const { prompt, retrieveMs, reindexing: rebuilding, lexical } = await library.ask(text, { docIds: docs.map((d) => d.id), strict, nCtx: s.nCtx, answerLanguage: i18n.language, citeMarkers: canCiteMarkers(model.id), systemPrompt: length.instruction });
+      const { prompt, retrieveMs, reindexing: rebuilding, lexical } = await library.ask(text, { docIds: docs.map((d) => d.id), strict: strict && !strictLocked, nCtx: s.nCtx, answerLanguage: i18n.language, citeMarkers: canCiteMarkers(model.id), systemPrompt: length.instruction });
       setReindexing(rebuilding ?? null);
       setWordsOnly(!!lexical);
       const used = prompt.used.map((h) => ({ doc: library.document(h.chunk.docId)?.name ?? h.chunk.docId, page: h.chunk.page, cosine: Number(h.cosine.toFixed(3)), bm25: Number(h.bm25.toFixed(2)) }));
@@ -159,7 +167,8 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
             <Text style={[styles.strictTitle, { color: theme.text }]}>{t("documents.strict.title")}</Text>
             <Text style={[styles.strictHint, { color: theme.text3 }]}>{t("documents.strict.hint")}</Text>
           </View>
-          <Toggle testID="ask-strict" label={t("documents.strict.title")} value={strict} onChange={(v) => { setStrict(v); library.setStrict(v); }} />
+          {strictLocked ? <ProTag onPress={() => onUnlock?.("strictDocuments")} /> : null}
+          <Toggle testID="ask-strict" label={t("documents.strict.title")} value={strict && !strictLocked} onChange={(v) => { if (strictLocked) return onUnlock?.("strictDocuments"); setStrict(v); library.setStrict(v); }} />
         </View>
         <ScrollView style={styles.answerWrap} contentContainerStyle={styles.answerContent}>
           {phase.kind === "loading" ? <Text style={[styles.mono, { color: theme.text3 }]}>{t("chat.loading", { model: chipLabel(t, model.id) })}</Text> : null}
@@ -192,9 +201,9 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: A
               {reindexLine.kind === "done" ? t("documents.reindexDone") : t("documents.reindexing", reindexLine)}
             </Text>
           ) : null}
-          {stats ? (
+          {statsLine ? (
             <Text testID="ask-stats" style={[styles.mono, { color: theme.text3 }]}>
-              {stats}
+              {statsLine}
             </Text>
           ) : null}
         </ScrollView>

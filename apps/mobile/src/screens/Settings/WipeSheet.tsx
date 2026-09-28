@@ -42,7 +42,7 @@ export function WipeSheet({ visible, onClose }: { visible: boolean; onClose: () 
 
   return (
     <Sheet visible={visible} onClose={onClose} title={step === 1 ? t("wipe.title") : t("wipe.confirmTitle")} testID="wipe-sheet">
-      <Text style={[styles.body, { color: theme.text2 }]}>{step === 1 ? t("wipe.explain") : t("wipe.confirmExplain")}</Text>
+      <Text style={[styles.body, { color: theme.text2 }]}>{step === 1 ? t("wipe.explain") : t(models ? "wipe.confirmExplain.models" : "wipe.confirmExplain")}</Text>
       {step === 1 ? (
         <View style={styles.row}>
           <Text style={[styles.body, styles.grow, { color: theme.text }]}>{t("wipe.alsoModels")}</Text>

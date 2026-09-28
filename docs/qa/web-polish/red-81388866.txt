@@ -1,0 +1,504 @@
+
+ RUN  v5.0.0 <git archive 81388866>/apps/mobile
+
+ ❯ test/screens-truth-r123.test.ts (12 tests | 12 failed) 32ms
+   ❯ F446 · Documents says what search does today (5)
+     × the index model card says exact-word search already works and what the model adds 4ms
+     × the footer says where, not which storage engine 1ms
+     × the Ask sheet's timing line shows only with Pro's detailed stats, the chat's own gate 4ms
+     × the Free limit is said before the Pro tag is met, from the licence's own numbers 3ms
+     × the Ask sheet wears the same PRO tag and gate on "Answer only from my documents" as the panel 9ms
+   ❯ F446 · a sent photo is shown whole (3)
+     × the bubble fits the photo in a fixed box and keeps its shape 1ms
+     × the bubble draws the photo with contain, never cover 2ms
+     × the Free hint under the photo reads as a sentence 1ms
+   ❯ F446 · Settings on the web shows no dead switch (3)
+     × hide-in-switcher and screenshot protection are left out in a browser, kept on phones 1ms
+     × the "Not available in a browser" lines left the locales with their rows 1ms
+     × Privacy & storage gives Browser cleanup a state and Reports a line saying what they are 4ms
+   ❯ F446 · Delete everything says what it deletes (1)
+     × the last step no longer promises a fresh install while the models stay 0ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 12 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/screens-truth-r123.test.ts > F446 · Documents says what search does today > the index model card says exact-word search already works and what the model adds
+AssertionError: expected 'Searching your documents needs a smal…' not to match /needs a small/
+
+- Expected:
+/needs a small/
+
++ Received:
+"Searching your documents needs a small on-device model ({size}). It runs here and never uploads a word."
+
+ ❯ test/screens-truth-r123.test.ts:20:22
+     18|   it("the index model card says exact-word search already works and wh…
+     19|     const line = en["documents.embedder.explain"]!;
+     20|     expect(line).not.toMatch(/needs a small/);
+       |                      ^
+     21|     expect(line).toMatch(/exact-word search works now/i);
+     22|     expect(line).toMatch(/meaning/);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/12]⎯
+
+ FAIL  test/screens-truth-r123.test.ts > F446 · Documents says what search does today > the footer says where, not which storage engine
+AssertionError: de.json: expected 'AUF DIESEM GERÄT INDEXIERT · {store}' not to contain '{store}'
+
+Expected: "{store}"
+Received: "AUF DIESEM GERÄT INDEXIERT · {store}"
+
+ ❯ test/screens-truth-r123.test.ts:27:75
+     25|
+     26|   it("the footer says where, not which storage engine", () => {
+     27|     for (const f of files) expect(locale(f)["documents.onDevice"], f).…
+       |                                                                           ^
+     28|     expect(en["documents.onDevice"]).toBe("Indexed on this device");
+     29|     const docs = read("screens/documents/DocumentsScreen.tsx");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/12]⎯
+
+ FAIL  test/screens-truth-r123.test.ts > F446 · Documents says what search does today > the Ask sheet's timing line shows only with Pro's detailed stats, the chat's own gate
+TypeError: askStatsLine is not a function
+ ❯ test/screens-truth-r123.test.ts:36:12
+     34|   it("the Ask sheet's timing line shows only with Pro's detailed stats…
+     35|     const { askStatsLine } = await import("../src/lib/docsGate");
+     36|     expect(askStatsLine("search 1 ms · 1 passages", false)).toBeNull();
+       |            ^
+     37|     expect(askStatsLine("search 1 ms · 1 passages", true)).toBe("searc…
+     38|     expect(askStatsLine(null, true)).toBeNull();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/12]⎯
+
+ FAIL  test/screens-truth-r123.test.ts > F446 · Documents says what search does today > the Free limit is said before the Pro tag is met, from the licence's own numbers
+Error: Cannot find module '/src/documents/freeLimit' imported from <git archive 81388866>/apps/mobile/test/screens-truth-r123.test.ts
+ ❯ test/screens-truth-r123.test.ts:45:35
+     43|
+     44|   it("the Free limit is said before the Pro tag is met, from the licen…
+     45|     const { freeDocumentLimit } = await import("../src/documents/freeL…
+       |                                   ^
+     46|     expect(freeDocumentLimit("free", 20)).toEqual({ count: 1, pages: 2…
+     47|     expect(freeDocumentLimit("pro", 20)).toBeNull();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/12]⎯
+
+ FAIL  test/screens-truth-r123.test.ts > F446 · Documents says what search does today > the Ask sheet wears the same PRO tag and gate on "Answer only from my documents" as the panel
+AssertionError: expected 'import { useEffect, useRef, useState …' to contain '<ProTag onPress={() => onUnlock?.("st…'
+
+- Expected
++ Received
+
+- <ProTag onPress={() => onUnlock?.("strictDocuments")} />
++ import { useEffect, useRef, useState } from "react";
++ import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
++ import { AppModal } from "../../components/shell/AppModal";
++ import { useTranslation } from "react-i18next";
++ import { joinList } from "@inborn/i18n";
++ import { radius, type Theme } from "@inborn/ui";
++ import { isNotFoundReply, groundedCitations, directionOf, planAnswerLength, type Citation, type DocumentRecord, type Session } from "@inborn/core";
++ import { getEngine, loadSession } from "../../engine";
++ import { chipLabel } from "../../lib/models";
++ import { Citations } from "../../documents/Citations";
++ import { Markdown } from "../../components/chat/Markdown";
++ import { canCiteMarkers, getLibrary } from "../../documents/library";
++ import { font } from "../../services/type";
++ import { Toggle } from "../../components/shell/primitives";
++ import { useSafeAreaInsets } from "react-native-safe-area-context";
++ import { useKeyboardLift } from "../../lib/keyboard";
++ import { useOpenSheet } from "../../lib/openSheets";
++ import { askSheetRoute, saysNoneMatched } from "../../lib/docsGate";
++ import { reindexNotice, type AnsweredMidReindex } from "../../lib/reindexNotice";
++ import { useDocuments } from "../../documents/hooks";
++
++ export interface AskDocumentsProps {
++   docs: DocumentRecord[];
++   theme: Theme;
++   onClose: () => void;
++   /** Dev proofs: ask this at once and report the outcome. */
++   autoQuestion?: string;
++   onResult?: (r: AskOutcome) => void;
++ }
++
++ export interface AskOutcome {
++   question: string;
++   answer: string;
++   citations: Citation[];
++   cited: boolean;
++   notFound: boolean;
++   retrieveMs: number;
++   promptTokens: number;
++   generateMs: number;
++   tokPerSec: number;
++   used: Array<{ doc: string; page: number; cosine: number; bm25: number }>;
++ }
++
++ type Phase = { kind: "idle" } | { kind: "loading" } | { kind: "retrieving" } | { kind: "answering" } | { kind: "done" } | { kind: "error"; error: string };
++
++ const errorText = (e: unknown) => (e instanceof Error ? e.message : String(e));
++
++ /**
++  * "Ask about selected" (S40) / "Ask this document": one question over the chosen documents, streamed answer,
++  * citation chips, strict-mode "not found" without the model. The Chat screen gets the same pieces through
++  * `useDocumentContext`; this sheet exists so the library works on its own.
++  */
++ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult }: AskDocumentsProps) {
++   const { t, i18n } = useTranslation();
++   const library = getLibrary();
++   const { engine, model } = getEngine();
++   const session = useRef<Session | null>(null);
++   const abort = useRef<AbortController | null>(null);
++   const [question, setQuestion] = useState(autoQuestion ?? "");
++   const [strict, setStrict] = useState(library.state().strict);
++   const [phase, setPhase] = useState<Phase>({ kind: "idle" });
++   const [answer, setAnswer] = useState("");
++   const [citations, setCitations] = useState<{ shown: Citation[]; cited: boolean }>({ shown: [], cited: true });
++   const [notFound, setNotFound] = useState(false);
++   const [noneMatched, setNoneMatched] = useState(false);
++   const [wordsOnly, setWordsOnly] = useState(false);
++   const [reindexing, setReindexing] = useState<AnsweredMidReindex | null>(null);
++   const { state: libraryState } = useDocuments();
++   const reindexLine = reindexNotice(reindexing, libraryState.documents);
++   const [stats, setStats] = useState<string | null>(null);
++   const autoFired = useRef(false);
++
++   const ask = async (q: string) => {
++     const text = q.trim();
++     if (!text || phase.kind === "retrieving" || phase.kind === "answering") return;
++     setAnswer("");
++     setCitations({ shown: [], cited: true });
++     setNotFound(false);
++     setNoneMatched(false);
++     setWordsOnly(false);
++     setReindexing(null);
++     setStats(null);
++     const ac = new AbortController();
++     abort.current = ac;
++     try {
++       setPhase({ kind: "loading" });
++       const s = (session.current ??= await loadSession());
++       setPhase({ kind: "retrieving" });
++       /* F38: a one-line question over documents gets a one-line answer; a wider one keeps room for the passages it must join. */
++       const length = planAnswerLength({ text, use: "documents" });
++       const { prompt, retrieveMs, reindexing: rebuilding, lexical } = await library.ask(text, { docIds: docs.map((d) => d.id), strict, nCtx: s.nCtx, answerLanguage: i18n.language, citeMarkers: canCiteMarkers(model.id), systemPrompt: length.instruction });
++       setReindexing(rebuilding ?? null);
++       setWordsOnly(!!lexical);
++       const used = prompt.used.map((h) => ({ doc: library.document(h.chunk.docId)?.name ?? h.chunk.docId, page: h.chunk.page, cosine: Number(h.cosine.toFixed(3)), bm25: Number(h.bm25.toFixed(2)) }));
++       const route = askSheetRoute({ noAnswer: prompt.noAnswer });
++       if (route === "not-found") {
++         setNotFound(true);
++         setPhase({ kind: "done" });
++         setStats(t("documents.ask.retrieved", { ms: retrieveMs, count: 0 }));
++         onResult?.({ question: text, answer: "", citations: [], cited: false, notFound: true, retrieveMs, promptTokens: 0, generateMs: 0, tokPerSec: 0, used });
++         return;
++       }
++       setPhase({ kind: "answering" });
++       const started = Date.now();
++       let reply = "";
++       let tps = 0;
++       for await (const d of engine.generate(s, prompt.messages, { reasoning: false, maxTokens: length.maxTokens }, ac.signal)) {
++         if (d.text) {
++           reply += d.text;
++           setAnswer(reply);
++         }
++         if (d.done) tps = d.done.tokPerSec;
++       }
++       const generateMs = Date.now() - started;
++       const isNotFound = isNotFoundReply(reply);
++       const shown = isNotFound ? { shown: [], cited: false } : library.citationsFor(reply, groundedCitations(reply, text, prompt.used, prompt.citations));
++       setNotFound(isNotFound);
++       if (isNotFound) setAnswer("");
++       setCitations(shown);
++       if (!isNotFound && saysNoneMatched({ continuing: false, attachedCount: docs.length, usedPassages: shown.shown.length })) setNoneMatched(true);
++       setPhase({ kind: "done" });
++       setStats(`${t("documents.ask.retrieved", { ms: retrieveMs, count: prompt.used.length })} · ${t("documents.ask.generated", { ms: generateMs, tps: tps.toFixed(1), tokens: prompt.promptTokens })}`);
++       onResult?.({ question: text, answer: reply, citations: shown.shown, cited: shown.cited, notFound: isNotFound, retrieveMs, promptTokens: prompt.promptTokens, generateMs, tokPerSec: tps, used });
++     } catch (e: unknown) {
++       const error = errorText(e);
++       setPhase({ kind: "error", error });
++       onResult?.({ question: text, answer: `ERROR: ${error}`, citations: [], cited: false, notFound: false, retrieveMs: 0, promptTokens: 0, generateMs: 0, tokPerSec: 0, used: [] });
++     }
++   };
++
++   useEffect(() => {
++     if (autoQuestion && !autoFired.current) {
++       autoFired.current = true;
++       void ask(autoQuestion);
++     }
++     return () => abort.current?.abort();
++   }, []);
++
++   const busy = phase.kind === "loading" || phase.kind === "retrieving" || phase.kind === "answering";
++   const names = joinList(i18n.language, docs.map((d) => d.name));
++   const insets = useSafeAreaInsets();
++   const lift = useKeyboardLift();
++   useOpenSheet(true, onClose);
++   return (
++     <AppModal animationType="slide" onRequestClose={onClose}>
++       <View testID="ask-sheet" style={[styles.root, { backgroundColor: theme.bg, paddingBottom: lift || insets.bottom }]}>
++         <View style={styles.header}>
++           <Pressable accessibilityRole="button" onPress={onClose} style={styles.headerBtn}>
++             <Text style={[styles.headerBtnText, { color: theme.text2 }]}>{t("documents.close")}</Text>
++           </Pressable>
++           <Text style={[styles.label, { color: theme.text3 }]}>{t("documents.ask.title")}</Text>
++           <View style={styles.headerBtn} />
++         </View>
++         <Text numberOfLines={2} style={[styles.scope, { color: theme.text2 }]}>
++           {t("documents.ask.scope", { count: docs.length, names })}
++         </Text>
++         <View style={[styles.strictRow, { borderColor: theme.border }]}>
++           <View style={styles.strictText}>
++             <Text style={[styles.strictTitle, { color: theme.text }]}>{t("documents.strict.title")}</Text>
++             <Text style={[styles.strictHint, { color: theme.text3 }]}>{t("documents.strict.hint")}</Text>
++           </View>
++           <Toggle testID="ask-strict" label={t("documents.strict.title")} value={strict} onChange={(v) => { setStrict(v); library.setStrict(v); }} />
++         </View>
++         <ScrollView style={styles.answerWrap} contentContainerStyle={styles.answerContent}>
++           {phase.kind === "loading" ? <Text style={[styles.mono, { color: theme.text3 }]}>{t("chat.loading", { model: chipLabel(t, model.id) })}</Text> : null}
++           {phase.kind === "retrieving" ? <Text style={[styles.mono, { color: theme.text3 }]}>{t("documents.ask.searching")}</Text> : null}
++           {phase.kind === "error" ? <Text style={[styles.body, { color: theme.danger }]}>{t(`documents.error.${phase.error}`, { defaultValue: phase.error })}</Text> : null}
++           {notFound ? (
++             <Text testID="ask-not-found" style={[styles.body, { color: theme.text }]}>
++               {t("documents.notFound")}
++             </Text>
++           ) : null}
++           {answer ? (
++             <View style={styles.assistant}>
++               <Text style={[styles.label, { color: theme.text3 }]}>{t("chat.modelLabel", { model: chipLabel(t, model.id) })}</Text>
++               <Markdown testID="ask-answer" source={answer} direction={directionOf(answer)} caret={phase.kind === "answering"} />
++             </View>
++           ) : null}
++           {phase.kind === "done" && !notFound ? <Citations citations={citations.shown} cited={citations.cited} /> : null}
++           {wordsOnly ? (
++             <Text testID="ask-lexical" style={[styles.note, { color: theme.text2 }]}>
++               {t("documents.wordsOnly")}
++             </Text>
++           ) : null}
++           {noneMatched && !notFound ? (
++             <Text testID="ask-none-matched" style={[styles.note, { color: theme.text2 }]}>
++               {t("documents.noneMatched")}
++             </Text>
++           ) : null}
++           {reindexLine ? (
++             <Text testID={reindexLine.kind === "done" ? "ask-reindexed" : "ask-reindexing"} style={[styles.mono, { color: theme.text3 }]}>
++               {reindexLine.kind === "done" ? t("documents.reindexDone") : t("documents.reindexing", reindexLine)}
++             </Text>
++           ) : null}
++           {stats ? (
++             <Text testID="ask-stats" style={[styles.mono, { color: theme.text3 }]}>
++               {stats}
++             </Text>
++           ) : null}
++         </ScrollView>
++         <View style={[styles.composer, { backgroundColor: theme.well, borderColor: theme.border }]}>
++           <TextInput
++             testID="ask-input"
++             value={question}
++             onChangeText={setQuestion}
++             placeholder={t("documents.ask.placeholder")}
++             placeholderTextColor={theme.text3}
++             style={[styles.input, { color: theme.text }]}
++             onSubmitEditing={() => void ask(question)}
++             editable={!busy}
++           />
++           {busy ? (
++             <Pressable testID="ask-stop" accessibilityRole="button" onPress={() => abort.current?.abort()} style={[styles.btn, { backgroundColor: theme.danger }]}>
++               <Text style={[styles.stopText, { color: theme.onDanger }]}>{t("chat.stop")}</Text>
++             </Pressable>
++           ) : (
++             <Pressable testID="ask-send" accessibilityRole="button" onPress={() => void ask(question)} style={[styles.btn, { backgroundColor: theme.ctaFill }]}>
++               <Text style={[styles.sendGlyph, { color: theme.ctaText }]}>↑</Text>
++             </Pressable>
++           )}
++         </View>
++       </View>
++     </AppModal>
++   );
++ }
++
++ const styles = StyleSheet.create({
++   root: { flex: 1, paddingTop: 48 },
++   header: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 12, height: 44 },
++   headerBtn: { minWidth: 60, height: 44, justifyContent: "center" },
++   headerBtnText: { ...font("sans"), fontSize: 16 },
++   label: { ...font("mono", "500"), fontSize: 11, letterSpacing: 0.9, textTransform: "uppercase" },
++   scope: { ...font("sans"), fontSize: 13, paddingHorizontal: 16, paddingBottom: 8 },
++   strictRow: { flexDirection: "row", alignItems: "center", gap: 12, marginHorizontal: 16, paddingVertical: 10, borderTopWidth: 1, borderBottomWidth: 1 },
++   strictText: { flex: 1, gap: 2 },
++   strictTitle: { ...font("sans", "600"), fontSize: 15 },
++   strictHint: { ...font("sans"), fontSize: 12 },
++   answerWrap: { flex: 1 },
++   answerContent: { padding: 16, gap: 12 },
++   assistant: { gap: 4 },
++   body: { ...font("sans"), fontSize: 16, lineHeight: 25 },
++   mono: { ...font("mono"), fontSize: 12, letterSpacing: 0.5 },
++   note: { ...font("sans"), fontSize: 13, lineHeight: 19 },
++   composer: { flexDirection: "row", alignItems: "center", margin: 12, borderWidth: 1, borderRadius: radius.card, paddingLeft: 12 },
++   input: { flex: 1, ...font("sans"), fontSize: 16, minHeight: 44, paddingVertical: 10 },
++   btn: { width: 40, height: 40, borderRadius: 20, alignItems: "center", justifyContent: "center", margin: 4 },
++   stopText: { ...font("sans", "500"), fontSize: 12 },
++   sendGlyph: { fontSize: 18 },
++ });
++
+
+ ❯ test/screens-truth-r123.test.ts:57:17
+     55|   it("the Ask sheet wears the same PRO tag and gate on \"Answer only f…
+     56|     const ask = read("screens/documents/AskDocuments.tsx");
+     57|     expect(ask).toContain('<ProTag onPress={() => onUnlock?.("strictDo…
+       |                 ^
+     58|     expect(ask).toMatch(/value=\{strict && !strictLocked\}/);
+     59|     expect(ask).toMatch(/strict: strict && !strictLocked/);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/12]⎯
+
+ FAIL  test/screens-truth-r123.test.ts > F446 · a sent photo is shown whole > the bubble fits the photo in a fixed box and keeps its shape
+Error: Cannot find module '/src/components/chat/bubbleImage' imported from <git archive 81388866>/apps/mobile/test/screens-truth-r123.test.ts
+ ❯ test/screens-truth-r123.test.ts:66:37
+     64| describe("F446 · a sent photo is shown whole", () => {
+     65|   it("the bubble fits the photo in a fixed box and keeps its shape", a…
+     66|     const { fitThumb, THUMB_MAX } = await import("../src/components/ch…
+       |                                     ^
+     67|     expect(fitThumb(320, 320)).toEqual({ width: 180, height: 180 });
+     68|     expect(fitThumb(1024, 512)).toEqual({ width: 240, height: 120 });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/12]⎯
+
+ FAIL  test/screens-truth-r123.test.ts > F446 · a sent photo is shown whole > the bubble draws the photo with contain, never cover
+AssertionError: expected 'import { memo } from "react";\nimport…' not to contain 'resizeMode="cover"'
+
+- Expected
++ Received
+
+- resizeMode="cover"
++ import { memo } from "react";
++ import { Image, Platform, Pressable, StyleSheet, Text, View } from "react-native";
++ import { useTranslation } from "react-i18next";
++ import { directionOf, type ChatMessage } from "@inborn/core";
++ import { radius } from "@inborn/ui";
++ import { useTheme } from "../../lib/theme";
++ import { useType } from "../../services/type";
++ import { imageUri } from "../../images";
++ import { actionsMenuProps } from "../../lib/actionKeys";
++
++ /** Quiet bubble (§9.6): surface-1, radius 14 with a 4 pt bottom corner, no tail, max 85 %, bidi by content. */
++ export const UserMessage = memo(function UserMessage({ message, onLongPress }: { message: ChatMessage; onLongPress: () => void }) {
++   const type = useType();
++   const theme = useTheme();
++   const { t } = useTranslation();
++   const dir = directionOf(message.content);
++   return (
++     <Pressable testID="user-message" onLongPress={onLongPress} delayLongPress={350} {...actionsMenuProps(onLongPress, Platform.OS)} accessibilityRole="text" style={[styles.bubble, { backgroundColor: theme.surface1 }]}>
++       {message.images?.length ? (
++         <View testID="user-images" style={styles.images}>
++           {message.images.map((uri, i) => (
++             <Image key={uri} source={{ uri: imageUri(uri) }} accessibilityLabel={t("chat.image.label", { n: i + 1 })} style={[styles.image, { backgroundColor: theme.surface2 }]} resizeMode="cover" />
++           ))}
++         </View>
++       ) : null}
++       {message.content ? (
++         <Text style={[type.body, { color: theme.text, writingDirection: dir, textAlign: dir === "rtl" ? "right" : "left" }]} selectable>
++           {message.content}
++         </Text>
++       ) : null}
++     </Pressable>
++   );
++ });
++
++ const styles = StyleSheet.create({
++   bubble: { alignSelf: "flex-end", maxWidth: "85%", paddingHorizontal: 14, paddingVertical: 10, borderRadius: radius.card, borderBottomEndRadius: 4, gap: 8 },
++   images: { flexDirection: "row", flexWrap: "wrap", gap: 6 },
++   image: { width: 160, height: 120, borderRadius: 10 },
++ });
++
+
+ ❯ test/screens-truth-r123.test.ts:82:24
+     80|   it("the bubble draws the photo with contain, never cover", () => {
+     81|     const bubble = read("components/chat/UserMessage.tsx");
+     82|     expect(bubble).not.toContain('resizeMode="cover"');
+       |                        ^
+     83|     expect(bubble).toContain('resizeMode="contain"');
+     84|     expect(bubble).toContain("fitThumb(");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/12]⎯
+
+ FAIL  test/screens-truth-r123.test.ts > F446 · a sent photo is shown whole > the Free hint under the photo reads as a sentence
+AssertionError: expected 'Free sends one photo per message' to be 'Free: one photo per message' // Object.is equality
+
+Expected: "Free: one photo per message"
+Received: "Free sends one photo per message"
+
+ ❯ test/screens-truth-r123.test.ts:88:42
+     86|
+     87|   it("the Free hint under the photo reads as a sentence", () => {
+     88|     expect(en["chat.attach.photoLimit"]).toBe("Free: one photo per mes…
+       |                                          ^
+     89|     expect(read("screens/Chat.tsx")).not.toMatch(/type\.monoLabel[^}]*…
+     90|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/12]⎯
+
+ FAIL  test/screens-truth-r123.test.ts > F446 · Settings on the web shows no dead switch > hide-in-switcher and screenshot protection are left out in a browser, kept on phones
+Error: Cannot find module '/src/screens/Settings/securityRows' imported from <git archive 81388866>/apps/mobile/test/screens-truth-r123.test.ts
+ ❯ test/screens-truth-r123.test.ts:95:30
+     93| describe("F446 · Settings on the web shows no dead switch", () => {
+     94|   it("hide-in-switcher and screenshot protection are left out in a bro…
+     95|     const { securityRows } = await import("../src/screens/Settings/sec…
+       |                              ^
+     96|     expect(securityRows("web", false)).toEqual({ hideInSwitcher: false…
+     97|     expect(securityRows("web", true)).toEqual({ hideInSwitcher: false,…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/12]⎯
+
+ FAIL  test/screens-truth-r123.test.ts > F446 · Settings on the web shows no dead switch > the "Not available in a browser" lines left the locales with their rows
+AssertionError: de.json: expected 'Im Browser nicht verfügbar.' to be undefined
+
+- Expected:
+undefined
+
++ Received:
+"Im Browser nicht verfügbar."
+
+ ❯ test/screens-truth-r123.test.ts:108:68
+    106|   it("the \"Not available in a browser\" lines left the locales with t…
+    107|     for (const f of files) {
+    108|       expect(locale(f)["settings.security.hideInSwitcher.web"], f).toB…
+       |                                                                    ^
+    109|       expect(locale(f)["settings.security.screenshots.web"], f).toBeUn…
+    110|     }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/12]⎯
+
+ FAIL  test/screens-truth-r123.test.ts > F446 · Settings on the web shows no dead switch > Privacy & storage gives Browser cleanup a state and Reports a line saying what they are
+TypeError: durableStateKey is not a function
+ ❯ test/screens-truth-r123.test.ts:115:12
+    113|   it("Privacy & storage gives Browser cleanup a state and Reports a li…
+    114|     const { durableStateKey } = await import("../src/web/durable");
+    115|     expect(durableStateKey(true)).toBe("storage.durable.state.protecte…
+       |            ^
+    116|     expect(durableStateKey(false)).toBe("storage.durable.state.notProt…
+    117|     expect(durableStateKey(null)).toBe("storage.durable.state.unknown"…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/12]⎯
+
+ FAIL  test/screens-truth-r123.test.ts > F446 · Delete everything says what it deletes > the last step no longer promises a fresh install while the models stay
+AssertionError: expected 'This cannot be undone. The app restar…' not to match /as if just installed/
+
+- Expected:
+/as if just installed/
+
++ Received:
+"This cannot be undone. The app restarts as if just installed."
+
+ ❯ test/screens-truth-r123.test.ts:127:43
+    125| describe("F446 · Delete everything says what it deletes", () => {
+    126|   it("the last step no longer promises a fresh install while the model…
+    127|     expect(en["wipe.confirmExplain"]).not.toMatch(/as if just installe…
+       |                                           ^
+    128|     expect(en["wipe.confirmExplain"]).toMatch(/models stay/i);
+    129|     expect(en["wipe.confirmExplain.models"]).toMatch(/downloaded model…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/12]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  12 failed (12)
+   Start at  14:43:58
+   Duration  155ms (tests 54%, transform 30%, import 12%, worker 4%)
+

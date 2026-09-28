@@ -1582,7 +1582,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
               </View>
             </Pressable>
           ))}
-          {tier === "free" ? <Text style={[type.monoLabel, styles.strictTag, { color: theme.text3 }]}>{t("chat.attach.photoLimit")}</Text> : null}
+          {tier === "free" ? <Text testID="photo-limit" style={[type.caption, styles.photoLimit, { color: theme.text2 }]}>{t("chat.attach.photoLimit")}</Text> : null}
         </View>
       ) : null}
       {attachedNames.length || docs.strict ? (
@@ -2002,6 +2002,7 @@ const styles = StyleSheet.create({
   docChip: { flexDirection: "row", alignItems: "center", gap: 6, minHeight: 30, maxWidth: 220 },
   docChipText: { flexShrink: 1 },
   strictTag: { paddingHorizontal: 4 },
+  photoLimit: { paddingHorizontal: 4, flexShrink: 1 },
   thumbWrap: { width: 64, height: 64, borderRadius: 10, borderWidth: 1, overflow: "hidden" },
   thumb: { width: "100%", height: "100%" },
   thumbX: { position: "absolute", top: 2, right: 2, width: 18, height: 18, borderRadius: 9, alignItems: "center", justifyContent: "center", opacity: 0.9 },
