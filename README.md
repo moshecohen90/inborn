@@ -6969,6 +6969,65 @@ Gates exit 0: `typecheck`, `lint`, `test` (core 1,180 with 4 skipped, mobile 1,1
 Not covered: no model, browser or phone ran this round. The ending glue reads English only. A stop that lands exactly
 inside a phrase said twice on purpose ("lo que sea que sea") loses one copy.
 
+## Fixes round 119: a fragment restarted at the Continue seam (branch `continue-seam-restart`) — 28.9.2026
+
+Seen on the live web app (28.9, 13:54, Fast, main e61f222a): Stop after "…raises a smaller jib on each side of the
+hull, which catches the wind from behind. As the", then Continue. The model began the sentence again with other words,
+" As they turn, the sails catch the wind that is now blowing from behind them." The screen read "…from behind. As the
+As they turn, the sails catch…". Round 118 drops only words said again exactly, and round 113 only a restatement of five
+words or 24 code points, so a short fragment restarted with other words got through. Evidence:
+`docs/qa/continue-seam-restart/`. Tests: `packages/core/test/fixes-r119.test.ts` (14).
+
+- **F441 · A fragment the model restarts goes from the screen.** `seamRestart` in `packages/core/src/chat/loop.ts`
+  runs at the Continue seam only when round 118's exact rules found nothing. The fragment is the stopped text's words
+  after its last sentence end (". ! ? … : ;" and a space), a line break, a list marker or the text's start. It has 1 to 4
+  words, ends in a letter or digit, and holds no bracket or quote. When the continuation's first complete word is the
+  fragment's first word, capitalised and with the same leading marks, the model restarted the sentence. The fragment
+  goes through the `prefix` delta and the continuation stands as written: "…from behind. As they turn, the sails
+  catch…". One space follows a sentence end. A fragment that began a line keeps the line break, and one after a list
+  marker keeps the marker. "…repeatedly. This maneuver creates" + "This maneuver makes a diagonal path" reads
+  "…repeatedly. This maneuver makes a diagonal path", "The crew" + "The sailors turn" reads "The sailors turn", and "The
+  plan was simple: the crew" + "The sailors turn" reads "The plan was simple: The sailors turn". While the first word
+  may still grow into the fragment's first word, it waits off screen, so no screen shows "As the As".
+- **Narrower than first specified.** The first version matched the first word in any case and wanted a capital only
+  when the fragment had one. On the stored answers it changed 476 seams, almost all a lower-case word that opens both a
+  clause and its continuation ("…; the text only mentions" + " the maintenance budget", "…; el camino hacia" + " el
+  éxito"). The committed rule needs a capitalised continuation word that is the fragment's first word apart from the
+  first letter's case, so "GOOD AT" + "Good" stays. Leading marks must match ("**Café e" + "Café:**", "Sea Star" +
+  "(Sea Urchins)"), and a fragment with a bracket or quote ("Peach (Wait, I listed") is no sentence start. Scripts
+  without capitals (Hebrew, Arabic) and Han/kana text are left out.
+- **What stays.** A plain continuation (" wind shifts"), round 118's exact word (" the wind shifts" drops only "the"),
+  another first word (" Titanic sailed") and a lower-case restart of a capitalised fragment (" as they") join as before.
+  A fragment of five words or more said again is round 113's and 118's, and shows once. A heading line and the next line
+  keep round 118's exact rule ("### Tacking\nThe crew" + "The crew turns"). A continuation that opens on a new line starts
+  a new block. Chinese "这种操作产生" + "产生一条…" reads as in round 118. The one-word case "…behind. As" + "As they turn"
+  already read once on main, through round 118's exact rule.
+
+Seam replay (`replay-r119.txt`, harness `replay-r119.test.ts.txt`). Every stored answer under `docs/qa` was split at each
+of its own word boundaries, with and without the space, and between any two Han or kana characters. Each split was
+joined by main's seam (e61f222a) and by round 119's. A genuine continuation does not restart its own sentence, so a
+change is a loss unless the answer itself restarted there. Every seam where the rule fires was compared in full, and 1
+in 997 of the others was sampled.
+
+| Answers | Seams | Rule fires | Round 119 differs from main | Sampled others that differ |
+|---|---|---|---|---|
+| 3,970 | 797,880 | 16 | 8 (4 places) | 0 of 801 |
+
+The 8 seams are 4 places, each with and without the space. One is an iPhone pass-20 answer that restarted its own
+sentence ("…than before. The demand for The Portuguese expedition's arrival…"), which now loses "The demand for" as
+intended. Two are a Fast answer's title "One to One hundred:" in two stored answers, which loses "One to" when a stop
+lands right after it. One is app screen text ("FOR PROFESSIONALS PRO FOR WORK", a paywall card), not a model answer. At
+the other 8 seams where the rule fires, the join is the same as main's. The first version of the rule differed at 476
+seams (`replay-r119-as-specified.txt`).
+
+Red first: 6 of the 14 round-119 tests fail on main e61f222a (`red-r119-main-e61f222a.txt`), with "As the As they
+turn", "This maneuver creates This maneuver makes" and "The crew The sailors turn" on screen. The 8 that pass are the 7
+cases that must stay and the one-word case, which round 118 already joins.
+Gates exit 0 on the first run: `typecheck`, `lint`, `test` (core 1,200 with 4 skipped, mobile 1,195, i18n 24, ui 23).
+Not covered: no model, browser or phone ran this round; the web case is rebuilt from the screenshot's text. A title that
+opens with the same capitalised word twice ("One to One hundred") loses its first words when a stop lands inside it.
+Scripts without capitals keep a restarted fragment on screen.
+
 ## iOS build 23: main with round 111's loop guard, on Moshe's iPhone only (branch `ios-build-23`) — 27.9.2026
 
 Build 1.0.0 (23) carries local `main` 98722df7 (build 22's main plus round 111) to the iPhone 13 Pro, so the phone has

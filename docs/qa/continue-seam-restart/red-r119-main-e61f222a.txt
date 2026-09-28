@@ -1,0 +1,126 @@
+Round 119 (F441) tests run on main e61f222a before the fix (loop.ts from e61f222a, final test file): packages/core/test/fixes-r119.test.ts, 28.9.2026.
+Command: cd packages/core && npx vitest run test/fixes-r119.test.ts
+
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/continue-seam-restart/packages/core
+
+ ❯ test/fixes-r119.test.ts (14 tests | 6 failed) 66ms
+   ❯ F441 · a fragment restarted at the Continue seam is taken back (7)
+     × the web's Continue: '…from behind. As the' + ' As they turn, …' reads '…from behind. As they turn, …', in chunks of 1, 3 and 7 17ms
+     × a longer fragment restarted with a new verb: '…repeatedly. This maneuver creates' + 'This maneuver makes …' 1ms
+     × a fragment at the answer's start: 'The crew' + 'The sailors turn' reads 'The sailors turn' 0ms
+     × a fragment that began a line or a list item keeps the line break or the marker 1ms
+     × a lower-case fragment after a colon, restarted as a sentence: 'simple: the crew' + 'The sailors turn' 4ms
+     × the first word waits off screen while it may still be the fragment's first word 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/fixes-r119.test.ts > F441 · a fragment restarted at the Continue seam is taken back > the web's Continue: '…from behind. As the' + ' As they turn, …' reads '…from behind. As they turn, …', in chunks of 1, 3 and 7
+AssertionError: lead ' ' / 1: expected 'To sail downwind, the crew lowers the…' to be 'To sail downwind, the crew lowers the…' // Object.is equality
+
+Expected: "To sail downwind, the crew lowers the main sail and raises a smaller jib on each side of the hull, which catches the wind from behind. As they turn, the sails catch the wind that is now blowing from behind them. The boat then runs straight ahead."
+Received: "To sail downwind, the crew lowers the main sail and raises a smaller jib on each side of the hull, which catches the wind from behind. As the As they turn, the sails catch the wind that is now blowing from behind them. The boat then runs straight ahead."
+
+ ❯ test/fixes-r119.test.ts:48:53
+     46|       for (const step of [1, 3, 7]) {
+     47|         const r = await cont(STOPPED, `${lead}${REST}`, step);
+     48|         expect(r.shown, `lead '${lead}' / ${step}`).toBe(`${BEHIND} ${…
+       |                                                     ^
+     49|         expect(r.shown).toContain("from behind. As they turn, the sail…
+     50|         for (const s of r.screens) expect(s, `lead '${lead}' / ${step}…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  test/fixes-r119.test.ts > F441 · a fragment restarted at the Continue seam is taken back > a longer fragment restarted with a new verb: '…repeatedly. This maneuver creates' + 'This maneuver makes …'
+AssertionError: expected 'Sailors must turn the vessel back and…' to be 'Sailors must turn the vessel back and…' // Object.is equality
+
+Expected: "Sailors must turn the vessel back and forth repeatedly. This maneuver makes a diagonal path across the wind."
+Received: "Sailors must turn the vessel back and forth repeatedly. This maneuver creates This maneuver makes a diagonal path across the wind."
+
+ ❯ test/fixes-r119.test.ts:58:21
+     56|     const before = "Sailors must turn the vessel back and forth repeat…
+     57|     const r = await cont(`${before} This maneuver creates`, "This mane…
+     58|     expect(r.shown).toBe(`${before} This maneuver makes a diagonal pat…
+       |                     ^
+     59|     for (const s of r.screens) expect(s).not.toMatch(/creates\s+This/u…
+     60|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  test/fixes-r119.test.ts > F441 · a fragment restarted at the Continue seam is taken back > a fragment at the answer's start: 'The crew' + 'The sailors turn' reads 'The sailors turn'
+AssertionError: expected 'The crew The sailors turn the boat.' to be 'The sailors turn the boat.' // Object.is equality
+
+Expected: "The sailors turn the boat."
+Received: "The crew The sailors turn the boat."
+
+ ❯ test/fixes-r119.test.ts:69:21
+     67|   it("a fragment at the answer's start: 'The crew' + 'The sailors turn…
+     68|     const r = await cont("The crew", "The sailors turn the boat.");
+     69|     expect(r.shown).toBe("The sailors turn the boat.");
+       |                     ^
+     70|     const spaced = await cont("The crew", " The sailors turn the boat.…
+     71|     expect(spaced.shown).toBe("The sailors turn the boat.");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  test/fixes-r119.test.ts > F441 · a fragment restarted at the Continue seam is taken back > a fragment that began a line or a list item keeps the line break or the marker
+AssertionError: expected 'Tacking takes practice.\nThe crew The…' to be 'Tacking takes practice.\nThe sailors …' // Object.is equality
+
+- Expected
++ Received
+
+  Tacking takes practice.
+- The sailors turn the boat.
++ The crew The sailors turn the boat.
+
+ ❯ test/fixes-r119.test.ts:76:24
+     74|   it("a fragment that began a line or a list item keeps the line break…
+     75|     const line = await cont("Tacking takes practice.\nThe crew", "The …
+     76|     expect(line.shown).toBe("Tacking takes practice.\nThe sailors turn…
+       |                        ^
+     77|     const item = await cont("Steps:\n- The crew", " The sailors turn t…
+     78|     expect(item.shown).toBe("Steps:\n- The sailors turn the boat.");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  test/fixes-r119.test.ts > F441 · a fragment restarted at the Continue seam is taken back > a lower-case fragment after a colon, restarted as a sentence: 'simple: the crew' + 'The sailors turn'
+AssertionError: expected 'The plan was simple: the crew The sai…' to be 'The plan was simple: The sailors turn…' // Object.is equality
+
+Expected: "The plan was simple: The sailors turn the boat."
+Received: "The plan was simple: the crew The sailors turn the boat."
+
+ ❯ test/fixes-r119.test.ts:83:21
+     81|   it("a lower-case fragment after a colon, restarted as a sentence: 's…
+     82|     const r = await cont("The plan was simple: the crew", "The sailors…
+     83|     expect(r.shown).toBe("The plan was simple: The sailors turn the bo…
+       |                     ^
+     84|   });
+     85|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  test/fixes-r119.test.ts > F441 · a fragment restarted at the Continue seam is taken back > the first word waits off screen while it may still be the fragment's first word
+AssertionError: expected 'To sail downwind, the crew lowers the…' not to match /As the\s+A/u
+
+- Expected:
+/As the\s+A/u
+
++ Received:
+"To sail downwind, the crew lowers the main sail and raises a smaller jib on each side of the hull, which catches the wind from behind. As the As they turn, the sails catch the wind that is now blowing from behind them."
+
+ ❯ test/fixes-r119.test.ts:89:21
+     87|     const r = await cont(STOPPED, ` ${REST}`, 1);
+     88|     for (const s of r.screens) {
+     89|       expect(s).not.toMatch(/As the\s+A/u);
+       |                     ^
+     90|       expect(s.startsWith(BEHIND)).toBe(true);
+     91|     }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed | 8 passed (14)
+   Start at  14:06:50
+   Duration  555ms (transform 67%, import 19%, tests 14%)
+
