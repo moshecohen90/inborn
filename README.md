@@ -6706,6 +6706,71 @@ Red first: 8 of the 17 tests in `fixes-r115.test.ts` fail on main 6312e769, whic
 tests pass there too (`red-r115-main-6312e769.txt`). Round 107's "fenced code with repeated lines" and round 113's
 empty retry after a comma stay green. No live model run and no device run: the next iPhone build measures it.
 
+## Fixes round 116: an item said again in other words, a head said again in the singular, and clean seams at the silent retry (branch `loop-guard-116`) — 28.9.2026
+
+Moshe (27.9): a repeat must never reach the screen. iPhone build 26 on round 115's guard (main 4f27a09f), at the 0.2
+persona, still showed two items said again and three seam blemishes. Evidence: `docs/qa/loop-guard-116/`. Tests:
+`packages/core/test/fixes-r116.test.ts` with `fixtures/r116-device-answers.json`.
+
+- **F434 · An item said again in other words is that item again.** es-list's retry wrote "17. La única forma de ser
+  feliz es hacer cosas buenas y hacer cosas malas.", which is item 5 with "haciendo" in both places. In a list of 5 or
+  more distinct heads, an item of 6 words or more is an earlier item again when their word stems match at 80% or more,
+  as a multiset. A stem is the word lower-cased, without accents, cut to its first 5 letters; a word with a digit stays
+  whole. The cut and the wait for a fifth distinct head work like round 114's head rule, and a line that may be turning
+  into such a copy waits off screen. Build 26's list is cut before item 17, and no screen state shows "17.".
+- **What stays, to be safe.** Three checks keep items that share most words but say something else. The shared words
+  must come in the same order, so "I like cats more than dogs" and "I like dogs more than cats" stay. Every word left
+  over must pair with one on the other side as a form of it, sharing the first 3 letters ("haciendo" and "hacer"), so
+  "the Louvre Museum" and "the Orsay Museum" stay, and so does "is" against "was". A word only one side has must be
+  a short one such as "la" or "the", and never a negation, so "es no hacer" after "es hacer" stays. A request for a
+  grammar drill (conjugate, tense, plural, in the 8 app languages) turns this rule and the next one off, so "estoy
+  comiendo" and "estaba comiendo" stay. Table rows, asked repetition, and a list that never reaches five distinct items
+  stay as before.
+- **A head said again in the singular, or with another article, is that head again.** fr-list's item 11 "Un objet de
+  décoration maison" is item 6 "Des objets de décoration maison". Heads now also compare with one leading article or
+  determiner dropped (French, Spanish, English, German, Italian, Portuguese), and each word folded to its singular when
+  that has 4 letters or more: -s, -es, -x, -ies, German -en, Italian o/i and a/e, Hebrew ים and ות. A folded head needs
+  2 words. "Whale sharks" after "Whale shark" is cut. "Level 1" and "Level 2", "Saint Paul" and "Saint Pauli",
+  one-word items, and round 115's conjugations ("ellos hablan", "ellas hablan") stay. A bare -n is not folded, since
+  it made "ellas hablan" the plural of "ella habla". A 3-letter singular is not folded either: the replay's first pass
+  cut build 25's "11. zu tunen (to run)" as "9. zu tun (to do)" again, and "tunen" is another verb.
+- **An inline numbered list keeps its ", " at the retry.** ko-list's retry after "…14. 마늘, 15. 파" opened with
+  "16. 오징어", and the join read "15. 파 16. 오징어". When the kept line holds an inline numbered list and the retry
+  opens with its next number, the list's separator goes back. The join now reads "15. 파, 16. 오징어".
+- **Prose after an inline list starts a sentence.** ja-list-cities' retry after "…三重、鳥取" opened with
+  "これらはすべて日本の主要都市です。", and the join ran the list into it. When the kept line is an inline list that ends
+  on a word, and the retry's first clause is a sentence at least twice as long as the list's longest item, "。" goes
+  between them, or "." when a Latin retry opens with a capital. A retry that goes on with the next item ("松江、…") or
+  in lower case joins as before.
+- **A tail cut inside an inline list ends before an item said again.** he-list's period rule found ", בראגן, בראונד,
+  בראינג, ברוז, ברוזל" twice and kept the first copy, whose last word "ברוזל" is item 6 said again. The kept list now
+  ends at the separator before such an item, so the cut keeps "…בראינג, ברוז".
+
+Offline replay (`docs/qa/loop-guard-116/replay-r116.txt`), round 115 on main against round 116, no retry, 3 code
+points per chunk. It took 664 s.
+
+| Set | Answers | Cut by round 115 | Cut by round 116 | New cuts | Moved cuts | Cuts gone |
+|---|---|---|---|---|---|---|
+| stored stress runs | 1,064 | 102 | 102 | 0 | 1 | 0 |
+| shipped-guard runs | 504 | 48 | 48 | 0 | 0 | 0 |
+| real answers in `docs/qa` | 507 | 18 | 18 | 0 | 2 | 0 |
+| iPhone build 22 | 28 | 6 | 6 | 0 | 0 | 0 |
+| iPhone build 23 | 28 | 3 | 4 | 1 | 0 | 0 |
+| iPhone build 24 | 29 | 5 | 5 | 0 | 0 | 0 |
+| iPhone build 25 | 28 | 2 | 2 | 0 | 0 | 0 |
+| iPhone build 26 | 22 | 0 | 2 | 2 | 0 | 0 |
+
+False cuts: 0. The new cuts are build 26's es-list before "17. La única forma … hacer cosas buenas y hacer cosas
+malas." and fr-list before "11. Un objet de décoration maison", and build 23's es-list before "12. No esperas ser alguien
+extraordinario para empezar hoy; simplemente empieza.", item "No esperes …" again. The three moved cuts are inline
+lists already cut, each now ending before a trailing item the line already held: "…רחובות, תל אביב" now keeps
+"…רחובות", and two Japanese "・" lists lose "・大阪・福岡" and a run of "東洋" names. The build 26 row was run on its own
+from the committed device pass (5de58f00) after its worktree was removed mid-run.
+
+Red first: 8 of the 14 tests in `fixes-r116.test.ts` fail on main 4f27a09f, which is every cut and seam test. The 6
+keep tests pass there too (`red-r116-main-4f27a09f.txt`). Rounds 107 to 115 stay green. No live model run and no device
+run: the next iPhone build measures it.
+
 ## iOS build 23: main with round 111's loop guard, on Moshe's iPhone only (branch `ios-build-23`) — 27.9.2026
 
 Build 1.0.0 (23) carries local `main` 98722df7 (build 22's main plus round 111) to the iPhone 13 Pro, so the phone has

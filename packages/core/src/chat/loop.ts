@@ -55,6 +55,8 @@ const ECHO_HOLD = 3;
 const CJK_CHAR = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]/u;
 const WORD_CHAR = /[\p{L}\p{N}\p{M}]/u;
 const LIST_SEPARATOR = /[,،、，;；・]/u;
+/* F434: a line with this many separators is an inline list. */
+const INLINE_ITEMS = 3;
 const WORD = /[\p{L}\p{N}\p{M}]/u;
 /** A name runs on past these (ベネチア・コルポ・クラブ・ソープ, Saint-Exupéry), so a copy followed by one is not whole. */
 const JOINER = /[・·‧'’_\-‐‑]/u;
@@ -727,6 +729,8 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
   if (!ask.asked && source === 1) {
     /* A list the user gave that lists an item twice (to translate, sort or fix) may be answered with it twice. */
     const once = Math.max(verse ? 2 : 1, request ? requestItems(context.request!) : 1);
+    /* F434: a grammar drill's items differ in one word's form on purpose ("estoy comiendo" / "estaba comiendo", "el libro" / "los libros"). */
+    const drill = request ? DRILL.test(context.request!) : false;
     const lists = listIds(text, items);
     /* Each item said so far: its parenthetical, its list and its full words, by key. */
     const listed = new Map<string, { note: string; list: number; full: string }[]>();
@@ -833,6 +837,8 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
         let h = headOf(words, it);
         if (!g.heads.has(h)) h = g.said.find((x) => goesOnFrom(x.full, it.full) || goesOnFrom(x.key, it.key))?.head ?? h;
         if (!g.heads.has(h)) h = misspeltHead(g.heads, h) ?? h;
+        if (!g.heads.has(h) && !drill) h = foldedHead(g.heads, h) ?? h;
+        if (!g.heads.has(h) && !drill) h = g.said.find((x) => nearCopy(x.key, it.key))?.head ?? h;
         const before = g.heads.get(h) ?? [];
         let again = false;
         if (Array.from(h).length > 1 && before.length >= once && !before.some((x) => kidsOf(x).kids)) {
@@ -878,6 +884,7 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
           else if (!cut) for (const [x, at] of g.heads) if (at.length >= once && x.startsWith(k)) wait = true;
           wait ||= g.said.some((x) => goesOnFrom(x.full, it.full) || goesOnFrom(x.key, it.key));
           wait ||= misspeltHead(g.heads, cut && cut.index > 0 ? headOf(words, it) : k, !cut) !== null;
+          if (!drill) wait ||= foldedHead(g.heads, cut && cut.index > 0 ? headOf(words, it) : k, !cut) !== null || g.said.some((x) => nearCopy(x.key, k, true));
         }
         if (wait) itemHold = text.length - line;
       }
@@ -909,6 +916,22 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
     let x = k;
     while (x > 0 && s[x - 1] !== "\n" && !(s[x - 1] === " " && TERMINATORS.has(s[x - 2] ?? "")) && !"。！？".includes(s[x - 1]!)) x--;
     return source < x ? x : k;
+  };
+  /* F434 (he-list build 26): a cut inside an inline list kept "…ברוז, ברוזל", item 6 said again; the kept list ends before such an item, at its separator. */
+  const inlineBack = (k: number): number => {
+    for (;;) {
+      let e = k;
+      while (e > 0 && (s[e - 1] === " " || LIST_SEPARATOR.test(s[e - 1]!))) e--;
+      const seps: number[] = [];
+      for (let x = lineAt(e); x < e; x++) if (LIST_SEPARATOR.test(s[x]!)) seps.push(x);
+      if (seps.length < INLINE_ITEMS) return k;
+      const itemAt = (x: number, y: number) => s.slice(x, y).join("").trim().toLowerCase();
+      const last = itemAt(seps.at(-1)! + 1, e);
+      let said = false;
+      for (let q = 0; q + 1 < seps.length && !said; q++) said = itemAt(seps[q]! + 1, seps[q + 1]!) === last;
+      if (!last || !said) return k;
+      k = seps.at(-1)!;
+    }
   };
   const keepAt = (k: number): number => {
     let x = cut(k);
@@ -952,6 +975,7 @@ export function tailLoop(text: string, context: LoopContext = {}, from = 0, fina
       while (back > keep - p && midWord(back)) back--;
       if (!midWord(back)) keep = back;
     }
+    keep = inlineBack(keep);
     return { hold: 0, hit: { unit: s.slice(a, a + p).join("").trim(), repeats: copies, start: at[a]!, keep: keepAt(keep), ...(asked ? { asked } : {}) } };
   }
   const hold = Math.max(scan(n, false).hold, segmentHold, echo.hold);
@@ -1044,6 +1068,109 @@ function misspeltHead(heads: Map<string, number[]>, h: string, open = false): st
     if (edits === 1) return x;
   }
   return null;
+}
+
+/* F434: a leading article or determiner says nothing about which item it is ("Des objets …" and "Un objet …"). */
+const DETERMINER = /^(?:l['’]\s*|(?:un|une|des|le|la|les|el|los|las|una|unos|unas|a|an|the|der|die|das|ein|eine|einen|il|lo|i|gli|o|os|as|um|uma)\s+)/u;
+const terms = (key: string) => key.split(/[^\p{L}\p{N}\p{M}]+/u).filter(Boolean);
+/* Italian plurals change the last vowel (libro/libri, casa/case, fiore/fiori). */
+const VOWEL_PLURAL: Record<string, string> = { o: "i", a: "e", e: "i" };
+
+/** F434: whether a and b are one word, in the singular and the plural (objet/objets, jeu/jeux, Frau/Frauen, city/cities, ילד/ילדים, תמונה/תמונות, libro/libri). */
+function numberFold(a: string, b: string): boolean {
+  if (a === b) return true;
+  const [x, y] = Array.from(a).length <= Array.from(b).length ? [a, b] : [b, a];
+  /* The singular has 4 letters or more: "zu tunen" is another verb than "zu tun". */
+  if (Array.from(x).length < 4 || /\p{N}/u.test(y)) return false;
+  if (["s", "es", "x", "en", "ים", "ות"].some((suf) => y === x + suf)) return true;
+  if (/[הת]$/u.test(x) && (y === `${x.slice(0, -1)}ים` || y === `${x.slice(0, -1)}ות`)) return true;
+  if (/y$/u.test(x) && y === `${x.slice(0, -1)}ies`) return true;
+  return x.length === y.length && x.slice(0, -1) === y.slice(0, -1) && (VOWEL_PLURAL[x.at(-1)!] === y.at(-1) || VOWEL_PLURAL[y.at(-1)!] === x.at(-1));
+}
+
+/**
+ * F434 (iPhone build 26, fr-list 0.2): "11. Un objet de décoration maison" is "6. Des objets de décoration maison" again.
+ * A head of two words or more that equals an earlier head once a leading determiner is dropped and each word is folded
+ * to its singular is that head again. "Level 1" and "Level 2" differ by a digit and "Saint Paul" and "Saint Pauli" by a
+ * letter that is no plural, so both pairs stay. With `open`, h is still streaming and its last word may be a prefix.
+ */
+function foldedHead(heads: Map<string, number[]>, h: string, open = false): string | null {
+  const ws = terms(h.replace(DETERMINER, ""));
+  if (ws.length < (open ? 1 : 2)) return null;
+  for (const x of heads.keys()) {
+    const xs = terms(x.replace(DETERMINER, ""));
+    if (xs.length < 2 || (open ? ws.length > xs.length : ws.length !== xs.length)) continue;
+    const last = ws.length - 1;
+    if (ws.every((w, i) => numberFold(w, xs[i]!) || (open && i === last && xs[i]!.startsWith(w)))) return x;
+  }
+  return null;
+}
+
+/* F434: an item this many words long whose words match an earlier item's at this share is that item again. */
+const NEAR_WORDS = 6;
+const NEAR_SHARE = 0.8;
+/* Stems keep this many letters ("haciendo" and "hacienda" are one stem), and two forms of one word share this many. */
+const STEM = 5;
+const FORM_PREFIX = 3;
+/* A word only one of the two items has may be an article ("la", "the"), never a negation. */
+const NEGATION = /^(?:no|not|non|ne|pas|nicht|kein\p{L}*|nie|never|jamai|nunca|nem|nao|לא|אל|אין|не|ни|안|못|不|没|沒)$/u;
+/* A grammar drill lists one sentence in several forms on purpose. */
+const DRILL = /conjugat|\btense|grammar|verb forms?|\bplural|\bsingular|pluriel|plurale|רבים|יחיד|複数|복수|konjug|zeitform|grammatik|conjug|coniug|tiempos? verbal|gram[aá]tica|grammaire|temps verbal|tempo verbal|דקדוק|נטיי?ה|הטי|活用|時制|文法|문법|시제|활용/iu;
+
+/** Lower-cased, accents dropped, the first 5 letters; a word with a digit stays whole. */
+function stem(w: string): string {
+  if (/\p{N}/u.test(w)) return w;
+  return Array.from(w.normalize("NFD").replace(/\p{M}/gu, "").normalize("NFC").toLowerCase()).slice(0, STEM).join("");
+}
+
+function lcsLength(a: string[], b: string[]): number {
+  let row = new Array<number>(b.length + 1).fill(0);
+  for (const x of a) {
+    const next = [0];
+    for (let j = 0; j < b.length; j++) next.push(x === b[j] ? row[j]! + 1 : Math.max(row[j + 1]!, next[j]!));
+    row = next;
+  }
+  return row[b.length]!;
+}
+
+/**
+ * F434 (iPhone build 26, es-list 0.2): "17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas." is "5.
+ * La única forma … es haciendo cosas buenas y haciendo cosas malas." again. An item of 6 words or more whose word stems
+ * match an earlier item's at 80% or more, as a multiset, is that item again, when (1) the shared words come in the same
+ * order, so "I like cats more than dogs" and "I like dogs more than cats" stay; (2) every word left over pairs with one on
+ * the other side as a form of it (the first 3 letters: haciendo/hacer), so "the Louvre Museum" and "the Orsay Museum"
+ * stay; (3) any word only one side has is a short one ("la", "the") and no negation, so "es no hacer" stays, and "is"
+ * against "was" is a pair that is no form, so a tense drill stays. With `open`, `later` is still streaming: it waits
+ * while its whole words may still turn into such a copy.
+ */
+function nearCopy(earlier: string, later: string, open = false): boolean {
+  const A = terms(earlier).map(stem);
+  const all = terms(later);
+  const B = (open && !/[^\p{L}\p{N}\p{M}]$/u.test(later) ? all.slice(0, -1) : all).map(stem);
+  if (A.length < NEAR_WORDS) return false;
+  const left = new Map<string, number>();
+  for (const w of A) left.set(w, (left.get(w) ?? 0) + 1);
+  let shared = 0;
+  const extraB: string[] = [];
+  for (const w of B) {
+    const c = left.get(w) ?? 0;
+    if (c > 0) {
+      left.set(w, c - 1);
+      shared++;
+    } else extraB.push(w);
+  }
+  if (open) return B.length >= 3 && B.length <= A.length / NEAR_SHARE && extraB.length <= Math.floor((1 - NEAR_SHARE) * A.length);
+  if (B.length < NEAR_WORDS || shared < NEAR_SHARE * Math.max(A.length, B.length) || lcsLength(A, B) < shared) return false;
+  const restA = [...left].flatMap(([w, c]) => new Array<string>(c).fill(w));
+  const restB: string[] = [];
+  const prefix = (w: string) => Array.from(w).slice(0, FORM_PREFIX).join("");
+  for (const w of extraB) {
+    const i = restA.findIndex((x) => lettersIn(x) >= FORM_PREFIX && lettersIn(w) >= FORM_PREFIX && !/\p{N}/u.test(x + w) && prefix(x) === prefix(w));
+    if (i >= 0) restA.splice(i, 1);
+    else restB.push(w);
+  }
+  if (restA.length && restB.length) return false;
+  return [...restA, ...restB].every((w) => lettersIn(w) <= FORM_PREFIX && !NEGATION.test(w) && !/\p{N}/u.test(w));
 }
 
 let itemsMemo: { request: string; copies: number } | null = null;
@@ -1538,6 +1665,44 @@ export class ListSeam {
   }
 }
 
+/* F434: a retry's first clause this long without a list separator is prose, not the list's next item. */
+const PROSE_WAIT = 40;
+const CLAUSE_END = /[,،、，;；]|[.!?。！？．…](?=\s|$|[^\d])|\n/u;
+const INLINE_NUMBER = /[,;、，；]([ \t]*)\d{1,3}[.)．][ \t]/gu;
+
+/**
+ * F434: what joins the kept answer to the silent retry's first text, or null while that text may still decide it.
+ * ko-list build 26: "…14. 마늘, 15. 파" + "16. 오징어" read "15. 파 16. 오징어": the next number of an inline list gets
+ * the list's ", " back. ja-list-cities: "…三重、鳥取" + "これらはすべて日本の主要都市です。" ran the list into prose: a
+ * sentence after an inline list that ends on a word gets "。" (or ".") first.
+ */
+export function retrySeparator(kept: string, next: string, final = false): string | null {
+  const base = continuationSeparator(kept, next);
+  const line = kept.slice(kept.lastIndexOf("\n") + 1);
+  const body = next.trimStart();
+  if (!body || /^\s*\n/u.test(next) || !/[\p{L}\p{N}]$/u.test(line)) return body || final ? base : null;
+  const marks = [...line.matchAll(INLINE_NUMBER)];
+  const last = lastNumber(line);
+  if (marks.length >= INLINE_ITEMS - 1 && last) {
+    const want = `${last.num + 1}`;
+    const m = /^(\d{1,3})([.)．]?)/u.exec(body);
+    if (m && !final && want.startsWith(m[1]!) && (!m[2] || m[1] !== want) && body === m[0]) return null;
+    if (m?.[1] === want && m[2]) return `${marks.at(-1)![0].trim().slice(0, 1)}${marks.at(-1)![1] || " "}`;
+    return base;
+  }
+  const seps = line.match(/[,،、，;；]/gu)?.length ?? 0;
+  if (seps < INLINE_ITEMS) return base;
+  const end = CLAUSE_END.exec(body);
+  const clause = end ? body.slice(0, end.index) : body;
+  if (!end && !final && Array.from(clause).length < PROSE_WAIT) return null;
+  if (end && !/[.!?。！？．…\n]/u.test(end[0])) return base;
+  const longest = Math.max(...line.split(/[,،、，;；]/u).slice(1).map((x) => Array.from(x.trim()).length));
+  if (Array.from(clause.trim()).length < Math.max(6, 2 * longest)) return base;
+  if (WIDE.test(Array.from(line).at(-1)!)) return "。";
+  /* A Latin sentence starts with a capital; "…yellow flowers bloom" + "throughout the spring" is one sentence going on. */
+  return /^\p{Lu}/u.test(body) ? `.${continuationSeparator(`${kept}.`, next) || " "}` : base;
+}
+
 /**
  * Wraps any engine's answer stream (every engine, one guard): a possible second copy is held off screen (F415); on a loop
  * it calls `stop`, keeps one copy and continues once through `retry`, and only a retry that loops too yields `{ loop }`.
@@ -1551,6 +1716,7 @@ export async function* guardLoops(stream: AsyncIterable<Delta>, stop: () => void
   let current = stream;
   /* The retry's first text needs the separator the script uses, like Continue (F390). */
   let joinNext = false;
+  let joinBuf = "";
   /* What a continuation's first text is held against until it is known not to restart the prefix's last phrase. */
   let seam = context.prefix ?? "";
   let opening = "";
@@ -1604,7 +1770,11 @@ export async function* guardLoops(stream: AsyncIterable<Delta>, stop: () => void
         if (!piece) continue;
       }
       if (joinNext) {
-        piece = continuationSeparator(text, piece) + piece;
+        joinBuf += piece;
+        const sep = retrySeparator(text, joinBuf);
+        if (sep === null) continue;
+        piece = sep + joinBuf;
+        joinBuf = "";
         joinNext = false;
       }
       if (list) {
@@ -1647,7 +1817,8 @@ export async function* guardLoops(stream: AsyncIterable<Delta>, stop: () => void
         rest = closed.piece;
         yield* closed.deltas;
       }
-      if (joinNext && rest) rest = continuationSeparator(text, rest) + rest;
+      if (joinNext) rest = joinBuf + rest;
+      if (joinNext && rest) rest = (retrySeparator(text, rest, true) ?? "") + rest;
       text += list ? list.push(rest, true) : rest;
     }
     opening = "";
@@ -1686,6 +1857,7 @@ export async function* guardLoops(stream: AsyncIterable<Delta>, stop: () => void
       const lastLine = ITEM_OPEN.exec(text.replace(/\s+$/u, "").split("\n").at(-1) ?? "");
       listIndent = lastLine && /\n[ \t]*$/u.test(text) ? indentOf(lastLine[1]!) : -1;
       joinNext = true;
+      joinBuf = "";
       seam = prefix ? prefix + continuationSeparator(prefix, text) + text : text;
       list = new ListSeam(seam);
       context.onRetry?.(cut.text, hit);

@@ -1,0 +1,41 @@
+| Set | Answers | Cut by round 115 (main) | Cut by round 116 | Both | Only round 116 | Only round 115 | Both, cut moved |
+|---|---|---|---|---|---|---|---|
+| stored | 1064 | 102 | 102 | 102 | 0 | 0 | 1 |
+| shipped107 | 504 | 48 | 48 | 48 | 0 | 0 | 0 |
+| corpus | 507 | 18 | 18 | 18 | 0 | 0 | 2 |
+| iphone22 | 28 | 6 | 6 | 6 | 0 | 0 | 0 |
+| iphone23 | 28 | 3 | 4 | 3 | 1 | 0 | 0 |
+| iphone24 | 29 | 5 | 5 | 5 | 0 | 0 | 0 |
+| iphone25 | 28 | 2 | 2 | 2 | 0 | 0 | 0 |
+| iphone26 | 22 | 0 | 2 | 0 | 2 | 0 | 0 |
+
+The iphone26 row was run on its own after the ios-build-26 worktree was removed mid-run: its answers are the
+committed device pass (5de58f00, docs/qa/ios-device-pass-26), extracted read-only to a scratch directory.
+The first pass of this replay, run against the worktree before the plural fold needed a 4-letter singular,
+gave the same iphone26 row. That first pass also cut build 25's "11. zu tunen (to run)" as "9. zu tun" again,
+a false cut; it is gone in this pass.
+
+MOVED [stored] before-fast-t0.2.json#he-list#3
+      unit x3: ", תל אביב"
+      kept 102/351 (r115 kept 111); kept ends: " 30 ערים בישראל: תל אביב, חיפה, ניר, ירושלים, תל אביב, גבעון, קריית שמואל, תל אביב, רחובות"
+      cut starts: ", תל אביב, תל אביב, תל אביב, תל אביב, תל אביב, תל אביב, תל אביב, תל אביב, תל אביב, תל אביב"
+MOVED [corpus] fix-loop-guard/e2e/trials-before-r83-run2.json
+      unit x2: "・大阪・福岡"
+      kept 42/103 (r115 kept 54); kept ends: "一九九八年のワールドカップでは、日本の代表は日本・福岡・大阪・大阪・福岡・福岡・東京"
+      cut starts: "・東京・大阪・大阪・福岡・大阪・福岡・福岡・大阪・大阪・大阪・大阪・大阪・大阪・大阪・大阪・大阪・大阪・大阪・大阪・大阪・"
+MOVED [corpus] fix-loop-guard/e2e/trials-before-r83-run2.json
+      unit x2: "・北東洋・北東アジア・北洋・南東洋・南東アジア"
+      kept 121/186 (r115 kept 134); kept ends: "国が、アジア・アフリカ・東洋・南太平洋・東海・東南アジア・南アジア・北アジア・アジア太平洋・南太平洋・北洋・南東洋・東洋・中東・南東洋・南東アジア・北東洋・北洋・北東洋・北東アジア"
+      cut starts: "・北洋・南東洋・南東アジア・北東洋・北東アジア・北洋・南東洋・南東アジア・北東洋・北東アジア・北洋・南東洋・南東アジア・北東洋・北"
+NEW   [iphone23] ios-device-pass-23/raw/result-l02-es-list.json
+      unit x2: "no esperes ser alguien extraordinario para empezar hoy; simplemente empieza"
+      kept 1078/1159; kept ends: " no es poder hacer algo, sino la capacidad de seguir adelante cuando el mundo te bloquea.\n"
+      cut starts: "12. No esperas ser alguien extraordinario para empezar hoy; simplemente empieza.\n"
+NEW   [iphone26] ios-device-pass-26/raw/result-l02-es-list.json
+      unit x2: "la única forma de ser feliz es haciendo cosas buenas y haciendo cosas malas"
+      kept 1237/1312; kept ends: "tentar.\n16. El tiempo es un recurso que se agota rápido; haz lo posible con cada segundo.\n"
+      cut starts: "17. La única forma de ser feliz es hacer cosas buenas y hacer cosas malas.\n"
+NEW   [iphone26] ios-device-pass-26/raw/result-l02-fr-list.json
+      unit x2: "des objets de décoration maison"
+      kept 787/829; kept ends: "tion d'objets en bois ou en métal décoratifs.\n10. Des livres de fiction ou des magazines.\n"
+      cut starts: "11. Un objet de décoration maison (ex: une"
