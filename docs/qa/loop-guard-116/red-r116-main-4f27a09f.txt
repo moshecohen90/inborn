@@ -1,0 +1,128 @@
+fixes-r116.test.ts against main 4f27a09f (round 115's loop.ts), 28.9.2026. The 8 cut and seam tests fail; the 6 keep tests pass.
+The ko-list and ja-list-cities seam tests fail on their first line: main has no retrySeparator.
+
+
+ RUN  v5.0.0 packages/core
+
+ ❯ test/fixes-r116.test.ts (14 tests | 8 failed) 628ms
+   ❯ F434 · in an enumeration, an item of 6+ words whose word stems match an earlier item's at 80% is that item again (7)
+     × build 26 es-list 0.2: cut before item 17, which restates item 5 with 'hacer' for 'haciendo'; item 17 is never on screen 310ms
+     × the offline check cuts at item 17's line 2ms
+   ❯ F434 · heads compared with the determiner dropped and each word in the singular (4)
+     × build 26 fr-list 0.2: cut before item 11 'Un objet de décoration maison', item 6 'Des objets …' again; never on screen 285ms
+     × 'Whale sharks' after 'Whale shark' is one animal twice 1ms
+     × folds Hebrew and Italian plurals, and 'city' to 'cities' 1ms
+   ❯ F434 · seams at the silent retry (3)
+     × build 26 ko-list: '…15. 파' + '16. 오징어' gets the inline list's ', ' back 0ms
+     × build 26 ja-list-cities: '…三重、鳥取' + prose gets '。' first; a next item or a Latin list is joined as before 0ms
+     × build 26 he-list: the tail cut ends before 'ברוזל', item 6 said again, at the separator before it 8ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/fixes-r116.test.ts > F434 · in an enumeration, an item of 6+ words whose word stems match an earlier item's at 80% is that item again > build 26 es-list 0.2: cut before item 17, which restates item 5 with 'hacer' for 'haciendo'; item 17 is never on screen
+AssertionError: expected undefined to be defined
+ ❯ test/fixes-r116.test.ts:52:20
+     50|   it("build 26 es-list 0.2: cut before item 17, which restates item 5 …
+     51|     const r = await guarded(ES.answer, ES.request);
+     52|     expect(r.loop).toBeDefined();
+       |                    ^
+     53|     expect(r.shown.trimEnd().endsWith("haz lo posible con cada segundo…
+     54|     expect(r.screens.some((x) => x.includes("17."))).toBe(false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯
+
+ FAIL  test/fixes-r116.test.ts > F434 · in an enumeration, an item of 6+ words whose word stems match an earlier item's at 80% is that item again > the offline check cuts at item 17's line
+AssertionError: expected null not to be null
+ ❯ test/fixes-r116.test.ts:60:21
+     58|   it("the offline check cuts at item 17's line", () => {
+     59|     const hit = final(ES.answer, ES.request);
+     60|     expect(hit).not.toBeNull();
+       |                     ^
+     61|     expect(ES.answer.slice(hit!.keep).startsWith("17. La única")).toBe…
+     62|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/8]⎯
+
+ FAIL  test/fixes-r116.test.ts > F434 · heads compared with the determiner dropped and each word in the singular > build 26 fr-list 0.2: cut before item 11 'Un objet de décoration maison', item 6 'Des objets …' again; never on screen
+AssertionError: expected undefined to be defined
+ ❯ test/fixes-r116.test.ts:100:20
+     98|   it("build 26 fr-list 0.2: cut before item 11 'Un objet de décoration…
+     99|     const r = await guarded(FR.answer, FR.request);
+    100|     expect(r.loop).toBeDefined();
+       |                    ^
+    101|     expect(r.shown.trimEnd().endsWith("10. Des livres de fiction ou de…
+    102|     expect(r.screens.some((x) => x.includes("11."))).toBe(false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/8]⎯
+
+ FAIL  test/fixes-r116.test.ts > F434 · heads compared with the determiner dropped and each word in the singular > 'Whale sharks' after 'Whale shark' is one animal twice
+AssertionError: expected null not to be null
+ ❯ test/fixes-r116.test.ts:107:29
+    105|   it("'Whale sharks' after 'Whale shark' is one animal twice", () => {
+    106|     const text = list(["Blue whale", "Sea otter", "Green turtle", "Wha…
+    107|     expect(final(text)).not.toBeNull();
+       |                             ^
+    108|   });
+    109|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/8]⎯
+
+ FAIL  test/fixes-r116.test.ts > F434 · heads compared with the determiner dropped and each word in the singular > folds Hebrew and Italian plurals, and 'city' to 'cities'
+AssertionError: expected null not to be null
+ ❯ test/fixes-r116.test.ts:118:113
+    116|
+    117|   it("folds Hebrew and Italian plurals, and 'city' to 'cities'", () =>…
+    118|     expect(final(list(["תמונות משפחתיות", "ספר בישול", "כוס קפה", "שעו…
+       |                                                                                                                 ^
+    119|     expect(final(list(["I vini rossi", "Una borsa nera", "Un orologio …
+    120|     expect(final(list(["Big cities abroad", "Small towns", "Mountain h…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/8]⎯
+
+ FAIL  test/fixes-r116.test.ts > F434 · seams at the silent retry > build 26 ko-list: '…15. 파' + '16. 오징어' gets the inline list's ', ' back
+TypeError: retrySeparator is not a function
+ ❯ test/fixes-r116.test.ts:126:12
+    124| describe("F434 · seams at the silent retry", () => {
+    125|   it("build 26 ko-list: '…15. 파' + '16. 오징어' gets the inline list's ',…
+    126|     expect(retrySeparator(KO.kept, "16. 오징어")).toBe(", ");
+       |            ^
+    127|     expect(retrySeparator(KO.kept, "1")).toBeNull();
+    128|     const first = `${KO.kept}, 16. 마늘, 17. 우유, 18. 빵`;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/8]⎯
+
+ FAIL  test/fixes-r116.test.ts > F434 · seams at the silent retry > build 26 ja-list-cities: '…三重、鳥取' + prose gets '。' first; a next item or a Latin list is joined as before
+TypeError: retrySeparator is not a function
+ ❯ test/fixes-r116.test.ts:135:12
+    133|
+    134|   it("build 26 ja-list-cities: '…三重、鳥取' + prose gets '。' first; a next…
+    135|     expect(retrySeparator(JA.kept, JA.retry)).toBe("。");
+       |            ^
+    136|     expect(retrySeparator(JA.kept, "これらは")).toBeNull();
+    137|     expect(retrySeparator(JA.kept, "松江、鹿児島")).toBe("");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/8]⎯
+
+ FAIL  test/fixes-r116.test.ts > F434 · seams at the silent retry > build 26 he-list: the tail cut ends before 'ברוזל', item 6 said again, at the separator before it
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ test/fixes-r116.test.ts:150:46
+    148|     const r = await guarded(first, HE.request);
+    149|     expect(r.loop).toBeDefined();
+    150|     expect(r.shown.endsWith("בראינג, ברוז")).toBe(true);
+       |                                              ^
+    151|     expect(r.loop!.text.endsWith("בראינג, ברוז")).toBe(true);
+    152|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/8]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  8 failed | 6 passed (14)
+
