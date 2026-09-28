@@ -1,0 +1,68 @@
+{
+  "runId": "n-network-probe",
+  "startedAt": "2026-09-28T11:28:24.437Z",
+  "finishedAt": "2026-09-28T11:29:09.426Z",
+  "ok": false,
+  "passed": 4,
+  "failed": 1,
+  "steps": [
+    {
+      "i": 0,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3002,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 1,
+      "op": "probeDownload",
+      "ok": true,
+      "ms": 20040,
+      "detail": "foreground 1.96 MB/s · 24614336 B in 12571 ms",
+      "value": {
+        "text": "foreground 1.96 MB/s · 24614336 B in 12571 ms",
+        "props": {
+          "session": "foreground",
+          "bytes": 24614336,
+          "ms": 12571,
+          "mbps": 1.96,
+          "complete": false
+        }
+      }
+    },
+    {
+      "i": 2,
+      "op": "probeDownload",
+      "ok": false,
+      "ms": 1,
+      "detail": "probeDownload: speed.cloudflare.com is not an allowed model host"
+    },
+    {
+      "i": 3,
+      "op": "probeDownload",
+      "ok": true,
+      "ms": 20023,
+      "detail": "foreground 2.36 MB/s · 47097482 B in 19990 ms",
+      "value": {
+        "text": "foreground 2.36 MB/s · 47097482 B in 19990 ms",
+        "props": {
+          "session": "foreground",
+          "bytes": 47097482,
+          "ms": 19990,
+          "mbps": 2.36,
+          "complete": false
+        }
+      }
+    },
+    {
+      "i": 4,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1923,
+      "detail": "N01-after-probe"
+    }
+  ],
+  "errors": [
+    "step 2 (probeDownload): probeDownload: speed.cloudflare.com is not an allowed model host"
+  ]
+}

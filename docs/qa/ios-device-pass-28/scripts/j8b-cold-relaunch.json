@@ -1,0 +1,36 @@
+{
+ "_": "J8b: a cold relaunch after the wipe keeps Welcome, no banner; the run sweeps Documents/qa.",
+ "steps": [
+  {
+   "op": "waitFor",
+   "testID": "onboarding-welcome",
+   "timeoutMs": 120000
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "screenshot",
+   "name": "J8-04-cold-relaunch"
+  },
+  {
+   "op": "value",
+   "testID": "onboarding-welcome"
+  },
+  {
+   "op": "assertText",
+   "text": "could not be opened",
+   "absent": true
+  },
+  {
+   "op": "waitFor",
+   "testID": "banner-repair",
+   "gone": true,
+   "timeoutMs": 3000
+  },
+  {
+   "op": "cleanup"
+  }
+ ]
+}

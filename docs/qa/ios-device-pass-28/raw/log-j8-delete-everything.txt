@@ -1,0 +1,30 @@
+14:51:25 pushing 22 steps as j8-delete-everything
+14:51:29 shot J8-01-before-delete
+14:51:32 shot J8-02-wipe-sheet
+14:51:45 shot J8-03-after-delete
+14:51:52 ok     0 deeplink   /settings/storage
+14:51:52 ok     1 waitFor    storage appeared
+14:51:52 ok     2 sleep      1500 ms
+14:51:52 ok     3 value      Chats encrypted (SQLCipher) 2.92 MB
+14:51:52 ok     4 value      Documents 111 B
+14:51:52 ok     5 value      Models not backed up 2.42 GB
+14:51:52 ok     6 screenshot J8-01-before-delete
+14:51:52 ok     7 press      storage-delete-all ← onPress
+14:51:52 ok     8 waitFor    wipe-sheet appeared
+14:51:52 ok     9 sleep      800 ms
+14:51:52 ok    10 value      Delete everything Deletes every chat, the encryption key and every document on this device. Nothing was ever a
+14:51:52 ok    11 value      
+14:51:52 ok    12 screenshot J8-02-wipe-sheet
+14:51:52 ok    13 press      wipe-step1 ← onPress
+14:51:52 ok    14 waitFor    wipe-step2 appeared
+14:51:52 ok    15 sleep      500 ms
+14:51:52 ok    16 press      wipe-step2 ← onPress
+14:51:52 ok    17 sleep      10000 ms
+14:51:52 ok    18 screenshot J8-03-after-delete
+14:51:52 FAIL  19 waitFor    the QA bridge never got a fiber: the anchor view is not mounted
+14:51:52 FAIL  20 assertText the QA bridge never got a fiber: the anchor view is not mounted
+14:51:52 FAIL  21 waitFor    the QA bridge never got a fiber: the anchor view is not mounted
+14:51:52 19 passed, 3 failed, 3 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-28/docs/qa/ios-device-pass-28/screens
+14:51:52   ! step 19 (waitFor): the QA bridge never got a fiber: the anchor view is not mounted
+14:51:52   ! step 20 (assertText): the QA bridge never got a fiber: the anchor view is not mounted
+14:51:52   ! step 21 (waitFor): the QA bridge never got a fiber: the anchor view is not mounted

@@ -1,0 +1,27 @@
+14:11:35 pushing 23 steps as j2-continue-2
+14:11:42 shot J2-2a-stopped
+14:12:04 shot J2-2b-continued
+14:12:07 ok     0 deeplink   /chats
+14:12:07 ok     1 waitFor    new-chat appeared
+14:12:07 ok     2 press      new-chat ← onPress
+14:12:07 ok     3 waitFor    start-chat appeared
+14:12:07 ok     4 press      start-chat ← onPress
+14:12:07 ok     5 waitFor    composer-input appeared
+14:12:07 ok     6 waitFor    Loading gone
+14:12:07 ok     7 sleep      1500 ms
+14:12:07 ok     8 type       composer-input = 73 chars
+14:12:07 ok     9 send       send ← onPress
+14:12:07 ok    10 waitFor    assistant-text appeared
+14:12:07 ok    11 sleep      1500 ms
+14:12:07 ok    12 press      stop ← onPress
+14:12:07 ok    13 sleep      2000 ms
+14:12:07 ok    14 value      Bicycle gears are mechanical devices designed to transmit rotational force from the pedals to the rear wheel, 
+14:12:07 ok    15 screenshot J2-2a-stopped
+14:12:07 ok    16 waitFor    continue appeared
+14:12:07 ok    17 press      continue ← onPress
+14:12:07 ok    18 sleep      1500 ms
+14:12:07 ok    19 waitFor    stop gone
+14:12:07 ok    20 sleep      1500 ms
+14:12:07 ok    21 value      Bicycle gears are mechanical devices designed to transmit rotational force from the pedals to the rear wheel, 
+14:12:07 ok    22 screenshot J2-2b-continued
+14:12:07 23 passed, 0 failed, 2 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-28/docs/qa/ios-device-pass-28/screens

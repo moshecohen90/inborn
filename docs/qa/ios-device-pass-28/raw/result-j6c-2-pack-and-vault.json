@@ -1,0 +1,417 @@
+{
+  "runId": "j6c-2-pack-and-vault",
+  "startedAt": "2026-09-28T12:16:39.869Z",
+  "finishedAt": "2026-09-28T12:22:17.121Z",
+  "ok": false,
+  "passed": 44,
+  "failed": 2,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 154,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 9,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 165,
+      "detail": "image: red-circle-cat.png"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1334,
+      "detail": "pending-images appeared"
+    },
+    {
+      "i": 11,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 92 chars"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 816,
+      "detail": "800 ms"
+    },
+    {
+      "i": 13,
+      "op": "send",
+      "ok": true,
+      "ms": 167,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 14,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "vision-hold appeared"
+    },
+    {
+      "i": 15,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1014,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 16,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "FAST needs its photo pack to see photos",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "FAST needs its photo pack to see photos"
+    },
+    {
+      "i": 17,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "One 668 MB download, then this photo sends by itself.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "One 668 MB download, then this photo sends by itself."
+    },
+    {
+      "i": 18,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Switch to INSTANT",
+        "props": {
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "Switch to INSTANT"
+    },
+    {
+      "i": 19,
+      "op": "press",
+      "ok": true,
+      "ms": 177,
+      "detail": "vision-hold-download ← onPress"
+    },
+    {
+      "i": 20,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "vision-hold-progress appeared"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5001,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Downloading the photo pack: 11 of 668 MB.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Downloading the photo pack: 11 of 668 MB."
+    },
+    {
+      "i": 23,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 299326,
+      "detail": "vision-hold gone"
+    },
+    {
+      "i": 24,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 6128,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 25,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 800,
+      "detail": "stop gone"
+    },
+    {
+      "i": 26,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 27,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "The shape is a red circle, and the word written underneath is “CAT”.",
+        "props": {
+          "source": "The shape is a red circle, and the word written underneath is “CAT”.",
+          "disabled": false
+        }
+      },
+      "detail": "The shape is a red circle, and the word written underneath is “CAT”."
+    },
+    {
+      "i": 28,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1593,
+      "detail": "J6-11-fast-answer-2"
+    },
+    {
+      "i": 29,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 156,
+      "detail": "/vault?focus=vision-qwen35"
+    },
+    {
+      "i": 30,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3500,
+      "detail": "3500 ms"
+    },
+    {
+      "i": 31,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "◉ PHOTO PACK FOR INSTANT Lets Instant look at your photos on this device. Qwen3.5 mmproj 0.4B · 205 MB · F16 · Battery: Medium Included with the app Details",
+        "props": {
+          "accessibilityState": {
+            "selected": false
+          },
+          "disabled": false
+        }
+      },
+      "detail": "◉ PHOTO PACK FOR INSTANT Lets Instant look at your photos on this device. Qwen3.5 mmproj 0.4B · 205 MB · F16 · Battery: Medium Included with the app Details"
+    },
+    {
+      "i": 32,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Included with the app",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Included with the app"
+    },
+    {
+      "i": 33,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1906,
+      "detail": "J6-01-pack-instant"
+    },
+    {
+      "i": 34,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 157,
+      "detail": "/vault?focus=vision-qwen35-2b"
+    },
+    {
+      "i": 35,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3513,
+      "detail": "3500 ms"
+    },
+    {
+      "i": 36,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "◉ PHOTO PACK FOR FAST Lets Fast look at your photos on this device. Qwen3.5 mmproj 0.3B · 668 MB · F16 · Battery: Medium Installed Details",
+        "props": {
+          "accessibilityState": {
+            "selected": false
+          },
+          "disabled": false
+        }
+      },
+      "detail": "◉ PHOTO PACK FOR FAST Lets Fast look at your photos on this device. Qwen3.5 mmproj 0.3B · 668 MB · F16 · Battery: Medium Installed Details"
+    },
+    {
+      "i": 37,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Installed",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Installed"
+    },
+    {
+      "i": 38,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2226,
+      "detail": "J6-02-pack-fast"
+    },
+    {
+      "i": 39,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 154,
+      "detail": "/vault?focus=embed-e5"
+    },
+    {
+      "i": 40,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3501,
+      "detail": "3500 ms"
+    },
+    {
+      "i": 41,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "○ DOCUMENT INDEX Lets Inborn search your documents on this device. multilingual-e5-large-instruct 560M · 468 MB · Q6_K · Battery: Low Install · 468 MB from models.inbornapp.com Details",
+        "props": {
+          "accessibilityState": {
+            "selected": false
+          },
+          "disabled": false
+        }
+      },
+      "detail": "○ DOCUMENT INDEX Lets Inborn search your documents on this device. multilingual-e5-large-instruct 560M · 468 MB · Q6_K · Battery: Low Install · 468 MB from models.inbornapp.com Details"
+    },
+    {
+      "i": 42,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value model-status-embed-e5: no node with that testID is mounted"
+    },
+    {
+      "i": 43,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1903,
+      "detail": "J6-03-index"
+    },
+    {
+      "i": 44,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Included\" present"
+    },
+    {
+      "i": 45,
+      "op": "assertText",
+      "ok": false,
+      "ms": 2,
+      "detail": "assertText \"Installed · 668 MB\" is not on screen under model-status-vision-qwen35-2b"
+    }
+  ],
+  "errors": [
+    "step 42 (value): value model-status-embed-e5: no node with that testID is mounted",
+    "step 45 (assertText): assertText \"Installed · 668 MB\" is not on screen under model-status-vision-qwen35-2b"
+  ]
+}

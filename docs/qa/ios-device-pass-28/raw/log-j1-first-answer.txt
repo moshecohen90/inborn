@@ -1,0 +1,45 @@
+14:09:18 launching com.inbornapp.mobile.qa
+14:10:03 pushing 39 steps as j1-first-answer
+14:10:06 shot J1-00-welcome
+14:10:33 shot J1-01-first-answer
+14:10:38 shot J1-02-ledger
+14:10:41 ok     0 waitFor    onboarding-welcome appeared
+14:10:41 ok     1 sleep      1500 ms
+14:10:41 ok     2 screenshot J1-00-welcome
+14:10:41 ok     3 press      onboarding-continue ← onPress
+14:10:41 ok     4 waitFor    onboarding-model appeared
+14:10:41 ok     5 sleep      2500 ms
+14:10:41 ok     6 value      Choose your model Your model runs entirely on this phone. You can change it later. Instant READY NOW 533 MB · 
+14:10:41 ok     7 press      start-chatting ← onPress
+14:10:41 ok     8 waitFor    onboarding-sealed appeared
+14:10:41 ok     9 sleep      4000 ms
+14:10:41 ok    10 press      sealed-start ← onPress
+14:10:41 ok    11 waitFor    onboarding-lock appeared
+14:10:41 ok    12 sleep      1500 ms
+14:10:41 ok    13 press      lock-start ← onPress
+14:10:41 ok    14 waitFor    composer-input appeared
+14:10:41 ok    15 waitFor    Loading gone
+14:10:41 ok    16 sleep      2000 ms
+14:10:41 ok    17 type       composer-input = 43 chars
+14:10:41 ok    18 send       send ← onPress
+14:10:41 ok    19 waitFor    assistant-text appeared
+14:10:41 ok    20 waitFor    stop gone
+14:10:41 ok    21 sleep      1500 ms
+14:10:41 ok    22 value      A lighthouse signals ships and guides travelers safely around dark, uninhabited shores.
+14:10:41 ok    23 screenshot J1-01-first-answer
+14:10:41 ok    24 waitFor    loop-notice gone
+14:10:41 ok    25 press      ledger-toggle ← onPress
+14:10:41 ok    26 sleep      800 ms
+14:10:41 ok    27 value      INSTANT
+14:10:41 ok    28 value      31 ms
+14:10:41 ok    29 value      172 / 4096
+14:10:41 ok    30 setTier    pro
+14:10:41 ok    31 sleep      1200 ms
+14:10:41 ok    32 value      32.3
+14:10:41 ok    33 value      782 ms
+14:10:41 ok    34 value      156 + 16
+14:10:41 ok    35 value      1.3 s
+14:10:41 ok    36 screenshot J1-02-ledger
+14:10:41 ok    37 setTier    free
+14:10:41 ok    38 sleep      800 ms
+14:10:41 39 passed, 0 failed, 3 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-28/docs/qa/ios-device-pass-28/screens

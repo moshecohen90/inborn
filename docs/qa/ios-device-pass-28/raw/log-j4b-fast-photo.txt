@@ -1,0 +1,68 @@
+14:39:53 pushing 61 steps as j4b-fast-photo
+14:40:01 shot J4-06-fast-pack-card
+14:40:08 shot J4-07-pack-downloading
+14:46:27 shot J4-08-photo-sent
+14:46:34 shot J4-09-fast-answer
+14:46:39 shot J4-10-fast-ledger
+14:46:42 ok     0 deeplink   /chats
+14:46:42 ok     1 waitFor    new-chat appeared
+14:46:42 ok     2 press      new-chat ← onPress
+14:46:42 ok     3 waitFor    start-chat appeared
+14:46:42 ok     4 press      start-chat ← onPress
+14:46:42 ok     5 waitFor    composer-input appeared
+14:46:42 ok     6 waitFor    Loading gone
+14:46:42 ok     7 sleep      1500 ms
+14:46:42 ok     8 value      FAST
+14:46:42 ok     9 devPrompt  image: red-circle-cat.png
+14:46:42 ok    10 waitFor    pending-images appeared
+14:46:42 ok    11 type       composer-input = 92 chars
+14:46:42 ok    12 sleep      800 ms
+14:46:42 ok    13 send       send ← onPress
+14:46:42 ok    14 waitFor    vision-hold appeared
+14:46:42 ok    15 sleep      1200 ms
+14:46:42 ok    16 screenshot J4-06-fast-pack-card
+14:46:42 ok    17 value      FAST needs its photo pack to see photos
+14:46:42 ok    18 value      One 668 MB download, then this photo sends by itself.
+14:46:42 ok    19 value      Download 668 MB
+14:46:42 ok    20 value      Switch to INSTANT
+14:46:42 ok    21 value      Smaller, but less accurate with photos.
+14:46:42 ok    22 value      Remove the photo
+14:46:42 ok    23 dump       pack-card
+14:46:42 ok    24 assertText "FAST needs its photo pack to see photos" present
+14:46:42 ok    25 assertText "One 668 MB download, then this photo sends by itself." present
+14:46:42 ok    26 assertText "Download 668 MB" present
+14:46:42 ok    27 assertText "Switch to INSTANT" present
+14:46:42 ok    28 press      vision-hold-download ← onPress
+14:46:42 ok    29 waitFor    vision-hold-progress appeared
+14:46:42 ok    30 sleep      5000 ms
+14:46:42 ok    31 value      Downloading the photo pack: 8 of 668 MB.
+14:46:42 ok    32 screenshot J4-07-pack-downloading
+14:46:42 ok    33 idleTimer  idle timer disabled: true
+14:46:42 ok    34 waitFor    vision-hold gone
+14:46:42 ok    35 waitFor    user-images appeared
+14:46:42 ok    36 sleep      1000 ms
+14:46:42 ok    37 screenshot J4-08-photo-sent
+14:46:42 ok    38 waitFor    assistant-text appeared
+14:46:42 ok    39 waitFor    stop gone
+14:46:42 ok    40 sleep      1500 ms
+14:46:42 ok    41 value      The shape is a red circle (symbolizing the sun), and the word written underneath is “CAT.”
+14:46:42 ok    42 screenshot J4-09-fast-answer
+14:46:42 ok    43 assertText "The request specifies" absent
+14:46:42 ok    44 assertText "I will focus" absent
+14:46:42 ok    45 assertText "as an AI" absent
+14:46:42 ok    46 assertText "family-safe" absent
+14:46:42 ok    47 assertText "violence" absent
+14:46:42 ok    48 assertText "self-harm" absent
+14:46:42 ok    49 press      ledger-toggle ← onPress
+14:46:42 ok    50 sleep      800 ms
+14:46:42 ok    51 value      FAST
+14:46:42 ok    52 setTier    pro
+14:46:42 ok    53 sleep      1200 ms
+14:46:42 ok    54 value      16.6
+14:46:42 ok    55 value      4408 ms
+14:46:42 ok    56 value      185 + 21
+14:46:42 ok    57 value      5.7 s
+14:46:42 ok    58 screenshot J4-10-fast-ledger
+14:46:42 ok    59 setTier    free
+14:46:42 ok    60 sleep      800 ms
+14:46:42 61 passed, 0 failed, 5 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-28/docs/qa/ios-device-pass-28/screens

@@ -1,0 +1,48 @@
+14:46:54 pushing 42 steps as j5-documents
+14:47:03 shot J5-01-index-card
+14:47:11 shot J5-02-index-downloading
+14:50:30 shot J5-03-matching-answer
+14:50:39 shot J5-04-nonmatching-answer
+14:50:42 ok     0 deeplink   /chats
+14:50:42 ok     1 waitFor    new-chat appeared
+14:50:42 ok     2 press      new-chat ← onPress
+14:50:42 ok     3 waitFor    start-chat appeared
+14:50:42 ok     4 press      start-chat ← onPress
+14:50:42 ok     5 waitFor    composer-input appeared
+14:50:42 ok     6 waitFor    Loading gone
+14:50:42 ok     7 sleep      1500 ms
+14:50:42 ok     8 value      FAST
+14:50:42 ok     9 devPrompt  attach: office-hours.txt
+14:50:42 ok    10 waitFor    attached-docs appeared
+14:50:42 ok    11 sleep      3000 ms
+14:50:42 ok    12 value      office-hours.txt
+14:50:42 ok    13 type       composer-input = 32 chars
+14:50:42 ok    14 send       send ← onPress
+14:50:42 ok    15 waitFor    docs-hold appeared
+14:50:42 ok    16 sleep      800 ms
+14:50:42 ok    17 screenshot J5-01-index-card
+14:50:42 ok    18 value      The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact wo
+14:50:42 ok    19 press      docs-hold-download ← onPress
+14:50:42 ok    20 sleep      6000 ms
+14:50:42 ok    21 value      Downloading the document index model… 1%. Your message is sent when it's ready.
+14:50:42 ok    22 screenshot J5-02-index-downloading
+14:50:42 ok    23 idleTimer  idle timer disabled: true
+14:50:42 ok    24 waitFor    docs-hold gone
+14:50:42 ok    25 waitFor    assistant-text appeared
+14:50:42 ok    26 waitFor    stop gone
+14:50:42 ok    27 sleep      1500 ms
+14:50:42 ok    28 value      The office phone number is 555-0134.
+14:50:42 ok    29 waitFor    citations appeared
+14:50:42 ok    30 value      SOURCES office-hours.txt · part 1
+14:50:42 ok    31 screenshot J5-03-matching-answer
+14:50:42 ok    32 assertText "555-0134" present
+14:50:42 ok    33 type       composer-input = 33 chars
+14:50:42 ok    34 send       send ← onPress
+14:50:42 ok    35 sleep      3000 ms
+14:50:42 ok    36 waitFor    stop gone
+14:50:42 ok    37 sleep      2000 ms
+14:50:42 ok    38 waitFor    none-matched appeared
+14:50:42 ok    39 value      Nothing in your documents matched this question. Answered without them.
+14:50:42 ok    40 dump       chat-after-two-questions
+14:50:42 ok    41 screenshot J5-04-nonmatching-answer
+14:50:42 42 passed, 0 failed, 4 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-28/docs/qa/ios-device-pass-28/screens

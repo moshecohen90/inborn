@@ -1,0 +1,8 @@
+{"_": "The vault's Fast card after the interrupted download (twin relaunched).",
+ "steps": [
+  {"op": "deeplink", "url": "/vault"},
+  {"op": "sleep", "ms": 3000},
+  {"op": "value", "testID": "model-card-fast"},
+  {"op": "value", "testID": "model-status-fast"},
+  {"op": "screenshot", "name": "N02-vault-fast-after-relaunch"}
+ ]}

@@ -1,0 +1,80 @@
+{
+ "_": "Fast resumed from the vault card; the status line read every 15 s for 90 s to time the rate.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/vault"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "value",
+   "testID": "model-status-fast"
+  },
+  {
+   "op": "press",
+   "testID": "resume-fast"
+  },
+  {
+   "op": "sleep",
+   "ms": 1000
+  },
+  {
+   "op": "idleTimer"
+  },
+  {
+   "op": "sleep",
+   "ms": 15000
+  },
+  {
+   "op": "value",
+   "testID": "model-status-fast"
+  },
+  {
+   "op": "sleep",
+   "ms": 15000
+  },
+  {
+   "op": "value",
+   "testID": "model-status-fast"
+  },
+  {
+   "op": "sleep",
+   "ms": 15000
+  },
+  {
+   "op": "value",
+   "testID": "model-status-fast"
+  },
+  {
+   "op": "sleep",
+   "ms": 15000
+  },
+  {
+   "op": "value",
+   "testID": "model-status-fast"
+  },
+  {
+   "op": "sleep",
+   "ms": 15000
+  },
+  {
+   "op": "value",
+   "testID": "model-status-fast"
+  },
+  {
+   "op": "sleep",
+   "ms": 15000
+  },
+  {
+   "op": "value",
+   "testID": "model-status-fast"
+  },
+  {
+   "op": "screenshot",
+   "name": "N03-vault-fast-resumed"
+  }
+ ]
+}

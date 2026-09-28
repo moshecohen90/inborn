@@ -1,0 +1,191 @@
+{
+ "_": "J5: office-hours.txt attached; a matching question with a citation, a non-matching one with 'Answered without them'.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "new-chat",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "press",
+   "testID": "new-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "start-chat",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "press",
+   "testID": "start-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "devPrompt",
+   "lines": [
+    "attach: office-hours.txt"
+   ]
+  },
+  {
+   "op": "waitFor",
+   "testID": "attached-docs",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "value",
+   "testID": "attached-docs"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "What is the office phone number?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "waitFor",
+   "testID": "docs-hold",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "sleep",
+   "ms": 800
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-01-index-card"
+  },
+  {
+   "op": "value",
+   "testID": "docs-hold"
+  },
+  {
+   "op": "press",
+   "testID": "docs-hold-download"
+  },
+  {
+   "op": "sleep",
+   "ms": 6000
+  },
+  {
+   "op": "value",
+   "testID": "docs-hold-body"
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-02-index-downloading"
+  },
+  {
+   "op": "idleTimer"
+  },
+  {
+   "op": "waitFor",
+   "testID": "docs-hold",
+   "gone": true,
+   "timeoutMs": 2400000
+  },
+  {
+   "op": "waitFor",
+   "testID": "assistant-text",
+   "timeoutMs": 400000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 600000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "waitFor",
+   "testID": "citations",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-03-matching-answer"
+  },
+  {
+   "op": "assertText",
+   "text": "555-0134",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "What is the capital of Australia?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 600000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "waitFor",
+   "testID": "none-matched",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "value",
+   "testID": "none-matched"
+  },
+  {
+   "op": "dump",
+   "name": "chat-after-two-questions"
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-04-nonmatching-answer"
+  }
+ ]
+}
