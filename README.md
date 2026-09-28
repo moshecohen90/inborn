@@ -7300,6 +7300,59 @@ typecheck, lint, test (core 1,218 with 4 skipped, mobile 1,243, i18n 24, ui 23, 
 passes). Not run: a real browser with WebGPU (the rule leaves that path unchanged, covered by unit tests), Safari,
 Firefox, and a second CPU machine; the timings share the Mac with other sessions.
 
+## Fixes round 126: no pack offered for a model you do not have, the answer drops its label line (branch `vault-packs-126`) — 28.9.2026
+
+MosheAI's screenshot gate on the build 28 phone pass and the lead's web walk of main 978fbd63. Evidence:
+`docs/qa/vault-packs-126/`.
+
+- **A pack for a model that is not here (F456).** On the iPhone, with Fast selected and Sharp not installed, the vault
+  listed *"PHOTO PACK FOR SHARP · Lets Sharp look at your photos on this device"* with a live **Install · 672 MB from
+  models.inbornapp.com** (`docs/qa/ios-device-pass-28/screens/J6-02-pack-fast.png`). Moshe's rule of 28.9: the app never
+  offers a download the current selection cannot use.
+  - `packOffer` in `apps/mobile/src/vault/packOffer.ts` decides what a pack's card offers. It returns *included* for a
+    bundled pack or a Play fast-follow, *installed*, *busy* while it downloads, and *needs-model* when none of the models
+    in the pack's `appliesTo.models` is on the device, installed or bundled. Otherwise it returns *install*. An extension
+    without `appliesTo.models`, such as the document index, never waits for a model.
+  - On the phones, a card in the needs-model state (`ModelCard.tsx`) has no Install, Retry or Import button. Its status
+    line reads *"Install Sharp first"* (`vault.state.needsModel`, in all 8 locales plus pseudo). The rest of the card is
+    unchanged, with 672 MB on the detail line. Once Sharp is installed, the card offers Install as before. The Instant
+    pack keeps *"Included with the app"* and Fast's pack *"Installed"*.
+  - The browser's Extensions rows (`ExtensionsSection.tsx`) follow the same rule, using the models this browser has
+    stored. Sharp's pack stays off the web list, as in round 117.
+- **The label line (F457).** Instant answered the office question with *"[1] office.txt · part 1"* on its first line,
+  then *"The support phone number is 555-0134. The office closes at 6 in the evening."*, and the same label sat under
+  it as the citation chip. The prompt heads each passage *"[n] <file> · part k"*, and the 0.8B model copies it.
+  - `withoutEchoedLabels` in `packages/core/src/rag/citations.ts` drops the opening lines that hold nothing but passage
+    labels: *"[n] <file> · part k"*, *"p.k"*, *"sheet k"* or *"page k"*, also in bold or as a bullet. A *"[n]"* that opens
+    or sits inside a sentence stays, and an answer that is only a label is kept whole.
+  - While the answer streams, an unfinished first line that is still the start of one of the passages' labels is held
+    back, so the label never flashes on screen and then vanishes.
+  - The Ask sheet and the chat with attached files show, store and cite from that text. The chips read the shown
+    answer, so a copied label no longer counts as a *"[1]"* mark: an answer with no mark gets the *"Sources"* strip.
+
+Live, on this branch's web build (127.0.0.1:8926, a fresh chrome-headless-shell profile). The lead's walker steps 1, 5
+and 6 downloaded Fast in onboarding. Ask your documents answered *"[1] The support phone number is 555-0134 and the
+office closes at 6 in the evening."*, a cite mark that opens the sentence and stays. The vault read *"Photo pack for
+Instant · Install Instant first"* with no Download, and *"Photo pack for Fast · Not downloaded · 668 MB"* with Download.
+Steps 4, 5 and 6 on the same profile then chose Instant and downloaded its pack from the photo card. Instant answered
+*"[1] The support phone number is 555-0134, and the office closes at 6 in the evening. Alternatives include …"*, and its
+pack read *"Installed · 205 MB"* with Remove. Neither live answer copied the label, so the drop was measured offline on
+120 answers from the shipped Instant GGUF with the app's sampler (`sampling/`). 7 opened with the label alone, and all 7
+were dropped. 1 used the label as its sentence's subject and was kept. Replaying every answer one character at a time
+through the streaming path left no text on screen that later vanished. A first version of the matcher repeated the
+header pattern inside one regex and took 116 s on a line of 20 near-headers. The shipped one reads one header at a
+time, and a test holds 200 of them under 50 ms.
+
+Red first (`docs/qa/vault-packs-126/red-978fbd63.txt`): on main 978fbd63's sources all 7 tests of
+`packages/core/test/fixes-r126.test.ts` fail. `apps/mobile/test/fixes-r126.test.ts` cannot load there, since
+`packOffer.ts` is new. With only the resolver added, 6 of its 14 tests fail: the card, the web row, the locale line
+and the wiring of both answer screens. The other 8 guard what must not change. Gates exit 0:
+install --frozen-lockfile, typecheck, lint, test (core 1,240 with 4 skipped, mobile 1,266, i18n 24, ui 23, desktop 4),
+web:build, web:smoke (27 passes).
+
+Not covered: the phones were not run, since `ios-build-30` holds the iPhone. The phone's state (Fast selected, Sharp
+absent) is proven by the render test of the real `ModelCard`. Safari and Firefox were not run.
+
 ## iOS build 28: main with rounds 117 and 118, on Moshe's iPhone only (branch `ios-build-28`) — 28.9.2026
 
 Build 1.0.0 (28) carries local `main` e61f222a (build 27's main plus round 117's photo packs per model and round 118's

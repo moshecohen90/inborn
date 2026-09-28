@@ -10,6 +10,7 @@ import {
   DEFAULT_PERSONA_ID,
   isNotFoundReply,
   groundedCitations,
+  withoutEchoedLabels,
   type RetrievalHit,
   PASTE_OFFER_CHARS,
   PRODUCTS,
@@ -467,9 +468,13 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     /* F390: Continue joins the rest to the words on screen with the separator the script uses, decided once on the first text;
        a resumed turn (F443) needs none, the engine wrote the rest of the same text. */
     let joint: string | null = prefix && !continueFrom ? null : "";
+    let sources: Citation[] | null = null;
+    let live = true;
     const shown = (): string => {
       if (joint === null && reply) joint = continuationSeparator(prefix, reply);
-      return prefix + (joint ?? "") + reply;
+      const text = prefix + (joint ?? "") + reply;
+      /* F457: a fresh answer over documents drops the passage header a small model copies onto its first line. */
+      return sources && !prefix ? withoutEchoedLabels(text, { streaming: live, citations: sources }) : text;
     };
     let reasoning = continueFrom?.reasoning ?? "";
     let usage: Usage | undefined;
@@ -573,6 +578,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           if (saysNoneMatched({ continuing: !!existingMessageId, attachedCount: docs.documents.length, usedPassages: rag.prompt.used.length })) setNoneMatched(true);
           messages = rag.prompt.messages;
           citations = rag.prompt.citations;
+          sources = rag.prompt.citations;
           ragUsed = rag.prompt.used;
           messages = withPhotos(messages, lastUserAt >= 0 ? history[lastUserAt]!.images : undefined);
         } catch (e: unknown) {
@@ -686,6 +692,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         }
         if (d.done) usage = d.done;
       }
+      live = false;
       const reason = stopReason.current;
       /* F50: the answer the model actually produced is never stored or exported; the row keeps one sentence and the mark. */
       const familySafeReplaced = familySafeHit || screenText(reply, familySafe).flagged;
@@ -735,7 +742,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         const saved = await store.appendMessage({
           chatId: chatIdNow,
           role: "assistant",
-          content: reply,
+          content: shown(),
           modelId: model.id,
           ...(reasoning ? { reasoning } : {}),
           ...(reasoningMs !== undefined ? { reasoningMs } : {}),

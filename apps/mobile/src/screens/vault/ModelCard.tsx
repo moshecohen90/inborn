@@ -10,6 +10,7 @@ import { deviceNoun } from "../../lib/deviceNoun";
 import { modelCopy, modelLabel, modelName } from "../../lib/models";
 import { installFailureText } from "../../vault/failureText";
 import { includedWithApp } from "../../vault/included";
+import { chatModelName, packNeedsModel, packOffer } from "../../vault/packOffer";
 import { justResumed, keepOpenNote } from "../../vault/keepOpen";
 
 export interface ModelCardProps {
@@ -41,10 +42,12 @@ export interface ModelCardProps {
   /** No store path on this platform for this file (§6.3: Android is Play or import): say so and offer the picker. */
   importOnly?: boolean;
   onImport?: () => void;
+  /** Whether a chat model is on this device: a pack for none of its models offers no download (F456). */
+  modelReady?: (id: string) => boolean;
 }
 
 /** One cartridge (spec §8.4 S30): plain-language name, "why it is good", battery tag, expected speed, state and actions. */
-export function ModelCard({ model, state, plan, device, theme, recommended, recommendedFor, active, highlighted, disabledReason, lockedForTier, onInstall, onCancel, onPause, onResume, onUse, onDetails, stray, onRemove, importOnly, onImport }: ModelCardProps) {
+export function ModelCard({ model, state, plan, device, theme, recommended, recommendedFor, active, highlighted, disabledReason, lockedForTier, onInstall, onCancel, onPause, onResume, onUse, onDetails, stray, onRemove, importOnly, onImport, modelReady }: ModelCardProps) {
   const type = useType();
   const { t } = useTranslation();
   const copy = modelCopy(t, model, { photos: Platform.OS !== "web" });
@@ -62,8 +65,10 @@ export function ModelCard({ model, state, plan, device, theme, recommended, reco
   const companion = model.role !== "chat";
   const tierLabel = (companion ? modelName(t, model) : (model.tier ?? (imported ? t("vault.imported") : hf ? t("vault.hf.label") : model.role))).toUpperCase();
   const technical = `${model.family} ${model.params}`;
+  const neededModel = modelReady && packOffer(model, state, modelReady) === "needs-model" ? packNeedsModel(model.id, modelReady) : null;
 
   const statusLine = (): { text: string; danger?: boolean } | null => {
+    if (neededModel) return { text: t("vault.state.needsModel", { model: chatModelName(neededModel) }) };
     switch (state.kind) {
       case "delivering":
         if (state.needsConfirmation) return { text: t("vault.state.needsConfirmation") };
@@ -175,7 +180,7 @@ export function ModelCard({ model, state, plan, device, theme, recommended, reco
       ) : null}
       {disabled ? null : (
         <View style={styles.actions}>
-          {state.kind === "not-installed" || state.kind === "needs-space" || state.kind === "corrupt" || state.kind === "failed" ? (
+          {!neededModel && (state.kind === "not-installed" || state.kind === "needs-space" || state.kind === "corrupt" || state.kind === "failed") ? (
             plan ? (
               <Action testID={`install-${model.id}`} theme={theme} primary onPress={onInstall} label={state.kind === "not-installed" ? t("vault.installFrom", { size: formatModelBytes(model.bytes), origin: plan.origin }) : t("vault.retry")} />
             ) : onImport ? (

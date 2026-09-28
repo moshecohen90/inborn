@@ -191,6 +191,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock, focus }: VaultS
     ENGINE_VERSION,
   );
   const byId = new Map(entries.map((e) => [e.model.id, e]));
+  const modelReady = (id: string) => vault.state(id).kind === "ready";
   const installed = (e: VaultEntry | undefined) => e && (e.state.kind === "ready" || e.state.kind === "quarantined" || e.state.kind === "delivering" || e.state.kind === "verifying");
   /* Round 105: every registry extension sits in one Extensions section, installed or not, bundled or downloaded. */
   const isExtension = (e: VaultEntry) => !!findExtension(e.model.id);
@@ -329,6 +330,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock, focus }: VaultS
             onRemove={() => void vault.remove(item.model.id)}
             importOnly={item.importOnly}
             onImport={item.plan || item.imported || item.stray ? undefined : () => void pickAndImport()}
+            modelReady={modelReady}
           />
         )}
         ListFooterComponent={

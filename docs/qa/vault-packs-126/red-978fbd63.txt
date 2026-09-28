@@ -1,0 +1,30 @@
+# Red first: this branch's final test files on main 978fbd63's sources (2026-09-28 17:46, throwaway detached worktree)
+
+## packages/core/test/fixes-r126.test.ts (F457) on 978fbd63
+     × the on-screen answer of 05c starts with the sentence 3ms
+     × a leading run of labels goes, in the prompt's forms and the page form 0ms
+     × counter-example: a [n] marker that opens a sentence is the citation and stays (round 124's live answer) 0ms
+     × counter-example: an answer that is only a label keeps it 0ms
+     × a label further down is left alone: only the opening lines are the echo 0ms
+     × a line of 200 near-headers followed by prose is judged in linear time 0ms
+     × while streaming, a label still being written stays off the screen, and a sentence after [1] shows at once 0ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+ Test Files  1 failed (1)
+      Tests  7 failed (7)
+(each failure: TypeError: withoutEchoedLabels is not a function)
+
+## apps/mobile/test/fixes-r126.test.ts on 978fbd63
+Error: Cannot find module '/src/vault/packOffer' imported from <main>/apps/mobile/test/fixes-r126.test.ts
+ Test Files  1 failed (1)
+      Tests  no tests
+
+## apps/mobile/test/fixes-r126.test.ts on 978fbd63 plus only the new resolver (apps/mobile/src/vault/packOffer.ts): card, web row, locales and wiring as on main
+     × Sharp's pack has no Install button and reads 'Install Sharp first'; its size stays on the detail line 9ms
+     × the vault passes each card whether a chat model is on the device 2ms
+     × with Fast stored and Instant not, Instant's pack offers no Download and names Instant; Fast's pack keeps Download 3ms
+     × English says exactly that, and every locale has the line with the model's name in it 1ms
+     × Ask your documents: held back while streaming, dropped from the final answer that the chips read 6ms
+     × the chat with attached files: the row, its stored copy and Continue all read the same text 2ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+ Test Files  1 failed (1)
+      Tests  6 failed | 8 passed (14)

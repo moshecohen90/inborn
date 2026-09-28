@@ -4,7 +4,7 @@ import { AppModal } from "../../components/shell/AppModal";
 import { useTranslation } from "react-i18next";
 import { joinList } from "@inborn/i18n";
 import { radius, type Theme } from "@inborn/ui";
-import { isNotFoundReply, groundedCitations, directionOf, planAnswerLength, type Citation, type DocumentRecord, type PaywallReason, type Session } from "@inborn/core";
+import { isNotFoundReply, groundedCitations, directionOf, planAnswerLength, withoutEchoedLabels, type Citation, type DocumentRecord, type PaywallReason, type Session } from "@inborn/core";
 import { getEngine, loadSession } from "../../engine";
 import { chipLabel } from "../../lib/models";
 import { Citations } from "../../documents/Citations";
@@ -115,15 +115,17 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult, str
       for await (const d of engine.generate(s, prompt.messages, { reasoning: false, maxTokens: length.maxTokens }, ac.signal)) {
         if (d.text) {
           reply += d.text;
-          setAnswer(reply);
+          setAnswer(withoutEchoedLabels(reply, { streaming: true, citations: prompt.citations }));
         }
         if (d.done) tps = d.done.tokPerSec;
       }
       const generateMs = Date.now() - started;
+      /* F457: the chips judge the words on screen, so a copied passage header is neither a citation mark nor evidence. */
+      reply = withoutEchoedLabels(reply);
       const isNotFound = isNotFoundReply(reply);
       const shown = isNotFound ? { shown: [], cited: false } : library.citationsFor(reply, groundedCitations(reply, text, prompt.used, prompt.citations));
       setNotFound(isNotFound);
-      if (isNotFound) setAnswer("");
+      setAnswer(isNotFound ? "" : reply);
       setCitations(shown);
       if (!isNotFound && saysNoneMatched({ continuing: false, attachedCount: docs.length, usedPassages: shown.shown.length })) setNoneMatched(true);
       setPhase({ kind: "done" });
