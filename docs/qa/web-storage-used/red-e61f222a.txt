@@ -1,0 +1,60 @@
+# apps/mobile/src/web/opfs.test.ts (round 120) against main e61f222a's opfs.ts and storageSizes.ts
+
+ RUN  v5.0.0 /Users/moshecohen/dev/inborn-wt/web-storage-used/apps/mobile
+
+ ❯ src/web/opfs.test.ts (7 tests | 2 failed) 7ms
+   ❯ storageEstimate counts what the app stored (F442) (5)
+     × reads the OPFS bytes when the browser's usage misses them 3ms
+     × the door refuses a download the raw estimate would have let through 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/web/opfs.test.ts > storageEstimate counts what the app stored (F442) > reads the OPFS bytes when the browser's usage misses them
+AssertionError: expected 30545299 to be 2686214856 // Object.is equality
+
+- Expected
++ Received
+
+- 2686214856
++ 30545299
+
+ ❯ src/web/opfs.test.ts:43:21
+     41|     vi.stubGlobal("navigator", { storage: fakeStorage(async () => ({ u…
+     42|     const e = await storageEstimate();
+     43|     expect(e.usage).toBe(MEASURED);
+       |                     ^
+     44|     expect(e.quota).toBe(QUOTA);
+     45|     expect(e.persisted).toBe(true);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/web/opfs.test.ts > storageEstimate counts what the app stored (F442) > the door refuses a download the raw estimate would have let through
+AssertionError: expected { ok: true, free: 10739454701 } to deeply equal { ok: false, free: 8083785144, …(1) }
+
+- Expected
++ Received
+
+  {
+-   "free": 8083785144,
+-   "needed": 8268435456,
+-   "ok": false,
++   "free": 10739454701,
++   "ok": true,
+  }
+
+ ❯ src/web/opfs.test.ts:70:56
+     68|     const bytes = 8_000_000_000;
+     69|     expect(spaceCheck({ usage: RAW_USAGE, quota: QUOTA }, bytes).ok).t…
+     70|     expect(spaceCheck(await storageEstimate(), bytes)).toEqual({ ok: f…
+       |                                                        ^
+     71|   });
+     72| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 5 passed (7)
+   Start at  14:14:48
+   Duration  112ms (transform 57%, tests 19%, import 18%, worker 6%)
+

@@ -1,6 +1,6 @@
 import { IDB_NAME } from "../../storage/web/idbRepository";
 import { DOCUMENTS_IDB_NAME } from "../../documents/db";
-import { MODELS_DIR } from "../../web/opfs";
+import { opfsModelBytes } from "../../web/opfs";
 
 export interface StorageSizes {
   chats: number | null;
@@ -59,26 +59,6 @@ async function databaseBytes(factory: IDBFactory, name: string): Promise<number>
   } finally {
     db.close();
   }
-}
-
-/* "cache" is wllama's own OPFS cache: the embedder GGUF it fetched by URL. */
-const MODEL_DIRS = [MODELS_DIR, "cache"];
-
-async function opfsModelBytes(storage: StorageManager): Promise<number> {
-  const root = await storage.getDirectory();
-  let n = 0;
-  for (const name of MODEL_DIRS) {
-    let dir: FileSystemDirectoryHandle;
-    try {
-      dir = await root.getDirectoryHandle(name);
-    } catch {
-      continue;
-    }
-    for await (const [, h] of (dir as FileSystemDirectoryHandle & { entries(): AsyncIterable<[string, FileSystemHandle]> }).entries()) {
-      if (h.kind === "file") n += (await (h as FileSystemFileHandle).getFile()).size;
-    }
-  }
-  return n;
 }
 
 const pageEnv = (): WebSizeEnv => ({
