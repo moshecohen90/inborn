@@ -34,6 +34,8 @@ const NOTICE_ID: Readonly<Record<string, string>> = {
   "embed-e5": "multilingual-e5-large-instruct",
   "speech-whisper-base": "whisper-base",
   "vision-qwen35": "qwen3.5-mmproj",
+  "vision-qwen35-2b": "qwen3.5-mmproj",
+  "vision-qwen35-4b": "qwen3.5-mmproj",
 };
 
 /** Every catalogue model has an entry; `catalogue-licence` in the mobile tests fails when one does not. */

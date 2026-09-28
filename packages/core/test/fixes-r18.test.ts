@@ -45,21 +45,22 @@ describe("android-legacy carries the measured Sharp rate (QA F37)", () => {
   });
 });
 
-/* QA F36: the shipped projector (mmproj-Qwen3.5-0.8B-F16) initializes for Instant's 1024-wide embeddings only. */
-describe("image input is Instant only (QA F36)", () => {
-  it("exactly one chat model in the catalog claims vision", () => {
+/* QA F36: a projector initializes for one embedding width. Round 117 (F437): each Qwen3.5 chat model has its own
+   pack (Instant 0.8B, Fast 2B, Sharp 4B), so each one sees with its own file; Phi-4-mini has no projector at all. */
+describe("image input goes through each model's own projector (QA F36, F437)", () => {
+  it("the three Qwen3.5 tiers claim vision, Sharp (Phi) does not", () => {
     const seeing = catalog.filter((m) => m.role === "chat" && m.vision).map((m) => m.id);
-    expect(seeing).toEqual(["instant"]);
-    expect(byId("fast").vision).toBe(false);
-    expect(byId("sharp").vision).toBe(false);
+    expect(seeing).toEqual(["instant", "fast", "sharp"]);
+    expect(byId("sharp-phi").vision).toBe(false);
   });
 
-  it("the cartridge copy no longer promises photos on the models that cannot take the projector", () => {
-    expect(byId("sharp").goodFor).not.toMatch(/photo/i);
-    expect(byId("fast").goodFor).not.toMatch(/photo/i);
-    expect(byId("fast").fit!.weakAt).toMatch(/No photos/);
-    expect(byId("sharp").fit!.weakAt).toMatch(/No photos/);
-    expect(byId("instant").goodFor).toMatch(/photo/i);
+  it("the cartridge copy says no photos only where there are none, and no model claims to be the only one that sees", () => {
+    expect(byId("fast").fit!.weakAt).not.toMatch(/photo/i);
+    expect(byId("sharp").fit!.weakAt).not.toMatch(/photo/i);
+    expect(byId("sharp-phi").goodFor).toMatch(/No photos/);
+    expect(byId("instant").goodFor).not.toMatch(/only model/i);
     expect(byId("vision-qwen35").goodFor).toBe("Lets Instant look at your photos on this device.");
+    expect(byId("vision-qwen35-2b").goodFor).toBe("Lets Fast look at your photos on this device.");
+    expect(byId("vision-qwen35-4b").goodFor).toBe("Lets Sharp look at your photos on this device.");
   });
 });

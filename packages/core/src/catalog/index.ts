@@ -15,3 +15,4 @@ export { CATALOG_PUBLIC_KEY } from "./publicKey";
 export * from "./lanes";
 export * from "./huggingface";
 export * from "./extensions";
+export * from "./photoPath";

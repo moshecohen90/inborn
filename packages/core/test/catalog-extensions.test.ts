@@ -21,10 +21,12 @@ afterEach(() => {
 });
 
 describe("F406 · the extension registry", () => {
-  it("carries the document index first (kind index, words fallback) and the photo projector second (kind vision, no fallback)", () => {
-    expect(extensions().map((e) => [e.id, e.kind, e.fallback])).toEqual([
-      ["embed-e5", "index", "words"],
-      ["vision-qwen35", "vision", null],
+  it("carries the document index first (kind index, words fallback), then one photo projector per model (kind vision, no fallback)", () => {
+    expect(extensions().map((e) => [e.id, e.kind, e.fallback, e.appliesTo.models ?? null])).toEqual([
+      ["embed-e5", "index", "words", null],
+      ["vision-qwen35", "vision", null, ["instant"]],
+      ["vision-qwen35-2b", "vision", null, ["fast"]],
+      ["vision-qwen35-4b", "vision", null, ["sharp"]],
     ]);
   });
 
@@ -56,7 +58,8 @@ describe("F406 · the extension registry", () => {
     expect(extensionAppliesTo(v, { kind: "document", mime: "image/png" })).toBe(true);
     expect(extensionAppliesTo(v, { kind: "document", name: "IMG_0001.HEIC" })).toBe(true);
     expect(extensionAppliesTo(v, { kind: "document", mime: "application/pdf", name: "a.pdf" })).toBe(false);
-    expect(extensionsForAttachment({ kind: "photo" }).map((e) => e.id)).toEqual(["vision-qwen35"]);
+    expect(extensionsForAttachment({ kind: "photo" }).map((e) => e.id)).toEqual(["vision-qwen35", "vision-qwen35-2b", "vision-qwen35-4b"]);
+    expect(extensionsForAttachment({ kind: "photo" }, "fast").map((e) => e.id)).toEqual(["vision-qwen35-2b"]);
     expect(extensionsForAttachment({ kind: "document", name: "notes.txt" }).map((e) => e.id)).toEqual(["embed-e5"]);
     expect(extensionsForFeature("documents-ask").map((e) => e.id)).toEqual(["embed-e5"]);
   });
@@ -64,7 +67,7 @@ describe("F406 · the extension registry", () => {
   it("a third extension is one registry entry: it appears in every query and leaves again", () => {
     const fake: Extension = { id: "ocr-fake", kind: "ocr", file: "ocr.gguf", bytes: 1234, sha256: "0".repeat(64), path: "ocr.gguf", appliesTo: { mime: ["application/pdf"], features: ["scan"] }, bundledOn: [], fallback: null };
     undo = registerExtension(fake);
-    expect(extensions().map((e) => e.id)).toEqual(["embed-e5", "vision-qwen35", "ocr-fake"]);
+    expect(extensions().map((e) => e.id)).toEqual(["embed-e5", "vision-qwen35", "vision-qwen35-2b", "vision-qwen35-4b", "ocr-fake"]);
     expect(extensionsForAttachment({ kind: "document", mime: "application/pdf" }).map((e) => e.id)).toContain("ocr-fake");
     expect(extensionsForFeature("scan")).toEqual([fake]);
     undo();

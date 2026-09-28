@@ -43,7 +43,7 @@ export function planVisionTurn(i: VisionTurnInput): VisionTurn {
 }
 
 /** What pressing Send does with photos in the composer (QA F343): go out, or stay in the composer behind the block card. */
-export type PhotoSend = { kind: "send" } | { kind: "hold"; offer: "switch" | "companion" };
+export type PhotoSend<H = "switch" | "companion"> = { kind: "send" } | { kind: "hold"; offer: H };
 
 /**
  * A photo nothing on this device can look at is held before it becomes a message: a line saying so after the turn
@@ -54,17 +54,17 @@ export function planPhotoSend(i: Omit<VisionTurnInput, "projectorAttached" | "on
   return verdict.kind === "refuse" ? { kind: "hold", offer: verdict.offer } : { kind: "send" };
 }
 
-export interface PhotoGateDeps {
+export interface PhotoGateDeps<H = "switch" | "companion"> {
   hasImages: boolean;
   /** Resolves once the vault has read the disk, so a missing pack is an answer and not a cold-launch race (F294). */
   scanned: () => Promise<void>;
-  verdict: () => PhotoSend;
-  hold: (offer: "switch" | "companion") => void;
+  verdict: () => PhotoSend<H>;
+  hold: (offer: H) => void;
   send: () => Promise<void>;
 }
 
 /** Send, or hold the message and its photos in the composer; nothing is stored and nothing reaches the model while held. */
-export async function gatePhotoSend(d: PhotoGateDeps): Promise<"sent" | "held"> {
+export async function gatePhotoSend<H>(d: PhotoGateDeps<H>): Promise<"sent" | "held"> {
   if (d.hasImages) {
     await d.scanned();
     const v = d.verdict();

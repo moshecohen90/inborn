@@ -1,8 +1,9 @@
 import type { Extension } from "@inborn/core";
 import { extensionPercent, type ExtensionState } from "./state";
 
-/** Every string an extension needs lives in one locale block, `extensions.<id>.*`; the rest is shared. */
-export const extKey = (ext: Pick<Extension, "id">, leaf: "name" | "why" | "downloading" | "unavailable" | "cancel" | "fallback" | "vault" | "timeHint"): string => `extensions.${ext.id}.${leaf}`;
+/** An extension's strings live in `extensions.<id>.*`, except photo packs, whose card lines are shared in `extensions.vision.*`. */
+export const extKey = (ext: Pick<Extension, "id" | "kind">, leaf: "name" | "why" | "downloading" | "unavailable" | "cancel" | "fallback" | "vault" | "timeHint"): string =>
+  `extensions.${ext.kind === "vision" && leaf !== "name" && leaf !== "vault" ? "vision" : ext.id}.${leaf}`;
 
 /* testIDs the device and headless drivers of rounds 75–103 already click; a new extension gets `ext-hold-<id>`. */
 const LEGACY_IDS: Record<string, { prefix: string; cancel?: string; fallback?: string }> = {
@@ -10,8 +11,9 @@ const LEGACY_IDS: Record<string, { prefix: string; cancel?: string; fallback?: s
   "vision-qwen35": { prefix: "vision-hold", cancel: "vision-hold-remove" },
 };
 
-export function holdTestIds(ext: Pick<Extension, "id">) {
-  const legacy = LEGACY_IDS[ext.id];
+export function holdTestIds(ext: Pick<Extension, "id" | "kind">) {
+  /* QA drivers address every photo pack's card by the one legacy prefix. */
+  const legacy = LEGACY_IDS[ext.kind === "vision" ? "vision-qwen35" : ext.id];
   const prefix = legacy?.prefix ?? `ext-hold-${ext.id}`;
   return {
     card: prefix,

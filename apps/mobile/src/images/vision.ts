@@ -1,25 +1,44 @@
-import { BUNDLED_MANIFEST, type CatalogModel } from "@inborn/core";
+import { BUNDLED_MANIFEST, extensions, photoPlan, visionPackFor, type PhotoPlan } from "@inborn/core";
 import { isTauri } from "../adapters/tauri";
-import { extensionUri, installExtension, refreshExtension } from "../extensions/store";
+import { chatModelState, offeredChatModels } from "../extensions/chatModel";
+import { extensionState, extensionUri, installExtension, refreshExtension } from "../extensions/store";
 import { scaleImage } from "./pick";
 import { MAX_EDGE } from "./scale";
 
 export const VISION_MODEL_ID = "vision-qwen35";
 export const DEV_VISION_FILE = "mmproj.gguf";
 
-/* Round 105: the browser loads the projector through wllama next to Instant; the desktop shell has no path for it yet. */
+/* Round 105: the browser loads the projector through wllama next to its model; the desktop shell has no path for it yet. */
 const browser = (): boolean => !isTauri();
 
-/** The verified OPFS copy of the photo pack, or null until the extension is downloaded. */
-export const resolveVision = (): string | null => (browser() ? extensionUri(VISION_MODEL_ID) : null);
-export const visionInstalled = (): boolean => resolveVision() !== null;
-/** Reads OPFS once, so a missing pack is an answer and not a race with the page load (F294). */
-export const visionScanned = (): Promise<void> => (browser() ? refreshExtension(VISION_MODEL_ID).then(() => undefined) : Promise.resolve());
-export const installVision = (): Promise<unknown> => (browser() ? installExtension(VISION_MODEL_ID) : Promise.reject(new Error("vision-unavailable")));
+/* One `mmproj` fits one embedding width (QA F36), so a pack serves only its own model. */
+export const visionPackId = (modelId: string): string | null => (browser() ? (visionPackFor(modelId)?.id ?? null) : null);
 
-/** One `mmproj` fits one embedding width, and ours is Instant's (QA F36): the catalog's `vision` flag says which. */
-export const modelHasVision = (modelId: string): boolean => browser() && BUNDLED_MANIFEST.models.find((m) => m.id === modelId)?.vision === true;
-export const visionChatModel = (): CatalogModel | null => (browser() ? (BUNDLED_MANIFEST.models.find((m) => m.role === "chat" && m.vision) ?? null) : null);
+export function resolveVision(modelId: string): string | null {
+  const id = visionPackId(modelId);
+  return id ? extensionUri(id) : null;
+}
+export const visionInstalled = (modelId: string): boolean => resolveVision(modelId) !== null;
+/** Reads OPFS once for the packs of the models this browser offers, so a missing pack is an answer and not a race with the page load (F294). */
+export function visionScanned(): Promise<void> {
+  if (!browser()) return Promise.resolve();
+  const packs = offeredChatModels(true).map((m) => visionPackFor(m.id)?.id).filter((id): id is string => !!id);
+  return Promise.all(packs.map((id) => refreshExtension(id))).then(() => undefined);
+}
+export function installVision(modelId: string): Promise<unknown> {
+  const id = visionPackId(modelId);
+  return id ? installExtension(id) : Promise.reject(new Error("vision-unavailable"));
+}
+
+export const modelHasVision = (modelId: string): boolean => browser() && BUNDLED_MANIFEST.models.find((m) => m.id === modelId)?.vision === true && !!visionPackFor(modelId);
+
+const isPack = (id: string): boolean => extensions().some((e) => e.kind === "vision" && e.id === id);
+
+export function photoPlanHere(selected: string, pro: boolean): PhotoPlan {
+  if (!browser()) return { kind: "none" };
+  const state = (id: string) => (isPack(id) ? extensionState(id) : chatModelState(id)).kind;
+  return photoPlan({ selected, models: offeredChatModels(pro), installed: (id) => state(id) === "ready", available: (id) => state(id) !== "unavailable" });
+}
 
 /* F417 (round 108): the CPU projector took ~80 s on a 1024 px photo; half the edge is a quarter of the patches. */
 export const WASM_PHOTO_EDGE = 512;

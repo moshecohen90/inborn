@@ -21,6 +21,8 @@ export interface ExtensionAppliesTo {
   /** Lower-case file extensions with the dot. */
   ext?: string[];
   features?: ExtensionFeature[];
+  /** Absent = any. A projector is built for one model's embedding width and fits no other. */
+  models?: string[];
 }
 
 export interface Extension {
@@ -73,8 +75,13 @@ export function extensionAppliesTo(ext: Extension, a: AttachmentInfo): boolean {
   return dot >= 0 && !!exts?.includes(name.slice(dot));
 }
 
-/** The extensions one attachment needs, in registry order. */
-export const extensionsForAttachment = (a: AttachmentInfo): Extension[] => extensions().filter((e) => extensionAppliesTo(e, a));
+export const extensionServesModel = (ext: Extension, modelId: string): boolean => !ext.appliesTo.models || ext.appliesTo.models.includes(modelId);
+
+/** The extensions one attachment needs, in registry order; with a model, only those that model can use. */
+export const extensionsForAttachment = (a: AttachmentInfo, modelId?: string): Extension[] =>
+  extensions().filter((e) => extensionAppliesTo(e, a) && (modelId === undefined || extensionServesModel(e, modelId)));
+
+export const visionPackFor = (modelId: string): Extension | undefined => extensions().find((e) => e.kind === "vision" && !!e.appliesTo.models?.includes(modelId));
 
 export const extensionsForFeature = (feature: ExtensionFeature): Extension[] => extensions().filter((e) => e.appliesTo.features?.includes(feature));
 

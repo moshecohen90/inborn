@@ -4,17 +4,24 @@ import { useTranslation } from "react-i18next";
 import { extensions, formatModelBytes, type Extension } from "@inborn/core";
 import { MIN_TOUCH, radius, type Theme } from "@inborn/ui";
 import { extKey, vaultRowState } from "../extensions/card";
+import { offeredChatModels } from "../extensions/chatModel";
 import { canRemoveExtensions, cancelExtension, installExtension, refreshExtension, removeExtension } from "../extensions/store";
 import { useExtension } from "../extensions/useExtension";
 import { useType } from "../services/type";
+
+/* A browser never offers Sharp, so it must not list Sharp's pack. */
+function listedHere(): Extension[] {
+  const offered = new Set(offeredChatModels(true).map((m) => m.id));
+  return extensions().filter((e) => !e.appliesTo.models || e.appliesTo.models.some((m) => offered.has(m)));
+}
 
 /** Round 105: the vault's one list of extensions, every registry entry with its size, its state and its one action. */
 export function ExtensionsSection({ theme }: { theme: Theme }) {
   const type = useType();
   const { t } = useTranslation();
-  const list = extensions();
+  const list = listedHere();
   useEffect(() => {
-    for (const e of extensions()) void refreshExtension(e.id).catch(() => undefined);
+    for (const e of listedHere()) void refreshExtension(e.id).catch(() => undefined);
   }, []);
   return (
     <View testID="vault-extensions" style={styles.section}>

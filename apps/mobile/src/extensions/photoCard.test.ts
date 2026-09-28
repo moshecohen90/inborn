@@ -1,0 +1,154 @@
+import { createElement, type ReactElement, type ReactNode } from "react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import { BUNDLED_MANIFEST, MODELS_ORIGIN, formatModelBytes, photoPlan, type PhotoPlan } from "@inborn/core";
+
+/*
+ * Round 117 (F437): the one photo card. Moshe, Fast selected on the web, was offered Instant's 205 MB pack, then told
+ * Fast cannot see, then asked for Instant (533 MB). The card now offers only the selected model's own pack, names the
+ * cheaper way out with its whole cost, and fetches a way out in one tap.
+ */
+vi.mock("react-native", () => {
+  const host = (tag: string) => ({ children, testID }: { children?: ReactNode; testID?: string }) => createElement(tag, { "data-testid": testID }, children);
+  return { Pressable: host("button"), View: host("div"), Text: host("span"), StyleSheet: { create: <T>(s: T) => s }, Platform: { OS: "web", select: (o: Record<string, unknown>) => o.web ?? o.default } };
+});
+vi.mock("react-native-svg", () => { const Svg = () => null; return { __esModule: true, default: Svg, Svg, Path: Svg, Circle: Svg, Rect: Svg, G: Svg, Line: Svg }; });
+vi.mock("react-i18next", () => ({ useTranslation: () => ({ t: (k: string, o?: Record<string, unknown>) => (o ? `${k}(${Object.entries(o).map(([a, b]) => `${a}=${String(b)}`).join(",")})` : k), i18n: { language: "en" } }) }));
+vi.stubGlobal("location", { origin: "https://app.inbornapp.com", assign: () => undefined });
+vi.mock("../services/type", () => ({ useType: () => new Proxy({}, { get: () => ({}) }), font: () => ({}) }));
+vi.mock("../adapters/tauri", () => ({ isTauri: () => false }));
+/* A browser that has Fast and not Instant: Moshe's. */
+vi.mock("../web/boot", () => ({
+  ALLOWED_MODEL_ORIGINS: ["https://models.inbornapp.com"],
+  webBoot: () => ({
+    engine: "wllama",
+    choices: [
+      { source: { id: "instant", tier: "instant", name: "Instant", file: "Qwen3.5-0.8B-Q4_K_M.gguf", bytes: 532_517_120, url: "https://models.inbornapp.com/v1/Qwen3.5-0.8B-Q4_K_M.gguf" }, installed: false },
+      { source: { id: "fast", tier: "fast", name: "Fast", file: "Qwen3.5-2B-Q4_K_M.gguf", bytes: 1_280_835_840, url: "https://models.inbornapp.com/v1/Qwen3.5-2B-Q4_K_M.gguf" }, installed: true },
+    ],
+  }),
+  chooseWebModel: async () => null,
+}));
+const downloads: string[] = [];
+vi.mock("../web/modelDelivery", async (orig) => {
+  const real = (await orig()) as { parseCompanion: (m: never, id: string, allowed: string[], origin: string) => unknown };
+  const web = (await import(/* @vite-ignore */ `${process.cwd()}/../../scripts/web-manifest.mjs`)) as { webManifest: (base: string) => unknown };
+  return {
+    ...real,
+    fetchCompanion: async (id: string, allowed: string[]) => real.parseCompanion(web.webManifest(`${MODELS_ORIGIN}/v1`) as never, id, allowed, "https://app.inbornapp.com"),
+    WebModelDelivery: class {
+      async download(src: { file: string; bytes: number; sha256?: string }, on: (e: unknown) => void) {
+        downloads.push(src.file);
+        on({ type: "progress", have: 1, total: src.bytes });
+        return { type: "done", have: src.bytes, sha256: src.sha256 ?? "", verified: true };
+      }
+      cancel() {}
+    },
+  };
+});
+const onDisk = new Set<string>();
+vi.mock("../web/opfs", () => ({
+  opfsSupported: () => true,
+  opfsUri: (f: string) => `opfs://models/${f}`,
+  modelStatus: async (f: string) => (onDisk.has(f) ? { kind: "ready", meta: {} } : { kind: "missing" }),
+  readyModelStatus: async (f: string) => {
+    onDisk.add(f);
+    return { kind: "ready", meta: {} };
+  },
+  deleteModel: async (f: string) => void onDisk.delete(f),
+}));
+vi.mock("../web/transfers", () => ({ recordWebTransfer: () => undefined }));
+
+const { photoHoldView, pathCost } = await import("./photoCard");
+const { installPath, pathState } = await import("./photoPath");
+const { PhotoHoldCard } = await import("../components/chat/PhotoHoldCard");
+const serverRenderer: string = "react-dom/server";
+const { renderToStaticMarkup } = (await import(serverRenderer)) as { renderToStaticMarkup: (el: ReactElement) => string };
+
+const chat = BUNDLED_MANIFEST.models.filter((m) => m.role === "chat");
+const plan = (selected: string, installed: string[]) => photoPlan({ selected, models: chat, installed: (id) => installed.includes(id) }) as Exclude<PhotoPlan, { kind: "send" }>;
+const names = { count: 1, model: "Fast", seer: "Instant", size: formatModelBytes };
+const theme = new Proxy({}, { get: () => "#000" }) as never;
+const noop = () => undefined;
+
+beforeEach(() => {
+  downloads.length = 0;
+});
+
+describe("F437 · case (a): the selected model sees with its own pack", () => {
+  it("Fast, fresh: one card, Fast's pack at 668 MB, no Instant (738 MB would cost more), never the 205 MB projector", () => {
+    const v = photoHoldView(plan("fast", ["fast"]), "own", null, names);
+    expect(v.title).toEqual({ key: "chat.vision.packTitle", params: { model: "Fast" } });
+    expect(v.body).toEqual({ key: "extensions.vision.why", params: { count: 1, size: "668 MB" } });
+    expect(v.primary).toEqual({ action: "download", label: { key: "chat.vision.download", params: { size: "668 MB" } } });
+    expect(v.secondary).toBeNull();
+    expect(JSON.stringify(v)).not.toContain("205 MB");
+  });
+
+  it("Moshe's browser (Instant's pack already in, Instant not): the way out costs Instant's 533 MB, stated on the card", () => {
+    const v = photoHoldView(plan("fast", ["fast", "vision-qwen35"]), "own", null, names);
+    expect(v.secondary).toEqual({ key: "chat.vision.useSeer", params: { seer: "Instant" } });
+    expect(v.cost).toEqual({ key: "chat.vision.costModel", params: { seer: "Instant", modelSize: "533 MB" } });
+  });
+
+  it("a phone, where Instant and its pack come with the app: the way out says already installed", () => {
+    const v = photoHoldView(plan("fast", ["fast", "instant", "vision-qwen35"]), "own", null, names);
+    expect(v.cost).toEqual({ key: "chat.vision.costReady", params: { seer: "Instant" } });
+  });
+
+  it("while the pack downloads the card says so and offers nothing to press twice", () => {
+    const v = photoHoldView(plan("fast", ["fast"]), "own", { kind: "downloading", bytes: 334_113_632, total: 668_227_264 }, names);
+    expect(v.body).toEqual({ key: "extensions.vision.downloading", params: { pct: 50 } });
+    expect(v.primary).toBeNull();
+  });
+});
+
+describe("F437 · case (b): Sharp (Phi) cannot see, and the one step names its whole cost", () => {
+  const phi = { ...names, model: "Sharp (Phi)" };
+  it("nothing installed: Instant 533 MB + photo pack 205 MB, 738 MB in one download, one button", () => {
+    const v = photoHoldView(plan("sharp-phi", ["sharp-phi"]), "own", null, phi);
+    expect(v.title).toEqual({ key: "chat.vision.holdTitleModel", params: { model: "Sharp (Phi)" } });
+    expect(v.body).toEqual({ key: "chat.vision.switchBody", params: { seer: "Instant", count: 1 } });
+    expect(v.cost).toEqual({ key: "chat.vision.costBoth", params: { seer: "Instant", modelSize: "533 MB", packSize: "205 MB", total: "738 MB" } });
+    expect(v.primary).toEqual({ action: "switch", label: { key: "chat.vision.switchToCost", params: { seer: "Instant", size: "738 MB" } } });
+  });
+  it("Instant already installed: switch, and the photo sends", () => {
+    const v = photoHoldView(plan("sharp-phi", ["sharp-phi", "instant", "vision-qwen35"]), "own", null, phi);
+    expect(v.body.key).toBe("chat.vision.switchReady");
+    expect(v.cost).toBeNull();
+    expect(v.primary).toEqual({ action: "switch", label: { key: "chat.vision.switchTo", params: { seer: "Instant" } } });
+  });
+  it("nothing here sees: the card says so and offers no download", () => {
+    const v = photoHoldView({ kind: "none" }, "own", null, phi);
+    expect(v.body).toEqual({ key: "chat.attach.noVisionHere", params: { model: "Sharp (Phi)" } });
+    expect(v.primary).toBeNull();
+  });
+  it("the cost line has the four shapes", () => {
+    const p = plan("sharp-phi", ["sharp-phi"]);
+    if (p.kind !== "switch") throw new Error(p.kind);
+    expect(pathCost({ ...p.alt, missing: [] }, "Instant", formatModelBytes).key).toBe("chat.vision.costReady");
+    expect(pathCost({ ...p.alt, missing: [p.alt.missing[1]!] }, "Instant", formatModelBytes)).toEqual({ key: "chat.vision.costPack", params: { seer: "Instant", packSize: "205 MB" } });
+  });
+});
+
+describe("F437 · the card as rendered, and the way out in one tap", () => {
+  it("renders one card under the drivers' testIDs: Download 668 MB, Remove the photo, and the way out with its cost", () => {
+    const html = renderToStaticMarkup(createElement(PhotoHoldCard, { held: plan("fast", ["fast", "vision-qwen35"]), theme, count: 1, model: "Fast", seer: "Instant", onCancel: noop, onReady: noop, onSwitch: noop }));
+    expect(html.match(/data-testid="vision-hold"/g)).toHaveLength(1);
+    expect(html).toContain('data-testid="vision-hold-download"');
+    expect(html).toContain("chat.vision.download(size=668 MB)");
+    expect(html).toContain('data-testid="vision-hold-switch"');
+    expect(html).toContain("chat.vision.costModel(seer=Instant,modelSize=533 MB)");
+    expect(html).toContain('data-testid="vision-hold-remove"');
+    expect(html).not.toContain("205 MB");
+  });
+
+  it("Send with Instant instead fetches Instant, then its pack, as one download, and the path turns ready", async () => {
+    const p = plan("fast", ["fast"]);
+    if (p.kind !== "pack") throw new Error(p.kind);
+    const instant = { model: "instant", pack: "vision-qwen35", missing: [{ id: "instant", kind: "model" as const, bytes: 532_517_120 }, { id: "vision-qwen35", kind: "pack" as const, bytes: 204_987_232 }], bytes: 737_504_352 };
+    expect(pathState(instant)).toEqual({ kind: "missing", bytes: 737_504_352 });
+    const end = await installPath(instant);
+    expect(downloads).toEqual(["Qwen3.5-0.8B-Q4_K_M.gguf", "mmproj-Qwen3.5-0.8B-F16.gguf"]);
+    expect(end).toEqual({ kind: "ready" });
+  });
+});

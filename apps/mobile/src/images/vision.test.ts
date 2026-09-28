@@ -47,6 +47,9 @@ describe("F417 · the card's time line uses the 512 px measurement", () => {
     const { MEASURED_WASM_PHOTO_MS, visionTimeHint } = await import("../extensions/timeHint");
     expect(MEASURED_WASM_PHOTO_MS).toBe(37_000);
     const t = (k: string, o?: Record<string, unknown>) => `${k}:${String(o?.seconds)}`;
-    expect(visionTimeHint(t)).toBe("extensions.vision-qwen35.timeHint:37");
+    expect(visionTimeHint(t)).toBe("extensions.vision.timeHint:37");
+    /* Round 117: Fast's own projector, measured the same way; a model nobody measured in a browser gets no invented number. */
+    expect(visionTimeHint(t, "fast")).toBe("extensions.vision.timeHint:109");
+    expect(visionTimeHint(t, "sharp")).toBeNull();
   });
 });

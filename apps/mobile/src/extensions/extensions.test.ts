@@ -17,7 +17,18 @@ vi.mock("react-native-svg", () => { const Svg = () => null; return { __esModule:
 vi.mock("react-i18next", () => ({ useTranslation: () => ({ t: (k: string) => k, i18n: { language: "en" } }) }));
 vi.mock("../services/type", () => ({ useType: () => new Proxy({}, { get: () => ({}) }), font: () => ({}) }));
 vi.mock("../adapters/tauri", () => ({ isTauri: () => false }));
-vi.mock("../web/boot", () => ({ ALLOWED_MODEL_ORIGINS: ["https://models.inbornapp.com"] }));
+/* A browser whose catalog serves Instant and Fast, both already downloaded (round 117 lists the packs per offered model). */
+vi.mock("../web/boot", () => ({
+  ALLOWED_MODEL_ORIGINS: ["https://models.inbornapp.com"],
+  webBoot: () => ({
+    engine: "wllama",
+    choices: [
+      { source: { id: "instant", tier: "instant", name: "Instant", file: "Qwen3.5-0.8B-Q4_K_M.gguf", bytes: 532_517_120, url: "/models/instant.gguf" }, installed: true },
+      { source: { id: "fast", tier: "fast", name: "Fast", file: "Qwen3.5-2B-Q4_K_M.gguf", bytes: 1_280_835_840, url: "/models/fast.gguf" }, installed: true },
+    ],
+  }),
+  chooseWebModel: async () => null,
+}));
 
 const downloads: { url: string; file: string; bytes: number; sha256?: string }[] = [];
 let manifest: unknown = { companions: [] };
@@ -50,7 +61,7 @@ vi.mock("../web/opfs", () => ({
 }));
 
 const store = await import("./store");
-const { holdView, holdTestIds, vaultRowState } = await import("./card");
+const { extKey, holdView, holdTestIds, vaultRowState } = await import("./card");
 const { ExtensionHoldCard } = await import("../components/chat/ExtensionHoldCard");
 const { ExtensionsSection } = await import("../components/ExtensionsSection");
 const serverRenderer: string = "react-dom/server";
@@ -82,8 +93,9 @@ describe("F406 · the hold card is data from the registry", () => {
   it("the photo card has no fallback: nothing reads a photo without the pack", () => {
     const v = holdView(vision, { kind: "missing", bytes: vision.bytes }, { count: 1, size: "205 MB" });
     expect(v.fallback).toBeNull();
-    expect(v.cancel).toEqual({ key: "extensions.vision-qwen35.cancel", params: { count: 1 } });
-    expect(holdTestIds(vision)).toMatchObject({ card: "vision-hold", download: "vision-hold-download", cancel: "vision-hold-remove" });
+    expect(v.cancel).toEqual({ key: "extensions.vision.cancel", params: { count: 1 } });
+    /* Round 117: every photo pack goes through the one photo card the drivers know. */
+    for (const id of ["vision-qwen35", "vision-qwen35-2b", "vision-qwen35-4b"]) expect(holdTestIds(findExtension(id)!), id).toMatchObject({ card: "vision-hold", download: "vision-hold-download", cancel: "vision-hold-remove" });
   });
   it("a failure keeps the F349 error for the plain sentence and offers Try again; a running download offers nothing to press twice", () => {
     const failed = holdView(e5, { kind: "failed", error: "HTTP 404", bytes: 1 }, { count: 1, size: "1 B" });
@@ -96,7 +108,7 @@ describe("F406 · the hold card is data from the registry", () => {
   it("a host that does not serve it says so, with no Download button", () => {
     const v = holdView(vision, { kind: "unavailable" }, { count: 1, size: "" });
     expect(v.download).toBeNull();
-    expect(v.body.key).toBe("extensions.vision-qwen35.unavailable");
+    expect(v.body.key).toBe("extensions.vision.unavailable");
   });
   it("the vault row says included for a bundled pack and never offers to remove it", () => {
     const s: ExtensionState = { kind: "ready", bundled: true };
@@ -115,10 +127,11 @@ describe("F406 · a third extension is one registry entry and one locale block",
     expect(html).toContain('data-testid="ext-hold-ocr-fake-cancel"');
     expect(html).not.toContain("ext-hold-ocr-fake-fallback");
   });
-  it("the vault's Extensions section lists it after the two shipped ones", async () => {
+  it("the vault's Extensions section lists it after the shipped ones, with a photo pack per model this browser offers", async () => {
     const html = renderToStaticMarkup(createElement(ExtensionsSection, { theme }));
     const rows = [...html.matchAll(/data-testid="ext-row-([^"]+)"/g)].map((m) => m[1]);
-    expect(rows).toEqual(["embed-e5", "vision-qwen35", "ocr-fake"]);
+    expect(rows).toEqual(["embed-e5", "vision-qwen35", "vision-qwen35-2b", "ocr-fake"]);
+    expect(html).toContain("extensions.vision-qwen35-2b.name");
     expect(html).toContain("extensions.ocr-fake.name");
     expect(html).toContain('data-testid="ext-download-ocr-fake"');
   });
@@ -149,7 +162,8 @@ describe("F406 · every shipped extension has its locale block in all eight lang
     it(loc, () => {
       const l = JSON.parse(readFileSync(join(repo, `packages/i18n/locales/${loc}.json`), "utf8")) as Record<string, string>;
       for (const ext of extensions().filter((e) => e.id !== "ocr-fake")) {
-        for (const leaf of [...LEAVES, ...(ext.fallback ? ["fallback"] : [])]) expect(l[`extensions.${ext.id}.${leaf}`], `${loc} ${ext.id}.${leaf}`).toBeTruthy();
+        /* The photo packs share their card lines (extensions.vision.*); name and vault line are per pack. */
+        for (const leaf of [...LEAVES, ...(ext.fallback ? ["fallback"] : [])] as Parameters<typeof extKey>[1][]) expect(l[extKey(ext, leaf)], `${loc} ${ext.id}.${leaf}`).toBeTruthy();
         expect(l[`extensions.${ext.id}.name`], `${loc} ${ext.id}`).toBe(l[`models.name.${ext.id}`]);
       }
       for (const k of ["extensions.section", "extensions.onDemand", "extensions.download", "extensions.retry", "extensions.stuck", "extensions.remove", "web.download.extensionsLater"]) expect(l[k], `${loc} ${k}`).toBeTruthy();
@@ -161,17 +175,25 @@ describe("F406 · every shipped extension has its locale block in all eight lang
 });
 
 describe("F407 · the browser can see once the photo pack is in", () => {
-  it("Instant sees, Fast and Sharp do not (one projector, one embedding width), and the pack resolves only once verified", async () => {
+  /* Round 117 (F437): each model sees through its own pack; Fast's pack does not serve Instant, nor Instant's Fast. */
+  it("Instant and Fast see, each with its own pack, and a pack resolves only once verified", async () => {
     const v = await import("../images/vision");
     const { fitWithin } = await import("../images/scale");
     expect(v.modelHasVision("instant")).toBe(true);
-    expect(v.modelHasVision("fast")).toBe(false);
+    expect(v.modelHasVision("fast")).toBe(true);
+    expect(v.modelHasVision("sharp-phi")).toBe(false);
     expect(v.modelHasVision("chrome-prompt-api")).toBe(false);
-    expect(v.visionChatModel()?.id).toBe("instant");
+    expect(v.visionPackId("fast")).toBe("vision-qwen35-2b");
     await v.visionScanned();
-    expect(v.resolveVision()).toBeNull();
-    await v.installVision();
-    expect(v.resolveVision()).toBe(`opfs://models/${vision.file}`);
+    expect(v.resolveVision("fast")).toBeNull();
+    const plan = v.photoPlanHere("fast", false);
+    expect(plan.kind === "pack" && plan.path.pack).toBe("vision-qwen35-2b");
+    await v.installVision("fast");
+    expect(v.resolveVision("fast")).toBe("opfs://models/mmproj-Qwen3.5-2B-F16.gguf");
+    expect(v.resolveVision("instant")).toBeNull();
+    expect(v.photoPlanHere("fast", false).kind).toBe("send");
+    await v.installVision("instant");
+    expect(v.resolveVision("instant")).toBe(`opfs://models/${vision.file}`);
     expect(fitWithin(4032, 3024)).toEqual({ width: 1024, height: 768 });
     expect(fitWithin(800, 600)).toEqual({ width: 800, height: 600 });
   });
