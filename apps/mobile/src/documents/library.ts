@@ -25,6 +25,7 @@ import {
   type EmbeddingStore,
   type IndexProgress,
   type Message,
+  type NoPassageOpeners,
   type OpenedDocument,
   type RagPrompt,
   type TextExtractor,
@@ -82,6 +83,8 @@ export interface AskOptions {
   answerLanguage?: string;
   /** False for Instant: it never places [n] marks, so the prompt does not ask and the chips show as plain sources (models run D15). */
   citeMarkers?: boolean;
+  /** What a reply with no passage opens with, in the UI language (`noPassageOpeners`). */
+  openers?: NoPassageOpeners;
 }
 
 export interface AskResult {
@@ -598,7 +601,7 @@ export class DocumentLibrary {
     const strict = o.strict ?? this.prefs.strict;
     const embedderId = lexical ? LEXICAL_INDEX_ID : this.embedderRef!.embedder.id;
     const doors = relevanceDoors(embedderId);
-    const prompt = buildRagPrompt({ question, hits, docs: this.docs, strict, embedderId, nCtx: o.nCtx ?? 4096, history: o.history, systemPrompt: o.systemPrompt, answerLanguage: o.answerLanguage, citeMarkers: o.citeMarkers, overview });
+    const prompt = buildRagPrompt({ question, hits, docs: this.docs, strict, embedderId, nCtx: o.nCtx ?? 4096, history: o.history, systemPrompt: o.systemPrompt, answerLanguage: o.answerLanguage, citeMarkers: o.citeMarkers, overview, openers: o.openers });
     /* Not behind __DEV__: F282 was a release build citing an off-topic passage, and no screen prints the two numbers that decided it. */
     console.log(`[rag] strict=${strict}${lexical ? " words-only" : ""}${overview ? " overview" : ""}${rebuilding.length ? ` reindexing=${rebuilding.length}/${docIds.length}` : ""} hits=${hits.length} used=${prompt.used.length} ${retrieveMs} ms | ${hits.map((h) => `${h.chunk.docId}#${h.chunk.ord} cos=${h.cosine.toFixed(3)} terms=${h.bm25Terms} bm25=${h.bm25.toFixed(2)} ${overview || isRelevant(h, doors) ? "KEPT" : "dropped"}`).join(" · ")}`);
     return { prompt, retrieveMs, ...(rebuilding.length ? { reindexing: { pending: rebuilding.length, total: docIds.length, ids: rebuilding.map((d) => d.id) } } : {}), ...(lexical ? { lexical: true } : {}) };

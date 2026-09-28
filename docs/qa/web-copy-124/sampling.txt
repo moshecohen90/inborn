@@ -1,0 +1,54 @@
+F449 · Ask your documents, sampled offline before the live check (28.9.2026)
+
+Method. The real buildRagPrompt of each tree (origin/main e3d19aca, then round 124), bundled with rolldown, and the
+Ask sheet's own inputs: the length line planAnswerLength({ use: "documents" }) as systemPrompt, office.txt as one
+kept passage (lexical search, as on the web without the index model), answerLanguage "en", citeMarkers false for
+Instant and true for Fast. Answers from llama-server (Homebrew build 10809) on the shipped GGUFs
+(Qwen3.5-0.8B-Q4_K_M = Instant, Qwen3.5-2B-Q4_K_M = Fast) with the app's sampler: --jinja, temperature 0.7,
+top_p 0.9, repeat_penalty 1.1, repeat_last_n 64, enable_thinking false, max_tokens from the length plan (224).
+
+Questions: "What is the support phone number and when does the office close?" (matching), "What is the capital of
+Australia?" (no passage relevant), "Who is the office manager?" (the passage is kept but does not say).
+
+"narrates" = the answer talks about its orders: instruction, general knowledge, rules, markers, quoted data,
+"I must", "as instructed", "your request", "first sentence", "follow", "documents list".
+"echoes the prompt" = the answer repeats rule text ("<<<DOCUMENTS", "each numbered", "Start with "").
+
+main e3d19aca · Instant  matching     n=20  narrates  7  echoes the prompt  0  opens "Your documents don't mention this."  0  555-0134 and 6: 19
+main e3d19aca · Instant  no match     n=20  narrates  5  echoes the prompt  0  opens "Your documents don't mention this."  0  Canberra: 19
+main e3d19aca · Instant  kept,silent  n=20  narrates 10  echoes the prompt  0  opens "Your documents don't mention this."  0  
+round 124     · Instant  matching     n=40  narrates  0  echoes the prompt  0  opens "Your documents don't mention this."  0  555-0134 and 6: 39
+round 124     · Instant  no match     n=40  narrates  1  echoes the prompt  0  opens "Your documents don't mention this." 40  Canberra: 36
+round 124     · Instant  kept,silent  n=40  narrates  4  echoes the prompt  2  opens "Your documents don't mention this."  0  
+main e3d19aca · Fast     matching     n=20  narrates  3  echoes the prompt  0  opens "Your documents don't mention this."  0  555-0134 and 6: 20
+main e3d19aca · Fast     no match     n=20  narrates  5  echoes the prompt  0  opens "Your documents don't mention this."  0  Canberra: 20
+main e3d19aca · Fast     kept,silent  n=20  narrates 18  echoes the prompt  0  opens "Your documents don't mention this."  0  
+round 124     · Fast     matching     n=40  narrates  1  echoes the prompt  0  opens "Your documents don't mention this."  0  555-0134 and 6: 40
+round 124     · Fast     no match     n=40  narrates  1  echoes the prompt  0  opens "Your documents don't mention this." 13  Canberra: 40
+round 124     · Fast     kept,silent  n=40  narrates  2  echoes the prompt  1  opens "Your documents don't mention this."  0  
+
+The no-match rule quotes the sentence in the UI language. Same Spanish question, 20 answers each, no passage:
+Instant
+main e3d19aca rule     all Spanish  8  Canberra 15  says the documents lack it  3
+English quote          all Spanish  0  Canberra 14  says the documents lack it 20
+Spanish quote (r124)   all Spanish 19  Canberra 13  says the documents lack it 20
+Fast
+main e3d19aca rule     all Spanish  9  Canberra 19  says the documents lack it  4
+English quote          all Spanish  0  Canberra 20  says the documents lack it 20
+Spanish quote (r124)   all Spanish 20  Canberra 16  says the documents lack it 11
+
+Iterations that were measured and dropped:
+- A sentence to write when the kept passages lack the answer ("If they lack the answer, your first sentence is
+  "Your documents don't mention this.""): Instant opened 7 of 20 answers to the matching question with it
+  ("Your documents do not mention this.") and got the phone and the time in only 12 of 20. Outside strict mode that
+  notice is the UI's (groundedCitations -> documents.noneMatched).
+- "Start with "..." Then give the full answer to the question.": Fast copied the tail into 4 of 40 answers
+  ("... Your documents don't mention this. Then give the full answer to the question.").
+  "... and then answer the question." copied into 0 of 24 on Fast and 0 of 24 on Instant.
+
+Strict mode is unchanged in substance: on the matching question Instant returned NOT_FOUND_IN_DOCUMENTS in 9 of 20
+(main) and 11 of 20 (round 124); Fast answered 18 of 20 on main.
+
+Left as it was: the length line "Do not restate the question, list alternatives, or add examples" (chat/length.ts,
+shared by every chat answer) still gets an "Alternatives:" list from Instant now and then: 1 of 20 on main, 3 of 40
+on the matching question here, and once in the first live run.
