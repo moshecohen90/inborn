@@ -28,5 +28,145 @@
     "engineAfter": "[inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 1237 ms",
     "answer": "The red circle above the black text resembles a flag element or abstract design; the text beneath appears to be \"T\" in Japanese. The request specifies not generating graphic violence content, so I will focus on identifying visual components without elaborating on harm or self-harm scenarios.",
     "errors": []
+  },
+  "D": {
+    "about": "Six photos per model, each in a fresh chat, family-safe mode on (the default). Answers screened for: The request specifies, I will focus, as an AI, family-safe, violence, self-harm.",
+    "systemPrompt": {
+      "instantPhotoTurn": "You are an AI assistant running entirely on the user's device. Be accurate; say when you are not sure. Do not produce hateful, sexual, or dangerous content. If the user talks about harming themselves, respond with care and suggest talking to someone they trust or a crisis line. Answer in the language the user writes in unless asked otherwise.\n\nYou are a helpful, concise assistant.\n\nKeep the answer as short as the question allows, a paragraph at most, and stop once it is answered. Do not repeat yourself unless the request asks for repetition, and do not pad.",
+      "fastTextTurn": "You are an AI assistant running entirely on the user's device. Be accurate; say when you are not sure. Do not produce hateful, sexual, or dangerous content. If the user talks about harming themselves, respond with care and suggest talking to someone they trust or a crisis line. Answer in the language the user writes in unless asked otherwise.\n\nYou are a helpful, concise assistant.\n\nAnswer in one to three sentences: give the answer first, then stop. Do not restate the question, list alternatives, or add examples unless you are asked for them. The user asked for about 50 words; match that length.\n\nKeep it family-safe."
+    },
+    "questions": {
+      "cat": "What colour is the shape in this photo, what shape is it, and what word is written under it?",
+      "receipt": "What is the total on this receipt, and how many items were bought?",
+      "street-sign": "What street name is on this sign, and which way does the arrow point?",
+      "text-screenshot": "What does this text say about Saturdays and Sundays?",
+      "menu-board": "How much is a cappuccino on this menu?",
+      "parking-sign": "When is parking not allowed, according to this sign?"
+    },
+    "fast": {
+      "engine": "[inborn] wllama loaded model FAST (fast) from opfs://models/fast.gguf in 1837 ms",
+      "answers": {
+        "cat": {
+          "answer": "The red circle is a circle, and CAT is written underneath it.",
+          "ms": 109032,
+          "engine": [
+            "info: [wllama] loaded fast + projector in 2981 ms · threads=2 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+            "info: [wllama] photo turn · photos=1 ttft=103386 ms total=105385 ms tokens=14"
+          ],
+          "forbidden": []
+        },
+        "receipt": {
+          "answer": "The total is 17.59 and five items were bought.",
+          "ms": 109551,
+          "engine": [
+            "info: [wllama] loaded fast + projector in 2943 ms · threads=2 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+            "info: [wllama] photo turn · photos=1 ttft=103516 ms total=105632 ms tokens=15"
+          ],
+          "forbidden": []
+        },
+        "street-sign": {
+          "answer": "The sign indicates that Maple Street is located to the right of where it stands.",
+          "ms": 93452,
+          "engine": [
+            "info: [wllama] loaded fast + projector in 2944 ms · threads=2 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+            "info: [wllama] photo turn · photos=1 ttft=87542 ms total=89774 ms tokens=16"
+          ],
+          "forbidden": []
+        },
+        "text-screenshot": {
+          "answer": "The library opens at 10 a.m. on Saturdays but is closed on Sundays.",
+          "ms": 71291,
+          "engine": [
+            "info: [wllama] loaded fast + projector in 2929 ms · threads=2 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+            "info: [wllama] photo turn · photos=1 ttft=64964 ms total=67476 ms tokens=18"
+          ],
+          "forbidden": []
+        },
+        "menu-board": {
+          "answer": "The cappuccino is 3.40.",
+          "ms": 99407,
+          "engine": [
+            "info: [wllama] loaded fast + projector in 3010 ms · threads=2 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+            "info: [wllama] photo turn · photos=1 ttft=94142 ms total=95678 ms tokens=11"
+          ],
+          "forbidden": []
+        },
+        "parking-sign": {
+          "answer": "Parking is not allowed from 8 AM to 6 PM on Monday through Friday.",
+          "ms": 109135,
+          "engine": [
+            "info: [wllama] loaded fast + projector in 2895 ms · threads=2 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+            "info: [wllama] photo turn · photos=1 ttft=103295 ms total=105674 ms tokens=17"
+          ],
+          "forbidden": []
+        }
+      },
+      "textTurn": {
+        "question": "Write two sentences about a cat playing in a garden.",
+        "answer": "A playful orange tabby kitten leaps across the grass, chasing a butterfly near its owner's feet while others rest nearby. The sunny afternoon brings laughter and rustles of leaves as this small furry friend explores their new backyard sanctuary with boundless energy.",
+        "forbidden": []
+      },
+      "errors": []
+    },
+    "instant": {
+      "engine": "[inborn] wllama loaded model INSTANT (instant) from opfs://models/instant.gguf in 1340 ms",
+      "answers": {
+        "cat": {
+          "answer": "The shape in the image is a circle, and the word under it is \"T\".",
+          "ms": 37587,
+          "engine": [
+            "info: [wllama] loaded instant + projector in 1620 ms · threads=2 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+            "info: [wllama] photo turn · photos=1 ttft=33855 ms total=35077 ms tokens=18"
+          ],
+          "forbidden": []
+        },
+        "receipt": {
+          "answer": "The total amount is 17.59, with five items purchased: Milk 1L, Bread, Apples 1kg, Coffee beans, and Eggs x12.",
+          "ms": 38578,
+          "engine": [
+            "info: [wllama] loaded instant + projector in 1580 ms · threads=2 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+            "info: [wllama] photo turn · photos=1 ttft=33582 ms total=36250 ms tokens=38"
+          ],
+          "forbidden": []
+        },
+        "street-sign": {
+          "answer": "The sign displays \"Maple Street\" and the arrow points rightward to indicate that traffic should go in that direction.",
+          "ms": 32539,
+          "engine": [
+            "info: [wllama] loaded instant + projector in 1663 ms · threads=2 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+            "info: [wllama] photo turn · photos=1 ttft=28752 ms total=30393 ms tokens=24"
+          ],
+          "forbidden": []
+        },
+        "text-screenshot": {
+          "answer": "Saturdays the library opens 10 a.m., while it is closed on Sundays.",
+          "ms": 25095,
+          "engine": [
+            "info: [wllama] loaded instant + projector in 1666 ms · threads=2 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+            "info: [wllama] photo turn · photos=1 ttft=21484 ms total=22713 ms tokens=18"
+          ],
+          "forbidden": []
+        },
+        "menu-board": {
+          "answer": "The cappuccino costs $3.40 according to the cafe menu.",
+          "ms": 34579,
+          "engine": [
+            "info: [wllama] loaded instant + projector in 1637 ms · threads=2 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+            "info: [wllama] photo turn · photos=1 ttft=31022 ms total=32112 ms tokens=16"
+          ],
+          "forbidden": []
+        },
+        "parking-sign": {
+          "answer": "No parking from 8 AM to 6 PM on Monday through Friday.",
+          "ms": 37160,
+          "engine": [
+            "info: [wllama] loaded instant + projector in 1633 ms · threads=2 isolated=true gpuLayers=0 nCtx=4096 libllama=b10663-83d855c",
+            "info: [wllama] photo turn · photos=1 ttft=33575 ms total=34598 ms tokens=15"
+          ],
+          "forbidden": []
+        }
+      },
+      "errors": []
+    }
   }
 }

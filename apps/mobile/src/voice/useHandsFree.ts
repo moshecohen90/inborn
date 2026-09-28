@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { AppState } from "react-native";
-import { SAFETY_BASELINE, VOICE_SYSTEM_HINT, buildPrompt, composeSystemPrompt, planAnswerLength, initialHandsFree, isEmptyTranscript, languageHint, nextHandsFree, safetyBaseline, screenText, titleFromFirstMessage, type ChatStore, type HandsFreeEffect, type HandsFreeEvent, type HandsFreeState, type Message } from "@inborn/core";
+import { BUNDLED_MANIFEST, SAFETY_BASELINE, VOICE_SYSTEM_HINT, buildPrompt, findModel, planAnswerLength, initialHandsFree, isEmptyTranscript, languageHint, nextHandsFree, screenText, turnSystemPrompt, titleFromFirstMessage, type ChatStore, type HandsFreeEffect, type HandsFreeEvent, type HandsFreeState, type Message } from "@inborn/core";
 import { getEngine, loadSession } from "../engine";
 import { useDeviceState } from "../device/useDeviceState";
 import { UtteranceListener } from "./mic";
@@ -142,7 +142,7 @@ export function useHandsFree({ store, chatId: initialChatId, incognito, modelId,
             dispatch({ type: "answer", text: familySafeText });
             return;
           }
-          const system = composeSystemPrompt({ baseline: `${safetyBaseline(SAFETY_BASELINE, familySafe)}\n${VOICE_SYSTEM_HINT}`, languageHint: languageHint(effect.text), length: length.instruction });
+          const system = turnSystemPrompt({ baseline: `${SAFETY_BASELINE}\n${VOICE_SYSTEM_HINT}`, familySafe, tier: findModel(BUNDLED_MANIFEST, modelId)?.tier, photos: false, languageHint: languageHint(effect.text), length: length.instruction });
           const session = await loadSession();
           const prompt = buildPrompt({ system, messages: turns.map((m, i) => ({ id: String(i), ...m })), nCtx: session.nCtx, reserve: length.maxTokens });
           let reply = "";

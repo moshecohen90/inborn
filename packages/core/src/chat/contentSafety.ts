@@ -1,8 +1,10 @@
+import type { Tier } from "../catalog/types";
+
 /**
  * Family-safe mode (§11.1 Guideline 1.2 "filtering", §11.2 AI-content (a)(b)(c), §11.5 item 8).
  *
  * Three honest, cheap parts, all on the device and none of them a classifier:
- *  1. a clause added to the system prompt, so the model is asked not to produce the content in the first place;
+ *  1. one short line at the end of a larger model's system prompt, so it is asked not to produce the content;
  *  2. a phrase check over the user's turn, so an explicit request is refused without spending a generation;
  *  3. the same check over the answer, so an answer that got there anyway is replaced before it is stored.
  *
@@ -14,9 +16,7 @@
  * another 300 MB on a phone whose whole promise is one model. Recorded for Moshe in README "Decisions for Moshe".
  */
 
-/** Added to `SAFETY_BASELINE` while family-safe mode is on; the crisis wording in the baseline stays either way. */
-export const FAMILY_SAFE_CLAUSE =
-  "Family-safe mode is on. Do not write sexually explicit content, graphic descriptions of violence or gore, or instructions for self-harm, suicide, weapons or explosives. If a request asks for that, say briefly that you will not and offer something else.";
+export const FAMILY_SAFE_LINE = "Keep it family-safe.";
 
 /** What the check caught. The UI names none of them to the user; the refusal is one sentence either way. */
 export type SafetyCategory = "sexual" | "violence" | "selfHarm";
@@ -118,7 +118,7 @@ export function screenText(text: string, familySafe: boolean): SafetyVerdict {
   return familySafe ? checkOutput(text) : NOT_FLAGGED;
 }
 
-/** The system prompt's safety block: the shipped baseline, plus the family-safe clause while the mode is on. */
-export function safetyBaseline(baseline: string, familySafe: boolean): string {
-  return familySafe ? `${baseline} ${FAMILY_SAFE_CLAUSE}` : baseline;
+/* Instant (0.8B) narrates any instruction back as part of its answer, and a photo turn invites that on every model. */
+export function familySafeLine({ familySafe, tier, photos }: { familySafe: boolean; tier: Tier | undefined; photos: boolean }): string | undefined {
+  return familySafe && !photos && tier !== undefined && tier !== "instant" ? FAMILY_SAFE_LINE : undefined;
 }

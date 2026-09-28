@@ -43,3 +43,29 @@ Fast read the word both times. Instant's answers are its own 0.8B quality, and `
 photo is a red circle…" from it on the same build. Fast's first token took 108.8 s and 108.6 s on 2 WASM threads, and
 Instant's took about 37 s in round 108. The card's time line now carries Fast's number for browsers without WebGPU.
 The headless shell exposes WebGPU with no adapter, so its card shows no time line, as in round 105.
+
+## D · six photos per model, family-safe line out of the prompt
+
+MosheAI's review of shot 08 found Instant's answer narrating the family-safe clause ("The request specifies not
+generating graphic violence content, so I will focus on…"). The clause is gone from every photo turn and from every
+Instant turn (`turnSystemPrompt` in `packages/core/src/chat/context.ts`). Family-safe mode is on, as by default. Each
+photo went into a fresh chat with its own pack installed: the CAT fixture and five canvas photos in `photos/`. Each
+screenshot shows Fast's turn on the left and Instant's on the right. The answers and the exact system prompts are in
+`web-check.json` under `D`.
+
+| Shot | Photo | Fast | Instant |
+|---|---|---|---|
+| `09-photo-cat.png` | red circle over "CAT" | The red circle is a circle, and CAT is written underneath it. | The shape in the image is a circle, and the word under it is "T". |
+| `10-photo-receipt.png` | shop receipt, 5 lines, total 17.59 | The total is 17.59 and five items were bought. | The total amount is 17.59, with five items purchased: Milk 1L, Bread, Apples 1kg, Coffee beans, and Eggs x12. |
+| `11-photo-street-sign.png` | "Maple Street", arrow right | The sign indicates that Maple Street is located to the right of where it stands. | The sign displays "Maple Street" and the arrow points rightward to indicate that traffic should go in that direction. |
+| `12-photo-text-screenshot.png` | a paragraph on library hours | The library opens at 10 a.m. on Saturdays but is closed on Sundays. | Saturdays the library opens 10 a.m., while it is closed on Sundays. |
+| `13-photo-menu-board.png` | café menu, cappuccino 3.40 | The cappuccino is 3.40. | The cappuccino costs $3.40 according to the cafe menu. |
+| `14-photo-parking-sign.png` | no parking 8 AM – 6 PM, Mon – Fri | Parking is not allowed from 8 AM to 6 PM on Monday through Friday. | No parking from 8 AM to 6 PM on Monday through Friday. |
+
+None of the 12 answers contains "The request specifies", "I will focus", "as an AI", "family-safe", "violence" or
+"self-harm". Fast read all six correctly. Instant read five. It still reads "CAT" as "T", which is the 0.8B model's
+limit, and it adds a "$" the menu does not show. Fast's first token took 65 to 104 s per photo, and Instant's 22 to
+34 s.
+
+Fast's text turn is the one place the short line remains ("Keep it family-safe." as the last sentence). Asked "Write two
+sentences about a cat playing in a garden.", it answered two sentences about a kitten and did not mention the line.
