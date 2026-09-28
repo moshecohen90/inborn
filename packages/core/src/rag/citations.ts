@@ -51,6 +51,51 @@ export function citedNumbers(answer: string): number[] {
   return [...seen];
 }
 
+/* Markdown the model may wrap a line in: bold, a bullet, a quote or heading mark. */
+const WRAP = /^[\s*_>#-]*/;
+/* One header as the prompt writes it, "[n] <file> · part k" (or p.k, sheet k; "page k" in words). The name holds no
+   "·", so a header matches one way only; repeating it inside one regex backtracks exponentially on near-headers. */
+const HEADER = /\[\d{1,2}\]\s*[^\n·]*?\s·\s(?:part|page|p\.|sheet)\s?\d+[\s*_.:,;]*/y;
+
+type LabelSource = Pick<Citation, "n" | "docName" | "kind" | "page">;
+
+function isLabelLine(line: string): boolean {
+  let at = WRAP.exec(line)![0].length;
+  if (at === line.length) return false;
+  while (at < line.length) {
+    HEADER.lastIndex = at;
+    if (!HEADER.exec(line)) return false;
+    at = HEADER.lastIndex;
+  }
+  return true;
+}
+
+const headerStart = (line: string, citations: readonly LabelSource[]): boolean => {
+  const bare = line.slice(WRAP.exec(line)![0].length);
+  return citations.some((c) => `[${c.n}] ${citationLabel(c)}`.startsWith(bare));
+};
+
+/**
+ * The answer without the passage headers a small model copies onto its opening lines (F457: "[1] office.txt · part 1"
+ * above the sentence, the same label the chip under it shows). A "[n]" that opens or sits inside a sentence is the
+ * citation and stays; an answer that is nothing but labels is kept whole. While `streaming`, an unfinished first line
+ * that is still the start of one of `citations`' headers is held back, so the label never flashes on screen.
+ */
+export function withoutEchoedLabels(answer: string, opts: { streaming?: boolean; citations?: readonly LabelSource[] } = {}): string {
+  const lines = answer.split("\n");
+  let i = 0;
+  let labels = 0;
+  for (; i < lines.length; i++) {
+    const line = lines[i]!;
+    if (isLabelLine(line)) labels++;
+    else if (line.trim()) break;
+  }
+  const rest = lines.slice(i).join("\n");
+  if (!opts.streaming) return labels && rest.trim() ? rest : answer;
+  const pending = i === lines.length - 1 && headerStart(lines[i]!, opts.citations ?? []);
+  return pending || !rest.trim() ? "" : labels ? rest : answer;
+}
+
 /** Chips to show under an answer: the cited ones first in citation order, then the rest only when nothing was cited. */
 export function citationsForAnswer(answer: string, all: Citation[]): { shown: Citation[]; cited: boolean } {
   const shown = citedNumbers(answer).flatMap((n) => all.filter((c) => c.n === n));

@@ -8,6 +8,7 @@ import { chatModelState, offeredChatModels } from "../extensions/chatModel";
 import { canRemoveExtensions, cancelExtension, installExtension, refreshExtension, removeExtension } from "../extensions/store";
 import { useExtension } from "../extensions/useExtension";
 import { useType } from "../services/type";
+import { chatModelName, packNeedsModel } from "../vault/packOffer";
 
 /* A browser never offers Sharp, so it must not list Sharp's pack. */
 function listedHere(): Extension[] {
@@ -49,9 +50,16 @@ function ExtensionRow({ ext, theme }: { ext: Extension; theme: Theme }) {
   const state = useExtension(ext.id);
   const size = formatModelBytes(ext.bytes);
   const missingModel = state.kind === "ready" && !state.bundled ? absentModel(ext) : null;
-  const line = missingModel ? { key: "extensions.state.installedNoModel", params: { size, model: missingModel } } : vaultRowState(state, size);
-  const action =
-    state.kind === "missing" || state.kind === "failed"
+  /* F456: never offer a pack for a model this browser does not hold. */
+  const neededModel = state.kind === "missing" || state.kind === "failed" ? packNeedsModel(ext.id, (id) => chatModelState(id).kind === "ready") : null;
+  const line = neededModel
+    ? { key: "vault.state.needsModel", params: { model: chatModelName(neededModel) } }
+    : missingModel
+      ? { key: "extensions.state.installedNoModel", params: { size, model: missingModel } }
+      : vaultRowState(state, size);
+  const action = neededModel
+    ? null
+    : state.kind === "missing" || state.kind === "failed"
       ? { id: `ext-download-${ext.id}`, label: t("extensions.downloadNow"), run: () => void installExtension(ext.id).catch(() => undefined), cta: true }
       : state.kind === "downloading"
         ? { id: `ext-cancel-${ext.id}`, label: t("vault.cancel"), run: () => cancelExtension(ext.id), cta: false }
@@ -62,7 +70,7 @@ function ExtensionRow({ ext, theme }: { ext: Extension; theme: Theme }) {
     <View testID={`ext-row-${ext.id}`} style={[styles.row, { borderColor: theme.border, backgroundColor: theme.surface1 }]}>
       <Text style={[type.body, type.strong, { color: theme.text }]}>{t(extKey(ext, "name"))}</Text>
       <Text style={[type.bodySmall, { color: theme.text2 }]}>{t(extKey(ext, "vault"))}</Text>
-      <Text testID={`ext-state-${ext.id}`} style={[type.bodySmall, { color: state.kind === "failed" ? theme.danger : theme.text3 }]}>
+      <Text testID={`ext-state-${ext.id}`} style={[type.bodySmall, { color: state.kind === "failed" && !neededModel ? theme.danger : theme.text3 }]}>
         {t(line.key, line.params)}
       </Text>
       {action ? (
