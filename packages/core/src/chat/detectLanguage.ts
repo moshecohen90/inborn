@@ -27,17 +27,20 @@ export const languageNameOf = (code: string): string => TRANSLATION_LANGUAGES.fi
 
 /* Function words that almost never overlap between the Latin-script launch languages; three hits decide. */
 const STOPWORDS: Record<string, readonly string[]> = {
-  en: ["the", "and", "is", "are", "of", "to", "with", "that", "this", "you", "for", "not", "have", "it"],
-  de: ["der", "die", "das", "und", "ist", "nicht", "ich", "mit", "sie", "ein", "eine", "auf", "für", "wir"],
-  fr: ["le", "la", "les", "et", "est", "une", "des", "pas", "que", "pour", "vous", "nous", "dans", "avec"],
-  es: ["el", "los", "las", "es", "una", "que", "por", "con", "para", "pero", "como", "usted", "está", "muy"],
-  pt: ["o", "os", "uma", "é", "não", "com", "para", "você", "muito", "mas", "isso", "das", "dos", "também"],
+  en: ["the", "and", "is", "are", "of", "to", "with", "that", "this", "you", "for", "not", "have", "it", "what", "who", "how", "why", "which", "can", "does", "my", "your", "please", "was", "did", "won", "yesterday"],
+  de: ["der", "die", "das", "und", "ist", "nicht", "ich", "mit", "sie", "ein", "eine", "auf", "für", "wir", "wer", "wie", "was", "wo", "hat", "gestern", "heißt", "von", "den", "dem", "zu", "mir", "bitte", "diese", "einen", "gib", "mach"],
+  fr: ["le", "la", "les", "et", "est", "une", "des", "pas", "que", "pour", "vous", "nous", "dans", "avec", "qui", "quel", "quelle", "du", "au", "hier", "soir", "je", "tu", "mon", "cet", "cette", "moi"],
+  es: ["el", "los", "las", "es", "una", "que", "por", "con", "para", "pero", "como", "usted", "está", "muy", "qué", "quién", "cuántos", "cuántas", "cuánta", "cuál", "cuándo", "dónde", "hay", "ayer", "haz", "este", "esta", "más", "del", "hoy", "dame"],
+  pt: ["o", "os", "uma", "é", "não", "com", "para", "você", "muito", "mas", "isso", "das", "dos", "também", "quem", "qual", "ontem", "do", "da", "em", "um", "hoje", "deixe", "meu", "minha"],
   it: ["il", "gli", "è", "non", "una", "che", "per", "con", "sono", "anche", "questo", "della", "nel", "come"],
   tr: ["ve", "bir", "bu", "için", "ile", "değil", "çok", "ben", "sen", "var", "gibi", "daha", "ama", "olarak"],
   pl: ["nie", "jest", "się", "na", "to", "że", "jak", "ale", "dla", "tak", "czy", "jego", "przez", "tego"],
   vi: ["và", "của", "là", "không", "có", "được", "cho", "này", "với", "những", "một", "tôi", "bạn", "trong"],
   id: ["dan", "yang", "untuk", "dengan", "tidak", "ini", "itu", "adalah", "dari", "saya", "anda", "akan", "juga", "pada"],
 };
+
+/* Letters and marks one language owns among these; each counts as one more hit, so a short question still decides. */
+const SIGNALS: Record<string, RegExp> = { es: /[¿¡ñ]/, pt: /[ãõ]/, de: /[äöüß]/, fr: /[ùûœë]|\b(?:l|d|qu|j|c)['’]\p{L}/iu, tr: /[şğı]/ };
 
 const DEVANAGARI = /[ऀ-ॿ]/u;
 
@@ -60,6 +63,7 @@ export function detectLanguage(text: string): string | null {
     const set = new Set(list);
     let hits = 0;
     for (const w of words) if (set.has(w)) hits++;
+    if (SIGNALS[code]?.test(text)) hits++;
     if (hits > bestHits) {
       second = bestHits;
       bestHits = hits;

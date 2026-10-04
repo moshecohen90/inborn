@@ -11,13 +11,15 @@ export interface ModelAdviceCardProps {
   theme: Theme;
   /** The offered model is Pro-only and this tier cannot install it: the Install button carries the PRO tag and opens the paywall. */
   locked?: boolean;
+  /** The "best" line names a Pro-only model this tier cannot install: it carries the same PRO tag. */
+  bestLocked?: boolean;
   onSwitch: (id: string) => void;
   onInstall: (id: string) => void;
   onNotNow: () => void;
 }
 
 /** §7.8 "recommended model": one compact card that says in plain words why another model would serve this chat better. */
-export function ModelAdviceCard({ advice, theme, locked, onSwitch, onInstall, onNotNow }: ModelAdviceCardProps) {
+export function ModelAdviceCard({ advice, theme, locked, bestLocked, onSwitch, onInstall, onNotNow }: ModelAdviceCardProps) {
   const type = useType();
   const { t, i18n } = useTranslation();
   // CJK full stops carry their own spacing; a joining space after 。 reads as a typo.
@@ -45,8 +47,13 @@ export function ModelAdviceCard({ advice, theme, locked, onSwitch, onInstall, on
         {reason}
       </Text>
       {advice.best ? (
-        <Pressable testID="model-advice-best" accessibilityRole="button" onPress={() => onInstall(advice.best!.model.id)} hitSlop={6}>
-          <Text style={[type.caption, { color: theme.text2 }]}>{t("chat.modelAdvice.best", { model: modelLabel(advice.best.model.id), reason: bestReason, size: formatModelBytes(advice.best.model.bytes) })}</Text>
+        <Pressable testID="model-advice-best" accessibilityRole="button" onPress={() => onInstall(advice.best!.model.id)} hitSlop={6} style={styles.bestLine}>
+          <Text style={[type.caption, styles.grow, { color: theme.text2 }]}>{t("chat.modelAdvice.best", { model: modelLabel(advice.best.model.id), reason: bestReason, size: formatModelBytes(advice.best.model.bytes) })}</Text>
+          {bestLocked ? (
+            <View testID="model-advice-best-pro" style={[shape.chip, { borderColor: theme.accent, minHeight: 22 }]}>
+              <Text style={[type.monoLabel, { color: theme.accent }]}>{t("vault.pro")}</Text>
+            </View>
+          ) : null}
         </Pressable>
       ) : null}
       <View style={styles.actions}>
@@ -71,6 +78,8 @@ export function ModelAdviceCard({ advice, theme, locked, onSwitch, onInstall, on
 const styles = StyleSheet.create({
   card: { marginHorizontal: 16, marginTop: 8, padding: 12, gap: 8, borderWidth: 1, borderRadius: radius.card },
   actions: { flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: 10 },
+  bestLine: { flexDirection: "row", alignItems: "center", gap: 8 },
+  grow: { flexShrink: 1 },
   btn: { minHeight: 36, paddingHorizontal: 12, borderRadius: radius.control, alignItems: "center", justifyContent: "center", maxWidth: "100%" },
   textBtn: { minHeight: 36, justifyContent: "center", paddingHorizontal: 4 },
 });

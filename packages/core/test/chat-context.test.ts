@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildPrompt, calibrate, composeSystemPrompt, contextLevel, estimateTokens, planSummary, type MemoryFact } from "../src/index";
+import { PLAIN_SAFETY_BASELINE, SAFETY_BASELINE, buildPrompt, calibrate, composeSystemPrompt, contextLevel, estimateTokens, planSummary, turnSystemPrompt, type MemoryFact } from "../src/index";
 
 const msg = (id: string, role: "user" | "assistant", content: string) => ({ id, role, content });
 
@@ -103,5 +103,19 @@ describe("calibrate", () => {
     expect(calibrate(1, 1000)).toBe(3);
     expect(calibrate(1000, 1)).toBeCloseTo(0.5005, 4);
     expect(calibrate(1000, 1, 0.4)).toBeCloseTo(0.33, 5);
+  });
+});
+
+describe("the no-internet sentence (round 127: invented scores and prices)", () => {
+  const system = (tier: "instant" | "fast" | "sharp", photos = false) => turnSystemPrompt({ familySafe: true, tier, photos });
+  it("Fast and Sharp are told they have no live data; Instant is not, so it does not tell a 'hi' about the internet", () => {
+    expect(SAFETY_BASELINE).toContain("You cannot browse the internet or see live data");
+    expect(system("fast").startsWith(SAFETY_BASELINE)).toBe(true);
+    expect(system("sharp").startsWith(SAFETY_BASELINE)).toBe(true);
+    expect(system("instant").startsWith(PLAIN_SAFETY_BASELINE)).toBe(true);
+    expect(system("instant")).not.toContain("internet");
+  });
+  it("a photo turn leaves the line out: the answer is in the photo, and Sharp added 'I cannot browse the internet' to it", () => {
+    for (const tier of ["fast", "sharp"] as const) expect(system(tier, true)).not.toContain("internet");
   });
 });

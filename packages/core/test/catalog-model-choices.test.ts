@@ -62,7 +62,7 @@ describe("modelChoices (the chat's Model sheet, §7.8)", () => {
 });
 
 describe("betterForLanguage (the weak-language notice, §7.8)", () => {
-  const advice = (over: Partial<Parameters<typeof betterForLanguage>[0]>) => betterForLanguage({ current: byId("instant"), use: "chat", languageCode: "he", device: phone(8), installed: [], catalog, ...over });
+  const advice = (over: Partial<Parameters<typeof betterForLanguage>[0]>) => betterForLanguage({ current: byId("instant"), use: "chat", languageCode: "he", device: { ...phone(8), pro: true }, installed: [], catalog, ...over });
 
   it("Instant rates Hebrew none, so it names the best model here that does better", () => {
     const r = advice({})!;
@@ -84,6 +84,11 @@ describe("betterForLanguage (the weak-language notice, §7.8)", () => {
     expect(advice({ use: "chat" })!.better.model.id).toBe("sharp");
     /* `adviseModel` stays silent here because Instant is not weak at chat; the language notice still speaks. */
     expect(advice({ use: "summarize" })!.better.model.id).toBe("sharp");
+  });
+  it("free tier: never names a Pro-only model as the way out", () => {
+    expect(advice({ device: phone(8) })).toBeNull();
+    const r = advice({ device: phone(8), current: byId("instant"), languageCode: "ar" })!;
+    expect(r.better.model.id).toBe("fast");
   });
   it("says nothing when the language is already good, unrated, or nothing here improves on it", () => {
     expect(advice({ languageCode: "en" })).toBeNull();

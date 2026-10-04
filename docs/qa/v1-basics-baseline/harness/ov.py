@@ -1,6 +1,6 @@
-# Appends human grades to overrides.json. Lines: "<set> <model> <id> <sample> <grade> <reason>"
+# Appends human grades to overrides.json (or overrides-after.json with the argument "after"). Lines: "<set> <model> <id> <sample> <grade> <reason>"
 import json, sys, os
-p = os.path.join(os.path.dirname(__file__), "overrides.json")
+p = os.path.join(os.path.dirname(os.path.abspath(__file__)), "overrides-after.json" if "after" in sys.argv[1:] else "overrides.json")
 o = json.load(open(p)) if os.path.exists(p) else {}
 for line in sys.stdin:
     line = line.strip()

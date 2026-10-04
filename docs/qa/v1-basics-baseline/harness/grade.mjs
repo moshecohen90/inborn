@@ -1,18 +1,20 @@
 // First-pass grader: the ground-truth regexes from items-*.json, the answer's language, truncation and loops.
 // A human pass then overrides grades in overrides.json ({ "<set>|<model>|<id>|<sample>": [grade, reason] }), which wins.
-// Usage: node grade.mjs  (rewrites results/*.jsonl in place with grade + reason + graded_by)
+// Usage: node grade.mjs [after]  (rewrites results/*.jsonl, or results/after/*.jsonl with overrides-after.json, in place)
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { chineseScriptOf, scriptOf } from "./lib.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
-const res = join(here, "../results");
+const after = process.argv[2] === "after";
+const res = join(here, after ? "../results/after" : "../results");
 const items = {};
-for (const i of JSON.parse(readFileSync(join(here, "items-a.json"), "utf8"))) items[`A|${i.id}`] = i;
+for (const set of ["A", "A2"]) for (const i of JSON.parse(readFileSync(join(here, `items-${set.toLowerCase()}.json`), "utf8"))) items[`${set}|${i.id}`] = i;
+for (const i of JSON.parse(readFileSync(join(here, "items-b2.json"), "utf8"))) for (const q of i.questions) items[`B2|${i.id}/${q.id}`] = q;
 for (const i of JSON.parse(readFileSync(join(here, "items-b.json"), "utf8"))) for (const q of i.questions) { items[`B|${i.id}/${q.id}`] = q; for (const l of ["es", "ja"]) if (q[l]) items[`B|${i.id}/${q.id}-${l}`] = { ...q }; }
 for (const i of JSON.parse(readFileSync(join(here, "items-c.json"), "utf8"))) items[`C|${i.id}`] = i;
-const overrides = existsSync(join(here, "overrides.json")) ? JSON.parse(readFileSync(join(here, "overrides.json"), "utf8")) : {};
+const overrides = existsSync(join(here, after ? "overrides-after.json" : "overrides.json")) ? JSON.parse(readFileSync(join(here, after ? "overrides-after.json" : "overrides.json"), "utf8")) : {};
 
 /* The same facts asked in Spanish or Japanese, matched in any language the answer may use. */
 var INTL;
@@ -84,15 +86,18 @@ function grade(r) {
 
 INTL = intl();
 for (const k of Object.keys(items)) if (k.match(/-(es|ja)$/)) items[k].must = INTL[k.slice(2).replace(/-(es|ja)$/, "")];
-for (const f of ["a", "b", "c"].flatMap((s) => ["instant", "fast", "sharp"].map((m) => `${s}-${m}.jsonl`))) {
-  const p = join(res, f);
+/* `node grade.mjs exp <file>…`: rubric only, written back, with a one-line tally per file (wording experiments). */
+const exp = process.argv[2] === "exp";
+const files = exp ? process.argv.slice(3) : ["a", "b", "c", "a2", "b2"].flatMap((s) => ["instant", "fast", "sharp"].map((m) => join(res, `${s}-${m}.jsonl`)));
+for (const p of files) {
   if (!existsSync(p)) continue;
   const rows = readFileSync(p, "utf8").trim().split("\n").map((l) => JSON.parse(l));
   for (const r of rows) {
-    const o = overrides[`${r.set}|${r.model}|${r.id}|${r.sample}`];
+    const o = exp ? undefined : overrides[`${r.set}|${r.model}|${r.id}|${r.sample}`];
     const [g, why] = o ?? grade(r);
     Object.assign(r, { grade: g, reason: why, graded_by: o ? "human" : "rubric" });
   }
   writeFileSync(p, rows.map((r) => JSON.stringify(r)).join("\n") + "\n");
+  if (exp) console.log(p.split("/").pop(), "mean", (rows.reduce((a, r) => a + r.grade, 0) / rows.length).toFixed(2), "n", rows.length, "wrong language", rows.filter((r) => r.reason.startsWith("wrong language")).length);
 }
 console.log("graded");
