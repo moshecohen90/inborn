@@ -67,7 +67,7 @@ for (const l of LOCALES) {
 
 /* The site's locale list is not allowed to be its own opinion: packages/i18n decides which languages exist, and a
    language that ships in the app with no page here (or the reverse) is exactly the drift this reads the source for. */
-const i18nSrc = readFileSync(path.join(repoRoot, "packages/i18n/src/index.ts"), "utf8");
+const i18nSrc = ["index.ts", "documentLang.ts"].map((f) => readFileSync(path.join(repoRoot, "packages/i18n/src", f), "utf8")).join("\n");
 const declared = (name) => [...(/\[([^\]]*)\]/.exec(new RegExp(`${name}[^=]*=[^[]*(\\[[^\\]]*\\])`).exec(i18nSrc)?.[1] ?? "")?.[1] ?? "").matchAll(/"([^"]+)"/g)].map((m) => m[1]);
 const launch = declared("LAUNCH_LOCALES");
 const siteCodes = LOCALES.map((l) => l.code);
