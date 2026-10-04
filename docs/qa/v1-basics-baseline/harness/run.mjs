@@ -15,6 +15,8 @@ const EXTRA = process.env.EXTRA_SYSTEM ?? "";
 const FORCE_USE = process.env.FORCE_USE;
 /* SYS_SWAP: JSON [[from, to], ...] applied to the finished system prompt, so a wording variant is measured in its real place. */
 const SWAPS = JSON.parse(process.env.SYS_SWAP ?? "[]");
+/* MAX_TOKENS: a fixed per-turn cap, so a baseline plan can be replayed beside a new one. */
+const capOf = (plan) => Number(process.env.MAX_TOKENS ?? plan.maxTokens);
 const swapped = (system) => SWAPS.reduce((s, [from, to]) => s.split(from).join(to), system) + (process.env.SYS_TAIL ? `\n\n${process.env.SYS_TAIL}` : "");
 
 /* The phone's llama.rn wire shape: text part first, then each photo as image_url (adapters/llamaRn.ts). */
@@ -39,7 +41,7 @@ function chatMessages(history, text, images) {
   const all = [...history, { role: "user", content: text, ...(images ? { images } : {}) }];
   const system = swapped(turnSystemPrompt({ familySafe: true, tier: model, photos: all.some((m) => m.images?.length), persona, chatPrompt: "", memory: [], languageHint: [languageHint(text), EXTRA].filter(Boolean).join(" "), length: plan.instruction }));
   const prompt = buildPrompt({ system, messages: all.map((m, i) => ({ id: String(i), ...m })), nCtx: N_CTX });
-  return { messages: prompt.messages, maxTokens: plan.maxTokens, length: plan.length, use };
+  return { messages: prompt.messages, maxTokens: capOf(plan), length: plan.length, use };
 }
 
 const dataUri = (file) => `data:image/${file.endsWith(".png") ? "png" : "jpeg"};base64,${readFileSync(file).toString("base64")}`;

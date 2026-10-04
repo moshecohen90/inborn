@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { LENGTH_TOKENS, detectExplicitLength, detectUse, isRewriteAsk, planAnswerLength } from "../src/index";
+import { LENGTH_INSTRUCTIONS, LENGTH_TOKENS, detectExplicitLength, detectUse, isRewriteAsk, planAnswerLength } from "../src/index";
 
 /* Round 127 (docs/qa/v1-basics-baseline/ROUND-127.md): the offline baseline found Fast writing no code, rewrites answered
    as chat, and plans squeezed into "a paragraph at most". */
@@ -47,9 +47,20 @@ describe("a rewrite of the user's own text is writing", () => {
     ]) {
       expect(isRewriteAsk(text), text).toBe(true);
       expect(detectUse({ text }), text).toBe("writing");
-      expect(plan(text).length, text).toBe("long");
+      expect(plan(text).length, text).toBe("moderate");
+      expect(plan(text).maxTokens, text).toBe(LENGTH_TOKENS.moderate);
+      expect(plan(text).instruction, text).toBe(LENGTH_INSTRUCTIONS.moderate);
     }
     expect(isRewriteAsk("What is the capital of Australia?")).toBe(false);
+  });
+
+  it("a rewrite is one text the size of the original, not the long plan that drew menus of versions (127b)", () => {
+    const text = 'Make this email more polite: "Send me the report now."';
+    expect(planAnswerLength({ text, use: "writing" }).length).toBe("moderate");
+    expect(planAnswerLength({ text: `${text} Give me a detailed version.`, use: "writing" }).length).toBe("long");
+    expect(planAnswerLength({ text, use: "writing", continuing: true }).length).toBe("long");
+    expect(planAnswerLength({ text, use: "writing", spoken: true }).length).toBe("spoken");
+    expect(plan("Write a letter to my landlord about the broken heater.").length).toBe("long");
   });
 });
 
