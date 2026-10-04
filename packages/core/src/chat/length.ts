@@ -206,6 +206,11 @@ export function planAnswerLength(s: LengthSignals): AnswerLengthPlan {
     length = "short";
     tokens = LENGTH_TOKENS.short;
     instruction = LENGTH_INSTRUCTIONS.short;
+  } else if (!s.spoken && isRewriteAsk(s.text)) {
+    /* A rewrite is one text the size of the user's own; under the long plan the models answered with menus of versions. */
+    length = "moderate";
+    tokens = LENGTH_TOKENS.moderate;
+    instruction = LENGTH_INSTRUCTIONS.moderate;
   } else {
     const base = s.spoken ? "spoken" : isDraftAsk(s.text) ? "long" : USE_LENGTH[s.use];
     const shortenable = base !== "spoken" && SHAPED.includes(s.use) && !isDraftAsk(s.text) && !isExplanatoryAsk(s.text);

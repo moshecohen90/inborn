@@ -43,7 +43,7 @@ The targets the brief named, before → after:
 3. **detectUse and length.** `src/chat/length.ts:50` is the root cause of Fast writing no code: "checks if **a word** is
    a palindrome" was parsed as "answer in about 1 word", so the turn got *"Answer in one to three sentences … about 1
    words"*. Now "a/an" counts only after "in". `src/catalog/recommend.ts:181,195`: "write … function/script/code" is code
-   in 8 languages. `recommend.ts:198` and `length.ts:81,136`: polite/rewrite/reword/fix-my-email is writing (long).
+   in 8 languages. `recommend.ts:198` and `length.ts:81,136`: polite/rewrite/reword/fix-my-email is writing (moderate plan since 127b).
    `length.ts:84,136`: plans, itineraries and step lists get the long plan. Tests: `test/fixes-r127.test.ts`.
 4. **Pro-only advice.** `src/catalog/recommend.ts:103` (`offerOf`, used by `adviseModel` and `betterForLanguage`): the
    offer is the best model the user can get without paying, and a Pro-only top pick rides along only as `best`.
@@ -115,3 +115,33 @@ Almost all of these are n = 2–3, one sample flipping.
 - **Counting** (dogs, cookies) swings between runs on Fast and Sharp. **Handwriting and chalk** need more image tokens
   (E4, out of scope here).
 - **Currency** is added to receipts that print none, on and off at the same prompt.
+
+## 127b: the length plan for rewrites
+
+The Sharp A2 ja drop came from rewrites getting the long plan. Tuning polite cells, all 8 languages, Fast n 3 (24 per
+variant) and Sharp n 2 (16), graded blind by one Sonnet grader (pack and key in the session scratchpad). Variants: **L**
+the round-127 long plan (1024 tokens), **M** the moderate plan rewrites had before round 127 (512), **W1** "Return one
+rewritten version only, about as long as the original, with no options, no list and no commentary." and **W2** "Reply
+with only the rewritten message itself: a single version, about the same length as the original. Do not offer
+alternatives, explain the changes or add notes.", both capped at 3x the quoted text's tokens (floor 128, ceiling 512).
+Usable = one version, the user's voice, right language, the ask and the date kept, nothing invented. Files and unblinded grades: `results/experiments/g1-*`.
+
+| Variant | Fast usable | menus | reversals | commentary | Sharp usable | Sharp ja | Sharp reversals |
+|---|---|---|---|---|---|---|---|
+| L long | 5 / 24 | 8 | 7 | 18 | 12 / 16 | 0 / 2 | 1 |
+| M moderate | 5 / 24 | 1 | 10 | 5 | **15 / 16** | **2 / 2** | 0 |
+| W1 | 3 / 24 | 0 | 8 | 1 | 11 / 16 | 0 / 2 | 0 |
+| W2 | 3 / 24 | 0 | 8 | 1 | 12 / 16 | 0 / 2 | 2 |
+
+Single version in the user's voice and language, ignoring content: Fast 13 / 13 / 15 / 15, Sharp 13 / 16 / 15 / 14.
+Both rewrite wordings remove menus and commentary but do not raise Sharp ja on tuning, and Fast drops 5 → 3 (most Fast
+failures under every plan are role reversals and invented deadlines, a model limit). **Decision: rewrites go back to the
+moderate plan** (`length.ts`, rewrite branch). It equals L on Fast, is best on Sharp, and nearly ends menus. Translate
+answers were single lines in every after-run sample, so translate keeps the long plan.
+
+**A2 ja on Sharp (8 answers, blind):** before round 127 1.88, round 127 1.00, **127b moderate 1.25**. Fact,
+cannot-know and follow-up are back near 2. The polite item is still 0 / 2, both role-reversed (the seller apologizing).
+W1 and W2 were sampled in the same session (1.62 and 1.50, polite 1 / 2 each) but held-out numbers did not choose the plan.
+
+Tests: `test/fixes-r127.test.ts` (rewrites in 8 languages get the moderate plan; an explicit "detailed", "continue"
+and spoken still win). Removing the branch fails 2 tests.
