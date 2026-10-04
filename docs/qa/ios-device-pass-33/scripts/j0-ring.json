@@ -1,0 +1,133 @@
+{
+ "_": "J0 (round 128): the brand ring. Welcome's open ring; Sealed caught while it closes (two shots 300 ms apart) and the final sealed mark; lock; the chat's empty state and header mark. Onboarding goes through 'Start now with Instant'.",
+ "steps": [
+  {
+   "op": "waitFor",
+   "testID": "onboarding-welcome",
+   "timeoutMs": 120000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "onboarding-welcome"
+  },
+  {
+   "op": "screenshot",
+   "name": "J0-01-welcome-open-ring"
+  },
+  {
+   "op": "press",
+   "testID": "onboarding-continue"
+  },
+  {
+   "op": "waitFor",
+   "testID": "onboarding-model",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "value",
+   "testID": "start-now-with"
+  },
+  {
+   "op": "press",
+   "testID": "start-now-with"
+  },
+  {
+   "op": "waitFor",
+   "testID": "onboarding-sealed",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "screenshot",
+   "name": "J0-02-sealed-closing-a"
+  },
+  {
+   "op": "sleep",
+   "ms": 300
+  },
+  {
+   "op": "screenshot",
+   "name": "J0-03-sealed-closing-b"
+  },
+  {
+   "op": "sleep",
+   "ms": 4000
+  },
+  {
+   "op": "value",
+   "testID": "onboarding-sealed"
+  },
+  {
+   "op": "screenshot",
+   "name": "J0-04-sealed-final"
+  },
+  {
+   "op": "press",
+   "testID": "sealed-start"
+  },
+  {
+   "op": "waitFor",
+   "testID": "onboarding-lock",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "onboarding-lock"
+  },
+  {
+   "op": "screenshot",
+   "name": "J0-05-lock-step"
+  },
+  {
+   "op": "dump",
+   "name": "lock-step"
+  },
+  {
+   "op": "press",
+   "testID": "lock-start"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 60000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 120000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "assertText",
+   "text": "INSTANT",
+   "testID": "model-chip"
+  },
+  {
+   "op": "screenshot",
+   "name": "J0-06-chat-empty-state-and-header"
+  },
+  {
+   "op": "dump",
+   "name": "chat-empty"
+  }
+ ]
+}

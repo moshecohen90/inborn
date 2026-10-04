@@ -1,0 +1,63 @@
+lockState at start: passcodeRequired: false
+listing before: 16 lines
+byte copy before 18:56:36:
+  pulled inborn.db 4096 B
+  pulled inborn.db-wal 539752 B
+  pulled documents.json 144 B
+  pulled vault.json 1025 B
+  pulled device-prefs.json 92 B
+  MISSING licence.bin
+ABORT: only 5 of 6 files pulled
+(refused: the six-file set of build 32 no longer matches the container; Moshe's app data was reset at 17:26, licence.bin is absent, and the container now holds Fast, the index model and one PDF. The set was widened to every non-model file)
+
+lockState at start: passcodeRequired: false
+listing before: 16 lines
+byte copy before 18:56:57:
+  pulled inborn.db 4096 B
+  pulled inborn.db-shm 32768 B
+  pulled inborn.db-wal 539752 B
+  pulled documents.json 144 B
+  pulled mutx62cl-1-9g9846vd.pdf 2666167 B
+  pulled vault.json 1025 B
+  pulled device-prefs.json 92 B
+  pulled prefs.json 494 B
+  pulled prefs.bak.json 494 B
+start=18:56:59
+rc=0 end=18:57:20
+after install: com.inbornapp.mobile 1.0.0 33
+listing after: 16 lines; identical to before: yes
+byte copy after:
+  pulled inborn.db 4096 B
+  pulled inborn.db-shm 32768 B
+  pulled inborn.db-wal 539752 B
+  pulled documents.json 144 B
+  pulled mutx62cl-1-9g9846vd.pdf 2666167 B
+  pulled vault.json 1025 B
+  pulled device-prefs.json 92 B
+  pulled prefs.json 494 B
+  pulled prefs.bak.json 494 B
+SURVIVED identical: inborn.db (4096 B)
+SURVIVED identical: inborn.db-shm (32768 B)
+SURVIVED identical: inborn.db-wal (539752 B)
+SURVIVED identical: documents.json (144 B)
+SURVIVED identical: mutx62cl-1-9g9846vd.pdf (2666167 B)
+SURVIVED identical: vault.json (1025 B)
+SURVIVED identical: device-prefs.json (92 B)
+SURVIVED identical: prefs.json (494 B)
+SURVIVED identical: prefs.bak.json (494 B)
+INSTALL-DONE
+
+the phone was unlocked through the install; the twin was uninstalled at 18:56:31, before the store app was launched (18:57:30)
+
+sha256 of the byte copy taken before the install (file names only; the files stay out of the repo):
+9c0866c7a83eb47e489357b10e3b1a62dbb8c6a9b48397f4c09dd0712da4db5a  device-prefs.json
+4dd45a787e4d4e5b242e076834956bbf49cfe8bcf9710aef80250cac21e36856  documents.json
+766f347c39bc6807cebdbf83c85b86168d4605ffb0279a48b09479f5658c2cde  inborn.db
+0d63ac631cc240606752df563f35be075e9540a0fabde05f66b7a60b67d542f6  inborn.db-shm
+e4f6879228783bc2147079bd26518498ad92f9acdd09c609f108f35a2d106539  inborn.db-wal
+a596043619b1fb6468f9670e04c24b5befbe8810508e755829f1400bc5af40b4  mutx62cl-1-9g9846vd.pdf
+9771275f3ba5d6864a1135c1fe9679f2e47089906bc64698b45cd515f6d6c381  prefs.bak.json
+9771275f3ba5d6864a1135c1fe9679f2e47089906bc64698b45cd515f6d6c381  prefs.json
+757f62de00ac3e3540af1a9589f945e9c7ae0f5c2d1d80899e75a88780afb668  vault.json
+
+models/Qwen3.5-2B-Q4_K_M.gguf and models/multilingual-e5-large-instruct-Q6_K.gguf: same size and modification date in the listing before and after (listing identical)

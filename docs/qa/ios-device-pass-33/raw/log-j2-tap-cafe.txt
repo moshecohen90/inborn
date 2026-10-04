@@ -1,0 +1,40 @@
+18:25:30 pushing 35 steps as j2-tap-cafe
+18:25:34 shot J2-02-a-thumbnail-chip
+18:25:37 shot J2-03-question-typed
+18:25:46 shot J2-04-answer-and-banner-area
+18:25:49 ok     0 value      בית קפה הגינה תפריט.jpg Scanned. Run OCR on this phone?
+18:25:49 ok     1 press      attach-mutz2mzj-1-n4vcqikx ← onPress
+18:25:49 ok     2 waitFor    attach-sheet gone
+18:25:49 ok     3 waitFor    pending-images appeared
+18:25:49 ok     4 sleep      1500 ms
+18:25:49 ok     5 waitFor    attached-docs gone
+18:25:49 ok     6 value      Free: one photo per message
+18:25:49 ok     7 screenshot J2-02-a-thumbnail-chip
+18:25:49 ok     8 type       composer-input = 29 chars
+18:25:49 ok     9 sleep      800 ms
+18:25:49 ok    10 screenshot J2-03-question-typed
+18:25:49 ok    11 send       send ← onPress
+18:25:49 ok    12 sleep      3000 ms
+18:25:49 ok    13 waitFor    vision-hold gone
+18:25:49 ok    14 waitFor    user-images appeared
+18:25:49 ok    15 waitFor    assistant-text appeared
+18:25:49 ok    16 waitFor    stop gone
+18:25:49 ok    17 sleep      1500 ms
+18:25:49 ok    18 value      This is a cafe signboard at WulltheCAPE/CAPECAFEHONEY COUR with a chalk-written menu listing items like "Brisb
+18:25:49 ok    19 sleep      2000 ms
+18:25:49 ok    20 screenshot J2-04-answer-and-banner-area
+18:25:49 ok    21 dump       chat-cafe-instant
+18:25:49 ok    22 waitFor    none-matched gone
+18:25:49 ok    23 assertText "Nothing in your documents matched this question" absent
+18:25:49 ok    24 assertText "cannot see" absent
+18:25:49 ok    25 assertText "can't see" absent
+18:25:49 ok    26 assertText "text-based" absent
+18:25:49 ok    27 assertText "Your documents don't mention" absent
+18:25:49 ok    28 assertText "unable to see" absent
+18:25:49 ok    29 assertText "not able to see" absent
+18:25:49 ok    30 assertText "The request specifies" absent
+18:25:49 ok    31 assertText "I will focus" absent
+18:25:49 ok    32 assertText "as an AI" absent
+18:25:49 ok    33 assertText "NOT_FOUND" absent
+18:25:49 ok    34 assertText "<<<" absent
+18:25:49 35 passed, 0 failed, 3 screenshots → <worktree>/docs/qa/ios-device-pass-33/screens

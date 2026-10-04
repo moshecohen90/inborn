@@ -1,0 +1,32 @@
+18:32:03 pushing 28 steps as j4-tap-receipt
+18:32:06 shot J4-02-a-thumbnail-chip
+18:32:20 shot J4-03-answer
+18:32:23 ok     0 value      קבלה מהסופר.png Scanned. Run OCR on this phone?
+18:32:23 ok     1 press      attach-mutzb4e5-2-00qgpa1j ← onPress
+18:32:23 ok     2 waitFor    attach-sheet gone
+18:32:23 ok     3 waitFor    pending-images appeared
+18:32:23 ok     4 sleep      1500 ms
+18:32:23 ok     5 waitFor    attached-docs gone
+18:32:23 ok     6 value      Free: one photo per message
+18:32:23 ok     7 screenshot J4-02-a-thumbnail-chip
+18:32:23 ok     8 type       composer-input = 34 chars
+18:32:23 ok     9 send       send ← onPress
+18:32:23 ok    10 sleep      3000 ms
+18:32:23 ok    11 waitFor    vision-hold gone
+18:32:23 ok    12 waitFor    user-images appeared
+18:32:23 ok    13 waitFor    assistant-text appeared
+18:32:23 ok    14 waitFor    stop gone
+18:32:23 ok    15 sleep      1500 ms
+18:32:23 ok    16 value      The total on this receipt is 15.09.
+18:32:23 ok    17 sleep      2500 ms
+18:32:23 ok    18 screenshot J4-03-answer
+18:32:23 ok    19 dump       chat-receipt-fast
+18:32:23 ok    20 assertText "15.09" present
+18:32:23 ok    21 assertText "Nothing in your documents matched this question" absent
+18:32:23 ok    22 assertText "cannot see" absent
+18:32:23 ok    23 assertText "can't see" absent
+18:32:23 ok    24 assertText "text-based" absent
+18:32:23 ok    25 assertText "Your documents don't mention" absent
+18:32:23 ok    26 assertText "unable to see" absent
+18:32:23 ok    27 assertText "not able to see" absent
+18:32:23 28 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-33/screens

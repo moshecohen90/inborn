@@ -1,0 +1,24 @@
+18:26:02 pushing 21 steps as j6-1-fast-probe
+18:27:08 shot F-01-fast-60s
+18:27:11 ok     0 deeplink   /chats
+18:27:11 ok     1 waitFor    new-chat appeared
+18:27:11 ok     2 press      new-chat ← onPress
+18:27:11 ok     3 waitFor    start-chat appeared
+18:27:11 ok     4 press      start-chat ← onPress
+18:27:11 ok     5 waitFor    composer-input appeared
+18:27:11 ok     6 waitFor    Loading gone
+18:27:11 ok     7 sleep      1500 ms
+18:27:11 ok     8 value      INSTANT
+18:27:11 ok     9 press      model-chip ← onPress
+18:27:11 ok    10 waitFor    model-sheet appeared
+18:27:11 ok    11 sleep      1000 ms
+18:27:11 ok    12 press      model-sheet-download-fast ← onPress
+18:27:11 ok    13 waitFor    model-sheet-confirm-fast appeared
+18:27:11 ok    14 sleep      500 ms
+18:27:11 ok    15 press      model-sheet-go-fast ← onPress
+18:27:11 ok    16 waitFor    model-sheet-progress-fast appeared
+18:27:11 ok    17 value      0% · 0 B of 1.28 GB
+18:27:11 ok    18 sleep      60000 ms
+18:27:11 ok    19 value      52% · 671 MB of 1.28 GB
+18:27:11 ok    20 screenshot F-01-fast-60s
+18:27:11 21 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-33/screens

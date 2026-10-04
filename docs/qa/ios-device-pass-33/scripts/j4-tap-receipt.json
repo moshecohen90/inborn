@@ -1,0 +1,142 @@
+{
+ "_": "J4 part 2: tap the receipt in the library list on Fast (pack installed); 'What is the total on this receipt?' expects 15.09, no 'not found' banner; source chip recorded either way.",
+ "steps": [
+  {
+   "op": "value",
+   "testID": "attach-mutzb4e5-2-00qgpa1j"
+  },
+  {
+   "op": "press",
+   "testID": "attach-mutzb4e5-2-00qgpa1j"
+  },
+  {
+   "op": "waitFor",
+   "testID": "attach-sheet",
+   "gone": true,
+   "timeoutMs": 10000
+  },
+  {
+   "op": "waitFor",
+   "testID": "pending-images",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "waitFor",
+   "testID": "attached-docs",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "value",
+   "testID": "pending-images"
+  },
+  {
+   "op": "screenshot",
+   "name": "J4-02-a-thumbnail-chip"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "What is the total on this receipt?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "waitFor",
+   "testID": "vision-hold",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "waitFor",
+   "testID": "user-images",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "waitFor",
+   "testID": "assistant-text",
+   "timeoutMs": 600000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 600000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "screenshot",
+   "name": "J4-03-answer"
+  },
+  {
+   "op": "dump",
+   "name": "chat-receipt-fast"
+  },
+  {
+   "op": "assertText",
+   "text": "15.09",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "assertText",
+   "text": "Nothing in your documents matched this question",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "cannot see",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "can't see",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "text-based",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "Your documents don't mention",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "unable to see",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "not able to see",
+   "testID": "assistant-text",
+   "absent": true
+  }
+ ]
+}

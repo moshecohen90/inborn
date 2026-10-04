@@ -1,0 +1,39 @@
+18:53:43 launching com.inbornapp.mobile.qa
+18:54:28 pushing 33 steps as j5c2-fast-documents
+18:54:28 inbox missing — launching once to create it
+18:55:23 shot J5c-01-index-card
+18:56:13 shot J5c-02-matching-answer
+18:56:16 ok     0 deeplink   /chats
+18:56:16 ok     1 waitFor    new-chat appeared
+18:56:16 ok     2 press      new-chat ← onPress
+18:56:16 ok     3 waitFor    start-chat appeared
+18:56:16 ok     4 press      start-chat ← onPress
+18:56:16 ok     5 waitFor    composer-input appeared
+18:56:16 ok     6 waitFor    Loading gone
+18:56:16 ok     7 sleep      1500 ms
+18:56:16 ok     8 value      FAST
+18:56:16 ok     9 devPrompt  attach: office-hours.txt
+18:56:16 ok    10 waitFor    attached-docs appeared
+18:56:16 ok    11 sleep      3000 ms
+18:56:16 ok    12 value      office-hours.txt
+18:56:16 ok    13 type       composer-input = 32 chars
+18:56:16 ok    14 send       send ← onPress
+18:56:16 ok    15 waitFor    docs-hold appeared
+18:56:16 ok    16 sleep      800 ms
+18:56:16 ok    17 value      The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact wo
+18:56:16 ok    18 screenshot J5c-01-index-card
+18:56:16 ok    19 press      docs-hold-download ← onPress
+18:56:16 ok    20 sleep      6000 ms
+18:56:16 ok    21 value      Downloading the document index model… 12%. Your message is sent when it's ready.
+18:56:16 ok    22 idleTimer  idle timer disabled: true
+18:56:16 ok    23 waitFor    docs-hold gone
+18:56:16 ok    24 waitFor    assistant-text appeared
+18:56:16 ok    25 waitFor    stop gone
+18:56:16 ok    26 sleep      1500 ms
+18:56:16 ok    27 value      The office phone number is 555-0134, as stated in the provided document [1].
+18:56:16 ok    28 waitFor    citations appeared
+18:56:16 ok    29 value      [1] office-hours.txt · part 1
+18:56:16 ok    30 screenshot J5c-02-matching-answer
+18:56:16 ok    31 assertText "555-0134" present
+18:56:16 ok    32 assertText "office-hours.txt · part" absent
+18:56:16 33 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-33/screens

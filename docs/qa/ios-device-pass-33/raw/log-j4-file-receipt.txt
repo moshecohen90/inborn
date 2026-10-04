@@ -1,0 +1,34 @@
+18:31:40 pushing 30 steps as j4-file-receipt
+18:31:48 shot J4-00-filing-chat
+18:31:53 shot J4-01-library-list
+18:31:56 ok     0 deeplink   /chats
+18:31:56 ok     1 waitFor    new-chat appeared
+18:31:56 ok     2 press      new-chat ← onPress
+18:31:56 ok     3 waitFor    start-chat appeared
+18:31:56 ok     4 press      start-chat ← onPress
+18:31:56 ok     5 waitFor    composer-input appeared
+18:31:56 ok     6 waitFor    Loading gone
+18:31:56 ok     7 sleep      1500 ms
+18:31:56 ok     8 value      FAST
+18:31:56 ok     9 devPrompt  attach: קבלה מהסופר.png
+18:31:56 ok    10 waitFor    pending-images appeared
+18:31:56 ok    11 sleep      2000 ms
+18:31:56 ok    12 screenshot J4-00-filing-chat
+18:31:56 ok    13 dump       J4-00-filing-chat
+18:31:56 ok    14 deeplink   /chats
+18:31:56 ok    15 waitFor    new-chat appeared
+18:31:56 ok    16 press      new-chat ← onPress
+18:31:56 ok    17 waitFor    start-chat appeared
+18:31:56 ok    18 press      start-chat ← onPress
+18:31:56 ok    19 waitFor    composer-input appeared
+18:31:56 ok    20 waitFor    Loading gone
+18:31:56 ok    21 sleep      1500 ms
+18:31:56 ok    22 value      FAST
+18:31:56 ok    23 assertText "FAST" present
+18:31:56 ok    24 waitFor    pending-images gone
+18:31:56 ok    25 press      attach ← onPress
+18:31:56 ok    26 waitFor    attach-sheet appeared
+18:31:56 ok    27 sleep      1200 ms
+18:31:56 ok    28 screenshot J4-01-library-list
+18:31:56 ok    29 dump       J4-01-sheet
+18:31:56 30 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-33/screens

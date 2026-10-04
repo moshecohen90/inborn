@@ -1,0 +1,26 @@
+18:32:30 pushing 22 steps as j5a-fast-spanish
+18:32:30 inbox missing — launching once to create it
+18:32:52 shot J5a-real-madrid
+18:32:55 ok     0 deeplink   /chats
+18:32:55 ok     1 waitFor    new-chat appeared
+18:32:55 ok     2 press      new-chat ← onPress
+18:32:55 ok     3 waitFor    start-chat appeared
+18:32:55 ok     4 press      start-chat ← onPress
+18:32:55 ok     5 waitFor    composer-input appeared
+18:32:55 ok     6 waitFor    Loading gone
+18:32:55 ok     7 sleep      1500 ms
+18:32:55 ok     8 value      FAST
+18:32:55 ok     9 assertText "FAST" present
+18:32:55 ok    10 type       composer-input = 44 chars
+18:32:55 ok    11 send       send ← onPress
+18:32:55 ok    12 waitFor    assistant-text appeared
+18:32:55 ok    13 waitFor    stop gone
+18:32:55 ok    14 sleep      1500 ms
+18:32:55 ok    15 value      No tengo acceso a la información de partidos que hayan ocurrido ayer, ya que soy una inteligencia artificial y
+18:32:55 ok    16 screenshot J5a-real-madrid
+18:32:55 ok    17 assertText "The request specifies" absent
+18:32:55 ok    18 assertText "I will focus" absent
+18:32:55 ok    19 assertText "as an AI" absent
+18:32:55 ok    20 assertText "NOT_FOUND" absent
+18:32:55 ok    21 assertText "<<<" absent
+18:32:55 22 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-33/screens

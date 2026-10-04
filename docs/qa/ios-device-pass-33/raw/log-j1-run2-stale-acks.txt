@@ -1,0 +1,30 @@
+18:30:19 pushing 36 steps as j1-loading-composer
+18:30:20 ok     0 deeplink   /chats
+18:30:20 ok     1 waitFor    new-chat appeared
+18:30:20 ok     2 press      new-chat ← onPress
+18:30:20 ok     3 waitFor    start-chat appeared
+18:30:20 ok     4 press      start-chat ← onPress
+18:30:20 ok     5 waitFor    composer-input appeared
+18:30:20 FAIL   6 assertText assertText "Loading" is not on screen
+18:30:20 ok     7 value      INSTANT
+18:30:20 ok     8 value      
+18:30:20 ok     9 type       composer-input = 19 chars
+18:30:20 FAIL  10 assertText assertText "Loading" is not on screen
+18:30:20 ok    11 value      
+18:30:20 ok    12 value      
+18:30:20 ok    13 screenshot J1-01-typed-while-loading
+18:30:20 ok    14 dump       composer-while-loading
+18:30:20 ok    15 waitFor    Loading gone
+18:30:20 ok    16 sleep      1000 ms
+18:30:20 ok    17 value      
+18:30:20 ok    18 value      
+18:30:20 ok    19 screenshot J1-02-ready-text-kept
+18:30:20 ok    20 send       send ← onPress
+18:30:20 ok    21 waitFor    assistant-text appeared
+18:30:20 ok    22 waitFor    stop gone
+18:30:20 ok    23 sleep      1500 ms
+18:30:20 ok    24 value      Loading is often a fast process, but it can take anywhere from 30 seconds to several minutes depending on the 
+18:30:20 ok    25 screenshot J1-03-after-send-answer
+18:30:20 24 passed, 2 failed, 0 screenshots → <worktree>/docs/qa/ios-device-pass-33/screens
+18:30:20   ! step 6 (assertText): assertText "Loading" is not on screen
+18:30:20   ! step 10 (assertText): assertText "Loading" is not on screen

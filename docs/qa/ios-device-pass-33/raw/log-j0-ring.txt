@@ -1,0 +1,39 @@
+18:20:53 launching com.inbornapp.mobile.qa
+18:21:38 pushing 30 steps as j0-ring
+18:21:42 shot J0-01-welcome-open-ring
+18:21:48 shot J0-02-sealed-closing-a
+18:21:51 shot J0-03-sealed-closing-b
+18:21:58 shot J0-04-sealed-final
+18:22:02 shot J0-05-lock-step
+18:22:18 shot J0-06-chat-empty-state-and-header
+18:22:21 ok     0 waitFor    onboarding-welcome appeared
+18:22:21 ok     1 sleep      1500 ms
+18:22:21 ok     2 value      Nothing leaves this phone. AI that runs on your device. No account, no cloud, and nothing you type ever leaves
+18:22:21 ok     3 screenshot J0-01-welcome-open-ring
+18:22:21 ok     4 press      onboarding-continue ← onPress
+18:22:21 ok     5 waitFor    onboarding-model appeared
+18:22:21 ok     6 sleep      2500 ms
+18:22:21 ok     7 value      Start now with Instant
+18:22:21 ok     8 press      start-now-with ← onPress
+18:22:21 ok     9 waitFor    onboarding-sealed appeared
+18:22:21 ok    10 screenshot J0-02-sealed-closing-a
+18:22:21 ok    11 sleep      300 ms
+18:22:21 ok    12 screenshot J0-03-sealed-closing-b
+18:22:21 ok    13 sleep      4000 ms
+18:22:21 ok    14 value      SEALED · ON-DEVICE From here on, every answer is made on this phone. Start Prove it: turn on Airplane Mode and
+18:22:21 ok    15 screenshot J0-04-sealed-final
+18:22:21 ok    16 press      sealed-start ← onPress
+18:22:21 ok    17 waitFor    onboarding-lock appeared
+18:22:21 ok    18 sleep      1500 ms
+18:22:21 ok    19 value      Lock it? Require a passcode Your passcode opens Inborn. Also hides chats in the app switcher. No biometrics on
+18:22:21 ok    20 screenshot J0-05-lock-step
+18:22:21 ok    21 dump       lock-step
+18:22:21 ok    22 press      lock-start ← onPress
+18:22:21 ok    23 waitFor    composer-input appeared
+18:22:21 ok    24 waitFor    Loading gone
+18:22:21 ok    25 sleep      2000 ms
+18:22:21 ok    26 value      INSTANT
+18:22:21 ok    27 assertText "INSTANT" present
+18:22:21 ok    28 screenshot J0-06-chat-empty-state-and-header
+18:22:21 ok    29 dump       chat-empty
+18:22:21 30 passed, 0 failed, 6 screenshots → <worktree>/docs/qa/ios-device-pass-33/screens
