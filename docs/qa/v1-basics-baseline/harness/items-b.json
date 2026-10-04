@@ -1,0 +1,44 @@
+[
+  {"id":"receipt-real","image":"alexander-s-supermarket-receipt-late-twentieth-cen.jpg","kind":"receipt (real)","questions":[
+    {"id":"read","text":"What is the total on this receipt?","truth":"TOTAL $39.99 (cash 40.00, change .01; subtotal 39.85, tax .14).","must":["39[.,]99"]},
+    {"id":"describe","text":"Which store is this receipt from?","truth":"Alexander's, Hanover St., The \"Super\" Market.","must":["(?i)alexander"]}]},
+  {"id":"receipt-de","image":"kassenbon-kreiller-str-1.jpg","kind":"receipt (real, German)","questions":[
+    {"id":"read","text":"How much did the apricots cost?","truth":"APRIKOSE 1,99 EUR.","must":["1[,.]99"]},
+    {"id":"describe","text":"Which city is this shop in, and how many items are listed?","truth":"München (Munich), 81673; three items (Obazda, Aprikose, Sonnenblumenöl).","must":["(?i)m[üu]nchen|munich","(?i)\\b(3|three)\\b"]}]},
+  {"id":"sign-real","image":"street-sign-in-karakol.jpg","kind":"street sign (real, Cyrillic)","questions":[
+    {"id":"read","text":"What does the sign say?","truth":"КАРАСАЕВ көчөсү (Karasaev Street, Kyrgyz).","must":["(?i)карасаев|karasa[ey]e?v"]},
+    {"id":"describe","text":"What colors are the sign and the wall behind it?","truth":"Sign blue (top) and white (bottom) with white/blue letters; wall yellow/ochre; a turquoise pipe.","must":["(?i)blue","(?i)yellow|orange|ochre"]}]},
+  {"id":"menu-real","image":"menu-of-the-garden-caf-2023-05-21.jpg","kind":"menu (real, chalk)","questions":[
+    {"id":"read","text":"What are the opening hours Monday to Friday?","truth":"8 – 4:30.","must":["(?i)8(:00)?\\s*(am|a\\.m\\.)?\\s*(-|–|to|until)\\s*4[.:]30"]},
+    {"id":"describe","text":"What hot drinks are listed?","truth":"Cappuccino, Latte, Espresso, Flat white, Americano, Macchiato, Mocha, Chai, Hot chocolate, Babyccino, Tea.","must":["(?i)cappuccino|latte|espresso|americano|macchiato|mocha"]}]},
+  {"id":"handwritten-real","image":"handwritten-note-ca-1918-december-dpla-65285abb9b0.jpg","kind":"handwritten note (real)","questions":[
+    {"id":"read","text":"What number is written next to Mr. Thompson?","truth":"4658 (\"Cty #4658\").","must":["4658"]},
+    {"id":"describe","text":"How many names are on this note?","truth":"Four (Thompson, Ames, Rogers, Hazzard).","must":["(?i)\\b(4|four)\\b"]}]},
+  {"id":"label-real","image":"nutrition-facts-label-with-94-saturated-fat-per-se.jpg","kind":"product label (real, angled)","questions":[
+    {"id":"read","text":"How much saturated fat is in one serving?","truth":"19 g (94% DV).","must":["19\\s?g|19 ?グラム|19 ?gramos"],"es":"¿Cuánta grasa saturada hay en una porción?","ja":"1食分の飽和脂肪は何グラムですか？"},
+    {"id":"describe","text":"What kind of product is this?","truth":"Chocolate cake mini donuts with chocolate flavored coating (a packaged snack).","must":["(?i)chocolate"]}]},
+  {"id":"chart-real","image":"titanic-survivor-by-class-bar-charts.jpg","kind":"chart (real)","questions":[
+    {"id":"read","text":"In the chart titled \"class\", which group has the most people?","truth":"Crew (about 885).","must":["(?i)crew"]},
+    {"id":"describe","text":"How many separate charts are in this image?","truth":"Six.","must":["(?i)\\b(6|six)\\b"]}]},
+  {"id":"screenshot-real","image":"wikipedia-screenshot-mobil.jpg","kind":"phone screenshot (real)","questions":[
+    {"id":"read","text":"How many articles does the English Wikipedia have according to this screenshot?","truth":"5 769 000+ articles.","must":["5[ ,.]?769[ ,.]?000|5\\.77 million|5,769"]},
+    {"id":"describe","text":"What time is shown on the phone, and what language is the page in?","truth":"11:10; German (\"Die freie Enzyklopädie\").","must":["11[:.]10","(?i)german|deutsch"]}]},
+  {"id":"dogs-real","image":"dogs-at-marymoor-park-3618931116.jpg","kind":"several animals (real)","questions":[
+    {"id":"count","text":"How many dogs are in this photo?","truth":"Four (merle shepherd in front, tan-and-white bulldog, black-and-white shaggy dog on the right, white curly dog behind the bulldog).","must":["(?i)\\b(4|four|cuatro)\\b|4匹|四匹|4頭"],"es":"¿Cuántos perros hay en esta foto?","ja":"この写真には犬が何匹いますか？"},
+    {"id":"describe","text":"Describe the dog in the front.","truth":"A fluffy merle (grey/black/white with tan) shepherd-type dog, one light blue eye, shaking with fur flying, on gravel.","must":["(?i)gr[ae]y|merle|blue|black|white|fluffy"]}]},
+  {"id":"object-real","image":"polka-dot-mug-unsplash.jpg","kind":"everyday object (real)","questions":[
+    {"id":"count","text":"How many cookies are on the plate?","truth":"Three heart-shaped cookies.","must":["(?i)\\b(3|three)\\b"]},
+    {"id":"describe","text":"What objects are on the table?","truth":"A dark polka-dot cup of black coffee on a white saucer/plate, three heart-shaped cookies, a pair of glasses, printed paper, wooden table.","must":["(?i)glasses|spectacles","(?i)cookie|biscuit"]}]},
+  {"id":"receipt-clean","image":"photo-receipt.png","kind":"receipt (clean synthetic)","questions":[
+    {"id":"read","text":"What is the total on this receipt?","truth":"15.09.","must":["15[.,]09"],"es":"¿Cuál es el total de este recibo?","ja":"このレシートの合計金額はいくらですか？"},
+    {"id":"describe","text":"How many items did I buy, and which was the most expensive?","truth":"Five items; Cheddar 200g at 4.20.","must":["(?i)\\b(5|five)\\b","(?i)cheddar"]}]},
+  {"id":"receipt-blur","image":"receipt-blurred.jpg","kind":"receipt (blurred, rotated copy)","questions":[
+    {"id":"read","text":"What is the total on this receipt?","truth":"15.09.","must":["15[.,]09"]},
+    {"id":"describe","text":"What is the date on this receipt?","truth":"28/09/2026 (10:42).","must":["28[/.-]0?9[/.-]2026|28 Sept|September 28"]}]},
+  {"id":"sign-clean","image":"photo-street-sign.png","kind":"street sign (clean synthetic)","questions":[
+    {"id":"read","text":"What street does the arrow point to, and in which direction?","truth":"Cedar Avenue, to the left.","must":["(?i)cedar","(?i)left"]},
+    {"id":"describe","text":"What color is the sign?","truth":"Green with white letters and border.","must":["(?i)green"]}]},
+  {"id":"letter-angle","image":"letter-at-angle.jpg","kind":"document page at an angle (made, degraded)","questions":[
+    {"id":"read","text":"When is the meeting?","truth":"Thursday 9 April at 7:30 pm (ground-floor laundry room).","must":["(?i)9 april|april 9|9th","7[:.]30"],"es":"¿Cuándo es la reunión?","ja":"会議はいつですか？"},
+    {"id":"describe","text":"Who signed this letter, and what will people vote on?","truth":"Helena Brandt, secretary; bicycle storage and raising the garden fund from 15 to 20 euros per flat per year.","must":["(?i)helena|brandt","(?i)bicycle|bike|garden"]}]}
+]

@@ -1,0 +1,882 @@
+{
+"A|fast|de-cantknow|1": [
+0,
+"invents a win over Leipzig with a date"
+],
+"A|fast|de-followup|1": [
+1,
+"second slogan loses one word only"
+],
+"A|fast|de-followup|2": [
+0,
+"not the second item shortened"
+],
+"A|fast|de-followup|3": [
+0,
+"not the second item shortened"
+],
+"A|fast|de-polite|1": [
+1,
+"polite, invents \"10 Uhr\" and \"heute morgen\", grammar slip"
+],
+"A|fast|de-polite|2": [
+0,
+"asks to confirm a report already received: wrong meaning"
+],
+"A|fast|de-polite|3": [
+1,
+"polite, says \"heute Morgen\" instead of yesterday"
+],
+"A|fast|en-cantknow|3": [
+2,
+"says it cannot know; regex hit was \"who won\" inside the refusal"
+],
+"A|fast|en-code|1": [
+0,
+"no code at all: one-line definition (use=chat, length=moderate \"a paragraph at most\")"
+],
+"A|fast|en-code|2": [
+0,
+"no code at all: one-line definition (use=chat, length=moderate \"a paragraph at most\")"
+],
+"A|fast|en-code|3": [
+0,
+"no code at all: one-line definition (use=chat, length=moderate \"a paragraph at most\")"
+],
+"A|fast|en-fact|3": [
+1,
+"Canberra right, \"located in the Australian outback\" false"
+],
+"A|fast|en-feel|2": [
+1,
+"points an ordinary bad day to a crisis line"
+],
+"A|fast|en-followup|1": [
+0,
+"all three unchanged"
+],
+"A|fast|en-followup|2": [
+0,
+"garbled, not the second shortened"
+],
+"A|fast|en-followup|3": [
+2,
+"second item shortened"
+],
+"A|fast|en-hello|1": [
+1,
+"lists abilities but says it can generate images"
+],
+"A|fast|en-plan|1": [
+0,
+"Todai-ji is in Nara, Shinkyo in Nikko"
+],
+"A|fast|en-plan|3": [
+0,
+"invents JR Kiyosumi Station and Arashio Waterfall; Kinkaku-ji not in Higashiyama"
+],
+"A|fast|en-polite|1": [
+0,
+"role reversed: apologises for its own late report"
+],
+"A|fast|en-summary|2": [
+1,
+"says work runs \"by April\": wrong"
+],
+"A|fast|en-translate|1": [
+1,
+"meaning right, \"mañana mañanera\" unnatural"
+],
+"A|fast|en-translate|2": [
+0,
+"\"salta\" (jumps): wrong verb"
+],
+"A|fast|es-cantknow|3": [
+2,
+"correct refusal in Spanish (first-pass language check misread it as Portuguese)"
+],
+"A|fast|es-fact|2": [
+1,
+"eight right, invents \"the Moon orbits all of them\""
+],
+"A|fast|es-followup|1": [
+2,
+"second item shortened"
+],
+"A|fast|es-followup|2": [
+2,
+"second item shortened"
+],
+"A|fast|es-followup|3": [
+2,
+"second item shortened"
+],
+"A|fast|es-polite|1": [
+1,
+"polite, says \"the report you requested\": roles blurred"
+],
+"A|fast|es-polite|2": [
+0,
+"roles reversed"
+],
+"A|fast|es-polite|3": [
+0,
+"roles reversed"
+],
+"A|fast|fr-cantknow|1": [
+1,
+"refuses, then invents \"the match is today\""
+],
+"A|fast|fr-cantknow|3": [
+0,
+"claims PSG did not play"
+],
+"A|fast|fr-fact|1": [
+1,
+"Loire right, 2,551 km wrong"
+],
+"A|fast|fr-fact|3": [
+1,
+"Loire right, then claims the Seine may be longer"
+],
+"A|fast|fr-followup|1": [
+0,
+"not the second shortened"
+],
+"A|fast|fr-followup|2": [
+2,
+"second item shortened"
+],
+"A|fast|fr-followup|3": [
+2,
+"second item shortened"
+],
+"A|fast|fr-polite|1": [
+1,
+"rewrite present, says \"today\" instead of yesterday"
+],
+"A|fast|fr-polite|3": [
+0,
+"role reversed"
+],
+"A|fast|ja-fact|2": [
+1,
+"Fuji right, height 3736 m wrong"
+],
+"A|fast|ja-followup|1": [
+2,
+"second item shortened"
+],
+"A|fast|ja-followup|2": [
+2,
+"second item shortened"
+],
+"A|fast|ja-followup|3": [
+0,
+"drops the third, nothing shortened"
+],
+"A|fast|ko-cantknow|2": [
+1,
+"no invention, but does not say it cannot know recent results"
+],
+"A|fast|ko-cantknow|3": [
+0,
+"invents a loss"
+],
+"A|fast|ko-followup|1": [
+2,
+"second item shortened"
+],
+"A|fast|ko-followup|2": [
+0,
+"not the second item shortened"
+],
+"A|fast|ko-followup|3": [
+0,
+"not the second item shortened"
+],
+"A|fast|ko-polite|1": [
+0,
+"roles reversed"
+],
+"A|fast|ko-polite|3": [
+1,
+"leaks Chinese 昨日 mid-sentence, last line blurs roles"
+],
+"A|fast|pt-followup|1": [
+0,
+"all three unchanged"
+],
+"A|fast|pt-followup|2": [
+0,
+"all three unchanged"
+],
+"A|fast|pt-followup|3": [
+0,
+"shortened the third, not the second"
+],
+"A|fast|pt-polite|2": [
+1,
+"polite, \"lamento a demora\" blurs roles"
+],
+"A|fast|zh-cantknow|1": [
+1,
+"no invention, asks for details instead of saying it cannot know"
+],
+"A|fast|zh-fact|2": [
+1,
+"Yushan right, invents a higher 4,087 m mountain"
+],
+"A|fast|zh-followup|1": [
+1,
+"second shortened, rewrote the others too"
+],
+"A|fast|zh-followup|2": [
+1,
+"second shortened, in Simplified characters"
+],
+"A|fast|zh-followup|3": [
+2,
+"second item shortened"
+],
+"A|fast|zh-polite|1": [
+0,
+"roles reversed (\"您尚未收到我的報告\")"
+],
+"A|fast|zh-polite|2": [
+0,
+"roles reversed (\"您尚未收到我的報告\")"
+],
+"A|fast|zh-polite|3": [
+0,
+"roles reversed (\"您尚未收到我的報告\")"
+],
+"A|instant|de-cantknow|2": [
+0,
+"invents a loss to Gladbach"
+],
+"A|instant|de-followup|1": [
+0,
+"not the second item shortened"
+],
+"A|instant|de-followup|2": [
+1,
+"picks the second, not shorter"
+],
+"A|instant|de-followup|3": [
+0,
+"not the second item shortened"
+],
+"A|instant|de-polite|1": [
+1,
+"polite, invents \"within half an hour\", grammar errors"
+],
+"A|instant|de-polite|2": [
+0,
+"garbled request"
+],
+"A|instant|de-polite|3": [
+0,
+"repeats the rude original"
+],
+"A|instant|en-explain|2": [
+1,
+"core idea right, one garbled clause (\"savings become harder to buy\")"
+],
+"A|instant|en-explain|3": [
+1,
+"core idea right, muddled second half"
+],
+"A|instant|en-feel|2": [
+1,
+"warm but jumps to therapist"
+],
+"A|instant|en-feel|3": [
+1,
+"sends a bad day to a crisis line, curt"
+],
+"A|instant|en-followup|1": [
+1,
+"shortened all three, second lost its tagline"
+],
+"A|instant|en-followup|2": [
+0,
+"second item not shortened"
+],
+"A|instant|en-followup|3": [
+0,
+"second item not shortened"
+],
+"A|instant|en-hello|1": [
+1,
+"lists real abilities, no internet claim, but introduces itself as Alibaba's Qwen, not the app's assistant"
+],
+"A|instant|en-hello|2": [
+0,
+"says it cannot write stories or code, which it can: wrong self-description"
+],
+"A|instant|en-hello|3": [
+1,
+"vague, names no capability"
+],
+"A|instant|en-plan|1": [
+0,
+"puts Asakusa (Tokyo) in Kyoto"
+],
+"A|instant|en-plan|2": [
+0,
+"invented places (Kyoto Castle, Narumi Bridge, Hakubatsuna, Great Buddha at the Palace)"
+],
+"A|instant|en-plan|3": [
+0,
+"invented places (Kyoto Castle, Narumi Bridge, Hakubatsuna, Great Buddha at the Palace)"
+],
+"A|instant|en-polite|1": [
+0,
+"rewrite inverts the roles or drops the request for the report"
+],
+"A|instant|en-polite|2": [
+0,
+"rewrite inverts the roles or drops the request for the report"
+],
+"A|instant|en-polite|3": [
+0,
+"rewrite inverts the roles or drops the request for the report"
+],
+"A|instant|en-summary|1": [
+0,
+"invents $4 million (truth 2.4 million)"
+],
+"A|instant|en-summary|2": [
+1,
+"one sentence, misses key points"
+],
+"A|instant|en-summary|3": [
+1,
+"invents \"improved seating\"; otherwise right"
+],
+"A|instant|en-translate|1": [
+0,
+"wrong meaning (\"La vía de tren llega\")"
+],
+"A|instant|en-translate|2": [
+1,
+"understandable, wrong verb (deja) and \"el día siguiente\""
+],
+"A|instant|en-translate|3": [
+0,
+"says \"this morning\" (de hoy): wrong meaning"
+],
+"A|instant|es-fact|1": [
+1,
+"says 8 but adds nonsense (one planet = the Sun / extra-terrestrial planets)"
+],
+"A|instant|es-fact|2": [
+1,
+"says 8 but adds nonsense (one planet = the Sun / extra-terrestrial planets)"
+],
+"A|instant|es-followup|1": [
+1,
+"picks the second, unchanged"
+],
+"A|instant|es-followup|2": [
+1,
+"picks the second, unchanged"
+],
+"A|instant|es-followup|3": [
+0,
+"rewrites all three, reordered"
+],
+"A|instant|es-polite|1": [
+0,
+"lecture or invented content instead of a rewrite"
+],
+"A|instant|es-polite|2": [
+0,
+"lecture or invented content instead of a rewrite"
+],
+"A|instant|fr-cantknow|3": [
+1,
+"declines correctly, invents an app name \"Matchsport\""
+],
+"A|instant|fr-fact|1": [
+1,
+"Loire hedged as \"sometimes\", Mississippi detour"
+],
+"A|instant|fr-followup|1": [
+1,
+"picks the second, unchanged"
+],
+"A|instant|fr-followup|2": [
+0,
+"new names, not the second shortened"
+],
+"A|instant|fr-followup|3": [
+0,
+"new names, not the second shortened"
+],
+"A|instant|fr-polite|1": [
+0,
+"critiques the email instead of rewriting it, invents a typo"
+],
+"A|instant|fr-polite|3": [
+0,
+"critiques the email instead of rewriting it, invents a typo"
+],
+"A|instant|ja-fact|1": [
+0,
+"names Fuji but invents a higher mountain at 1,680 m"
+],
+"A|instant|ja-fact|3": [
+1,
+"Fuji, odd name 富士岳"
+],
+"A|instant|ja-followup|1": [
+0,
+"never produced three names, final turn not the shortened second"
+],
+"A|instant|ja-followup|2": [
+0,
+"never produced three names, final turn not the shortened second"
+],
+"A|instant|ja-followup|3": [
+0,
+"never produced three names, final turn not the shortened second"
+],
+"A|instant|ja-polite|1": [
+1,
+"meta preamble; rewrite contradicts itself (needed yesterday / by tomorrow)"
+],
+"A|instant|ja-polite|3": [
+0,
+"rewrite loses the request"
+],
+"A|instant|ko-fact|2": [
+0,
+"mentions Hangul inside invented history (1452 emigration, invented terms)"
+],
+"A|instant|ko-fact|3": [
+0,
+"mentions Hangul inside invented history (1452 emigration, invented terms)"
+],
+"A|instant|ko-followup|1": [
+2,
+"second item shortened"
+],
+"A|instant|ko-followup|2": [
+1,
+"second item unchanged"
+],
+"A|instant|ko-followup|3": [
+0,
+"not the second item"
+],
+"A|instant|ko-polite|2": [
+1,
+"has a rewrite, adds an odd thank-you"
+],
+"A|instant|ko-polite|3": [
+0,
+"no rewrite"
+],
+"A|instant|pt-fact|1": [
+1,
+"Amazonas right, area wrong (truth ~155.9 million ha)"
+],
+"A|instant|pt-fact|3": [
+1,
+"Amazonas right, area wrong (truth ~155.9 million ha)"
+],
+"A|instant|pt-followup|1": [
+0,
+"all three unchanged"
+],
+"A|instant|pt-followup|2": [
+0,
+"all three unchanged"
+],
+"A|instant|pt-followup|3": [
+1,
+"picks the second, not shortened"
+],
+"A|instant|pt-polite|1": [
+0,
+"no faithful polite rewrite"
+],
+"A|instant|pt-polite|2": [
+0,
+"no faithful polite rewrite"
+],
+"A|instant|pt-polite|3": [
+0,
+"no faithful polite rewrite"
+],
+"A|instant|zh-fact|1": [
+1,
+"Yushan right, invented location"
+],
+"A|instant|zh-fact|2": [
+1,
+"Yushan right, invented location"
+],
+"A|instant|zh-followup|1": [
+1,
+"shortened all three"
+],
+"A|instant|zh-followup|2": [
+1,
+"picks the second, not shorter"
+],
+"A|instant|zh-followup|3": [
+1,
+"picks the second, not shorter"
+],
+"A|instant|zh-polite|1": [
+0,
+"role reversed (offers to send it)"
+],
+"A|instant|zh-polite|3": [
+1,
+"advice plus a partial rewrite, wrong recipient"
+],
+"A|sharp|de-cantknow|2": [
+0,
+"invents a match-day claim"
+],
+"A|sharp|de-fact|1": [
+1,
+"Ottawa right, \"Bundesstaat\" and \"östliches Ufer\" wrong"
+],
+"A|sharp|de-fact|2": [
+1,
+"Ottawa right, \"Bundesstaat\" and \"östliches Ufer\" wrong"
+],
+"A|sharp|en-cantknow|2": [
+2,
+"says it cannot know; regex hit was \"who won\" inside the refusal"
+],
+"A|sharp|en-plan|2": [
+1,
+"puts Arashiyama's bamboo in Gion"
+],
+"A|sharp|en-translate|1": [
+1,
+"understandable, \"a las siete mañana del próximo día\" ungrammatical"
+],
+"A|sharp|es-polite|1": [
+1,
+"polite, invents an earlier conversation"
+],
+"A|sharp|es-polite|2": [
+1,
+"polite, \"antes de hoy\" muddled"
+],
+"A|sharp|fr-cantknow|1": [
+1,
+"says it cannot know, after inventing PSG's schedule"
+],
+"A|sharp|ja-cantknow|2": [
+0,
+"claims there was no game"
+],
+"A|sharp|ja-followup|1": [
+1,
+"second slogan only, not shorter"
+],
+"A|sharp|ja-polite|1": [
+0,
+"role reversed: promises to submit the report itself"
+],
+"A|sharp|ja-polite|2": [
+1,
+"polite, says \"needed today\" instead of yesterday"
+],
+"A|sharp|ko-cantknow|2": [
+1,
+"no invented result, but asks for a date instead of saying it cannot know"
+],
+"A|sharp|ko-polite|1": [
+0,
+"role reversed: apologises and promises to send"
+],
+"A|sharp|pt-fact|2": [
+1,
+"Amazonas right, \"62% of the country\" wrong"
+],
+"A|sharp|pt-followup|1": [
+1,
+"rewrote a slogan without the name, unclear which"
+],
+"A|sharp|pt-polite|1": [
+2,
+"polite rewrite, keeps request and yesterday"
+],
+"A|sharp|pt-polite|2": [
+1,
+"polite, invents \"as we discussed\""
+],
+"A|sharp|zh-polite|2": [
+1,
+"polite, moves the deadline to tomorrow and drops \"yesterday\""
+],
+"B|fast|dogs-real/describe|1": [
+1,
+"vague, invents a collar on the front dog"
+],
+"B|fast|label-real/describe|3": [
+1,
+"invents \"94% total carbohydrate\""
+],
+"B|fast|letter-angle/describe|2": [
+1,
+"signer right, names only one of the two votes"
+],
+"B|fast|letter-angle/read-es|3": [
+1,
+"date right, no time"
+],
+"B|fast|letter-angle/read-ja|1": [
+1,
+"date and time right, wrong weekday (火)"
+],
+"B|fast|menu-real/describe|2": [
+1,
+"generic coffee/tea plus espresso; none of the board's other drinks"
+],
+"B|fast|menu-real/read|1": [
+1,
+"says 8-4, drops the :30"
+],
+"B|fast|receipt-blur/read|1": [
+1,
+"invents a £ currency"
+],
+"B|fast|receipt-clean/describe|1": [
+1,
+"right items and Cheddar, invents a £ currency"
+],
+"B|fast|receipt-clean/describe|2": [
+1,
+"right items and Cheddar, invents a £ currency"
+],
+"B|fast|receipt-clean/describe|3": [
+1,
+"right items and Cheddar, invents a £ currency"
+],
+"B|fast|receipt-clean/read-ja|3": [
+1,
+"invents dollars (ドル)"
+],
+"B|fast|receipt-clean/read|3": [
+1,
+"invents a £ currency"
+],
+"B|instant|dogs-real/describe|2": [
+1,
+"colours roughly right, invents sniffing behind it"
+],
+"B|instant|label-real/describe|3": [
+1,
+"invents the text \"Chocolate Cake Mini Bar\""
+],
+"B|instant|letter-angle/describe|1": [
+1,
+"invents \"campaigning since March 2026\""
+],
+"B|instant|menu-real/describe|1": [
+1,
+"real drinks plus invented \"coffee blends\""
+],
+"B|instant|menu-real/describe|3": [
+1,
+"vague, garbled title, names no specific drink but espresso"
+],
+"B|instant|menu-real/read|2": [
+1,
+"8:00-4:30 right, wraps it in invented \"shops and services\""
+],
+"B|instant|menu-real/read|3": [
+1,
+"8:00-4:30 right, garbled café name"
+],
+"B|instant|object-real/describe|1": [
+1,
+"says two cookies and \"black ink\""
+],
+"B|instant|object-real/describe|2": [
+1,
+"says two cookies"
+],
+"B|instant|receipt-clean/read-es|2": [
+1,
+"invents a € currency"
+],
+"B|instant|receipt-clean/read-es|3": [
+1,
+"invents a € currency"
+],
+"B|instant|receipt-clean/read-ja|1": [
+1,
+"invents yen (円)"
+],
+"B|instant|receipt-clean/read-ja|2": [
+1,
+"invents yen (円)"
+],
+"B|instant|receipt-clean/read-ja|3": [
+1,
+"invents yen (円)"
+],
+"B|instant|receipt-clean/read|2": [
+1,
+"invents a £ currency"
+],
+"B|instant|receipt-de/describe|2": [
+1,
+"München and three items, but calls the shop \"OBAZDA store\""
+],
+"B|instant|receipt-de/describe|3": [
+0,
+"says Berlin"
+],
+"B|instant|receipt-de/read|3": [
+1,
+"prices right, then claims they are a combined total"
+],
+"B|instant|receipt-real/describe|1": [
+1,
+"store right, invents \"10 Acre Store\", wrong date and time"
+],
+"B|instant|receipt-real/describe|3": [
+1,
+"store right (misspelt), invents opening hours"
+],
+"B|instant|screenshot-real/describe|2": [
+1,
+"time right, muddled about the page language"
+],
+"B|instant|sign-clean/describe|1": [
+1,
+"names only the border colour"
+],
+"B|instant|sign-clean/read|2": [
+1,
+"adds \"runs horizontally\""
+],
+"B|instant|sign-clean/read|3": [
+1,
+"invents \"(North)\""
+],
+"B|instant|sign-real/describe|1": [
+1,
+"colours right, then says no colour information is given"
+],
+"B|sharp|dogs-real/count-ja|1": [
+1,
+"says 4, then \"maybe 5\""
+],
+"B|sharp|handwritten-real/describe|2": [
+1,
+"count right, misreads Thompson as \"Thornberg\""
+],
+"B|sharp|label-real/describe|1": [
+0,
+"calls it cake mix, an ingredient"
+],
+"B|sharp|menu-real/describe|1": [
+1,
+"real drinks plus invented cortado and oat-milk option"
+],
+"B|sharp|receipt-blur/describe|2": [
+1,
+"right date, adds \"a future date relative to 2024\""
+],
+"B|sharp|receipt-blur/read|1": [
+1,
+"right total, then invents a sum mismatch (24.39)"
+],
+"B|sharp|receipt-clean/describe|1": [
+1,
+"right items, invents $"
+],
+"B|sharp|receipt-clean/describe|2": [
+1,
+"right items, invents £"
+],
+"B|sharp|receipt-clean/read-ja|1": [
+1,
+"invents dollars"
+],
+"B|sharp|receipt-clean/read-ja|2": [
+1,
+"invents yen"
+],
+"B|sharp|sign-real/read|1": [
+1,
+"reads the sign right, then guesses Kazakhstan (it is Kyrgyz, Karakol)"
+],
+"B|sharp|sign-real/read|2": [
+1,
+"reads the sign right, then guesses Kazakhstan (it is Kyrgyz, Karakol)"
+],
+"C|fast|name|3": [
+1,
+"right name, says she \"completed it on October 30th\""
+],
+"C|fast|not-there|2": [
+1,
+"says not mentioned, adds invented reasoning about furnished sales"
+],
+"C|fast|summary|1": [
+1,
+"mostly right, says the landlord may end only for a serious reason"
+],
+"C|fast|summary|3": [
+1,
+"says either party has three months' notice"
+],
+"C|instant|cross-lang|2": [
+1,
+"right periods, muddled registration clause"
+],
+"C|instant|date|2": [
+2,
+"November 3rd moved to the 18th: right (regex missed \"to 18th\")"
+],
+"C|instant|german|1": [
+1,
+"right rule but no deadline date, invents \"no legal deadline\""
+],
+"C|instant|name|3": [
+1,
+"right name, invents Olu's support role for the page"
+],
+"C|instant|not-there|1": [
+1,
+"says not mentioned, then implies parking via \"street cleaning\""
+],
+"C|instant|not-there|2": [
+2,
+"says the documents do not mention parking"
+],
+"C|instant|not-there|3": [
+2,
+"says the documents do not mention parking"
+],
+"C|instant|summary|1": [
+1,
+"notice period right, but says the tenant may end without notice when the tenant is in arrears"
+],
+"C|instant|summary|2": [
+0,
+"says thirty days' notice and \"three months' rent in arrears\": wrong"
+],
+"C|sharp|not-there|1": [
+2,
+"says the documents do not mention parking (rubric's \"is included\" pattern caught the negation)"
+],
+"C|sharp|not-there|2": [
+2,
+"says the documents do not mention parking (rubric's \"is included\" pattern caught the negation)"
+]
+}
