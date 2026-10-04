@@ -10,7 +10,9 @@ import { fileIntake, type DocumentRecord, type IntakeVerdict, type LicenceTier }
  */
 export function planLibraryAttach(tier: LicenceTier, documents: readonly DocumentRecord[], id: string, attachedCount: number): IntakeVerdict {
   const doc = documents.find((d) => d.id === id);
-  return doc ? fileIntake(tier, doc.kind, attachedCount) : { kind: "ok" };
+  /* A picture joins the composer as a photo, under the photo limit rather than the document count (round 128). */
+  if (!doc || doc.kind === "image") return { kind: "ok" };
+  return fileIntake(tier, doc.kind, attachedCount);
 }
 
 /** The line that says what a refused file tap was: the Work formats and the Free per-chat cap have their own sentence. */

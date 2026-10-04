@@ -75,6 +75,7 @@ import {
   type GenOpts,
   type LoopHit,
   isNoSpaceError,
+  type DocumentRecord,
 } from "@inborn/core";
 import { enableVision, getEngine, loadSession, wasStoppedByGuard } from "../engine";
 import { writeDevResult } from "../adapters/devModel";
@@ -114,9 +115,13 @@ import { switchChatModel } from "../extensions/chatModel";
 import { stashHeldTurn, takeHeldTurn } from "../lib/heldTurn";
 import { EMBED_MODEL_ID } from "../documents/embedder";
 import { visionTimeHint } from "../extensions/timeHint";
-import { planDocsTurn, planIndexHold, saysNoneMatched } from "../lib/docsGate";
+import { noPassageOpeners, planDocsTurn, planIndexHold, saysNoneMatched } from "../lib/docsGate";
 import { reindexNotice, type AnsweredMidReindex } from "../lib/reindexNotice";
 import { withPhotos } from "../lib/photoPrompt";
+import { dismissAfterSend } from "../lib/keyboardDismiss";
+import { imageDocuments, photoTextDocs, withPhotoText } from "../documents/photoDocs";
+import { resolveDocUri } from "../documents/files";
+import { canCiteMarkers } from "../documents/library";
 import { ReportSheet } from "../components/chat/ReportSheet";
 import { SafetyCard } from "../components/chat/SafetyCard";
 import { ProTag, Sheet, SheetItem } from "../components/chat/Sheet";
@@ -285,6 +290,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const [preparingPhotos, setPreparingPhotos] = useState(0);
   const pendingImagesRef = useRef(pendingImages);
   pendingImagesRef.current = pendingImages;
+  /* Composer photo → the library picture it came from, whose OCR text the turn may still use. */
+  const photoDocOf = useRef(new Map<string, string>());
   const [readingId, setReadingId] = useState<string | null>(null);
   /** S43: the text under the quick-action sheet and where it came from ("processText" can hand a result back). */
   const [quick, setQuick] = useState<{ text: string; source: "message" | "share" | "processText"; replaceable: boolean } | null>(null);
@@ -459,9 +466,10 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
    * One generation: streams into `targetId` (a fresh pending row, or an existing partial when continuing).
    * `history` is the wire conversation to send; `prefix` is content already on the target row.
    */
-  const generate = async (chatIdNow: string, history: Message[], targetId: string, prefix: string, existingMessageId?: string, continueFrom?: ContinueFrom) => {
+  const generate = async (chatIdNow: string, history: Message[], targetId: string, prefix: string, existingMessageId?: string, continueFrom?: ContinueFrom, photoDocIds: readonly string[] = []) => {
     const s = session.current;
     if (!s) return;
+    dismissAfterSend(Platform.OS, Keyboard);
     setBusy(true);
     const ac = new AbortController();
     abort.current = ac;
@@ -569,7 +577,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       /* Attached documents (§7.3, §8.5): retrieve, fence, cite. */
       if (turn.kind === "retrieve") {
         try {
-          const rag = await docs.buildPrompt(lastUser, history.slice(0, lastUserAt), nCtx, system);
+          const rag = await docs.buildPrompt(lastUser, history.slice(0, lastUserAt), nCtx, system, photoDocIds);
           if (rag.reindexing) setReindexing(rag.reindexing);
           if (rag.lexical) setWordsOnly(true);
           if (rag.prompt.noAnswer) {
@@ -588,6 +596,21 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           console.warn("[documents] search failed", errorText(e));
           await answerWithoutModel("documents.searchFailed");
           return;
+        }
+      }
+      if (turn.kind === "model" && photoDocIds.length) {
+        try {
+          const photoText = await withPhotoText(messages, history[lastUserAt]?.images, photoDocIds, (docIds) =>
+            library.ask(lastUser, { docIds, history: history.slice(0, lastUserAt), nCtx, systemPrompt: system, strict: false, citeMarkers: canCiteMarkers(model.id), openers: noPassageOpeners(t) }),
+          );
+          messages = photoText.messages;
+          if (photoText.rag) {
+            citations = photoText.rag.prompt.citations;
+            sources = photoText.rag.prompt.citations;
+            ragUsed = photoText.rag.prompt.used;
+          }
+        } catch (e: unknown) {
+          console.warn("[documents] photo text", errorText(e));
         }
       }
       const opts: GenOpts = { reasoning: thinkingAvailable && settings.thinking, maxTokens: length.maxTokens, ...(persona.temperature !== undefined ? { temperature: persona.temperature } : {}) };
@@ -843,6 +866,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         if (chat?.summaryUpTo && !rowsRef.current.some((r) => r.id === chat.summaryUpTo)) setChat((c) => (c ? { ...c, summary: undefined, summaryUpTo: undefined } : c));
       }
       const images = pendingImages.map((p) => storedImagePath(p.uri));
+      const photoDocIds = photoTextDocs(pendingImages.map((p) => p.uri), photoDocOf.current, (id) => library.document(id));
       setPendingImages([]);
       const user = await store.appendMessage({ chatId: chatIdNow, role: "user", content: text, ...(images.length ? { images } : {}) });
       userId = user.id;
@@ -852,7 +876,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       follow.current = true;
       requestAnimationFrame(() => list.current?.scrollToEnd({ animated: true }));
       const history: Message[] = wire(rowsRef.current).map(toMessage);
-      await generate(chatIdNow, history, pendingId, "");
+      await generate(chatIdNow, history, pendingId, "", undefined, undefined, photoDocIds);
       if (noSpace.current) throw new Error("no-space");
     } catch (e: unknown) {
       if (noSpace.current || isNoSpaceError(e)) {
@@ -1061,6 +1085,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     const s = session.current;
     const length = planAnswerLength({ text: turn.text, use: detectUse({ text: turn.text, quickAction: turn.action }) });
     const gen = engine.generate(s!, messages, { reasoning: false, maxTokens: length.maxTokens, temperature: 0.3 }, signal);
+    dismissAfterSend(Platform.OS, Keyboard);
     setBusy(true);
     return {
       [Symbol.asyncIterator]: async function* () {
@@ -1194,6 +1219,11 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   };
   /* The count is the sheet's to render; the tap also has to answer for the Work formats already in the library (QA F129). */
   const attachFromLibrary = (id: string) => {
+    const picture = imageDocuments(libraryState.documents.filter((d) => d.id === id));
+    if (picture.length) {
+      setAttachOpen(false);
+      return afterSheetClose(() => void addPhotoDocuments(picture));
+    }
     const verdict = planLibraryAttach(tier, libraryState.documents, id, docs.documents.length);
     if (verdict.kind === "ok") return docs.attach(id);
     setAttachOpen(false);
@@ -1272,7 +1302,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     });
   };
   /* A picture from the file picker or the share sheet is a photo in the composer, under the same limit and the same Send gate (QA F343). */
-  const addPhotoFiles = async (uris: string[]) => {
+  const addPhotoFiles = async (uris: string[], fromDocs: readonly string[] = []) => {
     const room = imageLimit - pendingImagesRef.current.length;
     if (room <= 0) {
       if (tier !== "free") return;
@@ -1283,16 +1313,34 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     const added: PickedImage[] = [];
     setPreparingPhotos((n) => n + take.length);
     try {
-      for (const uri of take) {
+      for (const [i, uri] of take.entries()) {
         const img = await importImageFile(uri);
-        if (img) added.push(img);
-        else flash(t("chat.image.failed"));
+        if (!img) {
+          flash(t("chat.image.failed"));
+          continue;
+        }
+        added.push(img);
+        if (fromDocs[i]) photoDocOf.current.set(img.uri, fromDocs[i]);
       }
       if (added.length) setPendingImages((p) => [...p, ...added]);
     } finally {
       setPreparingPhotos((n) => n - take.length);
     }
   };
+  const addPhotoDocuments = async (pictures: readonly DocumentRecord[]) => {
+    for (const d of pictures) docs.detach(d.id);
+    const files = pictures.filter((d) => !!d.uri);
+    await addPhotoFiles(
+      files.map((d) => resolveDocUri(d.uri!)),
+      files.map((d) => d.id),
+    );
+  };
+  /* Attachments saved before round 128, and any door that still files a picture, reach the composer as photos too. */
+  const attachedPictures = imageDocuments(docs.documents);
+  const attachedPictureIds = attachedPictures.map((d) => d.id).join();
+  useEffect(() => {
+    if (attachedPictures.length) void addPhotoDocuments(attachedPictures);
+  }, [attachedPictureIds]);
   const dropPhoto = (uri: string) => {
     setPendingImages((p) => {
       const rest = p.filter((x) => x.uri !== uri);

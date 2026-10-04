@@ -15,6 +15,7 @@ interface ComposerProps {
   onSend: () => void;
   onStop: () => void;
   busy: boolean;
+  /** Holds Send only: a field that is not editable swallows every tap while the model loads (round 128). */
   disabled?: boolean;
   /** Editing the last user turn: the field carries its text and a cancel affordance (§7.1 edit + regenerate). */
   editing?: boolean;
@@ -124,7 +125,6 @@ export function Composer({ value, onChange, onSend, onStop, busy, disabled, edit
           placeholderTextColor={theme.text3}
           multiline
           {...webField}
-          editable={!disabled}
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
           style={[type.body, styles.input, webInput, { color: theme.text, maxHeight, writingDirection: dir, textAlign: dir === "rtl" ? "right" : "left" }]}

@@ -70,7 +70,8 @@ export function AttachSheet({ visible, onClose, documents, attachedIds, tier, at
       {documents.length ? (
         documents.map((d) => {
           const on = attachedIds.includes(d.id);
-          const ready = indexed(d);
+          /* A picture goes to the composer as a photo, with or without OCR text. */
+          const ready = indexed(d) || d.kind === "image";
           const { locked, moment } = attachRowLock(tier, documents, d.id, attachedCount, on);
           const why: PaywallReason = moment === "office" ? "office" : "document";
           return (
