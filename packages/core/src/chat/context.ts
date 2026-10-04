@@ -1,7 +1,7 @@
 import type { Tier } from "../catalog/types";
 import type { Message } from "../llm/types";
 import { familySafeLine } from "./contentSafety";
-import { SAFETY_BASELINE } from "./personas";
+import { PLAIN_SAFETY_BASELINE, SAFETY_BASELINE } from "./personas";
 import type { ChatMessage, MemoryFact, Persona } from "./types";
 
 /** Tokens kept free for the reply; generation stops there anyway (§10.5 #39: max tokens with "continue"). */
@@ -72,7 +72,7 @@ export interface TurnPromptParts extends SystemPromptParts {
 
 /** Every chat turn's system prompt; the family-safe line, when there is one, is its last sentence. */
 export function turnSystemPrompt(p: TurnPromptParts): string {
-  const body = composeSystemPrompt({ ...p, baseline: p.baseline ?? SAFETY_BASELINE });
+  const body = composeSystemPrompt({ ...p, baseline: p.baseline ?? (p.tier === "instant" || p.photos ? PLAIN_SAFETY_BASELINE : SAFETY_BASELINE) });
   const line = familySafeLine(p);
   return line ? `${body}\n\n${line}` : body;
 }

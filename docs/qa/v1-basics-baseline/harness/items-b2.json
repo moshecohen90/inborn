@@ -1,0 +1,214 @@
+[
+ {
+  "id": "receipt-real",
+  "image": "alexander-s-supermarket-receipt-late-twentieth-cen.jpg",
+  "kind": "receipt (real)",
+  "questions": [
+   {
+    "id": "new",
+    "text": "How much did the Kleenex pocket pack cost?",
+    "truth": "$1.29 (KLEENEX POCKET 1.29*).",
+    "must": [
+     "1[.,]29"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "receipt-de",
+  "image": "kassenbon-kreiller-str-1.jpg",
+  "kind": "receipt (real, German)",
+  "questions": [
+   {
+    "id": "new",
+    "text": "Which item on this receipt is the most expensive?",
+    "truth": "OBAZDA, 2,29 EUR.",
+    "must": [
+     "(?i)obazda",
+     "2[.,]29"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "sign-real",
+  "image": "street-sign-in-karakol.jpg",
+  "kind": "street sign (real, Cyrillic)",
+  "questions": [
+   {
+    "id": "new",
+    "text": "What is on the wall to the left of the sign?",
+    "truth": "A turquoise/green drainpipe (and a bent metal hook).",
+    "must": [
+     "(?i)pipe|drain|gutter|tube"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "menu-real",
+  "image": "menu-of-the-garden-caf-2023-05-21.jpg",
+  "kind": "menu (real, chalk)",
+  "questions": [
+   {
+    "id": "new",
+    "text": "What website address is written on the board?",
+    "truth": "www.thegardencafehove.co.uk",
+    "must": [
+     "(?i)gardencafe|garden ?cafe ?hove"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "handwritten-real",
+  "image": "handwritten-note-ca-1918-december-dpla-65285abb9b0.jpg",
+  "kind": "handwritten note (real)",
+  "questions": [
+   {
+    "id": "new",
+    "text": "Which department is Mr. Rogers in?",
+    "truth": "Finance Dept. (#39).",
+    "must": [
+     "(?i)financ"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "label-real",
+  "image": "nutrition-facts-label-with-94-saturated-fat-per-se.jpg",
+  "kind": "product label (real, angled)",
+  "questions": [
+   {
+    "id": "new",
+    "text": "How much sodium is in one serving?",
+    "truth": "400 mg (17% DV).",
+    "must": [
+     "400\\s?mg"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "chart-real",
+  "image": "titanic-survivor-by-class-bar-charts.jpg",
+  "kind": "chart (real)",
+  "questions": [
+   {
+    "id": "new",
+    "text": "In the chart titled \"survived\", roughly how many people did not survive?",
+    "truth": "About 1,490 (bar just under 1,500).",
+    "must": [
+     "1[ ,.]?[45]\\d\\d|1\\.5 ?(thousand|k)|1500|1,500"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "screenshot-real",
+  "image": "wikipedia-screenshot-mobil.jpg",
+  "kind": "phone screenshot (real)",
+  "questions": [
+   {
+    "id": "new",
+    "text": "How many articles does the French Wikipedia have according to this screenshot?",
+    "truth": "2 065 000+ articles.",
+    "must": [
+     "2[ ,.]?065[ ,.]?000|2\\.065 million|2,065"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "dogs-real",
+  "image": "dogs-at-marymoor-park-3618931116.jpg",
+  "kind": "several animals (real)",
+  "questions": [
+   {
+    "id": "new",
+    "text": "What is the ground in this photo made of?",
+    "truth": "Gravel / small grey stones.",
+    "must": [
+     "(?i)gravel|stone|pebble|rock"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "object-real",
+  "image": "polka-dot-mug-unsplash.jpg",
+  "kind": "everyday object (real)",
+  "questions": [
+   {
+    "id": "new",
+    "text": "What is lying to the left of the plate?",
+    "truth": "A pair of glasses (eyeglasses).",
+    "must": [
+     "(?i)glasses|spectacles"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "receipt-clean",
+  "image": "photo-receipt.png",
+  "kind": "receipt (clean synthetic)",
+  "questions": [
+   {
+    "id": "new",
+    "text": "How much did the sourdough bread cost?",
+    "truth": "3.80.",
+    "must": [
+     "3[.,]80?\\b"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "receipt-blur",
+  "image": "receipt-blurred.jpg",
+  "kind": "receipt (blurred, rotated copy)",
+  "questions": [
+   {
+    "id": "new",
+    "text": "What is the name of the shop?",
+    "truth": "Greenleaf Market.",
+    "must": [
+     "(?i)greenleaf"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "sign-clean",
+  "image": "photo-street-sign.png",
+  "kind": "street sign (clean synthetic)",
+  "questions": [
+   {
+    "id": "new",
+    "text": "What can you see behind the sign?",
+    "truth": "Blurred buildings (a beige block with windows, a grey block) under a blue sky.",
+    "must": [
+     "(?i)building|sky"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "letter-angle",
+  "image": "letter-at-angle.jpg",
+  "kind": "document page at an angle (made, degraded)",
+  "questions": [
+   {
+    "id": "new",
+    "text": "How much is the garden fund now, and how much would it become?",
+    "truth": "15 euros per flat per year now, raised to 20 euros.",
+    "must": [
+     "15",
+     "20"
+    ]
+   }
+  ]
+ }
+]

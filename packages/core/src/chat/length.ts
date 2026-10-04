@@ -46,7 +46,9 @@ const NUMBER_WORDS: Record<string, number> = { one: 1, two: 2, three: 3, four: 4
 const WORD_UNITS = "words?|wörter|wort|worte|palabras?|mots?|palavras?|単語|語|단어|字|词|מילים|מילה";
 const SENTENCE_UNITS = "sentences?|sätze|satz|frases?|phrases?|文|문장|句子|句|משפטים|משפט";
 const PARAGRAPH_UNITS = "paragraphs?|absätze|absatz|párrafos?|paragraphes?|parágrafos?|段落|문단|פסקאות|פסקה";
-const countRe = (units: string) => new RegExp(`(?:^|[^\\w])(\\d{1,4}|${Object.keys(NUMBER_WORDS).join("|")})[\\s-]{0,3}(?:${units})`, "i");
+/* "a"/"an" count only after "in": "checks if a word is a palindrome" is not a one-word answer (round 127: Fast wrote no code). */
+const NUMERALS = Object.keys(NUMBER_WORDS).filter((w) => w !== "a" && w !== "an").join("|");
+const countRe = (units: string) => new RegExp(`(?:^|[^\\w])(\\d{1,4}|${NUMERALS})[\\s-]{0,3}(?:${units})|\\bin (an?)[\\s-]{1,3}(?:${units})`, "i");
 const COUNT_RES: readonly (readonly [RegExp, number])[] = [
   [countRe(WORD_UNITS), 1],
   [countRe(SENTENCE_UNITS), 25],
@@ -75,6 +77,12 @@ const SHORT_MARKS =
 const DRAFT_VERBS = /\b(?:write|draft|compose|rewrite|craft)\b|schreib|verfass|entwirf|escrib|redact|redacta|écri|rédig|escrev|redij|書いて|作成|작성|써줘|撰写|写一|写封|כתוב|תכתוב|כתבי|נסח/i;
 const DRAFT_NOUNS =
   /\b(?:letter|e-?mail|message|memo|note|essay|article|blog|post|story|poem|song|speech|report|proposal|resume|cv|itinerary|recipe|announcement|invitation|complaint|review|readme|cover letter)\b|brief|mail|aufsatz|bericht|nachricht|carta|correo|ensayo|informe|mensaje|lettre|courriel|essai|rapport|mensagem|redação|relatório|手紙|メール|作文|편지|이메일|보고서|信|邮件|文章|מכתב|מייל|הודעה|חיבור|דוח/i;
+/* "Make this email more polite", "rewrite …": the user's own text comes back reworked, so it is writing, not a chat reply. */
+const REWRITE_MARKS =
+  /\b(?:more (?:polite|formal|friendly|professional)|politer|rewrite|reword|rephrase|proofread|fix (?:my|this) (?:e-?mail|message|text|letter))\b|höflicher|freundlicher formulier|umformulier|umschreib|überarbeit|más (?:educad|amable|formal|cortés)|reescrib|reformul|plus (?:poli|courtois|formel)|mais (?:educad|formal|gentil)|reescrev|丁寧に|書き直|言い換え|정중하게|공손하게|다시 써|고쳐 써|有禮貌|有礼貌|改寫|改写|潤飾|润色/i;
+/* A plan, an itinerary or a list of steps is one line long and many lines to answer. */
+const PLAN_MARKS =
+  /\bplan (?:a|an|my|the|out)\b|\bitinerar|\bschedule for\b|\bstep[- ]by[- ]step\b|\b(?:list|give me) (?:the |all )?steps\b|\bone line (?:per|for each)\b|plane? (?:meine|eine|einen)|reiseplan|wochenplan|planifi|itinéraire|une ligne par|planea|planifica|itinerario|una línea por|planeje|roteiro|uma linha por|計画を立て|スケジュールを|日程を|1日1行|계획을 짜|일정을 짜|하루에 한 줄|規劃|规划|行程|每天一行/i;
 const TRANSLATE_MARKS = /\btranslat(?:e|ion)\b|übersetz|traduc|traduz|traduis|翻訳|번역|翻译|תרגם|תרגמי|לתרגם/i;
 
 /* F39: an explanatory ask — a how-to, a reason, a comparison, a procedure — is one line long but its answer is not, so it
@@ -124,8 +132,11 @@ export function detectExplicitLength(text: string): ExplicitLength | null {
   return null;
 }
 
-/** "Write me a letter …", "translate this": work whose length belongs to the work, not to the request. */
-export const isDraftAsk = (text: string): boolean => (DRAFT_VERBS.test(text) && DRAFT_NOUNS.test(text)) || TRANSLATE_MARKS.test(text);
+/** "Write me a letter …", "translate this", "plan my week": work whose length belongs to the work, not to the request. */
+export const isDraftAsk = (text: string): boolean => (DRAFT_VERBS.test(text) && DRAFT_NOUNS.test(text)) || TRANSLATE_MARKS.test(text) || PLAN_MARKS.test(text) || REWRITE_MARKS.test(text);
+
+/** The user hands over their own text to be reworked ("make this email more polite"). */
+export const isRewriteAsk = (text: string): boolean => REWRITE_MARKS.test(text);
 
 const wordsIn = (text: string): number => text.trim().split(/\s+/).filter(Boolean).length;
 

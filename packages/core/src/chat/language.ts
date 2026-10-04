@@ -1,4 +1,5 @@
 /** Script / language hints (§7.8 full RTL, §10.5 #40 wrong-language answers). Pure string inspection, no network. */
+import { detectLanguage, languageNameOf } from "./detectLanguage";
 
 export type Direction = "ltr" | "rtl";
 
@@ -38,14 +39,18 @@ export function scriptOf(text: string): Script {
       best = k;
     }
   }
-  return best;
+  /* Japanese often has more kanji than kana ("日本で一番高い山は何ですか"), and Chinese never uses kana. */
+  return best === "cjk" && counts.japanese > 0 ? "japanese" : best;
 }
 
 const LANGUAGE_BY_SCRIPT: Partial<Record<Script, string>> = { hebrew: "Hebrew", arabic: "Arabic", cyrillic: "Russian", greek: "Greek", japanese: "Japanese", korean: "Korean", cjk: "Chinese" };
 
-/** Explicit instruction for scripts small models drift away from; empty for Latin (the baseline already says "same language"). */
+const HINT_NAME: Readonly<Record<string, string>> = { "zh-Hans": "Simplified Chinese", "zh-Hant": "Traditional Chinese" };
+
+/** Explicit instruction naming the user's language; empty for English and for text too short to tell (the baseline already says "same language"). */
 export function languageHint(userText: string): string {
-  const name = LANGUAGE_BY_SCRIPT[scriptOf(userText)];
+  const code = detectLanguage(userText);
+  const name = code && code !== "en" ? (HINT_NAME[code] ?? languageNameOf(code)) : LANGUAGE_BY_SCRIPT[scriptOf(userText)];
   return name ? `The user writes in ${name}. Answer in ${name}.` : "";
 }
 
@@ -59,9 +64,9 @@ const CODE_BY_SCRIPT: Partial<Record<Script, string>> = { hebrew: "he", arabic: 
 
 export const languageCodeOf = (text: string): string | null => CODE_BY_SCRIPT[scriptOf(text)] ?? null;
 
-/* Simplified and Traditional forms of eighty very common characters, paired by index; a Han text uses one side or the other. */
-const SIMPLIFIED_FORMS = "们这国说为时会个来对学发点无长东车门马鸟见语请谢关开书电话买卖从众与业义习乡写农让认识议论讲变边过进远连运还达适选经两确气么儿万号岁员图团园处备头医应战报术体湾";
-const TRADITIONAL_FORMS = "們這國說為時會個來對學發點無長東車門馬鳥見語請謝關開書電話買賣從眾與業義習鄉寫農讓認識議論講變邊過進遠連運還達適選經兩確氣麼兒萬號歲員圖團園處備頭醫應戰報術體灣";
+/* Simplified and Traditional forms of about a hundred and twenty very common characters, paired by index; a Han text uses one side or the other. */
+const SIMPLIFIED_FORMS = "们这国说为时会个来对学发点无长东车门马鸟见语请谢关开书电话买卖从众与业义习乡写农让认识议论讲变边过进远连运还达适选经两确气么儿万号岁员图团园处备头医应战报术体湾谁赢赛吗给钱网脑机欢听读宝飞云鱼华线红绿热检验价单几坏旧亲爱梦奖队场戏视";
+const TRADITIONAL_FORMS = "們這國說為時會個來對學發點無長東車門馬鳥見語請謝關開書電話買賣從眾與業義習鄉寫農讓認識議論講變邊過進遠連運還達適選經兩確氣麼兒萬號歲員圖團園處備頭醫應戰報術體灣誰贏賽嗎給錢網腦機歡聽讀寶飛雲魚華線紅綠熱檢驗價單幾壞舊親愛夢獎隊場戲視";
 const SIMPLIFIED_ONLY = new Set([...SIMPLIFIED_FORMS]);
 const TRADITIONAL_ONLY = new Set([...TRADITIONAL_FORMS]);
 

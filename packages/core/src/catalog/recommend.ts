@@ -3,6 +3,7 @@ import { TIER_ORDER, defaultTier, fitsRoom, maxTier, ramFit, roomNote, type Devi
 import { tooSlowHere } from "./speed";
 import { ENGINE_VERSION, type CatalogModel, type LanguageTier, type UseCase, type UseTier } from "./types";
 import type { QuickActionId } from "../chat/quickActions";
+import { isRewriteAsk } from "../chat/length";
 
 /** §7.8 recommendation rule: by use, by language, on this device. Pure; the vault and the chat both call it. */
 export interface RecommendInput {
@@ -98,6 +99,15 @@ export interface ModelAdvice {
   key: string;
 }
 
+/** `better` is what this user can get without paying; a Pro-only top pick may only ride along as `best`. */
+function offerOf(candidates: readonly ModelRecommendation[], pro: boolean | undefined): { better: ModelRecommendation; best?: ModelRecommendation } | null {
+  const reachable = pro ? candidates : candidates.filter((r) => !r.model.proOnly);
+  const better = reachable.find((r) => r.reason.installed) ?? reachable[0];
+  if (!better) return null;
+  const top = candidates[0]!;
+  return top.model.id !== better.model.id && !top.reason.installed ? { better, best: top } : { better };
+}
+
 /**
  * The chat card (§7.8): only when the loaded model is weak for the language (basic / none) or for the use (weak), and another
  * model on this device does better on that dimension without doing worse on the other. Null when nothing better exists here.
@@ -117,10 +127,9 @@ export function adviseModel(input: AdviceInput): ModelAdvice | null {
     if (dl < 0 || du < 0) return false;
     return (langWeak && dl > 0) || (useWeak && du > 0);
   });
-  if (!candidates.length) return null;
-  const better = candidates.find((r) => r.reason.installed) ?? candidates[0]!;
-  const top = candidates[0]!;
-  const best = top.model.id !== better.model.id && !top.reason.installed ? top : undefined;
+  const offer = offerOf(candidates, input.device.pro);
+  if (!offer) return null;
+  const { better, best } = offer;
   /* Only the weak dimension is a reason; "good → best" on the other one is a bonus the card does not preach about. */
   const language = langWeak && languageCode && curLang && better.reason.languageTier && languageRank(better.reason.languageTier) > languageRank(curLang) ? { code: languageCode, from: curLang, to: better.reason.languageTier } : undefined;
   const useGain = useWeak && useRank(better.reason.useTier) > useRank(curUse) ? { use, from: curUse, to: better.reason.useTier } : undefined;
@@ -168,6 +177,10 @@ const CODE_MARKS: readonly RegExp[] = [
 ];
 const MATH_MARKS: readonly RegExp[] = [/\b(?:solve|equation|integral|derivative|probability|theorem|prove|logarithm|matrix)\b/i, /\d\s*[+\-*/×÷^]\s*\d+\s*=/, /\\(?:frac|int|sum|sqrt)\b/, /\b\d+\s*[+\-*/×÷]\s*\d+\s*[+\-*/×÷=]/];
 
+/* "Write a Python function that…" names one code word, which `looksLikeCode` (two marks) rightly reads as prose. */
+const CODE_ASK =
+  /\b(?:write|create|make|give me|implement|build)\b[^.?!\n]{0,40}\b(?:function|script|code|program|class|regex|query|snippet)\b|(?:schreib|erstell)[^.?!\n]{0,40}(?:funktion|skript|code|programm)|(?:escrib|crea|haz)[^.?!\n]{0,40}(?:función|script|código|programa)|(?:écri|crée|fais)[^.?!\n]{0,40}(?:fonction|script|code|programme)|(?:escrev|cri[ae]|faça)[^.?!\n]{0,40}(?:função|script|código|programa)|(?:関数|スクリプト|コード|プログラム)[^。？\n]{0,20}(?:書い|作っ|作成)|(?:함수|스크립트|코드|프로그램)[^.?\n]{0,20}(?:작성|짜|만들|써)|(?:寫|写|編寫|编写)[^。？\n]{0,20}(?:函數|函数|程式|程序|代碼|代码|腳本|脚本)/i;
+
 export const looksLikeCode = (text: string): boolean => /```/.test(text) || CODE_MARKS.filter((re) => re.test(text)).length >= 2;
 export const looksLikeMath = (text: string): boolean => MATH_MARKS.some((re) => re.test(text));
 
@@ -179,9 +192,10 @@ const ICON_USE: Record<string, UseCase> = { pen: "writing", globe: "translate", 
 export function detectUse(s: UseSignals): UseCase {
   if (s.hasDocuments) return "documents";
   if (s.quickAction) return QUICK_USE[s.quickAction];
-  if (looksLikeCode(s.text)) return "code";
+  if (looksLikeCode(s.text) || CODE_ASK.test(s.text)) return "code";
   if (looksLikeMath(s.text)) return "math";
   if (s.dictated) return "voice";
+  if (isRewriteAsk(s.text)) return "writing";
   if (s.personaId && PERSONA_USE[s.personaId]) return PERSONA_USE[s.personaId]!;
   if (s.personaIcon && ICON_USE[s.personaIcon]) return ICON_USE[s.personaIcon]!;
   return "chat";
@@ -281,8 +295,7 @@ export function betterForLanguage(input: AdviceInput): LanguageUpgrade | null {
   const from = languageTierOf(current, languageCode);
   if (from !== "none" && from !== "basic") return null;
   const candidates = rankModels(input).filter((r) => r.model.id !== current.id && languageRank(r.reason.languageTier ?? undefined) > languageRank(from));
-  if (!candidates.length) return null;
-  const better = candidates.find((r) => r.reason.installed) ?? candidates[0]!;
-  const top = candidates[0]!;
-  return { code: languageCode, from, better, ...(top.model.id !== better.model.id && !top.reason.installed ? { best: top } : {}) };
+  const offer = offerOf(candidates, input.device.pro);
+  if (!offer) return null;
+  return { code: languageCode, from, better: offer.better, ...(offer.best ? { best: offer.best } : {}) };
 }

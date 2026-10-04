@@ -83,7 +83,7 @@ describe("recommendModel (spec §7.8: use + language + device)", () => {
 });
 
 describe("adviseModel (the chat card)", () => {
-  const advise = (currentId: string, over: Partial<RecommendInput>) => adviseModel({ ...input(over), current: byId(currentId) });
+  const advise = (currentId: string, over: Partial<RecommendInput>) => adviseModel({ ...input({ device: phone(8, true), ...over }), current: byId(currentId) });
   it("Hebrew on Instant with Fast installed: Fast is none too now, so the offer is Sharp (basic: better, not fluent); no 'best' line because nothing here is good", () => {
     const a = advise("instant", { languageCode: "he", installed: ["instant", "fast"] })!;
     expect(a.better.model.id).toBe("sharp");
@@ -157,6 +157,20 @@ describe("adviseModel (the chat card)", () => {
     expect(a.language?.to).toBe("basic");
     expect(a.use?.to).toBe("good");
     expect(a.key).toBe("instant>sharp|lang:he|use:code");
+  });
+  it("free tier: the offer is the best model this user can get without paying; a Pro-only pick only rides along as `best`", () => {
+    /* The 28.9 iPhone pass: documents on Instant, free, 6 GB. The card offered Install SHARP as its only button. */
+    const a = advise("instant", { use: "documents", device: phone(6), installed: ["instant"] })!;
+    expect(a.better.model.id).toBe("fast");
+    expect(a.better.model.proOnly).toBe(false);
+    expect(a.best?.model.id).toBe("sharp");
+    expect(a.best?.model.proOnly).toBe(true);
+    expect(advise("instant", { use: "documents", device: phone(6, true), installed: ["instant"] })!.better.model.id).toBe("sharp");
+    /* Only Pro models lift Hebrew or German past Fast, so a free user gets no card rather than a paywall as the only offer. */
+    expect(advise("instant", { languageCode: "he", device: phone(8), installed: ["instant", "fast"] })).toBeNull();
+    expect(advise("fast", { languageCode: "de", device: phone(8), installed: ["fast"] })).toBeNull();
+    /* A Pro model left on disk after a downgrade is not reachable either. */
+    expect(advise("fast", { use: "code", device: phone(8), installed: ["fast", "sharp"] })).toBeNull();
   });
   it("no advice for an import or with no model loaded", () => {
     expect(adviseModel({ ...input({ languageCode: "he" }), current: { ...byId("instant"), id: "import:x.gguf", fit: undefined } })).toBeNull();

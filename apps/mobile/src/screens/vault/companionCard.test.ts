@@ -103,7 +103,8 @@ describe("F346 · 'install X' lands on X's card", () => {
     /* Round 117: the pack offered is the selected model's own, and the way out opens on the file it still needs. */
     expect(chat).toContain("afterSheetClose(() => onOpenVault?.(ownPack));");
     expect(chat).toContain("onOpenVault?.(companion ? (ownPack ?? seerPath?.pack ?? \"\") : (seerPath?.missing[0]?.id ?? seer))");
-    expect(chat).toContain("onOpenVault?.(adviceShown.better.model.id);");
+    /* Round 127: the advice card's Install and its Pro "best" line each open the model they name. */
+    expect(chat).toMatch(/onInstall=\{\(id\) => \{\s*snoozeAdvice\(adviceShown\.key\);\s*onOpenVault\?\.\(id\);/);
     /* Round 93: the index model is installed from the chat's hold card itself, which works on the web too. */
     expect(chat).toContain("<ExtensionHoldCard extensionId={EMBED_MODEL_ID}");
     expect(src("../../components/chat/ExtensionHoldCard.tsx")).toContain("installExtension(ext.id)");

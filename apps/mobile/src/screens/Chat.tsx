@@ -1114,8 +1114,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       .entries()
       .filter((e) => e.model.role === "chat" && !e.stray && e.state.kind === "ready")
       .map((e) => e.model.id);
-    return adviseModel({ current: vault.model(model.id), use, languageCode: adviceLanguage, device: vault.device, installed, catalog: vault.manifest.models });
-  }, [lastUserText, model.id, use, adviceLanguage]);
+    return adviseModel({ current: vault.model(model.id), use, languageCode: adviceLanguage, device: { ...vault.device, pro: tier !== "free" }, installed, catalog: vault.manifest.models });
+  }, [lastUserText, model.id, use, adviceLanguage, tier]);
   const shownAdvice = useRef<string | null>(null);
   const adviceChat = chatRef.current ?? draftKey;
   const adviceSnoozed = chat?.adviceSnoozed ?? NO_SNOOZE;
@@ -1166,8 +1166,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       .entries()
       .filter((e) => e.model.role === "chat" && !e.stray && e.state.kind === "ready")
       .map((e) => e.model.id);
-    return betterForLanguage({ current: vault.model(model.id), use, languageCode: adviceLanguage, device: vault.device, installed, catalog: vault.manifest.models });
-  }, [adviceLanguage, model.id, use, browserPick]);
+    return betterForLanguage({ current: vault.model(model.id), use, languageCode: adviceLanguage, device: { ...vault.device, pro: tier !== "free" }, installed, catalog: vault.manifest.models });
+  }, [adviceLanguage, model.id, use, browserPick, tier]);
   const personaName = persona.builtIn ? t(`persona.${persona.id.replace("builtin:", "")}`) : persona.name;
 
   const statusLine = status.kind === "loading" ? t("chat.loading", { model: chipLabel(t, model.id) }) : status.kind === "error" ? t("chat.loadFailed", { model: chipLabel(t, model.id), error: status.error }) : null;
@@ -1503,13 +1503,14 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           advice={adviceShown}
           theme={theme}
           locked={!!paywallFor(tier, { kind: "model", proOnly: !!adviceShown.better.model.proOnly })}
+          bestLocked={!!adviceShown.best && !!paywallFor(tier, { kind: "model", proOnly: !!adviceShown.best.model.proOnly })}
           onSwitch={(id) => {
             snoozeAdvice(adviceShown.key);
             onSwitchModel?.(id);
           }}
-          onInstall={() => {
+          onInstall={(id) => {
             snoozeAdvice(adviceShown.key);
-            onOpenVault?.(adviceShown.better.model.id);
+            onOpenVault?.(id);
           }}
           onNotNow={() => snoozeAdvice(adviceShown.key)}
         />

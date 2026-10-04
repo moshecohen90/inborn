@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ANSWER_CEILING, IMAGE_WRAPPER_TOKENS, LENGTH_TOKENS, REPLY_RESERVE_TOKENS, buildPrompt, replyReserve, calibrate, composeSystemPrompt, contextLevel, estimateTokens, planSummary, type MemoryFact } from "../src/index";
+import { ANSWER_CEILING, IMAGE_WRAPPER_TOKENS, LENGTH_TOKENS, PLAIN_SAFETY_BASELINE, REPLY_RESERVE_TOKENS, SAFETY_BASELINE, buildPrompt, calibrate, composeSystemPrompt, contextLevel, estimateTokens, planSummary, replyReserve, turnSystemPrompt, type MemoryFact } from "../src/index";
 
 const msg = (id: string, role: "user" | "assistant", content: string) => ({ id, role, content });
 
@@ -158,5 +158,19 @@ describe("replyReserve", () => {
     expect(b.messages.map((m) => m.role)).toEqual(["system", "user"]);
     expect(b.messages.at(-1)!.images).toEqual(["file:///note.jpg"]);
     expect(b.dropped).toBe(2);
+  });
+});
+
+describe("the no-internet sentence (round 127: invented scores and prices)", () => {
+  const system = (tier: "instant" | "fast" | "sharp", photos = false) => turnSystemPrompt({ familySafe: true, tier, photos });
+  it("Fast and Sharp are told they have no live data; Instant is not, so it does not tell a 'hi' about the internet", () => {
+    expect(SAFETY_BASELINE).toContain("You cannot browse the internet or see live data");
+    expect(system("fast").startsWith(SAFETY_BASELINE)).toBe(true);
+    expect(system("sharp").startsWith(SAFETY_BASELINE)).toBe(true);
+    expect(system("instant").startsWith(PLAIN_SAFETY_BASELINE)).toBe(true);
+    expect(system("instant")).not.toContain("internet");
+  });
+  it("a photo turn leaves the line out: the answer is in the photo, and Sharp added 'I cannot browse the internet' to it", () => {
+    for (const tier of ["fast", "sharp"] as const) expect(system(tier, true)).not.toContain("internet");
   });
 });

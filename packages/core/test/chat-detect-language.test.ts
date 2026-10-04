@@ -22,6 +22,14 @@ describe("detectLanguage (translation mode, spec §7.6)", () => {
     expect(detectLanguage("La riunione è venerdì e non puoi mancare, anche tu.")).toBe("it");
   });
 
+  it("short questions: question words and the letters one language owns decide", () => {
+    expect(detectLanguage("¿Cuántos perros hay en esta foto?")).toBe("es");
+    expect(detectLanguage("Quem ganhou o jogo do Flamengo ontem?")).toBe("pt");
+    expect(detectLanguage("Mach den zweiten kürzer.")).toBe("de");
+    expect(detectLanguage("Qu'est-ce qu'il a dit hier soir ?")).toBe("fr");
+    expect(detectLanguage("hi! what can you do?")).toBe("en");
+  });
+
   it("tells the two Chinese scripts apart, and says plain zh when the characters do not", () => {
     /* The two renderings of the study's translation prompt (research §3.3). */
     expect(detectLanguage("会议已移至周四上午，因两位经理出差。请确认新时间是否方便。")).toBe("zh-Hans");
