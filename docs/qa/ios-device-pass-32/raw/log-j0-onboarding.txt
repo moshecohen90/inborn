@@ -1,0 +1,55 @@
+15:51:40 launching com.inbornapp.mobile.qa
+15:52:25 pushing 46 steps as j0-onboarding
+15:52:28 shot J0-00-welcome
+15:52:34 shot J0-01-fast-selected
+15:52:38 shot J0-02-instant-selected
+15:52:42 shot J0-03-fast-again
+15:52:49 shot J0-04-sealed
+15:53:06 shot J0-05-chat-on-instant
+15:53:09 ok     0 waitFor    onboarding-welcome appeared
+15:53:09 ok     1 sleep      1500 ms
+15:53:09 ok     2 value      Nothing leaves this phone. AI that runs on your device. No account, no cloud, and nothing you type ever leaves
+15:53:09 ok     3 screenshot J0-00-welcome
+15:53:09 ok     4 press      onboarding-continue ← onPress
+15:53:09 ok     5 waitFor    onboarding-model appeared
+15:53:09 ok     6 sleep      2500 ms
+15:53:09 ok     7 value      Choose your model Your model runs entirely on this phone. You can change it later. Instant READY NOW 533 MB ·
+15:53:09 ok     8 value      Fast RECOMMENDED FOR THIS phone 1.28 GB · one download from models.inbornapp.com Everyday assistant: writing,
+15:53:09 ok     9 value      Instant READY NOW 533 MB · inside the app · nothing to download Quick answers and voice notes. Lightest on bat
+15:53:09 ok    10 value      Download Fast · 1.28 GB
+15:53:09 ok    11 value      Start now with Instant
+15:53:09 ok    12 screenshot J0-01-fast-selected
+15:53:09 ok    13 dump       model-step-fast-selected
+15:53:09 ok    14 assertText "RECOMMENDED" present
+15:53:09 ok    15 assertText "Download Fast · 1.28 GB" present
+15:53:09 ok    16 assertText "Start now with Instant" present
+15:53:09 ok    17 waitFor    start-chatting gone
+15:53:09 ok    18 press      model-option-instant ← onPress
+15:53:09 ok    19 sleep      1500 ms
+15:53:09 ok    20 value      Choose your model Your model runs entirely on this phone. You can change it later. Instant READY NOW 533 MB ·
+15:53:09 ok    21 value      Start chatting
+15:53:09 ok    22 waitFor    download-model gone
+15:53:09 ok    23 waitFor    start-now-with gone
+15:53:09 ok    24 screenshot J0-02-instant-selected
+15:53:09 ok    25 dump       model-step-instant-selected
+15:53:09 ok    26 press      model-option-fast ← onPress
+15:53:09 ok    27 sleep      1500 ms
+15:53:09 ok    28 waitFor    start-now-with appeared
+15:53:09 ok    29 value      Download Fast · 1.28 GB
+15:53:09 ok    30 screenshot J0-03-fast-again
+15:53:09 ok    31 press      start-now-with ← onPress
+15:53:09 ok    32 waitFor    onboarding-sealed appeared
+15:53:09 ok    33 sleep      4000 ms
+15:53:09 ok    34 value      SEALED · ON-DEVICE From here on, every answer is made on this phone. Start Prove it: turn on Airplane Mode and
+15:53:09 ok    35 screenshot J0-04-sealed
+15:53:09 ok    36 press      sealed-start ← onPress
+15:53:09 ok    37 waitFor    onboarding-lock appeared
+15:53:09 ok    38 sleep      1500 ms
+15:53:09 ok    39 press      lock-start ← onPress
+15:53:09 ok    40 waitFor    composer-input appeared
+15:53:09 ok    41 waitFor    Loading gone
+15:53:09 ok    42 sleep      2000 ms
+15:53:09 ok    43 value      INSTANT
+15:53:09 ok    44 assertText "INSTANT" present
+15:53:09 ok    45 screenshot J0-05-chat-on-instant
+15:53:09 46 passed, 0 failed, 6 screenshots → <worktree>/docs/qa/ios-device-pass-32/screens

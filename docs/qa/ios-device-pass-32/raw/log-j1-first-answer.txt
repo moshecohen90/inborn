@@ -1,0 +1,25 @@
+15:53:10 pushing 21 steps as j1-first-answer
+15:53:14 shot J1-01-first-answer
+15:53:18 shot J1-02-ledger
+15:53:21 ok     0 type       composer-input = 43 chars
+15:53:21 ok     1 send       send ← onPress
+15:53:21 ok     2 waitFor    assistant-text appeared
+15:53:21 ok     3 waitFor    stop gone
+15:53:21 ok     4 sleep      1500 ms
+15:53:21 ok     5 value      Lighthouses guide ships safely through dangerous seas by illuminating the horizon and marking safe paths.
+15:53:21 ok     6 screenshot J1-01-first-answer
+15:53:21 ok     7 press      ledger-toggle ← onPress
+15:53:21 ok     8 sleep      800 ms
+15:53:21 ok     9 value      INSTANT
+15:53:21 ok    10 value      30 ms
+15:53:21 ok    11 value      174 / 4096
+15:53:21 ok    12 setTier    pro
+15:53:21 ok    13 sleep      1200 ms
+15:53:21 ok    14 value      32.9
+15:53:21 ok    15 value      780 ms
+15:53:21 ok    16 value      156 + 18
+15:53:21 ok    17 value      1.3 s
+15:53:21 ok    18 screenshot J1-02-ledger
+15:53:21 ok    19 setTier    free
+15:53:21 ok    20 sleep      800 ms
+15:53:21 21 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-32/screens

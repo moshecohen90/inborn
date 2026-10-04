@@ -1,0 +1,21 @@
+15:53:21 pushing 18 steps as j2a-spanish
+15:53:28 shot J2-01-spanish
+15:53:31 ok     0 deeplink   /chats
+15:53:31 ok     1 waitFor    new-chat appeared
+15:53:31 ok     2 press      new-chat ← onPress
+15:53:31 ok     3 waitFor    start-chat appeared
+15:53:31 ok     4 press      start-chat ← onPress
+15:53:31 ok     5 waitFor    composer-input appeared
+15:53:31 ok     6 waitFor    Loading gone
+15:53:31 ok     7 sleep      1500 ms
+15:53:31 ok     8 value      INSTANT
+15:53:31 ok     9 type       composer-input = 33 chars
+15:53:31 ok    10 send       send ← onPress
+15:53:31 ok    11 waitFor    assistant-text appeared
+15:53:31 ok    12 waitFor    stop gone
+15:53:31 ok    13 sleep      1500 ms
+15:53:31 ok    14 value      La capital de Australia es Canberra.
+15:53:31 ok    15 sleep      1500 ms
+15:53:31 ok    16 screenshot J2-01-spanish
+15:53:31 ok    17 dump       chat-spanish
+15:53:31 18 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-32/screens

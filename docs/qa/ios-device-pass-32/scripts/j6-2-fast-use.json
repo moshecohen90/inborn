@@ -1,0 +1,52 @@
+{
+ "_": "J6 (pass 31's J6c): wait for Use on the sheet, press it, Fast loads.",
+ "steps": [
+  {
+   "op": "idleTimer"
+  },
+  {
+   "op": "waitFor",
+   "testID": "model-sheet-use-fast",
+   "timeoutMs": 1500000
+  },
+  {
+   "op": "value",
+   "testID": "model-sheet-use-fast"
+  },
+  {
+   "op": "screenshot",
+   "name": "J6-02-fast-installed"
+  },
+  {
+   "op": "press",
+   "testID": "model-sheet-use-fast"
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 240000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "assertText",
+   "text": "FAST",
+   "testID": "model-chip"
+  },
+  {
+   "op": "screenshot",
+   "name": "J6-03-fast-selected"
+  }
+ ]
+}

@@ -1,0 +1,47 @@
+15:53:31 pushing 35 steps as j2b-japanese-j4
+15:53:40 shot J2-02-japanese
+15:53:43 shot J4-01-advice-card
+15:53:48 shot J4-02-after-not-now
+15:53:51 ok     0 deeplink   /chats
+15:53:51 ok     1 waitFor    new-chat appeared
+15:53:51 ok     2 press      new-chat ← onPress
+15:53:51 ok     3 waitFor    start-chat appeared
+15:53:51 ok     4 press      start-chat ← onPress
+15:53:51 ok     5 waitFor    composer-input appeared
+15:53:51 ok     6 waitFor    Loading gone
+15:53:51 ok     7 sleep      1500 ms
+15:53:51 ok     8 value      INSTANT
+15:53:51 ok     9 type       composer-input = 13 chars
+15:53:51 ok    10 send       send ← onPress
+15:53:51 ok    11 waitFor    assistant-text appeared
+15:53:51 ok    12 waitFor    stop gone
+15:53:51 ok    13 sleep      1500 ms
+15:53:51 ok    14 value      日本では「富士山」と呼ばれる最高峰は、地質的に唯一存在する最高峰です。
+15:53:51 ok    15 sleep      2500 ms
+15:53:51 ok    16 screenshot J2-02-japanese
+15:53:51 ok    17 waitFor    model-advice appeared
+15:53:51 ok    18 sleep      800 ms
+15:53:51 ok    19 value      SHARP handles Japanese much better than INSTANT. Install SHARP · 2.74 GB Not now
+15:53:51 ok    20 value      SHARP handles Japanese much better than INSTANT.
+15:53:51 ok    21 value      Install SHARP · 2.74 GB
+15:53:51 FAIL  22 value      value model-advice-best: no node with that testID is mounted
+15:53:51 FAIL  23 value      value model-advice-best-pro: no node with that testID is mounted
+15:53:51 ok    24 screenshot J4-01-advice-card
+15:53:51 ok    25 dump       chat-japanese-advice
+15:53:51 FAIL  26 assertText assertText "FAST" is not on screen under model-advice-reason
+15:53:51 FAIL  27 assertText assertText "Install FAST · 1.28 GB" is not on screen under model-advice-install
+15:53:51 FAIL  28 assertText assertText "SHARP" is not on screen under model-advice-best
+15:53:51 FAIL  29 assertText assertText "SHARP" is on screen and should not be under model-advice-install
+15:53:51 FAIL  30 waitFor    waitFor model-advice-best-pro never appeared in 1000 ms
+15:53:51 ok    31 press      model-advice-not-now ← onPress
+15:53:51 ok    32 sleep      1500 ms
+15:53:51 ok    33 waitFor    model-advice gone
+15:53:51 ok    34 screenshot J4-02-after-not-now
+15:53:51 28 passed, 7 failed, 3 screenshots → <worktree>/docs/qa/ios-device-pass-32/screens
+15:53:51   ! step 22 (value): value model-advice-best: no node with that testID is mounted
+15:53:51   ! step 23 (value): value model-advice-best-pro: no node with that testID is mounted
+15:53:51   ! step 26 (assertText): assertText "FAST" is not on screen under model-advice-reason
+15:53:51   ! step 27 (assertText): assertText "Install FAST · 1.28 GB" is not on screen under model-advice-install
+15:53:51   ! step 28 (assertText): assertText "SHARP" is not on screen under model-advice-best
+15:53:51   ! step 29 (assertText): assertText "SHARP" is on screen and should not be under model-advice-install
+15:53:51   ! step 30 (waitFor): waitFor model-advice-best-pro never appeared in 1000 ms

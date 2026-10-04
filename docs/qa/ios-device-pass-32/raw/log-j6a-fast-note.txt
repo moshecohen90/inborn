@@ -1,0 +1,54 @@
+15:59:49 pushing 48 steps as j6a-fast-note
+15:59:55 shot J6a-note-a-composer
+15:59:59 shot J6a-note-b-pack-card
+16:01:15 shot J6a-note-c-answer
+16:01:19 shot J6a-note-d-ledger
+16:01:22 ok     0 deeplink   /chats
+16:01:22 ok     1 waitFor    new-chat appeared
+16:01:22 ok     2 press      new-chat ← onPress
+16:01:22 ok     3 waitFor    start-chat appeared
+16:01:22 ok     4 press      start-chat ← onPress
+16:01:22 ok     5 waitFor    composer-input appeared
+16:01:22 ok     6 waitFor    Loading gone
+16:01:22 ok     7 sleep      1500 ms
+16:01:22 ok     8 value      FAST
+16:01:22 ok     9 assertText "FAST" present
+16:01:22 ok    10 devPrompt  image: handwritten-note-ca-1918-december-dpla-65285abb9b0.jpg
+16:01:22 ok    11 waitFor    pending-images appeared
+16:01:22 ok    12 type       composer-input = 44 chars
+16:01:22 ok    13 sleep      800 ms
+16:01:22 ok    14 screenshot J6a-note-a-composer
+16:01:22 ok    15 send       send ← onPress
+16:01:22 ok    16 waitFor    vision-hold appeared
+16:01:22 ok    17 sleep      1200 ms
+16:01:22 ok    18 value      FAST needs its photo pack to see photos
+16:01:22 ok    19 value      One 668 MB download, then this photo sends by itself.
+16:01:22 ok    20 value      Download 668 MB
+16:01:22 ok    21 screenshot J6a-note-b-pack-card
+16:01:22 ok    22 press      vision-hold-download ← onPress
+16:01:22 ok    23 waitFor    vision-hold-progress appeared
+16:01:22 ok    24 sleep      5000 ms
+16:01:22 ok    25 value      Downloading the photo pack: 42 of 668 MB.
+16:01:22 ok    26 idleTimer  idle timer disabled: true
+16:01:22 ok    27 waitFor    vision-hold gone
+16:01:22 ok    28 waitFor    user-images appeared
+16:01:22 ok    29 waitFor    assistant-text appeared
+16:01:22 ok    30 waitFor    stop gone
+16:01:22 ok    31 sleep      1500 ms
+16:01:22 ok    32 value      4658 is written next to Mr. Thompson on this note.
+16:01:22 ok    33 screenshot J6a-note-c-answer
+16:01:22 ok    34 assertText "4658" present
+16:01:22 ok    35 press      ledger-toggle ← onPress
+16:01:22 ok    36 sleep      800 ms
+16:01:22 ok    37 value      FAST
+16:01:22 ok    38 value      191 / 4096
+16:01:22 ok    39 setTier    pro
+16:01:22 ok    40 sleep      1200 ms
+16:01:22 ok    41 value      17.3
+16:01:22 ok    42 value      5808 ms
+16:01:22 ok    43 value      176 + 15
+16:01:22 ok    44 value      6.7 s
+16:01:22 ok    45 screenshot J6a-note-d-ledger
+16:01:22 ok    46 setTier    free
+16:01:22 ok    47 sleep      800 ms
+16:01:22 48 passed, 0 failed, 4 screenshots → <worktree>/docs/qa/ios-device-pass-32/screens

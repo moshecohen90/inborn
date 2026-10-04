@@ -1,0 +1,193 @@
+{
+ "_": "J3: photo-receipt.png on Instant (bundled pack, 512 image tokens).",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "new-chat",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "press",
+   "testID": "new-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "start-chat",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "press",
+   "testID": "start-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "devPrompt",
+   "lines": [
+    "image: photo-receipt.png"
+   ]
+  },
+  {
+   "op": "waitFor",
+   "testID": "pending-images",
+   "timeoutMs": 60000
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "What is the total on this receipt, and how many items were bought?"
+  },
+  {
+   "op": "sleep",
+   "ms": 800
+  },
+  {
+   "op": "screenshot",
+   "name": "J3-receipt-a-composer"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "waitFor",
+   "testID": "vision-hold",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "waitFor",
+   "testID": "user-images",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "waitFor",
+   "testID": "assistant-text",
+   "timeoutMs": 240000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 400000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "screenshot",
+   "name": "J3-receipt-b-answer"
+  },
+  {
+   "op": "assertText",
+   "text": "The request specifies",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "I will focus",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "as an AI",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "NOT_FOUND",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "<<<",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "press",
+   "testID": "ledger-toggle"
+  },
+  {
+   "op": "sleep",
+   "ms": 800
+  },
+  {
+   "op": "value",
+   "testID": "ledger-model"
+  },
+  {
+   "op": "value",
+   "testID": "ledger-context"
+  },
+  {
+   "op": "setTier",
+   "tier": "pro"
+  },
+  {
+   "op": "sleep",
+   "ms": 1200
+  },
+  {
+   "op": "value",
+   "testID": "ledger-tokPerSec"
+  },
+  {
+   "op": "value",
+   "testID": "ledger-ttft"
+  },
+  {
+   "op": "value",
+   "testID": "ledger-tokens"
+  },
+  {
+   "op": "value",
+   "testID": "ledger-time"
+  },
+  {
+   "op": "screenshot",
+   "name": "J3-receipt-c-ledger"
+  },
+  {
+   "op": "setTier",
+   "tier": "free"
+  },
+  {
+   "op": "sleep",
+   "ms": 800
+  }
+ ]
+}

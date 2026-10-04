@@ -7479,6 +7479,31 @@ opened.
 Evidence: `docs/qa/ios-build-31-2026-09-28.md`, `docs/qa/ios-device-pass-31-2026-09-28.md`,
 `docs/qa/ios-device-pass-31/`.
 
+## iOS build 32: main with round 127 (the model step, photo tokens, the free advice card, catalog v8), on Moshe's iPhone only (branch `ios-build-32`) — 4.10.2026
+
+Build 1.0.0 (32) carries `main` deed0da7 (build 31's main plus round 127 and catalog v8) to the iPhone 13 Pro. Nothing
+went to a store. J0 to J6 ran on the `.qa` twin built from the same commit, and the twin was removed before the store
+app was opened.
+
+- **The build.** Commit 02fdf5e4 bumps the build number 31 → 32. Install, typecheck, lint and test exit 0: 1,262 core
+  with 4 skipped, 1,278 mobile, 24 i18n, 23 ui, 4 desktop. Fresh prebuild and archive. Instant and its bundled photo
+  pack are byte-exact to the catalog, `main.jsbundle` carries 02fdf5e42a6d, round 127's strings and catalog v8's
+  signature are in the bundle, and the QA-bridge and shipping-bundle gates pass.
+- **On the phone as an update.** The byte copy of the six container files was taken first; after the install the
+  listing is identical and all six are byte-identical. About reads `1.0.0 (32) · 02fdf5e42a6d`, left on Chats.
+- **Onboarding.** Fast is preselected and marked recommended, with **Download Fast · 1.28 GB** and *"Start now with
+  Instant"* under it; Instant stays selectable, and the link opens Sealed and then the chat on Instant.
+- **The free advice card.** After a Japanese question on Instant: *"FAST handles Japanese better than INSTANT, but not
+  fluently."*, **Install FAST · 1.28 GB**, and Sharp only on a second line with PRO. The first run showed Sharp alone,
+  because the QA bridge's `setTier("free")` leaves the licence state at Pro; on a relaunched twin the card is right.
+- **Photos.** Instant runs at 512 image tokens (about 1.5 s of prompt) and reads the handwritten note as "39"; Fast runs
+  at 1024 (5.8 s) and reads **4658**. After 12 turns on Fast the receipt photo is answered with no context error.
+- **Fast.** An honest Spanish "cannot know" for yesterday's match, a real palindrome function, one polite rewrite of
+  the email. Instant: Spanish answers in Spanish, documents as in build 31, 32.9 tok/s first answer.
+
+Evidence: `docs/qa/ios-build-32-2026-10-04.md`, `docs/qa/ios-device-pass-32-2026-10-04.md`,
+`docs/qa/ios-device-pass-32/`.
+
 ## iOS build 23: main with round 111's loop guard, on Moshe's iPhone only (branch `ios-build-23`) — 27.9.2026
 
 Build 1.0.0 (23) carries local `main` 98722df7 (build 22's main plus round 111) to the iPhone 13 Pro, so the phone has

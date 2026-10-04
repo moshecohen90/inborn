@@ -1,0 +1,102 @@
+16:02:30 pushing 96 steps as j6e-fast-long
+16:03:31 shot J6e-01-after-12-turns
+16:04:36 shot J6e-02-receipt-a-composer
+16:04:52 shot J6e-03-receipt-answer
+16:04:57 shot J6e-04-ledger
+16:05:00 ok     0 deeplink   /chats
+16:05:00 ok     1 waitFor    new-chat appeared
+16:05:00 ok     2 press      new-chat ← onPress
+16:05:00 ok     3 waitFor    start-chat appeared
+16:05:00 ok     4 press      start-chat ← onPress
+16:05:00 ok     5 waitFor    composer-input appeared
+16:05:00 ok     6 waitFor    Loading gone
+16:05:00 ok     7 sleep      1500 ms
+16:05:00 ok     8 value      FAST
+16:05:00 ok     9 type       composer-input = 31 chars
+16:05:00 ok    10 send       send ← onPress
+16:05:00 ok    11 sleep      3000 ms
+16:05:00 ok    12 waitFor    stop gone
+16:05:00 ok    13 sleep      1500 ms
+16:05:00 ok    14 type       composer-input = 21 chars
+16:05:00 ok    15 send       send ← onPress
+16:05:00 ok    16 sleep      3000 ms
+16:05:00 ok    17 waitFor    stop gone
+16:05:00 ok    18 sleep      1500 ms
+16:05:00 ok    19 type       composer-input = 25 chars
+16:05:00 ok    20 send       send ← onPress
+16:05:00 ok    21 sleep      3000 ms
+16:05:00 ok    22 waitFor    stop gone
+16:05:00 ok    23 sleep      1500 ms
+16:05:00 ok    24 type       composer-input = 28 chars
+16:05:00 ok    25 send       send ← onPress
+16:05:00 ok    26 sleep      3000 ms
+16:05:00 ok    27 waitFor    stop gone
+16:05:00 ok    28 sleep      1500 ms
+16:05:00 ok    29 type       composer-input = 18 chars
+16:05:00 ok    30 send       send ← onPress
+16:05:00 ok    31 sleep      3000 ms
+16:05:00 ok    32 waitFor    stop gone
+16:05:00 ok    33 sleep      1500 ms
+16:05:00 ok    34 type       composer-input = 19 chars
+16:05:00 ok    35 send       send ← onPress
+16:05:00 ok    36 sleep      3000 ms
+16:05:00 ok    37 waitFor    stop gone
+16:05:00 ok    38 sleep      1500 ms
+16:05:00 ok    39 type       composer-input = 27 chars
+16:05:00 ok    40 send       send ← onPress
+16:05:00 ok    41 sleep      3000 ms
+16:05:00 ok    42 waitFor    stop gone
+16:05:00 ok    43 sleep      1500 ms
+16:05:00 ok    44 type       composer-input = 19 chars
+16:05:00 ok    45 send       send ← onPress
+16:05:00 ok    46 sleep      3000 ms
+16:05:00 ok    47 waitFor    stop gone
+16:05:00 ok    48 sleep      1500 ms
+16:05:00 ok    49 type       composer-input = 38 chars
+16:05:00 ok    50 send       send ← onPress
+16:05:00 ok    51 sleep      3000 ms
+16:05:00 ok    52 waitFor    stop gone
+16:05:00 ok    53 sleep      1500 ms
+16:05:00 ok    54 type       composer-input = 28 chars
+16:05:00 ok    55 send       send ← onPress
+16:05:00 ok    56 sleep      3000 ms
+16:05:00 ok    57 waitFor    stop gone
+16:05:00 ok    58 sleep      1500 ms
+16:05:00 ok    59 type       composer-input = 28 chars
+16:05:00 ok    60 send       send ← onPress
+16:05:00 ok    61 sleep      3000 ms
+16:05:00 ok    62 waitFor    stop gone
+16:05:00 ok    63 sleep      1500 ms
+16:05:00 ok    64 type       composer-input = 39 chars
+16:05:00 ok    65 send       send ← onPress
+16:05:00 ok    66 sleep      3000 ms
+16:05:00 ok    67 waitFor    stop gone
+16:05:00 ok    68 sleep      1500 ms
+16:05:00 ok    69 screenshot J6e-01-after-12-turns
+16:05:00 ok    70 devPrompt  image: photo-receipt.png
+16:05:00 ok    71 waitFor    pending-images appeared
+16:05:00 ok    72 type       composer-input = 66 chars
+16:05:00 ok    73 sleep      800 ms
+16:05:00 ok    74 screenshot J6e-02-receipt-a-composer
+16:05:00 ok    75 send       send ← onPress
+16:05:00 ok    76 sleep      3000 ms
+16:05:00 ok    77 waitFor    vision-hold gone
+16:05:00 ok    78 waitFor    stop gone
+16:05:00 ok    79 sleep      2500 ms
+16:05:00 ok    80 assertText "Not enough context space" absent
+16:05:00 ok    81 screenshot J6e-03-receipt-answer
+16:05:00 ok    82 dump       chat-long
+16:05:00 ok    83 press      ledger-toggle ← onPress
+16:05:00 ok    84 sleep      800 ms
+16:05:00 ok    85 value      FAST
+16:05:00 ok    86 value      560 / 4096
+16:05:00 ok    87 setTier    pro
+16:05:00 ok    88 sleep      1200 ms
+16:05:00 ok    89 value      17.6
+16:05:00 ok    90 value      9289 ms
+16:05:00 ok    91 value      524 + 36
+16:05:00 ok    92 value      11.3 s
+16:05:00 ok    93 screenshot J6e-04-ledger
+16:05:00 ok    94 setTier    free
+16:05:00 ok    95 sleep      800 ms
+16:05:00 96 passed, 0 failed, 4 screenshots → <worktree>/docs/qa/ios-device-pass-32/screens
