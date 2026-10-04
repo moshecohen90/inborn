@@ -104,8 +104,8 @@ describe("adviseModel (the chat card)", () => {
       expect(a.language).toEqual({ code: "de", from: "basic", to: "good" });
       expect(a.use).toBeUndefined();
     }
-    /* Korean is the other Fast downgrade; Sharp is native at it. */
-    expect(advise("fast", { languageCode: "ko", installed: ["fast", "sharp"] })!.language).toEqual({ code: "ko", from: "basic", to: "native" });
+    /* Korean is the other Fast downgrade; Sharp is good at it (round 127 measured 1.62 / 1.00, not native). */
+    expect(advise("fast", { languageCode: "ko", installed: ["fast", "sharp"] })!.language).toEqual({ code: "ko", from: "basic", to: "good" });
   });
   it("no card at all for a language the fit map never rated: no claim, so no offer", () => {
     for (const code of ["id", "tr", "pl", "hi", "vi"]) expect(advise("instant", { languageCode: code, installed: ["instant"] }), code).toBeNull();

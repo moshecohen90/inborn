@@ -21,8 +21,8 @@ describe("catalog fit schema (spec §6.1 fit map)", () => {
   it("goodLanguages is exactly the native + good codes of the fit block", () => {
     for (const m of chat) expect([...m.goodLanguages].sort(), m.id).toEqual(goodLanguagesOf(m.fit!).sort());
   });
-  it("the signed manifest (v7, round 117's photo packs) still verifies with the fit blocks inside the signature", () => {
-    expect(BUNDLED_MANIFEST.version).toBe(7);
+  it("the signed manifest (v8, round 127's measured tiers) still verifies with the fit blocks inside the signature", () => {
+    expect(BUNDLED_MANIFEST.version).toBe(8);
     expect(verifyManifest(BUNDLED_MANIFEST, CATALOG_PUBLIC_KEY)).toBe(true);
     const tampered = { ...BUNDLED_MANIFEST, models: BUNDLED_MANIFEST.models.map((m) => (m.id === "instant" ? { ...m, fit: { ...m.fit!, languages: { ...m.fit!.languages, he: "native" as const } } } : m)) };
     expect(verifyManifest(tampered, CATALOG_PUBLIC_KEY)).toBe(false);
@@ -46,17 +46,18 @@ describe("catalog fit schema (spec §6.1 fit map)", () => {
     expect(fit("instant").languages.fr).toBe("basic");
     expect(fit("instant").languages.es).toBe("basic");
     expect(fit("instant").languages.zh).toBe("good");
-    /* Measured 3/3/3 on Sharp: native, not good. */
-    for (const l of ["ja", "ko", "ru"]) expect(fit("sharp").languages[l], l).toBe("native");
+    /* Russian measured 3/3/3 on Sharp: native. Japanese and Korean came down to good in round 127 (1.38 / 1.00 and 1.62 / 1.00 on tuning / held-out). */
+    expect(fit("sharp").languages.ru).toBe("native");
+    for (const l of ["ja", "ko"]) expect(fit("sharp").languages[l], l).toBe("good");
     /* Arabic was the one `native` on a single 2/2/3 run whose prose scored 2 (docs/models/model-fit.md); `good` until a second run. */
     expect(fit("fast").languages.ar).toBe("good");
   });
   it("Traditional and Simplified Chinese are expressible and validate; a bad script subtag is still a problem", () => {
     expect(fit("fast").languages["zh-Hant"]).toBe("native");
     expect(fit("sharp").languages["zh-Hans"]).toBe("native");
-    expect(fit("instant").languages["zh-Hant"]).toBe("good");
+    expect(fit("instant").languages["zh-Hant"]).toBe("basic");
     /* The script-tagged key wins; an unlisted script falls back to the plain language. */
-    expect(languageTierOf(byId("instant"), "zh-Hant")).toBe("good");
+    expect(languageTierOf(byId("instant"), "zh-Hant")).toBe("basic");
     expect(languageTierOf(byId("instant"), "zh-Hans")).toBe("good");
     expect(languageTierOf(byId("sharp-phi"), "zh-Hant")).toBe("basic");
     expect(baseLanguageOf("zh-Hant")).toBe("zh");
@@ -97,7 +98,18 @@ describe("distinctLanguageCodes (QA F31: one Chinese row, not three)", () => {
   it("keeps a script variant whose plain language is unrated", () => {
     expect(distinctLanguageCodes({ "zh-Hant": "good" })).toEqual(["zh-Hant"]);
   });
-  it("shows one Chinese row for every chat model in the shipping catalog", () => {
-    for (const m of chat) expect(distinctLanguageCodes(fit(m.id).languages).filter((c) => c.startsWith("zh")), m.id).toEqual(["zh"]);
+  it("shows one Chinese row for every chat model in the shipping catalog, two only where the scripts measured apart", () => {
+    /* Instant: Simplified stays good, Traditional measured basic in round 127, so the second row carries information. */
+    for (const m of chat) expect(distinctLanguageCodes(fit(m.id).languages).filter((c) => c.startsWith("zh")), m.id).toEqual(m.id === "instant" ? ["zh", "zh-Hant"] : ["zh"]);
+  });
+
+  it("the tiers round 127 measured on tuning and held-out sets (docs/qa/v1-basics-baseline/ROUND-127.md)", () => {
+    expect(fit("instant").languages.ja).toBe("none");
+    expect(fit("instant").languages.ko).toBe("none");
+    expect(fit("instant").languages.pt).toBe("basic");
+    expect(fit("instant").uses.summarize).toBe("weak");
+    expect(fit("fast").languages.ja).toBe("basic");
+    expect(byId("instant").goodLanguages).toEqual(["en", "zh"]);
+    expect(byId("fast").goodLanguages).not.toContain("ja");
   });
 });

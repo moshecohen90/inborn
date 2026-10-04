@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "version": 7,
-  "publishedAt": "2026-09-28",
+  "version": 8,
+  "publishedAt": "2026-10-04",
   "baseUrl": "https://models.inbornapp.com/v1",
   "models": [
     {
@@ -23,18 +23,17 @@
       "contextLength": 262144,
       "vision": true,
       "tools": true,
-      "goodFor": "Quick answers, rewrites, summaries. Lightest on battery.",
+      "goodFor": "Quick answers and voice notes. Lightest on battery.",
       "battery": "low",
       "goodLanguages": [
         "en",
-        "zh",
-        "pt"
+        "zh"
       ],
       "fit": {
         "uses": {
           "chat": "good",
           "writing": "weak",
-          "summarize": "good",
+          "summarize": "weak",
           "translate": "weak",
           "code": "weak",
           "documents": "weak",
@@ -44,14 +43,14 @@
         "languages": {
           "en": "native",
           "zh": "good",
-          "zh-Hant": "good",
+          "zh-Hant": "basic",
           "es": "basic",
           "fr": "basic",
           "de": "basic",
-          "pt": "good",
+          "pt": "basic",
           "it": "basic",
-          "ja": "basic",
-          "ko": "basic",
+          "ja": "none",
+          "ko": "none",
           "ru": "basic",
           "ar": "basic",
           "he": "none"
@@ -105,7 +104,6 @@
         "fr",
         "pt",
         "it",
-        "ja",
         "ru",
         "ar"
       ],
@@ -130,7 +128,7 @@
           "de": "basic",
           "pt": "good",
           "it": "good",
-          "ja": "good",
+          "ja": "basic",
           "ko": "basic",
           "ru": "good",
           "ar": "good",
@@ -220,8 +218,8 @@
           "de": "good",
           "pt": "good",
           "it": "good",
-          "ja": "native",
-          "ko": "native",
+          "ja": "good",
+          "ko": "good",
           "ru": "native",
           "ar": "good",
           "he": "basic"
@@ -517,5 +515,5 @@
       "minEngine": 1
     }
   ],
-  "signature": "c6dfeb6b687c53781923899f7e24aa865d5212d4e0e82cbfffbbe999284374587dbdbfa5824e2a8c8e0c9802e7ab0043bcafec2f62f81479329b3b2d1a7df20a"
+  "signature": "036616933e755ed55ab37af7aefae77d41af91aafb5d6cf6832bc9069b4d7af0060479f42f97e7b8815573db3d39dfcbdb56948049accf3afb37eb6bbd858908"
 }

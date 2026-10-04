@@ -137,7 +137,8 @@ describe("F346 · the browser chat's language notice names a model this browser 
     for (const code of ["es", "fr", "it", "ja", "ru", "ar"]) {
       const u = upgrade(gate(), code);
       expect(u?.better.model.id, code).toBe("fast");
-      expect(u?.from, code).toBe("basic");
+      /* Instant's Japanese came down to none in catalog v8 (round 127); the offer is the same. */
+      expect(u?.from, code).toBe(code === "ja" ? "none" : "basic");
       expect(u?.better.reason.installed, code).toBe(false);
     }
   });

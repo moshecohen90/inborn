@@ -43,8 +43,8 @@ describe("modelChoices (the chat's Model sheet, §7.8)", () => {
   });
   it("carries each row's language tier and RAM fit, so the sheet never re-derives them", () => {
     const c = modelChoices(input({ languageCode: "ja" }));
-    expect(c.available.find((x) => x.model.id === "sharp")!.reason).toMatchObject({ languageTier: "native", useTier: "best", ramFit: "well" });
-    expect(c.installed[0]!.reason.languageTier).toBe("basic");
+    expect(c.available.find((x) => x.model.id === "sharp")!.reason).toMatchObject({ languageTier: "good", useTier: "best", ramFit: "well" });
+    expect(c.installed[0]!.reason.languageTier).toBe("none");
   });
   it("a tier that can only load what it holds is never told another model is recommended here (§14.3)", () => {
     const web = modelChoices(input({ recommendAmong: ["instant"] }));
@@ -92,7 +92,9 @@ describe("betterForLanguage (the weak-language notice, §7.8)", () => {
   });
   it("says nothing when the language is already good, unrated, or nothing here improves on it", () => {
     expect(advice({ languageCode: "en" })).toBeNull();
-    expect(advice({ languageCode: "pt" })).toBeNull();
+    expect(advice({ languageCode: "zh" })).toBeNull();
+    /* Portuguese on Instant came down to basic in round 127, so a Portuguese user is now pointed at Fast. */
+    expect(advice({ languageCode: "pt" })).toMatchObject({ code: "pt", from: "basic", better: { model: { id: "fast" } } });
     expect(advice({ languageCode: "tr" })).toBeNull();
     expect(advice({ languageCode: null })).toBeNull();
     /* A 4 GB phone can run nothing but Instant, so there is no honest offer to make. */

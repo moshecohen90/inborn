@@ -22,23 +22,29 @@ translation) × 3 tiers, each answer read and scored 0–3. The run, its rig and
 `docs/research/launch-languages-2026-09.md`; the score for each language is in its §3.1 table and every row below cites it
 as P/L/T. Judgements still sourced from a model card are marked as such.
 
+**Catalog v8 (4.10.2026) applied the round-127 measurement** (`docs/qa/v1-basics-baseline/README.md` and ROUND-127.md): the
+shipped GGUFs through the app's own prompt code, 4 native prompts per launch language plus 12 English prompts, graded 0–2,
+on a tuning set and a held-out set. A tier moved only where both sets agreed; rows below cite it as tuning / held-out.
+
 ## Instant · Qwen3.5-0.8B Q4_K_M (533 MB)
 
 | Dimension | Tier | Source of the judgement |
 |---|---|---|
 | chat | good | Qwen3.5 small-series model card (Feb 2026): 0.8B is the "edge" tier, instruction-following fine for short turns; our device runs (README "Models run on the OnePlus 6T", 7.9.2026) gave coherent short answers. |
 | writing | weak | 0.8B at Q4 loses structure past a paragraph; drafts repeat and drift (device runs, QA run 3). |
-| summarize | good | Short summaries of pasted text were accurate in the S43 quick-action proofs (README fixes-r8). |
+| summarize | weak | **Downgraded from `good` 4.10.2026.** A two-sentence summary scored 1.00 / 0.67 and a one-section summary of a lease 0.33, inventing notice periods (ROUND-127). |
 | translate | weak | Translation quality tracks language tier; only en/zh are native, so most pairs are basic. |
 | code | weak | Qwen3.5 card: coding benchmarks (LiveCodeBench, HumanEval-class) for 0.8B are far below the 2B/4B; Q4 widens the gap. |
 | documents | weak | 4k dev context, small model: multi-chunk RAG answers lose the citation (rag-m5a proofs preferred Fast). |
 | voice | good | Dictation follow-ups are short chat turns; same as chat. |
 | math | weak | Qwen3.5 card: GSM8K/MATH for 0.8B non-thinking is low; thinking mode is off for Instant (brief). |
 | en | native | 2.5/3/1.5 (§3.1). Prose is native; only the translation slips. |
-| zh, zh-Hant | good | **Downgraded from `native` 20.9.2026.** zh-Hant measured 2/2.5/2.5 — overstated for a 0.8B at Q4 (§4.1). zh-Hans was not run at this tier and falls back to the plain `zh` tier. |
-| pt | good | 2.5/2.5/1 (§3.1). The prose is good; the translation invented "Monday at 12:00", which `translate: weak` already warns about. |
+| zh | good | **Downgraded from `native` 20.9.2026.** zh-Hant measured 2/2.5/2.5 — overstated for a 0.8B at Q4 (§4.1). zh-Hans was not run at this tier and falls back to the plain `zh` tier. |
+| zh-Hant | basic | **Downgraded from `good` 4.10.2026.** 0.42 / 0.58 after the script hint stopped the Simplified answers (ROUND-127); the vault now shows the two scripts as two rows. |
+| pt | basic | **Downgraded from `good` 4.10.2026.** 0.08 / 0.42 (ROUND-127): the largest state of Brazil came back wrong and the polite rewrite reversed the roles. |
 | es, fr, de | basic | **Downgraded from `good` 20.9.2026.** de 1/1/1 with non-words, wrong case and the false claim that adults need "at least four hours of sleep"; fr 2/1.5/2; es 2/2/2 (§4.1). |
-| it, ja, ko, ru, ar | basic | ja 1/2.5/1 (the paragraph repeated the same two sentences three times) and ko 1/2/0 (the translation inverted the meaning) on the 20.9 run; it, ru and ar were not run at this tier and keep the v2 judgement. |
+| it, ru, ar | basic | Not run at this tier on 20.9; they keep the v2 judgement. |
+| ja, ko | none | **Downgraded from `basic` 4.10.2026.** 0.25 / 0.08 each (ROUND-127); on 20.9 ja 1/2.5/1 and ko 1/2/0 already showed repeated sentences and an inverted translation. |
 | he | none | Hebrew on Instant is gibberish (the reason the §7 language hint exists; not re-run at this tier on 20.9). |
 
 ## Fast · Qwen3.5-2B Q4_K_M (1.28 GB)
@@ -56,7 +62,8 @@ as P/L/T. Judgements still sourced from a model card are marked as such.
 | en | native | 3/3/2 (§3.1). |
 | zh, zh-Hans, zh-Hant | native | **The best language we ship.** zh-Hans 3/3/3 — the only language scoring 3/3/3 on *Fast* — and zh-Hant 3/2.5/3 (§3.1). The Simplified translation was shorter and more idiomatic than the English original. |
 | ar | good | **Downgraded from `native` 24.9.2026, reversing the 20.9.2026 upgrade.** 2/2/3 (§4.1): the translation was the single best of all 18 languages on Fast, but the prose scored only 2, and a single run at 2/2/3 is not a fluency claim `native` can stand on. Held at `good` — matching Sharp's `ar: good` — until a second measurement confirms it. |
-| es, fr, pt, it, ja, ru | good | es 3/3/2.5, fr 3/2.5/2.5, pt-BR 3/2/1.5, it 3/2.5/1.5, ja 3/3/1.5, ru 3/2.5/2 (§3.1). Prose is strong in all six; translation is where a 2B model loses, which `translate: good` already qualifies. |
+| ja | basic | **Downgraded from `good` 4.10.2026.** 1.00 / 0.67 (ROUND-127): the keigo rewrite answered as the recipient and the fact answers wobbled; 20.9 had measured 3/3/1.5 on longer prose. |
+| es, fr, pt, it, ru | good | es 3/3/2.5, fr 3/2.5/2.5, pt-BR 3/2/1.5, it 3/2.5/1.5, ru 3/2.5/2 (§3.1). Prose is strong in all six; translation is where a 2B model loses, which `translate: good` already qualifies. |
 | de | basic | **Downgraded from `good` 20.9.2026, and this is the correction that matters most.** 1.5/2/2.5. The paragraph was re-sampled twice more and all three samples opened with the same wrong case, *"Gutem Schlaf ist …"* (it must be *Guter Schlaf ist*), two of them adding a gender error on the next noun (§3.2). Systematic, not an unlucky draw. Sharp German is fine, so the chat card now says "SHARP handles German better than FAST". |
 | ko | basic | **Downgraded from `good` 20.9.2026.** 2/2.5/1: the translation invented a weekday and appended an English meta-note "correcting" itself (§4.1). |
 | he | none | **Downgraded from `basic` 20.9.2026.** 1/1/0. The translation, *"בקפידה, תתבייש ליצור לוואיט"*, is not Hebrew (§4.1). This now matches what Instant already carried. |
@@ -69,7 +76,8 @@ as P/L/T. Judgements still sourced from a model card are marked as such.
 | code | good | Qwen3.5-4B coding scores are solid but below Phi-4-mini's HumanEval/MBPP at the same size (Phi-4-mini card, Feb 2025). |
 | math | good | Strong only in thinking mode (Qwen3.5 card AIME/MATH split); non-thinking is good, not best. |
 | en, zh, zh-Hans, zh-Hant | native | en 3/3/3, zh-Hans 3/3/3, zh-Hant 3/3/3 (§3.1). |
-| ja, ko, ru | native | **Upgraded from `good` 20.9.2026.** 3/3/3 each, with natural keigo and correct honorifics; the Korean translation was exactly right (§3.3, §4.1). |
+| ru | native | **Upgraded from `good` 20.9.2026.** 3/3/3, (§3.3, §4.1). |
+| ja, ko | good | **Back to `good` 4.10.2026 after the 20.9 upgrade to `native`.** ja 1.38 / 1.00, ko 1.62 / 1.00 (ROUND-127): keigo is natural, but the polite rewrite reversed the roles and 利根川 was not named as Japan's longest river. |
 | es, fr, de, pt, it, ar | good | es 2.5/3/3, fr 3/2.5/3, de 2.5/2.5/3, pt-BR 3/3/3, it 3/2.5/2, ar 2.5/2.5/2.5 (§3.1). Italian fails on translation (it moved the meeting to Thursday *afternoon*); Arabic clears every prompt at 2.5. |
 | he | basic | **Downgraded from good on 15.9.2026** after the on-device spot check below, and confirmed worse on 20.9 (1/1/1): the Arabic word مهارة bled into a Hebrew word (*המهارה*) and "Thursday" became the festival of Shavuot. Better than Fast (which is now `none`) but not fluent. No catalog model is `good` at Hebrew until a dedicated one enters the catalog; `DictaLM-3.0-1.7B-Instruct` (Apache-2.0, 1.11 GB) is the candidate and the bar for it is ≥2.5 on all three prompts (research §5). |
 
