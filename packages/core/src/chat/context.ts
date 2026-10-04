@@ -6,6 +6,8 @@ import type { ChatMessage, MemoryFact, Persona } from "./types";
 
 /** Tokens kept free for the reply; generation stops there anyway (§10.5 #39: max tokens with "continue"). */
 export const REPLY_RESERVE_TOKENS = 512;
+/** What a turn keeps free for its answer: the planned length, never less than the default reserve. */
+export const replyReserve = (maxTokens: number): number => Math.max(REPLY_RESERVE_TOKENS, maxTokens);
 /** The meter turns amber here (§8.2 S11). */
 export const CONTEXT_WARN = 0.8;
 /** "This chat is getting long" + "Summarize and continue" (§8.2 S11). */

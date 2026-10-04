@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ANSWER_CEILING, IMAGE_WRAPPER_TOKENS, buildPrompt, calibrate, composeSystemPrompt, contextLevel, estimateTokens, planSummary, type MemoryFact } from "../src/index";
+import { ANSWER_CEILING, IMAGE_WRAPPER_TOKENS, LENGTH_TOKENS, REPLY_RESERVE_TOKENS, buildPrompt, replyReserve, calibrate, composeSystemPrompt, contextLevel, estimateTokens, planSummary, type MemoryFact } from "../src/index";
 
 const msg = (id: string, role: "user" | "assistant", content: string) => ({ id, role, content });
 
@@ -133,5 +133,30 @@ describe("buildPrompt with photos", () => {
       const before = buildPrompt({ system, messages: long, nCtx });
       expect(buildPrompt({ system, messages: long, nCtx, imageTokens: 1024 })).toEqual(before);
     }
+  });
+});
+
+describe("replyReserve", () => {
+  it("keeps the planned answer free, never less than the default reserve", () => {
+    expect(replyReserve(LENGTH_TOKENS.short)).toBe(REPLY_RESERVE_TOKENS);
+    expect(replyReserve(LENGTH_TOKENS.moderate)).toBe(REPLY_RESERVE_TOKENS);
+    expect(replyReserve(LENGTH_TOKENS.long)).toBe(ANSWER_CEILING);
+  });
+
+  it("a long chat leaves the full planned answer inside the context", () => {
+    const messages = Array.from({ length: 60 }, (_, i) => msg(String(i), i % 2 ? "assistant" : "user", "w".repeat(400)));
+    for (const nCtx of [2048, 4096]) {
+      const b = buildPrompt({ system: "s".repeat(1200), messages, nCtx, reserve: replyReserve(ANSWER_CEILING) });
+      expect(b.budget).toBe(nCtx - ANSWER_CEILING);
+      expect(b.used + ANSWER_CEILING).toBeLessThanOrEqual(nCtx);
+    }
+  });
+
+  it("2048 with a 2000-char system prompt, one 512 photo and the ceiling: the photo turn is still sent", () => {
+    const messages = [msg("1", "user", "w".repeat(400)), msg("2", "assistant", "w".repeat(400)), { id: "p", role: "user" as const, content: "Read this.", images: ["file:///note.jpg"] }];
+    const b = buildPrompt({ system: "s".repeat(2000), messages, nCtx: 2048, reserve: replyReserve(ANSWER_CEILING), imageTokens: 512 });
+    expect(b.messages.map((m) => m.role)).toEqual(["system", "user"]);
+    expect(b.messages.at(-1)!.images).toEqual(["file:///note.jpg"]);
+    expect(b.dropped).toBe(2);
   });
 });

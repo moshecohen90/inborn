@@ -15,6 +15,7 @@ import {
   PASTE_OFFER_CHARS,
   PRODUCTS,
   buildPrompt,
+  replyReserve,
   calibrate,
   contextLevel,
   crisisResources,
@@ -563,7 +564,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       /* F443: a resumed turn keeps the stopped turn's system prompt, so the model goes on under the same instructions and the engine's cache still matches. */
       const lengthLine = continueFrom ? planAnswerLength({ text: lastUser, use: detectUse({ text: lastUser, personaId: persona.id, personaIcon: persona.icon, hasDocuments: docs.documents.length > 0, dictated: lastDictated }), continuing: false }).instruction : length.instruction;
       const system = turnSystemPrompt({ familySafe, tier: modelTier, photos: history.some((m) => m.images?.length), persona, chatPrompt: settings.systemPrompt, memory: facts, languageHint: languageHint(lastUser), length: lengthLine });
-      const prompt = buildPrompt({ system, summary: chat?.summary, summaryUpTo: chat?.summaryUpTo, messages: history.map((m, i) => ({ id: String(i), ...m })), nCtx, scale: tokenScale, imageTokens: imageMaxTokens(engine.id, model.id) });
+      const prompt = buildPrompt({ system, summary: chat?.summary, summaryUpTo: chat?.summaryUpTo, messages: history.map((m, i) => ({ id: String(i), ...m })), nCtx, scale: tokenScale, reserve: replyReserve(length.maxTokens), imageTokens: imageMaxTokens(engine.id, model.id) });
       let messages = prompt.messages;
       /* Attached documents (§7.3, §8.5): retrieve, fence, cite. */
       if (turn.kind === "retrieve") {
