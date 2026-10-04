@@ -14,6 +14,8 @@ export const CONTEXT_FULL = 0.92;
 export const SUMMARY_KEEP_RECENT = 4;
 /** Per-message overhead of the chat template (role tags, separators). */
 const MESSAGE_OVERHEAD = 4;
+/** llama.cpp's mtmd wraps every Qwen-VL image in <|vision_start|> … <|vision_end|>, one token each. */
+export const IMAGE_WRAPPER_TOKENS = 2;
 
 /**
  * Cheap token estimate, calibrated for Qwen-style BPE: ~4 chars per token for Latin text, ~2 for
@@ -83,6 +85,8 @@ export interface BudgetInput {
   reserve?: number;
   /** Calibration factor from the last measured prompt (actual / estimated). */
   scale?: number;
+  /** The loaded projector's image token cap; each attached photo costs this plus its wrapper. Unset: photos cost nothing. */
+  imageTokens?: number;
 }
 
 export interface Budget {
@@ -102,7 +106,8 @@ export function buildPrompt(input: BudgetInput): Budget {
   const scale = input.scale ?? 1;
   const reserve = input.reserve ?? REPLY_RESERVE_TOKENS;
   const budget = Math.max(0, input.nCtx - reserve);
-  const cost = (m: Message) => estimateTokens(m.content, scale) + MESSAGE_OVERHEAD;
+  const perImage = input.imageTokens ? input.imageTokens + IMAGE_WRAPPER_TOKENS : 0;
+  const cost = (m: Message) => estimateTokens(m.content, scale) + MESSAGE_OVERHEAD + (m.images?.length ?? 0) * perImage;
   const head: Message[] = [];
   if (input.system.trim()) head.push({ role: "system", content: input.system.trim() });
   let from = 0;

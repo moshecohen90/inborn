@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildPrompt, calibrate, composeSystemPrompt, contextLevel, estimateTokens, planSummary, type MemoryFact } from "../src/index";
+import { ANSWER_CEILING, IMAGE_WRAPPER_TOKENS, buildPrompt, calibrate, composeSystemPrompt, contextLevel, estimateTokens, planSummary, type MemoryFact } from "../src/index";
 
 const msg = (id: string, role: "user" | "assistant", content: string) => ({ id, role, content });
 
@@ -103,5 +103,35 @@ describe("calibrate", () => {
     expect(calibrate(1, 1000)).toBe(3);
     expect(calibrate(1000, 1)).toBeCloseTo(0.5005, 4);
     expect(calibrate(1000, 1, 0.4)).toBeCloseTo(0.33, 5);
+  });
+});
+
+describe("buildPrompt with photos", () => {
+  const system = "s".repeat(1200);
+  const long = Array.from({ length: 60 }, (_, i) => msg(String(i), i % 2 ? "assistant" : "user", "w".repeat(400)));
+  const withPhoto = [...long, { id: "photo", role: "user" as const, content: "What does the board say?", images: ["file:///board.jpg"] }];
+
+  for (const [nCtx, cap] of [[4096, 1024], [2048, 512]] as const) {
+    it(`a long chat plus one photo at ${cap} image tokens fits ${nCtx} with the answer ceiling reserved`, () => {
+      const b = buildPrompt({ system, messages: withPhoto, nCtx, reserve: ANSWER_CEILING, imageTokens: cap });
+      expect(b.used + ANSWER_CEILING).toBeLessThanOrEqual(nCtx);
+      expect(b.messages.at(-1)!.images).toEqual(["file:///board.jpg"]);
+      expect(b.dropped).toBeGreaterThan(0);
+      /* Uncounted, the same photo would have pushed the prompt past the context. */
+      const blind = buildPrompt({ system, messages: withPhoto, nCtx, reserve: ANSWER_CEILING });
+      expect(blind.used + cap + IMAGE_WRAPPER_TOKENS + ANSWER_CEILING).toBeGreaterThan(nCtx);
+    });
+  }
+
+  it("each photo costs its cap plus the wrapper, older photo turns included", () => {
+    const messages = [{ ...msg("1", "user", "x".repeat(400)), images: ["a", "b"] }, msg("2", "assistant", "y".repeat(400))];
+    expect(buildPrompt({ system: "", messages, nCtx: 8192, imageTokens: 1024 }).used).toBe(2 * 104 + 2 * (1024 + IMAGE_WRAPPER_TOKENS));
+  });
+
+  it("no photo: the budget is exactly what it was", () => {
+    for (const nCtx of [2048, 4096]) {
+      const before = buildPrompt({ system, messages: long, nCtx });
+      expect(buildPrompt({ system, messages: long, nCtx, imageTokens: 1024 })).toEqual(before);
+    }
   });
 });

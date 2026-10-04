@@ -3,6 +3,7 @@ import { LoggerWithoutDebug, LogLevel, Wllama } from "@wllama/wllama/esm/index.j
 import type { ChatCompletionChunk, ChatCompletionMessage, ChatCompletionParams } from "@wllama/wllama/esm/index.js";
 import { ANSWER_CEILING, prefillText, sampling, visionPackFor, type Capabilities, type Delta, type Embedder, type GenOpts, type LoadOptions, type LocalLM, type Message, type ModelRef, type Session, type Stats } from "@inborn/core";
 import { fileOfUri, modelFile } from "../web/opfs";
+import { BROWSER_IMAGE_MAX_TOKENS } from "./imageTokens";
 import { recordPhotoMs } from "../extensions/timeHint";
 import { photoForEngine } from "../images/vision";
 
@@ -62,8 +63,8 @@ async function imageBytes(uri: string): Promise<ArrayBuffer> {
   return res.arrayBuffer();
 }
 
-/* Photos are 1024 px, or 512 px on the CPU path (F417), when they get here; 512 image tokens is what the phones use, and fewer misread text. */
-const IMAGE_MAX_TOKENS = 512;
+/* Photos are 1024 px, or 512 px on the CPU path (F417), when they get here; 512 image tokens is what Instant uses on the phones, and fewer misread text. */
+const IMAGE_MAX_TOKENS = BROWSER_IMAGE_MAX_TOKENS;
 /* F453 (probe-cpu-1024): Instant misreads photo text below ~500 image tokens (a 320 px photo is 100); 512 read 4/4, at ~89 s to the first word instead of 20-33 s. */
 export const CPU_MIN_IMAGE_TOKENS: Readonly<Record<string, number>> = { "vision-qwen35": 512 };
 
