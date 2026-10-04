@@ -26,8 +26,8 @@ describe("model step offers", () => {
     expect(s.options[0]!.state).toEqual({ kind: "ready", via: "bundled" });
     expect(s.options[1]!.state).toEqual({ kind: "download", via: "https", host: "models.inbornapp.com", bytes: fast.bytes });
     expect(s.usableNow).toBe(true);
-    /* The recommendation may be the bigger model; the screen still opens on what works this second. */
-    expect(s.initialSelection).toBe("instant");
+    expect(s.initialSelection).toBe("fast");
+    expect(s.startNowWith).toBe("instant");
     expect(s.showWifiOnly).toBe(true);
     expect(s.showPlayNotice).toBe(false);
   });
@@ -109,6 +109,49 @@ describe("model step offers", () => {
     expect(step({ entries, languageCode: "en" }).options[1]!.betterInLanguage).toBe(null);
     expect(step({ entries, languageCode: "de" }).options[1]!.betterInLanguage).toBe(null);
     expect(step({ entries, languageCode: "es" }).options[0]!.betterInLanguage).toBe(null);
+  });
+});
+
+describe("the option the step opens on", () => {
+  const bundled = entry(instant, ready("bundled"), httpsPlan(instant));
+
+  it("opens on the recommended download, with the ready model one tap away under it", () => {
+    const s = step({ entries: [bundled, entry(fast, NOT_INSTALLED, httpsPlan(fast))], recommendedId: "fast" });
+    expect(s.initialSelection).toBe("fast");
+    expect(s.startNowWith).toBe("instant");
+    expect(s.usableNow).toBe(true);
+  });
+
+  it("Android with nothing landed yet: opens on the recommended download, and offers no ready model it does not have", () => {
+    const s = step({ platform: "android", entries: [entry(instant, NOT_INSTALLED, playPlan(instant)), entry(fast, NOT_INSTALLED, playPlan(fast))], recommendedId: "fast" });
+    expect(s.initialSelection).toBe("fast");
+    expect(s.startNowWith).toBe(null);
+  });
+
+  it("a recommendation already here or arriving is selected, with no second way to start", () => {
+    const delivering: InstallState = { kind: "delivering", via: "https", bytes: 600e6, total: 1.2e9, paused: false, waitingForWifi: false, needsConfirmation: false };
+    for (const state of [ready("https"), delivering]) {
+      const s = step({ entries: [bundled, entry(fast, state, httpsPlan(fast))], recommendedId: "fast" });
+      expect(s.initialSelection).toBe("fast");
+      expect(s.startNowWith).toBe(null);
+    }
+  });
+
+  it("a recommendation that cannot be downloaded now leaves the step on what works", () => {
+    const noSpace = step({ entries: [bundled, entry(fast, NOT_INSTALLED, httpsPlan(fast))], recommendedId: "fast", freeBytes: 1e9 });
+    const failed = step({ entries: [bundled, entry(fast, { kind: "failed", error: "network", via: "https", retryable: true }, httpsPlan(fast))], recommendedId: "fast" });
+    const noDelivery = step({ entries: [bundled, entry(fast, NOT_INSTALLED, null)], recommendedId: "fast" });
+    const none = step({ entries: [bundled, entry(fast, NOT_INSTALLED, httpsPlan(fast))] });
+    for (const s of [noSpace, failed, noDelivery, none]) {
+      expect(s.initialSelection).toBe("instant");
+      expect(s.startNowWith).toBe(null);
+    }
+  });
+
+  it("only one option: it is selected, and nothing is offered beside it", () => {
+    const s = step({ entries: [bundled], recommendedId: "instant" });
+    expect(s.initialSelection).toBe("instant");
+    expect(s.startNowWith).toBe(null);
   });
 });
 

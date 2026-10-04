@@ -73,10 +73,11 @@ function VaultModelChoice() {
     if (end.kind !== "ready" && end.kind !== "delivering" && end.kind !== "verifying") setFailed(true);
   };
 
-  const start = () => {
-    if (selected?.state.kind === "ready") vault.setDefault(selected.id);
+  const start = (id = selected?.state.kind === "ready" ? selected.id : null) => {
+    if (id) vault.setDefault(id);
     router.push("/onboarding/sealed");
   };
+  const startNowWith = selected?.state.kind === "download" ? step.startNowWith : null;
 
   return (
     <Screen
@@ -96,10 +97,13 @@ function VaultModelChoice() {
             <Button
               testID="start-chatting"
               title={selected?.state.kind === "arriving" ? t("onboarding.model.startWhileDownloading") : t("onboarding.model.start")}
-              onPress={start}
+              onPress={() => start()}
               disabled={!step.usableNow}
             />
           )}
+          {startNowWith ? (
+            <Button testID="start-now-with" title={t("onboarding.model.startNowWith", { name: modelOf(startNowWith).name })} variant="link" onPress={() => start(startNowWith)} />
+          ) : null}
           {selected?.state.kind === "arriving" ? (
             <Button testID="cancel-download" title={t("onboarding.model.cancelDownload")} variant="link" onPress={() => void vault.cancel(selected.id)} />
           ) : null}

@@ -2,6 +2,7 @@ import { initLlama, type JinjaFormattedChatResult } from "llama.rn";
 import { isDevice } from "expo-device";
 import { Platform } from "react-native";
 import { ANSWER_CEILING, continuationPrompt, pastPrefill, prefillText, sampling } from "@inborn/core";
+import { phoneImageMaxTokens } from "./imageTokens";
 import type { BenchTimings, Capabilities, Delta, Embedder, GenOpts, LoadOptions, LocalLM, Message, ModelRef, Session, Stats } from "@inborn/core";
 
 type Ctx = Awaited<ReturnType<typeof initLlama>>;
@@ -27,9 +28,10 @@ export class LlamaRnLM implements LocalLM {
     if (!ctx) throw new Error("model not loaded");
     if (this.vision && this.mmproj === mmprojPath) return true;
     try {
-      /* Photos are capped at 1024 px before they get here; 512 image tokens keeps prefill in seconds on a phone CPU. */
+      const imageMaxTokens = phoneImageMaxTokens(this.session?.model.id);
       /* The simulator's Metal driver traps inside the projector's buffer upload (xpc misuse); real iPhones and Android take the GPU. */
-      this.vision = await ctx.initMultimodal({ path: mmprojPath, use_gpu: Platform.OS !== "ios" || isDevice, image_max_tokens: 512 });
+      this.vision = await ctx.initMultimodal({ path: mmprojPath, use_gpu: Platform.OS !== "ios" || isDevice, image_max_tokens: imageMaxTokens });
+      this.devInfo.imageMaxTokens = imageMaxTokens;
     } catch (e: unknown) {
       if (__DEV__) console.warn("[llama.rn] initMultimodal", e);
       this.vision = false;

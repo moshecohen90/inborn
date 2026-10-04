@@ -42,8 +42,10 @@ export interface ModelStepInput {
 
 export interface ModelStep {
   options: ModelOption[];
-  /** The option selected when the screen opens: what is usable now, else what this device is meant to run. */
+  /** The option selected when the screen opens: the recommended model when it can be downloaded now or is arriving, else what is usable now, else the recommendation. */
   initialSelection: string | null;
+  /** A ready model to chat on instead, offered under the recommended download so nobody has to wait for it. */
+  startNowWith: string | null;
   /** At least one option is usable this second, so "Start chatting" is not a lie. */
   usableNow: boolean;
   /** The Wi-Fi switch only where it governs a download this screen can start: Play and the browser ignore the app's preference. */
@@ -80,10 +82,14 @@ export function modelStep(input: ModelStepInput): ModelStep {
     });
   }
   const usable = options.filter((o) => o.state.kind === "ready");
-  const initial = usable.find((o) => o.recommended) ?? usable[0] ?? options.find((o) => o.recommended) ?? options[0] ?? null;
+  const offer = options.find((o) => o.recommended && o.state.kind === "download");
+  /* Arriving too: the recommended download just started on this screen must stay selected, or its progress and cancel vanish. */
+  const coming = offer ?? options.find((o) => o.recommended && o.state.kind === "arriving");
+  const initial = coming ?? usable.find((o) => o.recommended) ?? usable[0] ?? options.find((o) => o.recommended) ?? options[0] ?? null;
   return {
     options,
     initialSelection: initial?.id ?? null,
+    startNowWith: offer ? (usable[0]?.id ?? null) : null,
     usableNow: usable.length > 0,
     showWifiOnly: platform !== "web" && options.some((o) => o.state.kind === "download" && (o.state.via === "https" || o.state.via === "hf")),
     showPlayNotice: platform === "android" && options.some((o) => o.state.kind !== "ready" && o.state.via === "play"),
