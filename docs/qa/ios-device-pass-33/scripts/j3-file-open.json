@@ -1,0 +1,72 @@
+{
+ "_": "J3 part 1: on Fast (its photo pack NOT installed), a new chat and the [+] sheet's library list holding the café picture.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "new-chat",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "press",
+   "testID": "new-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "start-chat",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "press",
+   "testID": "start-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "assertText",
+   "text": "FAST",
+   "testID": "model-chip"
+  },
+  {
+   "op": "press",
+   "testID": "attach"
+  },
+  {
+   "op": "waitFor",
+   "testID": "attach-sheet",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "sleep",
+   "ms": 1200
+  },
+  {
+   "op": "screenshot",
+   "name": "J3-01-library-list"
+  },
+  {
+   "op": "dump",
+   "name": "J3-01-sheet"
+  }
+ ]
+}

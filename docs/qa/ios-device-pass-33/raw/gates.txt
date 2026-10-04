@@ -1,0 +1,35 @@
+== first run (worktree at 79fc57e7)
+== install --frozen-lockfile start 18:07:40
+== install --frozen-lockfile rc=0 end 18:07:50
+== typecheck start 18:07:50
+== typecheck rc=0 end 18:07:59
+== lint start 18:07:59
+== lint rc=0 end 18:08:08
+== test start 18:08:08
+== test rc=0 end 18:08:39
+GATES-DONE
+PASS: all fields within limits.
+SKIP: no shipping artifact in this tree (apps/web/dist, apps/mobile/dist, apps/mobile/ios/build/Inborn.xcarchive, apps/mobile/android/app/build/outputs/bundle/release, apps/mobile/android/app/build/outputs/apk/release)
+PASS: no personal identifier in the history of HEAD
+apps/desktop test: # pass 4
+apps/desktop test: # fail 0
+packages/ui test:  Test Files  3 passed (3)
+packages/ui test:       Tests  23 passed (23)
+packages/i18n test:  Test Files  5 passed (5)
+packages/i18n test:       Tests  24 passed (24)
+packages/core test:  Test Files  103 passed | 3 skipped (106)
+packages/core test:       Tests  1262 passed | 4 skipped (1266)
+apps/mobile test:  Test Files  142 passed (142)
+apps/mobile test:       Tests  1297 passed (1297)
+
+== full test rerun after the archive (check:store finds it)
+PASS: all fields within limits.
+PASS: 1 shipping artifact(s) carry no QA bridge.
+PASS: no personal identifier in the history of HEAD
+apps/desktop test: # pass 4
+apps/desktop test: # fail 0
+packages/ui test:       Tests  23 passed (23)
+packages/i18n test:       Tests  24 passed (24)
+packages/core test:       Tests  1262 passed | 4 skipped (1266)
+apps/mobile test:       Tests  1297 passed (1297)
+rc=0

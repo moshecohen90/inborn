@@ -7479,6 +7479,29 @@ opened.
 Evidence: `docs/qa/ios-build-31-2026-09-28.md`, `docs/qa/ios-device-pass-31-2026-09-28.md`,
 `docs/qa/ios-device-pass-31/`.
 
+## iOS build 33: main with round 128 (library picture = photo, composer while loading, the icon's mark), on Moshe's iPhone only (branch `ios-build-33`) — 4.10.2026
+
+Build 1.0.0 (33) carries `main` 2ef3f736 (build 32's main plus round 128 and the brand ring) to the iPhone 13 Pro.
+Nothing went to a store. Moshe's route was walked on the `.qa` twin first, then the twin was removed and the store app
+updated.
+
+- **The build.** Commit 79fc57e7 bumps the build number 32 → 33. Install, typecheck, lint and test exit 0: 1,262 core
+  with 4 skipped, 1,297 mobile, 24 i18n, 23 ui, 4 desktop. Fresh prebuild and archive; both bundled models byte-exact to
+  the catalog, `main.jsbundle` carries 79fc57e764fa and round 128's strings, QA-bridge and shipping gates pass.
+- **On the phone as an update.** Nine non-model files byte-identical across the update (Moshe's data was reset at 17:26,
+  so build 32's six-file set no longer fit). About reads `1.0.0 (33) · 79fc57e764fa` under a StoreKit sandbox alert.
+- **Moshe's route.** A café photo filed in the library as `בית קפה הגינה תפריט.jpg`, tapped from the [+] list: a
+  thumbnail chip, no paperclip, and Instant describes the board with no "cannot see" and no "nothing matched" banner.
+  On Fast without its pack, Send shows the 668 MB pack card; after the download Fast describes it correctly. The receipt
+  the same way on Fast: 15.09.
+- **The ring.** On the phone the mark matches the app icon: green ring, amber clasp at 2 o'clock with highlight and
+  glow, down to the 28 px header.
+- **Not proven.** The keyboard half of the composer change: the field takes text while the model loads, but no journey
+  can raise the system keyboard on this phone.
+
+Evidence: `docs/qa/ios-build-33-2026-10-04.md`, `docs/qa/ios-device-pass-33-2026-10-04.md`,
+`docs/qa/ios-device-pass-33/`.
+
 ## iOS build 32: main with round 127 (the model step, photo tokens, the free advice card, catalog v8), on Moshe's iPhone only (branch `ios-build-32`) — 4.10.2026
 
 Build 1.0.0 (32) carries `main` deed0da7 (build 31's main plus round 127 and catalog v8) to the iPhone 13 Pro. Nothing

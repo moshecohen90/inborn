@@ -1,0 +1,288 @@
+{
+  "runId": "j5c2-fast-documents",
+  "startedAt": "2026-10-04T15:55:14.815Z",
+  "finishedAt": "2026-10-04T15:56:14.850Z",
+  "ok": true,
+  "passed": 33,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 156,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 9,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 165,
+      "detail": "attach: office-hours.txt"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1333,
+      "detail": "attached-docs appeared"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3017,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 12,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "office-hours.txt",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "office-hours.txt"
+    },
+    {
+      "i": 13,
+      "op": "type",
+      "ok": true,
+      "ms": 166,
+      "detail": "composer-input = 32 chars"
+    },
+    {
+      "i": 14,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 15,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "docs-hold appeared"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 815,
+      "detail": "800 ms"
+    },
+    {
+      "i": 17,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched. Download · 468 MB Send, exact words only Cancel",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched. Download · 468 MB Send, exact words only Cancel"
+    },
+    {
+      "i": 18,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2247,
+      "detail": "J5c-01-index-card"
+    },
+    {
+      "i": 19,
+      "op": "press",
+      "ok": true,
+      "ms": 168,
+      "detail": "docs-hold-download ← onPress"
+    },
+    {
+      "i": 20,
+      "op": "sleep",
+      "ok": true,
+      "ms": 6001,
+      "detail": "6000 ms"
+    },
+    {
+      "i": 21,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Downloading the document index model… 12%. Your message is sent when it's ready.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Downloading the document index model… 12%. Your message is sent when it's ready."
+    },
+    {
+      "i": 22,
+      "op": "idleTimer",
+      "ok": true,
+      "ms": 1,
+      "detail": "idle timer disabled: true",
+      "value": {
+        "text": "true",
+        "props": {
+          "idleTimerDisabled": true
+        }
+      }
+    },
+    {
+      "i": 23,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 37566,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 24,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1322,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 25,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1312,
+      "detail": "stop gone"
+    },
+    {
+      "i": 26,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 27,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "The office phone number is 555-0134, as stated in the provided document [1].",
+        "props": {
+          "source": "The office phone number is 555-0134, as stated in the provided document [1].",
+          "disabled": false
+        }
+      },
+      "detail": "The office phone number is 555-0134, as stated in the provided document [1]."
+    },
+    {
+      "i": 28,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "citations appeared"
+    },
+    {
+      "i": 29,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "[1] office-hours.txt · part 1",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "[1] office-hours.txt · part 1"
+    },
+    {
+      "i": 30,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2222,
+      "detail": "J5c-02-matching-answer"
+    },
+    {
+      "i": 31,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"555-0134\" present"
+    },
+    {
+      "i": 32,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"office-hours.txt · part\" absent"
+    }
+  ],
+  "errors": []
+}

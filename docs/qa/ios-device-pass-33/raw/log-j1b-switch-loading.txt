@@ -1,0 +1,42 @@
+18:30:52 pushing 36 steps as j1b-switch-loading
+18:31:00 shot J1b-01-typed-while-loading
+18:31:16 shot J1b-02-ready-text-kept
+18:31:22 shot J1b-03-after-send-answer
+18:31:25 ok     0 deeplink   /chats
+18:31:25 ok     1 waitFor    new-chat appeared
+18:31:25 ok     2 press      new-chat ← onPress
+18:31:25 ok     3 waitFor    start-chat appeared
+18:31:25 ok     4 press      start-chat ← onPress
+18:31:25 ok     5 waitFor    composer-input appeared
+18:31:25 ok     6 waitFor    Loading gone
+18:31:25 ok     7 sleep      1500 ms
+18:31:25 ok     8 value      FAST
+18:31:25 ok     9 press      model-chip ← onPress
+18:31:25 ok    10 waitFor    model-sheet-use-instant appeared
+18:31:25 ok    11 press      model-sheet-use-instant ← onPress
+18:31:25 ok    12 sleep      2000 ms
+18:31:25 ok    13 waitFor    Loading gone
+18:31:25 ok    14 sleep      1500 ms
+18:31:25 ok    15 assertText "INSTANT" present
+18:31:25 ok    16 press      model-chip ← onPress
+18:31:25 ok    17 waitFor    model-sheet-use-fast appeared
+18:31:25 ok    18 press      model-sheet-use-fast ← onPress
+18:31:25 ok    19 waitFor    Loading appeared
+18:31:25 ok    20 type       composer-input = 19 chars
+18:31:25 ok    21 assertText "Loading" present
+18:31:25 ok    22 value      FAST
+18:31:25 ok    23 screenshot J1b-01-typed-while-loading
+18:31:25 ok    24 dump       composer-while-loading
+18:31:25 FAIL  25 assertText assertText "Loading" is not on screen
+18:31:25 ok    26 waitFor    Loading gone
+18:31:25 ok    27 sleep      1000 ms
+18:31:25 ok    28 value      FAST
+18:31:25 ok    29 screenshot J1b-02-ready-text-kept
+18:31:25 ok    30 send       send ← onPress
+18:31:25 ok    31 waitFor    assistant-text appeared
+18:31:25 ok    32 waitFor    stop gone
+18:31:25 ok    33 sleep      1500 ms
+18:31:25 ok    34 value      Hello! I'm ready to help you anytime. What would you like to do?
+18:31:25 ok    35 screenshot J1b-03-after-send-answer
+18:31:25 35 passed, 1 failed, 3 screenshots → <worktree>/docs/qa/ios-device-pass-33/screens
+18:31:25   ! step 25 (assertText): assertText "Loading" is not on screen

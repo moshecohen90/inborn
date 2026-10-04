@@ -1,0 +1,48 @@
+18:28:26 pushing 43 steps as j3-tap-cafe-fast
+18:28:29 shot J3-02-a-thumbnail-chip
+18:28:33 shot J3-03-pack-card
+18:29:48 shot J3-04-answer-on-fast
+18:29:51 ok     0 value      בית קפה הגינה תפריט.jpg Scanned. Run OCR on this phone?
+18:29:51 ok     1 press      attach-mutz2mzj-1-n4vcqikx ← onPress
+18:29:51 ok     2 waitFor    attach-sheet gone
+18:29:51 ok     3 waitFor    pending-images appeared
+18:29:51 ok     4 sleep      1500 ms
+18:29:51 ok     5 waitFor    attached-docs gone
+18:29:51 ok     6 value      Free: one photo per message
+18:29:51 ok     7 screenshot J3-02-a-thumbnail-chip
+18:29:51 ok     8 type       composer-input = 29 chars
+18:29:51 ok     9 send       send ← onPress
+18:29:51 ok    10 waitFor    vision-hold appeared
+18:29:51 ok    11 sleep      1200 ms
+18:29:51 ok    12 value      FAST needs its photo pack to see photos
+18:29:51 ok    13 value      One 668 MB download, then this photo sends by itself.
+18:29:51 ok    14 value      Download 668 MB
+18:29:51 ok    15 waitFor    assistant-text gone
+18:29:51 ok    16 screenshot J3-03-pack-card
+18:29:51 ok    17 dump       chat-cafe-fast-card
+18:29:51 ok    18 press      vision-hold-download ← onPress
+18:29:51 ok    19 waitFor    vision-hold-progress appeared
+18:29:51 ok    20 sleep      5000 ms
+18:29:51 ok    21 value      Downloading the photo pack: 53 of 668 MB.
+18:29:51 ok    22 idleTimer  idle timer disabled: true
+18:29:51 ok    23 waitFor    vision-hold gone
+18:29:51 ok    24 waitFor    user-images appeared
+18:29:51 ok    25 waitFor    assistant-text appeared
+18:29:51 ok    26 waitFor    stop gone
+18:29:51 ok    27 sleep      1500 ms
+18:29:51 ok    28 value      The image shows a large chalkboard menu board mounted on an exterior brick wall, listing items like avocado to
+18:29:51 ok    29 sleep      2000 ms
+18:29:51 ok    30 screenshot J3-04-answer-on-fast
+18:29:51 ok    31 assertText "Nothing in your documents matched this question" absent
+18:29:51 ok    32 assertText "cannot see" absent
+18:29:51 ok    33 assertText "can't see" absent
+18:29:51 ok    34 assertText "text-based" absent
+18:29:51 ok    35 assertText "Your documents don't mention" absent
+18:29:51 ok    36 assertText "unable to see" absent
+18:29:51 ok    37 assertText "not able to see" absent
+18:29:51 ok    38 assertText "The request specifies" absent
+18:29:51 ok    39 assertText "I will focus" absent
+18:29:51 ok    40 assertText "as an AI" absent
+18:29:51 ok    41 assertText "NOT_FOUND" absent
+18:29:51 ok    42 assertText "<<<" absent
+18:29:51 43 passed, 0 failed, 3 screenshots → <worktree>/docs/qa/ios-device-pass-33/screens
