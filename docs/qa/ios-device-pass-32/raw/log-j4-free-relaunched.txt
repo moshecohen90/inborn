@@ -1,0 +1,40 @@
+15:55:45 launching com.inbornapp.mobile.qa
+15:56:30 pushing 34 steps as j4-free-relaunched
+15:56:30 inbox missing — launching once to create it
+15:57:24 shot J4-03-advice-card-free
+15:57:29 shot J4-04-after-not-now-free
+15:57:32 ok     0 deeplink   /chats
+15:57:32 ok     1 waitFor    new-chat appeared
+15:57:32 ok     2 press      new-chat ← onPress
+15:57:32 ok     3 waitFor    start-chat appeared
+15:57:32 ok     4 press      start-chat ← onPress
+15:57:32 ok     5 waitFor    composer-input appeared
+15:57:32 ok     6 waitFor    Loading gone
+15:57:32 ok     7 sleep      1500 ms
+15:57:32 ok     8 value      INSTANT
+15:57:32 ok     9 type       composer-input = 13 chars
+15:57:32 ok    10 send       send ← onPress
+15:57:32 ok    11 waitFor    assistant-text appeared
+15:57:32 ok    12 waitFor    stop gone
+15:57:32 ok    13 sleep      1500 ms
+15:57:32 ok    14 value      日本の最高山は富士山であり、約 3,809m の高さを誇っています。
+15:57:32 ok    15 sleep      2500 ms
+15:57:32 ok    16 waitFor    model-advice appeared
+15:57:32 ok    17 sleep      800 ms
+15:57:32 ok    18 value      FAST handles Japanese better than INSTANT, but not fluently. SHARP is the best here for Japanese · 2.74 GB PRO
+15:57:32 ok    19 value      FAST handles Japanese better than INSTANT, but not fluently.
+15:57:32 ok    20 value      Install FAST · 1.28 GB
+15:57:32 ok    21 value      SHARP is the best here for Japanese · 2.74 GB PRO
+15:57:32 ok    22 value      PRO
+15:57:32 ok    23 screenshot J4-03-advice-card-free
+15:57:32 ok    24 dump       chat-japanese-advice-free
+15:57:32 ok    25 assertText "FAST" present
+15:57:32 ok    26 assertText "Install FAST · 1.28 GB" present
+15:57:32 ok    27 assertText "SHARP" present
+15:57:32 ok    28 assertText "SHARP" absent
+15:57:32 ok    29 waitFor    model-advice-best-pro appeared
+15:57:32 ok    30 press      model-advice-not-now ← onPress
+15:57:32 ok    31 sleep      1500 ms
+15:57:32 ok    32 waitFor    model-advice gone
+15:57:32 ok    33 screenshot J4-04-after-not-now-free
+15:57:32 34 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-32/screens

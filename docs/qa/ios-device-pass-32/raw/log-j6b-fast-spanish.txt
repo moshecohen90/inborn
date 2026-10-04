@@ -1,0 +1,24 @@
+16:01:49 pushing 21 steps as j6b-fast-spanish
+16:01:56 shot J6b-real-madrid
+16:01:59 ok     0 deeplink   /chats
+16:01:59 ok     1 waitFor    new-chat appeared
+16:01:59 ok     2 press      new-chat ← onPress
+16:01:59 ok     3 waitFor    start-chat appeared
+16:01:59 ok     4 press      start-chat ← onPress
+16:01:59 ok     5 waitFor    composer-input appeared
+16:01:59 ok     6 waitFor    Loading gone
+16:01:59 ok     7 sleep      1500 ms
+16:01:59 ok     8 value      FAST
+16:01:59 ok     9 type       composer-input = 44 chars
+16:01:59 ok    10 send       send ← onPress
+16:01:59 ok    11 waitFor    assistant-text appeared
+16:01:59 ok    12 waitFor    stop gone
+16:01:59 ok    13 sleep      1500 ms
+16:01:59 ok    14 value      No sé quién ganó el partido del Real Madrid ayer, ya que no tengo acceso a la información en tiempo real o a l
+16:01:59 ok    15 screenshot J6b-real-madrid
+16:01:59 ok    16 assertText "The request specifies" absent
+16:01:59 ok    17 assertText "I will focus" absent
+16:01:59 ok    18 assertText "as an AI" absent
+16:01:59 ok    19 assertText "NOT_FOUND" absent
+16:01:59 ok    20 assertText "<<<" absent
+16:01:59 21 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-32/screens

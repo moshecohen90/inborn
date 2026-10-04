@@ -1,0 +1,41 @@
+16:01:23 pushing 36 steps as j6a2-fast-receipt
+16:01:29 shot J6a2-receipt-a-composer
+16:01:41 shot J6a2-receipt-b-answer
+16:01:45 shot J6a2-receipt-c-ledger
+16:01:48 ok     0 deeplink   /chats
+16:01:48 ok     1 waitFor    new-chat appeared
+16:01:48 ok     2 press      new-chat ← onPress
+16:01:48 ok     3 waitFor    start-chat appeared
+16:01:48 ok     4 press      start-chat ← onPress
+16:01:48 ok     5 waitFor    composer-input appeared
+16:01:48 ok     6 waitFor    Loading gone
+16:01:48 ok     7 sleep      1500 ms
+16:01:48 ok     8 value      FAST
+16:01:48 ok     9 devPrompt  image: photo-receipt.png
+16:01:48 ok    10 waitFor    pending-images appeared
+16:01:48 ok    11 type       composer-input = 66 chars
+16:01:48 ok    12 sleep      800 ms
+16:01:48 ok    13 screenshot J6a2-receipt-a-composer
+16:01:48 ok    14 send       send ← onPress
+16:01:48 ok    15 sleep      3000 ms
+16:01:48 ok    16 waitFor    vision-hold gone
+16:01:48 ok    17 waitFor    user-images appeared
+16:01:48 ok    18 waitFor    assistant-text appeared
+16:01:48 ok    19 waitFor    stop gone
+16:01:48 ok    20 sleep      1500 ms
+16:01:48 ok    21 value      The total is 15.09, and there were five items bought.
+16:01:48 ok    22 screenshot J6a2-receipt-b-answer
+16:01:48 ok    23 press      ledger-toggle ← onPress
+16:01:48 ok    24 sleep      800 ms
+16:01:48 ok    25 value      FAST
+16:01:48 ok    26 value      202 / 4096
+16:01:48 ok    27 setTier    pro
+16:01:48 ok    28 sleep      1200 ms
+16:01:48 ok    29 value      17.5
+16:01:48 ok    30 value      8006 ms
+16:01:48 ok    31 value      185 + 17
+16:01:48 ok    32 value      9.0 s
+16:01:48 ok    33 screenshot J6a2-receipt-c-ledger
+16:01:48 ok    34 setTier    free
+16:01:48 ok    35 sleep      800 ms
+16:01:48 36 passed, 0 failed, 3 screenshots → <worktree>/docs/qa/ios-device-pass-32/screens

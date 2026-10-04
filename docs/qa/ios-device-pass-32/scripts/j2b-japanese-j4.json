@@ -1,0 +1,162 @@
+{
+ "_": "J2 + J4: Japanese on Instant (rated none at Japanese in catalog v8), answer expected in Japanese; then the free user's advice card: Fast with 'Install FAST · 1.28 GB', Sharp only on a second line with the PRO chip; dismissed with Not now.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "new-chat",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "press",
+   "testID": "new-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "start-chat",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "press",
+   "testID": "start-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "日本で一番高い山は何ですか"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "waitFor",
+   "testID": "assistant-text",
+   "timeoutMs": 240000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 400000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "screenshot",
+   "name": "J2-02-japanese"
+  },
+  {
+   "op": "waitFor",
+   "testID": "model-advice",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "sleep",
+   "ms": 800
+  },
+  {
+   "op": "value",
+   "testID": "model-advice"
+  },
+  {
+   "op": "value",
+   "testID": "model-advice-reason"
+  },
+  {
+   "op": "value",
+   "testID": "model-advice-install"
+  },
+  {
+   "op": "value",
+   "testID": "model-advice-best"
+  },
+  {
+   "op": "value",
+   "testID": "model-advice-best-pro"
+  },
+  {
+   "op": "screenshot",
+   "name": "J4-01-advice-card"
+  },
+  {
+   "op": "dump",
+   "name": "chat-japanese-advice"
+  },
+  {
+   "op": "assertText",
+   "text": "FAST",
+   "testID": "model-advice-reason"
+  },
+  {
+   "op": "assertText",
+   "text": "Install FAST · 1.28 GB",
+   "testID": "model-advice-install"
+  },
+  {
+   "op": "assertText",
+   "text": "SHARP",
+   "testID": "model-advice-best"
+  },
+  {
+   "op": "assertText",
+   "text": "SHARP",
+   "testID": "model-advice-install",
+   "absent": true
+  },
+  {
+   "op": "waitFor",
+   "testID": "model-advice-best-pro",
+   "timeoutMs": 1000
+  },
+  {
+   "op": "press",
+   "testID": "model-advice-not-now"
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "waitFor",
+   "testID": "model-advice",
+   "gone": true,
+   "timeoutMs": 5000
+  },
+  {
+   "op": "screenshot",
+   "name": "J4-02-after-not-now"
+  }
+ ]
+}

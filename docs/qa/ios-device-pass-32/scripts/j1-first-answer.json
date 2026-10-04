@@ -1,0 +1,92 @@
+{
+ "_": "J1: the first answer on Instant and the detailed ledger, in the chat J0 opened.",
+ "steps": [
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "In two sentences, what is a lighthouse for?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "waitFor",
+   "testID": "assistant-text",
+   "timeoutMs": 240000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 400000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "screenshot",
+   "name": "J1-01-first-answer"
+  },
+  {
+   "op": "press",
+   "testID": "ledger-toggle"
+  },
+  {
+   "op": "sleep",
+   "ms": 800
+  },
+  {
+   "op": "value",
+   "testID": "ledger-model"
+  },
+  {
+   "op": "value",
+   "testID": "ledger-msPerToken"
+  },
+  {
+   "op": "value",
+   "testID": "ledger-context"
+  },
+  {
+   "op": "setTier",
+   "tier": "pro"
+  },
+  {
+   "op": "sleep",
+   "ms": 1200
+  },
+  {
+   "op": "value",
+   "testID": "ledger-tokPerSec"
+  },
+  {
+   "op": "value",
+   "testID": "ledger-ttft"
+  },
+  {
+   "op": "value",
+   "testID": "ledger-tokens"
+  },
+  {
+   "op": "value",
+   "testID": "ledger-time"
+  },
+  {
+   "op": "screenshot",
+   "name": "J1-02-ledger"
+  },
+  {
+   "op": "setTier",
+   "tier": "free"
+  },
+  {
+   "op": "sleep",
+   "ms": 800
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+== archive <scratch>/build32/Inborn.xcarchive (copied out of <worktree>/apps/mobile/ios/build)
+CFBundleVersion = 32
+CFBundleShortVersionString = 1.0.0
+CFBundleIdentifier = com.inbornapp.mobile
+MinimumOSVersion = 17.0
+appex = AskInborn.appex id com.inbornapp.mobile.share-extension ver 32
+instant.gguf (catalog file Qwen3.5-0.8B-Q4_K_M.gguf) = 532517120 B sha256 bd258782e35f… catalog 532517120 B bd258782e35f… -> MATCH
+vision-qwen35.gguf (catalog file mmproj-Qwen3.5-0.8B-F16.gguf) = 204987232 B sha256 56e4c6cfe73b… catalog 204987232 B 56e4c6cfe73b… -> MATCH
+ggufs in the .app: instant.gguf, vision-qwen35.gguf
+Fast / Sharp model or their packs in the .app: none
+tessdata = eng.traineddata heb.traineddata
+ExpoBattery strings = 3
+signing = Authority=Apple Development: Moshe Cohen (WUCEF6CXDH) TeamIdentifier=NGCHN95667
+main.jsbundle = 6840700 B
+app size = 768M
+bundle strings: INBORN_QA_BRIDGE_V1=0 dev-prompt.txt=0 'console.log: '=0
+build stamp: HEAD 02fdf5e42a6d; main.jsbundle carries it 1x as ASCII; buildInfo.generated.json in the worktree: {"commit":"02fdf5e42a6d","builtAt":"2026-10-04"}
+build 31's stamp 22d0bc516ab4: 0x
+'Start now with {name}' (round 127, onboarding): 1 as ASCII/UTF-8, 0 as UTF-16
+testID start-now-with (round 127): 1 as ASCII/UTF-8, 0 as UTF-16
+startNowWith (round 127, modelStep): 1 as ASCII/UTF-8, 0 as UTF-16
+imageTokens (round 127, context budget): 1 as ASCII/UTF-8, 0 as UTF-16
+image_max_tokens (llama.rn initMultimodal): 1 as ASCII/UTF-8, 0 as UTF-16
+model-advice-best-pro (round 127, advice card): 1 as ASCII/UTF-8, 0 as UTF-16
+catalog v8 signature 036616933e75…: 1 as ASCII/UTF-8, 0 as UTF-16
+catalog publishedAt 2026-10-04: 1 as ASCII/UTF-8, 0 as UTF-16
+'Install {model} first' (round 126): 1 as ASCII/UTF-8, 0 as UTF-16
+withoutEchoedLabels (round 126): 1 as ASCII/UTF-8, 0 as UTF-16
+continue_final_message (web only): 0 as ASCII/UTF-8, 0 as UTF-16
+== qa-bridge gate on the archive
+OK: <scratch>/build32/Inborn.xcarchive contains no QA bridge
+gate rc=0
+== shipping-bundles gate on the archive
+  <scratch>/build32/Inborn.xcarchive (given path): OK: <scratch>/build32/Inborn.xcarchive contains no QA bridge
+
+PASS: 1 shipping artifact(s) carry no QA bridge.
+shipping gate rc=0
+== model gate (--models) on the archive
+  <scratch>/build32/Inborn.xcarchive (models): OK instant instant.gguf 532517120 B sha256 matches the catalog
+  <scratch>/build32/Inborn.xcarchive (models): OK vision-qwen35 vision-qwen35.gguf 204987232 B sha256 matches the catalog
+
+PASS: every model the catalog ships is in the build, byte for byte.
+model gate rc=0
+VERIFY-DONE

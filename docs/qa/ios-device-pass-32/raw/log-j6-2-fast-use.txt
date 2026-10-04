@@ -1,0 +1,15 @@
+15:58:42 pushing 11 steps as j6-2-fast-use
+15:59:39 shot J6-02-fast-installed
+15:59:46 shot J6-03-fast-selected
+15:59:49 ok     0 idleTimer  idle timer disabled: true
+15:59:49 ok     1 waitFor    model-sheet-use-fast appeared
+15:59:49 ok     2 value      Use this model
+15:59:49 ok     3 screenshot J6-02-fast-installed
+15:59:49 ok     4 press      model-sheet-use-fast ← onPress
+15:59:49 ok     5 sleep      3000 ms
+15:59:49 ok     6 waitFor    Loading gone
+15:59:49 ok     7 sleep      2000 ms
+15:59:49 ok     8 value      FAST
+15:59:49 ok     9 assertText "FAST" present
+15:59:49 ok    10 screenshot J6-03-fast-selected
+15:59:49 11 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-32/screens

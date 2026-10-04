@@ -1,0 +1,46 @@
+15:54:13 pushing 41 steps as j3-instant-note
+15:54:19 shot J3-note-a-composer
+15:54:26 shot J3-note-b-answer
+15:54:30 shot J3-note-c-ledger
+15:54:33 ok     0 deeplink   /chats
+15:54:33 ok     1 waitFor    new-chat appeared
+15:54:33 ok     2 press      new-chat ← onPress
+15:54:33 ok     3 waitFor    start-chat appeared
+15:54:33 ok     4 press      start-chat ← onPress
+15:54:33 ok     5 waitFor    composer-input appeared
+15:54:33 ok     6 waitFor    Loading gone
+15:54:33 ok     7 sleep      1500 ms
+15:54:33 ok     8 value      INSTANT
+15:54:33 ok     9 devPrompt  image: handwritten-note-ca-1918-december-dpla-65285abb9b0.jpg
+15:54:33 ok    10 waitFor    pending-images appeared
+15:54:33 ok    11 type       composer-input = 44 chars
+15:54:33 ok    12 sleep      800 ms
+15:54:33 ok    13 screenshot J3-note-a-composer
+15:54:33 ok    14 send       send ← onPress
+15:54:33 ok    15 sleep      3000 ms
+15:54:33 ok    16 waitFor    vision-hold gone
+15:54:33 ok    17 waitFor    user-images appeared
+15:54:33 ok    18 waitFor    assistant-text appeared
+15:54:33 ok    19 waitFor    stop gone
+15:54:33 ok    20 sleep      1500 ms
+15:54:33 ok    21 value      39
+15:54:33 ok    22 screenshot J3-note-b-answer
+15:54:33 ok    23 assertText "The request specifies" absent
+15:54:33 ok    24 assertText "I will focus" absent
+15:54:33 ok    25 assertText "as an AI" absent
+15:54:33 ok    26 assertText "NOT_FOUND" absent
+15:54:33 ok    27 assertText "<<<" absent
+15:54:33 ok    28 press      ledger-toggle ← onPress
+15:54:33 ok    29 sleep      800 ms
+15:54:33 ok    30 value      INSTANT
+15:54:33 ok    31 value      172 / 4096
+15:54:33 ok    32 setTier    pro
+15:54:33 ok    33 sleep      1200 ms
+15:54:33 ok    34 value      22.2
+15:54:33 ok    35 value      1543 ms
+15:54:33 ok    36 value      170 + 2
+15:54:33 ok    37 value      1.6 s
+15:54:33 ok    38 screenshot J3-note-c-ledger
+15:54:33 ok    39 setTier    free
+15:54:33 ok    40 sleep      800 ms
+15:54:33 41 passed, 0 failed, 3 screenshots → <worktree>/docs/qa/ios-device-pass-32/screens

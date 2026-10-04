@@ -1,0 +1,46 @@
+15:53:51 pushing 41 steps as j3-instant-receipt
+15:53:57 shot J3-receipt-a-composer
+15:54:06 shot J3-receipt-b-answer
+15:54:10 shot J3-receipt-c-ledger
+15:54:13 ok     0 deeplink   /chats
+15:54:13 ok     1 waitFor    new-chat appeared
+15:54:13 ok     2 press      new-chat ← onPress
+15:54:13 ok     3 waitFor    start-chat appeared
+15:54:13 ok     4 press      start-chat ← onPress
+15:54:13 ok     5 waitFor    composer-input appeared
+15:54:13 ok     6 waitFor    Loading gone
+15:54:13 ok     7 sleep      1500 ms
+15:54:13 ok     8 value      INSTANT
+15:54:13 ok     9 devPrompt  image: photo-receipt.png
+15:54:13 ok    10 waitFor    pending-images appeared
+15:54:13 ok    11 type       composer-input = 66 chars
+15:54:13 ok    12 sleep      800 ms
+15:54:13 ok    13 screenshot J3-receipt-a-composer
+15:54:13 ok    14 send       send ← onPress
+15:54:13 ok    15 sleep      3000 ms
+15:54:13 ok    16 waitFor    vision-hold gone
+15:54:13 ok    17 waitFor    user-images appeared
+15:54:13 ok    18 waitFor    assistant-text appeared
+15:54:13 ok    19 waitFor    stop gone
+15:54:13 ok    20 sleep      1500 ms
+15:54:13 ok    21 value      The total on the receipt is 15.09, comprising four items: oat milk (2.49), sourdough bread (3.80), bananas (1.
+15:54:13 ok    22 screenshot J3-receipt-b-answer
+15:54:13 ok    23 assertText "The request specifies" absent
+15:54:13 ok    24 assertText "I will focus" absent
+15:54:13 ok    25 assertText "as an AI" absent
+15:54:13 ok    26 assertText "NOT_FOUND" absent
+15:54:13 ok    27 assertText "<<<" absent
+15:54:13 ok    28 press      ledger-toggle ← onPress
+15:54:13 ok    29 sleep      800 ms
+15:54:13 ok    30 value      INSTANT
+15:54:13 ok    31 value      250 / 4096
+15:54:13 ok    32 setTier    pro
+15:54:13 ok    33 sleep      1200 ms
+15:54:13 ok    34 value      35.8
+15:54:13 ok    35 value      1576 ms
+15:54:13 ok    36 value      175 + 75
+15:54:13 ok    37 value      3.7 s
+15:54:13 ok    38 screenshot J3-receipt-c-ledger
+15:54:13 ok    39 setTier    free
+15:54:13 ok    40 sleep      800 ms
+15:54:13 41 passed, 0 failed, 3 screenshots → <worktree>/docs/qa/ios-device-pass-32/screens

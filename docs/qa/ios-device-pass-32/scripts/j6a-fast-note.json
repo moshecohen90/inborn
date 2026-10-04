@@ -1,0 +1,214 @@
+{
+ "_": "J6a: the handwritten note on Fast. Fast's photo pack is downloaded from the card first (668 MB), then the photo sends by itself; expected '4658', 1024 image tokens.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "new-chat",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "press",
+   "testID": "new-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "start-chat",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "press",
+   "testID": "start-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "assertText",
+   "text": "FAST",
+   "testID": "model-chip"
+  },
+  {
+   "op": "devPrompt",
+   "lines": [
+    "image: handwritten-note-ca-1918-december-dpla-65285abb9b0.jpg"
+   ]
+  },
+  {
+   "op": "waitFor",
+   "testID": "pending-images",
+   "timeoutMs": 60000
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "What number is written next to Mr. Thompson?"
+  },
+  {
+   "op": "sleep",
+   "ms": 800
+  },
+  {
+   "op": "screenshot",
+   "name": "J6a-note-a-composer"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "waitFor",
+   "testID": "vision-hold",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "sleep",
+   "ms": 1200
+  },
+  {
+   "op": "value",
+   "testID": "vision-hold-title"
+  },
+  {
+   "op": "value",
+   "testID": "vision-hold-body"
+  },
+  {
+   "op": "value",
+   "testID": "vision-hold-download"
+  },
+  {
+   "op": "screenshot",
+   "name": "J6a-note-b-pack-card"
+  },
+  {
+   "op": "press",
+   "testID": "vision-hold-download"
+  },
+  {
+   "op": "waitFor",
+   "testID": "vision-hold-progress",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 5000
+  },
+  {
+   "op": "value",
+   "testID": "vision-hold-body"
+  },
+  {
+   "op": "idleTimer"
+  },
+  {
+   "op": "waitFor",
+   "testID": "vision-hold",
+   "gone": true,
+   "timeoutMs": 2400000
+  },
+  {
+   "op": "waitFor",
+   "testID": "user-images",
+   "timeoutMs": 60000
+  },
+  {
+   "op": "waitFor",
+   "testID": "assistant-text",
+   "timeoutMs": 600000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 600000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "screenshot",
+   "name": "J6a-note-c-answer"
+  },
+  {
+   "op": "assertText",
+   "text": "4658",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "press",
+   "testID": "ledger-toggle"
+  },
+  {
+   "op": "sleep",
+   "ms": 800
+  },
+  {
+   "op": "value",
+   "testID": "ledger-model"
+  },
+  {
+   "op": "value",
+   "testID": "ledger-context"
+  },
+  {
+   "op": "setTier",
+   "tier": "pro"
+  },
+  {
+   "op": "sleep",
+   "ms": 1200
+  },
+  {
+   "op": "value",
+   "testID": "ledger-tokPerSec"
+  },
+  {
+   "op": "value",
+   "testID": "ledger-ttft"
+  },
+  {
+   "op": "value",
+   "testID": "ledger-tokens"
+  },
+  {
+   "op": "value",
+   "testID": "ledger-time"
+  },
+  {
+   "op": "screenshot",
+   "name": "J6a-note-d-ledger"
+  },
+  {
+   "op": "setTier",
+   "tier": "free"
+  },
+  {
+   "op": "sleep",
+   "ms": 800
+  }
+ ]
+}

@@ -1,0 +1,207 @@
+{
+ "_": "J0 (round 127): the model step on a fresh twin. Fast preselected and RECOMMENDED, 'Download Fast · 1.28 GB', 'Start now with Instant' under it, Instant still selectable; then 'Start now with Instant' -> Sealed -> lock -> chat on Instant.",
+ "steps": [
+  {
+   "op": "waitFor",
+   "testID": "onboarding-welcome",
+   "timeoutMs": 120000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "onboarding-welcome"
+  },
+  {
+   "op": "screenshot",
+   "name": "J0-00-welcome"
+  },
+  {
+   "op": "press",
+   "testID": "onboarding-continue"
+  },
+  {
+   "op": "waitFor",
+   "testID": "onboarding-model",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "value",
+   "testID": "onboarding-model"
+  },
+  {
+   "op": "value",
+   "testID": "model-option-fast"
+  },
+  {
+   "op": "value",
+   "testID": "model-option-instant"
+  },
+  {
+   "op": "value",
+   "testID": "download-model"
+  },
+  {
+   "op": "value",
+   "testID": "start-now-with"
+  },
+  {
+   "op": "screenshot",
+   "name": "J0-01-fast-selected"
+  },
+  {
+   "op": "dump",
+   "name": "model-step-fast-selected"
+  },
+  {
+   "op": "assertText",
+   "text": "RECOMMENDED",
+   "testID": "model-option-fast"
+  },
+  {
+   "op": "assertText",
+   "text": "Download Fast · 1.28 GB",
+   "testID": "download-model"
+  },
+  {
+   "op": "assertText",
+   "text": "Start now with Instant",
+   "testID": "start-now-with"
+  },
+  {
+   "op": "waitFor",
+   "testID": "start-chatting",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "press",
+   "testID": "model-option-instant"
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "onboarding-model"
+  },
+  {
+   "op": "value",
+   "testID": "start-chatting"
+  },
+  {
+   "op": "waitFor",
+   "testID": "download-model",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "waitFor",
+   "testID": "start-now-with",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "screenshot",
+   "name": "J0-02-instant-selected"
+  },
+  {
+   "op": "dump",
+   "name": "model-step-instant-selected"
+  },
+  {
+   "op": "press",
+   "testID": "model-option-fast"
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "waitFor",
+   "testID": "start-now-with",
+   "timeoutMs": 5000
+  },
+  {
+   "op": "value",
+   "testID": "download-model"
+  },
+  {
+   "op": "screenshot",
+   "name": "J0-03-fast-again"
+  },
+  {
+   "op": "press",
+   "testID": "start-now-with"
+  },
+  {
+   "op": "waitFor",
+   "testID": "onboarding-sealed",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 4000
+  },
+  {
+   "op": "value",
+   "testID": "onboarding-sealed"
+  },
+  {
+   "op": "screenshot",
+   "name": "J0-04-sealed"
+  },
+  {
+   "op": "press",
+   "testID": "sealed-start"
+  },
+  {
+   "op": "waitFor",
+   "testID": "onboarding-lock",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "press",
+   "testID": "lock-start"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 60000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 120000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "assertText",
+   "text": "INSTANT",
+   "testID": "model-chip"
+  },
+  {
+   "op": "screenshot",
+   "name": "J0-05-chat-on-instant"
+  }
+ ]
+}

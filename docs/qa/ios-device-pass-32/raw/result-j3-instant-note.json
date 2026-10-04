@@ -1,0 +1,350 @@
+{
+  "runId": "j3-instant-note",
+  "startedAt": "2026-10-04T12:54:13.728Z",
+  "finishedAt": "2026-10-04T12:54:32.721Z",
+  "ok": true,
+  "passed": 41,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 159,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 163,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "INSTANT",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT"
+    },
+    {
+      "i": 9,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 165,
+      "detail": "image: handwritten-note-ca-1918-december-dpla-65285abb9b0.jpg"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1334,
+      "detail": "pending-images appeared"
+    },
+    {
+      "i": 11,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 44 chars"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 816,
+      "detail": "800 ms"
+    },
+    {
+      "i": 13,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2566,
+      "detail": "J3-note-a-composer"
+    },
+    {
+      "i": 14,
+      "op": "send",
+      "ok": true,
+      "ms": 167,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 15,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3001,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 16,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "vision-hold gone"
+    },
+    {
+      "i": 17,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "user-images appeared"
+    },
+    {
+      "i": 18,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 19,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "stop gone"
+    },
+    {
+      "i": 20,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 21,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "39",
+        "props": {
+          "source": "39",
+          "disabled": false
+        }
+      },
+      "detail": "39"
+    },
+    {
+      "i": 22,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2237,
+      "detail": "J3-note-b-answer"
+    },
+    {
+      "i": 23,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"The request specifies\" absent"
+    },
+    {
+      "i": 24,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"I will focus\" absent"
+    },
+    {
+      "i": 25,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"as an AI\" absent"
+    },
+    {
+      "i": 26,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"NOT_FOUND\" absent"
+    },
+    {
+      "i": 27,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"<<<\" absent"
+    },
+    {
+      "i": 28,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "ledger-toggle ← onPress"
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 817,
+      "detail": "800 ms"
+    },
+    {
+      "i": 30,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "INSTANT",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT"
+    },
+    {
+      "i": 31,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "172 / 4096",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "172 / 4096"
+    },
+    {
+      "i": 32,
+      "op": "setTier",
+      "ok": true,
+      "ms": 196,
+      "detail": "pro"
+    },
+    {
+      "i": 33,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1217,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 34,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "22.2",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "22.2"
+    },
+    {
+      "i": 35,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "1543 ms",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "1543 ms"
+    },
+    {
+      "i": 36,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "170 + 2",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "170 + 2"
+    },
+    {
+      "i": 37,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "1.6 s",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "1.6 s"
+    },
+    {
+      "i": 38,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1608,
+      "detail": "J3-note-c-ledger"
+    },
+    {
+      "i": 39,
+      "op": "setTier",
+      "ok": true,
+      "ms": 185,
+      "detail": "free"
+    },
+    {
+      "i": 40,
+      "op": "sleep",
+      "ok": true,
+      "ms": 816,
+      "detail": "800 ms"
+    }
+  ],
+  "errors": []
+}

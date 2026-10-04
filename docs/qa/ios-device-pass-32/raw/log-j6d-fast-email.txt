@@ -1,0 +1,21 @@
+16:02:19 pushing 18 steps as j6d-fast-email
+16:02:27 shot J6d-polite-email
+16:02:29 ok     0 deeplink   /chats
+16:02:29 ok     1 waitFor    new-chat appeared
+16:02:29 ok     2 press      new-chat ← onPress
+16:02:29 ok     3 waitFor    start-chat appeared
+16:02:29 ok     4 press      start-chat ← onPress
+16:02:29 ok     5 waitFor    composer-input appeared
+16:02:29 ok     6 waitFor    Loading gone
+16:02:29 ok     7 sleep      1500 ms
+16:02:29 ok     8 value      FAST
+16:02:29 ok     9 type       composer-input = 104 chars
+16:02:29 ok    10 send       send ← onPress
+16:02:29 ok    11 waitFor    assistant-text appeared
+16:02:29 ok    12 waitFor    stop gone
+16:02:29 ok    13 sleep      1500 ms
+16:02:29 ok    14 value      I hope you're having a productive day. Would you be able to send me the report by tomorrow morning? I noticed
+16:02:29 ok    15 screenshot J6d-polite-email
+16:02:29 ok    16 assertText "Version 2" absent
+16:02:29 ok    17 assertText "Option 2" absent
+16:02:29 18 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-32/screens
