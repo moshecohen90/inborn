@@ -1,7 +1,7 @@
-import { forwardRef, useEffect, useRef, useState } from "react";
-import { AccessibilityInfo, Animated, Easing, Platform, View } from "react-native";
-import Svg, { Circle, type CircleProps, Defs, Path, RadialGradient, Stop } from "react-native-svg";
-import { glow as glowTokens, motion } from "@inborn/ui";
+import { forwardRef, useEffect, useId, useRef, useState } from "react";
+import { AccessibilityInfo, Animated, Easing, PixelRatio, Platform, View } from "react-native";
+import Svg, { Circle, type CircleProps, Defs, Path, type PathProps, RadialGradient, Stop } from "react-native-svg";
+import { glow as glowTokens, motion, sealMark } from "@inborn/ui";
 import { useTheme } from "../services/theme";
 import { haptic } from "../services/haptics";
 
@@ -27,23 +27,49 @@ interface SealProps {
 const WebCircle = forwardRef<Circle, CircleProps & { collapsable?: boolean }>(function WebCircle({ collapsable: _collapsable, ...props }, ref) {
   return <Circle ref={ref} {...props} />;
 });
+const WebPath = forwardRef<Path, PathProps & { collapsable?: boolean }>(function WebPath({ collapsable: _collapsable, ...props }, ref) {
+  return <Path ref={ref} {...props} />;
+});
 const AnimatedCircle = Animated.createAnimatedComponent(Platform.OS === "web" ? WebCircle : Circle);
-const OPEN_FRACTION = 0.16;
+const AnimatedPath = Animated.createAnimatedComponent(Platform.OS === "web" ? WebPath : Path);
 
-/** The seal ring: the only "AI is working" indicator and the only privacy state object in the app. */
+/** The open ring's missing share of the circumference: wider than the clasp (28° plus two round caps), so the clasp lands inside the opening it closes. */
+const OPEN_FRACTION = 0.2;
+const CLASP_CENTRE = (sealMark.claspFrom + sealMark.claspTo) / 2;
+const rad = (deg: number) => (deg * Math.PI) / 180;
+const arc = (cx: number, r: number, from: number, to: number) =>
+  `M ${cx + r * Math.cos(rad(from))} ${cx + r * Math.sin(rad(from))} A ${r} ${r} 0 0 1 ${cx + r * Math.cos(rad(to))} ${cx + r * Math.sin(rad(to))}`;
+
+/** The seal ring: the app icon drawn live (sealMark), the only "AI is working" indicator and the only privacy state object in the app. */
 export function Seal({ size, label, state, generating = false, color, glow, progress = 0, haptics = true, onSealed, testID = "seal" }: SealProps) {
   const { theme } = useTheme();
   const resolved: SealState = state ?? (generating ? "generating" : "sealed");
-  const stroke = Math.max(2, Math.round(size / 14));
+  const stroke = Math.max(2, Math.round(size * sealMark.stroke * 2) / 2);
   const r = (size - stroke) / 2;
   const c = 2 * Math.PI * r;
   const cx = size / 2;
   const openGap = c * OPEN_FRACTION;
+  const highlightStroke = stroke * sealMark.highlightStroke;
+  /* Under two device pixels the highlight is a blur, so the clasp stays a plain amber arc (28 px on a 1× screen). */
+  const highlightVisible = highlightStroke * PixelRatio.get() >= 2;
+  const glowR = r * sealMark.glowRadius;
+  const claspX = cx + r * Math.cos(rad(CLASP_CENTRE));
+  const claspY = cx + r * Math.sin(rad(CLASP_CENTRE));
+  /* The glow reaches past the ring, as on the icon; the canvas bleeds that far while the laid-out box stays `size`. */
+  const pad = Math.ceil(Math.max(0, glowR - stroke / 2));
+  const canvas = size + 2 * pad;
+  const brand = resolved === "open" || resolved === "sealing" || resolved === "sealed" || resolved === "generating";
+  /* Per-instance gradient ids: on web `url(#id)` takes the first id in the document, and a hidden stacked screen's defs paint nothing. */
+  const uid = useId().replace(/[^a-zA-Z0-9]/g, "");
+  const filament = `filament-${uid}`;
+  const bloomId = `bloom-${uid}`;
+  const claspGlow = `claspGlow-${uid}`;
 
   const [reduceMotion, setReduceMotion] = useState(false);
   const breath = useRef(new Animated.Value(1)).current;
   const gap = useRef(new Animated.Value(resolved === "open" || resolved === "sealing" ? openGap : 0)).current;
   const bloom = useRef(new Animated.Value(0)).current;
+  const clasp = useRef(new Animated.Value(resolved === "sealed" || resolved === "generating" ? 1 : 0)).current;
   const sealedOnce = useRef(false);
 
   useEffect(() => {
@@ -73,11 +99,17 @@ export function Seal({ size, label, state, generating = false, color, glow, prog
     };
   }, [resolved, reduceMotion, breath]);
 
-  // SEALING: the last gap snaps shut (420 ms spring), one rigid haptic, a green bloom for 600 ms, then nothing.
+  // SEALING: the last gap snaps shut (420 ms spring), one rigid haptic, the clasp sets under a green bloom for 600 ms, then nothing.
   useEffect(() => {
     if (resolved === "open") {
       sealedOnce.current = false;
       gap.setValue(openGap);
+      clasp.setValue(0);
+      return;
+    }
+    if (resolved === "sealed" || resolved === "generating") {
+      gap.setValue(0);
+      clasp.setValue(1);
       return;
     }
     if (resolved !== "sealing" || sealedOnce.current) return;
@@ -88,17 +120,21 @@ export function Seal({ size, label, state, generating = false, color, glow, prog
     };
     if (reduceMotion) {
       gap.setValue(0);
+      clasp.setValue(1);
       finish();
       return;
     }
     Animated.spring(gap, { toValue: 0, speed: 14, bounciness: 6, useNativeDriver: false }).start(() => {
-      Animated.sequence([
-        Animated.timing(bloom, { toValue: 1, duration: 120, useNativeDriver: false }),
-        Animated.timing(bloom, { toValue: 0, duration: motion.bloom, easing: Easing.out(Easing.ease), useNativeDriver: false }),
+      Animated.parallel([
+        Animated.timing(clasp, { toValue: 1, duration: 120, useNativeDriver: false }),
+        Animated.sequence([
+          Animated.timing(bloom, { toValue: 1, duration: 120, useNativeDriver: false }),
+          Animated.timing(bloom, { toValue: 0, duration: motion.bloom, easing: Easing.out(Easing.ease), useNativeDriver: false }),
+        ]),
       ]).start();
       finish();
     });
-  }, [resolved, reduceMotion, gap, bloom, openGap, haptics, onSealed]);
+  }, [resolved, reduceMotion, gap, bloom, clasp, openGap, haptics, onSealed]);
 
   useEffect(() => {
     if (resolved === "unsealed") void haptic("warning", haptics);
@@ -106,29 +142,36 @@ export function Seal({ size, label, state, generating = false, color, glow, prog
 
   const ringColor =
     color ??
-    (resolved === "unsealed" ? theme.danger : resolved === "lan" ? theme.accent : resolved === "loading" ? theme.text3 : resolved === "open" ? theme.text2 : theme.sealed);
+    (resolved === "unsealed" ? theme.danger : resolved === "lan" ? theme.accent : resolved === "loading" ? theme.text3 : theme.sealed);
   const glowColor = glow ?? glowTokens.filament;
   const glowing = resolved === "generating" && !reduceMotion;
-  const rotation = -90 - (OPEN_FRACTION * 360) / 2;
+  /* The dash starts just past the opening, so the gap sits where the clasp will be and closes clockwise into it. */
+  const rotation = CLASP_CENTRE + OPEN_FRACTION * 180;
+  const claspArc = arc(cx, r, sealMark.claspFrom, sealMark.claspTo);
 
   return (
     <View testID={testID} accessibilityLabel={label} accessibilityRole="image" style={{ width: size, height: size }}>
       <Animated.View style={{ width: size, height: size, opacity: breath }}>
-        <Svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
+        <Svg width={canvas} height={canvas} viewBox={`${-pad} ${-pad} ${canvas} ${canvas}`} style={{ position: "absolute", left: -pad, top: -pad }}>
           <Defs>
             {/* §9.2 puts the filament behind the seal, not inside it: a fill from the centre read as a brown disc (QA F251). */}
-            <RadialGradient id="filament" cx="50%" cy="50%" r="50%">
+            <RadialGradient id={filament} cx="50%" cy="50%" r="50%">
               <Stop offset="55%" stopColor={glowColor} stopOpacity={0} />
               <Stop offset="86%" stopColor={glowColor} stopOpacity={0.45} />
               <Stop offset="100%" stopColor={glowColor} stopOpacity={0} />
             </RadialGradient>
-            <RadialGradient id="bloom" cx="50%" cy="50%" r="50%">
+            <RadialGradient id={bloomId} cx="50%" cy="50%" r="50%">
               <Stop offset="60%" stopColor={glowTokens.sealed} stopOpacity={0.25} />
               <Stop offset="100%" stopColor={glowTokens.sealed} stopOpacity={0} />
             </RadialGradient>
+            <RadialGradient id={claspGlow} cx="50%" cy="50%" r="50%">
+              {sealMark.glowStops.map(([offset, opacity]) => (
+                <Stop key={offset} offset={`${offset * 100}%`} stopColor={sealMark.clasp} stopOpacity={opacity} />
+              ))}
+            </RadialGradient>
           </Defs>
-          {glowing ? <Circle cx={cx} cy={cx} r={cx} fill="url(#filament)" /> : null}
-          <AnimatedCircle cx={cx} cy={cx} r={cx} fill="url(#bloom)" opacity={bloom} />
+          {glowing ? <Circle cx={cx} cy={cx} r={cx} fill={`url(#${filament})`} /> : null}
+          <AnimatedCircle cx={cx} cy={cx} r={cx} fill={`url(#${bloomId})`} opacity={bloom} />
           {resolved === "loading" ? (
             <>
               <Circle cx={cx} cy={cx} r={r} stroke={theme.text3} strokeWidth={stroke} strokeDasharray={`${stroke} ${stroke * 2}`} fill="none" strokeLinecap="round" />
@@ -157,18 +200,23 @@ export function Seal({ size, label, state, generating = false, color, glow, prog
               />
             </>
           ) : (
-            <AnimatedCircle
-              cx={cx}
-              cy={cx}
-              r={r}
-              stroke={ringColor}
-              strokeWidth={stroke}
-              strokeDasharray={`${c} ${c}`}
-              strokeDashoffset={gap}
-              fill="none"
-              strokeLinecap="round"
-              transform={`rotate(${rotation} ${cx} ${cx})`}
-            />
+            <>
+              {brand ? <AnimatedCircle cx={claspX} cy={claspY} r={glowR} fill={`url(#${claspGlow})`} opacity={clasp} /> : null}
+              <AnimatedCircle
+                cx={cx}
+                cy={cx}
+                r={r}
+                stroke={ringColor}
+                strokeWidth={stroke}
+                strokeDasharray={`${c} ${c}`}
+                strokeDashoffset={gap}
+                fill="none"
+                strokeLinecap="round"
+                transform={`rotate(${rotation} ${cx} ${cx})`}
+              />
+              {brand ? <AnimatedPath d={claspArc} stroke={sealMark.clasp} strokeWidth={stroke} strokeLinecap="round" fill="none" opacity={clasp} /> : null}
+              {brand && highlightVisible ? <AnimatedPath d={claspArc} stroke={sealMark.highlight} strokeWidth={highlightStroke} strokeLinecap="round" fill="none" opacity={clasp} /> : null}
+            </>
           )}
         </Svg>
       </Animated.View>

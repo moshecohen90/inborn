@@ -129,7 +129,8 @@ describe("F247 · the sealed green means the seal and nothing else (§9.9)", () 
 
   it("the generating filament glows behind the ring instead of filling it", () => {
     const seal = source("components/Seal.tsx");
-    expect(seal).toMatch(/id="filament"[\s\S]*?offset="55%"[\s\S]*?stopOpacity=\{0\}/);
+    /* Round 128: the id is per instance (web resolves url(#id) document-wide), the gradient itself is unchanged. */
+    expect(seal).toMatch(/id=\{filament\}[\s\S]*?offset="55%"[\s\S]*?stopOpacity=\{0\}/);
   });
 });
 
