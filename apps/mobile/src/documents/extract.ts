@@ -53,6 +53,11 @@ export class PdfJsExtractor implements TextExtractor {
   }
 }
 
+/* pdf.js here only reads text; a page picture needs the native renderer, so the browser keeps the text route. */
+export const hasPageRenderer = (): boolean => false;
+export const pageInkAt = async (_uri: string, _page: number): Promise<number> => 0;
+export const renderPageAt = async (_uri: string, _page: number): Promise<string | null> => null;
+
 export function createExtractors(): TextExtractor[] {
   return [new PdfJsExtractor(), new TextFileExtractor(readBytes), new DocxExtractor(readBytes), new XlsxExtractor(readBytes), new HtmlExtractor(readBytes)];
 }

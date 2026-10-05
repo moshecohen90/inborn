@@ -26,25 +26,25 @@ export function imagesDir(): Directory {
   return dir;
 }
 
-async function prepare(uri: string, w: number, h: number): Promise<PickedImage> {
+async function prepare(uri: string, w: number, h: number, prefix = ""): Promise<PickedImage> {
   const scale = Math.min(1, MAX_EDGE / Math.max(w, h, 1));
   const ctx = ImageManipulator.manipulate(uri);
   if (scale < 1) ctx.resize({ width: Math.round(w * scale), height: Math.round(h * scale) });
   const rendered = await ctx.renderAsync();
   const saved = await rendered.saveAsync({ format: SaveFormat.JPEG, compress: JPEG_QUALITY });
   rendered.release();
-  const dest = new File(imagesDir(), `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}.jpg`);
+  const dest = new File(imagesDir(), `${prefix}${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}.jpg`);
   new File(saved.uri).move(dest);
   return { uri: dest.uri, width: saved.width, height: saved.height, bytes: dest.size ?? 0 };
 }
 
 /** A picture that arrived as a file (the file picker, the share sheet) takes the same scale-down and EXIF strip as a picked photo. */
-export async function importImageFile(uri: string): Promise<PickedImage | null> {
+export async function importImageFile(uri: string, prefix?: string): Promise<PickedImage | null> {
   try {
     const probe = await ImageManipulator.manipulate(uri).renderAsync();
     const { width, height } = probe;
     probe.release();
-    return await prepare(uri, width, height);
+    return await prepare(uri, width, height, prefix);
   } catch (e: unknown) {
     console.warn("[images] import", e);
     return null;

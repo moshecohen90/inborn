@@ -1,0 +1,85 @@
+{
+  "runId": "s6-ask-fast-visual",
+  "_": "Fast without its pack: a new chat, the visual PDF attached, 'What do you see?': Send shows the pack offer, no message is stored and no answer comes.",
+  "steps": [
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 120000
+    },
+    {
+      "op": "deeplink",
+      "url": "/chats"
+    },
+    {
+      "op": "waitFor",
+      "testID": "new-chat",
+      "timeoutMs": 20000
+    },
+    {
+      "op": "press",
+      "testID": "new-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "start-chat",
+      "timeoutMs": 10000
+    },
+    {
+      "op": "press",
+      "testID": "start-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 5000
+    },
+    {
+      "op": "devPrompt",
+      "lines": [
+        "attach: visual-page.pdf"
+      ]
+    },
+    {
+      "op": "sleep",
+      "ms": 20000
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "What do you see?"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "sleep",
+      "ms": 6000
+    },
+    {
+      "op": "screenshot",
+      "name": "08-fast-pack-offer"
+    },
+    {
+      "op": "dump",
+      "name": "08-fast-pack-offer"
+    },
+    {
+      "op": "sleep",
+      "ms": 15000
+    },
+    {
+      "op": "screenshot",
+      "name": "08b-fast-pack-offer-later"
+    },
+    {
+      "op": "dump",
+      "name": "08b-fast-pack-offer-later"
+    }
+  ]
+}

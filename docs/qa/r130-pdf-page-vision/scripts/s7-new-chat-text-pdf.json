@@ -1,0 +1,89 @@
+{
+  "runId": "s7-new-chat-text-pdf",
+  "_": "A new chat on Fast (still no pack), the text PDF attached, a question it answers from the text.",
+  "steps": [
+    {
+      "op": "deeplink",
+      "url": "/chats"
+    },
+    {
+      "op": "waitFor",
+      "testID": "new-chat",
+      "timeoutMs": 20000
+    },
+    {
+      "op": "press",
+      "testID": "new-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "start-chat",
+      "timeoutMs": 10000
+    },
+    {
+      "op": "press",
+      "testID": "start-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 5000
+    },
+    {
+      "op": "devPrompt",
+      "lines": [
+        "attach: turbine-report-3pages.pdf"
+      ]
+    },
+    {
+      "op": "sleep",
+      "ms": 20000
+    },
+    {
+      "op": "screenshot",
+      "name": "09-text-pdf-chip"
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "What is the serial number of the Rakovsky turbine?"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "sleep",
+      "ms": 2500
+    },
+    {
+      "op": "screenshot",
+      "name": "10-text-sent"
+    },
+    {
+      "op": "dump",
+      "name": "10-text-sent"
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 240000
+    },
+    {
+      "op": "sleep",
+      "ms": 2500
+    },
+    {
+      "op": "screenshot",
+      "name": "11-text-answer"
+    },
+    {
+      "op": "dump",
+      "name": "11-text-answer"
+    }
+  ]
+}

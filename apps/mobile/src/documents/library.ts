@@ -35,6 +35,7 @@ import { openRagStore, ragStoreKind } from "./db";
 import type { AnsweredMidReindex } from "../lib/reindexNotice";
 import { resolveEmbedder, type ResolvedEmbedder } from "./embedder";
 import { createExtractors, nativeOcr } from "./extract";
+import { charsByPage, pageHits } from "./pagePhoto";
 import { findDuplicate } from "./dedupe";
 import { copyIntoLibrary, deleteFile, missingSource, readHead, resolveDocUri, restoreFiles, sha256Of, sizeOf, storedDocPath, sweepIncognitoFiles, whenStored } from "./files";
 import { readPrefs, writePrefs, type DocumentPrefs } from "./prefs";
@@ -85,6 +86,8 @@ export interface AskOptions {
   citeMarkers?: boolean;
   /** What a reply with no passage opens with, in the UI language (`noPassageOpeners`). */
   openers?: NoPassageOpeners;
+  /** A page with only crumbs of text and no picture for the model: all of its text goes in, under the thin-page rule. */
+  page?: { docId: string; page: number };
 }
 
 export interface AskResult {
@@ -127,6 +130,7 @@ export class DocumentLibrary {
   /* §5.7: a document added inside an incognito session is owned by RAM for as long as the session lasts. */
   private ram = new MemoryEmbeddingStore();
   private ramDocs = new Set<string>();
+  private pageCharsCache = new Map<string, { key: string; chars: Map<number, number> }>();
   private booted: Promise<void> | null = null;
   private disposed = false;
   private stopWatching: (() => void) | null = null;
@@ -315,6 +319,11 @@ export class DocumentLibrary {
   }
 
   /** Resolves once nothing attached to this chat is queued or being read, so the answer can see what the user attached. */
+  /** Attached documents not yet searchable with the current index model: queued, being read, or rebuilt for it. */
+  attachmentsIndexing(chatId: string): number {
+    return this.attachedTo(chatId).filter((d) => this.jobs.has(d.id) || d.status === "queued" || d.status === "indexing" || !!d.reindexFrom).length;
+  }
+
   whenAttachmentsRead(chatId: string, signal?: AbortSignal): Promise<void> {
     if (!this.attachmentState(chatId).indexing || signal?.aborted) return Promise.resolve();
     return new Promise((resolve) => {
@@ -596,15 +605,35 @@ export class DocumentLibrary {
     /* "What is this file about?" names no subject a passage could match: it is handed the files' opening instead. */
     const overview = !!o.docIds?.length && docIds.length > 0 && isAboutAttachment(question);
     const started = Date.now();
-    const hits = !docIds.length ? [] : overview ? openingHits(await Promise.all(docIds.map((id) => store.chunksOf(id)))) : await retriever.retrieve(question, { docIds, vectorPages });
+    let hits = !docIds.length ? [] : overview ? openingHits(await Promise.all(docIds.map((id) => store.chunksOf(id)))) : await retriever.retrieve(question, { docIds, vectorPages });
     const retrieveMs = Date.now() - started;
     const strict = o.strict ?? this.prefs.strict;
     const embedderId = lexical ? LEXICAL_INDEX_ID : this.embedderRef!.embedder.id;
     const doors = relevanceDoors(embedderId);
-    const prompt = buildRagPrompt({ question, hits, docs: this.docs, strict, embedderId, nCtx: o.nCtx ?? 4096, history: o.history, systemPrompt: o.systemPrompt, answerLanguage: o.answerLanguage, citeMarkers: o.citeMarkers, overview, openers: o.openers });
+    const thin = o.page && docIds.includes(o.page.docId) ? o.page : null;
+    if (thin) hits = pageHits(await store.chunksOf(thin.docId), thin.page, hits.filter((h) => overview || isRelevant(h, doors)));
+    const prompt = buildRagPrompt({ question, hits, docs: this.docs, strict, embedderId, nCtx: o.nCtx ?? 4096, history: o.history, systemPrompt: o.systemPrompt, answerLanguage: o.answerLanguage, citeMarkers: o.citeMarkers, overview: overview || !!thin, openers: o.openers, thinPage: !!thin });
     /* Not behind __DEV__: F282 was a release build citing an off-topic passage, and no screen prints the two numbers that decided it. */
     console.log(`[rag] strict=${strict}${lexical ? " words-only" : ""}${overview ? " overview" : ""}${rebuilding.length ? ` reindexing=${rebuilding.length}/${docIds.length}` : ""} hits=${hits.length} used=${prompt.used.length} ${retrieveMs} ms | ${hits.map((h) => `${h.chunk.docId}#${h.chunk.ord} cos=${h.cosine.toFixed(3)} terms=${h.bm25Terms} bm25=${h.bm25.toFixed(2)} ${overview || isRelevant(h, doors) ? "KEPT" : "dropped"}`).join(" · ")}`);
     return { prompt, retrieveMs, ...(rebuilding.length ? { reindexing: { pending: rebuilding.length, total: docIds.length, ids: rebuilding.map((d) => d.id) } } : {}), ...(lexical ? { lexical: true } : {}) };
+  }
+
+  /** Characters stored for each page of a document, kept until the document changes (asked on every send with a PDF). */
+  async pageChars(docId: string): Promise<Map<number, number>> {
+    await this.ready();
+    const doc = this.docs.get(docId);
+    const key = `${doc?.indexedPages}:${doc?.chunkCount}:${doc?.embedModel}`;
+    const hit = this.pageCharsCache.get(docId);
+    if (hit?.key === key) return hit.chars;
+    const chars = charsByPage((await this.store?.chunksOf(docId)) ?? []);
+    this.pageCharsCache.set(docId, { key, chars });
+    return chars;
+  }
+
+  /** The page of the passage that best answers the question, for the page a turn about a PDF shows the model. */
+  async bestPage(question: string, docIds: string[]): Promise<{ docId: string; page: number } | null> {
+    const top = (await this.ask(question, { docIds, strict: false })).prompt.used[0]?.chunk;
+    return top ? { docId: top.docId, page: top.page } : null;
   }
 
   citationsFor(answer: string, citations: Citation[]): { shown: Citation[]; cited: boolean } {

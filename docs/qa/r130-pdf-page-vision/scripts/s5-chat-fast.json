@@ -1,0 +1,35 @@
+{
+  "runId": "s5-chat-fast",
+  "_": "`use fast` in dev-vault.txt, read by the vault screen (the Use button's path; Fast without its photo pack), then back to the chat.",
+  "steps": [
+    {
+      "op": "deeplink",
+      "url": "/vault"
+    },
+    {
+      "op": "sleep",
+      "ms": 10000
+    },
+    {
+      "op": "deeplink",
+      "url": "/"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 30000
+    },
+    {
+      "op": "screenshot",
+      "name": "07-chat-on-fast"
+    },
+    {
+      "op": "dump",
+      "name": "07-chat-on-fast"
+    }
+  ]
+}

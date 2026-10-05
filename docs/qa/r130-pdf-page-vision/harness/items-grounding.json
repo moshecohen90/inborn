@@ -1,0 +1,11 @@
+[
+  { "mode": "none", "pdf": "turbine-report-3pages", "set": "tuning", "id": "turbine-efficiency", "question": "What does the report say about the turbine?", "truth": "nothing matched: must not claim what the report states" },
+  { "mode": "none", "pdf": "turbine-report-3pages", "set": "tuning", "id": "safety", "question": "What safety recommendations does the report make?", "truth": "not in the file" },
+  { "mode": "none", "pdf": "northgate-big", "set": "held-out", "id": "fire-drills", "question": "What does the handbook say about fire drills?", "truth": "not in the file" },
+  { "mode": "none", "pdf": "northgate-big", "set": "held-out", "id": "author", "question": "Who wrote this handbook and when?", "truth": "not in the file" },
+  { "mode": "thin", "pdf": "visual-page", "set": "tuning", "id": "see", "question": "What do you see?", "truth": "can read only the labels (Northwind, free shipping over 150 ₪, Back / Continue to checkout), cannot see the pictures" },
+  { "mode": "thin", "pdf": "visual-page", "set": "tuning", "id": "now", "question": "Now what do you see", "truth": "same" },
+  { "mode": "thin", "pdf": "FOUNDER", "set": "held-out", "id": "see", "question": "What do you see?", "truth": "can read only the labels of a shop page, cannot see the pictures (graded by hand, nothing kept)" },
+  { "mode": "thin", "pdf": "FOUNDER", "set": "held-out", "id": "now", "question": "Now what do you see", "truth": "same" },
+  { "mode": "thin", "pdf": "turbine-report-3pages", "set": "held-out", "id": "serial-web", "question": "What is the serial number of the Rakovsky turbine?", "truth": "RK-4417; a thin text page with no picture must not grow a 'cannot see' disclaimer that hides the answer" }
+]

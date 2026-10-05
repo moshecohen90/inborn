@@ -65,18 +65,18 @@ describe("F449 · the documents prompt tells the model what to write, never rule
     const p = render({ question: NO_MATCH, hits: [far], citeMarkers: false });
     expect(p.citations).toEqual([]);
     expect(p.messages[0]!.content).toBe(NOTHING_RELEVANT_RULE);
-    expect(NOTHING_RELEVANT_RULE).toBe(`Start with "Your documents don't mention this." and then answer the question.`);
+    expect(NOTHING_RELEVANT_RULE).toBe(`Start with "Your documents don't mention this." The user's files were searched and nothing in them matched, so never say what they state or contain. If you do not know the answer for sure, stop after that sentence.`);
     expect(p.messages.at(-1)!.content).toBe(NO_MATCH);
   });
 
   it("no passage fits: the reply opens by saying the documents were left out, then answers", () => {
     const p = render({ hits: [{ ...kept, chunk: { ...chunk, text: "words ".repeat(400) } }], nCtx: 600, answerReserve: 256 });
-    expect(p.messages[0]!.content).toBe(`Start with "Your documents could not be included in this answer." and then answer the question.`);
+    expect(p.messages[0]!.content).toBe(`Start with "Your documents could not be included in this answer." Never say what the user's files state, say or contain. If you do not know the answer for sure, stop after that sentence.`);
   });
 
   it("the app's sentences in the UI language replace the English ones, so the reply stays in that language", () => {
     const openers = { nothingRelevant: "Tus documentos no mencionan esto.", nothingFits: "No se pudieron incluir tus documentos en esta respuesta." };
-    expect(system({ question: "¿Cuál es la capital de Australia?", hits: [far], openers })).toBe(`Start with "Tus documentos no mencionan esto." and then answer the question.`);
+    expect(system({ question: "¿Cuál es la capital de Australia?", hits: [far], openers })).toBe(`Start with "Tus documentos no mencionan esto." The user's files were searched and nothing in them matched, so never say what they state or contain. If you do not know the answer for sure, stop after that sentence.`);
     expect(system({ hits: [{ ...kept, chunk: { ...chunk, text: "words ".repeat(400) } }], nCtx: 600, answerReserve: 256, openers })).toContain(`"No se pudieron incluir tus documentos en esta respuesta."`);
   });
 

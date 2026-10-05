@@ -122,6 +122,35 @@ class DocExtractModule : Module() {
       }
     }
 
+    AsyncFunction("pageInk") { id: String, index: Int, promise: Promise ->
+      worker.execute {
+        try {
+          val o = opened[id] ?: throw ExtractException("ERR_CLOSED", "document not open")
+          val pfd = ParcelFileDescriptor.open(o.file, ParcelFileDescriptor.MODE_READ_ONLY)
+          val renderer = PdfRenderer(pfd)
+          val page = renderer.openPage(index)
+          val s = INK_EDGE.toDouble() / maxOf(page.width, page.height, 1)
+          val w = (page.width * s).toInt().coerceAtLeast(1)
+          val h = (page.height * s).toInt().coerceAtLeast(1)
+          val bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
+          Canvas(bitmap).drawColor(Color.WHITE)
+          page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY)
+          page.close()
+          renderer.close()
+          pfd.close()
+          val px = IntArray(w * h)
+          bitmap.getPixels(px, 0, w, 0, 0, w, h)
+          bitmap.recycle()
+          val inked = px.count { 255 - minOf(Color.red(it), Color.green(it), Color.blue(it)) > INK_CUT }
+          promise.resolve(inked.toDouble() / px.size)
+        } catch (e: ExtractException) {
+          promise.reject(e.code, e.message, e)
+        } catch (e: Throwable) {
+          promise.reject("ERR_RENDER", e.message, e)
+        }
+      }
+    }
+
     AsyncFunction("closePdf") { id: String, promise: Promise ->
       worker.execute {
         opened.remove(id)?.let { runCatching { it.doc.close() } }
@@ -194,5 +223,9 @@ class DocExtractModule : Module() {
     return api
   }
 }
+
+/* Same render size and darkness cut as DocExtractModule.swift, so both platforms give one page the same number. */
+private const val INK_EDGE = 128
+private const val INK_CUT = 96
 
 class ExtractException(val code: String, message: String) : Exception(message)

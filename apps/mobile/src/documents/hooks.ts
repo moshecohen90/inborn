@@ -42,7 +42,7 @@ export interface DocumentContext {
   /** True when at least one attached document has an index to search. */
   ready: boolean;
   /** Retrieval + fenced prompt for the next user turn; `prompt.noAnswer` means answer with `documents.notFound` and skip the model. */
-  buildPrompt: (question: string, history: Message[], nCtx: number, systemPrompt?: string, photoDocIds?: readonly string[]) => Promise<AskResult>;
+  buildPrompt: (question: string, history: Message[], nCtx: number, systemPrompt?: string, photoDocIds?: readonly string[], page?: { docId: string; page: number }) => Promise<AskResult>;
   /** Chips to show under a finished answer. */
   citationsFor: (answer: string, citations: Citation[]) => { shown: Citation[]; cited: boolean };
   /** The `documents` field to keep on the chat's system context. */
@@ -70,7 +70,7 @@ export function useDocumentContext(chatId: string | null): DocumentContext {
     attach: (docId) => library.attach(key, docId),
     detach: (docId) => library.detach(key, docId),
     ready,
-    buildPrompt: (question, history, nCtx, systemPrompt, photoDocIds = []) => library.ask(question, { docIds: [...docIds, ...photoDocIds], history, nCtx, systemPrompt, strict, citeMarkers: canCiteMarkers(peekEngine()?.model.id), openers: noPassageOpeners(t) }),
+    buildPrompt: (question, history, nCtx, systemPrompt, photoDocIds = [], page) => library.ask(question, { docIds: [...docIds, ...photoDocIds], history, nCtx, systemPrompt, strict, citeMarkers: canCiteMarkers(peekEngine()?.model.id), openers: noPassageOpeners(t), ...(page ? { page } : {}) }),
     citationsFor: (answer, citations) => library.citationsFor(answer, citations),
     context: { docIds, strict },
   };

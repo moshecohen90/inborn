@@ -133,7 +133,7 @@ describe("F343 · a photo nothing here can see is held in the composer, not sent
     const chat = readFileSync(join(__dirname, "../screens/Chat.tsx"), "utf8");
     const submit = chat.slice(chat.indexOf("const submit = async (input: string) => {"), chat.indexOf("const submitNow = async"));
     expect(submit).toContain("await gatePhotoSend({");
-    expect(submit).toContain("hold: setPhotoHold");
+    expect(submit).toMatch(/hold: \(offer: HeldPhoto\) => \{[^}]*setPhotoHold\(offer\);/);
     expect(submit).not.toContain("setDraft(");
     expect(submit).not.toContain("setPendingImages(");
     expect(submit).not.toContain("appendMessage(");

@@ -92,7 +92,7 @@ describe("round 128 · a picture attached from the library is asked about as a p
     expect(held[0]).toMatchObject({ kind: "pack", path: { model: "fast", missing: [{ kind: "pack" }] } });
     /* Sharp (Phi) sees nothing: the offer names a model that can. */
     expect(photoPlan({ selected: "sharp-phi", models, installed: () => true })).toMatchObject({ kind: "switch" });
-    expect(chat).toContain("{photoHold && pendingImages.length ? (");
+    expect(chat).toContain("{photoHold && (pendingImages.length || pageHeld) ? (");
   });
 
   it("a picture row in the library list is open on Free past the document cap: the photo limit applies in the composer", () => {
@@ -109,9 +109,9 @@ describe("round 128 · a picture attached from the library is asked about as a p
     expect(tap.indexOf("addPhotoDocuments(picture)")).toBeLessThan(tap.indexOf("docs.attach(id)"));
     expect(chat).toMatch(/useEffect\(\(\) => \{\s*if \(attachedPictures\.length\) void addPhotoDocuments\(attachedPictures\);\s*\}, \[attachedPictureIds\]\);/);
     expect(chat).toMatch(/for \(const d of pictures\) docs\.detach\(d\.id\);/);
-    expect(chat).toContain('await generate(chatIdNow, history, pendingId, "", undefined, undefined, photoDocIds);');
-    expect(chat).toContain("docs.buildPrompt(lastUser, history.slice(0, lastUserAt), nCtx, system, photoDocIds)");
-    expect(chat).toContain('if (turn.kind === "model" && photoDocIds.length) {');
+    expect(chat).toContain('await generate(chatIdNow, history, pendingId, "", undefined, undefined, photoDocIds, page);');
+    expect(chat).toContain("docs.buildPrompt(lastUser, history.slice(0, lastUserAt), nCtx, system, photoDocIds, thinPage)");
+    expect(chat).toContain('if ((turn.kind === "model" && photoDocIds.length) || (turn.kind === "retrieve" && seesPage)) {');
   });
 
   it("the share sheet already sends a picture to the composer, never into the library (F343, unchanged)", () => {
