@@ -1,0 +1,13 @@
+15:13:06 pushing 10 steps as f2-fast-use
+15:14:38 shot F-02-fast-selected
+15:14:41 ok     0 idleTimer  idle timer disabled: true
+15:14:41 ok     1 waitFor    model-sheet-use-fast appeared
+15:14:41 ok     2 value      Use this model
+15:14:41 ok     3 press      model-sheet-use-fast ← onPress
+15:14:41 ok     4 sleep      3000 ms
+15:14:41 ok     5 waitFor    Loading gone
+15:14:41 ok     6 sleep      2000 ms
+15:14:41 ok     7 value      FAST
+15:14:41 ok     8 assertText "FAST" present
+15:14:41 ok     9 screenshot F-02-fast-selected
+15:14:41 10 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-34/screens

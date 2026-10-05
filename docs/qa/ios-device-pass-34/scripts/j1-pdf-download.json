@@ -1,0 +1,259 @@
+{
+ "_": "J1 (the founder's route): Instant, no index model. 'דוח טורבינה.pdf' attached, a question sent: the card names the 468 MB index model with Download and never says 100%. Download pressed: progress, then the message goes out by itself and the answer uses the PDF with sources.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "new-chat",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "press",
+   "testID": "new-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "start-chat",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "press",
+   "testID": "start-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "devPrompt",
+   "lines": [
+    "attach: דוח טורבינה.pdf"
+   ]
+  },
+  {
+   "op": "waitFor",
+   "testID": "attached-docs",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "value",
+   "testID": "attached-docs"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "What is the serial number of the Rakovsky turbine?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "waitFor",
+   "testID": "docs-hold",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "docs-hold"
+  },
+  {
+   "op": "value",
+   "testID": "docs-hold-body"
+  },
+  {
+   "op": "value",
+   "testID": "docs-hold-download"
+  },
+  {
+   "op": "assertText",
+   "text": "468 MB",
+   "testID": "docs-hold"
+  },
+  {
+   "op": "assertText",
+   "text": "100%",
+   "testID": "docs-hold",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "Downloading",
+   "testID": "docs-hold",
+   "absent": true
+  },
+  {
+   "op": "screenshot",
+   "name": "J1-01-card-before"
+  },
+  {
+   "op": "dump",
+   "name": "J1-01-card"
+  },
+  {
+   "op": "sleep",
+   "ms": 10000
+  },
+  {
+   "op": "value",
+   "testID": "docs-hold-body"
+  },
+  {
+   "op": "assertText",
+   "text": "100%",
+   "testID": "docs-hold",
+   "absent": true
+  },
+  {
+   "op": "screenshot",
+   "name": "J1-01-card-10s-later"
+  },
+  {
+   "op": "press",
+   "testID": "docs-hold-download"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "value",
+   "testID": "docs-hold-body"
+  },
+  {
+   "op": "screenshot",
+   "name": "J1-02-progress-a"
+  },
+  {
+   "op": "sleep",
+   "ms": 6000
+  },
+  {
+   "op": "value",
+   "testID": "docs-hold-body"
+  },
+  {
+   "op": "screenshot",
+   "name": "J1-03-progress-b"
+  },
+  {
+   "op": "idleTimer"
+  },
+  {
+   "op": "waitFor",
+   "testID": "docs-hold",
+   "gone": true,
+   "timeoutMs": 2400000
+  },
+  {
+   "op": "waitFor",
+   "testID": "assistant-text",
+   "timeoutMs": 400000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 600000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "waitFor",
+   "testID": "citations",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "screenshot",
+   "name": "J1-04-answer-with-source"
+  },
+  {
+   "op": "dump",
+   "name": "J1-04-answer"
+  },
+  {
+   "op": "assertText",
+   "text": "RK-4417",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "assertText",
+   "text": "Nothing in your documents matched this question",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "Could not load",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "The request specifies",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "I will focus",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "as an AI",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "NOT_FOUND",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "<<<",
+   "testID": "assistant-text",
+   "absent": true
+  }
+ ]
+}

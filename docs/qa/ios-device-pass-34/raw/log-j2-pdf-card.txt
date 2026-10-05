@@ -1,0 +1,34 @@
+15:18:06 pushing 30 steps as j2-pdf-card
+15:18:15 shot J2-05-card-before
+15:18:27 shot J2-05-card-10s-later
+15:18:30 ok     0 deeplink   /chats
+15:18:30 ok     1 waitFor    new-chat appeared
+15:18:30 ok     2 press      new-chat ← onPress
+15:18:30 ok     3 waitFor    start-chat appeared
+15:18:30 ok     4 press      start-chat ← onPress
+15:18:30 ok     5 waitFor    composer-input appeared
+15:18:30 ok     6 waitFor    Loading gone
+15:18:30 ok     7 sleep      1500 ms
+15:18:30 ok     8 value      INSTANT
+15:18:30 ok     9 devPrompt  attach: דוח טורבינה.pdf
+15:18:30 ok    10 waitFor    attached-docs appeared
+15:18:30 ok    11 sleep      3000 ms
+15:18:30 ok    12 value      דוח טורבינה.pdf
+15:18:30 ok    13 type       composer-input = 50 chars
+15:18:30 ok    14 send       send ← onPress
+15:18:30 ok    15 waitFor    docs-hold appeared
+15:18:30 ok    16 sleep      1500 ms
+15:18:30 ok    17 value      The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact wo
+15:18:30 ok    18 value      The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact wo
+15:18:30 ok    19 value      Download · 468 MB
+15:18:30 ok    20 assertText "468 MB" present
+15:18:30 ok    21 assertText "100%" absent
+15:18:30 ok    22 assertText "Downloading" absent
+15:18:30 ok    23 screenshot J2-05-card-before
+15:18:30 ok    24 dump       J2-05-card
+15:18:30 ok    25 sleep      10000 ms
+15:18:30 ok    26 value      The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact wo
+15:18:30 ok    27 assertText "100%" absent
+15:18:30 ok    28 screenshot J2-05-card-10s-later
+15:18:30 ok    29 assertText "Could not load" absent
+15:18:30 30 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-34/screens

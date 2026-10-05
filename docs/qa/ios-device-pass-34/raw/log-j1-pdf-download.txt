@@ -1,0 +1,62 @@
+15:09:31 pushing 55 steps as j1-pdf-download
+15:09:40 shot J1-01-card-before
+15:09:51 shot J1-01-card-10s-later
+15:09:57 shot J1-02-progress-a
+15:10:06 shot J1-03-progress-b
+15:10:45 shot J1-04-answer-with-source
+15:10:48 ok     0 deeplink   /chats
+15:10:48 ok     1 waitFor    new-chat appeared
+15:10:48 ok     2 press      new-chat ← onPress
+15:10:48 ok     3 waitFor    start-chat appeared
+15:10:48 ok     4 press      start-chat ← onPress
+15:10:48 ok     5 waitFor    composer-input appeared
+15:10:48 ok     6 waitFor    Loading gone
+15:10:48 ok     7 sleep      1500 ms
+15:10:48 ok     8 value      INSTANT
+15:10:48 ok     9 devPrompt  attach: דוח טורבינה.pdf
+15:10:48 ok    10 waitFor    attached-docs appeared
+15:10:48 ok    11 sleep      3000 ms
+15:10:48 ok    12 value      דוח טורבינה.pdf
+15:10:48 ok    13 type       composer-input = 50 chars
+15:10:48 ok    14 send       send ← onPress
+15:10:48 ok    15 waitFor    docs-hold appeared
+15:10:48 ok    16 sleep      1500 ms
+15:10:48 ok    17 value      The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact wo
+15:10:48 ok    18 value      The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact wo
+15:10:48 ok    19 value      Download · 468 MB
+15:10:48 ok    20 assertText "468 MB" present
+15:10:48 ok    21 assertText "100%" absent
+15:10:48 ok    22 assertText "Downloading" absent
+15:10:48 ok    23 screenshot J1-01-card-before
+15:10:48 ok    24 dump       J1-01-card
+15:10:48 ok    25 sleep      10000 ms
+15:10:48 ok    26 value      The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact wo
+15:10:48 ok    27 assertText "100%" absent
+15:10:48 ok    28 screenshot J1-01-card-10s-later
+15:10:48 ok    29 press      docs-hold-download ← onPress
+15:10:48 ok    30 sleep      2500 ms
+15:10:48 ok    31 value      Downloading the document index model… 2%. Your message is sent when it's ready.
+15:10:48 ok    32 screenshot J1-02-progress-a
+15:10:48 ok    33 sleep      6000 ms
+15:10:48 ok    34 value      Downloading the document index model… 23%. Your message is sent when it's ready.
+15:10:48 ok    35 screenshot J1-03-progress-b
+15:10:48 ok    36 idleTimer  idle timer disabled: true
+15:10:48 ok    37 waitFor    docs-hold gone
+15:10:48 ok    38 waitFor    assistant-text appeared
+15:10:48 ok    39 waitFor    stop gone
+15:10:48 ok    40 sleep      1500 ms
+15:10:48 ok    41 value      The Rakovsky turbine serial number is RK-4417.
+15:10:48 ok    42 waitFor    citations appeared
+15:10:48 ok    43 value      SOURCES דוח טורבינה.pdf · p.1
+15:10:48 ok    44 sleep      1500 ms
+15:10:48 ok    45 screenshot J1-04-answer-with-source
+15:10:48 ok    46 dump       J1-04-answer
+15:10:48 ok    47 assertText "RK-4417" present
+15:10:48 ok    48 assertText "Nothing in your documents matched this question" absent
+15:10:48 ok    49 assertText "Could not load" absent
+15:10:48 ok    50 assertText "The request specifies" absent
+15:10:48 ok    51 assertText "I will focus" absent
+15:10:48 ok    52 assertText "as an AI" absent
+15:10:48 ok    53 assertText "NOT_FOUND" absent
+15:10:48 ok    54 assertText "<<<" absent
+15:10:48 55 passed, 0 failed, 5 screenshots → <worktree>/docs/qa/ios-device-pass-34/screens

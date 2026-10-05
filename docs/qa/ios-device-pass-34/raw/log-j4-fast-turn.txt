@@ -1,0 +1,26 @@
+15:16:12 pushing 22 steps as j4-fast-turn
+15:16:18 shot J4-04-fast-answers
+15:16:25 shot J4-05-vault
+15:16:28 ok     0 deeplink   /chats
+15:16:28 ok     1 waitFor    new-chat appeared
+15:16:28 ok     2 press      new-chat ← onPress
+15:16:28 ok     3 waitFor    start-chat appeared
+15:16:28 ok     4 press      start-chat ← onPress
+15:16:28 ok     5 waitFor    composer-input appeared
+15:16:28 ok     6 waitFor    Loading gone
+15:16:28 ok     7 sleep      1500 ms
+15:16:28 ok     8 value      FAST
+15:16:28 ok     9 assertText "FAST" present
+15:16:28 ok    10 type       composer-input = 34 chars
+15:16:28 ok    11 send       send ← onPress
+15:16:28 ok    12 waitFor    assistant-text appeared
+15:16:28 ok    13 waitFor    stop gone
+15:16:28 ok    14 sleep      1500 ms
+15:16:28 ok    15 value      The three colours of the rainbow are red, orange, and yellow.
+15:16:28 ok    16 screenshot J4-04-fast-answers
+15:16:28 ok    17 assertText "Could not load" absent
+15:16:28 ok    18 deeplink   /vault
+15:16:28 ok    19 sleep      5000 ms
+15:16:28 ok    20 screenshot J4-05-vault
+15:16:28 ok    21 dump       J4-05-vault
+15:16:28 22 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-34/screens

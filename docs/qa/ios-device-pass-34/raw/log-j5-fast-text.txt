@@ -1,0 +1,26 @@
+15:15:05 pushing 23 steps as j5-fast-text
+15:15:12 shot J5-06-fast-text-turn
+15:15:16 ok     0 deeplink   /chats
+15:15:16 ok     1 waitFor    new-chat appeared
+15:15:16 ok     2 press      new-chat ← onPress
+15:15:16 ok     3 waitFor    start-chat appeared
+15:15:16 ok     4 press      start-chat ← onPress
+15:15:16 ok     5 waitFor    composer-input appeared
+15:15:16 ok     6 waitFor    Loading gone
+15:15:16 ok     7 sleep      1500 ms
+15:15:16 ok     8 value      FAST
+15:15:16 ok     9 assertText "FAST" present
+15:15:16 ok    10 type       composer-input = 43 chars
+15:15:16 ok    11 send       send ← onPress
+15:15:16 ok    12 waitFor    assistant-text appeared
+15:15:16 ok    13 waitFor    stop gone
+15:15:16 ok    14 sleep      1500 ms
+15:15:16 ok    15 value      One tip is to keep your bedroom cool, dark, and quiet before bed. Another helpful strategy is to avoid heavy m
+15:15:16 ok    16 screenshot J5-06-fast-text-turn
+15:15:16 ok    17 assertText "Could not load" absent
+15:15:16 ok    18 assertText "The request specifies" absent
+15:15:16 ok    19 assertText "I will focus" absent
+15:15:16 ok    20 assertText "as an AI" absent
+15:15:16 ok    21 assertText "NOT_FOUND" absent
+15:15:16 ok    22 assertText "<<<" absent
+15:15:16 23 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-34/screens

@@ -1,0 +1,64 @@
+{
+ "_": "J4: Settings > Erase everything with 'also delete models' left OFF.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/settings"
+  },
+  {
+   "op": "waitFor",
+   "testID": "row-wipe",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "scrollTo",
+   "testID": "row-wipe"
+  },
+  {
+   "op": "press",
+   "testID": "row-wipe"
+  },
+  {
+   "op": "waitFor",
+   "testID": "wipe-models",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "sleep",
+   "ms": 800
+  },
+  {
+   "op": "value",
+   "testID": "wipe-models"
+  },
+  {
+   "op": "screenshot",
+   "name": "J4-01-wipe-models-off"
+  },
+  {
+   "op": "dump",
+   "name": "J4-01-wipe"
+  },
+  {
+   "op": "press",
+   "testID": "wipe-step1"
+  },
+  {
+   "op": "waitFor",
+   "testID": "wipe-step2",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "sleep",
+   "ms": 800
+  },
+  {
+   "op": "press",
+   "testID": "wipe-step2"
+  },
+  {
+   "op": "sleep",
+   "ms": 6000
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+15:15:48 pushing 21 steps as j4-onboard
+15:15:52 shot J4-02-model-step
+15:16:03 shot J4-03-chat-after-wipe
+15:16:06 ok     0 waitFor    onboarding-continue appeared
+15:16:06 ok     1 sleep      1200 ms
+15:16:06 ok     2 press      onboarding-continue ← onPress
+15:16:06 ok     3 waitFor    onboarding-model appeared
+15:16:06 ok     4 sleep      2500 ms
+15:16:06 ok     5 value      Choose your model Your model runs entirely on this phone. You can change it later. Instant READY NOW 533 MB · 
+15:16:06 ok     6 screenshot J4-02-model-step
+15:16:06 ok     7 dump       J4-02-model-step
+15:16:06 ok     8 value      Start chatting
+15:16:06 ok     9 press      start-chatting ← onPress
+15:16:06 ok    10 waitFor    sealed-start appeared
+15:16:06 ok    11 sleep      5000 ms
+15:16:06 ok    12 press      sealed-start ← onPress
+15:16:06 ok    13 waitFor    lock-start appeared
+15:16:06 ok    14 press      lock-start ← onPress
+15:16:06 ok    15 waitFor    composer-input appeared
+15:16:06 ok    16 waitFor    Loading gone
+15:16:06 ok    17 sleep      2000 ms
+15:16:06 ok    18 value      FAST
+15:16:06 ok    19 screenshot J4-03-chat-after-wipe
+15:16:06 ok    20 assertText "Could not load" absent
+15:16:06 21 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-34/screens
