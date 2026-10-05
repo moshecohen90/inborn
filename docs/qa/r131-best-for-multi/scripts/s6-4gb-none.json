@@ -1,0 +1,69 @@
+{
+  "runId": "s6-4gb-none",
+  "_": "Same app with EXPO_PUBLIC_DEV_RAM_GB=4 (only Instant ranks): Chat + Documents has no model good at both, the honest line shows.",
+  "steps": [
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 90000
+    },
+    {
+      "op": "sleep",
+      "ms": 4000
+    },
+    {
+      "op": "deeplink",
+      "url": "/vault"
+    },
+    {
+      "op": "waitFor",
+      "testID": "best-for",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "sleep",
+      "ms": 3000
+    },
+    {
+      "op": "screenshot",
+      "name": "11-4gb-vault-one-use"
+    },
+    {
+      "op": "press",
+      "testID": "best-for-use"
+    },
+    {
+      "op": "waitFor",
+      "testID": "best-for-use-sheet",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "sleep",
+      "ms": 1000
+    },
+    {
+      "op": "press",
+      "testID": "best-for-use-documents"
+    },
+    {
+      "op": "sleep",
+      "ms": 800
+    },
+    {
+      "op": "press",
+      "testID": "best-for-use-sheet-close"
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "12-4gb-chat-documents-none"
+    },
+    {
+      "op": "dump",
+      "name": "12-4gb-chat-documents-none"
+    }
+  ]
+}

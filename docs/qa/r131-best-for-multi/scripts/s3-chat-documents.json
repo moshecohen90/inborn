@@ -1,0 +1,67 @@
+{
+  "runId": "s3-chat-documents",
+  "_": "The sheet with checkable rows, Documents added, then the vault reordered with the divider and per-use tiers.",
+  "steps": [
+    {
+      "op": "press",
+      "testID": "best-for-use"
+    },
+    {
+      "op": "waitFor",
+      "testID": "best-for-use-sheet",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "screenshot",
+      "name": "02-sheet-chat"
+    },
+    {
+      "op": "press",
+      "testID": "best-for-use-documents"
+    },
+    {
+      "op": "sleep",
+      "ms": 1200
+    },
+    {
+      "op": "screenshot",
+      "name": "03-sheet-chat-documents"
+    },
+    {
+      "op": "dump",
+      "name": "03-sheet"
+    },
+    {
+      "op": "press",
+      "testID": "best-for-use-sheet-close"
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "04-vault-chat-documents"
+    },
+    {
+      "op": "dump",
+      "name": "04-vault-chat-documents"
+    },
+    {
+      "op": "scrollTo",
+      "testID": "model-card-sharp"
+    },
+    {
+      "op": "sleep",
+      "ms": 1200
+    },
+    {
+      "op": "screenshot",
+      "name": "05-vault-chat-documents-fits"
+    }
+  ]
+}

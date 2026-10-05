@@ -1,0 +1,27 @@
+{
+  "runId": "s2-vault-one-use",
+  "_": "The vault with the default single use (Chat): today's look.",
+  "steps": [
+    {
+      "op": "deeplink",
+      "url": "/vault"
+    },
+    {
+      "op": "waitFor",
+      "testID": "best-for",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "sleep",
+      "ms": 4000
+    },
+    {
+      "op": "screenshot",
+      "name": "01-vault-one-use"
+    },
+    {
+      "op": "dump",
+      "name": "01-vault-one-use"
+    }
+  ]
+}

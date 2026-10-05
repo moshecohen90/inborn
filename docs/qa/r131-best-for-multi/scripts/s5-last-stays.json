@@ -1,0 +1,75 @@
+{
+  "runId": "s5-last-stays",
+  "_": "Untick everything: the last use stays checked.",
+  "steps": [
+    {
+      "op": "press",
+      "testID": "best-for-use"
+    },
+    {
+      "op": "waitFor",
+      "testID": "best-for-use-sheet",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "sleep",
+      "ms": 1000
+    },
+    {
+      "op": "press",
+      "testID": "best-for-use-chat"
+    },
+    {
+      "op": "press",
+      "testID": "best-for-use-writing"
+    },
+    {
+      "op": "press",
+      "testID": "best-for-use-summarize"
+    },
+    {
+      "op": "press",
+      "testID": "best-for-use-translate"
+    },
+    {
+      "op": "press",
+      "testID": "best-for-use-code"
+    },
+    {
+      "op": "press",
+      "testID": "best-for-use-documents"
+    },
+    {
+      "op": "press",
+      "testID": "best-for-use-voice"
+    },
+    {
+      "op": "press",
+      "testID": "best-for-use-math"
+    },
+    {
+      "op": "sleep",
+      "ms": 1200
+    },
+    {
+      "op": "screenshot",
+      "name": "09-sheet-last-stays"
+    },
+    {
+      "op": "dump",
+      "name": "09-sheet-last-stays"
+    },
+    {
+      "op": "press",
+      "testID": "best-for-use-sheet-close"
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "screenshot",
+      "name": "10-vault-math"
+    }
+  ]
+}

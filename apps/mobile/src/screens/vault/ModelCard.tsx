@@ -2,7 +2,8 @@ import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { radius, type Theme } from "@inborn/ui";
 import { LANGUAGE_NAME_BY_CODE, downloadPercent, expectedSpeed, formatModelBytes, isHfModelId, ramFit, tooSlowHere, type CatalogModel, type InstallState, type UseCase } from "@inborn/core";
-import { FitMap } from "./FitMap";
+import { FitMap, tierColor } from "./FitMap";
+import { usesLabel } from "./bestFor";
 import type { DeliveryPlan } from "../../vault";
 import type { DeviceInfo } from "../../vault";
 import { useType } from "../../services/type";
@@ -21,9 +22,9 @@ export interface ModelCardProps {
   device: DeviceInfo;
   theme: Theme;
   recommended: boolean;
-  /** Why the RECOMMENDED tag sits here (§7.8): the use and language it was chosen for. */
+  /** Why the RECOMMENDED tag sits here (§7.8): the uses and language it was chosen for; with several uses every card prints its tier for each. */
   /** `weak`: even this top pick is basic/none or weak for the pair; the tag then says so and names this card as the closest. */
-  recommendedFor?: { use: UseCase; languageCode: string; weak?: boolean };
+  recommendedFor?: { uses: readonly UseCase[]; languageCode: string; weak?: boolean };
   active: boolean;
   /** The card an "install X" entry point opened the vault for. */
   highlighted?: boolean;
@@ -137,10 +138,23 @@ export function ModelCard({ model, state, plan, device, theme, recommended, reco
             ? t(recommendedFor.weak ? "models.recommendedNone" : "models.recommendedFor", {
                 device: deviceNoun(),
                 model: modelLabel(model.id),
-                use: t(`use.${recommendedFor.use}`).toUpperCase(),
+                use: usesLabel(t, recommendedFor.uses).toUpperCase(),
                 language: t(`language.${recommendedFor.languageCode}`, { defaultValue: LANGUAGE_NAME_BY_CODE[recommendedFor.languageCode] ?? recommendedFor.languageCode }).toUpperCase(),
               })
             : t("models.recommended", { device: deviceNoun() })}
+        </Text>
+      ) : null}
+      {model.fit && !companion && recommendedFor && recommendedFor.uses.length > 1 ? (
+        <Text testID={`model-uses-${model.id}`} style={[type.mono, { color: theme.text2 }]}>
+          {recommendedFor.uses.map((u, i) => {
+            const tier = model.fit!.uses[u];
+            return (
+              <Text key={u}>
+                {i ? "   " : ""}
+                {t(`use.${u}`)} · <Text style={{ color: tierColor(theme, tier) }}>{t(`vault.fit.tier.${tier}`)}</Text>
+              </Text>
+            );
+          })}
         </Text>
       ) : null}
       {copy.goodFor ? (

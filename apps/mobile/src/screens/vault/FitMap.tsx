@@ -13,6 +13,9 @@ export interface FitMapProps {
   testID?: string;
 }
 
+/** One color per tier everywhere a fit tier is printed: the fit map and the vault's per-use line. */
+export const tierColor = (theme: Theme, tier: UseTier | LanguageTier): string => (tier === "best" || tier === "native" ? theme.sealed : tier === "good" ? theme.text : tier === "none" ? theme.danger : theme.text3);
+
 /** §6.1 fit map on the cartridge: what the model is good at, in which languages, and what it is weak at, one tier per line. */
 export function FitMap({ fit, theme, weakAt, testID }: FitMapProps) {
   const type = useType();
@@ -21,7 +24,7 @@ export function FitMap({ fit, theme, weakAt, testID }: FitMapProps) {
   const useRows = USE_TIERS.map((tier) => [tier, USE_CASES.filter((u) => fit.uses[u] === tier).map((u) => t(`use.${u}`))] as const).filter(([, names]) => names.length);
   const codes = distinctLanguageCodes(fit.languages);
   const langRows = LANGUAGE_TIERS.map((tier) => [tier, codes.filter((c) => fit.languages[c] === tier).map((c) => t(`language.${c}`, { defaultValue: LANGUAGE_NAME_BY_CODE[c] ?? c }))] as const).filter(([, names]) => names.length);
-  const colorOf = (tier: UseTier | LanguageTier): string => (tier === "best" || tier === "native" ? theme.sealed : tier === "good" ? theme.text : tier === "none" ? theme.danger : theme.text3);
+  const colorOf = (tier: UseTier | LanguageTier): string => tierColor(theme, tier);
   return (
     <View testID={testID} style={styles.map}>
       <Text style={[type.monoLabel, { color: theme.text3 }]}>{t("vault.fit.uses").toUpperCase()}</Text>

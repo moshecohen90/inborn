@@ -10,7 +10,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Icon, radius } from "@inborn/ui";
 import { GlassFill, panelColor, panelStyle } from "../../components/shell/NativeChrome";
 import { BannerSpacer } from "../../components/shell/bannerInset";
-import { BENCH_PP, BENCH_TG, ENGINE_VERSION, extensions, findExtension, FIT_LANGUAGES, LANGUAGE_NAME_BY_CODE, USE_CASES, benchmarkKey, expectedSpeed, formatModelBytes, deviceRecommendation, recommendationRoomNote, groupByFit, parseBenchmark, paywallFor, rankModels, recommendationIsWeak, type BenchmarkResult, type CatalogModel, type UseCase , type PaywallReason } from "@inborn/core";
+import { BENCH_PP, BENCH_TG, ENGINE_VERSION, extensions, findExtension, FIT_LANGUAGES, LANGUAGE_NAME_BY_CODE, USE_CASES, benchmarkKey, expectedSpeed, formatModelBytes, deviceRecommendation, recommendationRoomNote, groupByFit, parseBenchmark, paywallFor, goodAtAll, rankModels, recommendationIsWeak, type BenchmarkResult, type CatalogModel, type UseCase , type PaywallReason } from "@inborn/core";
 import { Sheet, SheetItem } from "../../components/chat/Sheet";
 import { useEntitlement } from "../../licence";
 import { benchmarkModel, resetEngine } from "../../engine";
@@ -18,6 +18,7 @@ import { useAppServices } from "../../services/AppServices";
 import { useGgufOpenHandler, useVault, type VaultEntry } from "../../vault";
 import { DEV_AUTOIMPORT, DEV_AUTOINSTALL, DEV_VAULT_FILE, devBuild } from "../../vault/devFlags";
 import { ModelCard } from "./ModelCard";
+import { toggleUse, usesLabel } from "./bestFor";
 import { ModelDetails } from "./ModelDetails";
 import { HfSearch } from "./HfSearch";
 import { hfSearchAvailable } from "../../vault/hf";
@@ -63,7 +64,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock, focus }: VaultS
   const insets = useSafeAreaInsets();
   const contentMax = useContentMaxWidth();
   const { vault, entries } = useVault();
-  const [bestUse, setBestUse] = useState<UseCase>("chat");
+  const [bestUses, setBestUses] = useState<UseCase[]>(["chat"]);
   const [bestLanguage, setBestLanguage] = useState(() => startLanguage(i18n.language));
   const [picker, setPicker] = useState<"use" | "language" | null>(null);
   const { tier } = useEntitlement();
@@ -207,15 +208,21 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock, focus }: VaultS
   const hfPending = entries.filter((e) => e.hf && !installed(e));
   /* §7.8: the RECOMMENDED tag and the order inside each group follow the fit map for the chosen use + language on this device. */
   const room = vault.room();
-  const ranked = rankModels({ use: bestUse, languageCode: bestLanguage, device, installed: entries.filter((e) => e.state.kind === "ready").map((e) => e.model.id), catalog: vault.manifest.models, room });
+  const ranked = rankModels({ use: bestUses[0]!, uses: bestUses, languageCode: bestLanguage, device, installed: entries.filter((e) => e.state.kind === "ready").map((e) => e.model.id), catalog: vault.manifest.models, room });
   const rankOf = new Map(ranked.map((r, i) => [r.model.id, i]));
+  const several = bestUses.length > 1;
+  const anyGoodAtAll = ranked.some(goodAtAll);
+  const noneGoodAtAll = several && ranked.length > 0 && !anyGoodAtAll;
+  const goodById = new Map(ranked.map((r) => [r.model.id, goodAtAll(r)]));
+  const belowLine = (e: VaultEntry | undefined) => !!e && several && anyGoodAtAll && goodById.get(e.model.id) === false;
   const byRank = (a: VaultEntry, b: VaultEntry) => (rankOf.get(a.model.id) ?? 99) - (rankOf.get(b.model.id) ?? 99);
   onDevice.sort(byRank);
   fits.sort(byRank);
-  const recommendInput = { use: bestUse, languageCode: bestLanguage, device, installed: [], catalog: vault.manifest.models, room };
+  const recommendInput = { use: bestUses[0]!, uses: bestUses, languageCode: bestLanguage, device, installed: [], catalog: vault.manifest.models, room };
   const top = deviceRecommendation(recommendInput);
   const spaceNote = recommendationRoomNote(recommendInput);
-  const recommendedId = top?.model.id;
+  /* With several uses and none good at all, the line under Best for says so; a RECOMMENDED tag would contradict it. */
+  const recommendedId = noneGoodAtAll ? undefined : top?.model.id;
   const recommendedWeak = !!top && recommendationIsWeak(top);
   const languageName = (code: string) => t(`language.${code}`, { defaultValue: LANGUAGE_NAME_BY_CODE[code] ?? code });
   const sections: Section[] = [
@@ -280,7 +287,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock, focus }: VaultS
       <View testID="best-for" style={styles.bestFor}>
         <Text style={[type.monoLabel, { color: theme.text3 }]}>{t("vault.bestFor").toUpperCase()}</Text>
         <Pressable testID="best-for-use" accessibilityRole="button" onPress={() => setPicker("use")} style={[styles.pick, { backgroundColor: theme.surface2, borderColor: theme.border }]}>
-          <Text style={[type.bodySmall, { color: theme.text }]}>{t(`use.${bestUse}`)}</Text>
+          <Text style={[type.bodySmall, { color: theme.text }]}>{usesLabel(t, bestUses)}</Text>
           <Icon name="chevronDown" size={14} color={theme.text2} />
         </Pressable>
         <Pressable testID="best-for-language" accessibilityRole="button" onPress={() => setPicker("language")} style={[styles.pick, { backgroundColor: theme.surface2, borderColor: theme.border }]}>
@@ -288,6 +295,11 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock, focus }: VaultS
           <Icon name="chevronDown" size={14} color={theme.text2} />
         </Pressable>
       </View>
+      {noneGoodAtAll ? (
+        <Text testID="best-for-none" style={[type.bodySmall, styles.centered, { color: theme.text2 }]}>
+          {t("vault.bestFor.noneAll")}
+        </Text>
+      ) : null}
       {spaceNote ? (
         <Text testID="room-note" style={[type.bodySmall, styles.centered, { color: theme.text2 }]}>
           {t("models.roomNote", roomNoteParams(spaceNote))}
@@ -310,7 +322,15 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock, focus }: VaultS
         stickySectionHeadersEnabled={false}
         contentContainerStyle={styles.list}
         renderSectionHeader={({ section }) => <Text style={[type.monoLabel, styles.sectionHeader, { color: theme.text3 }]}>{section.title}</Text>}
-        renderItem={({ item, section }) => (
+        renderItem={({ item, section, index }) => (
+          <>
+          {belowLine(item) && !belowLine(section.data[index - 1]) ? (
+            <View testID={`best-for-divider-${section.key}`} style={styles.divider}>
+              <View style={[styles.rule, { backgroundColor: theme.border }]} />
+              <Text style={[type.monoLabel, { color: theme.text3 }]}>{t("vault.bestFor.notAll").toUpperCase()}</Text>
+              <View style={[styles.rule, { backgroundColor: theme.border }]} />
+            </View>
+          ) : null}
           <ModelCard
             model={item.model}
             state={item.state}
@@ -318,7 +338,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock, focus }: VaultS
             device={device}
             theme={theme}
             recommended={item.model.id === recommendedId}
-            recommendedFor={{ use: bestUse, languageCode: bestLanguage, weak: recommendedWeak }}
+            recommendedFor={{ uses: bestUses, languageCode: bestLanguage, weak: recommendedWeak }}
             active={active?.model.id === item.model.id}
             highlighted={item.model.id === flashId}
             disabledReason={section.disabled?.get(item.model.id)}
@@ -335,6 +355,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock, focus }: VaultS
             onImport={item.plan || item.imported || item.stray ? undefined : () => void pickAndImport()}
             modelReady={modelReady}
           />
+          </>
         )}
         ListFooterComponent={
           <View style={styles.footer}>
@@ -394,15 +415,14 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock, focus }: VaultS
       <HfSearch visible={hfOpen} device={device} theme={theme} onClose={() => setHfOpen(false)} onPick={pickFromHf} />
 
       <Sheet visible={picker === "use"} onClose={() => setPicker(null)} title={t("vault.bestFor.use")} testID="best-for-use-sheet">
+        <Text style={[type.bodySmall, styles.sheetHint, { color: theme.text2 }]}>{t("vault.bestFor.several")}</Text>
         {USE_CASES.map((u) => (
           <SheetItem
             key={u}
             testID={`best-for-use-${u}`}
             label={t(`use.${u}`)}
-            onPress={() => {
-              setBestUse(u);
-              setPicker(null);
-            }}
+            trailing={bestUses.includes(u) ? <Icon name="check" size={16} color={theme.accent} /> : undefined}
+            onPress={() => setBestUses((uses) => toggleUse(uses, u))}
           />
         ))}
       </Sheet>
@@ -453,6 +473,9 @@ const styles = StyleSheet.create({
   headerBtn: { width: 44, height: 44, alignItems: "center", justifyContent: "center" },
   centered: { textAlign: "center", paddingHorizontal: 16, paddingTop: 4 },
   sectionHeader: { paddingTop: 14, paddingBottom: 8 },
+  divider: { flexDirection: "row", alignItems: "center", gap: 8, paddingTop: 4, paddingBottom: 10 },
+  rule: { flex: 1, height: StyleSheet.hairlineWidth },
+  sheetHint: { paddingHorizontal: 12, paddingBottom: 4 },
   bestFor: { flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: 8, paddingHorizontal: 16, paddingTop: 10 },
   pick: { flexDirection: "row", alignItems: "center", gap: 4, minHeight: 32, paddingHorizontal: 10, borderWidth: 1, borderRadius: radius.chip },
   list: { paddingHorizontal: 16, paddingBottom: 96 },
