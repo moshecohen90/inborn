@@ -1,0 +1,39 @@
+17:57:12 pushing 28 steps as f1-vault-drop
+17:57:20 shot J4-11-vault-confirm
+17:57:38 shot J4-12-vault-fast-downloading
+17:57:46 shot J4-13-vault-connection-lost
+17:57:58 shot J4-14-vault-offline-15s
+17:58:13 shot J4-15-vault-online-12s
+17:59:22 shot J4-16-vault-fast-installed
+17:59:26 ok     0 deeplink   /vault
+17:59:26 ok     1 sleep      4000 ms
+17:59:26 ok     2 scrollTo   install-fast
+17:59:26 ok     3 press      install-fast ← onPress
+17:59:26 ok     4 sleep      1500 ms
+17:59:26 ok     5 screenshot J4-11-vault-confirm
+17:59:26 ok     6 press      confirm-download ← onPress
+17:59:26 ok     7 sleep      15000 ms
+17:59:26 ok     8 value      10% · 134 MB of 1.28 GB
+17:59:26 ok     9 screenshot J4-12-vault-fast-downloading
+17:59:26 FAIL  10 network    network: this build cannot simulate a lost connection
+17:59:26 ok    11 sleep      5000 ms
+17:59:26 FAIL  12 value      value model-offline-fast: no node with that testID is mounted
+17:59:26 ok    13 value      17% · 226 MB of 1.28 GB
+17:59:26 ok    14 screenshot J4-13-vault-connection-lost
+17:59:26 ok    15 dump       J4-13-vault
+17:59:26 ok    16 sleep      10000 ms
+17:59:26 ok    17 value      28% · 368 MB of 1.28 GB
+17:59:26 ok    18 screenshot J4-14-vault-offline-15s
+17:59:26 FAIL  19 network    network: this build cannot simulate a lost connection
+17:59:26 ok    20 sleep      12000 ms
+17:59:26 ok    21 value      40% · 525 MB of 1.28 GB
+17:59:26 ok    22 screenshot J4-15-vault-online-12s
+17:59:26 ok    23 dump       J4-15-vault
+17:59:26 ok    24 idleTimer  idle timer disabled: true
+17:59:26 ok    25 waitFor    use-fast appeared
+17:59:26 ok    26 value      Installed
+17:59:26 ok    27 screenshot J4-16-vault-fast-installed
+17:59:26 25 passed, 3 failed, 6 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-35/docs/qa/ios-device-pass-35/screens
+17:59:26   ! step 10 (network): network: this build cannot simulate a lost connection
+17:59:26   ! step 12 (value): value model-offline-fast: no node with that testID is mounted
+17:59:26   ! step 19 (network): network: this build cannot simulate a lost connection

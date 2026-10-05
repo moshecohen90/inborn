@@ -1,0 +1,36 @@
+18:09:32 pushing 28 steps as f3-vault-drop
+18:09:40 shot J4-11-vault-confirm
+18:09:59 shot J4-12-vault-fast-downloading
+18:10:07 shot J4-13-vault-connection-lost
+18:10:19 shot J4-14-vault-offline-15s
+18:10:35 shot J4-15-vault-online-12s
+18:11:58 shot J4-16-vault-fast-installed
+18:12:02 ok     0 deeplink   /vault
+18:12:02 ok     1 sleep      4000 ms
+18:12:02 ok     2 scrollTo   install-fast
+18:12:02 ok     3 press      install-fast ← onPress
+18:12:02 ok     4 sleep      1500 ms
+18:12:02 ok     5 screenshot J4-11-vault-confirm
+18:12:02 ok     6 press      confirm-download ← onPress
+18:12:02 ok     7 sleep      15000 ms
+18:12:02 ok     8 value      12% · 163 MB of 1.28 GB
+18:12:02 ok     9 screenshot J4-12-vault-fast-downloading
+18:12:02 ok    10 network    offline
+18:12:02 ok    11 sleep      5000 ms
+18:12:02 ok    12 value      You are offline. A download is the one thing that needs internet: turn off Airplane Mode or join Wi-Fi.
+18:12:02 ok    13 value      Waiting for a connection. It starts by itself.
+18:12:02 ok    14 screenshot J4-13-vault-connection-lost
+18:12:02 ok    15 dump       J4-13-vault
+18:12:02 ok    16 sleep      10000 ms
+18:12:02 ok    17 value      Waiting for a connection. It starts by itself.
+18:12:02 ok    18 screenshot J4-14-vault-offline-15s
+18:12:02 ok    19 network    online
+18:12:02 ok    20 sleep      12000 ms
+18:12:02 ok    21 value      25% · 331 MB of 1.28 GB
+18:12:02 ok    22 screenshot J4-15-vault-online-12s
+18:12:02 ok    23 dump       J4-15-vault
+18:12:02 ok    24 idleTimer  idle timer disabled: true
+18:12:02 ok    25 waitFor    use-fast appeared
+18:12:02 ok    26 value      Installed
+18:12:02 ok    27 screenshot J4-16-vault-fast-installed
+18:12:02 28 passed, 0 failed, 6 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-35/docs/qa/ios-device-pass-35/screens

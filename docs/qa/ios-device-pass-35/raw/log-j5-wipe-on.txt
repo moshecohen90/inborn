@@ -1,0 +1,20 @@
+18:05:39 launching com.inbornapp.mobile.qa
+18:05:53 pushing 16 steps as j5-wipe-on
+18:05:57 shot J5-07-wipe-models-on
+18:06:07 ok     0 deeplink   /settings
+18:06:07 ok     1 waitFor    row-wipe appeared
+18:06:07 ok     2 scrollTo   row-wipe
+18:06:07 ok     3 press      row-wipe ← onPress
+18:06:07 ok     4 waitFor    wipe-models appeared
+18:06:07 ok     5 sleep      800 ms
+18:06:07 ok     6 press      wipe-models ← onPress
+18:06:07 ok     7 sleep      800 ms
+18:06:07 ok     8 value      
+18:06:07 ok     9 screenshot J5-07-wipe-models-on
+18:06:07 ok    10 dump       J5-07-wipe
+18:06:07 ok    11 press      wipe-step1 ← onPress
+18:06:07 ok    12 waitFor    wipe-step2 appeared
+18:06:07 ok    13 sleep      800 ms
+18:06:07 ok    14 press      wipe-step2 ← onPress
+18:06:07 ok    15 sleep      6000 ms
+18:06:07 16 passed, 0 failed, 1 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-35/docs/qa/ios-device-pass-35/screens

@@ -1,0 +1,228 @@
+{
+ "_": "J5 + J4 onboarding door: after the wipe the model step offers 'Download Fast · 1.28 GB'; the app goes offline: the offline line, Download tapped: waiting + 'Start now with Instant'; online: it starts by itself; then Stop, Instant, a chat on Instant answers.",
+ "steps": [
+  {
+   "op": "waitFor",
+   "testID": "onboarding-continue",
+   "timeoutMs": 120000
+  },
+  {
+   "op": "sleep",
+   "ms": 1200
+  },
+  {
+   "op": "press",
+   "testID": "onboarding-continue"
+  },
+  {
+   "op": "waitFor",
+   "testID": "onboarding-model",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "value",
+   "testID": "download-model"
+  },
+  {
+   "op": "assertText",
+   "text": "Download Fast",
+   "testID": "download-model"
+  },
+  {
+   "op": "assertText",
+   "text": "1.28 GB",
+   "testID": "download-model"
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-08-model-step-after-wipe"
+  },
+  {
+   "op": "dump",
+   "name": "J5-08-model-step"
+  },
+  {
+   "op": "network",
+   "offline": true
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "download-offline"
+  },
+  {
+   "op": "screenshot",
+   "name": "J4-01-model-step-offline"
+  },
+  {
+   "op": "press",
+   "testID": "download-model"
+  },
+  {
+   "op": "sleep",
+   "ms": 4000
+  },
+  {
+   "op": "value",
+   "testID": "model-offline-fast"
+  },
+  {
+   "op": "value",
+   "testID": "model-waiting-fast"
+  },
+  {
+   "op": "value",
+   "testID": "start-now-with"
+  },
+  {
+   "op": "assertText",
+   "text": "Instant",
+   "testID": "start-now-with"
+  },
+  {
+   "op": "screenshot",
+   "name": "J4-02-download-tapped-offline"
+  },
+  {
+   "op": "dump",
+   "name": "J4-02-model-step"
+  },
+  {
+   "op": "sleep",
+   "ms": 12000
+  },
+  {
+   "op": "value",
+   "testID": "model-waiting-fast"
+  },
+  {
+   "op": "screenshot",
+   "name": "J4-03-offline-16s"
+  },
+  {
+   "op": "network",
+   "offline": false
+  },
+  {
+   "op": "sleep",
+   "ms": 10000
+  },
+  {
+   "op": "value",
+   "testID": "model-progress"
+  },
+  {
+   "op": "screenshot",
+   "name": "J4-04-online-10s"
+  },
+  {
+   "op": "dump",
+   "name": "J4-04-model-step"
+  },
+  {
+   "op": "press",
+   "testID": "cancel-download"
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "start-now-with"
+  },
+  {
+   "op": "press",
+   "testID": "start-now-with"
+  },
+  {
+   "op": "waitFor",
+   "testID": "sealed-start",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 5000
+  },
+  {
+   "op": "press",
+   "testID": "sealed-start"
+  },
+  {
+   "op": "waitFor",
+   "testID": "lock-start",
+   "timeoutMs": 20000
+  },
+  {
+   "op": "press",
+   "testID": "lock-start"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 60000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "assertText",
+   "text": "INSTANT",
+   "testID": "model-chip"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "What is the capital of France?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "waitFor",
+   "testID": "assistant-text",
+   "timeoutMs": 240000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 400000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-09-chat-instant-after-wipe"
+  },
+  {
+   "op": "assertText",
+   "text": "Could not load",
+   "absent": true
+  }
+ ]
+}

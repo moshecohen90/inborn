@@ -1,0 +1,669 @@
+{
+  "runId": "p2c-visual-indexed",
+  "startedAt": "2026-10-05T14:53:38.723Z",
+  "finishedAt": "2026-10-05T14:54:00.737Z",
+  "ok": true,
+  "passed": 41,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 158,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1509,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "INSTANT",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT"
+    },
+    {
+      "i": 9,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"INSTANT\" present"
+    },
+    {
+      "i": 10,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 162,
+      "detail": "attach: visual-page.pdf"
+    },
+    {
+      "i": 11,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1344,
+      "detail": "attached-docs appeared"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 8007,
+      "detail": "8000 ms"
+    },
+    {
+      "i": 13,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "visual-page.pdf",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "visual-page.pdf"
+    },
+    {
+      "i": 14,
+      "op": "type",
+      "ok": true,
+      "ms": 166,
+      "detail": "composer-input = 16 chars"
+    },
+    {
+      "i": 15,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 16,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1863,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 17,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 18,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2524,
+      "detail": "J1-06-sent-bubble"
+    },
+    {
+      "i": 19,
+      "op": "dump",
+      "ok": true,
+      "ms": 0,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What do you see?",
+          "role": "text"
+        },
+        {
+          "testID": "user-images",
+          "text": ""
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI The user is asking a question in Hebrew about what they are seeing on the webpage. The document provided contains a navigation menu at the top of the page and several images below it, including dogs on ground and coffee with cookies and glasses on a table. It does not contain specific details about the content of the websites or pages other than general information like \"NORTHWIND\" logo and search/account/cart links. The user is asking for more information about wh ▍"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The user is asking a question in Hebrew about what they are seeing on the webpage. The document provided contains a navigation menu at the top of the page and several images below it, including dogs on ground and coffee with cookies and glasses on a table. It does not contain specific details about the content of the websites or pages other than general information like \"NORTHWIND\" logo and search/account/cart links. The user is asking for more information about wh ▍"
+        },
+        {
+          "testID": "caret",
+          "text": "▍"
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "32 TOK/S"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "model-advice",
+          "text": "FAST is better at documents than INSTANT. SHARP is the best here for Documents · 2.74 GB PRO Install FAST · 1.28 GB Not now"
+        },
+        {
+          "testID": "model-advice-reason",
+          "text": "FAST is better at documents than INSTANT."
+        },
+        {
+          "testID": "model-advice-best",
+          "text": "SHARP is the best here for Documents · 2.74 GB PRO",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-best-pro",
+          "text": "PRO"
+        },
+        {
+          "testID": "model-advice-install",
+          "text": "Install FAST · 1.28 GB",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-not-now",
+          "text": "Not now",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "visual-page.pdf"
+        },
+        {
+          "testID": "attached-chip-muvd90b1-3-2sui90c4",
+          "text": "visual-page.pdf",
+          "role": "button",
+          "label": "Remove visual-page.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "stop",
+          "text": "",
+          "role": "button",
+          "label": "Stop",
+          "pressable": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J1-06-sent-bubble"
+    },
+    {
+      "i": 20,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 797,
+      "detail": "stop gone"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The user is asking a question in Hebrew about what they are seeing on the webpage. The document provided contains a navigation menu at the top of the page and several images below it, including dogs on ground and coffee with cookies and glasses on a table. It does not contain specific details about the content of the websites or pages other than general information like \"NORTHWIND\" logo and search/account/cart links. The user is asking for more information about what they are seeing, but this document only provides basic navigation structure and an image showing dogs. I need to stop after answering in one sentence.",
+        "props": {
+          "source": "The user is asking a question in Hebrew about what they are seeing on the webpage. The document provided contains a navigation menu at the top of the page and several images below it, including dogs on ground and coffee with cookies and glasses on a table. It does not contain specific details about the content of the websites or pages other than general information like \"NORTHWIND\" logo and search/account/cart links. The user is asking for more information about what they are seeing, but this document only provides basic navigation structure and an image showing dogs. I need to stop after answering in one sentence.",
+          "disabled": false
+        }
+      },
+      "detail": "The user is asking a question in Hebrew about what they are seeing on the webpage. The document provided contains a navigation menu at the top of the page and several images below it, including dogs o"
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1513,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 24,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1932,
+      "detail": "J1-06-answer"
+    },
+    {
+      "i": 25,
+      "op": "dump",
+      "ok": true,
+      "ms": 4,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What do you see?",
+          "role": "text"
+        },
+        {
+          "testID": "user-images",
+          "text": ""
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI The user is asking a question in Hebrew about what they are seeing on the webpage. The document provided contains a navigation menu at the top of the page and several images below it, including dogs on ground and coffee with cookies and glasses on a table. It does not contain specific details about the content of the websites or pages other than general information like \"NORTHWIND\" logo and search/account/cart links. The user is asking for more information about what they are seeing, but this document only provides basic navigation structure and an image showing dogs. I need to stop after answering in one sentence. SOURCES visual-page.pdf · p.1 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The user is asking a question in Hebrew about what they are seeing on the webpage. The document provided contains a navigation menu at the top of the page and several images below it, including dogs on ground and coffee with cookies and glasses on a table. It does not contain specific details about the content of the websites or pages other than general information like \"NORTHWIND\" logo and search/account/cart links. The user is asking for more information about what they are seeing, but this document only provides basic navigation structure and an image showing dogs. I need to stop after answering in one sentence."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES visual-page.pdf · p.1"
+        },
+        {
+          "testID": "citation-1",
+          "text": "visual-page.pdf · p.1",
+          "role": "button",
+          "label": "Open visual-page.pdf · p.1",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "model-advice",
+          "text": "FAST is better at documents than INSTANT. SHARP is the best here for Documents · 2.74 GB PRO Install FAST · 1.28 GB Not now"
+        },
+        {
+          "testID": "model-advice-reason",
+          "text": "FAST is better at documents than INSTANT."
+        },
+        {
+          "testID": "model-advice-best",
+          "text": "SHARP is the best here for Documents · 2.74 GB PRO",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-best-pro",
+          "text": "PRO"
+        },
+        {
+          "testID": "model-advice-install",
+          "text": "Install FAST · 1.28 GB",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-not-now",
+          "text": "Not now",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "visual-page.pdf"
+        },
+        {
+          "testID": "attached-chip-muvd90b1-3-2sui90c4",
+          "text": "visual-page.pdf",
+          "role": "button",
+          "label": "Remove visual-page.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J1-06-answer"
+    },
+    {
+      "i": 26,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "vision-hold gone"
+    },
+    {
+      "i": 27,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 28,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"cannot see\" absent"
+    },
+    {
+      "i": 29,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"can't see\" absent"
+    },
+    {
+      "i": 30,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"cannot physically see\" absent"
+    },
+    {
+      "i": 31,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"see images\" absent"
+    },
+    {
+      "i": 32,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"text-based\" absent"
+    },
+    {
+      "i": 33,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"unable to see\" absent"
+    },
+    {
+      "i": 34,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"not able to see\" absent"
+    },
+    {
+      "i": 35,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"The request specifies\" absent"
+    },
+    {
+      "i": 36,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"I will focus\" absent"
+    },
+    {
+      "i": 37,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"as an AI\" absent"
+    },
+    {
+      "i": 38,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"NOT_FOUND\" absent"
+    },
+    {
+      "i": 39,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"<<<\" absent"
+    },
+    {
+      "i": 40,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Your documents don't mention this\" absent"
+    }
+  ],
+  "errors": []
+}

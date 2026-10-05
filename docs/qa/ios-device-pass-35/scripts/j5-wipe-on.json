@@ -1,0 +1,72 @@
+{
+ "_": "J5: Settings > Erase everything with 'also delete models' ON (Fast and its pack installed and used).",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/settings"
+  },
+  {
+   "op": "waitFor",
+   "testID": "row-wipe",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "scrollTo",
+   "testID": "row-wipe"
+  },
+  {
+   "op": "press",
+   "testID": "row-wipe"
+  },
+  {
+   "op": "waitFor",
+   "testID": "wipe-models",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "sleep",
+   "ms": 800
+  },
+  {
+   "op": "press",
+   "testID": "wipe-models"
+  },
+  {
+   "op": "sleep",
+   "ms": 800
+  },
+  {
+   "op": "value",
+   "testID": "wipe-models"
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-07-wipe-models-on"
+  },
+  {
+   "op": "dump",
+   "name": "J5-07-wipe"
+  },
+  {
+   "op": "press",
+   "testID": "wipe-step1"
+  },
+  {
+   "op": "waitFor",
+   "testID": "wipe-step2",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "sleep",
+   "ms": 800
+  },
+  {
+   "op": "press",
+   "testID": "wipe-step2"
+  },
+  {
+   "op": "sleep",
+   "ms": 6000
+  }
+ ]
+}

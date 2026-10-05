@@ -1,0 +1,53 @@
+18:00:55 pushing 48 steps as j2b-switch
+18:01:10 shot J2-04-pack-card
+18:01:17 shot J2-05-switched-sent
+18:01:26 shot J2-06-instant-answer
+18:01:31 ok     0 deeplink   /chats
+18:01:31 ok     1 waitFor    new-chat appeared
+18:01:31 ok     2 press      new-chat ← onPress
+18:01:31 ok     3 waitFor    start-chat appeared
+18:01:31 ok     4 press      start-chat ← onPress
+18:01:31 ok     5 waitFor    composer-input appeared
+18:01:31 ok     6 waitFor    Loading gone
+18:01:31 ok     7 sleep      1500 ms
+18:01:31 ok     8 value      FAST
+18:01:31 ok     9 assertText "FAST" present
+18:01:31 ok    10 devPrompt  attach: visual-page.pdf
+18:01:31 ok    11 waitFor    attached-docs appeared
+18:01:31 ok    12 sleep      8000 ms
+18:01:31 ok    13 value      visual-page.pdf
+18:01:31 ok    14 type       composer-input = 16 chars
+18:01:31 ok    15 send       send ← onPress
+18:01:31 ok    16 waitFor    vision-hold appeared
+18:01:31 ok    17 sleep      1500 ms
+18:01:31 ok    18 value      FAST needs its photo pack to see photos One 668 MB download, then this photo sends by itself. Download 668 MB 
+18:01:31 ok    19 assertText "668 MB" present
+18:01:31 ok    20 waitFor    assistant-text gone
+18:01:31 ok    21 screenshot J2-04-pack-card
+18:01:31 ok    22 dump       J2-04-pack-card
+18:01:31 ok    23 value      Switch to INSTANT · installed
+18:01:31 ok    24 press      vision-hold-switch ← onPress
+18:01:31 ok    25 waitFor    assistant-text appeared
+18:01:31 ok    26 value      
+18:01:31 ok    27 value      INSTANT
+18:01:31 ok    28 screenshot J2-05-switched-sent
+18:01:31 ok    29 waitFor    stop gone
+18:01:31 ok    30 sleep      1500 ms
+18:01:31 ok    31 value      אני רוצה לדעת מה שראה האלמנטים במידע. [2] image-page.pdf · p.2 משלוח חינם בהזמנה מעל 150 ₪ NORTHWIND Search Ac
+18:01:31 ok    32 sleep      1500 ms
+18:01:31 ok    33 assertText "INSTANT" present
+18:01:31 ok    34 screenshot J2-06-instant-answer
+18:01:31 ok    35 dump       J2-06-instant-answer
+18:01:31 ok    36 assertText "cannot see" absent
+18:01:31 ok    37 assertText "can't see" absent
+18:01:31 ok    38 assertText "cannot physically see" absent
+18:01:31 ok    39 assertText "see images" absent
+18:01:31 ok    40 assertText "text-based" absent
+18:01:31 ok    41 assertText "unable to see" absent
+18:01:31 ok    42 assertText "not able to see" absent
+18:01:31 ok    43 assertText "The request specifies" absent
+18:01:31 ok    44 assertText "I will focus" absent
+18:01:31 ok    45 assertText "as an AI" absent
+18:01:31 ok    46 assertText "NOT_FOUND" absent
+18:01:31 ok    47 assertText "<<<" absent
+18:01:31 48 passed, 0 failed, 3 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-35/docs/qa/ios-device-pass-35/screens

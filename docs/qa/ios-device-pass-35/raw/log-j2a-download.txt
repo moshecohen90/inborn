@@ -1,0 +1,75 @@
+18:01:45 pushing 69 steps as j2a-download
+18:02:06 shot J2-07-pack-card
+18:02:13 shot J2-08-pack-downloading
+18:03:16 shot J2-09-sent-with-picture
+18:03:30 shot J2-10-fast-answer
+18:03:34 ok     0 deeplink   /chats
+18:03:34 ok     1 waitFor    new-chat appeared
+18:03:34 ok     2 press      new-chat ← onPress
+18:03:34 ok     3 waitFor    start-chat appeared
+18:03:34 ok     4 press      start-chat ← onPress
+18:03:34 ok     5 waitFor    composer-input appeared
+18:03:34 ok     6 waitFor    Loading gone
+18:03:34 ok     7 sleep      1500 ms
+18:03:34 ok     8 value      INSTANT
+18:03:34 ok     9 press      model-chip ← onPress
+18:03:34 ok    10 waitFor    model-sheet-use-fast appeared
+18:03:34 ok    11 press      model-sheet-use-fast ← onPress
+18:03:34 ok    12 sleep      3000 ms
+18:03:34 ok    13 waitFor    Loading gone
+18:03:34 ok    14 sleep      1500 ms
+18:03:34 ok    15 value      FAST
+18:03:34 ok    16 assertText "FAST" present
+18:03:34 ok    17 deeplink   /chats
+18:03:34 ok    18 waitFor    new-chat appeared
+18:03:34 ok    19 press      new-chat ← onPress
+18:03:34 ok    20 waitFor    start-chat appeared
+18:03:34 ok    21 press      start-chat ← onPress
+18:03:34 ok    22 waitFor    composer-input appeared
+18:03:34 ok    23 waitFor    Loading gone
+18:03:34 ok    24 sleep      1500 ms
+18:03:34 ok    25 value      FAST
+18:03:34 ok    26 assertText "FAST" present
+18:03:34 ok    27 devPrompt  attach: visual-page.pdf
+18:03:34 ok    28 waitFor    attached-docs appeared
+18:03:34 ok    29 sleep      8000 ms
+18:03:34 ok    30 value      visual-page.pdf
+18:03:34 ok    31 type       composer-input = 16 chars
+18:03:34 ok    32 send       send ← onPress
+18:03:34 ok    33 waitFor    vision-hold appeared
+18:03:34 ok    34 sleep      1500 ms
+18:03:34 ok    35 value      FAST needs its photo pack to see photos One 668 MB download, then this photo sends by itself. Download 668 MB 
+18:03:34 ok    36 assertText "668 MB" present
+18:03:34 ok    37 waitFor    assistant-text gone
+18:03:34 ok    38 screenshot J2-07-pack-card
+18:03:34 ok    39 dump       J2-07-pack-card
+18:03:34 ok    40 press      vision-hold-download ← onPress
+18:03:34 ok    41 sleep      4000 ms
+18:03:34 ok    42 value      FAST needs its photo pack to see photos Downloading the photo pack: 38 of 668 MB. Keep Inborn open: the downlo
+18:03:34 ok    43 screenshot J2-08-pack-downloading
+18:03:34 ok    44 idleTimer  idle timer disabled: true
+18:03:34 ok    45 waitFor    vision-hold gone
+18:03:34 ok    46 waitFor    assistant-text appeared
+18:03:34 ok    47 value      
+18:03:34 ok    48 screenshot J2-09-sent-with-picture
+18:03:34 ok    49 waitFor    stop gone
+18:03:34 ok    50 sleep      1500 ms
+18:03:34 ok    51 value      The user is asking me to answer one to three sentences in the language of the user, which is Hebrew. I will ex
+18:03:34 ok    52 sleep      1500 ms
+18:03:34 ok    53 assertText "FAST" present
+18:03:34 ok    54 screenshot J2-10-fast-answer
+18:03:34 ok    55 dump       J2-10-fast-answer
+18:03:34 ok    56 assertText "cannot see" absent
+18:03:34 ok    57 assertText "can't see" absent
+18:03:34 ok    58 assertText "cannot physically see" absent
+18:03:34 ok    59 assertText "see images" absent
+18:03:34 ok    60 assertText "text-based" absent
+18:03:34 ok    61 assertText "unable to see" absent
+18:03:34 ok    62 assertText "not able to see" absent
+18:03:34 ok    63 assertText "The request specifies" absent
+18:03:34 ok    64 assertText "I will focus" absent
+18:03:34 ok    65 assertText "as an AI" absent
+18:03:34 ok    66 assertText "NOT_FOUND" absent
+18:03:34 ok    67 assertText "<<<" absent
+18:03:34 ok    68 assertText "Your documents don't mention this" absent
+18:03:34 69 passed, 0 failed, 4 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-35/docs/qa/ios-device-pass-35/screens

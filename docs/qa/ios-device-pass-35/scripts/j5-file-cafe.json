@@ -1,0 +1,134 @@
+{
+ "_": "J5 part 1: the café's chalk menu filed in the library as 'בית קפה הגינה תפריט.jpg', then a NEW chat on Instant and the [+] sheet's library list.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "new-chat",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "press",
+   "testID": "new-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "start-chat",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "press",
+   "testID": "start-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "devPrompt",
+   "lines": [
+    "attach: בית קפה הגינה תפריט.jpg"
+   ]
+  },
+  {
+   "op": "waitFor",
+   "testID": "pending-images",
+   "timeoutMs": 60000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "new-chat",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "press",
+   "testID": "new-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "start-chat",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "press",
+   "testID": "start-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "assertText",
+   "text": "INSTANT",
+   "testID": "model-chip"
+  },
+  {
+   "op": "waitFor",
+   "testID": "pending-images",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "press",
+   "testID": "attach"
+  },
+  {
+   "op": "waitFor",
+   "testID": "attach-sheet",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "sleep",
+   "ms": 1200
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-01-library-list"
+  },
+  {
+   "op": "dump",
+   "name": "J5-01-sheet"
+  }
+ ]
+}

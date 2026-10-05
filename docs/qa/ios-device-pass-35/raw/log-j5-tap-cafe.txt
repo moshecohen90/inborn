@@ -1,0 +1,38 @@
+17:54:39 pushing 34 steps as j5-tap-cafe
+17:54:42 shot J5-02-a-thumbnail-chip
+17:54:51 shot J5-03-photo-answer
+17:54:54 ok     0 value      בית קפה הגינה תפריט.jpg Scanned. Run OCR on this phone?
+17:54:54 ok     1 press      attach-muvdel64-7-hks95tv3 ← onPress
+17:54:54 ok     2 waitFor    attach-sheet gone
+17:54:54 ok     3 waitFor    pending-images appeared
+17:54:54 ok     4 sleep      1500 ms
+17:54:54 ok     5 waitFor    attached-docs gone
+17:54:54 ok     6 value      Free: one photo per message
+17:54:54 ok     7 screenshot J5-02-a-thumbnail-chip
+17:54:54 ok     8 type       composer-input = 29 chars
+17:54:54 ok     9 send       send ← onPress
+17:54:54 ok    10 sleep      3000 ms
+17:54:54 ok    11 waitFor    vision-hold gone
+17:54:54 ok    12 waitFor    user-images appeared
+17:54:54 ok    13 waitFor    assistant-text appeared
+17:54:54 ok    14 waitFor    stop gone
+17:54:54 ok    15 sleep      1500 ms
+17:54:54 ok    16 value      I can't read this image. I'm an AI and don't have eyes, so I can't identify objects like flowers, people, or s
+17:54:54 ok    17 sleep      2000 ms
+17:54:54 ok    18 screenshot J5-03-photo-answer
+17:54:54 ok    19 dump       J5-03-chat-cafe-instant
+17:54:54 ok    20 waitFor    none-matched gone
+17:54:54 ok    21 assertText "Nothing in your documents matched this question" absent
+17:54:54 ok    22 assertText "cannot see" absent
+17:54:54 ok    23 assertText "can't see" absent
+17:54:54 ok    24 assertText "cannot physically see" absent
+17:54:54 ok    25 assertText "see images" absent
+17:54:54 ok    26 assertText "text-based" absent
+17:54:54 ok    27 assertText "unable to see" absent
+17:54:54 ok    28 assertText "not able to see" absent
+17:54:54 ok    29 assertText "The request specifies" absent
+17:54:54 ok    30 assertText "I will focus" absent
+17:54:54 ok    31 assertText "as an AI" absent
+17:54:54 ok    32 assertText "NOT_FOUND" absent
+17:54:54 ok    33 assertText "<<<" absent
+17:54:54 34 passed, 0 failed, 2 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-35/docs/qa/ios-device-pass-35/screens

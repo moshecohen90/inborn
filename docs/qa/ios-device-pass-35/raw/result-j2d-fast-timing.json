@@ -1,0 +1,609 @@
+{
+  "runId": "j2d-fast-timing",
+  "startedAt": "2026-10-05T15:03:43.399Z",
+  "finishedAt": "2026-10-05T15:04:10.420Z",
+  "ok": true,
+  "passed": 41,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 155,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 9,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"FAST\" present"
+    },
+    {
+      "i": 10,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 165,
+      "detail": "attach: visual-page.pdf"
+    },
+    {
+      "i": 11,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1603,
+      "detail": "attached-docs appeared"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 8015,
+      "detail": "8000 ms"
+    },
+    {
+      "i": 13,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "visual-page.pdf",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "visual-page.pdf"
+    },
+    {
+      "i": 14,
+      "op": "type",
+      "ok": true,
+      "ms": 165,
+      "detail": "composer-input = 16 chars"
+    },
+    {
+      "i": 15,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 16,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 5078,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 17,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 18,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2219,
+      "detail": "J2-11-sent-bubble"
+    },
+    {
+      "i": 19,
+      "op": "dump",
+      "ok": true,
+      "ms": 0,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What do you see?",
+          "role": "text"
+        },
+        {
+          "testID": "user-images",
+          "text": ""
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The image displays a Northwind website interface with three selected items and an order summary showing 3 items in the cart. A chatbot message asks \"היי! איך נוכל לעזור?\" (Hell ▍"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The image displays a Northwind website interface with three selected items and an order summary showing 3 items in the cart. A chatbot message asks \"היי! איך נוכל לעזור?\" (Hell ▍"
+        },
+        {
+          "testID": "caret",
+          "text": "▍"
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "17 TOK/S"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "visual-page.pdf"
+        },
+        {
+          "testID": "attached-chip-muvd90b1-3-2sui90c4",
+          "text": "visual-page.pdf",
+          "role": "button",
+          "label": "Remove visual-page.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "stop",
+          "text": "",
+          "role": "button",
+          "label": "Stop",
+          "pressable": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J2-11-sent-bubble"
+    },
+    {
+      "i": 20,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2637,
+      "detail": "stop gone"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "The image displays a Northwind website interface with three selected items and an order summary showing 3 items in the cart. A chatbot message asks \"היי! איך נוכל לעזור?\" (Hello! How can we help?), and there are back and continue to checkout buttons visible. No specific facts from any provided document passages were taken or cited here as none of them relate to this visual content [1].",
+        "props": {
+          "source": "The image displays a Northwind website interface with three selected items and an order summary showing 3 items in the cart. A chatbot message asks \"היי! איך נוכל לעזור?\" (Hello! How can we help?), and there are back and continue to checkout buttons visible. No specific facts from any provided document passages were taken or cited here as none of them relate to this visual content [1].",
+          "disabled": false
+        }
+      },
+      "detail": "The image displays a Northwind website interface with three selected items and an order summary showing 3 items in the cart. A chatbot message asks \"היי! איך נוכל לעזור?\" (Hello! How can we help?), an"
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 24,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1917,
+      "detail": "J2-11-answer"
+    },
+    {
+      "i": 25,
+      "op": "dump",
+      "ok": true,
+      "ms": 3,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What do you see?",
+          "role": "text"
+        },
+        {
+          "testID": "user-images",
+          "text": ""
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The image displays a Northwind website interface with three selected items and an order summary showing 3 items in the cart. A chatbot message asks \"היי! איך נוכל לעזור?\" (Hello! How can we help?), and there are back and continue to checkout buttons visible. No specific facts from any provided document passages were taken or cited here as none of them relate to this visual content [1]. [1] visual-page.pdf · p.1 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The image displays a Northwind website interface with three selected items and an order summary showing 3 items in the cart. A chatbot message asks \"היי! איך נוכל לעזור?\" (Hello! How can we help?), and there are back and continue to checkout buttons visible. No specific facts from any provided document passages were taken or cited here as none of them relate to this visual content [1]."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] visual-page.pdf · p.1"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] visual-page.pdf · p.1",
+          "role": "button",
+          "label": "Open visual-page.pdf · p.1",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "visual-page.pdf"
+        },
+        {
+          "testID": "attached-chip-muvd90b1-3-2sui90c4",
+          "text": "visual-page.pdf",
+          "role": "button",
+          "label": "Remove visual-page.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J2-11-answer"
+    },
+    {
+      "i": 26,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "vision-hold gone"
+    },
+    {
+      "i": 27,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 28,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"cannot see\" absent"
+    },
+    {
+      "i": 29,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"can't see\" absent"
+    },
+    {
+      "i": 30,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"cannot physically see\" absent"
+    },
+    {
+      "i": 31,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"see images\" absent"
+    },
+    {
+      "i": 32,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"text-based\" absent"
+    },
+    {
+      "i": 33,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"unable to see\" absent"
+    },
+    {
+      "i": 34,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"not able to see\" absent"
+    },
+    {
+      "i": 35,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"The request specifies\" absent"
+    },
+    {
+      "i": 36,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"I will focus\" absent"
+    },
+    {
+      "i": 37,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"as an AI\" absent"
+    },
+    {
+      "i": 38,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"NOT_FOUND\" absent"
+    },
+    {
+      "i": 39,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"<<<\" absent"
+    },
+    {
+      "i": 40,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Your documents don't mention this\" absent"
+    }
+  ],
+  "errors": []
+}

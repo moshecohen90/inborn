@@ -1,0 +1,25 @@
+17:51:22 pushing 22 steps as p2b-follow-up
+17:51:29 shot J1-05-follow-up
+17:51:32 ok     0 type       composer-input = 24 chars
+17:51:32 ok     1 send       send ← onPress
+17:51:32 ok     2 waitFor    assistant-text appeared
+17:51:32 ok     3 waitFor    stop gone
+17:51:32 ok     4 sleep      1500 ms
+17:51:32 ok     5 value      The image shows a web page from "NORTHWIND" featuring four dogs on gravel and a coffee shop checkout screen wi
+17:51:32 ok     6 sleep      1500 ms
+17:51:32 ok     7 screenshot J1-05-follow-up
+17:51:32 ok     8 dump       J1-05-follow-up
+17:51:32 ok     9 assertText "cannot see" absent
+17:51:32 ok    10 assertText "can't see" absent
+17:51:32 ok    11 assertText "cannot physically see" absent
+17:51:32 ok    12 assertText "see images" absent
+17:51:32 ok    13 assertText "text-based" absent
+17:51:32 ok    14 assertText "unable to see" absent
+17:51:32 ok    15 assertText "not able to see" absent
+17:51:32 ok    16 assertText "The request specifies" absent
+17:51:32 ok    17 assertText "I will focus" absent
+17:51:32 ok    18 assertText "as an AI" absent
+17:51:32 ok    19 assertText "NOT_FOUND" absent
+17:51:32 ok    20 assertText "<<<" absent
+17:51:32 ok    21 assertText "Your documents don't mention this" absent
+17:51:32 22 passed, 0 failed, 1 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-35/docs/qa/ios-device-pass-35/screens

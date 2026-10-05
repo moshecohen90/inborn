@@ -1,0 +1,69 @@
+lockState at start: passcodeRequired: false
+apps at start: com.inbornapp.mobile 1.0.0 34;com.inbornapp.mobile.uitests.xctrunner 1.0 1;
+Documents listing before: 21 lines
+non-model files: 13
+  copied SQLite/inborn.db 4096 B
+  copied SQLite/inborn.db-shm 32768 B
+  copied SQLite/inborn.db-wal 976472 B
+  copied device-prefs.json 92 B
+  copied documents.json 144 B
+  copied documents/muv2ebyz-1-yzykduob.pdf 2666167 B
+  copied images/muv2bv6s-f2qc7p.jpg 211764 B
+  copied images/muv2cxqe-nf2vte.jpg 212963 B
+  copied images/muv2htzr-myuiss.jpg 238308 B
+  copied licence.bin 100 B
+  copied models/vault.json 975 B
+  copied prefs.bak.json 494 B
+  copied prefs.json 494 B
+uninstall start=18:12:45
+uninstall rc=0 end=18:12:45
+apps after uninstall: com.inbornapp.mobile.uitests.xctrunner 1.0 1;
+install start=18:12:46
+install rc=0 end=18:13:07
+apps after install: com.inbornapp.mobile 1.0.0 35;com.inbornapp.mobile.uitests.xctrunner 1.0 1;
+Documents before first launch:
+HANDOVER-INSTALL-DONE
+launch at 18:13:18
+launch rc=0
+Documents after the first launch (18:13:45):
+Name                   URL Resources                   Size        Modification date
+--------------------   -----------------------------   ---------   -----------------
+SQLite                 Writable, Readable, Directory   160 bytes   05/10/2026, 18:13
+SQLite/inborn.db       Writable, Readable              4 KB        05/10/2026, 18:13
+SQLite/inborn.db-shm   Writable, Readable              32 KB       05/10/2026, 18:13
+SQLite/inborn.db-wal   Writable, Readable              125 KB      05/10/2026, 18:13
+device-prefs.json      Writable, Readable              92 bytes    05/10/2026, 18:13
+licence.bin            Writable, Readable              100 bytes   05/10/2026, 18:13
+models                 Writable, Readable, Directory   96 bytes    05/10/2026, 18:13
+models/vault.json      Writable, Readable              494 bytes   05/10/2026, 18:13
+Documents/models after the first launch:
+Name         URL Resources        Size        Modification date
+----------   ------------------   ---------   -----------------
+vault.json   Writable, Readable   494 bytes   05/10/2026, 18:13
+
+sha256 of the copy taken before the uninstall (file names only; the files stay in the session scratchpad, out of the repo):
+b766c4107a9958a82fb6880a41e65ffc782de8e543d462540363899a10e715b3  SQLite_inborn.db
+971e2f779f3b793d172cce10152343663efa10df1f0b3576d110df8c1bc6a3f8  SQLite_inborn.db-shm
+d7ce7d2a11ffbdf077422ce6b0f4bb889605379a5f77fadca8bc6281baf622e5  SQLite_inborn.db-wal
+9c0866c7a83eb47e489357b10e3b1a62dbb8c6a9b48397f4c09dd0712da4db5a  device-prefs.json
+ad3b79f2e09819ab12a226ea4682ebbdc0752f73bf7f4afdb44f2049d3179141  documents.json
+a596043619b1fb6468f9670e04c24b5befbe8810508e755829f1400bc5af40b4  documents_muv2ebyz-1-yzykduob.pdf
+53f7c384273c4b2b01720e94436c3d09ebc0ac65fd5d923b25220437559fe2e3  images_muv2bv6s-f2qc7p.jpg
+1ade993073547f06bfaa5203bdaa5612fc7dad33b656364ff97e14892bdea859  images_muv2cxqe-nf2vte.jpg
+b6e9bb949696e6f56c687de922a1e8af3391d7156b05e876c349369b940b2713  images_muv2htzr-myuiss.jpg
+cbc3491a43a0e8aea11fc4dc9511c48dccff03fb255fc13f31c38c6395fd34b8  licence.bin
+74e56389780b3959f4ccbd947c099c5437fd705b26db6db83ac2b243ab4c13d2  models_vault.json
+25dcfb34850710179d106c589be5d4f8eb8d237bf84db0522cff488c05832945  prefs.bak.json
+25dcfb34850710179d106c589be5d4f8eb8d237bf84db0522cff488c05832945  prefs.json
+
+Documents/models before the uninstall (model files are not copied):
+Name                                       URL Resources        Size        Modification date
+----------------------------------------   ------------------   ---------   -----------------
+mmproj-Qwen3.5-2B-F16.gguf                 Writable, Readable   637.3 MB    05/10/2026, 12:44
+multilingual-e5-large-instruct-Q6_K.gguf   Writable, Readable   446.3 MB    05/10/2026, 15:35
+vault.json                                 Writable, Readable   975 bytes   05/10/2026, 15:35
+
+version proof at 18:14:23:
+devicectl device info apps: com.inbornapp.mobile 1.0.0 35
+archive Info.plist: 1.0.0 (35), com.inbornapp.mobile
+running: 1 Inborn process (Inborn.app/Inborn, the store app, on Welcome)

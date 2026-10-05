@@ -1,0 +1,486 @@
+{
+  "runId": "j5-tap-cafe-s2",
+  "startedAt": "2026-10-05T14:56:46.822Z",
+  "finishedAt": "2026-10-05T14:57:03.839Z",
+  "ok": true,
+  "passed": 46,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 164,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1508,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "assertText",
+      "ok": true,
+      "ms": 3,
+      "detail": "\"INSTANT\" present"
+    },
+    {
+      "i": 9,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "attach ← onPress"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "attach-sheet appeared"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1215,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 12,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "בית קפה הגינה תפריט.jpg Scanned. Run OCR on this phone?",
+        "props": {
+          "label": "בית קפה הגינה תפריט.jpg",
+          "disabled": false,
+          "accessibilityRole": "button",
+          "accessibilityState": {
+            "disabled": false
+          }
+        }
+      },
+      "detail": "בית קפה הגינה תפריט.jpg Scanned. Run OCR on this phone?"
+    },
+    {
+      "i": 13,
+      "op": "press",
+      "ok": true,
+      "ms": 163,
+      "detail": "attach-muvdel64-7-hks95tv3 ← onPress"
+    },
+    {
+      "i": 14,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "attach-sheet gone"
+    },
+    {
+      "i": 15,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 265,
+      "detail": "pending-images appeared"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1505,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 17,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "attached-docs gone"
+    },
+    {
+      "i": 18,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Free: one photo per message",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Free: one photo per message"
+    },
+    {
+      "i": 19,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2562,
+      "detail": "J5-02b-a-thumbnail-chip"
+    },
+    {
+      "i": 20,
+      "op": "type",
+      "ok": true,
+      "ms": 164,
+      "detail": "composer-input = 29 chars"
+    },
+    {
+      "i": 21,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 22,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3001,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 23,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "vision-hold gone"
+    },
+    {
+      "i": 24,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "user-images appeared"
+    },
+    {
+      "i": 25,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 26,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "stop gone"
+    },
+    {
+      "i": 27,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1514,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 28,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "This is a chalkboard menu listing dining options at \"The Capede's Cafe & Coffee House\", including breakfasts and brunches with specific items like espresso, coffee, oatmeal, and various beverages.",
+        "props": {
+          "source": "This is a chalkboard menu listing dining options at \"The Capede's Cafe & Coffee House\", including breakfasts and brunches with specific items like espresso, coffee, oatmeal, and various beverages.",
+          "disabled": false
+        }
+      },
+      "detail": "This is a chalkboard menu listing dining options at \"The Capede's Cafe & Coffee House\", including breakfasts and brunches with specific items like espresso, coffee, oatmeal, and various beverages."
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2014,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 30,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2249,
+      "detail": "J5-03b-photo-answer"
+    },
+    {
+      "i": 31,
+      "op": "dump",
+      "ok": true,
+      "ms": 3,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What do you see in the photo?",
+          "role": "text"
+        },
+        {
+          "testID": "user-images",
+          "text": ""
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI This is a chalkboard menu listing dining options at \"The Capede's Cafe & Coffee House\", including breakfasts and brunches with specific items like espresso, coffee, oatmeal, and various beverages. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This is a chalkboard menu listing dining options at \"The Capede's Cafe & Coffee House\", including breakfasts and brunches with specific items like espresso, coffee, oatmeal, and various beverages."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J5-03b-chat-cafe-instant"
+    },
+    {
+      "i": 32,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "none-matched gone"
+    },
+    {
+      "i": 33,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Nothing in your documents matched this question\" absent"
+    },
+    {
+      "i": 34,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"cannot see\" absent"
+    },
+    {
+      "i": 35,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"can't see\" absent"
+    },
+    {
+      "i": 36,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"cannot physically see\" absent"
+    },
+    {
+      "i": 37,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"see images\" absent"
+    },
+    {
+      "i": 38,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"text-based\" absent"
+    },
+    {
+      "i": 39,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"unable to see\" absent"
+    },
+    {
+      "i": 40,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"not able to see\" absent"
+    },
+    {
+      "i": 41,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"The request specifies\" absent"
+    },
+    {
+      "i": 42,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"I will focus\" absent"
+    },
+    {
+      "i": 43,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"as an AI\" absent"
+    },
+    {
+      "i": 44,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"NOT_FOUND\" absent"
+    },
+    {
+      "i": 45,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"<<<\" absent"
+    }
+  ],
+  "errors": []
+}
