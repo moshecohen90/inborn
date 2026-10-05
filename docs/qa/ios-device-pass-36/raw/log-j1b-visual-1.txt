@@ -1,0 +1,53 @@
+20:13:14 pushing 48 steps as j1b-visual-1
+20:13:27 shot J1b-1-composer-chip
+20:13:34 shot J1b-1-sent-bubble
+20:13:40 shot J1b-1-answer
+20:13:43 ok     0 deeplink   /chats
+20:13:43 ok     1 waitFor    new-chat appeared
+20:13:43 ok     2 press      new-chat ← onPress
+20:13:43 ok     3 waitFor    start-chat appeared
+20:13:43 ok     4 press      start-chat ← onPress
+20:13:43 ok     5 waitFor    composer-input appeared
+20:13:43 ok     6 waitFor    Loading gone
+20:13:43 ok     7 sleep      1500 ms
+20:13:43 ok     8 value      INSTANT
+20:13:43 ok     9 assertText "INSTANT" present
+20:13:43 ok    10 devPrompt  attach: visual-page.pdf
+20:13:43 ok    11 waitFor    attached-docs appeared
+20:13:43 ok    12 sleep      8000 ms
+20:13:43 ok    13 value      visual-page.pdf
+20:13:43 ok    14 screenshot J1b-1-composer-chip
+20:13:43 ok    15 type       composer-input = 16 chars
+20:13:43 ok    16 send       send ← onPress
+20:13:43 ok    17 waitFor    assistant-text appeared
+20:13:43 ok    18 value      
+20:13:43 ok    19 screenshot J1b-1-sent-bubble
+20:13:43 ok    20 waitFor    stop gone
+20:13:43 ok    21 sleep      1500 ms
+20:13:43 ok    22 value      The image displays a webpage for "NORTHWIND," featuring two main sections: one showing four dogs on gravel gro
+20:13:43 ok    23 sleep      2000 ms
+20:13:43 ok    24 waitFor    docs-hold gone
+20:13:43 ok    25 waitFor    vision-hold gone
+20:13:43 ok    26 assertText "cannot see" absent
+20:13:43 ok    27 assertText "can't see" absent
+20:13:43 ok    28 assertText "cannot physically see" absent
+20:13:43 ok    29 assertText "see images" absent
+20:13:43 ok    30 assertText "text-based" absent
+20:13:43 ok    31 assertText "unable to see" absent
+20:13:43 ok    32 assertText "not able to see" absent
+20:13:43 ok    33 assertText "don't have eyes" absent
+20:13:43 ok    34 assertText "The request specifies" absent
+20:13:43 ok    35 assertText "I will focus" absent
+20:13:43 ok    36 assertText "as an AI" absent
+20:13:43 ok    37 assertText "NOT_FOUND" absent
+20:13:43 ok    38 assertText "<<<" absent
+20:13:43 ok    39 assertText "The user is asking" absent
+20:13:43 ok    40 assertText "Your documents don't mention this" absent
+20:13:43 ok    41 waitFor    model-advice appeared
+20:13:43 ok    42 value      FAST sees pictures better than INSTANT.
+20:13:43 ok    43 value      Install FAST · 1.28 GB
+20:13:43 ok    44 assertText "FAST sees pictures better than INSTANT" present
+20:13:43 ok    45 assertText "1.28 GB" present
+20:13:43 ok    46 screenshot J1b-1-answer
+20:13:43 ok    47 dump       J1b-1-answer
+20:13:43 48 passed, 0 failed, 3 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-36/docs/qa/ios-device-pass-36/screens

@@ -1,0 +1,425 @@
+{
+ "_": "J5: the vault's Best for on the phone: the sheet, Chat + Documents, all eight, Math & reasoning alone, back to Chat.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/vault"
+  },
+  {
+   "op": "waitFor",
+   "testID": "best-for",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 4000
+  },
+  {
+   "op": "value",
+   "testID": "best-for-use"
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-01-vault-chat"
+  },
+  {
+   "op": "dump",
+   "name": "J5-01-vault-chat"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use"
+  },
+  {
+   "op": "waitFor",
+   "testID": "best-for-use-sheet",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "assertText",
+   "text": "Pick one or more."
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-02-sheet-chat"
+  },
+  {
+   "op": "dump",
+   "name": "J5-02-sheet"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-documents"
+  },
+  {
+   "op": "sleep",
+   "ms": 1200
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-03-sheet-chat-documents"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-sheet-close"
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "best-for-use"
+  },
+  {
+   "op": "assertText",
+   "text": "Chat + Documents",
+   "testID": "best-for-use"
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-04-vault-chat-documents"
+  },
+  {
+   "op": "dump",
+   "name": "J5-04-vault-chat-documents"
+  },
+  {
+   "op": "scrollTo",
+   "testID": "model-card-instant"
+  },
+  {
+   "op": "sleep",
+   "ms": 1200
+  },
+  {
+   "op": "value",
+   "testID": "model-uses-instant"
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-05-card-instant"
+  },
+  {
+   "op": "scrollTo",
+   "testID": "model-card-fast"
+  },
+  {
+   "op": "sleep",
+   "ms": 1200
+  },
+  {
+   "op": "value",
+   "testID": "model-uses-fast"
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-05-card-fast"
+  },
+  {
+   "op": "scrollTo",
+   "testID": "model-card-sharp"
+  },
+  {
+   "op": "sleep",
+   "ms": 1200
+  },
+  {
+   "op": "value",
+   "testID": "model-uses-sharp"
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-05-card-sharp"
+  },
+  {
+   "op": "scrollTo",
+   "testID": "model-card-sharp-phi"
+  },
+  {
+   "op": "sleep",
+   "ms": 1200
+  },
+  {
+   "op": "value",
+   "testID": "model-uses-sharp-phi"
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-05-card-sharp-phi"
+  },
+  {
+   "op": "deeplink",
+   "url": "/vault"
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use"
+  },
+  {
+   "op": "waitFor",
+   "testID": "best-for-use-sheet",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 1000
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-writing"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-summarize"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-translate"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-code"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-voice"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-math"
+  },
+  {
+   "op": "sleep",
+   "ms": 1200
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-06-sheet-all"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-sheet-close"
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "best-for-use"
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-07-vault-all"
+  },
+  {
+   "op": "dump",
+   "name": "J5-07-vault-all"
+  },
+  {
+   "op": "scrollTo",
+   "testID": "model-card-instant"
+  },
+  {
+   "op": "sleep",
+   "ms": 1200
+  },
+  {
+   "op": "value",
+   "testID": "model-uses-instant"
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-08-card-instant"
+  },
+  {
+   "op": "scrollTo",
+   "testID": "model-card-fast"
+  },
+  {
+   "op": "sleep",
+   "ms": 1200
+  },
+  {
+   "op": "value",
+   "testID": "model-uses-fast"
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-08-card-fast"
+  },
+  {
+   "op": "scrollTo",
+   "testID": "model-card-sharp"
+  },
+  {
+   "op": "sleep",
+   "ms": 1200
+  },
+  {
+   "op": "value",
+   "testID": "model-uses-sharp"
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-08-card-sharp"
+  },
+  {
+   "op": "scrollTo",
+   "testID": "model-card-sharp-phi"
+  },
+  {
+   "op": "sleep",
+   "ms": 1200
+  },
+  {
+   "op": "value",
+   "testID": "model-uses-sharp-phi"
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-08-card-sharp-phi"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use"
+  },
+  {
+   "op": "waitFor",
+   "testID": "best-for-use-sheet",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 1000
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-chat"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-writing"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-summarize"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-translate"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-code"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-documents"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-voice"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-math"
+  },
+  {
+   "op": "sleep",
+   "ms": 1200
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-09-sheet-math-stays"
+  },
+  {
+   "op": "dump",
+   "name": "J5-09-sheet-math-stays"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-sheet-close"
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "best-for-use"
+  },
+  {
+   "op": "assertText",
+   "text": "Math",
+   "testID": "best-for-use"
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-10-vault-math"
+  },
+  {
+   "op": "dump",
+   "name": "J5-10-vault-math"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use"
+  },
+  {
+   "op": "waitFor",
+   "testID": "best-for-use-sheet",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 1000
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-chat"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-math"
+  },
+  {
+   "op": "sleep",
+   "ms": 1000
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-sheet-close"
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "best-for-use"
+  },
+  {
+   "op": "assertText",
+   "text": "Chat",
+   "testID": "best-for-use"
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-11-vault-back-to-chat"
+  },
+  {
+   "op": "dump",
+   "name": "J5-11-vault-back-to-chat"
+  }
+ ]
+}

@@ -1,0 +1,19 @@
+20:24:40 pushing 16 steps as j7-wipe
+20:24:44 shot J7-04-wipe-models-on
+20:24:53 ok     0 deeplink   /settings
+20:24:53 ok     1 waitFor    row-wipe appeared
+20:24:53 ok     2 scrollTo   row-wipe
+20:24:53 ok     3 press      row-wipe ← onPress
+20:24:53 ok     4 waitFor    wipe-models appeared
+20:24:53 ok     5 sleep      800 ms
+20:24:53 ok     6 press      wipe-models ← onPress
+20:24:53 ok     7 sleep      800 ms
+20:24:53 ok     8 value      
+20:24:53 ok     9 screenshot J7-04-wipe-models-on
+20:24:53 ok    10 dump       J7-04-wipe
+20:24:53 ok    11 press      wipe-step1 ← onPress
+20:24:53 ok    12 waitFor    wipe-step2 appeared
+20:24:53 ok    13 sleep      800 ms
+20:24:53 ok    14 press      wipe-step2 ← onPress
+20:24:53 ok    15 sleep      6000 ms
+20:24:53 16 passed, 0 failed, 1 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-36/docs/qa/ios-device-pass-36/screens

@@ -1,0 +1,29 @@
+20:09:09 launching com.inbornapp.mobile.qa
+20:09:23 pushing 23 steps as p0-onboard
+20:09:25 shot J1-00-welcome
+20:09:29 shot J1-01-model-step
+20:09:51 shot J1-02-chat-instant
+20:09:55 ok     0 waitFor    onboarding-continue appeared
+20:09:55 ok     1 sleep      1200 ms
+20:09:55 ok     2 screenshot J1-00-welcome
+20:09:55 ok     3 press      onboarding-continue ← onPress
+20:09:55 ok     4 waitFor    onboarding-model appeared
+20:09:55 ok     5 sleep      2500 ms
+20:09:55 ok     6 value      1.28 GB · one download from models.inbornapp.com
+20:09:55 ok     7 assertText "models.inbornapp.com" present
+20:09:55 ok     8 screenshot J1-01-model-step
+20:09:55 ok     9 dump       J1-01-model-step
+20:09:55 ok    10 value      Start now with Instant
+20:09:55 ok    11 press      start-now-with ← onPress
+20:09:55 ok    12 waitFor    sealed-start appeared
+20:09:55 ok    13 sleep      5000 ms
+20:09:55 ok    14 press      sealed-start ← onPress
+20:09:55 ok    15 waitFor    lock-start appeared
+20:09:55 ok    16 press      lock-start ← onPress
+20:09:55 ok    17 waitFor    composer-input appeared
+20:09:55 ok    18 waitFor    Loading gone
+20:09:55 ok    19 sleep      2000 ms
+20:09:55 ok    20 value      INSTANT
+20:09:55 ok    21 assertText "INSTANT" present
+20:09:55 ok    22 screenshot J1-02-chat-instant
+20:09:55 23 passed, 0 failed, 3 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-36/docs/qa/ios-device-pass-36/screens

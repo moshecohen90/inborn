@@ -1,0 +1,72 @@
+20:16:23 pushing 64 steps as j4a-door
+20:16:39 shot J4-01-sent-bubble
+20:16:45 shot J4-01-answer
+20:16:51 shot J4-02-vault-on-fast
+20:16:56 shot J4-03-vault-confirm
+20:17:13 shot J4-04-fast-downloading
+20:17:29 shot J4-05-fast-installed
+20:17:33 ok     0 deeplink   /chats
+20:17:33 ok     1 waitFor    new-chat appeared
+20:17:33 ok     2 press      new-chat ← onPress
+20:17:33 ok     3 waitFor    start-chat appeared
+20:17:33 ok     4 press      start-chat ← onPress
+20:17:33 ok     5 waitFor    composer-input appeared
+20:17:33 ok     6 waitFor    Loading gone
+20:17:33 ok     7 sleep      1500 ms
+20:17:33 ok     8 value      INSTANT
+20:17:33 ok     9 assertText "INSTANT" present
+20:17:33 ok    10 devPrompt  attach: visual-page.pdf
+20:17:33 ok    11 waitFor    attached-docs appeared
+20:17:33 ok    12 sleep      8000 ms
+20:17:33 ok    13 value      visual-page.pdf
+20:17:33 ok    14 type       composer-input = 16 chars
+20:17:33 ok    15 send       send ← onPress
+20:17:33 ok    16 waitFor    assistant-text appeared
+20:17:33 ok    17 value      
+20:17:33 ok    18 screenshot J4-01-sent-bubble
+20:17:33 ok    19 waitFor    stop gone
+20:17:33 ok    20 sleep      1500 ms
+20:17:33 ok    21 value      A webpage featuring Northwind's dog collection, showcasing three adorable puppies in different poses on gravel
+20:17:33 ok    22 sleep      2000 ms
+20:17:33 ok    23 waitFor    docs-hold gone
+20:17:33 ok    24 waitFor    vision-hold gone
+20:17:33 ok    25 assertText "cannot see" absent
+20:17:33 ok    26 assertText "can't see" absent
+20:17:33 ok    27 assertText "cannot physically see" absent
+20:17:33 ok    28 assertText "see images" absent
+20:17:33 ok    29 assertText "text-based" absent
+20:17:33 ok    30 assertText "unable to see" absent
+20:17:33 ok    31 assertText "not able to see" absent
+20:17:33 ok    32 assertText "don't have eyes" absent
+20:17:33 ok    33 assertText "The request specifies" absent
+20:17:33 ok    34 assertText "I will focus" absent
+20:17:33 ok    35 assertText "as an AI" absent
+20:17:33 ok    36 assertText "NOT_FOUND" absent
+20:17:33 ok    37 assertText "<<<" absent
+20:17:33 ok    38 assertText "The user is asking" absent
+20:17:33 ok    39 assertText "Your documents don't mention this" absent
+20:17:33 ok    40 waitFor    model-advice appeared
+20:17:33 ok    41 value      FAST sees pictures better than INSTANT.
+20:17:33 ok    42 value      Install FAST · 1.28 GB
+20:17:33 ok    43 assertText "FAST sees pictures better than INSTANT" present
+20:17:33 ok    44 assertText "1.28 GB" present
+20:17:33 ok    45 screenshot J4-01-answer
+20:17:33 ok    46 dump       J4-01-answer
+20:17:33 ok    47 press      model-advice-install ← onPress
+20:17:33 ok    48 waitFor    best-for appeared
+20:17:33 ok    49 sleep      3000 ms
+20:17:33 ok    50 screenshot J4-02-vault-on-fast
+20:17:33 ok    51 dump       J4-02-vault-on-fast
+20:17:33 ok    52 scrollTo   install-fast
+20:17:33 ok    53 press      install-fast ← onPress
+20:17:33 ok    54 sleep      1500 ms
+20:17:33 ok    55 screenshot J4-03-vault-confirm
+20:17:33 ok    56 press      confirm-download ← onPress
+20:17:33 ok    57 sleep      15000 ms
+20:17:33 ok    58 value      57% · 737 MB of 1.28 GB
+20:17:33 ok    59 screenshot J4-04-fast-downloading
+20:17:33 ok    60 idleTimer  idle timer disabled: true
+20:17:33 ok    61 waitFor    use-fast appeared
+20:17:33 ok    62 value      Installed
+20:17:33 ok    63 screenshot J4-05-fast-installed
+20:17:33 64 passed, 0 failed, 6 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-36/docs/qa/ios-device-pass-36/screens

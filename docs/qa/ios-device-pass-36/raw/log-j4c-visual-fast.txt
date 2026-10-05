@@ -1,0 +1,47 @@
+20:18:42 pushing 43 steps as j4c-visual-fast
+20:19:01 shot J4-10-sent-bubble
+20:19:09 shot J4-10-answer
+20:19:13 ok     0 deeplink   /chats
+20:19:13 ok     1 waitFor    new-chat appeared
+20:19:13 ok     2 press      new-chat ← onPress
+20:19:13 ok     3 waitFor    start-chat appeared
+20:19:13 ok     4 press      start-chat ← onPress
+20:19:13 ok     5 waitFor    composer-input appeared
+20:19:13 ok     6 waitFor    Loading gone
+20:19:13 ok     7 sleep      1500 ms
+20:19:13 ok     8 value      FAST
+20:19:13 ok     9 assertText "FAST" present
+20:19:13 ok    10 devPrompt  attach: visual-page.pdf
+20:19:13 ok    11 waitFor    attached-docs appeared
+20:19:13 ok    12 sleep      8000 ms
+20:19:13 ok    13 value      visual-page.pdf
+20:19:13 ok    14 type       composer-input = 16 chars
+20:19:13 ok    15 send       send ← onPress
+20:19:13 ok    16 waitFor    assistant-text appeared
+20:19:13 ok    17 value      
+20:19:13 ok    18 screenshot J4-10-sent-bubble
+20:19:13 ok    19 waitFor    stop gone
+20:19:13 ok    20 sleep      1500 ms
+20:19:13 ok    21 value      The image shows a webpage for the Northwind store featuring two sections. The top section displays three dogs 
+20:19:13 ok    22 sleep      2000 ms
+20:19:13 ok    23 waitFor    docs-hold gone
+20:19:13 ok    24 waitFor    vision-hold gone
+20:19:13 ok    25 assertText "cannot see" absent
+20:19:13 ok    26 assertText "can't see" absent
+20:19:13 ok    27 assertText "cannot physically see" absent
+20:19:13 ok    28 assertText "see images" absent
+20:19:13 ok    29 assertText "text-based" absent
+20:19:13 ok    30 assertText "unable to see" absent
+20:19:13 ok    31 assertText "not able to see" absent
+20:19:13 ok    32 assertText "don't have eyes" absent
+20:19:13 ok    33 assertText "The request specifies" absent
+20:19:13 ok    34 assertText "I will focus" absent
+20:19:13 ok    35 assertText "as an AI" absent
+20:19:13 ok    36 assertText "NOT_FOUND" absent
+20:19:13 ok    37 assertText "<<<" absent
+20:19:13 ok    38 assertText "The user is asking" absent
+20:19:13 ok    39 assertText "Your documents don't mention this" absent
+20:19:13 ok    40 waitFor    model-advice gone
+20:19:13 ok    41 screenshot J4-10-answer
+20:19:13 ok    42 dump       J4-10-answer
+20:19:13 43 passed, 0 failed, 2 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-36/docs/qa/ios-device-pass-36/screens

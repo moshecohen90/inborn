@@ -1,0 +1,42 @@
+20:14:37 pushing 37 steps as j2-not-now
+20:14:41 shot J2-3-not-now
+20:14:52 shot J2-4-sent-bubble
+20:15:02 shot J2-4-answer
+20:15:06 ok     0 press      model-advice-not-now ← onPress
+20:15:06 ok     1 sleep      1500 ms
+20:15:06 ok     2 waitFor    model-advice gone
+20:15:06 ok     3 screenshot J2-3-not-now
+20:15:06 ok     4 devPrompt  attach: בית קפה הגינה תפריט.jpg
+20:15:06 ok     5 waitFor    pending-images appeared
+20:15:06 ok     6 sleep      8000 ms
+20:15:06 ok     7 value      Free: one photo per message
+20:15:06 ok     8 type       composer-input = 29 chars
+20:15:06 ok     9 send       send ← onPress
+20:15:06 ok    10 waitFor    assistant-text appeared
+20:15:06 ok    11 value      
+20:15:06 ok    12 screenshot J2-4-sent-bubble
+20:15:06 ok    13 waitFor    stop gone
+20:15:06 ok    14 sleep      1500 ms
+20:15:06 ok    15 value      A brick wall with three blackboards displaying menu items written in chalk.
+20:15:06 ok    16 sleep      2000 ms
+20:15:06 ok    17 waitFor    docs-hold gone
+20:15:06 ok    18 waitFor    vision-hold gone
+20:15:06 ok    19 assertText "cannot see" absent
+20:15:06 ok    20 assertText "can't see" absent
+20:15:06 ok    21 assertText "cannot physically see" absent
+20:15:06 ok    22 assertText "see images" absent
+20:15:06 ok    23 assertText "text-based" absent
+20:15:06 ok    24 assertText "unable to see" absent
+20:15:06 ok    25 assertText "not able to see" absent
+20:15:06 ok    26 assertText "don't have eyes" absent
+20:15:06 ok    27 assertText "The request specifies" absent
+20:15:06 ok    28 assertText "I will focus" absent
+20:15:06 ok    29 assertText "as an AI" absent
+20:15:06 ok    30 assertText "NOT_FOUND" absent
+20:15:06 ok    31 assertText "<<<" absent
+20:15:06 ok    32 assertText "The user is asking" absent
+20:15:06 ok    33 assertText "Your documents don't mention this" absent
+20:15:06 ok    34 waitFor    model-advice gone
+20:15:06 ok    35 screenshot J2-4-answer
+20:15:06 ok    36 dump       J2-4-answer
+20:15:06 37 passed, 0 failed, 3 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-36/docs/qa/ios-device-pass-36/screens

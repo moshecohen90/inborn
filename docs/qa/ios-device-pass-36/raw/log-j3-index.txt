@@ -1,0 +1,48 @@
+20:15:21 pushing 41 steps as j3-index
+20:15:22 inbox missing — launching once to create it
+20:15:50 shot J3-01-index-card
+20:15:56 shot J3-02-downloading
+20:16:06 shot J3-03-reading-your-document
+20:16:12 shot J3-04-grounded-answer
+20:16:16 ok     0 deeplink   /chats
+20:16:16 ok     1 waitFor    new-chat appeared
+20:16:16 ok     2 press      new-chat ← onPress
+20:16:16 ok     3 waitFor    start-chat appeared
+20:16:16 ok     4 press      start-chat ← onPress
+20:16:16 ok     5 waitFor    composer-input appeared
+20:16:16 ok     6 waitFor    Loading gone
+20:16:16 ok     7 sleep      1500 ms
+20:16:16 ok     8 value      INSTANT
+20:16:16 ok     9 assertText "INSTANT" present
+20:16:16 ok    10 devPrompt  attach: turbine-report-3pages.pdf
+20:16:16 ok    11 waitFor    attached-docs appeared
+20:16:16 ok    12 sleep      8000 ms
+20:16:16 ok    13 value      turbine-report-3pages.pdf
+20:16:16 ok    14 type       composer-input = 50 chars
+20:16:16 ok    15 send       send ← onPress
+20:16:16 ok    16 waitFor    docs-hold appeared
+20:16:16 ok    17 sleep      1500 ms
+20:16:16 ok    18 value      The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact wo
+20:16:16 ok    19 assertText "468 MB" present
+20:16:16 ok    20 screenshot J3-01-index-card
+20:16:16 ok    21 press      docs-hold-download ← onPress
+20:16:16 ok    22 sleep      3000 ms
+20:16:16 ok    23 value      Downloading the document index model… 0%. Your message is sent when it's ready.
+20:16:16 ok    24 screenshot J3-02-downloading
+20:16:16 ok    25 idleTimer  idle timer disabled: true
+20:16:16 ok    26 waitFor    docs-hold gone
+20:16:16 ok    27 waitFor    reading-docs appeared
+20:16:16 ok    28 value      Reading your document before answering…
+20:16:16 ok    29 screenshot J3-03-reading-your-document
+20:16:16 ok    30 waitFor    assistant-text appeared
+20:16:16 ok    31 waitFor    stop gone
+20:16:16 ok    32 sleep      1500 ms
+20:16:16 ok    33 value      The serial number of the Rakovsky turbine is RK-4417.
+20:16:16 ok    34 waitFor    citations appeared
+20:16:16 ok    35 value      SOURCES turbine-report-3pages.pdf · p.1
+20:16:16 ok    36 sleep      1500 ms
+20:16:16 ok    37 screenshot J3-04-grounded-answer
+20:16:16 ok    38 dump       J3-04-grounded-answer
+20:16:16 ok    39 assertText "RK-4417" present
+20:16:16 ok    40 assertText "Nothing in your documents matched this question" absent
+20:16:16 41 passed, 0 failed, 4 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-36/docs/qa/ios-device-pass-36/screens

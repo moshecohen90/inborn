@@ -1,0 +1,1136 @@
+{
+  "runId": "j4a-door",
+  "startedAt": "2026-10-05T17:16:23.693Z",
+  "finishedAt": "2026-10-05T17:17:31.532Z",
+  "ok": true,
+  "passed": 64,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 166,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1508,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "INSTANT",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT"
+    },
+    {
+      "i": 9,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"INSTANT\" present"
+    },
+    {
+      "i": 10,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 164,
+      "detail": "attach: visual-page.pdf"
+    },
+    {
+      "i": 11,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1330,
+      "detail": "attached-docs appeared"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 8005,
+      "detail": "8000 ms"
+    },
+    {
+      "i": 13,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "visual-page.pdf",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "visual-page.pdf"
+    },
+    {
+      "i": 14,
+      "op": "type",
+      "ok": true,
+      "ms": 165,
+      "detail": "composer-input = 16 chars"
+    },
+    {
+      "i": 15,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 16,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2934,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 17,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 18,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2856,
+      "detail": "J4-01-sent-bubble"
+    },
+    {
+      "i": 19,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "stop gone"
+    },
+    {
+      "i": 20,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1502,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 21,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "A webpage featuring Northwind's dog collection, showcasing three adorable puppies in different poses on gravel, with a coffee shop checkout page below.",
+        "props": {
+          "source": "A webpage featuring Northwind's dog collection, showcasing three adorable puppies in different poses on gravel, with a coffee shop checkout page below.",
+          "disabled": false
+        }
+      },
+      "detail": "A webpage featuring Northwind's dog collection, showcasing three adorable puppies in different poses on gravel, with a coffee shop checkout page below."
+    },
+    {
+      "i": 22,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2005,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 23,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 24,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "vision-hold gone"
+    },
+    {
+      "i": 25,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"cannot see\" absent"
+    },
+    {
+      "i": 26,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"can't see\" absent"
+    },
+    {
+      "i": 27,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"cannot physically see\" absent"
+    },
+    {
+      "i": 28,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"see images\" absent"
+    },
+    {
+      "i": 29,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"text-based\" absent"
+    },
+    {
+      "i": 30,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"unable to see\" absent"
+    },
+    {
+      "i": 31,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"not able to see\" absent"
+    },
+    {
+      "i": 32,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"don't have eyes\" absent"
+    },
+    {
+      "i": 33,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"The request specifies\" absent"
+    },
+    {
+      "i": 34,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"I will focus\" absent"
+    },
+    {
+      "i": 35,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"as an AI\" absent"
+    },
+    {
+      "i": 36,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"NOT_FOUND\" absent"
+    },
+    {
+      "i": 37,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"<<<\" absent"
+    },
+    {
+      "i": 38,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"The user is asking\" absent"
+    },
+    {
+      "i": 39,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Your documents don't mention this\" absent"
+    },
+    {
+      "i": 40,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "model-advice appeared"
+    },
+    {
+      "i": 41,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST sees pictures better than INSTANT.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "FAST sees pictures better than INSTANT."
+    },
+    {
+      "i": 42,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Install FAST · 1.28 GB",
+        "props": {
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "Install FAST · 1.28 GB"
+    },
+    {
+      "i": 43,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"FAST sees pictures better than INSTANT\" present"
+    },
+    {
+      "i": 44,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"1.28 GB\" present"
+    },
+    {
+      "i": 45,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2217,
+      "detail": "J4-01-answer"
+    },
+    {
+      "i": 46,
+      "op": "dump",
+      "ok": true,
+      "ms": 5,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What do you see?",
+          "role": "text"
+        },
+        {
+          "testID": "user-images",
+          "text": ""
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI A webpage featuring Northwind's dog collection, showcasing three adorable puppies in different poses on gravel, with a coffee shop checkout page below. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "A webpage featuring Northwind's dog collection, showcasing three adorable puppies in different poses on gravel, with a coffee shop checkout page below."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "model-advice",
+          "text": "FAST sees pictures better than INSTANT. Install FAST · 1.28 GB Not now"
+        },
+        {
+          "testID": "model-advice-reason",
+          "text": "FAST sees pictures better than INSTANT."
+        },
+        {
+          "testID": "model-advice-install",
+          "text": "Install FAST · 1.28 GB",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-not-now",
+          "text": "Not now",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "visual-page.pdf"
+        },
+        {
+          "testID": "attached-chip-muvidl88-5-x2qorlkb",
+          "text": "visual-page.pdf",
+          "role": "button",
+          "label": "Remove visual-page.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J4-01-answer"
+    },
+    {
+      "i": 47,
+      "op": "press",
+      "ok": true,
+      "ms": 156,
+      "detail": "model-advice-install ← onPress"
+    },
+    {
+      "i": 48,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "best-for appeared"
+    },
+    {
+      "i": 49,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3016,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 50,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3174,
+      "detail": "J4-02-vault-on-fast"
+    },
+    {
+      "i": 51,
+      "op": "dump",
+      "ok": true,
+      "ms": 11,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What do you see?",
+          "role": "text"
+        },
+        {
+          "testID": "user-images",
+          "text": ""
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI A webpage featuring Northwind's dog collection, showcasing three adorable puppies in different poses on gravel, with a coffee shop checkout page below. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "A webpage featuring Northwind's dog collection, showcasing three adorable puppies in different poses on gravel, with a coffee shop checkout page below."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "model-advice",
+          "text": "FAST is better at documents than INSTANT. SHARP is the best here for Documents · 2.74 GB PRO Install FAST · 1.28 GB Not now"
+        },
+        {
+          "testID": "model-advice-reason",
+          "text": "FAST is better at documents than INSTANT."
+        },
+        {
+          "testID": "model-advice-best",
+          "text": "SHARP is the best here for Documents · 2.74 GB PRO",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-best-pro",
+          "text": "PRO"
+        },
+        {
+          "testID": "model-advice-install",
+          "text": "Install FAST · 1.28 GB",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-not-now",
+          "text": "Not now",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "visual-page.pdf"
+        },
+        {
+          "testID": "attached-chip-muvidl88-5-x2qorlkb",
+          "text": "visual-page.pdf",
+          "role": "button",
+          "label": "Remove visual-page.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "close-vault",
+          "text": "",
+          "role": "button",
+          "label": "Close",
+          "pressable": true
+        },
+        {
+          "testID": "vault-storage",
+          "text": "468 MB in the vault · 84 GB free · RUNS ON: IOS-MID · 6 GB"
+        },
+        {
+          "testID": "best-for",
+          "text": "BEST FOR Chat in English"
+        },
+        {
+          "testID": "best-for-use",
+          "text": "Chat",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "best-for-language",
+          "text": "in English",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-instant",
+          "text": "● INSTANT · Qwen3.5 0.8B Quick answers and voice notes. Lightest on battery. GOOD AT Good · Chat, Voice notes Weak · Writing, Summaries, Translation, Code, Documents, Math & reasoning LANGUAGES Native · English Good · Chinese Basic · Chinese (Traditional), Spanish, French, German, Portuguese, Italian, Russian, Arabic No · Japanese, Korean, Hebrew Weak at: Non-Latin scripts; German, French and Spanish past a short turn; code, math, long documents. 533 MB · Q4_K_M · Battery: Low ~25-36 tok/s on your phone Included with the app In use Details",
+          "state": {
+            "selected": false
+          }
+        },
+        {
+          "testID": "model-goodfor-instant",
+          "text": "Quick answers and voice notes. Lightest on battery."
+        },
+        {
+          "testID": "fit-instant",
+          "text": "GOOD AT Good · Chat, Voice notes Weak · Writing, Summaries, Translation, Code, Documents, Math & reasoning LANGUAGES Native · English Good · Chinese Basic · Chinese (Traditional), Spanish, French, German, Portuguese, Italian, Russian, Arabic No · Japanese, Korean, Hebrew Weak at: Non-Latin scripts; German, French and Spanish past a short turn; code, math, long documents."
+        },
+        {
+          "testID": "model-spec-instant",
+          "text": "533 MB · Q4_K_M · Battery: Low"
+        },
+        {
+          "testID": "model-status-instant",
+          "text": "Included with the app"
+        },
+        {
+          "testID": "details-instant",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-fast",
+          "text": "○ FAST · Qwen3.5 2B RECOMMENDED ON THIS phone · CHAT IN ENGLISH Everyday assistant: writing, questions, translation. Best balance on this device. GOOD AT Best · Chat, Voice notes Good · Writing, Summaries, Translation, Documents Weak · Code, Math & reasoning LANGUAGES Native · English, Chinese Good · Spanish, French, Portuguese, Italian, Russian, Arabic Basic · German, Japanese, Korean No · Hebrew Weak at: Code, math; German prose and Korean translation; questions across many long documents. 1.28 GB · Q4_K_M · Battery: Medium ~15-24 tok/s on your phone Install · 1.28 GB from models.inbornapp.com Details",
+          "state": {
+            "selected": false
+          }
+        },
+        {
+          "testID": "recommended-fast",
+          "text": "RECOMMENDED ON THIS phone · CHAT IN ENGLISH"
+        },
+        {
+          "testID": "model-goodfor-fast",
+          "text": "Everyday assistant: writing, questions, translation. Best balance on this device."
+        },
+        {
+          "testID": "fit-fast",
+          "text": "GOOD AT Best · Chat, Voice notes Good · Writing, Summaries, Translation, Documents Weak · Code, Math & reasoning LANGUAGES Native · English, Chinese Good · Spanish, French, Portuguese, Italian, Russian, Arabic Basic · German, Japanese, Korean No · Hebrew Weak at: Code, math; German prose and Korean translation; questions across many long documents."
+        },
+        {
+          "testID": "model-spec-fast",
+          "text": "1.28 GB · Q4_K_M · Battery: Medium"
+        },
+        {
+          "testID": "install-fast",
+          "text": "Install · 1.28 GB from models.inbornapp.com",
+          "pressable": true
+        },
+        {
+          "testID": "details-fast",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-sharp",
+          "text": "○ SHARP · Qwen3.5 4B PRO Complex tasks: analysis, code, long documents. Slower, runs warmer. GOOD AT Best · Chat, Writing, Summaries, Translation, Documents, Voice notes Good · Code, Math & reasoning LANGUAGES Native · English, Chinese, Russian Good · Spanish, French, German, Portuguese, Italian, Japanese, Korean, Arabic Basic · Hebrew Weak at: Slower and warmer than Fast; hard math needs thinking mode. 2.74 GB · Q4_K_M · Battery: High ~8-12 tok/s on your phone · Runs slowly on 6 GB · short context Install · 2.74 GB from models.inbornapp.com Details",
+          "state": {
+            "selected": false
+          }
+        },
+        {
+          "testID": "model-goodfor-sharp",
+          "text": "Complex tasks: analysis, code, long documents. Slower, runs warmer."
+        },
+        {
+          "testID": "fit-sharp",
+          "text": "GOOD AT Best · Chat, Writing, Summaries, Translation, Documents, Voice notes Good · Code, Math & reasoning LANGUAGES Native · English, Chinese, Russian Good · Spanish, French, German, Portuguese, Italian, Japanese, Korean, Arabic Basic · Hebrew Weak at: Slower and warmer than Fast; hard math needs thinking mode."
+        },
+        {
+          "testID": "model-spec-sharp",
+          "text": "2.74 GB · Q4_K_M · Battery: High"
+        },
+        {
+          "testID": "install-sharp",
+          "text": "Install · 2.74 GB from models.inbornapp.com",
+          "pressable": true
+        },
+        {
+          "testID": "details-sharp",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-sharp-phi",
+          "text": "○ SHARP · Phi-4-mini 3.8B PRO Reasoning, math and code. No photos. GOOD AT Best · Code, Math & reasoning Good · Chat, Writing, Summaries, Documents, Voice notes Weak · Translation LANGUAGES Native · English Good · Spanish, French, German, Portuguese, Italian Basic · Chinese, Japanese, Korean, Russian, Arabic, Hebrew Weak at: No photos; most languages other than English; translation. 2.49 GB · Q4_K_M · Battery: High ~8-12 tok/s on your phone · Runs slowly on 6 GB · short context Install · 2.49 GB from models.inbornapp.com Details",
+          "state": {
+            "selected": false
+          }
+        },
+        {
+          "testID": "model-goodfor-sharp-phi",
+          "text": "Reasoning, math and code. No photos."
+        },
+        {
+          "testID": "fit-sharp-phi",
+          "text": "GOOD AT Best · Code, Math & reasoning Good · Chat, Writing, Summaries, Documents, Voice notes Weak · Translation LANGUAGES Native · English Good · Spanish, French, German, Portuguese, Italian Basic · Chinese, Japanese, Korean, Russian, Arabic, Hebrew Weak at: No photos; most languages other than English; translation."
+        },
+        {
+          "testID": "model-spec-sharp-phi",
+          "text": "2.49 GB · Q4_K_M · Battery: High"
+        },
+        {
+          "testID": "install-sharp-phi",
+          "text": "Install · 2.49 GB from models.inbornapp.com",
+          "pressable": true
+        },
+        {
+          "testID": "details-sharp-phi",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-embed-e5",
+          "text": "◉ DOCUMENT INDEX Lets Inborn search your documents on this device. multilingual-e5-large-instruct 560M · 468 MB · Q6_K · Battery: Low Installed Details",
+          "state": {
+            "selected": false
+          }
+        },
+        {
+          "testID": "model-goodfor-embed-e5",
+          "text": "Lets Inborn search your documents on this device."
+        },
+        {
+          "testID": "model-spec-embed-e5",
+          "text": "multilingual-e5-large-instruct 560M · 468 MB · Q6_K · Battery: Low"
+        },
+        {
+          "testID": "model-status-embed-e5",
+          "text": "Installed"
+        },
+        {
+          "testID": "details-embed-e5",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-vision-qwen35",
+          "text": "◉ PHOTO PACK FOR INSTANT Lets Instant look at your photos on this device. Qwen3.5 mmproj 0.1B · 205 MB · F16 · Battery: Medium Included with the app Details",
+          "state": {
+            "selected": false
+          }
+        },
+        {
+          "testID": "model-goodfor-vision-qwen35",
+          "text": "Lets Instant look at your photos on this device."
+        },
+        {
+          "testID": "model-spec-vision-qwen35",
+          "text": "Qwen3.5 mmproj 0.1B · 205 MB · F16 · Battery: Medium"
+        },
+        {
+          "testID": "model-status-vision-qwen35",
+          "text": "Included with the app"
+        },
+        {
+          "testID": "details-vision-qwen35",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-vision-qwen35-2b",
+          "text": "○ PHOTO PACK FOR FAST Lets Fast look at your photos on this device. Qwen3.5 mmproj 0.3B · 668 MB · F16 · Battery: Medium Install Fast first Details",
+          "state": {
+            "selected": false
+          }
+        },
+        {
+          "testID": "model-goodfor-vision-qwen35-2b",
+          "text": "Lets Fast look at your photos on this device."
+        },
+        {
+          "testID": "model-spec-vision-qwen35-2b",
+          "text": "Qwen3.5 mmproj 0.3B · 668 MB · F16 · Battery: Medium"
+        },
+        {
+          "testID": "model-status-vision-qwen35-2b",
+          "text": "Install Fast first"
+        },
+        {
+          "testID": "details-vision-qwen35-2b",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-vision-qwen35-4b",
+          "text": "○ PHOTO PACK FOR SHARP PRO Lets Sharp look at your photos on this device. Qwen3.5 mmproj 0.3B · 672 MB · F16 · Battery: Medium Install Sharp first Details",
+          "state": {
+            "selected": false
+          }
+        },
+        {
+          "testID": "model-goodfor-vision-qwen35-4b",
+          "text": "Lets Sharp look at your photos on this device."
+        },
+        {
+          "testID": "model-spec-vision-qwen35-4b",
+          "text": "Qwen3.5 mmproj 0.3B · 672 MB · F16 · Battery: Medium"
+        },
+        {
+          "testID": "model-status-vision-qwen35-4b",
+          "text": "Install Sharp first"
+        },
+        {
+          "testID": "details-vision-qwen35-4b",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-speech-whisper-base",
+          "text": "○ VOICE INPUT Turns your voice into text on this device, in any language. whisper.cpp base 74M · 148 MB · F16 · Battery: Low Install · 148 MB from models.inbornapp.com Details",
+          "state": {
+            "selected": false
+          }
+        },
+        {
+          "testID": "model-goodfor-speech-whisper-base",
+          "text": "Turns your voice into text on this device, in any language."
+        },
+        {
+          "testID": "model-spec-speech-whisper-base",
+          "text": "whisper.cpp base 74M · 148 MB · F16 · Battery: Low"
+        },
+        {
+          "testID": "install-speech-whisper-base",
+          "text": "Install · 148 MB from models.inbornapp.com",
+          "pressable": true
+        },
+        {
+          "testID": "details-speech-whisper-base",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "import-gguf",
+          "text": "Import GGUF",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "search-hf",
+          "text": "Search Hugging Face",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "best-for-use-sheet",
+          "text": ""
+        },
+        {
+          "testID": "best-for-language-sheet",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J4-02-vault-on-fast"
+    },
+    {
+      "i": 52,
+      "op": "scrollTo",
+      "ok": true,
+      "ms": 5,
+      "detail": "install-fast"
+    },
+    {
+      "i": 53,
+      "op": "press",
+      "ok": true,
+      "ms": 161,
+      "detail": "install-fast ← onPress"
+    },
+    {
+      "i": 54,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 55,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2882,
+      "detail": "J4-03-vault-confirm"
+    },
+    {
+      "i": 56,
+      "op": "press",
+      "ok": true,
+      "ms": 168,
+      "detail": "confirm-download ← onPress"
+    },
+    {
+      "i": 57,
+      "op": "sleep",
+      "ok": true,
+      "ms": 15021,
+      "detail": "15000 ms"
+    },
+    {
+      "i": 58,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "57% · 737 MB of 1.28 GB",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "57% · 737 MB of 1.28 GB"
+    },
+    {
+      "i": 59,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1911,
+      "detail": "J4-04-fast-downloading"
+    },
+    {
+      "i": 60,
+      "op": "idleTimer",
+      "ok": true,
+      "ms": 1,
+      "detail": "idle timer disabled: true",
+      "value": {
+        "text": "true",
+        "props": {
+          "idleTimerDisabled": true
+        }
+      }
+    },
+    {
+      "i": 61,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 13881,
+      "detail": "use-fast appeared"
+    },
+    {
+      "i": 62,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Installed",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Installed"
+    },
+    {
+      "i": 63,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2547,
+      "detail": "J4-05-fast-installed"
+    }
+  ],
+  "errors": []
+}

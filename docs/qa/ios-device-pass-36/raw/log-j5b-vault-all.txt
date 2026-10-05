@@ -1,0 +1,78 @@
+20:22:46 pushing 72 steps as j5b-vault-all
+20:22:46 shot J5-15-sheet-math-stays
+20:22:51 shot J5-16-vault-math
+20:22:59 shot J5-17-vault-back-to-chat
+20:23:29 ok     0 deeplink   /vault
+20:23:29 ok     1 waitFor    best-for appeared
+20:23:29 ok     2 sleep      3000 ms
+20:23:29 ok     3 value      Chat
+20:23:29 ok     4 press      best-for-use ← onPress
+20:23:29 ok     5 waitFor    best-for-use-sheet appeared
+20:23:29 ok     6 sleep      1000 ms
+20:23:29 ok     7 press      best-for-use-writing ← onPress
+20:23:29 ok     8 press      best-for-use-summarize ← onPress
+20:23:29 ok     9 press      best-for-use-translate ← onPress
+20:23:29 ok    10 press      best-for-use-code ← onPress
+20:23:29 ok    11 press      best-for-use-documents ← onPress
+20:23:29 ok    12 press      best-for-use-voice ← onPress
+20:23:29 ok    13 press      best-for-use-math ← onPress
+20:23:29 ok    14 sleep      1200 ms
+20:23:29 ok    15 screenshot J5-12-sheet-all
+20:23:29 ok    16 dump       J5-12-sheet-all
+20:23:29 ok    17 press      best-for-use-sheet-close ← onPress
+20:23:29 ok    18 sleep      2000 ms
+20:23:29 ok    19 value      Chat +7
+20:23:29 ok    20 assertText "Chat +7" present
+20:23:29 ok    21 screenshot J5-13-vault-all
+20:23:29 ok    22 dump       J5-13-vault-all
+20:23:29 ok    23 scrollTo   model-card-instant
+20:23:29 ok    24 sleep      1200 ms
+20:23:29 ok    25 value      Chat · Good Writing · Weak Summaries · Weak Translation · Weak Code · Weak Documents · Weak Voice notes · Good
+20:23:29 ok    26 screenshot J5-14-card-instant
+20:23:29 ok    27 scrollTo   model-card-fast
+20:23:29 ok    28 sleep      1200 ms
+20:23:29 ok    29 value      Chat · Best Writing · Good Summaries · Good Translation · Good Code · Weak Documents · Good Voice notes · Best
+20:23:29 ok    30 screenshot J5-14-card-fast
+20:23:29 ok    31 scrollTo   model-card-sharp
+20:23:29 ok    32 sleep      1200 ms
+20:23:29 ok    33 value      Chat · Best Writing · Best Summaries · Best Translation · Best Code · Good Documents · Best Voice notes · Best
+20:23:29 ok    34 screenshot J5-14-card-sharp
+20:23:29 ok    35 scrollTo   model-card-sharp-phi
+20:23:29 ok    36 sleep      1200 ms
+20:23:29 ok    37 value      Chat · Good Writing · Good Summaries · Good Translation · Weak Code · Best Documents · Good Voice notes · Good
+20:23:29 ok    38 screenshot J5-14-card-sharp-phi
+20:23:29 FAIL  39 scrollTo   scrollTo best-for: no scroll view above it
+20:23:29 ok    40 sleep      1200 ms
+20:23:29 ok    41 press      best-for-use ← onPress
+20:23:29 ok    42 waitFor    best-for-use-sheet appeared
+20:23:29 ok    43 sleep      1000 ms
+20:23:29 ok    44 press      best-for-use-chat ← onPress
+20:23:29 ok    45 press      best-for-use-writing ← onPress
+20:23:29 ok    46 press      best-for-use-summarize ← onPress
+20:23:29 ok    47 press      best-for-use-translate ← onPress
+20:23:29 ok    48 press      best-for-use-code ← onPress
+20:23:29 ok    49 press      best-for-use-documents ← onPress
+20:23:29 ok    50 press      best-for-use-voice ← onPress
+20:23:29 ok    51 press      best-for-use-math ← onPress
+20:23:29 ok    52 sleep      1200 ms
+20:23:29 ok    53 screenshot J5-15-sheet-math-stays
+20:23:29 ok    54 dump       J5-15-sheet-math-stays
+20:23:29 ok    55 press      best-for-use-sheet-close ← onPress
+20:23:29 ok    56 sleep      2000 ms
+20:23:29 ok    57 value      Math & reasoning
+20:23:29 ok    58 assertText "Math" present
+20:23:29 ok    59 screenshot J5-16-vault-math
+20:23:29 ok    60 dump       J5-16-vault-math
+20:23:29 ok    61 press      best-for-use ← onPress
+20:23:29 ok    62 waitFor    best-for-use-sheet appeared
+20:23:29 ok    63 sleep      1000 ms
+20:23:29 ok    64 press      best-for-use-chat ← onPress
+20:23:29 ok    65 press      best-for-use-math ← onPress
+20:23:29 ok    66 sleep      1000 ms
+20:23:29 ok    67 press      best-for-use-sheet-close ← onPress
+20:23:29 ok    68 sleep      2000 ms
+20:23:29 ok    69 value      Chat
+20:23:29 ok    70 screenshot J5-17-vault-back-to-chat
+20:23:29 ok    71 dump       J5-17-vault-back-to-chat
+20:23:29 71 passed, 1 failed, 3 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-36/docs/qa/ios-device-pass-36/screens
+20:23:29   ! step 39 (scrollTo): scrollTo best-for: no scroll view above it

@@ -1,0 +1,246 @@
+{
+ "_": "J1 PRIVATE: a new chat on Instant, 'מסמך.pdf' (the founder's PDF under a neutral name), 'מה אתה רואה?': no index card, the page picture in the bubble, an answer, the Fast advice card. Output stays in private/.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "new-chat",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "press",
+   "testID": "new-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "start-chat",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "press",
+   "testID": "start-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "assertText",
+   "text": "INSTANT",
+   "testID": "model-chip"
+  },
+  {
+   "op": "devPrompt",
+   "lines": [
+    "attach: מסמך.pdf"
+   ]
+  },
+  {
+   "op": "waitFor",
+   "testID": "attached-docs",
+   "timeoutMs": 60000
+  },
+  {
+   "op": "sleep",
+   "ms": 8000
+  },
+  {
+   "op": "value",
+   "testID": "attached-docs"
+  },
+  {
+   "op": "screenshot",
+   "name": "P1-he-composer-chip"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "מה אתה רואה?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "waitFor",
+   "testID": "assistant-text",
+   "timeoutMs": 90000
+  },
+  {
+   "op": "value",
+   "testID": "user-images"
+  },
+  {
+   "op": "screenshot",
+   "name": "P1-he-sent-bubble"
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 400000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "waitFor",
+   "testID": "docs-hold",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "waitFor",
+   "testID": "vision-hold",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "assertText",
+   "text": "cannot see",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "can't see",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "cannot physically see",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "see images",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "text-based",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "unable to see",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "not able to see",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "don't have eyes",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "The request specifies",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "I will focus",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "as an AI",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "NOT_FOUND",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "<<<",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "The user is asking",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "Your documents don't mention this",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "waitFor",
+   "testID": "model-advice",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "value",
+   "testID": "model-advice-reason"
+  },
+  {
+   "op": "value",
+   "testID": "model-advice-install"
+  },
+  {
+   "op": "assertText",
+   "text": "FAST sees pictures better than INSTANT",
+   "testID": "model-advice-reason"
+  },
+  {
+   "op": "assertText",
+   "text": "1.28 GB",
+   "testID": "model-advice-install"
+  },
+  {
+   "op": "screenshot",
+   "name": "P1-he-answer"
+  },
+  {
+   "op": "dump",
+   "name": "P1-he-answer"
+  }
+ ]
+}

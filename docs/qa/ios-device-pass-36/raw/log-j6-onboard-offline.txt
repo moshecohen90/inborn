@@ -1,0 +1,77 @@
+20:25:06 pushing 67 steps as j6-onboard-offline
+20:25:11 shot J6-01-model-step-after-wipe
+20:25:21 shot J6-02-offline-waiting
+20:25:35 shot J6-03-offline-16s
+20:25:49 shot J6-04-online-downloading
+20:25:59 shot J6-05-dropped-offline
+20:26:10 shot J6-06-back-online
+20:26:25 shot J7-05-instant-after-wipe
+20:26:29 ok     0 waitFor    onboarding-continue appeared
+20:26:29 ok     1 sleep      1200 ms
+20:26:29 ok     2 press      onboarding-continue ← onPress
+20:26:29 ok     3 waitFor    onboarding-model appeared
+20:26:29 ok     4 sleep      2500 ms
+20:26:29 ok     5 value      Download Fast · 1.28 GB
+20:26:29 ok     6 assertText "1.28 GB" present
+20:26:29 ok     7 value      1.28 GB · one download from models.inbornapp.com
+20:26:29 ok     8 assertText "models.inbornapp.com" present
+20:26:29 ok     9 screenshot J6-01-model-step-after-wipe
+20:26:29 ok    10 network    offline
+20:26:29 ok    11 sleep      2000 ms
+20:26:29 ok    12 value      You are offline. A download is the one thing that needs internet; it starts by itself once Airplane Mode is of
+20:26:29 ok    13 press      download-model ← onPress
+20:26:29 ok    14 sleep      4000 ms
+20:26:29 ok    15 value      Waiting for a connection. It starts by itself.
+20:26:29 ok    16 value      1.28 GB · one download from models.inbornapp.com
+20:26:29 ok    17 assertText "models.inbornapp.com" present
+20:26:29 ok    18 screenshot J6-02-offline-waiting
+20:26:29 ok    19 dump       J6-02-offline-waiting
+20:26:29 ok    20 sleep      12000 ms
+20:26:29 ok    21 value      1.28 GB · one download from models.inbornapp.com
+20:26:29 ok    22 assertText "models.inbornapp.com" present
+20:26:29 ok    23 screenshot J6-03-offline-16s
+20:26:29 ok    24 network    online
+20:26:29 ok    25 sleep      12000 ms
+20:26:29 ok    26 value      
+20:26:29 ok    27 value      1.28 GB · one download from models.inbornapp.com
+20:26:29 ok    28 assertText "models.inbornapp.com" present
+20:26:29 ok    29 screenshot J6-04-online-downloading
+20:26:29 ok    30 network    offline
+20:26:29 ok    31 sleep      8000 ms
+20:26:29 FAIL  32 value      value download-failed: no node with that testID is mounted
+20:26:29 ok    33 value      Waiting for a connection. It starts by itself.
+20:26:29 ok    34 value      1.28 GB · one download from models.inbornapp.com
+20:26:29 ok    35 assertText "models.inbornapp.com" present
+20:26:29 ok    36 screenshot J6-05-dropped-offline
+20:26:29 ok    37 dump       J6-05-dropped-offline
+20:26:29 ok    38 network    online
+20:26:29 ok    39 sleep      8000 ms
+20:26:29 ok    40 value      1.28 GB · one download from models.inbornapp.com
+20:26:29 ok    41 assertText "models.inbornapp.com" present
+20:26:29 ok    42 screenshot J6-06-back-online
+20:26:29 ok    43 press      cancel-download ← onPress
+20:26:29 ok    44 sleep      2000 ms
+20:26:29 ok    45 value      1.28 GB · one download from models.inbornapp.com
+20:26:29 ok    46 assertText "models.inbornapp.com" present
+20:26:29 ok    47 value      Start now with Instant
+20:26:29 ok    48 press      start-now-with ← onPress
+20:26:29 ok    49 waitFor    sealed-start appeared
+20:26:29 ok    50 sleep      5000 ms
+20:26:29 ok    51 press      sealed-start ← onPress
+20:26:29 ok    52 waitFor    lock-start appeared
+20:26:29 ok    53 press      lock-start ← onPress
+20:26:29 ok    54 waitFor    composer-input appeared
+20:26:29 ok    55 waitFor    Loading gone
+20:26:29 ok    56 sleep      2000 ms
+20:26:29 ok    57 value      INSTANT
+20:26:29 ok    58 assertText "INSTANT" present
+20:26:29 ok    59 type       composer-input = 30 chars
+20:26:29 ok    60 send       send ← onPress
+20:26:29 ok    61 waitFor    assistant-text appeared
+20:26:29 ok    62 waitFor    stop gone
+20:26:29 ok    63 sleep      1500 ms
+20:26:29 ok    64 value      The capital of France is Paris.
+20:26:29 ok    65 screenshot J7-05-instant-after-wipe
+20:26:29 ok    66 assertText "Could not load" absent
+20:26:29 66 passed, 1 failed, 7 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-36/docs/qa/ios-device-pass-36/screens
+20:26:29   ! step 32 (value): value download-failed: no node with that testID is mounted
