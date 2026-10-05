@@ -64,21 +64,37 @@ describe("StoreKit 2 JWS verification (spec §12.4, §10.7 #48–#49)", () => {
     expect(verifyAppleJws(makeJws({ payload: transactionPayload({ inAppOwnershipType: "GIFTED" }) }), opts)).toEqual({ ok: false, reason: "not-purchased" });
   });
 
-  it("only dev builds accept Sandbox / Xcode transactions; the Xcode root never signs production", () => {
+  it("the store policy accepts Production and Sandbox on the Apple chain and refuses the Xcode test root", () => {
+    const store = { ...opts, allowSandbox: true, allowXcodeTestRoot: false };
+    const production = verifyAppleJws(makeJws({ payload: transactionPayload() }), store);
+    expect(production.ok && production.purchase.environment).toBe("production");
+    /* TestFlight and App Review purchases: Sandbox, signed by the same chain as production. */
+    const sandbox = verifyAppleJws(makeJws({ payload: transactionPayload({ environment: "Sandbox" }) }), store);
+    expect(sandbox.ok && sandbox.purchase.environment).toBe("sandbox");
+    const xcode = makeJws({ payload: transactionPayload({ environment: "Xcode" }), x5c: [derToB64(chain.xcode)], keyPem: read("test-xcode.key") });
+    expect(verifyAppleJws(xcode, { now: NOW, allowSandbox: true, allowXcodeTestRoot: false })).toEqual({ ok: false, reason: "wrong-environment" });
+    expect(verifyAppleJws(xcode, { now: NOW, allowSandbox: true, allowXcodeTestRoot: true }).ok).toBe(true);
+  });
+
+  it("Sandbox and the Xcode test root are separate trusts, both off by default; the Xcode root never signs production", () => {
     const sandbox = makeJws({ payload: transactionPayload({ environment: "Sandbox" }) });
     expect(verifyAppleJws(sandbox, opts)).toEqual({ ok: false, reason: "wrong-environment" });
-    expect(verifyAppleJws(sandbox, { ...opts, allowTestEnvironments: true }).ok).toBe(true);
+    expect(verifyAppleJws(sandbox, { ...opts, allowXcodeTestRoot: true })).toEqual({ ok: false, reason: "wrong-environment" });
+    expect(verifyAppleJws(sandbox, { ...opts, allowSandbox: true }).ok).toBe(true);
     /* Xcode's StoreKit Testing: one self-signed P-256 certificate named "StoreKit Testing in Xcode", environment "Xcode". */
     const xcode = makeJws({ payload: transactionPayload({ environment: "Xcode" }), x5c: [derToB64(chain.xcode)], keyPem: read("test-xcode.key") });
     expect(verifyAppleJws(xcode, { now: NOW })).toEqual({ ok: false, reason: "wrong-environment" });
-    expect(verifyAppleJws(xcode, { now: NOW, allowTestEnvironments: true }).ok).toBe(true);
+    expect(verifyAppleJws(xcode, { now: NOW, allowSandbox: true })).toEqual({ ok: false, reason: "wrong-environment" });
+    expect(verifyAppleJws(xcode, { now: NOW, allowXcodeTestRoot: true }).ok).toBe(true);
     const xcodeClaimsProduction = makeJws({ payload: transactionPayload({ environment: "Production" }), x5c: [derToB64(chain.xcode)], keyPem: read("test-xcode.key") });
-    expect(verifyAppleJws(xcodeClaimsProduction, { now: NOW, allowTestEnvironments: true })).toEqual({ ok: false, reason: "untrusted-root" });
+    expect(verifyAppleJws(xcodeClaimsProduction, { now: NOW, allowSandbox: true, allowXcodeTestRoot: true })).toEqual({ ok: false, reason: "untrusted-root" });
+    const xcodeClaimsSandbox = makeJws({ payload: transactionPayload({ environment: "Sandbox" }), x5c: [derToB64(chain.xcode)], keyPem: read("test-xcode.key") });
+    expect(verifyAppleJws(xcodeClaimsSandbox, { now: NOW, allowSandbox: true, allowXcodeTestRoot: true })).toEqual({ ok: false, reason: "untrusted-root" });
     const selfSignedButNotXcode = makeJws({ payload: transactionPayload({ environment: "Xcode" }), x5c: [derToB64(chain.root)], keyPem: read("test-root.key") });
-    expect(verifyAppleJws(selfSignedButNotXcode, { now: NOW, allowTestEnvironments: true })).toEqual({ ok: false, reason: "untrusted-root" });
+    expect(verifyAppleJws(selfSignedButNotXcode, { now: NOW, allowXcodeTestRoot: true })).toEqual({ ok: false, reason: "untrusted-root" });
     const wrongKeyForXcodeCert = makeJws({ payload: transactionPayload({ environment: "Xcode" }), x5c: [derToB64(chain.xcode)], keyPem: read("test-root.key") });
-    expect(verifyAppleJws(wrongKeyForXcodeCert, { now: NOW, allowTestEnvironments: true })).toEqual({ ok: false, reason: "bad-signature" });
-    expect(verifyAppleJws(makeJws({ payload: transactionPayload({ environment: "Mars" }) }), { ...opts, allowTestEnvironments: true })).toEqual({ ok: false, reason: "wrong-environment" });
+    expect(verifyAppleJws(wrongKeyForXcodeCert, { now: NOW, allowXcodeTestRoot: true })).toEqual({ ok: false, reason: "bad-signature" });
+    expect(verifyAppleJws(makeJws({ payload: transactionPayload({ environment: "Mars" }) }), { ...opts, allowSandbox: true, allowXcodeTestRoot: true })).toEqual({ ok: false, reason: "wrong-environment" });
   });
 
   it("refuses a tampered payload, a foreign signing key and a chain that does not end in a pinned root", () => {

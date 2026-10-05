@@ -18,7 +18,7 @@ const FACTS: BuildFacts = {
 export const devBuild = (): boolean => isDevBuild(FACTS);
 /** This build's own bundle id: the QA variant's differs from the store app's (F265), so its sandbox proofs carry it. */
 export const BUILD_BUNDLE_ID: string | undefined = Constants.expoConfig?.ios?.bundleIdentifier ?? Constants.expoConfig?.android?.package ?? undefined;
-/** Sandbox / Xcode StoreKit transactions and `android.test.*` SKUs verify only in a dev bundle or the QA variant. */
+/** Xcode StoreKit Testing transactions and `android.test.*` SKUs verify only in a dev bundle or the QA variant; Apple Sandbox verifies in every build. */
 export const ALLOW_TEST_PURCHASES: boolean = allowsTestPurchases(FACTS);
 /** Play licence public key (base64 SPKI) at bundle time until it is pasted into roots.ts. */
 export const PLAY_LICENCE_KEY: string = process.env.EXPO_PUBLIC_PLAY_LICENCE_KEY ?? "";

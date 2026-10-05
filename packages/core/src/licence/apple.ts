@@ -11,8 +11,10 @@ import { certificateFingerprint, parseCertificate, verifyCertificateSignature, v
 
 export interface AppleVerifyOptions {
   bundleId?: string;
-  /** Sandbox / Xcode transactions verify only when set (dev builds); production never trusts the StoreKit test root. */
-  allowTestEnvironments?: boolean;
+  /** Sandbox transactions on Apple's chain (TestFlight, App Review) verify when set; the app sets it in every build. */
+  allowSandbox?: boolean;
+  /** Xcode StoreKit Testing transactions (self-signed test root) verify only when set; dev builds only. */
+  allowXcodeTestRoot?: boolean;
   /** Extra trust anchors (DER) for tests. */
   extraRoots?: Uint8Array[];
   now?: number;
@@ -100,7 +102,8 @@ export function verifyAppleJws(jws: string, opts: AppleVerifyOptions = {}): Veri
 
   const environment = environmentOf(payload.environment);
   if (!environment) return { ok: false, reason: "wrong-environment" };
-  if (environment !== "production" && !opts.allowTestEnvironments) return { ok: false, reason: "wrong-environment" };
+  if (environment === "sandbox" && !opts.allowSandbox) return { ok: false, reason: "wrong-environment" };
+  if (environment === "xcode" && !opts.allowXcodeTestRoot) return { ok: false, reason: "wrong-environment" };
 
   const fp = toHex(certificateFingerprint(rootCandidate));
   let anchor = [...pinnedAnchors(), ...(opts.extraRoots ?? []).map((der): Anchor => ({ cert: parseCertificate(der), kind: "extra" }))].find((a) => toHex(certificateFingerprint(a.cert)) === fp);

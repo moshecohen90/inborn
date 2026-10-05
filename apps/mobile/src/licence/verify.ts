@@ -8,7 +8,8 @@ export function verifyProof(raw: RawPurchase): VerifyResult {
   const selfId = allowTest ? BUILD_BUNDLE_ID : undefined;
   switch (raw.proof?.kind) {
     case "apple-jws": {
-      const r = verifyAppleJws(raw.proof.jws, { allowTestEnvironments: allowTest, bundleId: selfId });
+      /* TestFlight testers and App Review buy in Apple's Sandbox on the real Apple chain, so every build accepts it. */
+      const r = verifyAppleJws(raw.proof.jws, { allowSandbox: true, allowXcodeTestRoot: allowTest, bundleId: selfId });
       if (!r.ok && devBuild()) console.info(`[licence] jws ${r.reason}: ${JSON.stringify(decodeAppleJws(raw.proof.jws)?.header ?? null)} ${raw.proof.jws.slice(0, 40)}… len=${raw.proof.jws.length}`);
       return r;
     }
