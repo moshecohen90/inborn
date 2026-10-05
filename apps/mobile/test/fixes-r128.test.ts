@@ -15,7 +15,7 @@ const chat = read("../src/screens/Chat.tsx");
 const doc = (over: Partial<DocumentRecord>): DocumentRecord => ({ id: "d", name: "d", kind: "pdf", bytes: 1, pages: 1, addedAt: 0, status: "indexed", indexedPages: 1, chunkCount: 1, flaggedLines: 0, ocrPages: 0, ...over });
 
 /* Build 32: the store photo, filed in the library and read by OCR, attached from the [+] sheet's library list. */
-const store = doc({ id: "store", name: "סקארה חנות איפור ומוצרי קוסמטיקה.jpg", kind: "image", uri: "documents/store/x.jpg", ocrPages: 1, chunkCount: 1 });
+const store = doc({ id: "store", name: "דנה חנות פרחים ועציצים לבית.jpg", kind: "image", uri: "documents/store/x.jpg", ocrPages: 1, chunkCount: 1 });
 const door = doc({ id: "door", name: "door.jpg", kind: "image", status: "needs-ocr", chunkCount: 0 });
 const report = doc({ id: "report", name: "report.pdf" });
 const PHOTO = "file:///Documents/images/store.jpg";
@@ -25,7 +25,7 @@ const turn: Message[] = [
   { role: "user", content: QUESTION, images: [PHOTO] },
 ];
 
-const chunk: Chunk = { id: "c1", docId: "store", page: 1, ord: 0, text: "סקארה חנות איפור ומוצרי קוסמטיקה 03-5551234", start: 0, end: 40, tokens: 20 };
+const chunk: Chunk = { id: "c1", docId: "store", page: 1, ord: 0, text: "דנה חנות פרחים ועציצים לבית 03-5551234", start: 0, end: 40, tokens: 20 };
 const ask = (used: boolean) =>
   vi.fn(async (): Promise<AskResult> => ({
     prompt: buildRagPrompt({ question: QUESTION, hits: used ? [{ chunk, score: 1, cosine: 0, bm25: 0, bm25Terms: 0 }] : [], docs: new Map([["store", store]]), strict: false, nCtx: 4096, overview: used }),
