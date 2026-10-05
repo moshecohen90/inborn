@@ -145,10 +145,11 @@ export function adviseModel(input: AdviceInput): ModelAdvice | null {
   };
 }
 
-/** After a picture answer the app could not show: a higher-tier model on this device that also sees, or null. */
+/** After a picture answer on Instant: a higher-tier model on this device that also sees, or null. */
 export function advisePhotoModel(input: AdviceInput): ModelAdvice | null {
   const { current } = input;
-  if (!current?.tier) return null;
+  /* Measured 4.10.2026: Sharp reads pictures no better than Fast, so only Instant has a better seer to offer. */
+  if (current?.tier !== "instant") return null;
   const offer = offerOf(
     rankModels(input).filter((r) => r.model.vision && tierIndex(r.model) > tierIndex(current)),
     input.device.pro,

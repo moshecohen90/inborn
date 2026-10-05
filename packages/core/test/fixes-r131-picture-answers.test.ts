@@ -164,7 +164,7 @@ describe("round 131 · the prompt says the picture is there", () => {
   });
 });
 
-describe("round 131 · a model that sees better, after the honest line", () => {
+describe("round 131 · a model that sees better, after a picture answer on Instant", () => {
   const catalog = BUNDLED_MANIFEST.models;
   const byId = (id: string): CatalogModel => catalog.find((m) => m.id === id)!;
   const advise = (current: string, installed: string[], pro = true) => advisePhotoModel({ current: byId(current), use: "chat", languageCode: "en", device: { ramGB: 8, deviceClass: "phone", pro }, installed, catalog });
@@ -178,7 +178,9 @@ describe("round 131 · a model that sees better, after the honest line", () => {
     expect(a.best).toBeUndefined();
   });
 
-  it("Sharp, the top tier that sees, is offered nothing", () => {
+  it("Fast and Sharp are offered nothing: Sharp reads pictures no better than Fast (measured 4.10)", () => {
+    expect(advise("fast", ["fast"])).toBeNull();
+    expect(advise("fast", ["fast", "sharp"])).toBeNull();
     expect(advise("sharp", ["sharp"])).toBeNull();
   });
 });

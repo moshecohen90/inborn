@@ -50,10 +50,20 @@ describe("round 131 · picture answers in Chat", () => {
     expect(chat).toMatch(/question: lastUser/);
   });
 
-  it("after the honest line a model that sees better is offered, through the existing advice card", () => {
-    expect(chat).toMatch(/reply === t\("chat\.vision\.unsure"\)/);
-    expect(chat).toMatch(/setPhotoAdvice\(advisePhotoModel\(/);
+  it("the honest line drops the sources it could not stand behind", () => {
+    expect(chat).toMatch(/reply === t\("chat\.vision\.unsure"\)\) \{\s*citations = undefined;\s*sources = null;\s*\}/);
+  });
+
+  it("every fresh picture answer, sound or honest, asks for the model that sees better (Instant only, by advisePhotoModel)", () => {
+    expect(chat).toMatch(/if \(checksPicture && !familySafeReplaced && reply\.trim\(\) && Platform\.OS !== "web"\) \{[\s\S]*?setPhotoAdvice\(advisePhotoModel\(\{ current: vault\.model\(model\.id\)/);
+    expect(chat).not.toMatch(/reply === t\("chat\.vision\.unsure"\)\) \{[^}]*setPhotoAdvice/);
     expect(chat).toMatch(/<ModelAdviceCard[^>]*advice=\{cardAdvice\}/s);
+  });
+
+  it("the photos card respects its snooze, and a fresh turn clears it", () => {
+    expect(chat).toContain("const cardAdvice = (photoAdvice && !adviceSnoozed.includes(photoAdvice.key) && status.kind === \"ready\" ? photoAdvice : null) ?? adviceShown;");
+    expect(chat).toContain("onNotNow={() => snoozeAdvice(cardAdvice.key)}");
+    expect(chat).toContain("if (!existingMessageId) setPhotoAdvice(null);");
   });
 
   it("the honest line can be forced only through the EXPO_PUBLIC_DEV_PICTURE_FAULT seam", () => {

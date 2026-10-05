@@ -75,8 +75,11 @@ message) are checked against each sentence as it streams (`checkedAnswer`):
 - a later sentence at fault is left out, the answer goes on;
 - a label that names no passage of the turn ends the answer there;
 - if neither attempt lets a sentence through, the user reads `chat.vision.unsure` ("I have your picture, but I could
-  not make it out well enough to give a reliable answer.", 8 locales + pseudo), and on a phone the model-advice card
-  offers a higher tier that sees (`advisePhotoModel`, its own snooze key).
+  not make it out well enough to give a reliable answer.", 8 locales + pseudo).
+
+After every fresh picture answer on Instant, sound or honest, the model-advice card offers Fast ("FAST sees pictures
+better than INSTANT", `advisePhotoModel`, its own snooze key). Instant only: on 4.10 Sharp measured no better than Fast
+on pictures, so Fast and Sharp are offered nothing.
 
 Only fresh picture turns go through it; Continue and text turns stream as before. `EXPO_PUBLIC_DEV_PICTURE_FAULT=1`
 (QA builds only) faults every opening, to walk the honest path.

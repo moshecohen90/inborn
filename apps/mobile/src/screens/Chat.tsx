@@ -791,19 +791,20 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const safety: SafetyMark | undefined = familySafeReplaced ? "family-safe" : undefined;
       /* A resumed turn's prompt tokens include the prefill, which the estimate does not count. */
       if (usage && !citations && !continueFrom) setTokenScale((prev) => calibrate(prompt.used, usage!.promptTokens, prev));
-      /* Neither attempt gave a sound answer about the picture: no sources under the honest line, and a model that sees better when there is one. */
+      /* Neither attempt gave a sound answer about the picture: no sources under the honest line. */
       if (checksPicture && !familySafeReplaced && reply === t("chat.vision.unsure")) {
         citations = undefined;
         sources = null;
-        if (Platform.OS !== "web") {
-          const vault = getVault();
-          const installed = vault
-            .entries()
-            .filter((e) => e.model.role === "chat" && !e.stray && e.state.kind === "ready")
-            .map((e) => e.model.id);
-          const turnUse = detectUse({ text: lastUser, personaId: persona.id, personaIcon: persona.icon, hasDocuments: docs.documents.length > 0 });
-          setPhotoAdvice(advisePhotoModel({ current: vault.model(model.id), use: turnUse, languageCode: detectLanguage(lastUser), device: { ...vault.device, pro: tier !== "free" }, installed, catalog: vault.manifest.models }));
-        }
+      }
+      /* Every picture answer on Instant is close to a guess (round 131: mean 1.08 of 2), so it comes with the model that sees better. */
+      if (checksPicture && !familySafeReplaced && reply.trim() && Platform.OS !== "web") {
+        const vault = getVault();
+        const installed = vault
+          .entries()
+          .filter((e) => e.model.role === "chat" && !e.stray && e.state.kind === "ready")
+          .map((e) => e.model.id);
+        const turnUse = detectUse({ text: lastUser, personaId: persona.id, personaIcon: persona.icon, hasDocuments: docs.documents.length > 0 });
+        setPhotoAdvice(advisePhotoModel({ current: vault.model(model.id), use: turnUse, languageCode: detectLanguage(lastUser), device: { ...vault.device, pro: tier !== "free" }, installed, catalog: vault.manifest.models }));
       }
       if (citations && isNotFoundReply(reply)) {
         reply = t("documents.notFound");
