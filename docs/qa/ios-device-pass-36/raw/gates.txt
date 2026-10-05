@@ -1,0 +1,39 @@
+Gates in <worktree>, corepack pnpm@10.34.5, INBORN_MODELS_DIR=MODELS_DIR on the main checkout's .models
+== install --frozen-lockfile start 19:33:30
+== install --frozen-lockfile rc=0 end 19:33:42
+== typecheck start 19:33:42
+== typecheck rc=0 end 19:33:51
+== lint start 19:33:51
+== lint rc=0 end 19:33:58
+== test start 19:33:58
+== test rc=1 end 19:34:21
+GATES-DONE
+TEST2 rc=1 20:03:20
+TEST3 rc=0 20:03:59
+
+== test (first, 19:33:58, alongside the archive and the gates on main):
+packages/ui test:       Tests  23 passed (23)
+packages/i18n test:       Tests  24 passed (24)
+packages/core test:      × 25 distinct verbs, each with a gloss, are not cut 5066ms
+packages/core test:  FAIL  test/fixes-r114.test.ts > F428 · the head rule changes round 113's parenthetical rule, and keeps its exceptions > 25 distinct verbs, each with a gloss, are not cut
+packages/core test:       Tests  1 failed | 1289 passed | 4 skipped (1294)
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @inborn/core@0.0.1 test: `vitest run`
+
+== test (second, after the archive, in-tree archive present; check:store part):
+> node docs/store/scripts/check-store-copy.mjs && node scripts/check-shipping-bundles.mjs && bash scripts/check-history-ids.sh
+PASS: all fields within limits.
+PASS: 1 shipping artifact(s) carry no QA bridge.
+PASS: no personal identifier in the history of HEAD
+packages/ui test:       Tests  23 passed (23)
+packages/i18n test:       Tests  24 passed (24)
+packages/core test:      × 25 distinct verbs, each with a gloss, are not cut 6907ms
+packages/core test:       Tests  1 failed | 1289 passed | 4 skipped (1294)
+
+== test -r --no-bail (third, 20:03, every package):
+apps/desktop test: # tests 4
+apps/desktop test: # pass 4
+apps/desktop test: # fail 0
+packages/ui test:       Tests  23 passed (23)
+packages/i18n test:       Tests  24 passed (24)
+packages/core test:       Tests  1290 passed | 4 skipped (1294)
+apps/mobile test:       Tests  1388 passed (1388)

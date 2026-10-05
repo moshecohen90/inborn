@@ -1,0 +1,27 @@
+20:24:06 pushing 24 steps as j7-fast-text
+20:24:15 shot J7-01-fast-text-turn
+20:24:19 ok     0 deeplink   /chats
+20:24:19 ok     1 waitFor    new-chat appeared
+20:24:19 ok     2 press      new-chat ← onPress
+20:24:19 ok     3 waitFor    start-chat appeared
+20:24:19 ok     4 press      start-chat ← onPress
+20:24:19 ok     5 waitFor    composer-input appeared
+20:24:19 ok     6 waitFor    Loading gone
+20:24:19 ok     7 sleep      1500 ms
+20:24:19 ok     8 value      FAST
+20:24:19 ok     9 assertText "FAST" present
+20:24:19 ok    10 type       composer-input = 43 chars
+20:24:19 ok    11 send       send ← onPress
+20:24:19 ok    12 waitFor    assistant-text appeared
+20:24:19 ok    13 waitFor    stop gone
+20:24:19 ok    14 sleep      1500 ms
+20:24:19 ok    15 value      Set a consistent sleep schedule to regulate your body's internal clock, and try avoiding screens one hour befo
+20:24:19 ok    16 screenshot J7-01-fast-text-turn
+20:24:19 ok    17 assertText "Could not load" absent
+20:24:19 ok    18 assertText "The request specifies" absent
+20:24:19 ok    19 assertText "I will focus" absent
+20:24:19 ok    20 assertText "as an AI" absent
+20:24:19 ok    21 assertText "NOT_FOUND" absent
+20:24:19 ok    22 assertText "<<<" absent
+20:24:19 ok    23 assertText "The user is asking" absent
+20:24:19 24 passed, 0 failed, 1 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-36/docs/qa/ios-device-pass-36/screens

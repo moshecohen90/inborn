@@ -1,0 +1,52 @@
+lockState at start: passcodeRequired: false
+apps at start: com.inbornapp.mobile 1.0.0 35;com.inbornapp.mobile.uitests.xctrunner 1.0 1;
+Documents listing before: 10 lines
+non-model files: 6
+  copied SQLite/inborn.db 4096 B
+  copied SQLite/inborn.db-shm 32768 B
+  copied SQLite/inborn.db-wal 127752 B
+  copied device-prefs.json 92 B
+  copied licence.bin 100 B
+  copied models/vault.json 494 B
+uninstall start=20:27:08
+uninstall rc=0 end=20:27:09
+apps after uninstall: com.inbornapp.mobile.uitests.xctrunner 1.0 1;
+install start=20:27:09
+install rc=0 end=20:27:31
+apps after install: com.inbornapp.mobile 1.0.0 36;com.inbornapp.mobile.uitests.xctrunner 1.0 1;
+Documents before first launch:
+HANDOVER-INSTALL-DONE
+launch at 20:27:44
+launch rc=0
+Documents after the first launch (20:28:10):
+Name                   URL Resources                   Size        Modification date
+--------------------   -----------------------------   ---------   -----------------
+SQLite                 Writable, Readable, Directory   160 bytes   05/10/2026, 20:27
+SQLite/inborn.db       Writable, Readable              4 KB        05/10/2026, 20:27
+SQLite/inborn.db-shm   Writable, Readable              32 KB       05/10/2026, 20:27
+SQLite/inborn.db-wal   Writable, Readable              125 KB      05/10/2026, 20:27
+device-prefs.json      Writable, Readable              92 bytes    05/10/2026, 20:27
+licence.bin            Writable, Readable              100 bytes   05/10/2026, 20:27
+models                 Writable, Readable, Directory   96 bytes    05/10/2026, 20:27
+models/vault.json      Writable, Readable              494 bytes   05/10/2026, 20:27
+Documents/models after the first launch:
+Name         URL Resources        Size        Modification date
+----------   ------------------   ---------   -----------------
+vault.json   Writable, Readable   494 bytes   05/10/2026, 20:27
+
+sha256 of the copy taken before the uninstall (file names only; the files stay in the session scratchpad, out of the repo):
+a8aaf6504aea3a4fa74ee856bfee425dd398c6ca4f625c7cefa2bc2a6e49f980  SQLite_inborn.db
+947ecadd7b6a0bca3044a9e5f6be25eb96d8d1dc4e5f809272f3cea69636c52a  SQLite_inborn.db-shm
+98e59454c589c10f9412b644a0f00e64ae72a70d3e4f6653c1d6722ebb9f63df  SQLite_inborn.db-wal
+9c0866c7a83eb47e489357b10e3b1a62dbb8c6a9b48397f4c09dd0712da4db5a  device-prefs.json
+5e5484c33865b04c1dd849381c52c2f0803b89b56ddb921781bc4367d7390834  licence.bin
+3e65e6f4ce5c70d2ede8173203c87041c92722d59b4d5c103dc332050e449ef4  models_vault.json
+
+Documents/models before the uninstall (model files are not copied):
+Name         URL Resources        Size        Modification date
+----------   ------------------   ---------   -----------------
+vault.json   Writable, Readable   494 bytes   05/10/2026, 18:22
+
+version proof at 20:28:13:
+devicectl device info apps: com.inbornapp.mobile 1.0.0 36
+archive Info.plist: 1.0.0 (36), com.inbornapp.mobile

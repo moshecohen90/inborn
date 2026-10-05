@@ -1,0 +1,66 @@
+20:17:43 pushing 60 steps as j4b-pack
+20:18:04 shot J4-06-pack-card
+20:18:10 shot J4-07-pack-downloading
+20:18:32 shot J4-08-sent-with-picture
+20:18:38 shot J4-09-fast-answer
+20:18:41 ok     0 deeplink   /chats
+20:18:41 ok     1 waitFor    new-chat appeared
+20:18:41 ok     2 press      new-chat ← onPress
+20:18:41 ok     3 waitFor    start-chat appeared
+20:18:41 ok     4 press      start-chat ← onPress
+20:18:41 ok     5 waitFor    composer-input appeared
+20:18:41 ok     6 waitFor    Loading gone
+20:18:41 ok     7 sleep      1500 ms
+20:18:41 ok     8 value      INSTANT
+20:18:41 ok     9 press      model-chip ← onPress
+20:18:41 ok    10 waitFor    model-sheet-use-fast appeared
+20:18:41 ok    11 press      model-sheet-use-fast ← onPress
+20:18:41 ok    12 sleep      3000 ms
+20:18:41 ok    13 waitFor    Loading gone
+20:18:41 ok    14 sleep      1500 ms
+20:18:41 ok    15 value      FAST
+20:18:41 ok    16 assertText "FAST" present
+20:18:41 ok    17 devPrompt  attach: visual-page.pdf
+20:18:41 ok    18 waitFor    attached-docs appeared
+20:18:41 ok    19 sleep      8000 ms
+20:18:41 ok    20 value      visual-page.pdf
+20:18:41 ok    21 type       composer-input = 16 chars
+20:18:41 ok    22 send       send ← onPress
+20:18:41 ok    23 waitFor    vision-hold appeared
+20:18:41 ok    24 sleep      1500 ms
+20:18:41 ok    25 value      FAST needs its photo pack to see photos One 668 MB download, then this photo sends by itself. Download 668 MB 
+20:18:41 ok    26 assertText "668 MB" present
+20:18:41 ok    27 screenshot J4-06-pack-card
+20:18:41 ok    28 press      vision-hold-download ← onPress
+20:18:41 ok    29 sleep      4000 ms
+20:18:41 ok    30 value      FAST needs its photo pack to see photos Downloading the photo pack: 167 of 668 MB. Keep Inborn open: the downl
+20:18:41 ok    31 screenshot J4-07-pack-downloading
+20:18:41 ok    32 idleTimer  idle timer disabled: true
+20:18:41 ok    33 waitFor    vision-hold gone
+20:18:41 ok    34 waitFor    assistant-text appeared
+20:18:41 ok    35 value      
+20:18:41 ok    36 screenshot J4-08-sent-with-picture
+20:18:41 ok    37 waitFor    stop gone
+20:18:41 ok    38 sleep      1500 ms
+20:18:41 ok    39 value      I see a webpage for the Northwind store, featuring two images of dogs and a coffee cup with cookies. The text 
+20:18:41 ok    40 sleep      2000 ms
+20:18:41 ok    41 assertText "FAST" present
+20:18:41 ok    42 waitFor    model-advice gone
+20:18:41 ok    43 screenshot J4-09-fast-answer
+20:18:41 ok    44 dump       J4-09-fast-answer
+20:18:41 ok    45 assertText "cannot see" absent
+20:18:41 ok    46 assertText "can't see" absent
+20:18:41 ok    47 assertText "cannot physically see" absent
+20:18:41 ok    48 assertText "see images" absent
+20:18:41 ok    49 assertText "text-based" absent
+20:18:41 ok    50 assertText "unable to see" absent
+20:18:41 ok    51 assertText "not able to see" absent
+20:18:41 ok    52 assertText "don't have eyes" absent
+20:18:41 ok    53 assertText "The request specifies" absent
+20:18:41 ok    54 assertText "I will focus" absent
+20:18:41 ok    55 assertText "as an AI" absent
+20:18:41 ok    56 assertText "NOT_FOUND" absent
+20:18:41 ok    57 assertText "<<<" absent
+20:18:41 ok    58 assertText "The user is asking" absent
+20:18:41 ok    59 assertText "Your documents don't mention this" absent
+20:18:41 60 passed, 0 failed, 4 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-36/docs/qa/ios-device-pass-36/screens

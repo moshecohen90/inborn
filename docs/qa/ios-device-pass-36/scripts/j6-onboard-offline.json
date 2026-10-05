@@ -1,0 +1,293 @@
+{
+ "_": "J6 + J7: after the wipe, the model step; simulated offline: Download Fast waits, the source line keeps the host; online it starts; offline mid-download (the transfer is dropped), the host still there; online, Stop, Start now with Instant, Instant answers with no 'Could not load'.",
+ "steps": [
+  {
+   "op": "waitFor",
+   "testID": "onboarding-continue",
+   "timeoutMs": 120000
+  },
+  {
+   "op": "sleep",
+   "ms": 1200
+  },
+  {
+   "op": "press",
+   "testID": "onboarding-continue"
+  },
+  {
+   "op": "waitFor",
+   "testID": "onboarding-model",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "value",
+   "testID": "download-model"
+  },
+  {
+   "op": "assertText",
+   "text": "1.28 GB",
+   "testID": "download-model"
+  },
+  {
+   "op": "value",
+   "testID": "model-source-fast"
+  },
+  {
+   "op": "assertText",
+   "text": "models.inbornapp.com",
+   "testID": "model-source-fast"
+  },
+  {
+   "op": "screenshot",
+   "name": "J6-01-model-step-after-wipe"
+  },
+  {
+   "op": "network",
+   "offline": true
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "download-offline"
+  },
+  {
+   "op": "press",
+   "testID": "download-model"
+  },
+  {
+   "op": "sleep",
+   "ms": 4000
+  },
+  {
+   "op": "value",
+   "testID": "model-waiting-fast"
+  },
+  {
+   "op": "value",
+   "testID": "model-source-fast"
+  },
+  {
+   "op": "assertText",
+   "text": "models.inbornapp.com",
+   "testID": "model-source-fast"
+  },
+  {
+   "op": "screenshot",
+   "name": "J6-02-offline-waiting"
+  },
+  {
+   "op": "dump",
+   "name": "J6-02-offline-waiting"
+  },
+  {
+   "op": "sleep",
+   "ms": 12000
+  },
+  {
+   "op": "value",
+   "testID": "model-source-fast"
+  },
+  {
+   "op": "assertText",
+   "text": "models.inbornapp.com",
+   "testID": "model-source-fast"
+  },
+  {
+   "op": "screenshot",
+   "name": "J6-03-offline-16s"
+  },
+  {
+   "op": "network",
+   "offline": false
+  },
+  {
+   "op": "sleep",
+   "ms": 12000
+  },
+  {
+   "op": "value",
+   "testID": "model-progress"
+  },
+  {
+   "op": "value",
+   "testID": "model-source-fast"
+  },
+  {
+   "op": "assertText",
+   "text": "models.inbornapp.com",
+   "testID": "model-source-fast"
+  },
+  {
+   "op": "screenshot",
+   "name": "J6-04-online-downloading"
+  },
+  {
+   "op": "network",
+   "offline": true
+  },
+  {
+   "op": "sleep",
+   "ms": 8000
+  },
+  {
+   "op": "value",
+   "testID": "download-failed"
+  },
+  {
+   "op": "value",
+   "testID": "model-waiting-fast"
+  },
+  {
+   "op": "value",
+   "testID": "model-source-fast"
+  },
+  {
+   "op": "assertText",
+   "text": "models.inbornapp.com",
+   "testID": "model-source-fast"
+  },
+  {
+   "op": "screenshot",
+   "name": "J6-05-dropped-offline"
+  },
+  {
+   "op": "dump",
+   "name": "J6-05-dropped-offline"
+  },
+  {
+   "op": "network",
+   "offline": false
+  },
+  {
+   "op": "sleep",
+   "ms": 8000
+  },
+  {
+   "op": "value",
+   "testID": "model-source-fast"
+  },
+  {
+   "op": "assertText",
+   "text": "models.inbornapp.com",
+   "testID": "model-source-fast"
+  },
+  {
+   "op": "screenshot",
+   "name": "J6-06-back-online"
+  },
+  {
+   "op": "press",
+   "testID": "cancel-download"
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "model-source-fast"
+  },
+  {
+   "op": "assertText",
+   "text": "models.inbornapp.com",
+   "testID": "model-source-fast"
+  },
+  {
+   "op": "value",
+   "testID": "start-now-with"
+  },
+  {
+   "op": "press",
+   "testID": "start-now-with"
+  },
+  {
+   "op": "waitFor",
+   "testID": "sealed-start",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 5000
+  },
+  {
+   "op": "press",
+   "testID": "sealed-start"
+  },
+  {
+   "op": "waitFor",
+   "testID": "lock-start",
+   "timeoutMs": 20000
+  },
+  {
+   "op": "press",
+   "testID": "lock-start"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 60000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "assertText",
+   "text": "INSTANT",
+   "testID": "model-chip"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "What is the capital of France?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "waitFor",
+   "testID": "assistant-text",
+   "timeoutMs": 240000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 400000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "screenshot",
+   "name": "J7-05-instant-after-wipe"
+  },
+  {
+   "op": "assertText",
+   "text": "Could not load",
+   "absent": true
+  }
+ ]
+}

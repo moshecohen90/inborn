@@ -1,0 +1,299 @@
+{
+ "_": "J5 again from all eight (in j5-vault the deeplink back to the top remounted the vault and reset Best for to Chat): all eight, Math & reasoning alone, back to Chat; scrollTo instead of a deeplink.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/vault"
+  },
+  {
+   "op": "waitFor",
+   "testID": "best-for",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "value",
+   "testID": "best-for-use"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use"
+  },
+  {
+   "op": "waitFor",
+   "testID": "best-for-use-sheet",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 1000
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-writing"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-summarize"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-translate"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-code"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-documents"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-voice"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-math"
+  },
+  {
+   "op": "sleep",
+   "ms": 1200
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-12-sheet-all"
+  },
+  {
+   "op": "dump",
+   "name": "J5-12-sheet-all"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-sheet-close"
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "best-for-use"
+  },
+  {
+   "op": "assertText",
+   "text": "Chat +7",
+   "testID": "best-for-use"
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-13-vault-all"
+  },
+  {
+   "op": "dump",
+   "name": "J5-13-vault-all"
+  },
+  {
+   "op": "scrollTo",
+   "testID": "model-card-instant"
+  },
+  {
+   "op": "sleep",
+   "ms": 1200
+  },
+  {
+   "op": "value",
+   "testID": "model-uses-instant"
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-14-card-instant"
+  },
+  {
+   "op": "scrollTo",
+   "testID": "model-card-fast"
+  },
+  {
+   "op": "sleep",
+   "ms": 1200
+  },
+  {
+   "op": "value",
+   "testID": "model-uses-fast"
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-14-card-fast"
+  },
+  {
+   "op": "scrollTo",
+   "testID": "model-card-sharp"
+  },
+  {
+   "op": "sleep",
+   "ms": 1200
+  },
+  {
+   "op": "value",
+   "testID": "model-uses-sharp"
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-14-card-sharp"
+  },
+  {
+   "op": "scrollTo",
+   "testID": "model-card-sharp-phi"
+  },
+  {
+   "op": "sleep",
+   "ms": 1200
+  },
+  {
+   "op": "value",
+   "testID": "model-uses-sharp-phi"
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-14-card-sharp-phi"
+  },
+  {
+   "op": "scrollTo",
+   "testID": "best-for"
+  },
+  {
+   "op": "sleep",
+   "ms": 1200
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use"
+  },
+  {
+   "op": "waitFor",
+   "testID": "best-for-use-sheet",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 1000
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-chat"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-writing"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-summarize"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-translate"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-code"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-documents"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-voice"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-math"
+  },
+  {
+   "op": "sleep",
+   "ms": 1200
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-15-sheet-math-stays"
+  },
+  {
+   "op": "dump",
+   "name": "J5-15-sheet-math-stays"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-sheet-close"
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "best-for-use"
+  },
+  {
+   "op": "assertText",
+   "text": "Math",
+   "testID": "best-for-use"
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-16-vault-math"
+  },
+  {
+   "op": "dump",
+   "name": "J5-16-vault-math"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use"
+  },
+  {
+   "op": "waitFor",
+   "testID": "best-for-use-sheet",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 1000
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-chat"
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-math"
+  },
+  {
+   "op": "sleep",
+   "ms": 1000
+  },
+  {
+   "op": "press",
+   "testID": "best-for-use-sheet-close"
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "best-for-use"
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-17-vault-back-to-chat"
+  },
+  {
+   "op": "dump",
+   "name": "J5-17-vault-back-to-chat"
+  }
+ ]
+}

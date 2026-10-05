@@ -1,0 +1,637 @@
+{
+  "runId": "j4b-pack",
+  "startedAt": "2026-10-05T17:17:44.791Z",
+  "finishedAt": "2026-10-05T17:18:40.360Z",
+  "ok": true,
+  "passed": 60,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 152,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1508,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "INSTANT",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT"
+    },
+    {
+      "i": 9,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "model-chip ← onPress"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "model-sheet-use-fast appeared"
+    },
+    {
+      "i": 11,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "model-sheet-use-fast ← onPress"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3001,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 13,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1514,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 15,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 16,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"FAST\" present"
+    },
+    {
+      "i": 17,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 163,
+      "detail": "attach: visual-page.pdf"
+    },
+    {
+      "i": 18,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1352,
+      "detail": "attached-docs appeared"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 8016,
+      "detail": "8000 ms"
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "visual-page.pdf",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "visual-page.pdf"
+    },
+    {
+      "i": 21,
+      "op": "type",
+      "ok": true,
+      "ms": 166,
+      "detail": "composer-input = 16 chars"
+    },
+    {
+      "i": 22,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 23,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "vision-hold appeared"
+    },
+    {
+      "i": 24,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1502,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 25,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "FAST needs its photo pack to see photos One 668 MB download, then this photo sends by itself. Download 668 MB Switch to INSTANT · installed Remove the photo Smaller, but less accurate with photos.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "FAST needs its photo pack to see photos One 668 MB download, then this photo sends by itself. Download 668 MB Switch to INSTANT · installed Remove the photo Smaller, but less accurate with photos."
+    },
+    {
+      "i": 26,
+      "op": "assertText",
+      "ok": true,
+      "ms": 4,
+      "detail": "\"668 MB\" present"
+    },
+    {
+      "i": 27,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2874,
+      "detail": "J4-06-pack-card"
+    },
+    {
+      "i": 28,
+      "op": "press",
+      "ok": true,
+      "ms": 168,
+      "detail": "vision-hold-download ← onPress"
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4001,
+      "detail": "4000 ms"
+    },
+    {
+      "i": 30,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "FAST needs its photo pack to see photos Downloading the photo pack: 167 of 668 MB. Keep Inborn open: the download pauses when you leave Remove the photo",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "FAST needs its photo pack to see photos Downloading the photo pack: 167 of 668 MB. Keep Inborn open: the download pauses when you leave Remove the photo"
+    },
+    {
+      "i": 31,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1916,
+      "detail": "J4-07-pack-downloading"
+    },
+    {
+      "i": 32,
+      "op": "idleTimer",
+      "ok": true,
+      "ms": 0,
+      "detail": "idle timer disabled: true",
+      "value": {
+        "text": "true",
+        "props": {
+          "idleTimerDisabled": true
+        }
+      }
+    },
+    {
+      "i": 33,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 12534,
+      "detail": "vision-hold gone"
+    },
+    {
+      "i": 34,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 7200,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 35,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 36,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2549,
+      "detail": "J4-08-sent-with-picture"
+    },
+    {
+      "i": 37,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "stop gone"
+    },
+    {
+      "i": 38,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 39,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "I see a webpage for the Northwind store, featuring two images of dogs and a coffee cup with cookies. The text in Hebrew indicates free shipping on orders over 150 NIS.",
+        "props": {
+          "source": "I see a webpage for the Northwind store, featuring two images of dogs and a coffee cup with cookies. The text in Hebrew indicates free shipping on orders over 150 NIS.",
+          "disabled": false
+        }
+      },
+      "detail": "I see a webpage for the Northwind store, featuring two images of dogs and a coffee cup with cookies. The text in Hebrew indicates free shipping on orders over 150 NIS."
+    },
+    {
+      "i": 40,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2014,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 41,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"FAST\" present"
+    },
+    {
+      "i": 42,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "model-advice gone"
+    },
+    {
+      "i": 43,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2552,
+      "detail": "J4-09-fast-answer"
+    },
+    {
+      "i": 44,
+      "op": "dump",
+      "ok": true,
+      "ms": 3,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What do you see?",
+          "role": "text"
+        },
+        {
+          "testID": "user-images",
+          "text": ""
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI I see a webpage for the Northwind store, featuring two images of dogs and a coffee cup with cookies. The text in Hebrew indicates free shipping on orders over 150 NIS. SOURCES visual-page.pdf · p.1 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "I see a webpage for the Northwind store, featuring two images of dogs and a coffee cup with cookies. The text in Hebrew indicates free shipping on orders over 150 NIS."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES visual-page.pdf · p.1"
+        },
+        {
+          "testID": "citation-1",
+          "text": "visual-page.pdf · p.1",
+          "role": "button",
+          "label": "Open visual-page.pdf · p.1",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "visual-page.pdf"
+        },
+        {
+          "testID": "attached-chip-muvidl88-5-x2qorlkb",
+          "text": "visual-page.pdf",
+          "role": "button",
+          "label": "Remove visual-page.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J4-09-fast-answer"
+    },
+    {
+      "i": 45,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"cannot see\" absent"
+    },
+    {
+      "i": 46,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"can't see\" absent"
+    },
+    {
+      "i": 47,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"cannot physically see\" absent"
+    },
+    {
+      "i": 48,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"see images\" absent"
+    },
+    {
+      "i": 49,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"text-based\" absent"
+    },
+    {
+      "i": 50,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"unable to see\" absent"
+    },
+    {
+      "i": 51,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"not able to see\" absent"
+    },
+    {
+      "i": 52,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"don't have eyes\" absent"
+    },
+    {
+      "i": 53,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"The request specifies\" absent"
+    },
+    {
+      "i": 54,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"I will focus\" absent"
+    },
+    {
+      "i": 55,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"as an AI\" absent"
+    },
+    {
+      "i": 56,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"NOT_FOUND\" absent"
+    },
+    {
+      "i": 57,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"<<<\" absent"
+    },
+    {
+      "i": 58,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"The user is asking\" absent"
+    },
+    {
+      "i": 59,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Your documents don't mention this\" absent"
+    }
+  ],
+  "errors": []
+}

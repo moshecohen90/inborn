@@ -1,0 +1,123 @@
+20:20:22 pushing 103 steps as j5-vault
+20:20:29 shot J5-01-vault-chat
+20:20:33 shot J5-02-sheet-chat
+20:20:36 shot J5-03-sheet-chat-documents
+20:20:41 shot J5-04-vault-chat-documents
+20:20:44 shot J5-05-card-instant
+20:20:46 shot J5-05-card-fast
+20:20:49 shot J5-05-card-sharp
+20:20:52 shot J5-05-card-sharp-phi
+20:21:00 shot J5-06-sheet-all
+20:21:05 shot J5-07-vault-all
+20:21:08 shot J5-08-card-instant
+20:21:11 shot J5-08-card-fast
+20:21:16 shot J5-08-card-sharp
+20:21:19 shot J5-08-card-sharp-phi
+20:21:25 shot J5-09-sheet-math-stays
+20:21:29 shot J5-10-vault-math
+20:21:37 shot J5-11-vault-back-to-chat
+20:21:40 ok     0 deeplink   /vault
+20:21:40 ok     1 waitFor    best-for appeared
+20:21:40 ok     2 sleep      4000 ms
+20:21:40 ok     3 value      Chat
+20:21:40 ok     4 screenshot J5-01-vault-chat
+20:21:40 ok     5 dump       J5-01-vault-chat
+20:21:40 ok     6 press      best-for-use ← onPress
+20:21:40 ok     7 waitFor    best-for-use-sheet appeared
+20:21:40 ok     8 sleep      1500 ms
+20:21:40 ok     9 assertText "Pick one or more." present
+20:21:40 ok    10 screenshot J5-02-sheet-chat
+20:21:40 ok    11 dump       J5-02-sheet
+20:21:40 ok    12 press      best-for-use-documents ← onPress
+20:21:40 ok    13 sleep      1200 ms
+20:21:40 ok    14 screenshot J5-03-sheet-chat-documents
+20:21:40 ok    15 press      best-for-use-sheet-close ← onPress
+20:21:40 ok    16 sleep      2000 ms
+20:21:40 ok    17 value      Chat + Documents
+20:21:40 ok    18 assertText "Chat + Documents" present
+20:21:40 ok    19 screenshot J5-04-vault-chat-documents
+20:21:40 ok    20 dump       J5-04-vault-chat-documents
+20:21:40 ok    21 scrollTo   model-card-instant
+20:21:40 ok    22 sleep      1200 ms
+20:21:40 ok    23 value      Chat · Good Documents · Weak
+20:21:40 ok    24 screenshot J5-05-card-instant
+20:21:40 ok    25 scrollTo   model-card-fast
+20:21:40 ok    26 sleep      1200 ms
+20:21:40 ok    27 value      Chat · Best Documents · Good
+20:21:40 ok    28 screenshot J5-05-card-fast
+20:21:40 ok    29 scrollTo   model-card-sharp
+20:21:40 ok    30 sleep      1200 ms
+20:21:40 ok    31 value      Chat · Best Documents · Best
+20:21:40 ok    32 screenshot J5-05-card-sharp
+20:21:40 ok    33 scrollTo   model-card-sharp-phi
+20:21:40 ok    34 sleep      1200 ms
+20:21:40 ok    35 value      Chat · Good Documents · Good
+20:21:40 ok    36 screenshot J5-05-card-sharp-phi
+20:21:40 ok    37 deeplink   /vault
+20:21:40 ok    38 sleep      2000 ms
+20:21:40 ok    39 press      best-for-use ← onPress
+20:21:40 ok    40 waitFor    best-for-use-sheet appeared
+20:21:40 ok    41 sleep      1000 ms
+20:21:40 ok    42 press      best-for-use-writing ← onPress
+20:21:40 ok    43 press      best-for-use-summarize ← onPress
+20:21:40 ok    44 press      best-for-use-translate ← onPress
+20:21:40 ok    45 press      best-for-use-code ← onPress
+20:21:40 ok    46 press      best-for-use-voice ← onPress
+20:21:40 ok    47 press      best-for-use-math ← onPress
+20:21:40 ok    48 sleep      1200 ms
+20:21:40 ok    49 screenshot J5-06-sheet-all
+20:21:40 ok    50 press      best-for-use-sheet-close ← onPress
+20:21:40 ok    51 sleep      2000 ms
+20:21:40 ok    52 value      Chat +6
+20:21:40 ok    53 screenshot J5-07-vault-all
+20:21:40 ok    54 dump       J5-07-vault-all
+20:21:40 ok    55 scrollTo   model-card-instant
+20:21:40 ok    56 sleep      1200 ms
+20:21:40 ok    57 value      Chat · Good Writing · Weak Summaries · Weak Translation · Weak Code · Weak Voice notes · Good Math & reasoning
+20:21:40 ok    58 screenshot J5-08-card-instant
+20:21:40 ok    59 scrollTo   model-card-fast
+20:21:40 ok    60 sleep      1200 ms
+20:21:40 ok    61 value      Chat · Best Writing · Good Summaries · Good Translation · Good Code · Weak Voice notes · Best Math & reasoning
+20:21:40 ok    62 screenshot J5-08-card-fast
+20:21:40 ok    63 scrollTo   model-card-sharp
+20:21:40 ok    64 sleep      1200 ms
+20:21:40 ok    65 value      Chat · Best Writing · Best Summaries · Best Translation · Best Code · Good Voice notes · Best Math & reasoning
+20:21:40 ok    66 screenshot J5-08-card-sharp
+20:21:40 ok    67 scrollTo   model-card-sharp-phi
+20:21:40 ok    68 sleep      1200 ms
+20:21:40 ok    69 value      Chat · Good Writing · Good Summaries · Good Translation · Weak Code · Best Voice notes · Good Math & reasoning
+20:21:40 ok    70 screenshot J5-08-card-sharp-phi
+20:21:40 ok    71 press      best-for-use ← onPress
+20:21:40 ok    72 waitFor    best-for-use-sheet appeared
+20:21:40 ok    73 sleep      1000 ms
+20:21:40 ok    74 press      best-for-use-chat ← onPress
+20:21:40 ok    75 press      best-for-use-writing ← onPress
+20:21:40 ok    76 press      best-for-use-summarize ← onPress
+20:21:40 ok    77 press      best-for-use-translate ← onPress
+20:21:40 ok    78 press      best-for-use-code ← onPress
+20:21:40 ok    79 press      best-for-use-documents ← onPress
+20:21:40 ok    80 press      best-for-use-voice ← onPress
+20:21:40 ok    81 press      best-for-use-math ← onPress
+20:21:40 ok    82 sleep      1200 ms
+20:21:40 ok    83 screenshot J5-09-sheet-math-stays
+20:21:40 ok    84 dump       J5-09-sheet-math-stays
+20:21:40 ok    85 press      best-for-use-sheet-close ← onPress
+20:21:40 ok    86 sleep      2000 ms
+20:21:40 ok    87 value      Documents
+20:21:40 FAIL  88 assertText assertText "Math" is not on screen under best-for-use
+20:21:40 ok    89 screenshot J5-10-vault-math
+20:21:40 ok    90 dump       J5-10-vault-math
+20:21:40 ok    91 press      best-for-use ← onPress
+20:21:40 ok    92 waitFor    best-for-use-sheet appeared
+20:21:40 ok    93 sleep      1000 ms
+20:21:40 ok    94 press      best-for-use-chat ← onPress
+20:21:40 ok    95 press      best-for-use-math ← onPress
+20:21:40 ok    96 sleep      1000 ms
+20:21:40 ok    97 press      best-for-use-sheet-close ← onPress
+20:21:40 ok    98 sleep      2000 ms
+20:21:40 ok    99 value      Chat +2
+20:21:40 ok   100 assertText "Chat" present
+20:21:40 ok   101 screenshot J5-11-vault-back-to-chat
+20:21:40 ok   102 dump       J5-11-vault-back-to-chat
+20:21:40 102 passed, 1 failed, 17 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-36/docs/qa/ios-device-pass-36/screens
+20:21:40   ! step 88 (assertText): assertText "Math" is not on screen under best-for-use

@@ -1,0 +1,54 @@
+20:13:44 pushing 49 steps as j2-cafe-1
+20:13:56 shot J2-1-thumbnail-chip
+20:14:01 shot J2-1-sent-bubble
+20:14:08 shot J2-1-answer
+20:14:11 ok     0 deeplink   /chats
+20:14:11 ok     1 waitFor    new-chat appeared
+20:14:11 ok     2 press      new-chat ← onPress
+20:14:11 ok     3 waitFor    start-chat appeared
+20:14:11 ok     4 press      start-chat ← onPress
+20:14:11 ok     5 waitFor    composer-input appeared
+20:14:11 ok     6 waitFor    Loading gone
+20:14:11 ok     7 sleep      1500 ms
+20:14:11 ok     8 value      INSTANT
+20:14:11 ok     9 assertText "INSTANT" present
+20:14:11 ok    10 devPrompt  attach: בית קפה הגינה תפריט.jpg
+20:14:11 ok    11 waitFor    pending-images appeared
+20:14:11 ok    12 sleep      8000 ms
+20:14:11 ok    13 value      Free: one photo per message
+20:14:11 ok    14 waitFor    attached-docs gone
+20:14:11 ok    15 screenshot J2-1-thumbnail-chip
+20:14:11 ok    16 type       composer-input = 16 chars
+20:14:11 ok    17 send       send ← onPress
+20:14:11 ok    18 waitFor    assistant-text appeared
+20:14:11 ok    19 value      
+20:14:11 ok    20 screenshot J2-1-sent-bubble
+20:14:11 ok    21 waitFor    stop gone
+20:14:11 ok    22 sleep      1500 ms
+20:14:11 ok    23 value      The image displays a brick wall featuring three blackboard windows labeled "WILL THE CAPES/CAFEPHONE COUR". Ea
+20:14:11 ok    24 sleep      2000 ms
+20:14:11 ok    25 waitFor    docs-hold gone
+20:14:11 ok    26 waitFor    vision-hold gone
+20:14:11 ok    27 assertText "cannot see" absent
+20:14:11 ok    28 assertText "can't see" absent
+20:14:11 ok    29 assertText "cannot physically see" absent
+20:14:11 ok    30 assertText "see images" absent
+20:14:11 ok    31 assertText "text-based" absent
+20:14:11 ok    32 assertText "unable to see" absent
+20:14:11 ok    33 assertText "not able to see" absent
+20:14:11 ok    34 assertText "don't have eyes" absent
+20:14:11 ok    35 assertText "The request specifies" absent
+20:14:11 ok    36 assertText "I will focus" absent
+20:14:11 ok    37 assertText "as an AI" absent
+20:14:11 ok    38 assertText "NOT_FOUND" absent
+20:14:11 ok    39 assertText "<<<" absent
+20:14:11 ok    40 assertText "The user is asking" absent
+20:14:11 ok    41 assertText "Your documents don't mention this" absent
+20:14:11 ok    42 waitFor    model-advice appeared
+20:14:11 ok    43 value      FAST sees pictures better than INSTANT.
+20:14:11 ok    44 value      Install FAST · 1.28 GB
+20:14:11 ok    45 assertText "FAST sees pictures better than INSTANT" present
+20:14:11 ok    46 assertText "1.28 GB" present
+20:14:11 ok    47 screenshot J2-1-answer
+20:14:11 ok    48 dump       J2-1-answer
+20:14:11 49 passed, 0 failed, 3 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-36/docs/qa/ios-device-pass-36/screens

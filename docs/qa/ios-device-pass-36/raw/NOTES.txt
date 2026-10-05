@@ -1,0 +1,50 @@
+2026-10-05 20:08:34 start ios-build-36; worktree at 03b9fd80, commit 107f59b9 (107f59b96ae0) buildNumber 35->36 + guard
+2026-10-05 20:08:35 phone before twin: passcodeRequired: false; apps: com.inbornapp.mobile 1.0.0 35;com.inbornapp.mobile.uitests.xctrunner 1.0 1;
+2026-10-05 20:08:56 twin installed 20:08:35 -> 20:08:56 rc=0
+2026-10-05 20:09:09 p0-onboard start
+2026-10-05 20:09:55 p0-onboard rc=0 20:09:55 23 passed, 0 failed, 3 screenshots → <worktree>/docs/qa/ios-device-pass-36/screens
+push 4 fixtures (founder file as a neutral name) 20:10:24
+2026-10-05 20:10:29 f1-s1 start
+2026-10-05 20:10:58 f1-s1 rc=0 (private: details in private/)
+2026-10-05 20:11:33 f1-s2 start
+2026-10-05 20:12:00 f1-s2 rc=0 (private: details in private/)
+2026-10-05 20:12:01 f1-s3 start
+2026-10-05 20:12:27 f1-s3 rc=0 (private: details in private/)
+2026-10-05 20:12:27 f1-he start
+2026-10-05 20:12:54 f1-he rc=0 (private: details in private/)
+2026-10-05 20:13:14 j1b-visual-1 start
+2026-10-05 20:13:44 j1b-visual-1 rc=0 20:13:43 48 passed, 0 failed, 3 screenshots → <worktree>/docs/qa/ios-device-pass-36/screens
+2026-10-05 20:13:44 j2-cafe-1 start
+2026-10-05 20:14:11 j2-cafe-1 rc=0 20:14:11 49 passed, 0 failed, 3 screenshots → <worktree>/docs/qa/ios-device-pass-36/screens
+2026-10-05 20:14:11 j2-cafe-2 start
+2026-10-05 20:14:37 j2-cafe-2 rc=0 20:14:37 49 passed, 0 failed, 3 screenshots → <worktree>/docs/qa/ios-device-pass-36/screens
+2026-10-05 20:14:37 j2-not-now start
+2026-10-05 20:15:06 j2-not-now rc=0 20:15:06 37 passed, 0 failed, 3 screenshots → <worktree>/docs/qa/ios-device-pass-36/screens
+2026-10-05 20:15:21 j3-index start
+2026-10-05 20:16:16 j3-index rc=0 20:16:16 41 passed, 0 failed, 4 screenshots → <worktree>/docs/qa/ios-device-pass-36/screens
+2026-10-05 20:16:23 j4a-door start
+2026-10-05 20:17:34 j4a-door rc=0 20:17:33 64 passed, 0 failed, 6 screenshots → <worktree>/docs/qa/ios-device-pass-36/screens
+2026-10-05 20:17:43 j4b-pack start
+2026-10-05 20:18:42 j4b-pack rc=0 20:18:41 60 passed, 0 failed, 4 screenshots → <worktree>/docs/qa/ios-device-pass-36/screens
+2026-10-05 20:18:42 j4c-visual-fast start
+2026-10-05 20:19:14 j4c-visual-fast rc=0 20:19:13 43 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-36/screens
+2026-10-05 20:19:14 f4-s1 start
+2026-10-05 20:19:46 f4-s1 rc=0 (private: details in private/)
+2026-10-05 20:19:46 f4-s2 start
+2026-10-05 20:20:13 f4-s2 rc=0 (private: details in private/)
+2026-10-05 20:20:22 j5-vault start
+2026-10-05 20:21:40 j5-vault rc=1 20:21:40   ! step 88 (assertText): assertText "Math" is not on screen under best-for-use
+2026-10-05 20:22:00 j5b-vault-all start
+2026-10-05 20:22:37 j5b-vault-all rc=1 }
+2026-10-05 20:22:46 j5b-vault-all: devicectl push interrupted (CoreDeviceError 7000), retried
+2026-10-05 20:22:46 j5b-vault-all start
+2026-10-05 20:23:29 j5b-vault-all rc=1 20:23:29   ! step 39 (scrollTo): scrollTo best-for: no scroll view above it
+2026-10-05 20:24:06 j7-fast-text start
+2026-10-05 20:24:20 j7-fast-text rc=0 20:24:19 24 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-36/screens
+2026-10-05 20:24:20 j7-loading start
+2026-10-05 20:24:40 j7-loading rc=0 20:24:39 35 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-36/screens
+2026-10-05 20:24:40 j7-wipe start
+2026-10-05 20:24:54 j7-wipe rc=0 20:24:53 16 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-36/screens
+2026-10-05 20:25:06 j6-onboard-offline start
+2026-10-05 20:26:29 j6-onboard-offline rc=1 20:26:29   ! step 32 (value): value download-failed: no node with that testID is mounted
+2026-10-05 20:27:00 twin uninstalled 20:26:59 rc=0; apps: com.inbornapp.mobile 1.0.0 35;com.inbornapp.mobile.uitests.xctrunner 1.0 1;
