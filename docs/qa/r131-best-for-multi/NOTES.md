@@ -46,6 +46,7 @@ The simulator reports 64 GB, so every chat model ranks; `s6` ran on a second JS 
 
 ## Unproven
 
+- The non-breaking "Use · Tier" pairs (follow-up commit): shots 07/08 predate it and still show a pair split across lines; unit-tested only, the Build 36 device pass covers it.
 - Android and the physical iPhone (only the iOS Simulator).
 - Right-to-left layout and the seven translated locales on screen (strings checked by test for presence and placeholders only).
 - A section whose first card is below the divider shows the divider right under the section header (`04`, On this device); judged acceptable, not reviewed by the founder.

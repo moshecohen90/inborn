@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { radius, type Theme } from "@inborn/ui";
 import { LANGUAGE_NAME_BY_CODE, downloadPercent, expectedSpeed, formatModelBytes, isHfModelId, ramFit, tooSlowHere, type CatalogModel, type InstallState, type UseCase } from "@inborn/core";
 import { FitMap, tierColor } from "./FitMap";
-import { usesLabel } from "./bestFor";
+import { unbreakable, usePairLead, usesLabel } from "./bestFor";
 import type { DeliveryPlan } from "../../vault";
 import type { DeviceInfo } from "../../vault";
 import { useType } from "../../services/type";
@@ -151,7 +151,8 @@ export function ModelCard({ model, state, plan, device, theme, recommended, reco
             return (
               <Text key={u}>
                 {i ? "   " : ""}
-                {t(`use.${u}`)} · <Text style={{ color: tierColor(theme, tier) }}>{t(`vault.fit.tier.${tier}`)}</Text>
+                {usePairLead(t(`use.${u}`))}
+                <Text style={{ color: tierColor(theme, tier) }}>{unbreakable(t(`vault.fit.tier.${tier}`))}</Text>
               </Text>
             );
           })}

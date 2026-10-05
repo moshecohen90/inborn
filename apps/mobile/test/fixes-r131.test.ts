@@ -2,7 +2,7 @@ import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { USE_CASES } from "@inborn/core";
-import { toggleUse, usesLabel } from "../src/screens/vault/bestFor";
+import { toggleUse, unbreakable, usePairLead, usesLabel } from "../src/screens/vault/bestFor";
 
 const dir = join(__dirname, "../../../packages/i18n/locales");
 const locale = (f: string): Record<string, string> => JSON.parse(readFileSync(join(dir, f), "utf8"));
@@ -30,6 +30,12 @@ describe("vault Best for picker (round 131)", () => {
     expect(usesLabel(t, ["chat", "documents"])).toBe("Chat + Documents");
     expect(usesLabel(t, ["chat", "documents", "code"])).toBe("Chat +2");
     expect(usesLabel(t, USE_CASES)).toBe("Chat +7");
+  });
+
+  it("a use · tier pair has no breakable space inside it", () => {
+    expect(usePairLead("Math & reasoning")).toBe("Math\u00A0&\u00A0reasoning\u00A0·\u00A0");
+    expect(usePairLead(t("use.documents"))).not.toMatch(/ /);
+    expect(unbreakable("Pas bon")).toBe("Pas\u00A0bon");
   });
 
   it("every locale carries the new strings with the same placeholders", () => {
