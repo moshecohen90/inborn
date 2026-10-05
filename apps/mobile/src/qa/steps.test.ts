@@ -38,6 +38,10 @@ function fake(nodes: Record<string, NodeValue> = {}) {
       return probes.shift() ?? { bytes: 0, ms: 0, complete: false };
     },
     idleTimerDisabled: async () => idle.disabled,
+    setOffline: (offline) => {
+      calls.push(`network:${offline ? "offline" : "online"}`);
+      return net.allowed;
+    },
     sleep: async (ms) => {
       clock += ms;
     },
@@ -223,5 +227,28 @@ describe("idleTimer (round 91: the screen stays awake while a model downloads)",
     idle.disabled = false;
     const off = await run(surface, [{ op: "idleTimer", disabled: true }]);
     expect(off.steps[0]?.ok).toBe(false);
+  });
+});
+
+const net = { allowed: true };
+
+describe("network (round 130: the app offline, the Mac untouched)", () => {
+  it("flips the app's network both ways", async () => {
+    const { surface, calls } = fake();
+    net.allowed = true;
+    const r = await run(surface, [
+      { op: "network", offline: true },
+      { op: "network", offline: false },
+    ]);
+    expect(r.ok).toBe(true);
+    expect(calls).toEqual(["network:offline", "network:online"]);
+  });
+
+  it("fails the step when the build refuses the switch", async () => {
+    const { surface } = fake();
+    net.allowed = false;
+    const r = await run(surface, [{ op: "network", offline: true }]);
+    expect(r.steps[0]?.ok).toBe(false);
+    net.allowed = true;
   });
 });

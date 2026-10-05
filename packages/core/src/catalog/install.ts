@@ -4,8 +4,11 @@ export type DeliverySource = "bundled" | "play" | "apple" | "https" | "hf" | "im
 export type InstallState =
   | { kind: "not-installed" }
   | { kind: "needs-space"; requiredBytes: number; freeBytes: number }
-  /** `resumedAt`: when a transfer parked by leaving the app continued on return, so the row can say it did not restart. */
-  | { kind: "delivering"; via: DeliverySource; bytes: number; total: number; paused: boolean; waitingForWifi: boolean; needsConfirmation: boolean; resumedAt?: number }
+  /**
+   * `resumedAt`: when a transfer parked by leaving the app continued on return, so the row can say it did not restart.
+   * `waitingForNetwork`: no connection at all (Airplane Mode); the bytes start or continue by themselves when it is back.
+   */
+  | { kind: "delivering"; via: DeliverySource; bytes: number; total: number; paused: boolean; waitingForWifi: boolean; needsConfirmation: boolean; resumedAt?: number; waitingForNetwork?: boolean }
   | { kind: "verifying"; via: DeliverySource; bytes: number }
   | { kind: "ready"; path: string; bytes: number; sha256: string; via: DeliverySource }
   | { kind: "corrupt"; reason: CorruptReason; via: DeliverySource }
@@ -21,6 +24,7 @@ export type InstallEvent =
   | { type: "resume" }
   | { type: "resumed"; at: number }
   | { type: "waiting-for-wifi" }
+  | { type: "waiting-for-network" }
   | { type: "needs-confirmation" }
   | { type: "cancel" }
   | { type: "delivered"; bytes: number }
@@ -49,15 +53,18 @@ export function transition(state: InstallState, event: InstallEvent): InstallSta
       return { kind: "delivering", via: event.via, bytes: 0, total: 0, paused: false, waitingForWifi: false, needsConfirmation: false };
     }
     case "progress":
-      return state.kind === "delivering" ? { ...state, bytes: event.bytes, total: event.total, waitingForWifi: false, needsConfirmation: false } : state;
+      return state.kind === "delivering" ? { ...state, bytes: event.bytes, total: event.total, waitingForWifi: false, needsConfirmation: false, waitingForNetwork: false } : state;
     case "pause":
       return state.kind === "delivering" ? { ...state, paused: true } : state;
     case "resume":
-      return state.kind === "delivering" ? { ...state, paused: false, waitingForWifi: false, needsConfirmation: false } : state;
+      return state.kind === "delivering" ? { ...state, paused: false, waitingForWifi: false, needsConfirmation: false, waitingForNetwork: false } : state;
     case "resumed":
-      return state.kind === "delivering" ? { ...state, paused: false, resumedAt: event.at } : state;
+      return state.kind === "delivering" ? { ...state, paused: false, resumedAt: event.at, waitingForNetwork: false } : state;
+    /* The two waits exclude each other: the path is either gone or it is a data plan the user keeps for Wi-Fi. */
     case "waiting-for-wifi":
-      return state.kind === "delivering" ? { ...state, waitingForWifi: true } : state;
+      return state.kind === "delivering" ? { ...state, waitingForWifi: true, waitingForNetwork: false } : state;
+    case "waiting-for-network":
+      return state.kind === "delivering" ? { ...state, waitingForNetwork: true, waitingForWifi: false } : state;
     case "needs-confirmation":
       return state.kind === "delivering" ? { ...state, needsConfirmation: true } : state;
     case "cancel":

@@ -1,0 +1,708 @@
+{
+  "runId": "d4-photo-muv9chnv",
+  "startedAt": "2026-10-05T13:00:31.961Z",
+  "finishedAt": "2026-10-05T13:01:53.673Z",
+  "ok": true,
+  "passed": 25,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 157,
+      "detail": "/"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 2,
+      "op": "sleep",
+      "ok": true,
+      "ms": 15016,
+      "detail": "15000 ms"
+    },
+    {
+      "i": 3,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 167,
+      "detail": "image: red-circle-cat.png"
+    },
+    {
+      "i": 4,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5017,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 5,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 24 chars"
+    },
+    {
+      "i": 6,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 7,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "vision-hold appeared"
+    },
+    {
+      "i": 8,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 9,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 658,
+      "detail": "21-photo-hold"
+    },
+    {
+      "i": 10,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "empty-headline",
+          "text": "Nothing leaves this phone."
+        },
+        {
+          "testID": "suggestion-summarize",
+          "text": "Summarize text",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-translate",
+          "text": "Translate",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-draft",
+          "text": "Draft a message",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "vision-hold",
+          "text": "FAST needs its photo pack to see photos One 668 MB download, then this photo sends by itself. Download 668 MB Switch to INSTANT · installed Remove the photo Smaller, but less accurate with photos."
+        },
+        {
+          "testID": "vision-hold-title",
+          "text": "FAST needs its photo pack to see photos"
+        },
+        {
+          "testID": "vision-hold-body",
+          "text": "One 668 MB download, then this photo sends by itself."
+        },
+        {
+          "testID": "vision-hold-download",
+          "text": "Download 668 MB",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "vision-hold-switch",
+          "text": "Switch to INSTANT · installed",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "vision-hold-remove",
+          "text": "Remove the photo",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "vision-hold-caption",
+          "text": "Smaller, but less accurate with photos."
+        },
+        {
+          "testID": "pending-images",
+          "text": ""
+        },
+        {
+          "testID": "pending-image-0",
+          "text": "",
+          "role": "button",
+          "label": "Remove photo 1",
+          "pressable": true
+        },
+        {
+          "testID": "redact-bar",
+          "text": "Redact"
+        },
+        {
+          "testID": "redact-open",
+          "text": "Redact",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "What is in this picture?",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "21-photo"
+    },
+    {
+      "i": 11,
+      "op": "network",
+      "ok": true,
+      "ms": 156,
+      "detail": "offline"
+    },
+    {
+      "i": 12,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "vision-hold-download ← onPress"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4017,
+      "detail": "4000 ms"
+    },
+    {
+      "i": 14,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1910,
+      "detail": "22-photo-tapped-offline"
+    },
+    {
+      "i": 15,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "empty-headline",
+          "text": "Nothing leaves this phone."
+        },
+        {
+          "testID": "suggestion-summarize",
+          "text": "Summarize text",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-translate",
+          "text": "Translate",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-draft",
+          "text": "Draft a message",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "vision-hold",
+          "text": "FAST needs its photo pack to see photos The download isn't moving right now. Open the vault to see why. Open the vault Remove the photo"
+        },
+        {
+          "testID": "vision-hold-title",
+          "text": "FAST needs its photo pack to see photos"
+        },
+        {
+          "testID": "vision-hold-body",
+          "text": "The download isn't moving right now. Open the vault to see why."
+        },
+        {
+          "testID": "vision-hold-vault",
+          "text": "Open the vault",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "vision-hold-remove",
+          "text": "Remove the photo",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "pending-images",
+          "text": ""
+        },
+        {
+          "testID": "pending-image-0",
+          "text": "",
+          "role": "button",
+          "label": "Remove photo 1",
+          "pressable": true
+        },
+        {
+          "testID": "redact-bar",
+          "text": "Redact"
+        },
+        {
+          "testID": "redact-open",
+          "text": "Redact",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "What is in this picture?",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "22-photo"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 12006,
+      "detail": "12000 ms"
+    },
+    {
+      "i": 17,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1277,
+      "detail": "23-photo-offline-16s"
+    },
+    {
+      "i": 18,
+      "op": "network",
+      "ok": true,
+      "ms": 157,
+      "detail": "online"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 8016,
+      "detail": "8000 ms"
+    },
+    {
+      "i": 20,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 644,
+      "detail": "24-photo-online-8s"
+    },
+    {
+      "i": 21,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "empty-headline",
+          "text": "Nothing leaves this phone."
+        },
+        {
+          "testID": "suggestion-summarize",
+          "text": "Summarize text",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-translate",
+          "text": "Translate",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-draft",
+          "text": "Draft a message",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "vision-hold",
+          "text": "FAST needs its photo pack to see photos Downloading the photo pack: 170 of 668 MB. Keep Inborn open: the download pauses when you leave Remove the photo"
+        },
+        {
+          "testID": "vision-hold-title",
+          "text": "FAST needs its photo pack to see photos"
+        },
+        {
+          "testID": "vision-hold-body",
+          "text": "Downloading the photo pack: 170 of 668 MB."
+        },
+        {
+          "testID": "vision-hold-progress",
+          "text": ""
+        },
+        {
+          "testID": "vision-hold-keep-open",
+          "text": "Keep Inborn open: the download pauses when you leave"
+        },
+        {
+          "testID": "vision-hold-remove",
+          "text": "Remove the photo",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "pending-images",
+          "text": ""
+        },
+        {
+          "testID": "pending-image-0",
+          "text": "",
+          "role": "button",
+          "label": "Remove photo 1",
+          "pressable": true
+        },
+        {
+          "testID": "redact-bar",
+          "text": "Redact"
+        },
+        {
+          "testID": "redact-open",
+          "text": "Redact",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "What is in this picture?",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "24-photo"
+    },
+    {
+      "i": 22,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 23291,
+      "detail": "vision-hold gone"
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5000,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 24,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2218,
+      "detail": "25-photo-sent"
+    }
+  ],
+  "errors": []
+}

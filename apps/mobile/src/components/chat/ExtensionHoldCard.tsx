@@ -8,6 +8,7 @@ import { extensionReleases } from "../../extensions/state";
 import { installExtension, resumeExtension } from "../../extensions/store";
 import { useExtension } from "../../extensions/useExtension";
 import { installFailureText } from "../../vault/failureText";
+import { offlineKey } from "../../lib/offlineWording";
 import { useType } from "../../services/type";
 
 export interface ExtensionHoldCardProps {
@@ -57,6 +58,11 @@ export function ExtensionHoldCard({ extensionId, theme, count, onCancel, onFallb
       {title ? (
         <Text testID={`${ids.card}-title`} style={[type.bodySmall, type.strong, { color: theme.text }]}>
           {title}
+        </Text>
+      ) : null}
+      {view.offline ? (
+        <Text testID={`${ids.card}-offline`} style={[type.bodySmall, { color: theme.text }]}>
+          {t(offlineKey("vault.state.noInternet"))}
         </Text>
       ) : null}
       <Text testID={ids.body} style={[type.bodySmall, title ? { color: theme.text2 } : type.strong, title ? null : { color: theme.text }]}>

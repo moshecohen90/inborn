@@ -1,0 +1,102 @@
+{
+  "runId": "d2-vault-drop",
+  "_": "Door 2. A download running when the connection goes (Sharp, throttled host), then comes back.",
+  "steps": [
+    {
+      "op": "setTier",
+      "tier": "pro"
+    },
+    {
+      "op": "deeplink",
+      "url": "/vault"
+    },
+    {
+      "op": "sleep",
+      "ms": 3000
+    },
+    {
+      "op": "scrollTo",
+      "testID": "install-sharp"
+    },
+    {
+      "op": "press",
+      "testID": "install-sharp"
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "screenshot",
+      "name": "12a-confirm-sheet"
+    },
+    {
+      "op": "press",
+      "testID": "confirm-download"
+    },
+    {
+      "op": "sleep",
+      "ms": 8000
+    },
+    {
+      "op": "screenshot",
+      "name": "12-sharp-downloading"
+    },
+    {
+      "op": "dump",
+      "name": "12-vault"
+    },
+    {
+      "op": "network",
+      "offline": true
+    },
+    {
+      "op": "sleep",
+      "ms": 5000
+    },
+    {
+      "op": "screenshot",
+      "name": "13-sharp-connection-lost"
+    },
+    {
+      "op": "dump",
+      "name": "13-vault"
+    },
+    {
+      "op": "sleep",
+      "ms": 10000
+    },
+    {
+      "op": "screenshot",
+      "name": "14-sharp-offline-15s"
+    },
+    {
+      "op": "network",
+      "offline": false
+    },
+    {
+      "op": "sleep",
+      "ms": 10000
+    },
+    {
+      "op": "screenshot",
+      "name": "15-sharp-online-10s"
+    },
+    {
+      "op": "dump",
+      "name": "15-vault"
+    },
+    {
+      "op": "press",
+      "testID": "cancel-sharp"
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "setTier",
+      "tier": "free"
+    }
+  ]
+}

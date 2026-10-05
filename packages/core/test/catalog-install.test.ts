@@ -64,4 +64,23 @@ describe("install state machine (spec §8.4, §10.1)", () => {
     expect(failed).toEqual({ kind: "failed", error: "ECONNRESET", via: "https", retryable: true });
     expect(run([{ type: "cancel" }], failed)).toEqual(NOT_INSTALLED);
   });
+
+  it("no connection is its own wait (round 130): bytes clear it, and it never reads as the Wi-Fi wait", () => {
+    let s = run([request(), { type: "waiting-for-network" }]);
+    expect(s).toMatchObject({ kind: "delivering", waitingForNetwork: true, waitingForWifi: false, paused: false });
+    s = run([{ type: "progress", bytes: 10, total: 1000 }], s);
+    expect(s).toMatchObject({ kind: "delivering", bytes: 10, waitingForNetwork: false });
+    s = run([{ type: "waiting-for-network" }, { type: "progress", bytes: 20, total: 1000 }], s);
+    expect(s).toMatchObject({ bytes: 20, waitingForNetwork: false });
+    s = run([{ type: "waiting-for-network" }, { type: "cancel" }], s);
+    expect(s).toEqual(NOT_INSTALLED);
+  });
+
+  it("a path that comes back as a data plan with Wi-Fi only on swaps the network wait for the Wi-Fi wait, and back", () => {
+    let s = run([request(), { type: "waiting-for-network" }, { type: "waiting-for-wifi" }]);
+    expect(s).toMatchObject({ waitingForWifi: true, waitingForNetwork: false });
+    s = run([{ type: "waiting-for-network" }], s);
+    expect(s).toMatchObject({ waitingForWifi: false, waitingForNetwork: true });
+    expect(run([{ type: "waiting-for-network" }], NOT_INSTALLED)).toEqual(NOT_INSTALLED);
+  });
 });

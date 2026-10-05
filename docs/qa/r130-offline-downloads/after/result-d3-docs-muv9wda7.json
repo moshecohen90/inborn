@@ -1,0 +1,774 @@
+{
+  "runId": "d3-docs-muv9wda7",
+  "startedAt": "2026-10-05T13:15:59.356Z",
+  "finishedAt": "2026-10-05T13:17:05.155Z",
+  "ok": true,
+  "passed": 25,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 155,
+      "detail": "/"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 2,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5016,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 3,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 167,
+      "detail": "attach: turbine-report.pdf"
+    },
+    {
+      "i": 4,
+      "op": "sleep",
+      "ok": true,
+      "ms": 8001,
+      "detail": "8000 ms"
+    },
+    {
+      "i": 5,
+      "op": "type",
+      "ok": true,
+      "ms": 166,
+      "detail": "composer-input = 43 chars"
+    },
+    {
+      "i": 6,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 7,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "docs-hold appeared"
+    },
+    {
+      "i": 8,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 9,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2545,
+      "detail": "16-docs-hold"
+    },
+    {
+      "i": 10,
+      "op": "network",
+      "ok": true,
+      "ms": 155,
+      "detail": "offline"
+    },
+    {
+      "i": 11,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "docs-hold-download ← onPress"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4016,
+      "detail": "4000 ms"
+    },
+    {
+      "i": 13,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2228,
+      "detail": "17-docs-tapped-offline"
+    },
+    {
+      "i": 14,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "日本語で、短い俳句を一つ書いてください。",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI 「月明は高く、 花雨に落ちた。」 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "「月明は高く、 花雨に落ちた。」"
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "model-advice",
+          "text": "FAST handles Japanese better than INSTANT, but not fluently. FAST is better at documents than INSTANT. SHARP is the best here for Japanese · 2.74 GB Switch to FAST Not now"
+        },
+        {
+          "testID": "model-advice-reason",
+          "text": "FAST handles Japanese better than INSTANT, but not fluently. FAST is better at documents than INSTANT."
+        },
+        {
+          "testID": "model-advice-best",
+          "text": "SHARP is the best here for Japanese · 2.74 GB",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-switch",
+          "text": "Switch to FAST",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-not-now",
+          "text": "Not now",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "docs-hold",
+          "text": "You are offline. A download is the one thing that needs internet: turn off Airplane Mode or join Wi-Fi. Waiting for a connection. It starts by itself. Send, exact words only Cancel"
+        },
+        {
+          "testID": "docs-hold-offline",
+          "text": "You are offline. A download is the one thing that needs internet: turn off Airplane Mode or join Wi-Fi."
+        },
+        {
+          "testID": "docs-hold-body",
+          "text": "Waiting for a connection. It starts by itself."
+        },
+        {
+          "testID": "docs-hold-words",
+          "text": "Send, exact words only",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "docs-hold-cancel",
+          "text": "Cancel",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "attached-docs",
+          "text": "turbine-report.pdf"
+        },
+        {
+          "testID": "attached-chip-muv9wiqf-1-pucyvixe",
+          "text": "turbine-report.pdf",
+          "role": "button",
+          "label": "Remove turbine-report.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "redact-bar",
+          "text": "Redact"
+        },
+        {
+          "testID": "redact-open",
+          "text": "Redact",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "What does the report say about the turbine?",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "17-docs"
+    },
+    {
+      "i": 15,
+      "op": "sleep",
+      "ok": true,
+      "ms": 12005,
+      "detail": "12000 ms"
+    },
+    {
+      "i": 16,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1592,
+      "detail": "18-docs-offline-16s"
+    },
+    {
+      "i": 17,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "日本語で、短い俳句を一つ書いてください。",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI 「月明は高く、 花雨に落ちた。」 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "「月明は高く、 花雨に落ちた。」"
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "model-advice",
+          "text": "FAST handles Japanese better than INSTANT, but not fluently. FAST is better at documents than INSTANT. SHARP is the best here for Japanese · 2.74 GB Switch to FAST Not now"
+        },
+        {
+          "testID": "model-advice-reason",
+          "text": "FAST handles Japanese better than INSTANT, but not fluently. FAST is better at documents than INSTANT."
+        },
+        {
+          "testID": "model-advice-best",
+          "text": "SHARP is the best here for Japanese · 2.74 GB",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-switch",
+          "text": "Switch to FAST",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-not-now",
+          "text": "Not now",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "docs-hold",
+          "text": "You are offline. A download is the one thing that needs internet: turn off Airplane Mode or join Wi-Fi. Waiting for a connection. It starts by itself. Send, exact words only Cancel"
+        },
+        {
+          "testID": "docs-hold-offline",
+          "text": "You are offline. A download is the one thing that needs internet: turn off Airplane Mode or join Wi-Fi."
+        },
+        {
+          "testID": "docs-hold-body",
+          "text": "Waiting for a connection. It starts by itself."
+        },
+        {
+          "testID": "docs-hold-words",
+          "text": "Send, exact words only",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "docs-hold-cancel",
+          "text": "Cancel",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "attached-docs",
+          "text": "turbine-report.pdf"
+        },
+        {
+          "testID": "attached-chip-muv9wiqf-1-pucyvixe",
+          "text": "turbine-report.pdf",
+          "role": "button",
+          "label": "Remove turbine-report.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "redact-bar",
+          "text": "Redact"
+        },
+        {
+          "testID": "redact-open",
+          "text": "Redact",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "What does the report say about the turbine?",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "18-docs"
+    },
+    {
+      "i": 18,
+      "op": "network",
+      "ok": true,
+      "ms": 157,
+      "detail": "online"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 8000,
+      "detail": "8000 ms"
+    },
+    {
+      "i": 20,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1261,
+      "detail": "19-docs-online-8s"
+    },
+    {
+      "i": 21,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "日本語で、短い俳句を一つ書いてください。",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI 「月明は高く、 花雨に落ちた。」 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "「月明は高く、 花雨に落ちた。」"
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "model-advice",
+          "text": "FAST handles Japanese better than INSTANT, but not fluently. FAST is better at documents than INSTANT. SHARP is the best here for Japanese · 2.74 GB Switch to FAST Not now"
+        },
+        {
+          "testID": "model-advice-reason",
+          "text": "FAST handles Japanese better than INSTANT, but not fluently. FAST is better at documents than INSTANT."
+        },
+        {
+          "testID": "model-advice-best",
+          "text": "SHARP is the best here for Japanese · 2.74 GB",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-switch",
+          "text": "Switch to FAST",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-not-now",
+          "text": "Not now",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "docs-hold",
+          "text": "Downloading the document index model… 41%. Your message is sent when it's ready. Keep Inborn open: the download pauses when you leave Send, exact words only Cancel"
+        },
+        {
+          "testID": "docs-hold-body",
+          "text": "Downloading the document index model… 41%. Your message is sent when it's ready."
+        },
+        {
+          "testID": "docs-hold-keep-open",
+          "text": "Keep Inborn open: the download pauses when you leave"
+        },
+        {
+          "testID": "docs-hold-words",
+          "text": "Send, exact words only",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "docs-hold-cancel",
+          "text": "Cancel",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "attached-docs",
+          "text": "turbine-report.pdf"
+        },
+        {
+          "testID": "attached-chip-muv9wiqf-1-pucyvixe",
+          "text": "turbine-report.pdf",
+          "role": "button",
+          "label": "Remove turbine-report.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "redact-bar",
+          "text": "Redact"
+        },
+        {
+          "testID": "redact-open",
+          "text": "Redact",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "What does the report say about the turbine?",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "19-docs"
+    },
+    {
+      "i": 22,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 12514,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5008,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 24,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 960,
+      "detail": "20-docs-sent"
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,22 @@
+{
+  "runId": "d1b-onboard-online",
+  "_": "Door 1. The connection comes back while the model step is up: does the download start by itself?",
+  "steps": [
+    {
+      "op": "network",
+      "offline": false
+    },
+    {
+      "op": "sleep",
+      "ms": 8000
+    },
+    {
+      "op": "screenshot",
+      "name": "04-model-step-online-8s"
+    },
+    {
+      "op": "dump",
+      "name": "04-model-step"
+    }
+  ]
+}

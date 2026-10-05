@@ -1,0 +1,306 @@
+{
+  "runId": "d1-onboard-offline-muv9qy18",
+  "startedAt": "2026-10-05T13:12:00.385Z",
+  "finishedAt": "2026-10-05T13:12:22.224Z",
+  "ok": true,
+  "passed": 13,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "onboarding-continue appeared"
+    },
+    {
+      "i": 1,
+      "op": "press",
+      "ok": true,
+      "ms": 157,
+      "detail": "onboarding-continue ← onPress"
+    },
+    {
+      "i": 2,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "onboarding-model appeared"
+    },
+    {
+      "i": 3,
+      "op": "network",
+      "ok": true,
+      "ms": 166,
+      "detail": "offline"
+    },
+    {
+      "i": 4,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 5,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1279,
+      "detail": "01-model-step-offline"
+    },
+    {
+      "i": 6,
+      "op": "press",
+      "ok": true,
+      "ms": 171,
+      "detail": "download-model ← onPress"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4001,
+      "detail": "4000 ms"
+    },
+    {
+      "i": 8,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1594,
+      "detail": "02-download-tapped-offline"
+    },
+    {
+      "i": 9,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "onboarding-welcome",
+          "text": "Nothing leaves this phone. AI that runs on your device. No account, no cloud, and nothing you type ever leaves it. RUNS ON: Simulator iOS · 64 GB Continue This is AI. It can be wrong. Check important facts."
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "Open seal"
+        },
+        {
+          "testID": "runs-on",
+          "text": "RUNS ON: Simulator iOS · 64 GB"
+        },
+        {
+          "testID": "onboarding-continue",
+          "text": "Continue",
+          "pressable": true
+        },
+        {
+          "testID": "onboarding-model",
+          "text": "Choose your model Your model runs entirely on this phone. You can change it later. Instant READY NOW 533 MB · inside the app · nothing to download Quick answers and voice notes. Lightest on battery. Best in English, Chinese. Fast RECOMMENDED FOR THIS phone 1.28 GB · one download from Everyday assistant: writing, questions, translation. Best balance on this device. Best in English, Chinese, Spanish, French and 4 more languages. You are offline. A download is the one thing that needs internet: turn off Airplane Mode or join Wi-Fi. 0% Waiting for a connection. It starts by itself. You can add or remove models any time in the vault. Start now with Instant Stop the download"
+        },
+        {
+          "testID": "model-options",
+          "text": "Instant READY NOW 533 MB · inside the app · nothing to download Quick answers and voice notes. Lightest on battery. Best in English, Chinese. Fast RECOMMENDED FOR THIS phone 1.28 GB · one download from Everyday assistant: writing, questions, translation. Best balance on this device. Best in English, Chinese, Spanish, French and 4 more languages. You are offline. A download is the one thing that needs internet: turn off Airplane Mode or join Wi-Fi. 0% Waiting for a connection. It starts by itself."
+        },
+        {
+          "testID": "model-option-instant",
+          "text": "Instant READY NOW 533 MB · inside the app · nothing to download Quick answers and voice notes. Lightest on battery. Best in English, Chinese.",
+          "role": "radio",
+          "state": {
+            "selected": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "model-source-instant",
+          "text": "533 MB · inside the app · nothing to download"
+        },
+        {
+          "testID": "model-option-fast",
+          "text": "Fast RECOMMENDED FOR THIS phone 1.28 GB · one download from Everyday assistant: writing, questions, translation. Best balance on this device. Best in English, Chinese, Spanish, French and 4 more languages. You are offline. A download is the one thing that needs internet: turn off Airplane Mode or join Wi-Fi. 0% Waiting for a connection. It starts by itself.",
+          "role": "radio",
+          "state": {
+            "selected": true,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "model-source-fast",
+          "text": "1.28 GB · one download from"
+        },
+        {
+          "testID": "model-offline-fast",
+          "text": "You are offline. A download is the one thing that needs internet: turn off Airplane Mode or join Wi-Fi."
+        },
+        {
+          "testID": "model-progress",
+          "text": ""
+        },
+        {
+          "testID": "model-waiting-fast",
+          "text": "Waiting for a connection. It starts by itself."
+        },
+        {
+          "testID": "back",
+          "text": "",
+          "role": "button",
+          "label": "Back",
+          "pressable": true
+        },
+        {
+          "testID": "start-chatting",
+          "text": "Start now with Instant",
+          "pressable": true
+        },
+        {
+          "testID": "cancel-download",
+          "text": "Stop the download",
+          "pressable": true
+        },
+        {
+          "testID": "banners",
+          "text": "FAST is waiting for a connection. It starts by itself."
+        },
+        {
+          "testID": "banner-delivery",
+          "text": "FAST is waiting for a connection. It starts by itself."
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "02-model-step"
+    },
+    {
+      "i": 10,
+      "op": "sleep",
+      "ok": true,
+      "ms": 12001,
+      "detail": "12000 ms"
+    },
+    {
+      "i": 11,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 963,
+      "detail": "03-download-offline-16s"
+    },
+    {
+      "i": 12,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "onboarding-welcome",
+          "text": "Nothing leaves this phone. AI that runs on your device. No account, no cloud, and nothing you type ever leaves it. RUNS ON: Simulator iOS · 64 GB Continue This is AI. It can be wrong. Check important facts."
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "Open seal"
+        },
+        {
+          "testID": "runs-on",
+          "text": "RUNS ON: Simulator iOS · 64 GB"
+        },
+        {
+          "testID": "onboarding-continue",
+          "text": "Continue",
+          "pressable": true
+        },
+        {
+          "testID": "onboarding-model",
+          "text": "Choose your model Your model runs entirely on this phone. You can change it later. Instant READY NOW 533 MB · inside the app · nothing to download Quick answers and voice notes. Lightest on battery. Best in English, Chinese. Fast RECOMMENDED FOR THIS phone 1.28 GB · one download from Everyday assistant: writing, questions, translation. Best balance on this device. Best in English, Chinese, Spanish, French and 4 more languages. You are offline. A download is the one thing that needs internet: turn off Airplane Mode or join Wi-Fi. 0% Waiting for a connection. It starts by itself. You can add or remove models any time in the vault. Start now with Instant Stop the download"
+        },
+        {
+          "testID": "model-options",
+          "text": "Instant READY NOW 533 MB · inside the app · nothing to download Quick answers and voice notes. Lightest on battery. Best in English, Chinese. Fast RECOMMENDED FOR THIS phone 1.28 GB · one download from Everyday assistant: writing, questions, translation. Best balance on this device. Best in English, Chinese, Spanish, French and 4 more languages. You are offline. A download is the one thing that needs internet: turn off Airplane Mode or join Wi-Fi. 0% Waiting for a connection. It starts by itself."
+        },
+        {
+          "testID": "model-option-instant",
+          "text": "Instant READY NOW 533 MB · inside the app · nothing to download Quick answers and voice notes. Lightest on battery. Best in English, Chinese.",
+          "role": "radio",
+          "state": {
+            "selected": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "model-source-instant",
+          "text": "533 MB · inside the app · nothing to download"
+        },
+        {
+          "testID": "model-option-fast",
+          "text": "Fast RECOMMENDED FOR THIS phone 1.28 GB · one download from Everyday assistant: writing, questions, translation. Best balance on this device. Best in English, Chinese, Spanish, French and 4 more languages. You are offline. A download is the one thing that needs internet: turn off Airplane Mode or join Wi-Fi. 0% Waiting for a connection. It starts by itself.",
+          "role": "radio",
+          "state": {
+            "selected": true,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "model-source-fast",
+          "text": "1.28 GB · one download from"
+        },
+        {
+          "testID": "model-offline-fast",
+          "text": "You are offline. A download is the one thing that needs internet: turn off Airplane Mode or join Wi-Fi."
+        },
+        {
+          "testID": "model-progress",
+          "text": ""
+        },
+        {
+          "testID": "model-waiting-fast",
+          "text": "Waiting for a connection. It starts by itself."
+        },
+        {
+          "testID": "back",
+          "text": "",
+          "role": "button",
+          "label": "Back",
+          "pressable": true
+        },
+        {
+          "testID": "start-chatting",
+          "text": "Start now with Instant",
+          "pressable": true
+        },
+        {
+          "testID": "cancel-download",
+          "text": "Stop the download",
+          "pressable": true
+        },
+        {
+          "testID": "banners",
+          "text": "FAST is waiting for a connection. It starts by itself."
+        },
+        {
+          "testID": "banner-delivery",
+          "text": "FAST is waiting for a connection. It starts by itself."
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "03-model-step"
+    }
+  ],
+  "errors": []
+}

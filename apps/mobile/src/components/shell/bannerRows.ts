@@ -58,7 +58,8 @@ export function bannerRows({ device, storageFull, repair, pausedHere, delivery }
   else if (rec.kind === "switchToInstant" && rec.auto) rows.push({ key: "lowpower", tone: "muted", text: t("state.lowPowerSwitched"), action: { label: t("state.switchBack"), onPress: act.switchBack } });
   else if (rec.kind === "switchToInstant" && rec.reason === "battery" && device.battery.level !== null)
     rows.push({ key: "battery", tone: "muted", text: t("state.batteryOffer", { pct: Math.round(device.battery.level * 100) }), action: { label: t("state.switch"), onPress: act.switchToInstant } });
-  if (delivery && delivery.status === "delivering")
+  if (delivery && delivery.status === "delivering" && delivery.waiting) rows.push({ key: "delivery", tone: "muted", text: t("state.deliveryWaiting", { name: delivery.name }) });
+  else if (delivery && delivery.status === "delivering")
     /* Same bytes as the model card below it (F376): reconstructing them from the fraction AppServices already computed keeps this in exact lockstep instead of re-deriving its own rounding. */
     rows.push({ key: "delivery", tone: "muted", text: t("state.delivering", { name: delivery.name, pct: downloadPercent(delivery.progress * delivery.totalBytes, delivery.totalBytes), size: formatModelBytes(delivery.totalBytes) }) });
   else if (delivery && delivery.status === "verifying") rows.push({ key: "delivery", tone: "muted", text: t("state.verifying", { name: delivery.name, size: formatModelBytes(delivery.totalBytes) }) });

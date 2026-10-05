@@ -9,6 +9,7 @@ import { router } from "expo-router";
 import { requestBytes } from "@inborn/core";
 import { recordTransfer } from "../proof/transfers";
 import { allowedHosts } from "../vault/httpsDelivery";
+import { setSimulatedOffline } from "../vault/devOffline";
 import { setEntitlements } from "../lib/entitlements";
 import { getLicence } from "../licence/licence";
 import { ackExists, cleanup, writeDevPrompt, writeProgress } from "./io";
@@ -164,6 +165,7 @@ export function createSurface(getHandle: () => unknown, runId: string): Surface 
     devPrompt: writeDevPrompt,
     probeDownload,
     idleTimerDisabled: async () => (await requireOptionalNativeModule<{ isActivated: () => Promise<boolean> }>("ExpoKeepAwake")?.isActivated()) ?? false,
+    setOffline: (offline) => setSimulatedOffline(offline),
     cleanup,
     sleep,
     now: () => Date.now(),

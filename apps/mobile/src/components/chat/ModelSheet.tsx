@@ -8,6 +8,8 @@ import { Sheet } from "./Sheet";
 import { useType } from "../../services/type";
 import { deviceNoun } from "../../lib/deviceNoun";
 import { modelLabel } from "../../lib/models";
+import { offlineKey } from "../../lib/offlineWording";
+import { useOffline } from "../../lib/useOffline";
 import { WEB_HERE, goodAtUses, recommendationKey, roomNoteParams } from "../../lib/modelSheetLines";
 import { Toggle } from "../shell/primitives";
 import { ChipGlyph } from "../shell/ChipGlyph";
@@ -206,6 +208,7 @@ function ModelRow({ choice, theme, deviceRamGB, languageCode, languageName, loca
   /* §9.9 keeps the sealed green for the seal: the language tier is a ladder of ink weight instead (QA F247). */
   const tierColor = tier === "native" ? theme.text : tier === "good" ? theme.text2 : tier === "none" ? theme.danger : theme.text3;
   const downloading = state?.kind === "delivering" || state?.kind === "verifying";
+  const offline = useOffline();
   const percent = state?.kind === "delivering" ? downloadPercent(state.bytes, state.total || model.bytes) : 0;
   /* A model this tier cannot install is not offered at the weight of the one in use (QA F248). */
   const dim = !!choice.blocked || (managed && !choice.current && !onChoose);
@@ -243,15 +246,25 @@ function ModelRow({ choice, theme, deviceRamGB, languageCode, languageName, loca
           {choice.blocked === "engine" ? ` · ${t("vault.state.updateApp")}` : choice.blocked === "ram" ? ` · ${t("vault.willNotRun", { ram: deviceRamGB })}` : choice.blocked === "slow" ? ` · ${t("vault.tooSlowHere", { device: deviceNoun() })}` : ""}
         </Text>
       )}
+      {state?.kind === "delivering" && state.waitingForNetwork ? (
+        <Text testID={`model-sheet-offline-${model.id}`} style={[type.bodySmall, { color: theme.text }]}>
+          {t(offlineKey("vault.state.noInternet"))}
+        </Text>
+      ) : null}
       {downloading ? (
         <Text testID={`model-sheet-progress-${model.id}`} style={[type.mono, { color: theme.text2 }]}>
-          {state?.kind === "verifying" ? t("vault.state.verifying") : t("vault.state.delivering", { percent, done: formatModelBytes(state?.kind === "delivering" ? state.bytes : 0), total: formatModelBytes(model.bytes) })}
+          {state?.kind === "delivering" && state.waitingForNetwork ? t("vault.state.waitingNetwork") : state?.kind === "verifying" ? t("vault.state.verifying") : t("vault.state.delivering", { percent, done: formatModelBytes(state?.kind === "delivering" ? state.bytes : 0), total: formatModelBytes(model.bytes) })}
         </Text>
       ) : null}
 
       {confirming ? (
         <View testID={`model-sheet-confirm-${model.id}`} style={styles.confirm}>
           <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("vault.confirm.https", { size: formatModelBytes(model.bytes), host: origin ?? "" })}</Text>
+          {offline ? (
+            <Text testID={`model-sheet-confirm-offline-${model.id}`} style={[type.bodySmall, { color: theme.text }]}>
+              {t(offlineKey("vault.confirm.offline"))}
+            </Text>
+          ) : null}
           {onWifiOnly ? (
             <View style={styles.wifiRow}>
               <Text style={[type.bodySmall, styles.grow, { color: theme.text }]}>{t("vault.confirm.wifiOnly")}</Text>

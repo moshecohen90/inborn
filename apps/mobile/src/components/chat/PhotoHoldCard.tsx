@@ -7,6 +7,7 @@ import { holdTestIds } from "../../extensions/card";
 import { activePath, photoHoldView, type HeldPhoto, type PhotoRoute } from "../../extensions/photoCard";
 import { installPath, pendingPiece, usePathState } from "../../extensions/photoPath";
 import { installFailureText } from "../../vault/failureText";
+import { offlineKey } from "../../lib/offlineWording";
 import { useType } from "../../services/type";
 
 export interface PhotoHoldCardProps {
@@ -77,6 +78,11 @@ export function PhotoHoldCard({ held, theme, count, model, seer, hint, onCancel,
       <Text testID={`${ids.card}-title`} style={[type.bodySmall, type.strong, { color: theme.text }]}>
         {tr(view.title)}
       </Text>
+      {view.offline ? (
+        <Text testID={`${ids.card}-offline`} style={[type.bodySmall, { color: theme.text }]}>
+          {t(offlineKey("vault.state.noInternet"))}
+        </Text>
+      ) : null}
       <Text testID={ids.body} style={[type.bodySmall, { color: theme.text2 }]}>
         {tr(view.body)}
       </Text>

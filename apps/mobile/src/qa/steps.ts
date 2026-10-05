@@ -22,6 +22,8 @@ export type Step =
   | { op: "sleep"; ms: number }
   | { op: "probeDownload"; url: string; session: ProbeSession; seconds?: number }
   | { op: "idleTimer"; disabled?: boolean }
+  /** The app's own view of the network (round 130): offline without touching the Mac's. */
+  | { op: "network"; offline: boolean }
   | { op: "cleanup" };
 
 /** expo-file-system's two iOS URLSession configurations: nsurlsessiond out of process, or in the app's own process. */
@@ -57,6 +59,8 @@ export interface Surface {
   probeDownload: (url: string, session: ProbeSession, seconds: number) => Promise<ProbeResult>;
   /** iOS `UIApplication.isIdleTimerDisabled`: true while the screen is kept from auto-locking. */
   idleTimerDisabled: () => Promise<boolean>;
+  /** False when this build refuses the switch. */
+  setOffline: (offline: boolean) => boolean;
   sleep: (ms: number) => Promise<void>;
   now: () => number;
 }
@@ -178,6 +182,10 @@ async function runStep(surface: Surface, step: Step): Promise<Partial<StepResult
       if (step.disabled !== undefined && disabled !== step.disabled) throw new Error(`idleTimer: auto-lock is ${disabled ? "off" : "on"}, expected ${step.disabled ? "off" : "on"}`);
       return { detail: `idle timer disabled: ${disabled}`, value: { text: String(disabled), props: { idleTimerDisabled: disabled } } };
     }
+    case "network":
+      if (!surface.setOffline(step.offline === true)) throw new Error("network: this build cannot simulate a lost connection");
+      await surface.sleep(SETTLE);
+      return { detail: step.offline ? "offline" : "online" };
     case "cleanup":
       surface.cleanup();
       return { detail: "qa namespace removed" };

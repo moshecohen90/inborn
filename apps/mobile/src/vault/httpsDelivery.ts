@@ -6,6 +6,7 @@ import { DEV_MODEL_HOST, devBuild } from "./devFlags";
 import { hfHeaders, hfSearchAvailable } from "./hf";
 import { recordTransfer } from "../proof/transfers";
 import { fileSize, modelFile, partialFile, safeDelete } from "./paths";
+import { CONNECTION_LOST, FETCH_FAILED, NOT_CONNECTED, dropOnSimulatedOffline, simulatedOffline } from "./devOffline";
 
 /* Dev bundles may also talk to the local stand-in (scripts/serve-models.mjs); store bundles never (spec §5.1). */
 export const DEV_MODEL_HOSTS: readonly string[] = devBuild() ? ["127.0.0.1", "localhost", "10.0.2.2", ...(DEV_MODEL_HOST ? [DEV_MODEL_HOST] : [])] : [];
@@ -90,7 +91,7 @@ export class HttpsDelivery implements ModelDelivery {
   private async deliverPart(model: CatalogModel, shard: ModelPart, emit: (e: InstallEvent) => void, progress: (bytes: number) => void): Promise<void> {
     const url = this.url(model, shard);
     if (!url) throw new Error(`no allowed https delivery for ${model.id}`);
-    await this.waitForWifi(model, shard, emit);
+    await this.waitForPath(model, shard.bytes, emit);
     const part = partialFile(shard.file);
     /* Every byte already here (a verify that failed after the transfer, QA F20): rename, never fetch from 0 again. */
     if (fileSize(part) === shard.bytes) {
@@ -116,18 +117,25 @@ export class HttpsDelivery implements ModelDelivery {
     const before = fileSize(part);
     try {
       for (;;) {
-        const leave = this.parkOnLeave(task);
+        const park = this.parkOn(task);
+        const drop = dropOnSimulatedOffline(task);
         let result: Awaited<ReturnType<DownloadTask["downloadAsync"]>>;
         try {
+          if (simulatedOffline()) throw new Error(NOT_CONNECTED);
           result = task.state === "paused" ? await task.resumeAsync() : await task.downloadAsync();
+        } catch (e: unknown) {
+          throw drop.dropped() ? new Error(CONNECTION_LOST) : e;
         } finally {
-          leave.stop();
+          park.stop();
+          drop.stop();
         }
         if (result) break;
         const state: SavedDownload = { ...(this.ctx.savedDownload(model.id) as SavedDownload | undefined), ...task.savable() };
         this.ctx.saveDownload(model.id, state);
-        if (!leave.parked()) throw new PausedError();
-        await this.untilOnScreen(model.id);
+        const why = park.reason();
+        if (!why) throw new PausedError();
+        if (why === "network") await this.waitForPath(model, shard.bytes, emit);
+        else await this.untilOnScreen(model.id);
         task = DownloadTask.fromSavable({ ...state, fileUri: part.uri }, opts);
         this.tasks.set(model.id, task);
         emit({ type: "resumed", at: Date.now() });
@@ -152,16 +160,34 @@ export class HttpsDelivery implements ModelDelivery {
     }
   }
 
-  /** iOS only: pauses the running leg when the app goes to the background, where an in-process session would stall. */
-  private parkOnLeave(task: DownloadTask): { parked: () => boolean; stop: () => void } {
-    if (DOWNLOAD_SESSION !== "foreground") return { parked: () => false, stop: () => undefined };
-    let parked = false;
-    const sub = AppState.addEventListener("change", (next) => {
-      if (next !== "background" || parked || task.state !== "active") return;
-      parked = true;
+  /**
+   * Pauses the running leg with its resume data when the path goes (Airplane Mode), so it continues from the same byte
+   * once the connection is back; and, on iOS only, when the app goes to the background, where an in-process session
+   * would stall.
+   */
+  private parkOn(task: DownloadTask): { reason: () => "leave" | "network" | null; stop: () => void } {
+    let reason: "leave" | "network" | null = null;
+    const park = (why: "leave" | "network"): void => {
+      if (reason || task.state !== "active") return;
+      reason = why;
       void task.pauseAsync().catch(() => undefined);
+    };
+    const sub =
+      DOWNLOAD_SESSION === "foreground"
+        ? AppState.addEventListener("change", (next) => {
+            if (next === "background") park("leave");
+          })
+        : null;
+    const unwatch = this.ctx.onNetworkChange?.((kind) => {
+      if (kind === "none") park("network");
     });
-    return { parked: () => parked, stop: () => sub.remove() };
+    return {
+      reason: () => reason,
+      stop: () => {
+        sub?.remove();
+        unwatch?.();
+      },
+    };
   }
 
   /** iOS only: a parked or not-yet-started download waits for the screen; Pause and Cancel end the wait. */
@@ -202,13 +228,17 @@ export class HttpsDelivery implements ModelDelivery {
   /**
    * §10.1 #4: a model over 100 MB does not spend the user's data plan. The card says "Waiting for Wi-Fi" and the
    * bytes wait, here rather than in Play's downloader, so iOS and the desktop honour the switch Android already did.
+   * No path at all is its own wait (round 130): the card says the download starts by itself once there is one.
    */
-  private async waitForWifi(model: CatalogModel, shard: ModelPart, emit: (e: InstallEvent) => void): Promise<void> {
-    let announced = false;
-    while (shouldWait(shard.bytes, await this.ctx.network(), this.ctx.wifiOnly())) {
-      if (!announced) {
-        announced = true;
-        emit({ type: "waiting-for-wifi" });
+  private async waitForPath(model: CatalogModel, bytes: number, emit: (e: InstallEvent) => void): Promise<void> {
+    let announced: InstallEvent["type"] | null = null;
+    for (;;) {
+      const kind = await this.ctx.network();
+      if (!shouldWait(bytes, kind, this.ctx.wifiOnly())) return;
+      const event = kind === "none" ? "waiting-for-network" : "waiting-for-wifi";
+      if (event !== announced) {
+        announced = event;
+        emit({ type: event });
       }
       let wake = (): void => undefined;
       const slept = new Promise<void>((resolve) => {
@@ -219,10 +249,12 @@ export class HttpsDelivery implements ModelDelivery {
         };
       });
       this.waiting.set(model.id, wake);
+      const unwatch = this.ctx.onNetworkChange?.(() => wake());
       try {
         await slept;
       } finally {
         this.waiting.delete(model.id);
+        unwatch?.();
       }
       /* Cancel and pause both leave the queue through the same door: nothing was written, so there is nothing to keep. */
       if (this.stopped.delete(model.id)) throw new PausedError();
@@ -231,6 +263,7 @@ export class HttpsDelivery implements ModelDelivery {
 
   /** Real size from a HEAD before anything is written (spec S30 edge cases). */
   private async head(url: string): Promise<{ total: number; etag?: string; acceptRanges: boolean }> {
+    if (simulatedOffline()) throw new TypeError(FETCH_FAILED);
     const r = await fetch(url, { method: "HEAD", headers: hostOf(url) === HF_HOST ? await hfHeaders() : undefined });
     recordTransfer({ host: hostOf(url), bytesOut: requestBytes(url, "HEAD"), bytesIn: 0, purpose: "model" });
     if (!r.ok) throw new Error(`HEAD ${r.status} from ${hostOf(url)}`);
