@@ -116,12 +116,12 @@ import { switchChatModel } from "../extensions/chatModel";
 import { stashHeldTurn, takeHeldTurn } from "../lib/heldTurn";
 import { EMBED_MODEL_ID } from "../documents/embedder";
 import { visionTimeHint } from "../extensions/timeHint";
-import { noPassageOpeners, planDocsTurn, planIndexHold, saysNoneMatched } from "../lib/docsGate";
+import { claimsFileContent, noPassageOpeners, planDocsTurn, planIndexHold, releaseWhenIndexed, saysNoneMatched } from "../lib/docsGate";
 import { reindexNotice, type AnsweredMidReindex } from "../lib/reindexNotice";
 import { withPhotos } from "../lib/photoPrompt";
 import { dismissAfterSend } from "../lib/keyboardDismiss";
 import { imageDocuments, photoTextDocs, withPhotoText } from "../documents/photoDocs";
-import { carriesPage, pageImagePrefix, planPagePhoto, type PagePhoto } from "../documents/pagePhoto";
+import { carriesPage, isThinTurn, pageImagePrefix, planPage, type PagePlan } from "../documents/pagePhoto";
 import { hasPageRenderer, pageInkAt, renderPageAt } from "../documents/extract";
 import { resolveDocUri } from "../documents/files";
 import { canCiteMarkers } from "../documents/library";
@@ -289,6 +289,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const [photoHold, setPhotoHold] = useState<HeldPhoto | null>(null);
   /* The held turn's only picture is a PDF page still to be rendered, so the card shows with no photo in the composer. */
   const [pageHeld, setPageHeld] = useState(false);
+  /* "Remove the photo" on a held page: the next Send goes without the picture, the model told it cannot see the page. */
+  const pageDeclined = useRef(false);
   const photoGating = useRef(false);
   const [templatesOpen, setTemplatesOpen] = useState(false);
   const [redactOpen, setRedactOpen] = useState(false);
@@ -480,7 +482,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
    * One generation: streams into `targetId` (a fresh pending row, or an existing partial when continuing).
    * `history` is the wire conversation to send; `prefix` is content already on the target row.
    */
-  const generate = async (chatIdNow: string, history: Message[], targetId: string, prefix: string, existingMessageId?: string, continueFrom?: ContinueFrom, photoDocIds: readonly string[] = []) => {
+  const generate = async (chatIdNow: string, history: Message[], targetId: string, prefix: string, existingMessageId?: string, continueFrom?: ContinueFrom, photoDocIds: readonly string[] = [], page: PagePlan | null = null) => {
     const s = session.current;
     if (!s) return;
     dismissAfterSend(Platform.OS, Keyboard);
@@ -572,6 +574,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       }
       /* Round 130: a page picture of an attached PDF is in the conversation, so passages join it only when they bear on the question. */
       const seesPage = !existingMessageId && modelHasVision(model.id) && resolveVision(model.id) !== null && carriesPage(history, docs.context.docIds);
+      /* A page of crumbs whose picture is not going to the model: it gets all of the page's text and is told it cannot see the rest. */
+      const thinPage = !existingMessageId && !seesPage && isThinTurn(page) ? { docId: page.doc.id, page: page.page } : undefined;
       /* The turn answers from the model although files are attached: say the files are not in this answer (QA F161). */
       if (turn.kind === "model" && saysNoneMatched({ continuing: !!existingMessageId, attachedCount: docs.documents.length, usedPassages: 0 })) setNoneMatched(true);
       /* F50: an explicitly prohibited request is refused before a token is generated, so the mode costs nothing when it fires. */
@@ -593,7 +597,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       /* Attached documents (§7.3, §8.5): retrieve, fence, cite. */
       if (turn.kind === "retrieve" && !seesPage) {
         try {
-          const rag = await docs.buildPrompt(lastUser, history.slice(0, lastUserAt), nCtx, system, photoDocIds);
+          const rag = await docs.buildPrompt(lastUser, history.slice(0, lastUserAt), nCtx, system, photoDocIds, thinPage);
           if (rag.reindexing) setReindexing(rag.reindexing);
           if (rag.lexical) setWordsOnly(true);
           if (rag.prompt.noAnswer) {
@@ -764,6 +768,11 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         if (saysNoneMatched({ continuing: !!existingMessageId, attachedCount: docs.documents.length, usedPassages: kept.length })) setNoneMatched(true);
         citations = kept.length ? kept : undefined;
       }
+      /* Files attached, no passage or page picture behind the answer, and it still says what a file states: it is replaced, not shown. */
+      if (!ragUsed.length && !existingMessageId && !familySafeReplaced && docs.documents.length > 0 && !messages.some((m) => m.images?.length) && claimsFileContent(reply)) {
+        reply = t("documents.opener.nothingRelevant");
+        patch((x) => ({ ...x, content: shown() }));
+      }
       let keptId: string | null = null;
       if (!reply && !reasoning && stopped && !savedId) {
         setRows((all) => all.filter((x) => x.id !== rowId));
@@ -838,11 +847,12 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     }
     photoGating.current = true;
     try {
-      const page = await planPagePhoto({
+      const page = await planPage({
         ownPhotos: pendingImages.length,
         limit: limits(tier).imagesPerMessage,
         attached: docs.documents,
         canRender: hasPageRenderer(),
+        declined: pageDeclined.current,
         /* A model that cannot see the page shown earlier gets it again, so Send offers the pack instead of a blind answer. */
         sent: photoPlanHere(model.id, tier !== "free").kind === "send" ? rowsRef.current.flatMap((r) => r.images ?? []) : [],
         chars: (id) => library.pageChars(id),
@@ -853,7 +863,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         return null;
       });
       await gatePhotoSend({
-        hasImages: pendingImages.length > 0 || !!page,
+        hasImages: pendingImages.length > 0 || !!page?.picture,
         scanned: async () => {
           setPreparingVision(true);
           try {
@@ -881,7 +891,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     }
   };
   /* The page goes into the message as a photo, so the bubble shows what the model looked at; the composer keeps the paperclip chip. */
-  const importPage = async ({ doc, page }: PagePhoto): Promise<PickedImage | null> => {
+  const importPage = async ({ doc, page }: PagePlan): Promise<PickedImage | null> => {
     try {
       const png = await renderPageAt(resolveDocUri(doc.uri!), page);
       if (!png) return null;
@@ -893,7 +903,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       return null;
     }
   };
-  const submitNow = async (input: string, text: string, page: PagePhoto | null = null) => {
+  const submitNow = async (input: string, text: string, page: PagePlan | null = null) => {
+    pageDeclined.current = false;
     setDraft("");
     const dictated = isDictatedSend(dictatedDraft.current, text);
     setLastDictated(dictated);
@@ -913,7 +924,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         if (at >= 0) setRows((all) => all.slice(0, at));
         if (chat?.summaryUpTo && !rowsRef.current.some((r) => r.id === chat.summaryUpTo)) setChat((c) => (c ? { ...c, summary: undefined, summaryUpTo: undefined } : c));
       }
-      const pagePicture = page ? await importPage(page) : null;
+      const pagePicture = page?.picture ? await importPage(page) : null;
       const images = [...pendingImages, ...(pagePicture ? [pagePicture] : [])].map((p) => storedImagePath(p.uri));
       const photoDocIds = photoTextDocs(pendingImages.map((p) => p.uri), photoDocOf.current, (id) => library.document(id));
       setPendingImages([]);
@@ -925,7 +936,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       follow.current = true;
       requestAnimationFrame(() => list.current?.scrollToEnd({ animated: true }));
       const history: Message[] = wire(rowsRef.current).map(toMessage);
-      await generate(chatIdNow, history, pendingId, "", undefined, undefined, photoDocIds);
+      await generate(chatIdNow, history, pendingId, "", undefined, undefined, photoDocIds, page);
       if (noSpace.current) throw new Error("no-space");
     } catch (e: unknown) {
       if (noSpace.current || isNoSpaceError(e)) {
@@ -1321,7 +1332,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const seerPath = photoPlanNow.kind === "switch" ? photoPlanNow.alt : null;
   const seerReady = !!seerPath && seerPath.missing.length === 0;
   const sendHeldWith = (modelId: string) => {
-    if (pendingImagesRef.current.length || pageHeld) stashHeldTurn({ model: modelId, text: draftRef.current, images: pendingImagesRef.current });
+    if (pendingImagesRef.current.length || pageHeld) stashHeldTurn({ model: modelId, text: draftRef.current, images: pendingImagesRef.current, docIds: library.attachedTo(docKey).map((d) => d.id) });
     setPhotoHold(null);
     if (webPhotos) void switchChatModel(modelId);
     else onSwitchModel?.(modelId);
@@ -1400,6 +1411,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   };
   const dropAllPhotos = () => {
     for (const p of pendingImages) removeImage(p.uri);
+    if (pageHeld) pageDeclined.current = true;
     setPendingImages([]);
     setPhotoHold(null);
   };
@@ -1411,25 +1423,28 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     setPhotoHold(null);
     void submitRef.current(draftRef.current);
   }, []);
-  const carried = useRef<number | null>(null);
+  const carried = useRef<{ images: number; docs: number } | null>(null);
   useEffect(() => {
     if (status.kind !== "ready") return;
     const turn = takeHeldTurn(model.id);
     if (!turn) return;
-    carried.current = turn.images.length;
+    const docIds = (turn.docIds ?? []).filter((id) => library.document(id));
+    for (const id of docIds) library.attach(docKey, id);
+    carried.current = { images: turn.images.length, docs: library.attachedTo(docKey).length };
     setDraft(turn.text);
     setPendingImages(turn.images);
   }, [status.kind, model.id]);
   useEffect(() => {
-    if (carried.current === null || pendingImages.length !== carried.current) return;
+    if (carried.current === null || pendingImages.length !== carried.current.images || docs.documents.length < carried.current.docs) return;
     carried.current = null;
     void submitRef.current(draftRef.current);
-  }, [pendingImages]);
-  /* The index model landed while the turn was held: the library has loaded it, so the message goes out now. */
+  }, [pendingImages, docs.documents.length]);
+  /* The index model landed while the turn was held: the message goes out once its files are indexed with it. */
   useEffect(() => {
     if (!docsHold || libraryState.embedder.kind !== "ready") return;
     setDocsHold(false);
-    void submitRef.current(draftRef.current);
+    const key = docKey;
+    void releaseWhenIndexed({ pending: () => library.attachmentsIndexing(key), subscribe: (cb) => library.subscribe(cb), show: setReadingDocs, send: () => submitRef.current(draftRef.current) });
   }, [docsHold, libraryState.embedder.kind]);
   const sendWithWords = () => {
     wordsAccepted.current = true;

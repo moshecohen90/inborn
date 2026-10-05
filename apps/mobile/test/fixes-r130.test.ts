@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it, vi } from "vitest";
 import { BUNDLED_MANIFEST, buildRagPrompt, photoPlan, type Chunk, type DocumentRecord, type Message } from "@inborn/core";
-import { carriesPage, charsByPage, isVisualPage, pageImagePrefix, planPagePhoto, VISUAL_PAGE_CHARS, VISUAL_PAGE_INK, type PagePhotoInput } from "../src/documents/pagePhoto";
+import { carriesPage, charsByPage, isThinTurn, isVisualPage, pageImagePrefix, planPage, VISUAL_PAGE_CHARS, VISUAL_PAGE_INK, type PagePhotoInput } from "../src/documents/pagePhoto";
 import { withPhotoText } from "../src/documents/photoDocs";
 import { gatePhotoSend } from "../src/lib/visionGate";
 import type { AskResult } from "../src/documents/library";
@@ -18,6 +18,12 @@ const brochure = doc({ id: "brochure", name: "brochure.pdf", pages: 3, indexedPa
 /* Page lengths and ink as measured on the real files (docs/qa/r130-pdf-page-vision/NOTES.md). */
 const lengths: Record<string, number[]> = { shop: [183], manual: [2490, 2490, 2490], brochure: [1800, 140, 2100] };
 const inks: Record<string, number[]> = { shop: [0.272], manual: [0.02, 0.02, 0.02], brochure: [0.02, 0.6, 0.03] };
+
+/* The page picture a plan sends with the message, if any. */
+const planPagePhoto = async (i: PagePhotoInput) => {
+  const p = await planPage(i);
+  return p?.picture ? { doc: p.doc, page: p.page } : null;
+};
 
 const input = (over: Partial<PagePhotoInput> = {}): PagePhotoInput & { calls: { bestPage: ReturnType<typeof vi.fn>; ink: ReturnType<typeof vi.fn>; chars: ReturnType<typeof vi.fn> } } => {
   const chars = vi.fn(async (id: string) => new Map((lengths[id] ?? []).map((n, i) => [i + 1, n])));
@@ -80,10 +86,12 @@ describe("round 130 · which PDF page is visual", () => {
     }
   });
 
-  it("a platform with no page renderer (the browser) keeps today's behaviour", async () => {
+  it("a platform with no page renderer (the browser): no picture, no render; the sparse page is still known for what it is", async () => {
     const i = input({ canRender: false });
-    await expect(planPagePhoto(i)).resolves.toBeNull();
-    expect(i.calls.chars).not.toHaveBeenCalled();
+    const plan = await planPage(i);
+    expect(plan).toMatchObject({ doc: shop, page: 1, chars: 183, visual: null, picture: false });
+    expect(i.calls.ink).not.toHaveBeenCalled();
+    expect(isThinTurn(plan)).toBe(true);
   });
 });
 
@@ -92,7 +100,8 @@ describe("round 130 · the page is the turn's one photo", () => {
     for (const limit of [1, 4]) {
       const i = input({ ownPhotos: 1, limit });
       await expect(planPagePhoto(i)).resolves.toBeNull();
-      expect(i.calls.chars).not.toHaveBeenCalled();
+      /* The page then goes as its text, under the thin-page rule. */
+      expect(isThinTurn(await planPage(input({ ownPhotos: 1, limit })))).toBe(true);
     }
   });
 
@@ -100,11 +109,11 @@ describe("round 130 · the page is the turn's one photo", () => {
     const submit = chat.slice(chat.indexOf("const submit = async (input: string) => {"), chat.indexOf("const importPage = async"));
     expect(submit).toContain("ownPhotos: pendingImages.length,");
     expect(submit).toContain("limit: limits(tier).imagesPerMessage,");
-    expect(submit).toContain("hasImages: pendingImages.length > 0 || !!page,");
+    expect(submit).toContain("hasImages: pendingImages.length > 0 || !!page?.picture,");
     /* Fast without its pack, after Instant saw the page in this chat: the page is planned again, so the gate offers the pack. */
     expect(submit).toContain('sent: photoPlanHere(model.id, tier !== "free").kind === "send" ? rowsRef.current.flatMap((r) => r.images ?? []) : [],');
     expect(submit).toContain("await submitNow(input, text, page);");
-    expect(submit.indexOf("planPagePhoto(")).toBeLessThan(submit.indexOf("gatePhotoSend("));
+    expect(submit.indexOf("planPage(")).toBeLessThan(submit.indexOf("gatePhotoSend("));
   });
 
   it("the page goes into the user's message as a photo, named for its document and page", () => {
@@ -182,9 +191,7 @@ describe("round 130 · the turn and the follow-ups", () => {
       { role: "user", content: "Now what do you see", images: [PAGE] },
       { role: "assistant", content: "Two photos: dogs in a park and a coffee cup." },
     ];
-    const i = input({ sent: [PAGE] });
-    await expect(planPagePhoto(i)).resolves.toBeNull();
-    expect(i.calls.ink).not.toHaveBeenCalled();
+    await expect(planPagePhoto(input({ sent: [PAGE] }))).resolves.toBeNull();
     const turn: Message[] = [{ role: "system", content: "rules" }, ...history, { role: "user", content: "What colour is the cup?" }];
     expect(carriesPage(turn, ["shop"])).toBe(true);
     const plain = await withPhotoText(turn, undefined, ["shop"], askWith("What colour is the cup?", history, false));

@@ -35,7 +35,7 @@ import { openRagStore, ragStoreKind } from "./db";
 import type { AnsweredMidReindex } from "../lib/reindexNotice";
 import { resolveEmbedder, type ResolvedEmbedder } from "./embedder";
 import { createExtractors, nativeOcr } from "./extract";
-import { charsByPage } from "./pagePhoto";
+import { charsByPage, pageHits } from "./pagePhoto";
 import { findDuplicate } from "./dedupe";
 import { copyIntoLibrary, deleteFile, missingSource, readHead, resolveDocUri, restoreFiles, sha256Of, sizeOf, storedDocPath, sweepIncognitoFiles, whenStored } from "./files";
 import { readPrefs, writePrefs, type DocumentPrefs } from "./prefs";
@@ -86,6 +86,8 @@ export interface AskOptions {
   citeMarkers?: boolean;
   /** What a reply with no passage opens with, in the UI language (`noPassageOpeners`). */
   openers?: NoPassageOpeners;
+  /** A page with only crumbs of text and no picture for the model: all of its text goes in, under the thin-page rule. */
+  page?: { docId: string; page: number };
 }
 
 export interface AskResult {
@@ -317,6 +319,11 @@ export class DocumentLibrary {
   }
 
   /** Resolves once nothing attached to this chat is queued or being read, so the answer can see what the user attached. */
+  /** Attached documents not yet searchable with the current index model: queued, being read, or rebuilt for it. */
+  attachmentsIndexing(chatId: string): number {
+    return this.attachedTo(chatId).filter((d) => this.jobs.has(d.id) || d.status === "queued" || d.status === "indexing" || !!d.reindexFrom).length;
+  }
+
   whenAttachmentsRead(chatId: string, signal?: AbortSignal): Promise<void> {
     if (!this.attachmentState(chatId).indexing || signal?.aborted) return Promise.resolve();
     return new Promise((resolve) => {
@@ -598,12 +605,14 @@ export class DocumentLibrary {
     /* "What is this file about?" names no subject a passage could match: it is handed the files' opening instead. */
     const overview = !!o.docIds?.length && docIds.length > 0 && isAboutAttachment(question);
     const started = Date.now();
-    const hits = !docIds.length ? [] : overview ? openingHits(await Promise.all(docIds.map((id) => store.chunksOf(id)))) : await retriever.retrieve(question, { docIds, vectorPages });
+    let hits = !docIds.length ? [] : overview ? openingHits(await Promise.all(docIds.map((id) => store.chunksOf(id)))) : await retriever.retrieve(question, { docIds, vectorPages });
     const retrieveMs = Date.now() - started;
     const strict = o.strict ?? this.prefs.strict;
     const embedderId = lexical ? LEXICAL_INDEX_ID : this.embedderRef!.embedder.id;
     const doors = relevanceDoors(embedderId);
-    const prompt = buildRagPrompt({ question, hits, docs: this.docs, strict, embedderId, nCtx: o.nCtx ?? 4096, history: o.history, systemPrompt: o.systemPrompt, answerLanguage: o.answerLanguage, citeMarkers: o.citeMarkers, overview, openers: o.openers });
+    const thin = o.page && docIds.includes(o.page.docId) ? o.page : null;
+    if (thin) hits = pageHits(await store.chunksOf(thin.docId), thin.page, hits.filter((h) => overview || isRelevant(h, doors)));
+    const prompt = buildRagPrompt({ question, hits, docs: this.docs, strict, embedderId, nCtx: o.nCtx ?? 4096, history: o.history, systemPrompt: o.systemPrompt, answerLanguage: o.answerLanguage, citeMarkers: o.citeMarkers, overview: overview || !!thin, openers: o.openers, thinPage: !!thin });
     /* Not behind __DEV__: F282 was a release build citing an off-topic passage, and no screen prints the two numbers that decided it. */
     console.log(`[rag] strict=${strict}${lexical ? " words-only" : ""}${overview ? " overview" : ""}${rebuilding.length ? ` reindexing=${rebuilding.length}/${docIds.length}` : ""} hits=${hits.length} used=${prompt.used.length} ${retrieveMs} ms | ${hits.map((h) => `${h.chunk.docId}#${h.chunk.ord} cos=${h.cosine.toFixed(3)} terms=${h.bm25Terms} bm25=${h.bm25.toFixed(2)} ${overview || isRelevant(h, doors) ? "KEPT" : "dropped"}`).join(" · ")}`);
     return { prompt, retrieveMs, ...(rebuilding.length ? { reindexing: { pending: rebuilding.length, total: docIds.length, ids: rebuilding.map((d) => d.id) } } : {}), ...(lexical ? { lexical: true } : {}) };

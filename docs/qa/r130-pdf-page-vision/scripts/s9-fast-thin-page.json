@@ -1,0 +1,118 @@
+{
+  "runId": "s9-fast-thin-page",
+  "_": "Exit (c): Fast without its photo pack, a new chat, the visual PDF, 'What do you see?': the pack offer; 'Remove the photo' and Send: the page's text under the thin-page rule, an answer that says it can read only the text.",
+  "steps": [
+    {
+      "op": "deeplink",
+      "url": "/chats"
+    },
+    {
+      "op": "waitFor",
+      "testID": "new-chat",
+      "timeoutMs": 20000
+    },
+    {
+      "op": "press",
+      "testID": "new-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "start-chat",
+      "timeoutMs": 10000
+    },
+    {
+      "op": "press",
+      "testID": "start-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 5000
+    },
+    {
+      "op": "devPrompt",
+      "lines": [
+        "attach: visual-page.pdf"
+      ]
+    },
+    {
+      "op": "sleep",
+      "ms": 20000
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "What do you see?"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "waitFor",
+      "testID": "vision-hold",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "screenshot",
+      "name": "1c-17-pack-offer"
+    },
+    {
+      "op": "dump",
+      "name": "1c-17-pack-offer"
+    },
+    {
+      "op": "press",
+      "testID": "vision-hold-remove"
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "screenshot",
+      "name": "1c-18-photo-removed"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "timeoutMs": 180000
+    },
+    {
+      "op": "screenshot",
+      "name": "1c-19-sent"
+    },
+    {
+      "op": "dump",
+      "name": "1c-19-sent"
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 300000
+    },
+    {
+      "op": "sleep",
+      "ms": 2500
+    },
+    {
+      "op": "screenshot",
+      "name": "1c-19-answer"
+    },
+    {
+      "op": "dump",
+      "name": "1c-19-answer"
+    }
+  ]
+}

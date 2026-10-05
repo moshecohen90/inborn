@@ -5,6 +5,8 @@ export interface HeldTurn {
   model: string;
   text: string;
   images: PickedImage[];
+  /** The files the draft chat had attached; a switch opens a new chat that would otherwise start without them. */
+  docIds?: string[];
 }
 
 const KEY = "inborn.heldTurn";

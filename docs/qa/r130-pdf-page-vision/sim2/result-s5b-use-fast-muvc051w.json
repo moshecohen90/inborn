@@ -1,0 +1,46 @@
+{
+  "runId": "s5b-use-fast-muvc051w",
+  "startedAt": "2026-10-05T14:14:54.321Z",
+  "finishedAt": "2026-10-05T14:15:24.643Z",
+  "ok": true,
+  "passed": 5,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 154,
+      "detail": "/vault"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 10001,
+      "detail": "10000 ms"
+    },
+    {
+      "i": 2,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 166,
+      "detail": "/"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 4,
+      "op": "sleep",
+      "ok": true,
+      "ms": 20000,
+      "detail": "20000 ms"
+    }
+  ],
+  "errors": []
+}

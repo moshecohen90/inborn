@@ -64,8 +64,16 @@ export function saysNoneMatched({ continuing, attachedCount, usedPassages }: { c
   return !continuing && attachedCount > 0 && usedPassages === 0;
 }
 
+/* "The report states…" with no passage in the prompt can only be invented (round 130); a denial ("does not mention") is not a claim. */
+const FILE_CLAIM = /\b(?:the|this|that|your|my)\s+(?:provided\s+|attached\s+)?(?:report|document|file|handbook|manual|pdf|page|text|passage|guide)s?\s+(?:clearly\s+|also\s+|only\s+|do\s+|does\s+)?(?:states|says|indicates|outlines|specifies|describes|explains|notes|lists|shows|recommends|contains|provides|mentions|mention|highlights|suggests|was\s+(?:written|authored|published))\b(?!\s+(?:no|nothing|none)\b)/i;
+
+const OPENS_WITH_DENIAL = /^[^.!?]*\b(?:don't|do not|doesn't|does not)\s+mention\b/i;
+
+/** An answer that tells what the attached files say although no passage of them reached the model. English only. */
+export const claimsFileContent = (answer: string): boolean => FILE_CLAIM.test(answer) && !OPENS_WITH_DENIAL.test(answer);
+
 /** The sentences a documents answer with no passage opens with, in the UI language: a quoted English one pulled other languages into English (F449). */
-export const noPassageOpeners = (t: (key: string) => string): NoPassageOpeners => ({ nothingRelevant: t("documents.opener.nothingRelevant"), nothingFits: t("documents.opener.nothingFits") });
+export const noPassageOpeners = (t: (key: string) => string): NoPassageOpeners => ({ nothingRelevant: t("documents.opener.nothingRelevant"), nothingFits: t("documents.opener.nothingFits"), thinPage: t("documents.opener.thinPage") });
 
 /** The Ask sheet's timing line is §7.8 "detailed statistics", the Pro row the chat's ledger already gates. */
 export function askStatsLine(stats: string | null, detailed: boolean): string | null {
@@ -96,4 +104,45 @@ export interface IndexHoldInput {
 export function planIndexHold({ attached, embedder, wordsAccepted }: IndexHoldInput): "hold" | "send" {
   if (attached === 0 || wordsAccepted) return "send";
   return embedder === "missing" || embedder === "failed" ? "hold" : "send";
+}
+
+/** How long a turn held for the index model waits for its files to be indexed with it before it goes out anyway. */
+export const HELD_INDEX_WAIT_MS = 120_000;
+
+export interface HeldReleaseDeps {
+  /** Attached documents not yet indexed with the index model that just arrived. */
+  pending: () => number;
+  subscribe: (listener: () => void) => () => void;
+  /** The "Reading your document before answering…" line; 0 hides it. */
+  show: (count: number) => void;
+  send: () => Promise<void>;
+  timeoutMs?: number;
+}
+
+/**
+ * Round 130: the turn held for the index model went out the moment the model landed, while its file was still being
+ * rebuilt, and answered "The report states…" under "Nothing in your documents matched". It now waits for the index,
+ * on screen, and a rebuild that never finishes still releases it to the existing honest notices.
+ */
+export async function releaseWhenIndexed(d: HeldReleaseDeps): Promise<"indexed" | "timeout"> {
+  let outcome: "indexed" | "timeout" = "indexed";
+  if (d.pending() > 0) {
+    d.show(d.pending());
+    outcome = await new Promise((resolve) => {
+      const timer = setTimeout(() => finish("timeout"), d.timeoutMs ?? HELD_INDEX_WAIT_MS);
+      const off = d.subscribe(() => {
+        const left = d.pending();
+        if (left === 0) finish("indexed");
+        else d.show(left);
+      });
+      function finish(o: "indexed" | "timeout") {
+        clearTimeout(timer);
+        off();
+        resolve(o);
+      }
+    });
+    d.show(0);
+  }
+  await d.send();
+  return outcome;
 }

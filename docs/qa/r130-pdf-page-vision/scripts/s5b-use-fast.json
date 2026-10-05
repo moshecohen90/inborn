@@ -1,0 +1,27 @@
+{
+  "runId": "s5b-use-fast",
+  "_": "'use fast' (written to dev-vault.txt by the shell) read by the vault screen, then back to the chat on Fast.",
+  "steps": [
+    {
+      "op": "deeplink",
+      "url": "/vault"
+    },
+    {
+      "op": "sleep",
+      "ms": 10000
+    },
+    {
+      "op": "deeplink",
+      "url": "/"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 20000
+    }
+  ]
+}

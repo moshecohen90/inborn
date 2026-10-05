@@ -1,0 +1,130 @@
+{
+  "runId": "s8b-docs-held-serial",
+  "_": "Index model removed again, app relaunched: a new chat, the text PDF, a question the file answers; the index card, Download, 'Reading your document', then the first answer from the file with its source.",
+  "steps": [
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 90000
+    },
+    {
+      "op": "deeplink",
+      "url": "/chats"
+    },
+    {
+      "op": "waitFor",
+      "testID": "new-chat",
+      "timeoutMs": 20000
+    },
+    {
+      "op": "press",
+      "testID": "new-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "start-chat",
+      "timeoutMs": 10000
+    },
+    {
+      "op": "press",
+      "testID": "start-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 5000
+    },
+    {
+      "op": "devPrompt",
+      "lines": [
+        "attach: turbine-report-3pages.pdf"
+      ]
+    },
+    {
+      "op": "sleep",
+      "ms": 10000
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "What is the serial number of the Rakovsky turbine?"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "waitFor",
+      "testID": "docs-hold",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "screenshot",
+      "name": "2b-12-docs-hold"
+    },
+    {
+      "op": "dump",
+      "name": "2b-12-docs-hold"
+    },
+    {
+      "op": "press",
+      "testID": "docs-hold-download"
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "2b-13-downloading"
+    },
+    {
+      "op": "waitFor",
+      "testID": "docs-hold",
+      "gone": true,
+      "timeoutMs": 300000
+    },
+    {
+      "op": "screenshot",
+      "name": "2b-14-reading-your-document"
+    },
+    {
+      "op": "dump",
+      "name": "2b-14-reading-your-document"
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "timeoutMs": 180000
+    },
+    {
+      "op": "screenshot",
+      "name": "2b-15-answer-starts"
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 240000
+    },
+    {
+      "op": "sleep",
+      "ms": 2500
+    },
+    {
+      "op": "screenshot",
+      "name": "2b-16-grounded-answer"
+    },
+    {
+      "op": "dump",
+      "name": "2b-16-grounded-answer"
+    }
+  ]
+}

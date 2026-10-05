@@ -1,35 +1,372 @@
 {
   "_": "Hand grades, one grader, 0/1/2 as docs/qa/v1-basics-baseline/README.md. Key: model/pdf/id/route → one grade per sample (1, 2, 3). The founder's file is graded in NOTES.md only; its answers were not kept.",
-  "instant/visual-page/see/before": [0, 0, 0],
-  "instant/visual-page/see/after": [1, 0, 2],
-  "instant/visual-page/now/before": [0, 0, 0],
-  "instant/visual-page/now/after": [1, 1, 0],
-  "instant/visual-page/shipping/before": [0, 0, 0],
-  "instant/visual-page/shipping/after": [0, 1, 0],
-  "instant/visual-page/follow-up/before": [0, 0, 0],
-  "instant/visual-page/follow-up/after": [1, 2, 2],
-  "instant/turbine-report-3pages/serial/before": [2, 1, 2],
-  "instant/turbine-report-3pages/serial/after": [1, 2, 2],
-  "instant/northgate-big/paragraph/before": [2, 2, 1],
-  "instant/northgate-big/paragraph/after": [2, 2, 2],
-  "fast/visual-page/see/before": [0, 0, 0],
-  "fast/visual-page/see/after": [2, 0, 1],
-  "fast/visual-page/now/before": [0, 0, 0],
-  "fast/visual-page/now/after": [0, 2, 2],
-  "fast/visual-page/shipping/before": [0, 0, 0],
-  "fast/visual-page/shipping/after": [0, 0, 1],
-  "fast/visual-page/follow-up/before": [0, 0, 0],
-  "fast/visual-page/follow-up/after": [2, 2, 2],
-  "fast/turbine-report-3pages/serial/before": [2, 2, 2],
-  "fast/turbine-report-3pages/serial/after": [2, 2, 2],
-  "fast/northgate-big/paragraph/before": [2, 2, 2],
-  "fast/northgate-big/paragraph/after": [2, 2, 1],
-  "variant page-text, instant/visual-page/see": [1, 0, 1],
-  "variant page-text, instant/visual-page/now": [1, 0, 1],
-  "variant page-text, instant/visual-page/shipping": [2, 1, 1],
-  "variant page-text, instant/visual-page/follow-up": [1, 2, 1],
-  "variant page-text, fast/visual-page/see": [2, 1, 2],
-  "variant page-text, fast/visual-page/now": [0, 0, 1],
-  "variant page-text, fast/visual-page/shipping": [2, 2, 2],
-  "variant page-text, fast/visual-page/follow-up": [2, 2, 2]
+  "instant/visual-page/see/before": [
+    0,
+    0,
+    0
+  ],
+  "instant/visual-page/see/after": [
+    1,
+    0,
+    2
+  ],
+  "instant/visual-page/now/before": [
+    0,
+    0,
+    0
+  ],
+  "instant/visual-page/now/after": [
+    1,
+    1,
+    0
+  ],
+  "instant/visual-page/shipping/before": [
+    0,
+    0,
+    0
+  ],
+  "instant/visual-page/shipping/after": [
+    0,
+    1,
+    0
+  ],
+  "instant/visual-page/follow-up/before": [
+    0,
+    0,
+    0
+  ],
+  "instant/visual-page/follow-up/after": [
+    1,
+    2,
+    2
+  ],
+  "instant/turbine-report-3pages/serial/before": [
+    2,
+    1,
+    2
+  ],
+  "instant/turbine-report-3pages/serial/after": [
+    1,
+    2,
+    2
+  ],
+  "instant/northgate-big/paragraph/before": [
+    2,
+    2,
+    1
+  ],
+  "instant/northgate-big/paragraph/after": [
+    2,
+    2,
+    2
+  ],
+  "fast/visual-page/see/before": [
+    0,
+    0,
+    0
+  ],
+  "fast/visual-page/see/after": [
+    2,
+    0,
+    1
+  ],
+  "fast/visual-page/now/before": [
+    0,
+    0,
+    0
+  ],
+  "fast/visual-page/now/after": [
+    0,
+    2,
+    2
+  ],
+  "fast/visual-page/shipping/before": [
+    0,
+    0,
+    0
+  ],
+  "fast/visual-page/shipping/after": [
+    0,
+    0,
+    1
+  ],
+  "fast/visual-page/follow-up/before": [
+    0,
+    0,
+    0
+  ],
+  "fast/visual-page/follow-up/after": [
+    2,
+    2,
+    2
+  ],
+  "fast/turbine-report-3pages/serial/before": [
+    2,
+    2,
+    2
+  ],
+  "fast/turbine-report-3pages/serial/after": [
+    2,
+    2,
+    2
+  ],
+  "fast/northgate-big/paragraph/before": [
+    2,
+    2,
+    2
+  ],
+  "fast/northgate-big/paragraph/after": [
+    2,
+    2,
+    1
+  ],
+  "variant page-text, instant/visual-page/see": [
+    1,
+    0,
+    1
+  ],
+  "variant page-text, instant/visual-page/now": [
+    1,
+    0,
+    1
+  ],
+  "variant page-text, instant/visual-page/shipping": [
+    2,
+    1,
+    1
+  ],
+  "variant page-text, instant/visual-page/follow-up": [
+    1,
+    2,
+    1
+  ],
+  "variant page-text, fast/visual-page/see": [
+    2,
+    1,
+    2
+  ],
+  "variant page-text, fast/visual-page/now": [
+    0,
+    0,
+    1
+  ],
+  "variant page-text, fast/visual-page/shipping": [
+    2,
+    2,
+    2
+  ],
+  "variant page-text, fast/visual-page/follow-up": [
+    2,
+    2,
+    2
+  ],
+  "_grounding": "Grounding rows: results/grounding-{before,after}-*.jsonl. 'after' samples are in file order: none = 2 runs of the final prompt (6 each); thin visual = 2 runs (6); serial-web = 3 runs (9). 'final' = results/text-regression-final-*.jsonl, after route, final code.",
+  "instant/turbine-report-3pages/turbine-efficiency/grounding-before": [
+    2,
+    0,
+    2
+  ],
+  "instant/turbine-report-3pages/safety/grounding-before": [
+    2,
+    0,
+    2
+  ],
+  "instant/northgate-big/fire-drills/grounding-before": [
+    0,
+    2,
+    2
+  ],
+  "instant/northgate-big/author/grounding-before": [
+    2,
+    0,
+    2
+  ],
+  "instant/turbine-report-3pages/turbine-efficiency/grounding-after": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+  ],
+  "instant/turbine-report-3pages/safety/grounding-after": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+  ],
+  "instant/northgate-big/fire-drills/grounding-after": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+  ],
+  "instant/northgate-big/author/grounding-after": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+  ],
+  "fast/turbine-report-3pages/turbine-efficiency/grounding-before": [
+    2,
+    2,
+    2
+  ],
+  "fast/turbine-report-3pages/safety/grounding-before": [
+    1,
+    2,
+    2
+  ],
+  "fast/northgate-big/fire-drills/grounding-before": [
+    2,
+    2,
+    1
+  ],
+  "fast/northgate-big/author/grounding-before": [
+    1,
+    1,
+    1
+  ],
+  "fast/turbine-report-3pages/turbine-efficiency/grounding-after": [
+    2,
+    1,
+    2,
+    1,
+    2,
+    2
+  ],
+  "fast/turbine-report-3pages/safety/grounding-after": [
+    2,
+    1,
+    2,
+    1,
+    2,
+    2
+  ],
+  "fast/northgate-big/fire-drills/grounding-after": [
+    2,
+    2,
+    1,
+    2,
+    1,
+    2
+  ],
+  "fast/northgate-big/author/grounding-after": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+  ],
+  "instant/visual-page/see/thin-before": [
+    1,
+    0,
+    0
+  ],
+  "instant/visual-page/now/thin-before": [
+    1,
+    1,
+    1
+  ],
+  "instant/visual-page/see/thin-after": [
+    1,
+    2,
+    2,
+    2,
+    1,
+    1
+  ],
+  "instant/visual-page/now/thin-after": [
+    1,
+    1,
+    1,
+    1,
+    2,
+    0
+  ],
+  "fast/visual-page/see/thin-before": [
+    1,
+    1,
+    1
+  ],
+  "fast/visual-page/now/thin-before": [
+    1,
+    0,
+    1
+  ],
+  "fast/visual-page/see/thin-after": [
+    2,
+    1,
+    2,
+    2,
+    2,
+    2
+  ],
+  "fast/visual-page/now/thin-after": [
+    2,
+    2,
+    2,
+    1,
+    1,
+    2
+  ],
+  "instant/turbine-report-3pages/serial-web/thin-before": [
+    2,
+    2,
+    2
+  ],
+  "instant/turbine-report-3pages/serial-web/thin-after": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1
+  ],
+  "fast/turbine-report-3pages/serial-web/thin-before": [
+    2,
+    2,
+    2
+  ],
+  "fast/turbine-report-3pages/serial-web/thin-after": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2
+  ],
+  "instant/turbine-report-3pages/serial/final": [
+    2,
+    1,
+    2
+  ],
+  "instant/northgate-big/paragraph/final": [
+    2,
+    2,
+    2
+  ],
+  "fast/turbine-report-3pages/serial/final": [
+    2,
+    2,
+    2
+  ],
+  "fast/northgate-big/paragraph/final": [
+    2,
+    2,
+    2
+  ]
 }
