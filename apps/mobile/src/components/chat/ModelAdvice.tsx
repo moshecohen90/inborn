@@ -31,8 +31,9 @@ export function ModelAdviceCard({ advice, theme, locked, bestLocked, onSwitch, o
   const useName = (use: string) => t(`use.${use}`);
   /* "basic" never says "handles Hebrew better" alone: the offer is better than nothing, not fluent (§7.8). */
   const gap = advice.language ? (advice.language.to === "basic" ? "basic" : languageRank(advice.language.to) - languageRank(advice.language.from) >= 2 ? "big" : "small") : "small";
-  const reason =
-    advice.language && advice.use
+  const reason = advice.photos
+    ? t("chat.modelAdvice.photos", { better, current })
+    : advice.language && advice.use
       ? gap === "basic"
         ? `${t("chat.modelAdvice.language", { better, current, language, gap })}${joiner}${t("chat.modelAdvice.use", { better, current, use: advice.use.use })}`
         : t("chat.modelAdvice.both", { better, current, language, use: advice.use.use })

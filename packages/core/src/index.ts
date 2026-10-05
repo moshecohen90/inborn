@@ -23,6 +23,7 @@ export * from "./chat/shareTarget";
 export * from "./chat/safety";
 export * from "./chat/contentSafety";
 export * from "./chat/retention";
+export * from "./chat/answerCheck";
 export * from "./proof/exitMeter";
 export * from "./proof/allowlist";
 export * from "./lock/policy";

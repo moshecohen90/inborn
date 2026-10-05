@@ -4,10 +4,10 @@ import { downloadPercent, goodLanguagesOf, languageRank, languageTierOf, require
 export type OptionState =
   | { kind: "ready"; via: DeliverySource }
   /** `waiting`: no bytes can move right now, for want of any connection or of Wi-Fi. */
-  | { kind: "arriving"; via: DeliverySource; percent: number; verifying: boolean; waiting?: "network" | "wifi" }
+  | { kind: "arriving"; via: DeliverySource; host?: string; percent: number; verifying: boolean; waiting?: "network" | "wifi" }
   | { kind: "download"; via: DeliverySource; host?: string; bytes: number }
-  | { kind: "no-space"; via: DeliverySource; freeUpBytes: number }
-  | { kind: "failed"; via: DeliverySource };
+  | { kind: "no-space"; via: DeliverySource; host?: string; freeUpBytes: number }
+  | { kind: "failed"; via: DeliverySource; host?: string };
 
 export interface ModelOption {
   id: string;
@@ -99,17 +99,19 @@ export function modelStep(input: ModelStepInput): ModelStep {
 
 function stateOf(state: InstallState, plan: StepEntry["plan"], freeBytes: number, bytes: number, loadedByEngine: boolean): OptionState | null {
   if (INSTALLED.includes(state.kind) && "via" in state) return { kind: "ready", via: state.via };
+  /* "one download from <host>" stays whole once the download is queued, waiting or failed (device pass 35). */
+  const host = plan?.host ? { host: plan.host } : {};
   if (state.kind === "delivering") {
     const waiting = state.waitingForNetwork ? "network" : state.waitingForWifi ? "wifi" : null;
-    return { kind: "arriving", via: state.via, percent: downloadPercent(state.bytes, state.total), verifying: false, ...(waiting ? { waiting } : {}) };
+    return { kind: "arriving", via: state.via, ...host, percent: downloadPercent(state.bytes, state.total), verifying: false, ...(waiting ? { waiting } : {}) };
   }
-  if (state.kind === "verifying") return { kind: "arriving", via: state.via, percent: 100, verifying: true };
+  if (state.kind === "verifying") return { kind: "arriving", via: state.via, ...host, percent: 100, verifying: true };
   if (loadedByEngine) return { kind: "ready", via: "import" };
   if (!plan) return null;
-  if (state.kind === "failed") return { kind: "failed", via: plan.via };
+  if (state.kind === "failed") return { kind: "failed", via: plan.via, ...host };
   const required = requiredFreeBytes(bytes);
-  if (state.kind === "needs-space" || freeBytes < required) return { kind: "no-space", via: plan.via, freeUpBytes: required - freeBytes };
-  return { kind: "download", via: plan.via, bytes, ...(plan.host ? { host: plan.host } : {}) };
+  if (state.kind === "needs-space" || freeBytes < required) return { kind: "no-space", via: plan.via, ...host, freeUpBytes: required - freeBytes };
+  return { kind: "download", via: plan.via, bytes, ...host };
 }
 
 /** The one comparison that decides a model for most people: does it read my language better than the small one? */

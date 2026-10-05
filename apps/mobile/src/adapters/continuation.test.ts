@@ -157,7 +157,7 @@ describe("F443 · llama.rn: the rendered chat plus the prefill as a raw prompt",
     const photo: Message = { role: "user", content: "What is in this photo?", images: ["file:///data/photo.jpg"] };
     const out = await collect(lm.generate(session, [HISTORY[0]!, photo], { continueFrom: { text: "It shows a red" } }, new AbortController().signal));
     const user = (calls.formatted!.messages as { content: { type: string }[] }[]).at(-1)!;
-    expect(user.content.map((p) => p.type)).toEqual(["text", "image_url"]);
+    expect(user.content.map((p) => p.type)).toEqual(["image_url", "text"]);
     expect(calls.completion!.media_paths).toEqual(["/data/photo.jpg"]);
     expect(out.text).toBe(" circle.");
   });

@@ -1,0 +1,67 @@
+{
+  "runId": "s2-ask-visual",
+  "_": "Instant, no index model: visual-page.pdf attached, 'What do you see?'. No index card; the bubble carries the page picture; then the answer.",
+  "steps": [
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "devPrompt",
+      "lines": [
+        "attach: visual-page.pdf"
+      ]
+    },
+    {
+      "op": "sleep",
+      "ms": 20000
+    },
+    {
+      "op": "screenshot",
+      "name": "02-composer-chip"
+    },
+    {
+      "op": "dump",
+      "name": "02-composer-chip"
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "What do you see?"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "sleep",
+      "ms": 2500
+    },
+    {
+      "op": "screenshot",
+      "name": "03-sent-bubble"
+    },
+    {
+      "op": "dump",
+      "name": "03-sent-bubble"
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 240000
+    },
+    {
+      "op": "sleep",
+      "ms": 2500
+    },
+    {
+      "op": "screenshot",
+      "name": "04-answer"
+    },
+    {
+      "op": "dump",
+      "name": "04-answer"
+    }
+  ]
+}

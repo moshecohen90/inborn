@@ -17,7 +17,10 @@ describe("F369 · the chat answers through the loop guard", () => {
   it("wraps the answer stream of whatever engine is loaded", () => {
     /* F423: `prefix` is what Continue carries on, so the guard drops a phrase restarted at the seam. */
     /* F443: a resumed Continue's first generation carries continueFrom; the retry's `opts` never does. */
-    expect(chat).toMatch(/for await \(const d of guardLoops\(run\(messages, continueFrom \? \{ \.\.\.opts, continueFrom \} : opts\), stopLoop, \{ request: asked, retry, onRetry, prefix, instruction: CONTINUE_PROMPT \}\)\)/);
+    expect(chat).toContain("const firstOpts = continueFrom ? { ...opts, continueFrom } : opts;");
+    /* Round 131: a picture answer reaches the guard through its check, which starts the same run. */
+    expect(chat).toMatch(/const source = checksPicture\s*\? checkedAnswer\(\{\s*start: \(again\) => run\(messages, again \? \{ \.\.\.opts, \.\.\.PICTURE_RETRY \} : firstOpts\),[\s\S]*?\}\)\s*: run\(messages, firstOpts\);/);
+    expect(chat).toMatch(/for await \(const d of guardLoops\(source, stopLoop, \{ request: asked, retry, onRetry, prefix, instruction: CONTINUE_PROMPT \}\)\)/);
     expect(chat).toMatch(/return engine\.generate\(s, wireMessages, o, attempt\.signal\);/);
   });
 

@@ -82,6 +82,13 @@ export async function planPage(i: PagePhotoInput): Promise<PagePlan | null> {
 /** A page with only crumbs of text whose picture is not going to the model: the model is told so and handed all of that text. */
 export const isThinTurn = (plan: PagePlan | null): plan is PagePlan => !!plan && !plan.picture && plan.visual !== false && plan.chars > 0;
 
+/**
+ * The turn carries every attached file whole: one file of one page, sent as its picture or, on the thin route, as all
+ * of its text. Retrieval has nothing to choose there, so the index model would add nothing (round 131).
+ */
+export const coversAttachments = (plan: PagePlan | null, attached: readonly DocumentRecord[]): boolean =>
+  !!plan && attached.length === 1 && attached[0]!.id === plan.doc.id && plan.doc.pages === 1 && (plan.picture || isThinTurn(plan));
+
 /** The thin page's own passages first, in reading order, then the other passages that bear on the question. */
 export function pageHits(docChunks: readonly Chunk[], page: number, relevant: readonly RetrievalHit[]): RetrievalHit[] {
   const own = docChunks.filter((c) => c.page === page).sort((a, b) => a.ord - b.ord);
