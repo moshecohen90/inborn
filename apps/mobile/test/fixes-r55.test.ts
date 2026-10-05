@@ -87,15 +87,15 @@ describe("F265 · a store build still refuses a proof issued to the QA app", () 
   const storeJws = makeJws({ payload: transactionPayload({ bundleId: STORE_ID, environment: "Sandbox" }) });
 
   it("refuses the QA app's transaction when no bundle id is declared (the store build's call)", () => {
-    const r = verifyAppleJws(qaJws, { ...ANCHOR, allowTestEnvironments: true });
+    const r = verifyAppleJws(qaJws, { ...ANCHOR, allowSandbox: true });
     expect(r.ok).toBe(false);
     expect(r.ok === false && r.reason).toBe("wrong-app");
   });
 
   it("accepts it only for a build that declares that id itself", () => {
-    expect(verifyAppleJws(qaJws, { ...ANCHOR, allowTestEnvironments: true, bundleId: QA_ID }).ok).toBe(true);
+    expect(verifyAppleJws(qaJws, { ...ANCHOR, allowSandbox: true, bundleId: QA_ID }).ok).toBe(true);
     /* And the reverse: declaring the QA id does not make the store app's proof acceptable to the QA build. */
-    const r = verifyAppleJws(storeJws, { ...ANCHOR, allowTestEnvironments: true, bundleId: QA_ID });
+    const r = verifyAppleJws(storeJws, { ...ANCHOR, allowSandbox: true, bundleId: QA_ID });
     expect(r.ok === false && r.reason).toBe("wrong-app");
   });
 
@@ -120,7 +120,7 @@ describe("F265 · a store build still refuses a proof issued to the QA app", () 
 describe("F265 · verify.ts hands the verifier this build's own id, and only a QA build's", () => {
   /* The app trusts only the pinned Apple roots, so a fixture chain can never reach the bundle-id check through
      verifyProof. What has to be proven here is the wiring: which id the policy passes down, and when. */
-  const seen: { bundleId?: string; allowTestEnvironments?: boolean }[] = [];
+  const seen: { bundleId?: string; allowSandbox?: boolean; allowXcodeTestRoot?: boolean }[] = [];
 
   /* The purchases harness is a Release build with APP_VARIANT=development plus both switches
      (docs/qa/purchases-run-2026-09-11.md); isDevBuild needs the model host, allowsTestPurchases the other one. */
@@ -138,7 +138,7 @@ describe("F265 · verify.ts hands the verifier this build's own id, and only a Q
     vi.doMock("expo-constants", () => ({ default: { expoConfig: { ios: { bundleIdentifier: bundleId }, extra: { devVariant } } } }));
     vi.doMock("@inborn/core", async (orig) => {
       const real = (await orig()) as Record<string, unknown>;
-      return { ...real, verifyAppleJws: (_jws: string, o: { bundleId?: string; allowTestEnvironments?: boolean }) => { seen.push(o); return { ok: false, reason: "malformed" }; } };
+      return { ...real, verifyAppleJws: (_jws: string, o: { bundleId?: string; allowSandbox?: boolean; allowXcodeTestRoot?: boolean }) => { seen.push(o); return { ok: false, reason: "malformed" }; } };
     });
     const mod = (await import("../src/licence/verify")) as { verifyProof: (r: unknown) => { ok: boolean } };
     mod.verifyProof({ proof: { kind: "apple-jws", jws: "a.b.c" } });
@@ -157,18 +157,21 @@ describe("F265 · verify.ts hands the verifier this build's own id, and only a Q
   it("passes the QA build's own bundle id, read from the config it was built with", async () => {
     const o = await loadVerify(QA_ID, true, true);
     expect(o.bundleId).toBe(QA_ID);
-    expect(o.allowTestEnvironments).toBe(true);
+    expect(o.allowXcodeTestRoot).toBe(true);
+    expect(o.allowSandbox).toBe(true);
   });
 
   it("passes no id at all from a store build, so APP_BUNDLE_ID stays the only name it accepts", async () => {
     const o = await loadVerify(STORE_ID, false, true);
     expect(o.bundleId).toBeUndefined();
-    expect(o.allowTestEnvironments).toBe(false);
+    expect(o.allowXcodeTestRoot).toBe(false);
+    expect(o.allowSandbox).toBe(true);
   });
 
   it("passes no id from a QA build that was not given the dev switches either", async () => {
     const o = await loadVerify(QA_ID, true, false);
     expect(o.bundleId).toBeUndefined();
-    expect(o.allowTestEnvironments).toBe(false);
+    expect(o.allowXcodeTestRoot).toBe(false);
+    expect(o.allowSandbox).toBe(true);
   });
 });
