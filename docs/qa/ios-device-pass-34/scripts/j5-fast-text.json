@@ -1,0 +1,117 @@
+{
+ "_": "J5: one plain text turn on Fast (this is also 'Fast used in a chat' for J4 and J2).",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "new-chat",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "press",
+   "testID": "new-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "start-chat",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "press",
+   "testID": "start-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "assertText",
+   "text": "FAST",
+   "testID": "model-chip"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "Give me two short tips for sleeping better."
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "waitFor",
+   "testID": "assistant-text",
+   "timeoutMs": 240000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 400000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-06-fast-text-turn"
+  },
+  {
+   "op": "assertText",
+   "text": "Could not load",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "The request specifies",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "I will focus",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "as an AI",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "NOT_FOUND",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "<<<",
+   "testID": "assistant-text",
+   "absent": true
+  }
+ ]
+}

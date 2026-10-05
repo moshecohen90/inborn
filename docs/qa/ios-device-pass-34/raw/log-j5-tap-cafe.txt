@@ -1,0 +1,37 @@
+15:11:34 pushing 33 steps as j5-tap-cafe
+15:11:37 shot J5-02-a-thumbnail-chip
+15:11:47 shot J5-03-photo-answer
+15:11:50 ok     0 value      בית קפה הגינה תפריט.jpg Scanned. Run OCR on this phone?
+15:11:50 ok     1 press      attach-muv7kznv-2-vkekf2rf ← onPress
+15:11:50 ok     2 waitFor    attach-sheet gone
+15:11:50 ok     3 waitFor    pending-images appeared
+15:11:50 ok     4 sleep      1500 ms
+15:11:50 ok     5 waitFor    attached-docs gone
+15:11:50 ok     6 value      Free: one photo per message
+15:11:50 ok     7 screenshot J5-02-a-thumbnail-chip
+15:11:50 ok     8 type       composer-input = 29 chars
+15:11:50 ok     9 send       send ← onPress
+15:11:50 ok    10 sleep      3000 ms
+15:11:50 ok    11 waitFor    vision-hold gone
+15:11:50 ok    12 waitFor    user-images appeared
+15:11:50 ok    13 waitFor    assistant-text appeared
+15:11:50 ok    14 waitFor    stop gone
+15:11:50 ok    15 sleep      1500 ms
+15:11:50 ok    16 value      The photo shows a brick wall with two blackboard windows on it. The left window displays "Opening Hours" and l
+15:11:50 ok    17 sleep      2000 ms
+15:11:50 ok    18 screenshot J5-03-photo-answer
+15:11:50 ok    19 dump       J5-03-chat-cafe-instant
+15:11:50 ok    20 waitFor    none-matched gone
+15:11:50 ok    21 assertText "Nothing in your documents matched this question" absent
+15:11:50 ok    22 assertText "cannot see" absent
+15:11:50 ok    23 assertText "can't see" absent
+15:11:50 ok    24 assertText "text-based" absent
+15:11:50 ok    25 assertText "Your documents don't mention" absent
+15:11:50 ok    26 assertText "unable to see" absent
+15:11:50 ok    27 assertText "not able to see" absent
+15:11:50 ok    28 assertText "The request specifies" absent
+15:11:50 ok    29 assertText "I will focus" absent
+15:11:50 ok    30 assertText "as an AI" absent
+15:11:50 ok    31 assertText "NOT_FOUND" absent
+15:11:50 ok    32 assertText "<<<" absent
+15:11:50 33 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-34/screens

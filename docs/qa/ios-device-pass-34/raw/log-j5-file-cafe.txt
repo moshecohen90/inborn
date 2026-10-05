@@ -1,0 +1,34 @@
+15:11:04 pushing 30 steps as j5-file-cafe
+15:11:12 shot J5-00-filing-chat
+15:11:17 shot J5-01-library-list
+15:11:20 ok     0 deeplink   /chats
+15:11:20 ok     1 waitFor    new-chat appeared
+15:11:20 ok     2 press      new-chat ← onPress
+15:11:20 ok     3 waitFor    start-chat appeared
+15:11:20 ok     4 press      start-chat ← onPress
+15:11:20 ok     5 waitFor    composer-input appeared
+15:11:20 ok     6 waitFor    Loading gone
+15:11:20 ok     7 sleep      1500 ms
+15:11:20 ok     8 value      INSTANT
+15:11:20 ok     9 devPrompt  attach: בית קפה הגינה תפריט.jpg
+15:11:20 ok    10 waitFor    pending-images appeared
+15:11:20 ok    11 sleep      2000 ms
+15:11:20 ok    12 screenshot J5-00-filing-chat
+15:11:20 ok    13 dump       J5-00-filing-chat
+15:11:20 ok    14 deeplink   /chats
+15:11:20 ok    15 waitFor    new-chat appeared
+15:11:20 ok    16 press      new-chat ← onPress
+15:11:20 ok    17 waitFor    start-chat appeared
+15:11:20 ok    18 press      start-chat ← onPress
+15:11:20 ok    19 waitFor    composer-input appeared
+15:11:20 ok    20 waitFor    Loading gone
+15:11:20 ok    21 sleep      1500 ms
+15:11:20 ok    22 value      INSTANT
+15:11:20 ok    23 assertText "INSTANT" present
+15:11:20 ok    24 waitFor    pending-images gone
+15:11:20 ok    25 press      attach ← onPress
+15:11:20 ok    26 waitFor    attach-sheet appeared
+15:11:20 ok    27 sleep      1200 ms
+15:11:20 ok    28 screenshot J5-01-library-list
+15:11:20 ok    29 dump       J5-01-sheet
+15:11:20 30 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-34/screens

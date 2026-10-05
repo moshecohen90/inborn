@@ -1,0 +1,37 @@
+15:18:54 launching com.inbornapp.mobile.qa
+15:19:08 pushing 29 steps as j3-launch
+15:19:18 shot J3-01-first-screen-after-launch
+15:19:25 shot J3-02-chat-instant
+15:19:32 shot J3-03-vault
+15:19:35 ok     0 waitFor    composer-input appeared
+15:19:35 ok     1 sleep      8000 ms
+15:19:35 ok     2 value      INSTANT
+15:19:35 FAIL   3 value      value model-missing: no node with that testID is mounted
+15:19:35 ok     4 screenshot J3-01-first-screen-after-launch
+15:19:35 ok     5 dump       J3-01-first-screen
+15:19:35 ok     6 deeplink   /chats
+15:19:35 ok     7 waitFor    new-chat appeared
+15:19:35 ok     8 press      new-chat ← onPress
+15:19:35 ok     9 waitFor    start-chat appeared
+15:19:35 ok    10 press      start-chat ← onPress
+15:19:35 ok    11 waitFor    composer-input appeared
+15:19:35 ok    12 waitFor    Loading gone
+15:19:35 ok    13 sleep      1500 ms
+15:19:35 ok    14 value      INSTANT
+15:19:35 FAIL  15 value      value model-missing: no node with that testID is mounted
+15:19:35 ok    16 assertText "INSTANT" present
+15:19:35 ok    17 type       composer-input = 32 chars
+15:19:35 ok    18 send       send ← onPress
+15:19:35 ok    19 waitFor    assistant-text appeared
+15:19:35 ok    20 waitFor    stop gone
+15:19:35 ok    21 sleep      1500 ms
+15:19:35 ok    22 value      Hello there, welcome to my friendly assistant! What can I help you with today?
+15:19:35 ok    23 screenshot J3-02-chat-instant
+15:19:35 ok    24 assertText "Could not load" absent
+15:19:35 ok    25 deeplink   /vault
+15:19:35 ok    26 sleep      5000 ms
+15:19:35 ok    27 screenshot J3-03-vault
+15:19:35 ok    28 dump       J3-03-vault
+15:19:35 27 passed, 2 failed, 3 screenshots → <worktree>/docs/qa/ios-device-pass-34/screens
+15:19:35   ! step 3 (value): value model-missing: no node with that testID is mounted
+15:19:35   ! step 15 (value): value model-missing: no node with that testID is mounted

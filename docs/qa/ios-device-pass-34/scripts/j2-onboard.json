@@ -1,0 +1,159 @@
+{
+ "_": "J2 after the wipe: the model step must offer 'Download Fast · 1.28 GB', not ready; 'Start now with Instant'; the chat on Instant answers with no 'Could not load' line.",
+ "steps": [
+  {
+   "op": "waitFor",
+   "testID": "onboarding-continue",
+   "timeoutMs": 120000
+  },
+  {
+   "op": "sleep",
+   "ms": 1200
+  },
+  {
+   "op": "press",
+   "testID": "onboarding-continue"
+  },
+  {
+   "op": "waitFor",
+   "testID": "onboarding-model",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "value",
+   "testID": "onboarding-model"
+  },
+  {
+   "op": "value",
+   "testID": "download-model"
+  },
+  {
+   "op": "assertText",
+   "text": "Download Fast",
+   "testID": "download-model"
+  },
+  {
+   "op": "assertText",
+   "text": "1.28 GB",
+   "testID": "download-model"
+  },
+  {
+   "op": "value",
+   "testID": "start-now-with"
+  },
+  {
+   "op": "screenshot",
+   "name": "J2-02-model-step"
+  },
+  {
+   "op": "dump",
+   "name": "J2-02-model-step"
+  },
+  {
+   "op": "press",
+   "testID": "start-now-with"
+  },
+  {
+   "op": "waitFor",
+   "testID": "sealed-start",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 5000
+  },
+  {
+   "op": "press",
+   "testID": "sealed-start"
+  },
+  {
+   "op": "waitFor",
+   "testID": "lock-start",
+   "timeoutMs": 20000
+  },
+  {
+   "op": "press",
+   "testID": "lock-start"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 60000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "assertText",
+   "text": "INSTANT",
+   "testID": "model-chip"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "What is the capital of France?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "waitFor",
+   "testID": "assistant-text",
+   "timeoutMs": 240000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 400000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "screenshot",
+   "name": "J2-03-chat-instant-answers"
+  },
+  {
+   "op": "assertText",
+   "text": "Could not load",
+   "absent": true
+  },
+  {
+   "op": "deeplink",
+   "url": "/vault"
+  },
+  {
+   "op": "sleep",
+   "ms": 5000
+  },
+  {
+   "op": "screenshot",
+   "name": "J2-04-vault"
+  },
+  {
+   "op": "dump",
+   "name": "J2-04-vault"
+  }
+ ]
+}

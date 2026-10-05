@@ -1,0 +1,38 @@
+== first run (worktree at ee7ccbf8)
+== install --frozen-lockfile start 14:58:07
+== install --frozen-lockfile rc=0 end 14:58:18
+== typecheck start 14:58:18
+== typecheck rc=0 end 14:58:28
+== lint start 14:58:28
+== lint rc=0 end 14:58:36
+== test start 14:58:36
+== test rc=0 end 14:59:05
+GATES-DONE
+PASS: all fields within limits.
+SKIP: no shipping artifact in this tree (apps/web/dist, apps/mobile/dist, apps/mobile/ios/build/Inborn.xcarchive, apps/mobile/android/app/build/outputs/bundle/release, apps/mobile/android/app/build/outputs/apk/release)
+PASS: no personal identifier in the history of HEAD
+apps/desktop test: # pass 4
+apps/desktop test: # fail 0
+packages/ui test:  Test Files  3 passed (3)
+packages/ui test:       Tests  23 passed (23)
+packages/i18n test:  Test Files  5 passed (5)
+packages/i18n test:       Tests  24 passed (24)
+packages/core test:  Test Files  103 passed | 3 skipped (106)
+packages/core test:       Tests  1263 passed | 4 skipped (1267)
+apps/mobile test:  Test Files  143 passed (143)
+apps/mobile test:       Tests  1309 passed (1309)
+
+== full test rerun after the archive (the twin's prebuild --clean had already removed apps/mobile/ios/build/Inborn.xcarchive, so check:store SKIPs here; the same gates ran on the kept archive in archive-verify.txt)
+PASS: all fields within limits.
+SKIP: no shipping artifact in this tree (apps/web/dist, apps/mobile/dist, apps/mobile/ios/build/Inborn.xcarchive, apps/mobile/android/app/build/outputs/bundle/release, apps/mobile/android/app/build/outputs/apk/release)
+PASS: no personal identifier in the history of HEAD
+apps/desktop test: # pass 4
+apps/desktop test: # fail 0
+packages/ui test:  Test Files  3 passed (3)
+packages/ui test:       Tests  23 passed (23)
+packages/i18n test:  Test Files  5 passed (5)
+packages/i18n test:       Tests  24 passed (24)
+packages/core test:  Test Files  103 passed | 3 skipped (106)
+packages/core test:       Tests  1263 passed | 4 skipped (1267)
+apps/mobile test:  Test Files  143 passed (143)
+apps/mobile test:       Tests  1309 passed (1309)

@@ -1,0 +1,45 @@
+2026-10-05 14:58:07 start ios-build-34; worktree at 6ff9c859, commit ee7ccbf8 (ee7ccbf8d649) buildNumber 33->34 + guard
+2026-10-05 15:04:20 archive 14:58:58 -> 15:03:36 SUCCEEDED 0 error lines; verify all pass, stamp ee7ccbf8d649 1x; kept at <inborn-docs>/builds/Inborn-34.xcarchive
+2026-10-05 15:08:17 phone before twin: passcodeRequired: false; apps: com.inbornapp.mobile 1.0.0 33;com.inbornapp.mobile.uitests.xctrunner 1.0 1;
+2026-10-05 15:08:38 twin installed 15:08:18 -> 15:08:38 rc=0
+2026-10-05 15:08:42 j0-onboard start
+2026-10-05 15:09:25 j0-onboard rc=0 15:09:25 21 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-34/screens
+push דוח טורבינה.pdf rc=0
+push בית קפה הגינה תפריט.jpg rc=0
+2026-10-05 15:09:30 j1-pdf-download start
+2026-10-05 15:10:48 j1-pdf-download rc=0 15:10:48 55 passed, 0 failed, 5 screenshots → <worktree>/docs/qa/ios-device-pass-34/screens
+2026-10-05 15:11:04 j5-file-cafe start
+2026-10-05 15:11:21 j5-file-cafe rc=0 15:11:20 30 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-34/screens
+2026-10-05 15:11:34 café row read from the sheet dump: attach-muv7kznv-2-vkekf2rf ('בית קפה הגינה תפריט.jpg / Scanned. Run OCR on this phone?'); PDF row 'דוח טורבינה.pdf / Indexed · 3 passages'
+2026-10-05 15:11:34 j5-tap-cafe start
+2026-10-05 15:11:51 j5-tap-cafe rc=0 15:11:50 33 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-34/screens
+2026-10-05 15:11:58 f1-fast-download start
+2026-10-05 15:13:06 f1-fast-download rc=0 15:13:06 21 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-34/screens
+2026-10-05 15:13:06 f2-fast-use start
+2026-10-05 15:14:41 f2-fast-use rc=0 15:14:41 10 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-34/screens
+2026-10-05 15:14:46 j5-loading start
+2026-10-05 15:15:05 j5-loading rc=0 15:15:04 35 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-34/screens
+2026-10-05 15:15:05 j5-fast-text start
+2026-10-05 15:15:16 j5-fast-text rc=0 15:15:16 23 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-34/screens
+2026-10-05 15:15:26 j4-wipe-off start
+2026-10-05 15:15:37 j4-wipe-off rc=0 15:15:36 14 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-34/screens
+2026-10-05 15:15:48 j4-onboard start
+2026-10-05 15:16:06 j4-onboard rc=0 15:16:06 21 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-34/screens
+2026-10-05 15:16:12 j4-fast-turn start
+2026-10-05 15:16:28 j4-fast-turn rc=0 15:16:28 22 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-34/screens
+2026-10-05 15:16:28 j4-relaunch-fast start
+2026-10-05 15:16:52 j4-relaunch-fast rc=0 15:16:52 18 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-34/screens
+2026-10-05 15:17:03 j2-wipe-on start
+2026-10-05 15:17:17 j2-wipe-on rc=0 15:17:17 16 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-34/screens
+2026-10-05 15:17:26 j2-onboard start
+2026-10-05 15:17:54 j2-onboard rc=0 15:17:54 35 passed, 0 failed, 3 screenshots → <worktree>/docs/qa/ios-device-pass-34/screens
+push דוח טורבינה.pdf rc=0
+2026-10-05 15:18:06 j2-pdf-card start
+2026-10-05 15:18:31 j2-pdf-card rc=0 15:18:30 30 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-34/screens
+2026-10-05 15:18:48 J3: twin pid 23094 (mine) terminated; founder vault.json (fast, embed-e5, vision-qwen35-2b installed, default fast) pushed into Documents/models with only vault.json there; read back identical
+2026-10-05 15:18:54 j3-launch start
+2026-10-05 15:19:35 j3-launch rc=1 15:19:35   ! step 15 (value): value model-missing: no node with that testID is mounted
+2026-10-05 15:19:54 twin uninstalled rc=0; apps: com.inbornapp.mobile 1.0.0 33;com.inbornapp.mobile.uitests.xctrunner 1.0 1;
+2026-10-05 15:21:34 store app launched on About 15:20:40: '1.0.0 (34) · ee7ccbf8d649', no StoreKit alert; vault.json after launch: fast + embed-e5 gone, vision-qwen35-2b kept (file on disk), defaultModelId still fast; opened on Chats
+2026-10-05 15:22:00 reading of the runs: J1 55/55, Download pressed ~15:09:52, progress 2% then 23% (27% in the screenshot), answer on screen by 15:10:45 with SOURCES 'דוח טורבינה.pdf · p.1'. J3 rc=1 is my two probes `value model-missing` (steps 3, 15): no 'no longer on this phone' line was mounted, which is the healed outcome; every other step passed. J3 and the store app: the boot scan drops fast/embed-e5 records but leaves defaultModelId 'fast' in vault.json; the chat resolves to Instant anyway. Cosmetic: the Hebrew file name renders as 'pdf.דוח טורבינה' (bidi) in the attachment chip and the sources line
+2026-10-05 15:22:00 check:store in the post-archive test rerun SKIPped: the twin's prebuild --clean had removed apps/mobile/ios/build/Inborn.xcarchive before the rerun; the qa-bridge, shipping and --models gates ran on the kept copy instead (archive-verify.txt)

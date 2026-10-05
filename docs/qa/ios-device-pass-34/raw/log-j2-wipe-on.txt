@@ -1,0 +1,19 @@
+15:17:03 pushing 16 steps as j2-wipe-on
+15:17:06 shot J2-01-wipe-models-on
+15:17:17 ok     0 deeplink   /settings
+15:17:17 ok     1 waitFor    row-wipe appeared
+15:17:17 ok     2 scrollTo   row-wipe
+15:17:17 ok     3 press      row-wipe ← onPress
+15:17:17 ok     4 waitFor    wipe-models appeared
+15:17:17 ok     5 sleep      800 ms
+15:17:17 ok     6 press      wipe-models ← onPress
+15:17:17 ok     7 sleep      800 ms
+15:17:17 ok     8 value      
+15:17:17 ok     9 screenshot J2-01-wipe-models-on
+15:17:17 ok    10 dump       J2-01-wipe
+15:17:17 ok    11 press      wipe-step1 ← onPress
+15:17:17 ok    12 waitFor    wipe-step2 appeared
+15:17:17 ok    13 sleep      800 ms
+15:17:17 ok    14 press      wipe-step2 ← onPress
+15:17:17 ok    15 sleep      6000 ms
+15:17:17 16 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-34/screens

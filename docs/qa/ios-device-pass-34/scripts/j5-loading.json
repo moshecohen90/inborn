@@ -1,0 +1,162 @@
+{
+ "_": "J5 (build 33's J1b): Instant chosen, then Fast chosen from the model sheet; while 'Loading' is on screen the field takes 'hello while loading'; once ready, Send answers on Fast. The bridge types through onChangeText: it cannot raise the system keyboard.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "new-chat",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "press",
+   "testID": "new-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "start-chat",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "press",
+   "testID": "start-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "press",
+   "testID": "model-chip"
+  },
+  {
+   "op": "waitFor",
+   "testID": "model-sheet-use-instant",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "press",
+   "testID": "model-sheet-use-instant"
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 120000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "assertText",
+   "text": "INSTANT",
+   "testID": "model-chip"
+  },
+  {
+   "op": "press",
+   "testID": "model-chip"
+  },
+  {
+   "op": "waitFor",
+   "testID": "model-sheet-use-fast",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "press",
+   "testID": "model-sheet-use-fast"
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "timeoutMs": 5000
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "hello while loading"
+  },
+  {
+   "op": "assertText",
+   "text": "Loading"
+  },
+  {
+   "op": "value",
+   "testID": "composer-input"
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-04-typed-while-loading"
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 1000
+  },
+  {
+   "op": "value",
+   "testID": "composer-input"
+  },
+  {
+   "op": "assertText",
+   "text": "FAST",
+   "testID": "model-chip"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "waitFor",
+   "testID": "assistant-text",
+   "timeoutMs": 240000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 400000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-05-loading-text-answered"
+  }
+ ]
+}

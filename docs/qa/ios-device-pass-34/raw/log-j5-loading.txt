@@ -1,0 +1,39 @@
+15:14:46 pushing 35 steps as j5-loading
+15:14:54 shot J5-04-typed-while-loading
+15:15:01 shot J5-05-loading-text-answered
+15:15:04 ok     0 deeplink   /chats
+15:15:04 ok     1 waitFor    new-chat appeared
+15:15:04 ok     2 press      new-chat ← onPress
+15:15:04 ok     3 waitFor    start-chat appeared
+15:15:04 ok     4 press      start-chat ← onPress
+15:15:04 ok     5 waitFor    composer-input appeared
+15:15:04 ok     6 waitFor    Loading gone
+15:15:04 ok     7 sleep      1500 ms
+15:15:04 ok     8 value      FAST
+15:15:04 ok     9 press      model-chip ← onPress
+15:15:04 ok    10 waitFor    model-sheet-use-instant appeared
+15:15:04 ok    11 press      model-sheet-use-instant ← onPress
+15:15:04 ok    12 sleep      2000 ms
+15:15:04 ok    13 waitFor    Loading gone
+15:15:04 ok    14 sleep      1500 ms
+15:15:04 ok    15 assertText "INSTANT" present
+15:15:04 ok    16 press      model-chip ← onPress
+15:15:04 ok    17 waitFor    model-sheet-use-fast appeared
+15:15:04 ok    18 press      model-sheet-use-fast ← onPress
+15:15:04 ok    19 waitFor    Loading appeared
+15:15:04 ok    20 type       composer-input = 19 chars
+15:15:04 ok    21 assertText "Loading" present
+15:15:04 ok    22 value      
+15:15:04 ok    23 value      FAST
+15:15:04 ok    24 screenshot J5-04-typed-while-loading
+15:15:04 ok    25 waitFor    Loading gone
+15:15:04 ok    26 sleep      1000 ms
+15:15:04 ok    27 value      
+15:15:04 ok    28 assertText "FAST" present
+15:15:04 ok    29 send       send ← onPress
+15:15:04 ok    30 waitFor    assistant-text appeared
+15:15:04 ok    31 waitFor    stop gone
+15:15:04 ok    32 sleep      1500 ms
+15:15:04 ok    33 value      Hello! I'm ready to help you anytime. What would you like to know or discuss?
+15:15:04 ok    34 screenshot J5-05-loading-text-answered
+15:15:04 35 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-34/screens

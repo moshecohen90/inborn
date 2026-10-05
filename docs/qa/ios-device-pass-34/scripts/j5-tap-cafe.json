@@ -1,0 +1,173 @@
+{
+ "_": "J5 part 2 (build 33's J2): tap the café picture in the library list on Instant. Expect a thumbnail chip, no paperclip; 'What do you see in the photo?' answered with a description, no blind words, no 'Nothing in your documents matched' banner.",
+ "steps": [
+  {
+   "op": "value",
+   "testID": "attach-muv7kznv-2-vkekf2rf"
+  },
+  {
+   "op": "press",
+   "testID": "attach-muv7kznv-2-vkekf2rf"
+  },
+  {
+   "op": "waitFor",
+   "testID": "attach-sheet",
+   "gone": true,
+   "timeoutMs": 10000
+  },
+  {
+   "op": "waitFor",
+   "testID": "pending-images",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "waitFor",
+   "testID": "attached-docs",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "value",
+   "testID": "pending-images"
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-02-a-thumbnail-chip"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "What do you see in the photo?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "waitFor",
+   "testID": "vision-hold",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "waitFor",
+   "testID": "user-images",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "waitFor",
+   "testID": "assistant-text",
+   "timeoutMs": 240000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 400000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "J5-03-photo-answer"
+  },
+  {
+   "op": "dump",
+   "name": "J5-03-chat-cafe-instant"
+  },
+  {
+   "op": "waitFor",
+   "testID": "none-matched",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "assertText",
+   "text": "Nothing in your documents matched this question",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "cannot see",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "can't see",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "text-based",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "Your documents don't mention",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "unable to see",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "not able to see",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "The request specifies",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "I will focus",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "as an AI",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "NOT_FOUND",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "<<<",
+   "testID": "assistant-text",
+   "absent": true
+  }
+ ]
+}

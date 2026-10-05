@@ -1,0 +1,40 @@
+15:17:26 pushing 35 steps as j2-onboard
+15:17:31 shot J2-02-model-step
+15:17:44 shot J2-03-chat-instant-answers
+15:17:51 shot J2-04-vault
+15:17:54 ok     0 waitFor    onboarding-continue appeared
+15:17:54 ok     1 sleep      1200 ms
+15:17:54 ok     2 press      onboarding-continue ← onPress
+15:17:54 ok     3 waitFor    onboarding-model appeared
+15:17:54 ok     4 sleep      2500 ms
+15:17:54 ok     5 value      Choose your model Your model runs entirely on this phone. You can change it later. Instant READY NOW 533 MB · 
+15:17:54 ok     6 value      Download Fast · 1.28 GB
+15:17:54 ok     7 assertText "Download Fast" present
+15:17:54 ok     8 assertText "1.28 GB" present
+15:17:54 ok     9 value      Start now with Instant
+15:17:54 ok    10 screenshot J2-02-model-step
+15:17:54 ok    11 dump       J2-02-model-step
+15:17:54 ok    12 press      start-now-with ← onPress
+15:17:54 ok    13 waitFor    sealed-start appeared
+15:17:54 ok    14 sleep      5000 ms
+15:17:54 ok    15 press      sealed-start ← onPress
+15:17:54 ok    16 waitFor    lock-start appeared
+15:17:54 ok    17 press      lock-start ← onPress
+15:17:54 ok    18 waitFor    composer-input appeared
+15:17:54 ok    19 waitFor    Loading gone
+15:17:54 ok    20 sleep      2000 ms
+15:17:54 ok    21 value      INSTANT
+15:17:54 ok    22 assertText "INSTANT" present
+15:17:54 ok    23 type       composer-input = 30 chars
+15:17:54 ok    24 send       send ← onPress
+15:17:54 ok    25 waitFor    assistant-text appeared
+15:17:54 ok    26 waitFor    stop gone
+15:17:54 ok    27 sleep      1500 ms
+15:17:54 ok    28 value      The capital of France is Paris.
+15:17:54 ok    29 screenshot J2-03-chat-instant-answers
+15:17:54 ok    30 assertText "Could not load" absent
+15:17:54 ok    31 deeplink   /vault
+15:17:54 ok    32 sleep      5000 ms
+15:17:54 ok    33 screenshot J2-04-vault
+15:17:54 ok    34 dump       J2-04-vault
+15:17:54 35 passed, 0 failed, 3 screenshots → <worktree>/docs/qa/ios-device-pass-34/screens

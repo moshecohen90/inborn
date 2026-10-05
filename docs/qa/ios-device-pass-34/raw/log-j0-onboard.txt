@@ -1,0 +1,26 @@
+15:08:42 launching com.inbornapp.mobile.qa
+15:08:56 pushing 21 steps as j0-onboard
+15:09:01 shot J0-01-model-step
+15:09:22 shot J0-02-chat-instant
+15:09:25 ok     0 waitFor    onboarding-continue appeared
+15:09:25 ok     1 sleep      1200 ms
+15:09:25 ok     2 press      onboarding-continue ← onPress
+15:09:25 ok     3 waitFor    onboarding-model appeared
+15:09:25 ok     4 sleep      2500 ms
+15:09:25 ok     5 value      Choose your model Your model runs entirely on this phone. You can change it later. Instant READY NOW 533 MB · 
+15:09:25 ok     6 screenshot J0-01-model-step
+15:09:25 ok     7 dump       J0-01-model-step
+15:09:25 ok     8 value      Start now with Instant
+15:09:25 ok     9 press      start-now-with ← onPress
+15:09:25 ok    10 waitFor    sealed-start appeared
+15:09:25 ok    11 sleep      5000 ms
+15:09:25 ok    12 press      sealed-start ← onPress
+15:09:25 ok    13 waitFor    lock-start appeared
+15:09:25 ok    14 press      lock-start ← onPress
+15:09:25 ok    15 waitFor    composer-input appeared
+15:09:25 ok    16 waitFor    Loading gone
+15:09:25 ok    17 sleep      2000 ms
+15:09:25 ok    18 value      INSTANT
+15:09:25 ok    19 assertText "INSTANT" present
+15:09:25 ok    20 screenshot J0-02-chat-instant
+15:09:25 21 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-34/screens

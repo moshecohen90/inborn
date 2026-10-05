@@ -1,0 +1,395 @@
+{
+  "runId": "j5-tap-cafe",
+  "startedAt": "2026-10-05T12:11:34.442Z",
+  "finishedAt": "2026-10-05T12:11:48.997Z",
+  "ok": true,
+  "passed": 33,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "בית קפה הגינה תפריט.jpg Scanned. Run OCR on this phone?",
+        "props": {
+          "label": "בית קפה הגינה תפריט.jpg",
+          "disabled": false,
+          "accessibilityRole": "button",
+          "accessibilityState": {
+            "disabled": false
+          }
+        }
+      },
+      "detail": "בית קפה הגינה תפריט.jpg Scanned. Run OCR on this phone?"
+    },
+    {
+      "i": 1,
+      "op": "press",
+      "ok": true,
+      "ms": 153,
+      "detail": "attach-muv7kznv-2-vkekf2rf ← onPress"
+    },
+    {
+      "i": 2,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "attach-sheet gone"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 518,
+      "detail": "pending-images appeared"
+    },
+    {
+      "i": 4,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1514,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "attached-docs gone"
+    },
+    {
+      "i": 6,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Free: one photo per message",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Free: one photo per message"
+    },
+    {
+      "i": 7,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2245,
+      "detail": "J5-02-a-thumbnail-chip"
+    },
+    {
+      "i": 8,
+      "op": "type",
+      "ok": true,
+      "ms": 169,
+      "detail": "composer-input = 29 chars"
+    },
+    {
+      "i": 9,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 10,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3000,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 11,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "vision-hold gone"
+    },
+    {
+      "i": 12,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "user-images appeared"
+    },
+    {
+      "i": 13,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 14,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1317,
+      "detail": "stop gone"
+    },
+    {
+      "i": 15,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 16,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "The photo shows a brick wall with two blackboard windows on it. The left window displays \"Opening Hours\" and lists daily schedule times from Monday to Sunday, including lunch (8-4:30) and closing times for weekends. The right window has chalk notes listing services like breakfast, sandwiches, coffee, pastries, pizza, and more, along with hours of service and contact info.",
+        "props": {
+          "source": "The photo shows a brick wall with two blackboard windows on it. The left window displays \"Opening Hours\" and lists daily schedule times from Monday to Sunday, including lunch (8-4:30) and closing times for weekends. The right window has chalk notes listing services like breakfast, sandwiches, coffee, pastries, pizza, and more, along with hours of service and contact info.",
+          "disabled": false
+        }
+      },
+      "detail": "The photo shows a brick wall with two blackboard windows on it. The left window displays \"Opening Hours\" and lists daily schedule times from Monday to Sunday, including lunch (8-4:30) and closing time"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2015,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 18,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1916,
+      "detail": "J5-03-photo-answer"
+    },
+    {
+      "i": 19,
+      "op": "dump",
+      "ok": true,
+      "ms": 3,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What do you see in the photo?",
+          "role": "text"
+        },
+        {
+          "testID": "user-images",
+          "text": ""
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI The photo shows a brick wall with two blackboard windows on it. The left window displays \"Opening Hours\" and lists daily schedule times from Monday to Sunday, including lunch (8-4:30) and closing times for weekends. The right window has chalk notes listing services like breakfast, sandwiches, coffee, pastries, pizza, and more, along with hours of service and contact info. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The photo shows a brick wall with two blackboard windows on it. The left window displays \"Opening Hours\" and lists daily schedule times from Monday to Sunday, including lunch (8-4:30) and closing times for weekends. The right window has chalk notes listing services like breakfast, sandwiches, coffee, pastries, pizza, and more, along with hours of service and contact info."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J5-03-chat-cafe-instant"
+    },
+    {
+      "i": 20,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "none-matched gone"
+    },
+    {
+      "i": 21,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"Nothing in your documents matched this question\" absent"
+    },
+    {
+      "i": 22,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"cannot see\" absent"
+    },
+    {
+      "i": 23,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"can't see\" absent"
+    },
+    {
+      "i": 24,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"text-based\" absent"
+    },
+    {
+      "i": 25,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Your documents don't mention\" absent"
+    },
+    {
+      "i": 26,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"unable to see\" absent"
+    },
+    {
+      "i": 27,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"not able to see\" absent"
+    },
+    {
+      "i": 28,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"The request specifies\" absent"
+    },
+    {
+      "i": 29,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"I will focus\" absent"
+    },
+    {
+      "i": 30,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"as an AI\" absent"
+    },
+    {
+      "i": 31,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"NOT_FOUND\" absent"
+    },
+    {
+      "i": 32,
+      "op": "assertText",
+      "ok": true,
+      "ms": 3,
+      "detail": "\"<<<\" absent"
+    }
+  ],
+  "errors": []
+}

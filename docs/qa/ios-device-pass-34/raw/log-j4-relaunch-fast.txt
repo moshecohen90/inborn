@@ -1,0 +1,22 @@
+15:16:28 launching com.inbornapp.mobile.qa
+15:16:42 pushing 18 steps as j4-relaunch-fast
+15:16:49 shot J4-06-fast-after-relaunch
+15:16:52 ok     0 deeplink   /chats
+15:16:52 ok     1 waitFor    new-chat appeared
+15:16:52 ok     2 press      new-chat ← onPress
+15:16:52 ok     3 waitFor    start-chat appeared
+15:16:52 ok     4 press      start-chat ← onPress
+15:16:52 ok     5 waitFor    composer-input appeared
+15:16:52 ok     6 waitFor    Loading gone
+15:16:52 ok     7 sleep      1500 ms
+15:16:52 ok     8 value      FAST
+15:16:52 ok     9 assertText "FAST" present
+15:16:52 ok    10 type       composer-input = 21 chars
+15:16:52 ok    11 send       send ← onPress
+15:16:52 ok    12 waitFor    assistant-text appeared
+15:16:52 ok    13 waitFor    stop gone
+15:16:52 ok    14 sleep      1500 ms
+15:16:52 ok    15 value      Two plus two equals four.
+15:16:52 ok    16 screenshot J4-06-fast-after-relaunch
+15:16:52 ok    17 assertText "Could not load" absent
+15:16:52 18 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-34/screens

@@ -1,0 +1,104 @@
+{
+  "runId": "f2-fast-use",
+  "startedAt": "2026-10-05T12:13:07.901Z",
+  "finishedAt": "2026-10-05T12:14:39.502Z",
+  "ok": true,
+  "passed": 10,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "idleTimer",
+      "ok": true,
+      "ms": 1,
+      "detail": "idle timer disabled: true",
+      "value": {
+        "text": "true",
+        "props": {
+          "idleTimerDisabled": true
+        }
+      }
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 83523,
+      "detail": "model-sheet-use-fast appeared"
+    },
+    {
+      "i": 2,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Use this model",
+        "props": {
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "Use this model"
+    },
+    {
+      "i": 3,
+      "op": "press",
+      "ok": true,
+      "ms": 177,
+      "detail": "model-sheet-use-fast ← onPress"
+    },
+    {
+      "i": 4,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3000,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2014,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 7,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 8,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"FAST\" present"
+    },
+    {
+      "i": 9,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2878,
+      "detail": "F-02-fast-selected"
+    }
+  ],
+  "errors": []
+}

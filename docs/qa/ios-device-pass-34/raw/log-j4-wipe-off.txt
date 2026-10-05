@@ -1,0 +1,17 @@
+15:15:26 pushing 14 steps as j4-wipe-off
+15:15:28 shot J4-01-wipe-models-off
+15:15:36 ok     0 deeplink   /settings
+15:15:36 ok     1 waitFor    row-wipe appeared
+15:15:36 ok     2 scrollTo   row-wipe
+15:15:36 ok     3 press      row-wipe ← onPress
+15:15:36 ok     4 waitFor    wipe-models appeared
+15:15:36 ok     5 sleep      800 ms
+15:15:36 ok     6 value      
+15:15:36 ok     7 screenshot J4-01-wipe-models-off
+15:15:36 ok     8 dump       J4-01-wipe
+15:15:36 ok     9 press      wipe-step1 ← onPress
+15:15:36 ok    10 waitFor    wipe-step2 appeared
+15:15:36 ok    11 sleep      800 ms
+15:15:36 ok    12 press      wipe-step2 ← onPress
+15:15:36 ok    13 sleep      6000 ms
+15:15:36 14 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-34/screens

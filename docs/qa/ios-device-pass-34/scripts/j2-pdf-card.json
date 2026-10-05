@@ -1,0 +1,142 @@
+{
+ "_": "J2: 'דוח טורבינה.pdf' attached again after the wipe: the Download card, never 100%.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "new-chat",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "press",
+   "testID": "new-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "start-chat",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "press",
+   "testID": "start-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "devPrompt",
+   "lines": [
+    "attach: דוח טורבינה.pdf"
+   ]
+  },
+  {
+   "op": "waitFor",
+   "testID": "attached-docs",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "value",
+   "testID": "attached-docs"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "What is the serial number of the Rakovsky turbine?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "waitFor",
+   "testID": "docs-hold",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "docs-hold"
+  },
+  {
+   "op": "value",
+   "testID": "docs-hold-body"
+  },
+  {
+   "op": "value",
+   "testID": "docs-hold-download"
+  },
+  {
+   "op": "assertText",
+   "text": "468 MB",
+   "testID": "docs-hold"
+  },
+  {
+   "op": "assertText",
+   "text": "100%",
+   "testID": "docs-hold",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "Downloading",
+   "testID": "docs-hold",
+   "absent": true
+  },
+  {
+   "op": "screenshot",
+   "name": "J2-05-card-before"
+  },
+  {
+   "op": "dump",
+   "name": "J2-05-card"
+  },
+  {
+   "op": "sleep",
+   "ms": 10000
+  },
+  {
+   "op": "value",
+   "testID": "docs-hold-body"
+  },
+  {
+   "op": "assertText",
+   "text": "100%",
+   "testID": "docs-hold",
+   "absent": true
+  },
+  {
+   "op": "screenshot",
+   "name": "J2-05-card-10s-later"
+  },
+  {
+   "op": "assertText",
+   "text": "Could not load",
+   "absent": true
+  }
+ ]
+}

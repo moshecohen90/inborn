@@ -1,0 +1,63 @@
+lockState at start: passcodeRequired: false
+apps at start: com.inbornapp.mobile 1.0.0 33;com.inbornapp.mobile.uitests.xctrunner 1.0 1;
+listing before: 19 lines
+non-model files: 12
+byte copy before 15:19:59:
+  pulled SQLite/inborn.db 4096 B
+  pulled SQLite/inborn.db-shm 32768 B
+  pulled SQLite/inborn.db-wal 807552 B
+  pulled device-prefs.json 92 B
+  pulled documents.json 82 B
+  pulled documents/muv2ebyz-1-yzykduob.pdf 2666167 B
+  pulled images/muv2bv6s-f2qc7p.jpg 211764 B
+  pulled images/muv2cxqe-nf2vte.jpg 212963 B
+  pulled images/muv2htzr-myuiss.jpg 238308 B
+  pulled models/vault.json 1218 B
+  pulled prefs.bak.json 494 B
+  pulled prefs.json 494 B
+start=15:20:02
+rc=0 end=15:20:23
+after install: com.inbornapp.mobile 1.0.0 34
+listing after: 19 lines; identical to before: yes
+byte copy after:
+  pulled SQLite/inborn.db 4096 B
+  pulled SQLite/inborn.db-shm 32768 B
+  pulled SQLite/inborn.db-wal 807552 B
+  pulled device-prefs.json 92 B
+  pulled documents.json 82 B
+  pulled documents/muv2ebyz-1-yzykduob.pdf 2666167 B
+  pulled images/muv2bv6s-f2qc7p.jpg 211764 B
+  pulled images/muv2cxqe-nf2vte.jpg 212963 B
+  pulled images/muv2htzr-myuiss.jpg 238308 B
+  pulled models/vault.json 1218 B
+  pulled prefs.bak.json 494 B
+  pulled prefs.json 494 B
+SURVIVED identical: SQLite/inborn.db (4096 B)
+SURVIVED identical: SQLite/inborn.db-shm (32768 B)
+SURVIVED identical: SQLite/inborn.db-wal (807552 B)
+SURVIVED identical: device-prefs.json (92 B)
+SURVIVED identical: documents.json (82 B)
+SURVIVED identical: documents/muv2ebyz-1-yzykduob.pdf (2666167 B)
+SURVIVED identical: images/muv2bv6s-f2qc7p.jpg (211764 B)
+SURVIVED identical: images/muv2cxqe-nf2vte.jpg (212963 B)
+SURVIVED identical: images/muv2htzr-myuiss.jpg (238308 B)
+SURVIVED identical: models/vault.json (1218 B)
+SURVIVED identical: prefs.bak.json (494 B)
+SURVIVED identical: prefs.json (494 B)
+INSTALL-DONE
+
+sha256 of the byte copy taken before the install (file names only; the files stay out of the repo):
+b766c4107a9958a82fb6880a41e65ffc782de8e543d462540363899a10e715b3  SQLite_inborn.db
+c780b049be421963943b41e7bf94769452f9e1021ecc340cc843c5c5a2c51ea1  SQLite_inborn.db-shm
+b80bf2b7ceae5ec4ea0c71f392f0bb9c1520d4dae276aae8c3ad9c3b24738aa9  SQLite_inborn.db-wal
+9c0866c7a83eb47e489357b10e3b1a62dbb8c6a9b48397f4c09dd0712da4db5a  device-prefs.json
+d0ae1f8f0e8b7a39ddf5e54ec0edf7b7035b2eb5f791b48408c7f8352c47aa5d  documents.json
+a596043619b1fb6468f9670e04c24b5befbe8810508e755829f1400bc5af40b4  documents_muv2ebyz-1-yzykduob.pdf
+53f7c384273c4b2b01720e94436c3d09ebc0ac65fd5d923b25220437559fe2e3  images_muv2bv6s-f2qc7p.jpg
+1ade993073547f06bfaa5203bdaa5612fc7dad33b656364ff97e14892bdea859  images_muv2cxqe-nf2vte.jpg
+b6e9bb949696e6f56c687de922a1e8af3391d7156b05e876c349369b940b2713  images_muv2htzr-myuiss.jpg
+1be93ab9c655721bb2fe32f2fc8f2518469796130ad778884d680a27f056533f  models_vault.json
+25dcfb34850710179d106c589be5d4f8eb8d237bf84db0522cff488c05832945  prefs.bak.json
+25dcfb34850710179d106c589be5d4f8eb8d237bf84db0522cff488c05832945  prefs.json
+
+models/mmproj-Qwen3.5-2B-F16.gguf: same size and modification date in the listing before and after (listing identical)

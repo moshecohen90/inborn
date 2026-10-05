@@ -1,0 +1,297 @@
+{
+  "runId": "j5-loading",
+  "startedAt": "2026-10-05T12:14:46.645Z",
+  "finishedAt": "2026-10-05T12:15:02.956Z",
+  "ok": true,
+  "passed": 35,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 160,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 9,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "model-chip ← onPress"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "model-sheet-use-instant appeared"
+    },
+    {
+      "i": 11,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "model-sheet-use-instant ← onPress"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2002,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 13,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 15,
+      "op": "assertText",
+      "ok": true,
+      "ms": 3,
+      "detail": "\"INSTANT\" present"
+    },
+    {
+      "i": 16,
+      "op": "press",
+      "ok": true,
+      "ms": 159,
+      "detail": "model-chip ← onPress"
+    },
+    {
+      "i": 17,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "model-sheet-use-fast appeared"
+    },
+    {
+      "i": 18,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "model-sheet-use-fast ← onPress"
+    },
+    {
+      "i": 19,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading appeared"
+    },
+    {
+      "i": 20,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 19 chars"
+    },
+    {
+      "i": 21,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Loading\" present"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "",
+        "props": {
+          "value": "hello while loading",
+          "placeholder": "Message…",
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 23,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 24,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2864,
+      "detail": "J5-04-typed-while-loading"
+    },
+    {
+      "i": 25,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 26,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1000,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 27,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "",
+        "props": {
+          "value": "hello while loading",
+          "placeholder": "Message…",
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 28,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"FAST\" present"
+    },
+    {
+      "i": 29,
+      "op": "send",
+      "ok": true,
+      "ms": 163,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 30,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 800,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 31,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1067,
+      "detail": "stop gone"
+    },
+    {
+      "i": 32,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 33,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Hello! I'm ready to help you anytime. What would you like to know or discuss?",
+        "props": {
+          "source": "Hello! I'm ready to help you anytime. What would you like to know or discuss?",
+          "disabled": false
+        }
+      },
+      "detail": "Hello! I'm ready to help you anytime. What would you like to know or discuss?"
+    },
+    {
+      "i": 34,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2548,
+      "detail": "J5-05-loading-text-answered"
+    }
+  ],
+  "errors": []
+}
