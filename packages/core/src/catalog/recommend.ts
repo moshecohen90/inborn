@@ -8,6 +8,8 @@ import { isRewriteAsk } from "../chat/length";
 /** §7.8 recommendation rule: by use, by language, on this device. Pure; the vault and the chat both call it. */
 export interface RecommendInput {
   use: UseCase;
+  /** Several uses at once (the vault's Best for): a model is as good as its weakest; absent or one item ranks by `use` alone. */
+  uses?: readonly UseCase[];
   /** ISO 639-1 of what the user writes (or the app language); null when unknown, then language does not rank. */
   languageCode: string | null;
   device: DeviceProfile;
@@ -26,6 +28,8 @@ export interface RecommendReason {
   languageTier: LanguageTier | null;
   ramFit: RamFit;
   installed: boolean;
+  /** Set only for several uses: each picked use with its tier; `use` / `useTier` then name the weakest. */
+  useTiers?: { use: UseCase; tier: UseTier }[];
 }
 
 export interface ModelRecommendation {
@@ -35,20 +39,33 @@ export interface ModelRecommendation {
 
 const tierIndex = (m: CatalogModel): number => (m.tier ? TIER_ORDER.indexOf(m.tier) : -1);
 
+/** The picked use this model is worst at (the first one on a tie); several uses are only as good as this one. */
+export function weakestUse(model: Pick<CatalogModel, "fit">, uses: readonly UseCase[]): { use: UseCase; tier: UseTier } {
+  return uses.map((use) => ({ use, tier: useTierOf(model, use)! })).reduce((a, b) => (useRank(b.tier) < useRank(a.tier) ? b : a));
+}
+
+/** At least "good" at every picked use: the vault lists these above its "not good at all of these" line. */
+export const goodAtAll = (r: ModelRecommendation): boolean => r.reason.useTier !== "weak";
+
 /** Chat models this device can run, best first: language, then use, then runs well, then already installed, then the §6.3 tier. */
 export function rankModels(input: RecommendInput): ModelRecommendation[] {
   const { device, languageCode, use } = input;
+  const several = !!input.uses && input.uses.length > 1;
   const ceiling = TIER_ORDER.indexOf(maxTier(device));
   const wanted = TIER_ORDER.indexOf(defaultTier(device));
   const engine = input.engineVersion ?? ENGINE_VERSION;
   const rows = input.catalog
     /* A tier that measures below a usable rate on this chip class is still installable, never recommended (QA F37). */
     .filter((m) => m.role === "chat" && m.fit && m.tier && m.minEngine <= engine && tierIndex(m) <= ceiling && ramFit(m, device.ramGB) !== "no" && !tooSlowHere(device.chip, m.tier))
-    .map((model): ModelRecommendation => ({
-      model,
-      reason: { use, useTier: useTierOf(model, use)!, languageCode, languageTier: languageTierOf(model, languageCode), ramFit: ramFit(model, device.ramGB), installed: input.installed.includes(model.id) },
-    }));
+    .map((model): ModelRecommendation => {
+      const reason: RecommendReason = { use, useTier: useTierOf(model, use)!, languageCode, languageTier: languageTierOf(model, languageCode), ramFit: ramFit(model, device.ramGB), installed: input.installed.includes(model.id) };
+      if (!several) return { model, reason };
+      const weakest = weakestUse(model, input.uses!);
+      return { model, reason: { ...reason, use: weakest.use, useTier: weakest.tier, useTiers: input.uses!.map((u) => ({ use: u, tier: useTierOf(model, u)! })) } };
+    });
   const score = (r: ModelRecommendation): number[] => [
+    /* Good at all the picked uses leads, above room and language, so the vault's one divider splits every section cleanly. */
+    ...(several ? [goodAtAll(r) ? 1 : 0] : []),
     fitsRoom(r.model, input.room) ? 1 : 0,
     languageCode ? languageRank(r.reason.languageTier ?? undefined) : 0,
     useRank(r.reason.useTier),

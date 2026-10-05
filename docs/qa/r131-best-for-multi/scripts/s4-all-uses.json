@@ -1,0 +1,79 @@
+{
+  "runId": "s4-all-uses",
+  "_": "Every use selected: chip 'Chat +7', the cards print all eight tiers, the honest line when none is good at all.",
+  "steps": [
+    {
+      "op": "press",
+      "testID": "best-for-use"
+    },
+    {
+      "op": "waitFor",
+      "testID": "best-for-use-sheet",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "sleep",
+      "ms": 1000
+    },
+    {
+      "op": "press",
+      "testID": "best-for-use-writing"
+    },
+    {
+      "op": "press",
+      "testID": "best-for-use-summarize"
+    },
+    {
+      "op": "press",
+      "testID": "best-for-use-translate"
+    },
+    {
+      "op": "press",
+      "testID": "best-for-use-code"
+    },
+    {
+      "op": "press",
+      "testID": "best-for-use-voice"
+    },
+    {
+      "op": "press",
+      "testID": "best-for-use-math"
+    },
+    {
+      "op": "sleep",
+      "ms": 1200
+    },
+    {
+      "op": "screenshot",
+      "name": "06-sheet-all"
+    },
+    {
+      "op": "press",
+      "testID": "best-for-use-sheet-close"
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "07-vault-all"
+    },
+    {
+      "op": "dump",
+      "name": "07-vault-all"
+    },
+    {
+      "op": "scrollTo",
+      "testID": "model-card-sharp"
+    },
+    {
+      "op": "sleep",
+      "ms": 1200
+    },
+    {
+      "op": "screenshot",
+      "name": "08-vault-all-fits"
+    }
+  ]
+}
