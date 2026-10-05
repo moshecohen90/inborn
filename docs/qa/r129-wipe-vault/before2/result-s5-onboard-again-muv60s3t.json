@@ -1,0 +1,144 @@
+{
+  "runId": "s5-onboard-again-muv60s3t",
+  "startedAt": "2026-10-05T11:27:26.010Z",
+  "finishedAt": "2026-10-05T11:27:31.427Z",
+  "ok": true,
+  "passed": 8,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-continue appeared"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1200,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 2,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 967,
+      "detail": "06-welcome"
+    },
+    {
+      "i": 3,
+      "op": "press",
+      "ok": true,
+      "ms": 156,
+      "detail": "onboarding-continue ← onPress"
+    },
+    {
+      "i": 4,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-model appeared"
+    },
+    {
+      "i": 5,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1500,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 6,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1591,
+      "detail": "06-model-step"
+    },
+    {
+      "i": 7,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "onboarding-welcome",
+          "text": "Nothing leaves this phone. AI that runs on your device. No account, no cloud, and nothing you type ever leaves it. RUNS ON: Simulator iOS · 64 GB Continue This is AI. It can be wrong. Check important facts."
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "Open seal"
+        },
+        {
+          "testID": "runs-on",
+          "text": "RUNS ON: Simulator iOS · 64 GB"
+        },
+        {
+          "testID": "onboarding-continue",
+          "text": "Continue",
+          "pressable": true
+        },
+        {
+          "testID": "onboarding-model",
+          "text": "Choose your model Your model runs entirely on this phone. You can change it later. Instant READY NOW 533 MB · inside the app · nothing to download Quick answers and voice notes. Lightest on battery. Best in English, Chinese. Fast READY NOW RECOMMENDED FOR THIS phone 1.28 GB · already on this phone Everyday assistant: writing, questions, translation. Best balance on this device. Best in English, Chinese, Spanish, French and 4 more languages. You can add or remove models any time in the vault. Start chatting"
+        },
+        {
+          "testID": "model-options",
+          "text": "Instant READY NOW 533 MB · inside the app · nothing to download Quick answers and voice notes. Lightest on battery. Best in English, Chinese. Fast READY NOW RECOMMENDED FOR THIS phone 1.28 GB · already on this phone Everyday assistant: writing, questions, translation. Best balance on this device. Best in English, Chinese, Spanish, French and 4 more languages."
+        },
+        {
+          "testID": "model-option-instant",
+          "text": "Instant READY NOW 533 MB · inside the app · nothing to download Quick answers and voice notes. Lightest on battery. Best in English, Chinese.",
+          "role": "radio",
+          "state": {
+            "selected": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "model-source-instant",
+          "text": "533 MB · inside the app · nothing to download"
+        },
+        {
+          "testID": "model-option-fast",
+          "text": "Fast READY NOW RECOMMENDED FOR THIS phone 1.28 GB · already on this phone Everyday assistant: writing, questions, translation. Best balance on this device. Best in English, Chinese, Spanish, French and 4 more languages.",
+          "role": "radio",
+          "state": {
+            "selected": true,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "model-source-fast",
+          "text": "1.28 GB · already on this phone"
+        },
+        {
+          "testID": "back",
+          "text": "",
+          "role": "button",
+          "label": "Back",
+          "pressable": true
+        },
+        {
+          "testID": "start-chatting",
+          "text": "Start chatting",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "06-model-step"
+    }
+  ],
+  "errors": []
+}

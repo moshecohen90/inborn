@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { AccessibilityInfo, AppState, FlatList, Image, Keyboard, Linking, Platform, Pressable, StyleSheet, Text, View, findNodeHandle, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent, type TextInput } from "react-native";
 import { useFocusEffect, useIsFocused } from "expo-router";
 import { useTranslation } from "react-i18next";
@@ -149,7 +149,7 @@ import { useAppServices } from "../services/AppServices";
 import { useUpdateHold } from "../web/updateHold";
 
 type Row = AssistantRow;
-type Status = { kind: "loading" } | { kind: "ready" } | { kind: "error"; error: string };
+type Status = { kind: "loading" } | { kind: "ready" } | { kind: "error"; error: string; missing?: boolean };
 
 /* Headless device runs (USB, nothing can tap the screen): bundling with EXPO_PUBLIC_AUTOPROMPT=1 sends one prompt 2 s after the model loads and writes the numbers to Documents/dev-run.json; any other value is sent verbatim (emulators cannot type non-ASCII). Store builds never set it. */
 const AUTOPROMPT_ENV = process.env.EXPO_PUBLIC_AUTOPROMPT ?? "";
@@ -196,6 +196,8 @@ export interface ChatProps {
 
 export { afterSheetClose };
 
+const subscribeVault = (listener: () => void) => getVault().subscribe(listener);
+const missingSnapshot = () => getVault().missingModel();
 const errorText = (e: unknown) => (e instanceof Error ? e.message : String(e));
 const wire = (rows: readonly Row[]): Pick<ChatMessage, "id" | "role" | "content" | "images">[] => rows.filter((r) => !r.streaming && !r.error).map(({ id, role, content, images }) => ({ id, role, content, ...(images?.length ? { images } : {}) }));
 const toMessage = ({ role, content, images }: Pick<ChatMessage, "role" | "content" | "images">): Message => ({ role, content, ...(images?.length ? { images: images.map(imageUri) } : {}) });
@@ -261,6 +263,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const [modelSheetOpen, setModelSheetOpen] = useState(reopenModelSheet);
   const [safety, setSafety] = useState<CrisisResource[] | null>(null);
   const [notice, setNotice] = useState(false);
+  /* Read, not taken, on mount: the swap after a heal remounts this screen more than once. */
+  const missingModel = useSyncExternalStore(subscribeVault, missingSnapshot);
   const [shortfallDismissed, setShortfallDismissed] = useState<string | null>(null);
   const [toast, setToast] = useState<string | null>(null);
   const [noneMatched, setNoneMatched] = useState(false);
@@ -365,7 +369,12 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       .catch((e: unknown) => {
         const error = errorText(e);
         if (DEV_RESULTS) writeDevResult({ engine: engine.id, model: model.id, error });
-        if (alive) setStatus({ kind: "error", error });
+        const vault = getVault();
+        const missing = vault.forgetMissing(model.id) || vault.missingModel() === model.id;
+        if (alive) setStatus({ kind: "error", error, missing });
+        /* The file is gone, not broken: back to a model that is here; the remounted chat says what happened. */
+        const back = missing ? vault.activeModel()?.model.id : undefined;
+        if (alive && back && back !== model.id) onSwitchModel?.(back);
       });
     return () => {
       alive = false;
@@ -1195,7 +1204,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   }, [adviceLanguage, model.id, use, browserPick, tier]);
   const personaName = persona.builtIn ? t(`persona.${persona.id.replace("builtin:", "")}`) : persona.name;
 
-  const statusLine = status.kind === "loading" ? t("chat.loading", { model: chipLabel(t, model.id) }) : status.kind === "error" ? t("chat.loadFailed", { model: chipLabel(t, model.id), error: status.error }) : null;
+  const statusLine = status.kind === "loading" ? t("chat.loading", { model: chipLabel(t, model.id) }) : status.kind === "error" ? (status.missing ? t("chat.modelMissing", { model: chipLabel(t, model.id) }) : t("chat.loadFailed", { model: chipLabel(t, model.id), error: status.error })) : null;
   const sealOverride = sealState && sealState !== "sealed" && sealState !== "generating" ? sealState : undefined;
   const sealLabel = sealOverride === "loading" ? t("chat.delivering") : t("chat.sealed");
   const attachedNames = docs.documents.map((d) => d.name);
@@ -1595,6 +1604,14 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       {noneMatched ? (
         <View testID="none-matched" style={[styles.notice, { borderColor: theme.border }]}>
           <Text style={[type.caption, styles.grow, { color: theme.text2 }]}>{t("documents.noneMatched")}</Text>
+        </View>
+      ) : null}
+      {missingModel && status.kind === "ready" ? (
+        <View testID="model-missing" style={[styles.notice, { borderColor: theme.border }]}>
+          <Text style={[type.caption, styles.grow, { color: theme.text2 }]}>{t("chat.modelMissing", { model: chipLabel(t, missingModel) })}</Text>
+          <Pressable accessibilityRole="button" onPress={() => void getVault().takeMissing()} hitSlop={8} style={styles.noticeBtn}>
+            <Text style={[type.caption, { color: theme.accent }]}>{t("safety.dismiss")}</Text>
+          </Pressable>
         </View>
       ) : null}
       {notice && status.kind === "ready" ? (

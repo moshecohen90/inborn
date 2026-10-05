@@ -10,6 +10,7 @@ import { accumulate, ChatStore, InMemoryChatRepository, NetworkLog, type Chat, t
 import { prepareEngine, type Engine } from "../adapters";
 import { getEngine, hasSessionOverride, isGenerating, resetEngine, subscribeActivity, subscribeEngineState } from "../engine";
 import { getVault } from "../vault/store";
+import { forgetExtensions } from "../extensions/store";
 import { doneDelivery } from "../proof/deliveryLine";
 import { applyBootFloor, startDeviceGuard } from "../device/boot";
 import { getDeviceGuard } from "../device/guard";
@@ -346,6 +347,10 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
     /* The library's jobs and records go before the files; the index's own connection closes inside wipe() (F419). */
     await retireLibrary();
     await wipe(opts);
+    /* The vault and the engine still held the deleted models in memory; the next persist() wrote them back as installed. */
+    await getVault().rescan();
+    forgetExtensions();
+    await resetEngine();
     resetLibrary();
     getWork().reset();
     bootGate.next();

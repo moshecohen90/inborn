@@ -1,0 +1,22 @@
+{
+  "runId": "s7-vault-after",
+  "_": "The vault after the wipe.",
+  "steps": [
+    {
+      "op": "deeplink",
+      "url": "/vault"
+    },
+    {
+      "op": "sleep",
+      "ms": 5000
+    },
+    {
+      "op": "screenshot",
+      "name": "10-vault-after-wipe"
+    },
+    {
+      "op": "dump",
+      "name": "10-vault"
+    }
+  ]
+}

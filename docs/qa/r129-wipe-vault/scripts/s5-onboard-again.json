@@ -1,0 +1,40 @@
+{
+  "runId": "s5-onboard-again",
+  "_": "After the wipe: welcome and the model step again.",
+  "steps": [
+    {
+      "op": "waitFor",
+      "testID": "onboarding-continue",
+      "timeoutMs": 90000
+    },
+    {
+      "op": "sleep",
+      "ms": 1200
+    },
+    {
+      "op": "screenshot",
+      "name": "06-welcome"
+    },
+    {
+      "op": "press",
+      "testID": "onboarding-continue"
+    },
+    {
+      "op": "waitFor",
+      "testID": "onboarding-model",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "screenshot",
+      "name": "06-model-step"
+    },
+    {
+      "op": "dump",
+      "name": "06-model-step"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "runId": "s4-wipe",
+  "_": "Settings > Erase everything with 'also delete models' on.",
+  "steps": [
+    {
+      "op": "deeplink",
+      "url": "/settings"
+    },
+    {
+      "op": "waitFor",
+      "testID": "row-wipe",
+      "timeoutMs": 15000
+    },
+    {
+      "op": "scrollTo",
+      "testID": "row-wipe"
+    },
+    {
+      "op": "press",
+      "testID": "row-wipe"
+    },
+    {
+      "op": "waitFor",
+      "testID": "wipe-models",
+      "timeoutMs": 10000
+    },
+    {
+      "op": "press",
+      "testID": "wipe-models"
+    },
+    {
+      "op": "sleep",
+      "ms": 800
+    },
+    {
+      "op": "screenshot",
+      "name": "04-wipe-models-on"
+    },
+    {
+      "op": "dump",
+      "name": "04-wipe"
+    },
+    {
+      "op": "press",
+      "testID": "wipe-step1"
+    },
+    {
+      "op": "waitFor",
+      "testID": "wipe-step2",
+      "timeoutMs": 10000
+    },
+    {
+      "op": "sleep",
+      "ms": 800
+    },
+    {
+      "op": "screenshot",
+      "name": "05-wipe-confirm"
+    },
+    {
+      "op": "press",
+      "testID": "wipe-step2"
+    }
+  ]
+}

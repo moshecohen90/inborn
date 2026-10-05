@@ -1,0 +1,311 @@
+{
+  "runId": "s5d-pick-instant-muv60xla",
+  "startedAt": "2026-10-05T11:27:33.455Z",
+  "finishedAt": "2026-10-05T11:28:06.294Z",
+  "ok": true,
+  "passed": 14,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "press",
+      "ok": true,
+      "ms": 162,
+      "detail": "model-option-instant ← onPress"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1000,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 2,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1906,
+      "detail": "06d-instant-picked"
+    },
+    {
+      "i": 3,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "onboarding-welcome",
+          "text": "Nothing leaves this phone. AI that runs on your device. No account, no cloud, and nothing you type ever leaves it. RUNS ON: Simulator iOS · 64 GB Continue This is AI. It can be wrong. Check important facts."
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "Open seal"
+        },
+        {
+          "testID": "runs-on",
+          "text": "RUNS ON: Simulator iOS · 64 GB"
+        },
+        {
+          "testID": "onboarding-continue",
+          "text": "Continue",
+          "pressable": true
+        },
+        {
+          "testID": "onboarding-model",
+          "text": "Choose your model Your model runs entirely on this phone. You can change it later. Instant READY NOW 533 MB · inside the app · nothing to download Quick answers and voice notes. Lightest on battery. Best in English, Chinese. Fast READY NOW RECOMMENDED FOR THIS phone 1.28 GB · already on this phone Everyday assistant: writing, questions, translation. Best balance on this device. Best in English, Chinese, Spanish, French and 4 more languages. You can add or remove models any time in the vault. Start chatting"
+        },
+        {
+          "testID": "model-options",
+          "text": "Instant READY NOW 533 MB · inside the app · nothing to download Quick answers and voice notes. Lightest on battery. Best in English, Chinese. Fast READY NOW RECOMMENDED FOR THIS phone 1.28 GB · already on this phone Everyday assistant: writing, questions, translation. Best balance on this device. Best in English, Chinese, Spanish, French and 4 more languages."
+        },
+        {
+          "testID": "model-option-instant",
+          "text": "Instant READY NOW 533 MB · inside the app · nothing to download Quick answers and voice notes. Lightest on battery. Best in English, Chinese.",
+          "role": "radio",
+          "state": {
+            "selected": true,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "model-source-instant",
+          "text": "533 MB · inside the app · nothing to download"
+        },
+        {
+          "testID": "model-option-fast",
+          "text": "Fast READY NOW RECOMMENDED FOR THIS phone 1.28 GB · already on this phone Everyday assistant: writing, questions, translation. Best balance on this device. Best in English, Chinese, Spanish, French and 4 more languages.",
+          "role": "radio",
+          "state": {
+            "selected": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "model-source-fast",
+          "text": "1.28 GB · already on this phone"
+        },
+        {
+          "testID": "back",
+          "text": "",
+          "role": "button",
+          "label": "Back",
+          "pressable": true
+        },
+        {
+          "testID": "start-chatting",
+          "text": "Start chatting",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "06d-model-step"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 160,
+      "detail": "start-chatting ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "sealed-start appeared"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 8001,
+      "detail": "8000 ms"
+    },
+    {
+      "i": 7,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "sealed-start ← onPress"
+    },
+    {
+      "i": 8,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "lock-start appeared"
+    },
+    {
+      "i": 9,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "lock-start ← onPress"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 20000,
+      "detail": "20000 ms"
+    },
+    {
+      "i": 12,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1275,
+      "detail": "06d-chat"
+    },
+    {
+      "i": 13,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "empty-headline",
+          "text": "Nothing leaves this phone."
+        },
+        {
+          "testID": "suggestion-summarize",
+          "text": "Summarize text",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-translate",
+          "text": "Translate",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-draft",
+          "text": "Draft a message",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "06d-chat"
+    }
+  ],
+  "errors": []
+}

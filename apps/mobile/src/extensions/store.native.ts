@@ -12,6 +12,8 @@ export function extensionState(id: string): ExtensionState {
   const vault = getVault();
   const model = vault.model(id);
   if (!model || !findExtension(id)) return { kind: "unavailable" };
+  /* The library asks the disk whether the file is there; the card must not say ready when the library cannot load it. */
+  vault.forgetMissing(id);
   return fromInstallState(vault.state(id), model.bytes, Platform.OS);
 }
 
@@ -26,6 +28,7 @@ export const refreshExtension = async (id: string): Promise<ExtensionState> => {
 };
 
 export function extensionUri(id: string): string | null {
+  getVault().forgetMissing(id);
   const s = getVault().state(id);
   return s.kind === "ready" ? s.path : null;
 }
@@ -34,6 +37,9 @@ export async function installExtension(id: string): Promise<ExtensionState> {
   await getVault().install(id);
   return extensionState(id);
 }
+
+/** The vault's own rescan after a wipe is the extensions' rescan too. */
+export const forgetExtensions = (): void => undefined;
 
 export function cancelExtension(id: string): void {
   void getVault().cancel(id);

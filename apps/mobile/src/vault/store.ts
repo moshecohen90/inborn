@@ -70,6 +70,8 @@ export class VaultStore {
   private spacePoll: ReturnType<typeof setInterval> | null = null;
   /* The stricter default until AppServices has read the user's prefs: no cellular gigabyte is spent by a race. */
   private wifiOnlyPref = true;
+  /** A chat model whose file was found gone at use time, for the chat's one honest line. */
+  private missing: string | null = null;
 
   constructor(manifest: CatalogManifest = BUNDLED_MANIFEST, device?: DeviceInfo) {
     const check = loadManifest(manifest);
@@ -183,6 +185,72 @@ export class VaultStore {
   }
 
   /**
+   * After the emergency wipe: memory follows the disk again. The record is read anew (gone with the models, kept
+   * without them), every state, download and stray is rescanned, and the default points at a model that is still here.
+   */
+  async rescan(): Promise<void> {
+    for (const [id, s] of this.states) {
+      const model = this.model(id);
+      if (s.kind === "delivering" && !s.paused && model) await this.delivery.cancel(model).catch(() => undefined);
+      downloadAwake.release(id);
+    }
+    if (this.spacePoll) clearInterval(this.spacePoll);
+    this.spacePoll = null;
+    this.lanes = new DeliveryLanes();
+    this.record = readRecord();
+    this.states = new Map(this.deliverable().map((m) => [m.id, NOT_INSTALLED]));
+    this.strays = [];
+    this.missing = null;
+    this.booted = this.scan();
+    await this.booted;
+    this.keepDefaultInstalled();
+    this.notify();
+  }
+
+  /** A ready file that is gone from disk becomes not-installed with a normal Download offer; true when that just happened. */
+  forgetMissing(id: string): boolean {
+    const s = this.states.get(id);
+    if (Platform.OS === "web" || s?.kind !== "ready" || s.via === "bundled" || new File(s.path).exists) return false;
+    console.warn(`[vault] ${id}: ${s.path} is gone, forgetting it`);
+    if (this.model(id)?.role === "chat") this.missing = id;
+    if (this.record.imports[id]) {
+      delete this.record.imports[id];
+      this.states.delete(id);
+    } else {
+      /* Play keeps the bytes of a pack it unbound; its record is what asks for the pack again (scan). */
+      if (this.record.installs[id]?.via !== "play") delete this.record.installs[id];
+      this.states.set(id, NOT_INSTALLED);
+    }
+    this.keepDefaultInstalled();
+    this.persist();
+    /* Found while a screen renders (a snapshot, the engine's model getter): listeners run after it. */
+    queueMicrotask(() => this.notify());
+    return true;
+  }
+
+  /** The chat model last found gone, until someone takes the news. */
+  missingModel(): string | null {
+    return this.missing;
+  }
+
+  takeMissing(): string | null {
+    const id = this.missing;
+    this.missing = null;
+    if (id) this.notify();
+    return id;
+  }
+
+  private keepDefaultInstalled(): void {
+    const id = this.record.defaultModelId;
+    if (id && this.locate(id)) return;
+    const next = this.activeModel()?.model.id;
+    if (next === id) return;
+    if (next) this.record.defaultModelId = next;
+    else delete this.record.defaultModelId;
+    this.persist();
+  }
+
+  /**
    * Asks Play for the packs this device should already have: fast-follow ones Play delivers by itself after an install
    * (S02), and any pack the vault recorded as delivered, which every app update unbinds (purchases run §K). Both are one
    * request away from bytes that are on the phone, and Play serves them without downloading again. Runs on the boot scan
@@ -255,6 +323,7 @@ export class VaultStore {
         total += fileSize(file);
       }
       this.record.installs[model.id] = { file: model.file, bytes: total, sha256: model.sha256, via, installedAt: Date.now() };
+      if (this.missing === model.id) this.missing = null;
       this.persist();
       return commit({ kind: "ready", path, bytes: total, sha256: model.sha256, via });
     } catch (e: unknown) {
@@ -376,6 +445,7 @@ export class VaultStore {
 
   /** Where the engine would load this model from right now: bundled > hand-pushed Documents file > vault copy, else null. */
   locate(id: string): ModelLocation | null {
+    this.forgetMissing(id);
     const s = this.states.get(id);
     const ready = s?.kind === "ready" ? s : null;
     const bundled = ready?.via === "bundled" ? ready.path : null;
@@ -393,19 +463,19 @@ export class VaultStore {
     this.notify();
   }
 
-  /** Called around engine.load(): a crash between the two calls leaves `loading` set, which quarantines the model at next boot. */
-  markLoading(id: string, loading: boolean): void {
+  /** Called around engine.load(): a crash between the two calls leaves `loading` set, which quarantines the model at next boot. `ok` false: the load threw. */
+  markLoading(id: string, loading: boolean, ok = true): void {
     if (Platform.OS === "web") return;
     const rec = this.record.installs[id];
     if (rec) {
       rec.loading = loading;
-      if (!loading) {
+      if (!loading && ok) {
         rec.lastLoadedAt = Date.now();
         rec.quarantined = false;
       }
       this.persist();
     }
-    if (!loading) this.dispatch(id, { type: "load-ok" });
+    if (!loading && ok) this.dispatch(id, { type: "load-ok" });
   }
 
   // ---- commands ---------------------------------------------------------------

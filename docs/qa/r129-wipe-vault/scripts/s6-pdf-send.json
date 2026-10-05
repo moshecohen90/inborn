@@ -1,0 +1,51 @@
+{
+  "runId": "s6-pdf-send",
+  "_": "A PDF attached through the file driver (attach: turbine.pdf), then a question sent: the index-model hold card.",
+  "steps": [
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "sleep",
+      "ms": 8000
+    },
+    {
+      "op": "screenshot",
+      "name": "07-pdf-attached"
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "What does the report say about the turbine?"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "sleep",
+      "ms": 4000
+    },
+    {
+      "op": "screenshot",
+      "name": "08-pdf-hold-card"
+    },
+    {
+      "op": "dump",
+      "name": "08-hold"
+    },
+    {
+      "op": "sleep",
+      "ms": 20000
+    },
+    {
+      "op": "screenshot",
+      "name": "09-pdf-hold-card-later"
+    },
+    {
+      "op": "dump",
+      "name": "09-hold"
+    }
+  ]
+}

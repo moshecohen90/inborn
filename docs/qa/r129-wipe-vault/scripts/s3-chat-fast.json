@@ -1,0 +1,27 @@
+{
+  "runId": "s3-chat-fast",
+  "_": "After `use fast` from dev-vault.txt: the chat on Fast.",
+  "steps": [
+    {
+      "op": "deeplink",
+      "url": "/"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "sleep",
+      "ms": 30000
+    },
+    {
+      "op": "screenshot",
+      "name": "03-chat-on-fast"
+    },
+    {
+      "op": "dump",
+      "name": "03-chat"
+    }
+  ]
+}
