@@ -15,7 +15,7 @@ export function photoTextDocs(photos: readonly string[], fromDoc: ReadonlyMap<st
 
 /** F136's shape, used only when an OCR passage bears on the question: otherwise the RAG rules would open with "Your documents don't mention this". */
 export async function withPhotoText(messages: Message[], photos: readonly string[] | undefined, docIds: readonly string[], ask: (docIds: string[]) => Promise<AskResult>): Promise<{ messages: Message[]; rag: AskResult | null }> {
-  if (!docIds.length || !photos?.length) return { messages, rag: null };
+  if (!docIds.length) return { messages, rag: null };
   const rag = await ask([...docIds]);
   if (!rag.prompt.used.length) return { messages, rag: null };
   return { messages: withPhotos(rag.prompt.messages, photos), rag };

@@ -1,0 +1,11 @@
+[
+  { "pdf": "visual-page", "set": "tuning", "id": "see", "turns": ["What do you see?"], "truth": "two photos: dogs on gravel/pavement, a coffee cup with cookies and glasses on a table" },
+  { "pdf": "visual-page", "set": "tuning", "id": "now", "turns": ["Now what do you see"], "truth": "same as see" },
+  { "pdf": "visual-page", "set": "held-out", "id": "shipping", "turns": ["What does the free shipping line say?"], "truth": "free shipping on orders over 150 ₪ (Hebrew line)" },
+  { "pdf": "visual-page", "set": "held-out", "id": "follow-up", "turns": ["What do you see?", "What is next to the cup?"], "truth": "glasses / heart-shaped cookies / a paper" },
+  { "pdf": "FOUNDER", "set": "held-out", "id": "see", "turns": ["What do you see?"], "truth": "a shop page with two portrait photos (graded by hand, nothing kept)" },
+  { "pdf": "FOUNDER", "set": "held-out", "id": "now", "turns": ["Now what do you see"], "truth": "same as see" },
+  { "pdf": "FOUNDER", "set": "held-out", "id": "shipping", "turns": ["What does the free shipping line say?"], "truth": "free shipping over 99 ₪ (Hebrew line)" },
+  { "pdf": "turbine-report-3pages", "set": "held-out", "id": "serial", "turns": ["What is the serial number of the Rakovsky turbine?"], "truth": "RK-4417, with its source" },
+  { "pdf": "northgate-big", "set": "held-out", "id": "paragraph", "turns": ["What does paragraph 1.2 record?"], "truth": "the pressure readings taken during shift 1, with its source" }
+]

@@ -1,5 +1,5 @@
 import { DocxExtractor, ExtractError, HtmlExtractor, TextFileExtractor, XlsxExtractor, type DocKind, type DocSource, type Ocr, type OpenedDocument, type TextExtractor } from "@inborn/core";
-import { closePdf, hasDocExtract, ocrEngine, ocrLanguages, openPdf, pageText, recognizeText, renderPage } from "../../modules/doc-extract";
+import { closePdf, hasDocExtract, ocrEngine, ocrLanguages, openPdf, pageInk, pageText, recognizeText, renderPage } from "../../modules/doc-extract";
 import { DEV_AUTOOCR } from "./devFlags";
 import { readBytes } from "./files";
 
@@ -47,6 +47,23 @@ export class ImageExtractor implements TextExtractor {
     return { pages: 1, page: async () => ({ page: 1, text: "", needsOcr: true }), render: async () => source.uri, close: async () => undefined };
   }
 }
+
+export const hasPageRenderer = (): boolean => hasDocExtract();
+
+async function withPdf<T>(uri: string, use: (id: string) => Promise<T>): Promise<T> {
+  const { id } = await openPdf(uri);
+  try {
+    return await use(id);
+  } finally {
+    await closePdf(id).catch(() => undefined);
+  }
+}
+
+/** How much of a page is pictures rather than paper (`pagePhoto.ts`); `page` is 1-based. */
+export const pageInkAt = (uri: string, page: number): Promise<number> => withPdf(uri, (id) => pageInk(id, page - 1));
+
+/** A PNG of the page in the cache directory; the caller imports it as a photo and deletes it. */
+export const renderPageAt = (uri: string, page: number): Promise<string | null> => withPdf(uri, (id) => renderPage(id, page - 1, 2));
 
 export function createExtractors(): TextExtractor[] {
   return [new NativePdfExtractor(), new ImageExtractor(), new TextFileExtractor(readBytes), new DocxExtractor(readBytes), new XlsxExtractor(readBytes), new HtmlExtractor(readBytes)];

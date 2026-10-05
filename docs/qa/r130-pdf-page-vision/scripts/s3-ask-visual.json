@@ -1,0 +1,44 @@
+{
+  "runId": "s3-ask-visual",
+  "_": "Instant: 'Now what do you see' on the visual PDF; the sent bubble carries the page picture, then the answer.",
+  "steps": [
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "Now what do you see"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "sleep",
+      "ms": 2500
+    },
+    {
+      "op": "screenshot",
+      "name": "03-sent-bubble"
+    },
+    {
+      "op": "dump",
+      "name": "03-sent-bubble"
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 240000
+    },
+    {
+      "op": "sleep",
+      "ms": 2500
+    },
+    {
+      "op": "screenshot",
+      "name": "04-answer"
+    },
+    {
+      "op": "dump",
+      "name": "04-answer"
+    }
+  ]
+}

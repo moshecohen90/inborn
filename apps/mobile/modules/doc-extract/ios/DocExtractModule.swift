@@ -56,6 +56,23 @@ public class DocExtractModule: Module {
     return out
   }
 
+  /* A 128 px render and a cut at 96 below white: text pages measured ≤ 0.02, picture pages ≥ 0.27 (docs/qa/r130-pdf-page-vision). */
+  private static func ink(_ page: PDFPage) -> Double {
+    let bounds = page.bounds(for: .mediaBox)
+    let s = 128 / max(bounds.width, bounds.height, 1)
+    let w = max(1, Int((bounds.width * s).rounded())), h = max(1, Int((bounds.height * s).rounded()))
+    guard let cg = page.thumbnail(of: CGSize(width: w, height: h), for: .mediaBox).cgImage,
+          let ctx = CGContext(data: nil, width: w, height: h, bitsPerComponent: 8, bytesPerRow: w * 4, space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue),
+          let data = ctx.data else { return 0 }
+    ctx.setFillColor(UIColor.white.cgColor)
+    ctx.fill(CGRect(x: 0, y: 0, width: w, height: h))
+    ctx.draw(cg, in: CGRect(x: 0, y: 0, width: w, height: h))
+    let px = data.bindMemory(to: UInt8.self, capacity: w * h * 4)
+    var inked = 0
+    for i in 0..<(w * h) where 255 - Int(min(px[i * 4], px[i * 4 + 1], px[i * 4 + 2])) > 96 { inked += 1 }
+    return Double(inked) / Double(w * h)
+  }
+
   public func definition() -> ModuleDefinition {
     Name("DocExtract")
 
@@ -119,6 +136,16 @@ public class DocExtractModule: Module {
         } catch {
           promise.reject("ERR_RENDER", error.localizedDescription)
         }
+      }
+    }
+
+    AsyncFunction("pageInk") { (id: String, index: Int, promise: Promise) in
+      self.queue.async {
+        guard let doc = self.opened[id], let page = doc.page(at: index) else {
+          promise.reject("ERR_CLOSED", "document not open")
+          return
+        }
+        promise.resolve(Self.ink(page))
       }
     }
 

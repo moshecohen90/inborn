@@ -1,0 +1,29 @@
+{
+  "runId": "s2-attach-visual",
+  "_": "The synthetic visual PDF through the attach sheet's file door (attach: visual-page.pdf); the composer shows the paperclip chip.",
+  "steps": [
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "devPrompt",
+      "lines": [
+        "attach: visual-page.pdf"
+      ]
+    },
+    {
+      "op": "sleep",
+      "ms": 20000
+    },
+    {
+      "op": "screenshot",
+      "name": "02-composer-chip"
+    },
+    {
+      "op": "dump",
+      "name": "02-composer-chip"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "runId": "s1b-pick-instant",
+  "_": "Model step with Fast already on the phone: pick Instant, then Start chatting through the seal and lock steps.",
+  "steps": [
+    {
+      "op": "press",
+      "testID": "model-option-instant"
+    },
+    {
+      "op": "sleep",
+      "ms": 1000
+    },
+    {
+      "op": "screenshot",
+      "name": "01b-instant-picked"
+    },
+    {
+      "op": "dump",
+      "name": "01b-model-step"
+    },
+    {
+      "op": "press",
+      "testID": "start-chatting"
+    },
+    {
+      "op": "waitFor",
+      "testID": "sealed-start",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "sleep",
+      "ms": 8000
+    },
+    {
+      "op": "press",
+      "testID": "sealed-start"
+    },
+    {
+      "op": "waitFor",
+      "testID": "lock-start",
+      "timeoutMs": 20000
+    },
+    {
+      "op": "press",
+      "testID": "lock-start"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 20000
+    },
+    {
+      "op": "screenshot",
+      "name": "01b-chat"
+    },
+    {
+      "op": "dump",
+      "name": "01b-chat"
+    }
+  ]
+}

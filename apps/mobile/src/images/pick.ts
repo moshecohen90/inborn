@@ -72,7 +72,7 @@ export async function pickImages(source: "library" | "camera", limit: number, on
 }
 
 /* The chooser's `blob:inborn/…` key is not a URL an <img> can load; the scaled copy of the same blob is. */
-export async function importImageFile(uri: string): Promise<PickedImage | null> {
+export async function importImageFile(uri: string, _prefix?: string): Promise<PickedImage | null> {
   /* A picture already in the library is held in IndexedDB, not as this page's blob (round 128). */
   const blob = registeredBlob(uri) ?? (await readBytes(uri).then((b) => new Blob([b as BlobPart]), () => null));
   if (!blob) return null;

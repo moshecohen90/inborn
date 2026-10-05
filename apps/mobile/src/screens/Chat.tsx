@@ -76,6 +76,7 @@ import {
   type LoopHit,
   isNoSpaceError,
   type DocumentRecord,
+  IMAGE_WRAPPER_TOKENS,
 } from "@inborn/core";
 import { enableVision, getEngine, loadSession, wasStoppedByGuard } from "../engine";
 import { writeDevResult } from "../adapters/devModel";
@@ -120,6 +121,8 @@ import { reindexNotice, type AnsweredMidReindex } from "../lib/reindexNotice";
 import { withPhotos } from "../lib/photoPrompt";
 import { dismissAfterSend } from "../lib/keyboardDismiss";
 import { imageDocuments, photoTextDocs, withPhotoText } from "../documents/photoDocs";
+import { carriesPage, pageImagePrefix, planPagePhoto, type PagePhoto } from "../documents/pagePhoto";
+import { hasPageRenderer, pageInkAt, renderPageAt } from "../documents/extract";
 import { resolveDocUri } from "../documents/files";
 import { canCiteMarkers } from "../documents/library";
 import { ReportSheet } from "../components/chat/ReportSheet";
@@ -284,6 +287,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const [preparingVision, setPreparingVision] = useState(false);
   /* QA F343: Send with a photo nothing here can see keeps the message and the photo in the composer behind this card. */
   const [photoHold, setPhotoHold] = useState<HeldPhoto | null>(null);
+  /* The held turn's only picture is a PDF page still to be rendered, so the card shows with no photo in the composer. */
+  const [pageHeld, setPageHeld] = useState(false);
   const photoGating = useRef(false);
   const [templatesOpen, setTemplatesOpen] = useState(false);
   const [redactOpen, setRedactOpen] = useState(false);
@@ -565,6 +570,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         await answerWithoutModel(turn.messageKey);
         return;
       }
+      /* Round 130: a page picture of an attached PDF is in the conversation, so passages join it only when they bear on the question. */
+      const seesPage = !existingMessageId && modelHasVision(model.id) && resolveVision(model.id) !== null && carriesPage(history, docs.context.docIds);
       /* The turn answers from the model although files are attached: say the files are not in this answer (QA F161). */
       if (turn.kind === "model" && saysNoneMatched({ continuing: !!existingMessageId, attachedCount: docs.documents.length, usedPassages: 0 })) setNoneMatched(true);
       /* F50: an explicitly prohibited request is refused before a token is generated, so the mode costs nothing when it fires. */
@@ -584,7 +591,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const prompt = buildPrompt({ system, summary: chat?.summary, summaryUpTo: chat?.summaryUpTo, messages: history.map((m, i) => ({ id: String(i), ...m })), nCtx, scale: tokenScale, reserve: replyReserve(length.maxTokens), imageTokens: imageMaxTokens(engine.id, model.id) });
       let messages = prompt.messages;
       /* Attached documents (§7.3, §8.5): retrieve, fence, cite. */
-      if (turn.kind === "retrieve") {
+      if (turn.kind === "retrieve" && !seesPage) {
         try {
           const rag = await docs.buildPrompt(lastUser, history.slice(0, lastUserAt), nCtx, system, photoDocIds);
           if (rag.reindexing) setReindexing(rag.reindexing);
@@ -607,10 +614,12 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           return;
         }
       }
-      if (turn.kind === "model" && photoDocIds.length) {
+      if ((turn.kind === "model" && photoDocIds.length) || (turn.kind === "retrieve" && seesPage)) {
+        /* The passages are fitted into what the pictures leave of the context. */
+        const pictures = messages.reduce((n, m) => n + (m.images?.length ?? 0), 0) * (imageMaxTokens(engine.id, model.id) + IMAGE_WRAPPER_TOKENS);
         try {
-          const photoText = await withPhotoText(messages, history[lastUserAt]?.images, photoDocIds, (docIds) =>
-            library.ask(lastUser, { docIds, history: history.slice(0, lastUserAt), nCtx, systemPrompt: system, strict: false, citeMarkers: canCiteMarkers(model.id), openers: noPassageOpeners(t) }),
+          const photoText = await withPhotoText(messages, history[lastUserAt]?.images, seesPage ? [...docs.context.docIds, ...photoDocIds] : photoDocIds, (docIds) =>
+            library.ask(lastUser, { docIds, history: history.slice(0, lastUserAt), nCtx: nCtx - pictures, systemPrompt: system, strict: false, citeMarkers: canCiteMarkers(model.id), openers: noPassageOpeners(t) }),
           );
           messages = photoText.messages;
           if (photoText.rag) {
@@ -829,8 +838,22 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     }
     photoGating.current = true;
     try {
+      const page = await planPagePhoto({
+        ownPhotos: pendingImages.length,
+        limit: limits(tier).imagesPerMessage,
+        attached: docs.documents,
+        canRender: hasPageRenderer(),
+        /* A model that cannot see the page shown earlier gets it again, so Send offers the pack instead of a blind answer. */
+        sent: photoPlanHere(model.id, tier !== "free").kind === "send" ? rowsRef.current.flatMap((r) => r.images ?? []) : [],
+        chars: (id) => library.pageChars(id),
+        bestPage: (ids) => library.bestPage(text, ids),
+        ink: (d, n) => pageInkAt(resolveDocUri(d.uri!), n),
+      }).catch((e: unknown) => {
+        console.warn("[documents] page picture", errorText(e));
+        return null;
+      });
       await gatePhotoSend({
-        hasImages: pendingImages.length > 0,
+        hasImages: pendingImages.length > 0 || !!page,
         scanned: async () => {
           setPreparingVision(true);
           try {
@@ -843,18 +866,34 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           const plan = photoPlanHere(model.id, tier !== "free");
           return plan.kind === "send" ? { kind: "send" } : { kind: "hold", offer: plan };
         },
-        hold: setPhotoHold,
+        hold: (offer: HeldPhoto) => {
+          setPageHeld(!pendingImages.length);
+          setPhotoHold(offer);
+        },
         send: async () => {
           setPhotoHold(null);
           photoGating.current = false;
-          await submitNow(input, text);
+          await submitNow(input, text, page);
         },
       });
     } finally {
       photoGating.current = false;
     }
   };
-  const submitNow = async (input: string, text: string) => {
+  /* The page goes into the message as a photo, so the bubble shows what the model looked at; the composer keeps the paperclip chip. */
+  const importPage = async ({ doc, page }: PagePhoto): Promise<PickedImage | null> => {
+    try {
+      const png = await renderPageAt(resolveDocUri(doc.uri!), page);
+      if (!png) return null;
+      const img = await importImageFile(png, pageImagePrefix(doc.id, page));
+      removeImage(png);
+      return img;
+    } catch (e: unknown) {
+      console.warn("[documents] page render", errorText(e));
+      return null;
+    }
+  };
+  const submitNow = async (input: string, text: string, page: PagePhoto | null = null) => {
     setDraft("");
     const dictated = isDictatedSend(dictatedDraft.current, text);
     setLastDictated(dictated);
@@ -874,7 +913,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         if (at >= 0) setRows((all) => all.slice(0, at));
         if (chat?.summaryUpTo && !rowsRef.current.some((r) => r.id === chat.summaryUpTo)) setChat((c) => (c ? { ...c, summary: undefined, summaryUpTo: undefined } : c));
       }
-      const images = pendingImages.map((p) => storedImagePath(p.uri));
+      const pagePicture = page ? await importPage(page) : null;
+      const images = [...pendingImages, ...(pagePicture ? [pagePicture] : [])].map((p) => storedImagePath(p.uri));
       const photoDocIds = photoTextDocs(pendingImages.map((p) => p.uri), photoDocOf.current, (id) => library.document(id));
       setPendingImages([]);
       const user = await store.appendMessage({ chatId: chatIdNow, role: "user", content: text, ...(images.length ? { images } : {}) });
@@ -1281,7 +1321,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const seerPath = photoPlanNow.kind === "switch" ? photoPlanNow.alt : null;
   const seerReady = !!seerPath && seerPath.missing.length === 0;
   const sendHeldWith = (modelId: string) => {
-    if (pendingImagesRef.current.length) stashHeldTurn({ model: modelId, text: draftRef.current, images: pendingImagesRef.current });
+    if (pendingImagesRef.current.length || pageHeld) stashHeldTurn({ model: modelId, text: draftRef.current, images: pendingImagesRef.current });
     setPhotoHold(null);
     if (webPhotos) void switchChatModel(modelId);
     else onSwitchModel?.(modelId);
@@ -1645,11 +1685,11 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         </Text>
       ) : null}
       {docsHold && docs.documents.length ? <ExtensionHoldCard extensionId={EMBED_MODEL_ID} theme={theme} count={docs.documents.length} onFallback={sendWithWords} onCancel={() => setDocsHold(false)} /> : null}
-      {photoHold && pendingImages.length ? (
+      {photoHold && (pendingImages.length || pageHeld) ? (
         <PhotoHoldCard
           held={photoHold}
           theme={theme}
-          count={pendingImages.length}
+          count={pendingImages.length || 1}
           model={chipLabel(t, model.id)}
           seer={photoHold.kind === "none" || !photoHold.alt ? "" : chipLabel(t, photoHold.alt.model)}
           onCancel={dropAllPhotos}

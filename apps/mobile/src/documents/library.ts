@@ -35,6 +35,7 @@ import { openRagStore, ragStoreKind } from "./db";
 import type { AnsweredMidReindex } from "../lib/reindexNotice";
 import { resolveEmbedder, type ResolvedEmbedder } from "./embedder";
 import { createExtractors, nativeOcr } from "./extract";
+import { charsByPage } from "./pagePhoto";
 import { findDuplicate } from "./dedupe";
 import { copyIntoLibrary, deleteFile, missingSource, readHead, resolveDocUri, restoreFiles, sha256Of, sizeOf, storedDocPath, sweepIncognitoFiles, whenStored } from "./files";
 import { readPrefs, writePrefs, type DocumentPrefs } from "./prefs";
@@ -127,6 +128,7 @@ export class DocumentLibrary {
   /* §5.7: a document added inside an incognito session is owned by RAM for as long as the session lasts. */
   private ram = new MemoryEmbeddingStore();
   private ramDocs = new Set<string>();
+  private pageCharsCache = new Map<string, { key: string; chars: Map<number, number> }>();
   private booted: Promise<void> | null = null;
   private disposed = false;
   private stopWatching: (() => void) | null = null;
@@ -605,6 +607,24 @@ export class DocumentLibrary {
     /* Not behind __DEV__: F282 was a release build citing an off-topic passage, and no screen prints the two numbers that decided it. */
     console.log(`[rag] strict=${strict}${lexical ? " words-only" : ""}${overview ? " overview" : ""}${rebuilding.length ? ` reindexing=${rebuilding.length}/${docIds.length}` : ""} hits=${hits.length} used=${prompt.used.length} ${retrieveMs} ms | ${hits.map((h) => `${h.chunk.docId}#${h.chunk.ord} cos=${h.cosine.toFixed(3)} terms=${h.bm25Terms} bm25=${h.bm25.toFixed(2)} ${overview || isRelevant(h, doors) ? "KEPT" : "dropped"}`).join(" · ")}`);
     return { prompt, retrieveMs, ...(rebuilding.length ? { reindexing: { pending: rebuilding.length, total: docIds.length, ids: rebuilding.map((d) => d.id) } } : {}), ...(lexical ? { lexical: true } : {}) };
+  }
+
+  /** Characters stored for each page of a document, kept until the document changes (asked on every send with a PDF). */
+  async pageChars(docId: string): Promise<Map<number, number>> {
+    await this.ready();
+    const doc = this.docs.get(docId);
+    const key = `${doc?.indexedPages}:${doc?.chunkCount}:${doc?.embedModel}`;
+    const hit = this.pageCharsCache.get(docId);
+    if (hit?.key === key) return hit.chars;
+    const chars = charsByPage((await this.store?.chunksOf(docId)) ?? []);
+    this.pageCharsCache.set(docId, { key, chars });
+    return chars;
+  }
+
+  /** The page of the passage that best answers the question, for the page a turn about a PDF shows the model. */
+  async bestPage(question: string, docIds: string[]): Promise<{ docId: string; page: number } | null> {
+    const top = (await this.ask(question, { docIds, strict: false })).prompt.used[0]?.chunk;
+    return top ? { docId: top.docId, page: top.page } : null;
   }
 
   citationsFor(answer: string, citations: Citation[]): { shown: Citation[]; cited: boolean } {

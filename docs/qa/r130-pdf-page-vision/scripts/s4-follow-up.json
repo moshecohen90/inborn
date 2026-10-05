@@ -1,0 +1,44 @@
+{
+  "runId": "s4-follow-up",
+  "_": "Instant: a follow-up about the same page in the same chat; no second page picture is sent.",
+  "steps": [
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "What is next to the cup?"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "sleep",
+      "ms": 2500
+    },
+    {
+      "op": "screenshot",
+      "name": "05-follow-up-sent"
+    },
+    {
+      "op": "dump",
+      "name": "05-follow-up-sent"
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 240000
+    },
+    {
+      "op": "sleep",
+      "ms": 2500
+    },
+    {
+      "op": "screenshot",
+      "name": "06-follow-up-answer"
+    },
+    {
+      "op": "dump",
+      "name": "06-follow-up-answer"
+    }
+  ]
+}
