@@ -1,0 +1,22 @@
+{
+  "runId": "s2-vault",
+  "_": "Fast and the index model pushed into Documents/models: the vault adopts them (hash) and lists them installed.",
+  "steps": [
+    {
+      "op": "deeplink",
+      "url": "/vault"
+    },
+    {
+      "op": "sleep",
+      "ms": 30000
+    },
+    {
+      "op": "screenshot",
+      "name": "02-vault-fast-installed"
+    },
+    {
+      "op": "dump",
+      "name": "02-vault"
+    }
+  ]
+}

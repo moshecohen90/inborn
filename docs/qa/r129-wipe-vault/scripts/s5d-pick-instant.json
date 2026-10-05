@@ -1,0 +1,65 @@
+{
+  "runId": "s5d-pick-instant",
+  "_": "After the wipe: pick Instant on the model step, then Start chatting (the founder's chat ran on Instant before the switch).",
+  "steps": [
+    {
+      "op": "press",
+      "testID": "model-option-instant"
+    },
+    {
+      "op": "sleep",
+      "ms": 1000
+    },
+    {
+      "op": "screenshot",
+      "name": "06d-instant-picked"
+    },
+    {
+      "op": "dump",
+      "name": "06d-model-step"
+    },
+    {
+      "op": "press",
+      "testID": "start-chatting"
+    },
+    {
+      "op": "waitFor",
+      "testID": "sealed-start",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "sleep",
+      "ms": 8000
+    },
+    {
+      "op": "press",
+      "testID": "sealed-start"
+    },
+    {
+      "op": "waitFor",
+      "testID": "lock-start",
+      "timeoutMs": 20000
+    },
+    {
+      "op": "press",
+      "testID": "lock-start"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 20000
+    },
+    {
+      "op": "screenshot",
+      "name": "06d-chat"
+    },
+    {
+      "op": "dump",
+      "name": "06d-chat"
+    }
+  ]
+}

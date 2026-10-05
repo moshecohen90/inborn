@@ -1,0 +1,254 @@
+{
+  "runId": "s4-wipe-muv5us7c",
+  "startedAt": "2026-10-05T11:22:46.506Z",
+  "finishedAt": "2026-10-05T11:22:51.164Z",
+  "ok": true,
+  "passed": 14,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 157,
+      "detail": "/settings"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "row-wipe appeared"
+    },
+    {
+      "i": 2,
+      "op": "scrollTo",
+      "ok": true,
+      "ms": 1,
+      "detail": "row-wipe"
+    },
+    {
+      "i": 3,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "row-wipe ← onPress"
+    },
+    {
+      "i": 4,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "wipe-models appeared"
+    },
+    {
+      "i": 5,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "wipe-models ← onPress"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 800,
+      "detail": "800 ms"
+    },
+    {
+      "i": 7,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 957,
+      "detail": "04-wipe-models-on"
+    },
+    {
+      "i": 8,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "settings",
+          "text": "Inborn Pro See what's in Pro See what Pro adds to the free app. FREE APPEARANCE Theme Auto Dark Light Dark at night, 18:00-06:00, and whenever the system is dark. Text size 90% Default 115% 130% 150% 175% 200% SECURITY Require a passcode Your passcode opens Inborn. Also hides chats in the app switcher. Set a passcode Hide in app switcher Chats are blurred while Inborn is in the background. Screenshot protection iOS cannot block screenshots. Inborn hides chats while the screen is recorded or mirrored. Auto-delete chats Off 1 day 7 days 30 days Chats stay until you delete them. Clipboard expiry Off 60 s Delete everything Chats, key, documents. No recovery. CHAT Model FAST Family-safe mode Keeps sexually explicit, graphic and self-harm content out of answers. It reduces that content; it cannot catch all of it. Haptics Sounds Off. There are none. PERFORMANCE Eco Balanced Max Auto power management Smaller model on low battery or heat. On for phones, off on desktop. Never switch my model automatically LANGUAGE App language English Answer language hint Follows the app language DOWNLOADS Wi-Fi only Storage location Internal ACCESSIBILITY Reduce motion Follows the system setting. Off PRIVACY & STORAGE Privacy & storage Reports Answers you reported, kept on this device Proof Pro for Work Audit log Per-vault, hash-chained, never message content Verify a signed record Check a .json record's hash and signature Architecture statement Dated, printable, for a compliance file ABOUT About Model licenses We collect nothing. There is nothing to opt out of. Delete everything Deletes every chat, the encryption key and every document on this device. Nothing was ever anywhere else, so nothing can be recovered. Also delete downloaded models Cancel Continue Settings"
+        },
+        {
+          "testID": "row-pro",
+          "text": "See what's in Pro See what Pro adds to the free app. FREE",
+          "value": "FREE",
+          "pressable": true
+        },
+        {
+          "testID": "theme-mode",
+          "text": "Auto Dark Light",
+          "value": "auto",
+          "pressable": true
+        },
+        {
+          "testID": "theme-mode-sub",
+          "text": "Dark at night, 18:00-06:00, and whenever the system is dark."
+        },
+        {
+          "testID": "text-scale",
+          "text": "90% Default 115% 130% 150% 175% 200%",
+          "value": "1",
+          "pressable": true
+        },
+        {
+          "testID": "row-lock",
+          "text": "Require a passcode Your passcode opens Inborn. Also hides chats in the app switcher.",
+          "pressable": true
+        },
+        {
+          "testID": "row-hide",
+          "text": "Hide in app switcher Chats are blurred while Inborn is in the background.",
+          "pressable": true
+        },
+        {
+          "testID": "row-screenshots",
+          "text": "Screenshot protection iOS cannot block screenshots. Inborn hides chats while the screen is recorded or mirrored.",
+          "pressable": true
+        },
+        {
+          "testID": "auto-delete",
+          "text": "Off 1 day 7 days 30 days",
+          "value": "0",
+          "pressable": true
+        },
+        {
+          "testID": "auto-delete-sub",
+          "text": "Chats stay until you delete them."
+        },
+        {
+          "testID": "row-wipe",
+          "text": "Delete everything Chats, key, documents. No recovery.",
+          "pressable": true
+        },
+        {
+          "testID": "row-family-safe",
+          "text": "Family-safe mode Keeps sexually explicit, graphic and self-harm content out of answers. It reduces that content; it cannot catch all of it.",
+          "pressable": true
+        },
+        {
+          "testID": "row-language",
+          "text": "App language English",
+          "value": "English",
+          "pressable": true
+        },
+        {
+          "testID": "row-wifi-only",
+          "text": "Wi-Fi only",
+          "pressable": true
+        },
+        {
+          "testID": "row-storage",
+          "text": "Privacy & storage",
+          "pressable": true
+        },
+        {
+          "testID": "row-reports",
+          "text": "Reports Answers you reported, kept on this device",
+          "pressable": true
+        },
+        {
+          "testID": "row-proof",
+          "text": "Proof",
+          "pressable": true
+        },
+        {
+          "testID": "row-audit",
+          "text": "Audit log Per-vault, hash-chained, never message content",
+          "pressable": true
+        },
+        {
+          "testID": "row-verify",
+          "text": "Verify a signed record Check a .json record's hash and signature",
+          "pressable": true
+        },
+        {
+          "testID": "row-statement",
+          "text": "Architecture statement Dated, printable, for a compliance file",
+          "pressable": true
+        },
+        {
+          "testID": "row-about",
+          "text": "About",
+          "pressable": true
+        },
+        {
+          "testID": "wipe-sheet",
+          "text": "Delete everything Deletes every chat, the encryption key and every document on this device. Nothing was ever anywhere else, so nothing can be recovered. Also delete downloaded models Cancel Continue"
+        },
+        {
+          "testID": "wipe-sheet-close",
+          "text": "",
+          "label": "Close",
+          "pressable": true
+        },
+        {
+          "testID": "wipe-models",
+          "text": "",
+          "value": "true",
+          "pressable": true
+        },
+        {
+          "testID": "wipe-step1",
+          "text": "Continue",
+          "pressable": true
+        },
+        {
+          "testID": "back",
+          "text": "",
+          "role": "button",
+          "label": "Back",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "04-wipe"
+    },
+    {
+      "i": 9,
+      "op": "press",
+      "ok": true,
+      "ms": 157,
+      "detail": "wipe-step1 ← onPress"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "wipe-step2 appeared"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 816,
+      "detail": "800 ms"
+    },
+    {
+      "i": 12,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1273,
+      "detail": "05-wipe-confirm"
+    },
+    {
+      "i": 13,
+      "op": "press",
+      "ok": true,
+      "ms": 160,
+      "detail": "wipe-step2 ← onPress"
+    }
+  ],
+  "errors": []
+}

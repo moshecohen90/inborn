@@ -89,7 +89,7 @@ export function loadSession(nCtx = caps.nCtx): Promise<Session> {
       })
       .catch((e: unknown) => {
         /* A rejection means the process survived: only a crash (no catch runs) may leave the mark and quarantine the file. */
-        vault.markLoading(model.id, false);
+        vault.markLoading(model.id, false, false);
         session = null;
         setState("unloaded");
         throw e;

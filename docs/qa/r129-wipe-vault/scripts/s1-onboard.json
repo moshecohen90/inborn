@@ -1,0 +1,40 @@
+{
+  "runId": "s1-onboard",
+  "_": "Fresh install: welcome and the model step.",
+  "steps": [
+    {
+      "op": "waitFor",
+      "testID": "onboarding-continue",
+      "timeoutMs": 90000
+    },
+    {
+      "op": "sleep",
+      "ms": 1200
+    },
+    {
+      "op": "screenshot",
+      "name": "01-welcome"
+    },
+    {
+      "op": "press",
+      "testID": "onboarding-continue"
+    },
+    {
+      "op": "waitFor",
+      "testID": "onboarding-model",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "screenshot",
+      "name": "01-model-step"
+    },
+    {
+      "op": "dump",
+      "name": "01-model-step"
+    }
+  ]
+}

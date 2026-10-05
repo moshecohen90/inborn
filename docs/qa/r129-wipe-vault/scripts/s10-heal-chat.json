@@ -1,0 +1,49 @@
+{
+  "runId": "s10-heal-chat",
+  "_": "Fast installed, its file deleted behind the running app, then use fast: the chat.",
+  "steps": [
+    {
+      "op": "deeplink",
+      "url": "/"
+    },
+    {
+      "op": "sleep",
+      "ms": 20000
+    },
+    {
+      "op": "screenshot",
+      "name": "13-chat-fast-file-gone"
+    },
+    {
+      "op": "dump",
+      "name": "13-chat"
+    },
+    {
+      "op": "deeplink",
+      "url": "/vault"
+    },
+    {
+      "op": "sleep",
+      "ms": 4000
+    },
+    {
+      "op": "screenshot",
+      "name": "14-vault-fast-file-gone"
+    },
+    {
+      "op": "dump",
+      "name": "14-vault"
+    },
+    {
+      "op": "deeplink",
+      "url": "/"
+    },
+    {
+      "op": "sleep",
+      "ms": 3000
+    },
+    {
+      "op": "cleanup"
+    }
+  ]
+}

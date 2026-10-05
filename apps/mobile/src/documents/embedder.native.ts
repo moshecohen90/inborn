@@ -21,6 +21,7 @@ const contextTokens = (): number => BUNDLED_MANIFEST.models.find((m) => m.id ===
 /** The vault's installed companion first, then the dev fallback file; null means "install the document index". */
 export function resolveEmbedder(): ResolvedEmbedder | null {
   const vault = getVault();
+  vault.forgetMissing(EMBED_MODEL_ID);
   const state = vault.state(EMBED_MODEL_ID);
   const ctx = contextTokens();
   if (state.kind === "ready" && new File(state.path).exists) return { embedder: new LlamaRnEmbedder(EMBED_MODEL_ID, state.path, ctx), path: state.path, contextTokens: ctx };

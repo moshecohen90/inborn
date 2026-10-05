@@ -80,6 +80,15 @@ export async function installExtension(id: string): Promise<ExtensionState> {
   return set(id, { kind: "ready" });
 }
 
+/** After the emergency wipe: OPFS was emptied, so every state is read from it again. */
+export function forgetExtensions(): void {
+  for (const d of deliveries.values()) d.cancel();
+  states.clear();
+  deliveries.clear();
+  refreshing.clear();
+  for (const l of listeners) l();
+}
+
 export function cancelExtension(id: string): void {
   deliveries.get(id)?.cancel();
 }

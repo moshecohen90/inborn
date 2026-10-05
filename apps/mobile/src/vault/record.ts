@@ -43,21 +43,22 @@ export interface VaultRecord {
   downloads: Record<string, DownloadPauseState & { etag?: string }>;
 }
 
-export const EMPTY_RECORD: VaultRecord = { version: 1, installs: {}, imports: {}, hf: {}, downloads: {} };
+/* Fresh maps on every call: a shared empty record would bring back whatever was recorded into it before a wipe. */
+const emptyRecord = (): VaultRecord => ({ version: 1, installs: {}, imports: {}, hf: {}, downloads: {} });
 
 /* expo-file-system has no web implementation; the browser tier keeps its model in OPFS (src/web) and the vault stays empty. */
 const noFiles = (): boolean => Platform.OS === "web";
 
 export function readRecord(): VaultRecord {
-  if (noFiles()) return { ...EMPTY_RECORD };
+  if (noFiles()) return emptyRecord();
   try {
     const f = recordFile();
-    if (!f.exists) return { ...EMPTY_RECORD };
+    if (!f.exists) return emptyRecord();
     const parsed = JSON.parse(f.textSync()) as Partial<VaultRecord>;
-    return { ...EMPTY_RECORD, ...parsed, installs: parsed.installs ?? {}, imports: parsed.imports ?? {}, hf: parsed.hf ?? {}, downloads: parsed.downloads ?? {} };
+    return { ...emptyRecord(), ...parsed, installs: parsed.installs ?? {}, imports: parsed.imports ?? {}, hf: parsed.hf ?? {}, downloads: parsed.downloads ?? {} };
   } catch (e: unknown) {
     console.warn("[vault] record unreadable, starting empty", e);
-    return { ...EMPTY_RECORD };
+    return emptyRecord();
   }
 }
 

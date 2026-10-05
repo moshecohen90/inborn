@@ -1,0 +1,22 @@
+{
+  "runId": "s8-chat-switch",
+  "_": "After `use fast` from the vault in the same session (the founder's Instant > Fast switch): the chat.",
+  "steps": [
+    {
+      "op": "deeplink",
+      "url": "/"
+    },
+    {
+      "op": "sleep",
+      "ms": 20000
+    },
+    {
+      "op": "screenshot",
+      "name": "11-chat-after-switch"
+    },
+    {
+      "op": "dump",
+      "name": "11-chat"
+    }
+  ]
+}

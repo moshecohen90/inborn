@@ -1,0 +1,420 @@
+{
+  "runId": "s6-pdf-send-muv5w8jj",
+  "startedAt": "2026-10-05T11:23:54.557Z",
+  "finishedAt": "2026-10-05T11:24:31.693Z",
+  "ok": true,
+  "passed": 11,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 8006,
+      "detail": "8000 ms"
+    },
+    {
+      "i": 2,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1910,
+      "detail": "07-pdf-attached"
+    },
+    {
+      "i": 3,
+      "op": "type",
+      "ok": true,
+      "ms": 158,
+      "detail": "composer-input = 43 chars"
+    },
+    {
+      "i": 4,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4016,
+      "detail": "4000 ms"
+    },
+    {
+      "i": 6,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1591,
+      "detail": "08-pdf-hold-card"
+    },
+    {
+      "i": 7,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "empty-headline",
+          "text": "Nothing leaves this phone."
+        },
+        {
+          "testID": "suggestion-summarize",
+          "text": "Summarize text",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-translate",
+          "text": "Translate",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-draft",
+          "text": "Draft a message",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "docs-hold",
+          "text": "Downloading the document index model… 100%. Your message is sent when it's ready. Send, exact words only Cancel"
+        },
+        {
+          "testID": "docs-hold-body",
+          "text": "Downloading the document index model… 100%. Your message is sent when it's ready."
+        },
+        {
+          "testID": "docs-hold-words",
+          "text": "Send, exact words only",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "docs-hold-cancel",
+          "text": "Cancel",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "attached-docs",
+          "text": "turbine.pdf"
+        },
+        {
+          "testID": "attached-chip-muv5w9fx-1-oyo6rmvb",
+          "text": "turbine.pdf",
+          "role": "button",
+          "label": "Remove turbine.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "redact-bar",
+          "text": "Redact"
+        },
+        {
+          "testID": "redact-open",
+          "text": "Redact",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "What does the report say about the turbine?",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "08-hold"
+    },
+    {
+      "i": 8,
+      "op": "sleep",
+      "ok": true,
+      "ms": 20009,
+      "detail": "20000 ms"
+    },
+    {
+      "i": 9,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1277,
+      "detail": "09-pdf-hold-card-later"
+    },
+    {
+      "i": 10,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "empty-headline",
+          "text": "Nothing leaves this phone."
+        },
+        {
+          "testID": "suggestion-summarize",
+          "text": "Summarize text",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-translate",
+          "text": "Translate",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-draft",
+          "text": "Draft a message",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "docs-hold",
+          "text": "Downloading the document index model… 100%. Your message is sent when it's ready. Send, exact words only Cancel"
+        },
+        {
+          "testID": "docs-hold-body",
+          "text": "Downloading the document index model… 100%. Your message is sent when it's ready."
+        },
+        {
+          "testID": "docs-hold-words",
+          "text": "Send, exact words only",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "docs-hold-cancel",
+          "text": "Cancel",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "attached-docs",
+          "text": "turbine.pdf"
+        },
+        {
+          "testID": "attached-chip-muv5w9fx-1-oyo6rmvb",
+          "text": "turbine.pdf",
+          "role": "button",
+          "label": "Remove turbine.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "redact-bar",
+          "text": "Redact"
+        },
+        {
+          "testID": "redact-open",
+          "text": "Redact",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "What does the report say about the turbine?",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "09-hold"
+    }
+  ],
+  "errors": []
+}

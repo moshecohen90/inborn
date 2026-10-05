@@ -1,0 +1,26 @@
+{
+  "runId": "s9-relaunch",
+  "_": "The next launch.",
+  "steps": [
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 20000
+    },
+    {
+      "op": "screenshot",
+      "name": "12-chat-next-launch"
+    },
+    {
+      "op": "dump",
+      "name": "12-chat"
+    },
+    {
+      "op": "cleanup"
+    }
+  ]
+}
