@@ -52,6 +52,7 @@ vi.mock("expo-file-system", () => ({
   },
 }));
 vi.mock("react-native", () => ({ Platform: { OS: "android" } }));
+vi.mock("../licence/devFlags", () => ({ devBuild: () => true }));
 vi.mock("./devFlags", () => ({ DEV_MODEL_HOST: undefined, devBuild: () => false }));
 vi.mock("./hf", () => ({ hfHeaders: async () => ({}), hfSearchAvailable: () => false }));
 vi.mock("../proof/transfers", () => ({ recordTransfer: () => undefined }));

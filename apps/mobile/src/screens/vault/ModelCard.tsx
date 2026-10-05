@@ -12,6 +12,7 @@ import { installFailureText } from "../../vault/failureText";
 import { includedWithApp } from "../../vault/included";
 import { chatModelName, packNeedsModel, packOffer } from "../../vault/packOffer";
 import { justResumed, keepOpenNote } from "../../vault/keepOpen";
+import { offlineKey } from "../../lib/offlineWording";
 
 export interface ModelCardProps {
   model: CatalogModel;
@@ -73,6 +74,7 @@ export function ModelCard({ model, state, plan, device, theme, recommended, reco
       case "delivering":
         if (state.needsConfirmation) return { text: t("vault.state.needsConfirmation") };
         if (state.waitingForWifi) return { text: t("vault.state.waitingWifi") };
+        if (state.waitingForNetwork) return { text: t("vault.state.waitingNetwork") };
         return { text: t(state.paused ? "vault.state.paused" : justResumed(state, Date.now()) ? "vault.state.resumed" : "vault.state.delivering", { percent: downloadPercent(state.bytes, state.total || model.bytes), done: formatModelBytes(state.bytes), total: formatModelBytes(state.total || model.bytes) }) };
       case "verifying":
         return { text: t("vault.state.verifying") };
@@ -168,6 +170,11 @@ export function ModelCard({ model, state, plan, device, theme, recommended, reco
           <View style={[styles.fill, { width: `${state.kind === "delivering" ? downloadPercent(state.bytes, state.total || model.bytes) : Math.round(progress * 100)}%`, backgroundColor: state.kind === "ready" ? theme.sealed : theme.accent }]} />
         </View>
       ) : null}
+      {state.kind === "delivering" && state.waitingForNetwork ? (
+        <Text testID={`model-offline-${model.id}`} style={[type.bodySmall, { color: theme.text }]}>
+          {t(offlineKey("vault.state.noInternet"))}
+        </Text>
+      ) : null}
       {status ? (
         <Text testID={`model-status-${model.id}`} style={[type.mono, { color: status.danger ? theme.danger : theme.text2 }]}>
           {status.text}
@@ -188,7 +195,7 @@ export function ModelCard({ model, state, plan, device, theme, recommended, reco
             ) : null
           ) : null}
           {state.kind === "delivering" && state.paused ? <Action testID={`resume-${model.id}`} theme={theme} primary onPress={onResume} label={t("vault.resume")} /> : null}
-          {state.kind === "delivering" && !state.paused && plan?.via === "https" ? <Action testID={`pause-${model.id}`} theme={theme} onPress={onPause} label={t("vault.pause")} /> : null}
+          {state.kind === "delivering" && !state.paused && !state.waitingForNetwork && plan?.via === "https" ? <Action testID={`pause-${model.id}`} theme={theme} onPress={onPause} label={t("vault.pause")} /> : null}
           {state.kind === "delivering" || state.kind === "verifying" ? <Action testID={`cancel-${model.id}`} theme={theme} onPress={onCancel} label={t("vault.cancel")} /> : null}
           {state.kind === "ready" && !active && !companion ? <Action testID={`use-${model.id}`} theme={theme} primary onPress={onUse} label={t("vault.use")} /> : null}
           {state.kind === "ready" && active && !companion ? <Text style={[type.mono, styles.inUse, { color: theme.text2 }]}>{t("vault.inUse")}</Text> : null}

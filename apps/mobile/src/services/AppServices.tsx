@@ -50,6 +50,8 @@ export interface DeliveryState {
   totalBytes: number;
   /** Where the bytes came from, so the Proof screen names the real source instead of guessing from the platform (F206). */
   source: DeliverySource;
+  /** No connection: the bytes wait and start by themselves when it is back. */
+  waiting?: boolean;
 }
 
 export interface Meter {
@@ -326,11 +328,11 @@ export function AppServicesProvider({ children, fallback = null }: { children: R
       const next: DeliveryState | null = !live
         ? doneDelivery(vault.lastDelivery())
         : live.state.kind === "delivering"
-          ? { name: live.model.name.toUpperCase(), status: "delivering", progress: live.state.bytes / Math.max(1, live.state.total || live.model.bytes), totalBytes: live.state.total || live.model.bytes, source: live.state.via }
+          ? { name: live.model.name.toUpperCase(), status: "delivering", progress: live.state.bytes / Math.max(1, live.state.total || live.model.bytes), totalBytes: live.state.total || live.model.bytes, source: live.state.via, waiting: !!live.state.waitingForNetwork }
           : live.state.kind === "verifying"
             ? { name: live.model.name.toUpperCase(), status: "verifying", progress: 1, totalBytes: live.model.bytes, source: live.state.via }
             : null;
-      setDelivery((d) => (d?.status === next?.status && d?.name === next?.name && Math.round((d?.progress ?? 0) * 100) === Math.round((next?.progress ?? 0) * 100) ? d : next));
+      setDelivery((d) => (d?.status === next?.status && d?.name === next?.name && d?.waiting === next?.waiting && Math.round((d?.progress ?? 0) * 100) === Math.round((next?.progress ?? 0) * 100) ? d : next));
       /* Compared by file, not id: the vault re-resolves after every install ("fast" lands and outranks "instant"), while the engine keeps whatever it loaded at boot. A guard switch (§6.5) is a run-time override the vault must not undo. */
       const wanted = vault.activeModel()?.path;
       if (wanted && bootedRef.current && !hasSessionOverride() && bootedRef.current.engine.model.uri !== wanted) reloadWhenIdle();

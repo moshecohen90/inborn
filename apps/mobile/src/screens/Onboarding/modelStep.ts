@@ -3,7 +3,8 @@ import { downloadPercent, goodLanguagesOf, languageRank, languageTierOf, require
 /** What the step can honestly say about one model right now. A model with no way in at all never becomes an option. */
 export type OptionState =
   | { kind: "ready"; via: DeliverySource }
-  | { kind: "arriving"; via: DeliverySource; percent: number; verifying: boolean }
+  /** `waiting`: no bytes can move right now, for want of any connection or of Wi-Fi. */
+  | { kind: "arriving"; via: DeliverySource; percent: number; verifying: boolean; waiting?: "network" | "wifi" }
   | { kind: "download"; via: DeliverySource; host?: string; bytes: number }
   | { kind: "no-space"; via: DeliverySource; freeUpBytes: number }
   | { kind: "failed"; via: DeliverySource };
@@ -98,7 +99,10 @@ export function modelStep(input: ModelStepInput): ModelStep {
 
 function stateOf(state: InstallState, plan: StepEntry["plan"], freeBytes: number, bytes: number, loadedByEngine: boolean): OptionState | null {
   if (INSTALLED.includes(state.kind) && "via" in state) return { kind: "ready", via: state.via };
-  if (state.kind === "delivering") return { kind: "arriving", via: state.via, percent: downloadPercent(state.bytes, state.total), verifying: false };
+  if (state.kind === "delivering") {
+    const waiting = state.waitingForNetwork ? "network" : state.waitingForWifi ? "wifi" : null;
+    return { kind: "arriving", via: state.via, percent: downloadPercent(state.bytes, state.total), verifying: false, ...(waiting ? { waiting } : {}) };
+  }
   if (state.kind === "verifying") return { kind: "arriving", via: state.via, percent: 100, verifying: true };
   if (loadedByEngine) return { kind: "ready", via: "import" };
   if (!plan) return null;

@@ -1,0 +1,53 @@
+{
+  "runId": "d1c-start-instant",
+  "_": "Door 1. Cancel the Fast download and start on Instant, through the seal and lock steps to the chat.",
+  "steps": [
+    {
+      "op": "press",
+      "testID": "cancel-download"
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "press",
+      "testID": "start-now-with"
+    },
+    {
+      "op": "waitFor",
+      "testID": "sealed-start",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "sleep",
+      "ms": 8000
+    },
+    {
+      "op": "press",
+      "testID": "sealed-start"
+    },
+    {
+      "op": "waitFor",
+      "testID": "lock-start",
+      "timeoutMs": 20000
+    },
+    {
+      "op": "press",
+      "testID": "lock-start"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 15000
+    },
+    {
+      "op": "screenshot",
+      "name": "05-chat-instant"
+    }
+  ]
+}

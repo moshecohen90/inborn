@@ -36,10 +36,10 @@ export class DownloadAwake {
     for (const id of [...this.held]) this.release(id);
   }
 
-  /** Bytes moving holds; a wait on Wi-Fi or on the user's confirmation lets the screen sleep again. */
+  /** Bytes moving holds; a wait on Wi-Fi, on a connection or on the user's confirmation lets the screen sleep again. */
   onEvent(id: string, e: InstallEvent): void {
     if (e.type === "progress" || e.type === "resumed") this.hold(id);
-    else if (e.type === "waiting-for-wifi" || e.type === "needs-confirmation") this.release(id);
+    else if (e.type === "waiting-for-wifi" || e.type === "waiting-for-network" || e.type === "needs-confirmation") this.release(id);
   }
 }
 

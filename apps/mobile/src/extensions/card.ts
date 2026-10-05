@@ -42,6 +42,8 @@ export interface HoldView {
   keepOpen: boolean;
   fallback: Msg | null;
   cancel: Msg;
+  /** No connection: the card says so and that the download starts by itself; nothing to tap but the way out. */
+  offline: boolean;
 }
 
 /**
@@ -51,12 +53,14 @@ export interface HoldView {
 export function holdView(ext: Extension, state: ExtensionState, { count, size }: { count: number; size: string }): HoldView {
   const fallback = ext.fallback ? { key: extKey(ext, "fallback") } : null;
   const cancel = { key: extKey(ext, "cancel"), params: { count } };
-  const base = { error: null, download: null, resume: false, openVault: false, keepOpen: false, fallback, cancel };
+  const base = { error: null, download: null, resume: false, openVault: false, keepOpen: false, fallback, cancel, offline: false };
   switch (state.kind) {
     case "downloading":
       return { ...base, keepOpen: !!state.keepOpen, body: { key: extKey(ext, "downloading"), params: { pct: extensionPercent(state) } } };
     case "paused":
       return { ...base, resume: true, body: { key: extKey(ext, "downloading"), params: { pct: extensionPercent(state) } } };
+    case "offline":
+      return { ...base, offline: true, body: { key: "vault.state.waitingNetwork" } };
     case "stuck":
       return { ...base, openVault: true, body: { key: "extensions.stuck" } };
     case "unavailable":
@@ -78,6 +82,8 @@ export function vaultRowState(state: ExtensionState, size: string): Msg {
     case "downloading":
     case "paused":
       return { key: "extensions.state.downloading", params: { pct: extensionPercent(state), size } };
+    case "offline":
+      return { key: "vault.state.waitingNetwork" };
     case "failed":
       return { key: "extensions.state.failed", params: { size } };
     case "unavailable":

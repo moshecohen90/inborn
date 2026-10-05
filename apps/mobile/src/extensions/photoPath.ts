@@ -14,7 +14,8 @@ export function pathState(path: PhotoPath): ExtensionState {
   if (states.every((s) => s.kind === "ready")) return { kind: "ready" };
   const blocking = states.find((s) => s.kind === "failed" || s.kind === "unavailable" || s.kind === "stuck");
   if (blocking) return blocking.kind === "failed" ? { ...blocking, bytes: path.bytes } : blocking;
-  const have = states.reduce((n, s, i) => n + (s.kind === "ready" ? path.missing[i]!.bytes : s.kind === "downloading" || s.kind === "paused" ? s.bytes : 0), 0);
+  const have = states.reduce((n, s, i) => n + (s.kind === "ready" ? path.missing[i]!.bytes : s.kind === "downloading" || s.kind === "paused" || s.kind === "offline" ? s.bytes : 0), 0);
+  if (states.some((s) => s.kind === "offline")) return { kind: "offline", bytes: have, total: path.bytes };
   const running = states.find((s) => s.kind === "downloading" || s.kind === "paused");
   if (running?.kind === "downloading") return { kind: "downloading", bytes: have, total: path.bytes, ...(running.keepOpen ? { keepOpen: true } : {}) };
   if (running?.kind === "paused") return { kind: "paused", bytes: have, total: path.bytes };

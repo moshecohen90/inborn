@@ -28,6 +28,8 @@ export interface DeliveryContext {
   wifiOnly: () => boolean;
   /** The path the next byte would take; the Wi-Fi-only rule of §10.1 #4 is decided against this, not against a guess. */
   network: () => Promise<NetworkKind>;
+  /** Each change of path, so a parked download moves when the connection is back instead of on the next poll. */
+  onNetworkChange?: (listener: (kind: NetworkKind) => void) => () => void;
   /** Paused-download state persisted across restarts, keyed by model id. */
   savedDownload: (id: string) => unknown;
   saveDownload: (id: string, state: unknown | null) => void;
