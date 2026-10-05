@@ -1,0 +1,547 @@
+{
+  "runId": "j4-index-offline",
+  "startedAt": "2026-10-05T15:07:52.446Z",
+  "finishedAt": "2026-10-05T15:09:21.021Z",
+  "ok": true,
+  "passed": 44,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 158,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1508,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "INSTANT",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT"
+    },
+    {
+      "i": 9,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"INSTANT\" present"
+    },
+    {
+      "i": 10,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 162,
+      "detail": "attach: turbine-report-3pages.pdf"
+    },
+    {
+      "i": 11,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1618,
+      "detail": "attached-docs appeared"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 8000,
+      "detail": "8000 ms"
+    },
+    {
+      "i": 13,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "turbine-report-3pages.pdf",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "turbine-report-3pages.pdf"
+    },
+    {
+      "i": 14,
+      "op": "type",
+      "ok": true,
+      "ms": 166,
+      "detail": "composer-input = 50 chars"
+    },
+    {
+      "i": 15,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 16,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "docs-hold appeared"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1502,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 18,
+      "op": "network",
+      "ok": true,
+      "ms": 164,
+      "detail": "offline"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1502,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 20,
+      "op": "press",
+      "ok": true,
+      "ms": 181,
+      "detail": "docs-hold-download ← onPress"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4001,
+      "detail": "4000 ms"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "You are offline. A download is the one thing that needs internet: turn off Airplane Mode or join Wi-Fi.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "You are offline. A download is the one thing that needs internet: turn off Airplane Mode or join Wi-Fi."
+    },
+    {
+      "i": 23,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Waiting for a connection. It starts by itself.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Waiting for a connection. It starts by itself."
+    },
+    {
+      "i": 24,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2561,
+      "detail": "J4-05-index-card-offline"
+    },
+    {
+      "i": 25,
+      "op": "dump",
+      "ok": true,
+      "ms": 4,
+      "nodes": [
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "empty-headline",
+          "text": "Nothing leaves this phone."
+        },
+        {
+          "testID": "suggestion-summarize",
+          "text": "Summarize text",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-translate",
+          "text": "Translate",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-draft",
+          "text": "Draft a message",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "docs-hold",
+          "text": "You are offline. A download is the one thing that needs internet: turn off Airplane Mode or join Wi-Fi. Waiting for a connection. It starts by itself. Send, exact words only Cancel"
+        },
+        {
+          "testID": "docs-hold-offline",
+          "text": "You are offline. A download is the one thing that needs internet: turn off Airplane Mode or join Wi-Fi."
+        },
+        {
+          "testID": "docs-hold-body",
+          "text": "Waiting for a connection. It starts by itself."
+        },
+        {
+          "testID": "docs-hold-words",
+          "text": "Send, exact words only",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "docs-hold-cancel",
+          "text": "Cancel",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "attached-docs",
+          "text": "turbine-report-3pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muvdwcii-1-gvi0006t",
+          "text": "turbine-report-3pages.pdf",
+          "role": "button",
+          "label": "Remove turbine-report-3pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "redact-bar",
+          "text": "Redact"
+        },
+        {
+          "testID": "redact-open",
+          "text": "Redact",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "What is the serial number of the Rakovsky turbine?",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J4-05-index-card"
+    },
+    {
+      "i": 26,
+      "op": "sleep",
+      "ok": true,
+      "ms": 12015,
+      "detail": "12000 ms"
+    },
+    {
+      "i": 27,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Waiting for a connection. It starts by itself.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Waiting for a connection. It starts by itself."
+    },
+    {
+      "i": 28,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 4145,
+      "detail": "J4-06-index-card-offline-16s"
+    },
+    {
+      "i": 29,
+      "op": "network",
+      "ok": true,
+      "ms": 153,
+      "detail": "online"
+    },
+    {
+      "i": 30,
+      "op": "sleep",
+      "ok": true,
+      "ms": 8000,
+      "detail": "8000 ms"
+    },
+    {
+      "i": 31,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "Downloading the document index model… 18%. Your message is sent when it's ready.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Downloading the document index model… 18%. Your message is sent when it's ready."
+    },
+    {
+      "i": 32,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2861,
+      "detail": "J4-07-index-card-online-8s"
+    },
+    {
+      "i": 33,
+      "op": "idleTimer",
+      "ok": true,
+      "ms": 1,
+      "detail": "idle timer disabled: true",
+      "value": {
+        "text": "true",
+        "props": {
+          "idleTimerDisabled": true
+        }
+      }
+    },
+    {
+      "i": 34,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 31222,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 35,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1340,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 36,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 260,
+      "detail": "stop gone"
+    },
+    {
+      "i": 37,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 38,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The Rakovsky turbine serial number is RK-4417.",
+        "props": {
+          "source": "The Rakovsky turbine serial number is RK-4417.",
+          "disabled": false
+        }
+      },
+      "detail": "The Rakovsky turbine serial number is RK-4417."
+    },
+    {
+      "i": 39,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "citations appeared"
+    },
+    {
+      "i": 40,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "SOURCES turbine-report-3pages.pdf · p.1",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "SOURCES turbine-report-3pages.pdf · p.1"
+    },
+    {
+      "i": 41,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1511,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 42,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3500,
+      "detail": "J4-08-held-message-answered"
+    },
+    {
+      "i": 43,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"RK-4417\" present"
+    }
+  ],
+  "errors": []
+}

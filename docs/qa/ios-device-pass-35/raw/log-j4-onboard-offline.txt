@@ -1,0 +1,62 @@
+18:06:16 pushing 52 steps as j4-onboard-offline
+18:06:21 shot J5-08-model-step-after-wipe
+18:06:26 shot J4-01-model-step-offline
+18:06:33 shot J4-02-download-tapped-offline
+18:06:47 shot J4-03-offline-16s
+18:06:59 shot J4-04-online-10s
+18:07:14 shot J5-09-chat-instant-after-wipe
+18:07:17 ok     0 waitFor    onboarding-continue appeared
+18:07:17 ok     1 sleep      1200 ms
+18:07:17 ok     2 press      onboarding-continue ← onPress
+18:07:17 ok     3 waitFor    onboarding-model appeared
+18:07:17 ok     4 sleep      2500 ms
+18:07:17 ok     5 value      Download Fast · 1.28 GB
+18:07:17 ok     6 assertText "Download Fast" present
+18:07:17 ok     7 assertText "1.28 GB" present
+18:07:17 ok     8 screenshot J5-08-model-step-after-wipe
+18:07:17 ok     9 dump       J5-08-model-step
+18:07:17 ok    10 network    offline
+18:07:17 ok    11 sleep      2000 ms
+18:07:17 ok    12 value      You are offline. A download is the one thing that needs internet; it starts by itself once Airplane Mode is of
+18:07:17 ok    13 screenshot J4-01-model-step-offline
+18:07:17 ok    14 press      download-model ← onPress
+18:07:17 ok    15 sleep      4000 ms
+18:07:17 ok    16 value      You are offline. A download is the one thing that needs internet: turn off Airplane Mode or join Wi-Fi.
+18:07:17 ok    17 value      Waiting for a connection. It starts by itself.
+18:07:17 FAIL  18 value      value start-now-with: no node with that testID is mounted
+18:07:17 FAIL  19 assertText assertText "Instant" is not on screen under start-now-with
+18:07:17 ok    20 screenshot J4-02-download-tapped-offline
+18:07:17 ok    21 dump       J4-02-model-step
+18:07:17 ok    22 sleep      12000 ms
+18:07:17 ok    23 value      Waiting for a connection. It starts by itself.
+18:07:17 ok    24 screenshot J4-03-offline-16s
+18:07:17 ok    25 network    online
+18:07:17 ok    26 sleep      10000 ms
+18:07:17 ok    27 value      
+18:07:17 ok    28 screenshot J4-04-online-10s
+18:07:17 ok    29 dump       J4-04-model-step
+18:07:17 ok    30 press      cancel-download ← onPress
+18:07:17 ok    31 sleep      1500 ms
+18:07:17 ok    32 value      Start now with Instant
+18:07:17 ok    33 press      start-now-with ← onPress
+18:07:17 ok    34 waitFor    sealed-start appeared
+18:07:17 ok    35 sleep      5000 ms
+18:07:17 ok    36 press      sealed-start ← onPress
+18:07:17 ok    37 waitFor    lock-start appeared
+18:07:17 ok    38 press      lock-start ← onPress
+18:07:17 ok    39 waitFor    composer-input appeared
+18:07:17 ok    40 waitFor    Loading gone
+18:07:17 ok    41 sleep      2000 ms
+18:07:17 ok    42 value      INSTANT
+18:07:17 ok    43 assertText "INSTANT" present
+18:07:17 ok    44 type       composer-input = 30 chars
+18:07:17 ok    45 send       send ← onPress
+18:07:17 ok    46 waitFor    assistant-text appeared
+18:07:17 ok    47 waitFor    stop gone
+18:07:17 ok    48 sleep      1500 ms
+18:07:17 ok    49 value      Paris is the capital of France.
+18:07:17 ok    50 screenshot J5-09-chat-instant-after-wipe
+18:07:17 ok    51 assertText "Could not load" absent
+18:07:17 50 passed, 2 failed, 6 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-35/docs/qa/ios-device-pass-35/screens
+18:07:17   ! step 18 (value): value start-now-with: no node with that testID is mounted
+18:07:17   ! step 19 (assertText): assertText "Instant" is not on screen under start-now-with

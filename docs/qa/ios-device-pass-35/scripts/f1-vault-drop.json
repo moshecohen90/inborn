@@ -1,0 +1,117 @@
+{
+ "_": "J4 vault door + Fast for J2: Install Fast from the vault, the connection drops mid-download (simulated), waits, comes back: it continues by itself.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/vault"
+  },
+  {
+   "op": "sleep",
+   "ms": 4000
+  },
+  {
+   "op": "scrollTo",
+   "testID": "install-fast"
+  },
+  {
+   "op": "press",
+   "testID": "install-fast"
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "screenshot",
+   "name": "J4-11-vault-confirm"
+  },
+  {
+   "op": "press",
+   "testID": "confirm-download"
+  },
+  {
+   "op": "sleep",
+   "ms": 15000
+  },
+  {
+   "op": "value",
+   "testID": "model-status-fast"
+  },
+  {
+   "op": "screenshot",
+   "name": "J4-12-vault-fast-downloading"
+  },
+  {
+   "op": "network",
+   "offline": true
+  },
+  {
+   "op": "sleep",
+   "ms": 5000
+  },
+  {
+   "op": "value",
+   "testID": "model-offline-fast"
+  },
+  {
+   "op": "value",
+   "testID": "model-status-fast"
+  },
+  {
+   "op": "screenshot",
+   "name": "J4-13-vault-connection-lost"
+  },
+  {
+   "op": "dump",
+   "name": "J4-13-vault"
+  },
+  {
+   "op": "sleep",
+   "ms": 10000
+  },
+  {
+   "op": "value",
+   "testID": "model-status-fast"
+  },
+  {
+   "op": "screenshot",
+   "name": "J4-14-vault-offline-15s"
+  },
+  {
+   "op": "network",
+   "offline": false
+  },
+  {
+   "op": "sleep",
+   "ms": 12000
+  },
+  {
+   "op": "value",
+   "testID": "model-status-fast"
+  },
+  {
+   "op": "screenshot",
+   "name": "J4-15-vault-online-12s"
+  },
+  {
+   "op": "dump",
+   "name": "J4-15-vault"
+  },
+  {
+   "op": "idleTimer"
+  },
+  {
+   "op": "waitFor",
+   "testID": "use-fast",
+   "timeoutMs": 1500000
+  },
+  {
+   "op": "value",
+   "testID": "model-status-fast"
+  },
+  {
+   "op": "screenshot",
+   "name": "J4-16-vault-fast-installed"
+  }
+ ]
+}

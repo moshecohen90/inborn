@@ -1,0 +1,45 @@
+17:53:37 pushing 41 steps as p2c-visual-indexed
+17:53:53 shot J1-06-sent-bubble
+17:53:59 shot J1-06-answer
+17:54:02 ok     0 deeplink   /chats
+17:54:02 ok     1 waitFor    new-chat appeared
+17:54:02 ok     2 press      new-chat ← onPress
+17:54:02 ok     3 waitFor    start-chat appeared
+17:54:02 ok     4 press      start-chat ← onPress
+17:54:02 ok     5 waitFor    composer-input appeared
+17:54:02 ok     6 waitFor    Loading gone
+17:54:02 ok     7 sleep      1500 ms
+17:54:02 ok     8 value      INSTANT
+17:54:02 ok     9 assertText "INSTANT" present
+17:54:02 ok    10 devPrompt  attach: visual-page.pdf
+17:54:02 ok    11 waitFor    attached-docs appeared
+17:54:02 ok    12 sleep      8000 ms
+17:54:02 ok    13 value      visual-page.pdf
+17:54:02 ok    14 type       composer-input = 16 chars
+17:54:02 ok    15 send       send ← onPress
+17:54:02 ok    16 waitFor    assistant-text appeared
+17:54:02 ok    17 value      
+17:54:02 ok    18 screenshot J1-06-sent-bubble
+17:54:02 ok    19 dump       J1-06-sent-bubble
+17:54:02 ok    20 waitFor    stop gone
+17:54:02 ok    21 sleep      1500 ms
+17:54:02 ok    22 value      The user is asking a question in Hebrew about what they are seeing on the webpage. The document provided conta
+17:54:02 ok    23 sleep      1500 ms
+17:54:02 ok    24 screenshot J1-06-answer
+17:54:02 ok    25 dump       J1-06-answer
+17:54:02 ok    26 waitFor    vision-hold gone
+17:54:02 ok    27 waitFor    docs-hold gone
+17:54:02 ok    28 assertText "cannot see" absent
+17:54:02 ok    29 assertText "can't see" absent
+17:54:02 ok    30 assertText "cannot physically see" absent
+17:54:02 ok    31 assertText "see images" absent
+17:54:02 ok    32 assertText "text-based" absent
+17:54:02 ok    33 assertText "unable to see" absent
+17:54:02 ok    34 assertText "not able to see" absent
+17:54:02 ok    35 assertText "The request specifies" absent
+17:54:02 ok    36 assertText "I will focus" absent
+17:54:02 ok    37 assertText "as an AI" absent
+17:54:02 ok    38 assertText "NOT_FOUND" absent
+17:54:02 ok    39 assertText "<<<" absent
+17:54:02 ok    40 assertText "Your documents don't mention this" absent
+17:54:02 41 passed, 0 failed, 2 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-35/docs/qa/ios-device-pass-35/screens

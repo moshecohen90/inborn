@@ -1,0 +1,53 @@
+17:49:42 pushing 47 steps as p2a-visual
+17:49:56 shot J1-03-composer-chip
+17:50:03 shot J1-04-index-card
+17:50:08 shot J1-04-sent-bubble
+17:50:15 shot J1-04-answer
+17:50:18 ok     0 deeplink   /chats
+17:50:18 ok     1 waitFor    new-chat appeared
+17:50:18 ok     2 press      new-chat ← onPress
+17:50:18 ok     3 waitFor    start-chat appeared
+17:50:18 ok     4 press      start-chat ← onPress
+17:50:18 ok     5 waitFor    composer-input appeared
+17:50:18 ok     6 waitFor    Loading gone
+17:50:18 ok     7 sleep      1500 ms
+17:50:18 ok     8 value      INSTANT
+17:50:18 ok     9 assertText "INSTANT" present
+17:50:18 ok    10 devPrompt  attach: visual-page.pdf
+17:50:18 ok    11 waitFor    attached-docs appeared
+17:50:18 ok    12 sleep      8000 ms
+17:50:18 ok    13 value      visual-page.pdf
+17:50:18 ok    14 screenshot J1-03-composer-chip
+17:50:18 ok    15 type       composer-input = 16 chars
+17:50:18 ok    16 send       send ← onPress
+17:50:18 ok    17 waitFor    docs-hold appeared
+17:50:18 ok    18 sleep      1500 ms
+17:50:18 ok    19 value      The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact wo
+17:50:18 ok    20 screenshot J1-04-index-card
+17:50:18 ok    21 press      docs-hold-words ← onPress
+17:50:18 ok    22 waitFor    assistant-text appeared
+17:50:18 ok    23 value      
+17:50:18 ok    24 screenshot J1-04-sent-bubble
+17:50:18 ok    25 dump       J1-04-sent-bubble
+17:50:18 ok    26 waitFor    stop gone
+17:50:18 ok    27 sleep      1500 ms
+17:50:18 ok    28 value      The image shows a web page from "NORTHWIND" featuring four dogs on gravel and a coffee shop checkout screen wi
+17:50:18 ok    29 sleep      1500 ms
+17:50:18 ok    30 screenshot J1-04-answer
+17:50:18 ok    31 dump       J1-04-answer
+17:50:18 ok    32 waitFor    vision-hold gone
+17:50:18 ok    33 waitFor    docs-hold gone
+17:50:18 ok    34 assertText "cannot see" absent
+17:50:18 ok    35 assertText "can't see" absent
+17:50:18 ok    36 assertText "cannot physically see" absent
+17:50:18 ok    37 assertText "see images" absent
+17:50:18 ok    38 assertText "text-based" absent
+17:50:18 ok    39 assertText "unable to see" absent
+17:50:18 ok    40 assertText "not able to see" absent
+17:50:18 ok    41 assertText "The request specifies" absent
+17:50:18 ok    42 assertText "I will focus" absent
+17:50:18 ok    43 assertText "as an AI" absent
+17:50:18 ok    44 assertText "NOT_FOUND" absent
+17:50:18 ok    45 assertText "<<<" absent
+17:50:18 ok    46 assertText "Your documents don't mention this" absent
+17:50:18 47 passed, 0 failed, 4 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-35/docs/qa/ios-device-pass-35/screens

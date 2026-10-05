@@ -1,0 +1,65 @@
+2026-10-05 17:37:01 start ios-build-35; worktree at b3707e81, commit a04f3640 (a04f3640dc89) buildNumber 34->35 + guard
+2026-10-05 17:37:01 archive 17:26:00 -> 17:31:04 SUCCEEDED 0 error lines; verify all pass, stamp a04f3640dc89 1x; kept at <inborn-docs>/builds/Inborn-35.xcarchive
+2026-10-05 17:37:02 phone before twin: passcodeRequired: false; apps: com.inbornapp.mobile 1.0.0 34;com.inbornapp.mobile.uitests.xctrunner 1.0 1;
+2026-10-05 17:37:23 twin installed 17:37:02 -> 17:37:23 rc=0
+2026-10-05 17:37:27 p0-onboard start
+2026-10-05 17:38:11 p0-onboard rc=0 17:38:10 21 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-35/screens
+push <founder-file>.pdf rc=0
+push visual-page.pdf rc=0
+push turbine-report-3pages.pdf rc=0
+push בית קפה הגינה תפריט.jpg rc=0
+2026-10-05 17:38:17 p1-founder start
+2026-10-05 17:42:41 p1-founder rc=1 (private: details in private/)
+2026-10-05 17:43:19 p1b-founder-words start
+2026-10-05 17:48:02 p1b-founder-words rc=1 (private: details in private/)
+2026-10-05 17:48:20 p1b-founder-words start
+2026-10-05 17:48:21 p1b-founder-words rc=1 (private: details in private/)
+2026-10-05 17:48:31 p1e-founder-words start
+2026-10-05 17:49:10 p1e-founder-words rc=0 (private: details in private/)
+2026-10-05 17:49:42 p2a-visual start
+2026-10-05 17:50:19 p2a-visual rc=0 17:50:18 47 passed, 0 failed, 4 screenshots → <worktree>/docs/qa/ios-device-pass-35/screens
+2026-10-05 17:51:22 p2b-follow-up start
+2026-10-05 17:51:32 p2b-follow-up rc=0 17:51:32 22 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-35/screens
+2026-10-05 17:51:41 p3-index start
+2026-10-05 17:53:00 p3-index rc=0 17:52:59 59 passed, 0 failed, 5 screenshots → <worktree>/docs/qa/ios-device-pass-35/screens
+2026-10-05 17:53:12 p1c-founder-indexed start
+2026-10-05 17:53:37 p1c-founder-indexed rc=0 (private: details in private/)
+2026-10-05 17:53:37 p2c-visual-indexed start
+2026-10-05 17:54:02 p2c-visual-indexed rc=0 17:54:02 41 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-35/screens
+2026-10-05 17:54:02 j5-file-cafe start
+2026-10-05 17:54:17 j5-file-cafe rc=0 17:54:17 28 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-35/screens
+2026-10-05 17:54:38 café row read from the sheet dump: attach-muvdel64-7-hks95tv3 ('בית קפה הגינה תפריט.jpg / Scanned. Run OCR on this phone?')
+2026-10-05 17:54:38 j5-tap-cafe start
+2026-10-05 17:54:55 j5-tap-cafe rc=0 17:54:54 34 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-35/screens
+2026-10-05 17:56:46 j5-tap-cafe-s2 start
+2026-10-05 17:57:06 j5-tap-cafe-s2 rc=0 17:57:05 46 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-35/screens
+2026-10-05 17:57:12 f1-vault-drop start
+2026-10-05 17:59:26 f1-vault-drop rc=1 17:59:26   ! step 19 (network): network: this build cannot simulate a lost connection
+2026-10-05 17:59:59 f1-vault-drop: the network step refused ('this build cannot simulate a lost connection'): devBuild() needs EXPO_PUBLIC_DEV_MODEL_HOST in the bundle, which the build-34 twin recipe does not set; Fast downloaded with no drop (10% at 15 s, 40% at 39 s, Installed 66 s later). Twin rebuild with EXPO_PUBLIC_DEV_MODEL_HOST=localhost started for J4
+2026-10-05 17:59:59 j2-use-fast start
+2026-10-05 18:00:08 j2-use-fast rc=0 18:00:08 17 passed, 0 failed, 0 screenshots → <worktree>/docs/qa/ios-device-pass-35/screens
+2026-10-05 18:00:08 j2c-remove start
+2026-10-05 18:00:49 j2c-remove rc=0 18:00:49 42 passed, 0 failed, 3 screenshots → <worktree>/docs/qa/ios-device-pass-35/screens
+2026-10-05 18:00:55 j2b-switch start
+2026-10-05 18:01:31 j2b-switch rc=0 18:01:31 48 passed, 0 failed, 3 screenshots → <worktree>/docs/qa/ios-device-pass-35/screens
+2026-10-05 18:01:45 j2a-download start
+2026-10-05 18:03:34 j2a-download rc=0 18:03:34 69 passed, 0 failed, 4 screenshots → <worktree>/docs/qa/ios-device-pass-35/screens
+2026-10-05 18:03:42 j2d-fast-timing start
+2026-10-05 18:04:12 j2d-fast-timing rc=0 18:04:12 41 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-35/screens
+2026-10-05 18:04:21 j5-loading start
+2026-10-05 18:04:42 j5-loading rc=0 18:04:42 35 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-35/screens
+2026-10-05 18:04:42 j5-fast-text start
+2026-10-05 18:04:53 j5-fast-text rc=0 18:04:52 23 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-35/screens
+2026-10-05 18:05:32 twin 2 (same commit, + EXPO_PUBLIC_DEV_MODEL_HOST=localhost) installed over the twin 18:05:09 -> 18:05:32 rc=0
+2026-10-05 18:05:39 j5-wipe-on start
+2026-10-05 18:06:07 j5-wipe-on rc=0 18:06:07 16 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-35/screens
+2026-10-05 18:06:16 j4-onboard-offline start
+2026-10-05 18:07:17 j4-onboard-offline rc=1 18:07:17   ! step 19 (assertText): assertText "Instant" is not on screen under start-now-with
+push turbine-report-3pages.pdf rc=0
+push visual-page.pdf rc=0
+2026-10-05 18:07:51 j4-index-offline start
+2026-10-05 18:09:23 j4-index-offline rc=0 18:09:23 44 passed, 0 failed, 4 screenshots → <worktree>/docs/qa/ios-device-pass-35/screens
+2026-10-05 18:09:32 f3-vault-drop start
+2026-10-05 18:12:03 f3-vault-drop rc=0 18:12:02 28 passed, 0 failed, 6 screenshots → <worktree>/docs/qa/ios-device-pass-35/screens
+2026-10-05 18:12:17 twin uninstalled rc=0; apps: com.inbornapp.mobile 1.0.0 34;com.inbornapp.mobile.uitests.xctrunner 1.0 1;
+2026-10-05 18:14:24 store app: copied 13 non-model files, uninstalled 18:12:45, build 35 installed 18:12:46->18:13:07 rc=0, 1.0.0 (35); launched once 18:13:20, Welcome screen captured (S01), Documents/models = vault.json only (instant + vision-qwen35 bundled); left on Welcome

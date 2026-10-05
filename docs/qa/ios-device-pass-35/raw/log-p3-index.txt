@@ -1,0 +1,66 @@
+17:51:41 pushing 59 steps as p3-index
+17:51:56 shot J3-01-index-card
+17:52:02 shot J3-02-downloading
+17:52:43 shot J3-03-reading-your-document
+17:52:49 shot J3-04-grounded-answer
+17:52:56 shot J3-05-turbine-question
+17:52:59 ok     0 deeplink   /chats
+17:52:59 ok     1 waitFor    new-chat appeared
+17:52:59 ok     2 press      new-chat ← onPress
+17:52:59 ok     3 waitFor    start-chat appeared
+17:52:59 ok     4 press      start-chat ← onPress
+17:52:59 ok     5 waitFor    composer-input appeared
+17:52:59 ok     6 waitFor    Loading gone
+17:52:59 ok     7 sleep      1500 ms
+17:52:59 ok     8 value      INSTANT
+17:52:59 ok     9 assertText "INSTANT" present
+17:52:59 ok    10 devPrompt  attach: turbine-report-3pages.pdf
+17:52:59 ok    11 waitFor    attached-docs appeared
+17:52:59 ok    12 sleep      8000 ms
+17:52:59 ok    13 value      turbine-report-3pages.pdf
+17:52:59 ok    14 type       composer-input = 50 chars
+17:52:59 ok    15 send       send ← onPress
+17:52:59 ok    16 waitFor    docs-hold appeared
+17:52:59 ok    17 sleep      1500 ms
+17:52:59 ok    18 value      The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact wo
+17:52:59 ok    19 assertText "468 MB" present
+17:52:59 ok    20 screenshot J3-01-index-card
+17:52:59 ok    21 press      docs-hold-download ← onPress
+17:52:59 ok    22 sleep      3000 ms
+17:52:59 ok    23 value      Downloading the document index model… 3%. Your message is sent when it's ready.
+17:52:59 ok    24 screenshot J3-02-downloading
+17:52:59 ok    25 idleTimer  idle timer disabled: true
+17:52:59 ok    26 waitFor    docs-hold gone
+17:52:59 ok    27 waitFor    reading-docs appeared
+17:52:59 ok    28 value      Reading your document before answering…
+17:52:59 ok    29 screenshot J3-03-reading-your-document
+17:52:59 ok    30 waitFor    assistant-text appeared
+17:52:59 ok    31 waitFor    stop gone
+17:52:59 ok    32 sleep      1500 ms
+17:52:59 ok    33 value      The Rakovsky turbine serial number is RK-4417.
+17:52:59 ok    34 waitFor    citations appeared
+17:52:59 ok    35 value      SOURCES turbine-report-3pages.pdf · p.1
+17:52:59 ok    36 sleep      1500 ms
+17:52:59 ok    37 screenshot J3-04-grounded-answer
+17:52:59 ok    38 dump       J3-04-grounded-answer
+17:52:59 ok    39 assertText "RK-4417" present
+17:52:59 ok    40 assertText "Nothing in your documents matched this question" absent
+17:52:59 ok    41 type       composer-input = 43 chars
+17:52:59 ok    42 send       send ← onPress
+17:52:59 ok    43 waitFor    assistant-text appeared
+17:52:59 ok    44 waitFor    stop gone
+17:52:59 ok    45 sleep      1500 ms
+17:52:59 ok    46 value      The Rakovsky turbine serial number is RK-4417.
+17:52:59 ok    47 sleep      1500 ms
+17:52:59 ok    48 screenshot J3-05-turbine-question
+17:52:59 ok    49 dump       J3-05-turbine-question
+17:52:59 ok    50 assertText "The report states" absent
+17:52:59 ok    51 assertText "The report says" absent
+17:52:59 ok    52 assertText "The report indicates" absent
+17:52:59 ok    53 assertText "The report outlines" absent
+17:52:59 ok    54 assertText "The request specifies" absent
+17:52:59 ok    55 assertText "I will focus" absent
+17:52:59 ok    56 assertText "as an AI" absent
+17:52:59 ok    57 assertText "NOT_FOUND" absent
+17:52:59 ok    58 assertText "<<<" absent
+17:52:59 59 passed, 0 failed, 5 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-35/docs/qa/ios-device-pass-35/screens

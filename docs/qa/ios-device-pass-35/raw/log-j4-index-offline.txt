@@ -1,0 +1,50 @@
+18:07:51 pushing 44 steps as j4-index-offline
+18:08:12 shot J4-05-index-card-offline
+18:08:27 shot J4-06-index-card-offline-16s
+18:08:39 shot J4-07-index-card-online-8s
+18:09:18 shot J4-08-held-message-answered
+18:09:23 ok     0 deeplink   /chats
+18:09:23 ok     1 waitFor    new-chat appeared
+18:09:23 ok     2 press      new-chat ← onPress
+18:09:23 ok     3 waitFor    start-chat appeared
+18:09:23 ok     4 press      start-chat ← onPress
+18:09:23 ok     5 waitFor    composer-input appeared
+18:09:23 ok     6 waitFor    Loading gone
+18:09:23 ok     7 sleep      1500 ms
+18:09:23 ok     8 value      INSTANT
+18:09:23 ok     9 assertText "INSTANT" present
+18:09:23 ok    10 devPrompt  attach: turbine-report-3pages.pdf
+18:09:23 ok    11 waitFor    attached-docs appeared
+18:09:23 ok    12 sleep      8000 ms
+18:09:23 ok    13 value      turbine-report-3pages.pdf
+18:09:23 ok    14 type       composer-input = 50 chars
+18:09:23 ok    15 send       send ← onPress
+18:09:23 ok    16 waitFor    docs-hold appeared
+18:09:23 ok    17 sleep      1500 ms
+18:09:23 ok    18 network    offline
+18:09:23 ok    19 sleep      1500 ms
+18:09:23 ok    20 press      docs-hold-download ← onPress
+18:09:23 ok    21 sleep      4000 ms
+18:09:23 ok    22 value      You are offline. A download is the one thing that needs internet: turn off Airplane Mode or join Wi-Fi.
+18:09:23 ok    23 value      Waiting for a connection. It starts by itself.
+18:09:23 ok    24 screenshot J4-05-index-card-offline
+18:09:23 ok    25 dump       J4-05-index-card
+18:09:23 ok    26 sleep      12000 ms
+18:09:23 ok    27 value      Waiting for a connection. It starts by itself.
+18:09:23 ok    28 screenshot J4-06-index-card-offline-16s
+18:09:23 ok    29 network    online
+18:09:23 ok    30 sleep      8000 ms
+18:09:23 ok    31 value      Downloading the document index model… 18%. Your message is sent when it's ready.
+18:09:23 ok    32 screenshot J4-07-index-card-online-8s
+18:09:23 ok    33 idleTimer  idle timer disabled: true
+18:09:23 ok    34 waitFor    docs-hold gone
+18:09:23 ok    35 waitFor    assistant-text appeared
+18:09:23 ok    36 waitFor    stop gone
+18:09:23 ok    37 sleep      1500 ms
+18:09:23 ok    38 value      The Rakovsky turbine serial number is RK-4417.
+18:09:23 ok    39 waitFor    citations appeared
+18:09:23 ok    40 value      SOURCES turbine-report-3pages.pdf · p.1
+18:09:23 ok    41 sleep      1500 ms
+18:09:23 ok    42 screenshot J4-08-held-message-answered
+18:09:23 ok    43 assertText "RK-4417" present
+18:09:23 44 passed, 0 failed, 4 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-35/docs/qa/ios-device-pass-35/screens

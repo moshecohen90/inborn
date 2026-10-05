@@ -1,0 +1,46 @@
+== first run (worktree at a04f3640, concurrent with the archive and with the gates on main: load average ~30)
+== install --frozen-lockfile start 17:25:05
+== install --frozen-lockfile rc=0 end 17:25:19
+== typecheck start 17:25:19
+== typecheck rc=0 end 17:25:29
+== lint start 17:25:29
+== lint rc=0 end 17:25:36
+== test start 17:25:36
+== test rc=1 end 17:26:03
+GATES-DONE
+PASS: all fields within limits.
+SKIP: no shipping artifact in this tree (apps/web/dist, apps/mobile/dist, apps/mobile/ios/build/Inborn.xcarchive, apps/mobile/android/app/build/outputs/bundle/release, apps/mobile/android/app/build/outputs/apk/release)
+PASS: no personal identifier in the history of HEAD
+apps/desktop test: # pass 4
+apps/desktop test: # fail 0
+packages/ui test:       Tests  23 passed (23)
+packages/i18n test:       Tests  24 passed (24)
+packages/core test:      × 25 distinct verbs, each with a gloss, are not cut 5593ms
+packages/core test: ⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+packages/core test:  FAIL  test/fixes-r114.test.ts > F428 · the head rule changes round 113's parenthetical rule, and keeps its exceptions > 25 distinct verbs, each with a gloss, are not cut
+packages/core test: Error: Test timed out in 5000ms.
+packages/core test:       Tests  1 failed | 1264 passed | 4 skipped (1269)
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @inborn/core@0.0.1 test: `vitest run`
+
+== fixes-r114.test.ts alone, 17:26, archive still running (load 30): the same test timed out again
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 26 passed (27)
+   Start at  17:26:25
+   Duration  12.84s (tests 89%, transform 10%, import 2%)
+
+
+== full test rerun after the archive (17:31, ios/build/Inborn.xcarchive still in the tree, so check:store ran on it) rc=0
+PASS: all fields within limits.
+  apps/mobile/ios/build/Inborn.xcarchive (iOS archive): OK: <worktree>/apps/mobile/ios/build/Inborn.xcarchive contains no QA bridge
+PASS: 1 shipping artifact(s) carry no QA bridge.
+OK: iPhone UDID is in no commit patch
+OK: OnePlus 6T serial is in no commit patch
+OK: ASC key id is in no commit patch
+PASS: no personal identifier in the history of HEAD
+apps/desktop test: # pass 4
+apps/desktop test: # fail 0
+packages/ui test:       Tests  23 passed (23)
+packages/i18n test:       Tests  24 passed (24)
+packages/core test:       Tests  1265 passed | 4 skipped (1269)
+apps/mobile test:       Tests  1372 passed (1372)

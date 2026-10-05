@@ -1,0 +1,47 @@
+18:00:09 pushing 42 steps as j2c-remove
+18:00:25 shot J2-01-pack-card
+18:00:32 shot J2-02-photo-removed
+18:00:44 shot J2-03-text-only-answer
+18:00:49 ok     0 deeplink   /chats
+18:00:49 ok     1 waitFor    new-chat appeared
+18:00:49 ok     2 press      new-chat ← onPress
+18:00:49 ok     3 waitFor    start-chat appeared
+18:00:49 ok     4 press      start-chat ← onPress
+18:00:49 ok     5 waitFor    composer-input appeared
+18:00:49 ok     6 waitFor    Loading gone
+18:00:49 ok     7 sleep      1500 ms
+18:00:49 ok     8 value      FAST
+18:00:49 ok     9 assertText "FAST" present
+18:00:49 ok    10 devPrompt  attach: visual-page.pdf
+18:00:49 ok    11 waitFor    attached-docs appeared
+18:00:49 ok    12 sleep      8000 ms
+18:00:49 ok    13 value      visual-page.pdf
+18:00:49 ok    14 type       composer-input = 16 chars
+18:00:49 ok    15 send       send ← onPress
+18:00:49 ok    16 waitFor    vision-hold appeared
+18:00:49 ok    17 sleep      1500 ms
+18:00:49 ok    18 value      FAST needs its photo pack to see photos One 668 MB download, then this photo sends by itself. Download 668 MB 
+18:00:49 ok    19 assertText "668 MB" present
+18:00:49 ok    20 waitFor    assistant-text gone
+18:00:49 ok    21 screenshot J2-01-pack-card
+18:00:49 ok    22 dump       J2-01-pack-card
+18:00:49 ok    23 press      vision-hold-remove ← onPress
+18:00:49 ok    24 sleep      1500 ms
+18:00:49 ok    25 screenshot J2-02-photo-removed
+18:00:49 ok    26 send       send ← onPress
+18:00:49 ok    27 waitFor    assistant-text appeared
+18:00:49 ok    28 waitFor    stop gone
+18:00:49 ok    29 sleep      1500 ms
+18:00:49 ok    30 value      I can read only the text of this page, not its pictures. The visible text includes a header stating "משלוח חינ
+18:00:49 ok    31 sleep      1500 ms
+18:00:49 ok    32 waitFor    vision-hold gone
+18:00:49 ok    33 waitFor    user-images gone
+18:00:49 ok    34 screenshot J2-03-text-only-answer
+18:00:49 ok    35 dump       J2-03-text-only-answer
+18:00:49 ok    36 assertText "I can read only the text of this page" present
+18:00:49 ok    37 assertText "The request specifies" absent
+18:00:49 ok    38 assertText "I will focus" absent
+18:00:49 ok    39 assertText "as an AI" absent
+18:00:49 ok    40 assertText "NOT_FOUND" absent
+18:00:49 ok    41 assertText "<<<" absent
+18:00:49 42 passed, 0 failed, 3 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-35/docs/qa/ios-device-pass-35/screens
