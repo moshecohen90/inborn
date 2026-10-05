@@ -1,0 +1,60 @@
+{
+  "runId": "d1-onboard-offline",
+  "_": "Door 1. Fresh install, the app offline, Download Fast tapped on the model step.",
+  "steps": [
+    {
+      "op": "waitFor",
+      "testID": "onboarding-continue",
+      "timeoutMs": 90000
+    },
+    {
+      "op": "press",
+      "testID": "onboarding-continue"
+    },
+    {
+      "op": "waitFor",
+      "testID": "onboarding-model",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "network",
+      "offline": true
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "screenshot",
+      "name": "01-model-step-offline"
+    },
+    {
+      "op": "press",
+      "testID": "download-model"
+    },
+    {
+      "op": "sleep",
+      "ms": 4000
+    },
+    {
+      "op": "screenshot",
+      "name": "02-download-tapped-offline"
+    },
+    {
+      "op": "dump",
+      "name": "02-model-step"
+    },
+    {
+      "op": "sleep",
+      "ms": 12000
+    },
+    {
+      "op": "screenshot",
+      "name": "03-download-offline-16s"
+    },
+    {
+      "op": "dump",
+      "name": "03-model-step"
+    }
+  ]
+}

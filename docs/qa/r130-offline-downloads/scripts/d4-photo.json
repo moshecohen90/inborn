@@ -1,0 +1,112 @@
+{
+  "runId": "d4-photo",
+  "_": "Door 4. On Fast, a photo sent: the photo pack card, Download tapped offline, then online.",
+  "steps": [
+    {
+      "op": "deeplink",
+      "url": "/"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 15000
+    },
+    {
+      "op": "devPrompt",
+      "lines": [
+        "image: red-circle-cat.png"
+      ]
+    },
+    {
+      "op": "sleep",
+      "ms": 5000
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "What is in this picture?"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "waitFor",
+      "testID": "vision-hold",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "screenshot",
+      "name": "21-photo-hold"
+    },
+    {
+      "op": "dump",
+      "name": "21-photo"
+    },
+    {
+      "op": "network",
+      "offline": true
+    },
+    {
+      "op": "press",
+      "testID": "vision-hold-download"
+    },
+    {
+      "op": "sleep",
+      "ms": 4000
+    },
+    {
+      "op": "screenshot",
+      "name": "22-photo-tapped-offline"
+    },
+    {
+      "op": "dump",
+      "name": "22-photo"
+    },
+    {
+      "op": "sleep",
+      "ms": 12000
+    },
+    {
+      "op": "screenshot",
+      "name": "23-photo-offline-16s"
+    },
+    {
+      "op": "network",
+      "offline": false
+    },
+    {
+      "op": "sleep",
+      "ms": 8000
+    },
+    {
+      "op": "screenshot",
+      "name": "24-photo-online-8s"
+    },
+    {
+      "op": "dump",
+      "name": "24-photo"
+    },
+    {
+      "op": "waitFor",
+      "testID": "vision-hold",
+      "timeoutMs": 300000,
+      "gone": true
+    },
+    {
+      "op": "sleep",
+      "ms": 5000
+    },
+    {
+      "op": "screenshot",
+      "name": "25-photo-sent"
+    }
+  ]
+}

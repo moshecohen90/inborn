@@ -1,0 +1,14 @@
+{
+    "runId": "d4a-use-fast",
+    "_": "Door 4 setup: the vault reads Documents/dev-vault.txt (`use fast`, written by the shell) on mount.",
+    "steps": [
+        {
+            "op": "deeplink",
+            "url": "/vault"
+        },
+        {
+            "op": "sleep",
+            "ms": 6000
+        }
+    ]
+}

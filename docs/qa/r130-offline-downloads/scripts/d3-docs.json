@@ -1,0 +1,112 @@
+{
+  "runId": "d3-docs",
+  "_": "Door 3. A PDF attached on Instant, a question sent, the document index card, Download tapped offline, then online.",
+  "steps": [
+    {
+      "op": "deeplink",
+      "url": "/"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 5000
+    },
+    {
+      "op": "devPrompt",
+      "lines": [
+        "attach: turbine-report.pdf"
+      ]
+    },
+    {
+      "op": "sleep",
+      "ms": 8000
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "What does the report say about the turbine?"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "waitFor",
+      "testID": "docs-hold",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "screenshot",
+      "name": "16-docs-hold"
+    },
+    {
+      "op": "network",
+      "offline": true
+    },
+    {
+      "op": "press",
+      "testID": "docs-hold-download"
+    },
+    {
+      "op": "sleep",
+      "ms": 4000
+    },
+    {
+      "op": "screenshot",
+      "name": "17-docs-tapped-offline"
+    },
+    {
+      "op": "dump",
+      "name": "17-docs"
+    },
+    {
+      "op": "sleep",
+      "ms": 12000
+    },
+    {
+      "op": "screenshot",
+      "name": "18-docs-offline-16s"
+    },
+    {
+      "op": "dump",
+      "name": "18-docs"
+    },
+    {
+      "op": "network",
+      "offline": false
+    },
+    {
+      "op": "sleep",
+      "ms": 8000
+    },
+    {
+      "op": "screenshot",
+      "name": "19-docs-online-8s"
+    },
+    {
+      "op": "dump",
+      "name": "19-docs"
+    },
+    {
+      "op": "waitFor",
+      "testID": "docs-hold",
+      "timeoutMs": 240000,
+      "gone": true
+    },
+    {
+      "op": "sleep",
+      "ms": 5000
+    },
+    {
+      "op": "screenshot",
+      "name": "20-docs-sent"
+    }
+  ]
+}

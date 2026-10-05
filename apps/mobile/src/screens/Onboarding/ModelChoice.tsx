@@ -19,6 +19,8 @@ import { languagesLine, modelStep, sourceKey, type ModelOption } from "./modelSt
 import { WebModelStep, webStepActive } from "./webStep";
 import { catalogFailed } from "./catalogError";
 import { font, useType } from "../../services/type";
+import { offlineKey } from "../../lib/offlineWording";
+import { useOffline } from "../../lib/useOffline";
 
 const PLATFORM = Platform.OS === "android" ? "android" : Platform.OS === "ios" ? "ios" : "web";
 
@@ -78,6 +80,9 @@ function VaultModelChoice() {
     router.push("/onboarding/sealed");
   };
   const startNowWith = selected?.state.kind === "download" ? step.startNowWith : null;
+  const offline = useOffline();
+  /* Queued for a connection: the chat starts on what is here, and the download still takes over the moment it verifies. */
+  const waitingOn = selected?.state.kind === "arriving" && selected.state.waiting === "network" ? (step.options.find((o) => o.state.kind === "ready")?.id ?? null) : null;
 
   return (
     <Screen
@@ -96,7 +101,7 @@ function VaultModelChoice() {
           ) : (
             <Button
               testID="start-chatting"
-              title={selected?.state.kind === "arriving" ? t("onboarding.model.startWhileDownloading") : t("onboarding.model.start")}
+              title={waitingOn ? t("onboarding.model.startNowWith", { name: modelOf(waitingOn).name }) : selected?.state.kind === "arriving" ? t("onboarding.model.startWhileDownloading") : t("onboarding.model.start")}
               onPress={() => start()}
               disabled={!step.usableNow}
             />
@@ -138,6 +143,11 @@ function VaultModelChoice() {
       {step.showPlayNotice ? (
         <Text testID="play-notice" style={[type.bodySmall, { color: theme.text2 }]}>
           {t("onboarding.model.noInternet")}
+        </Text>
+      ) : null}
+      {offline && selected?.state.kind === "download" ? (
+        <Text testID="download-offline" style={[type.bodySmall, { color: theme.text2 }]}>
+          {t(offlineKey("vault.confirm.offline"))}
         </Text>
       ) : null}
       {failed ? (
@@ -199,7 +209,17 @@ function OptionCard({ option, model, selected, onSelect }: { option: ModelOption
       <MonoLabel testID={`model-source-${option.id}`}>{t(sourceKey(state), { size, host: "host" in state ? state.host : "" })}</MonoLabel>
       <Text style={[type.bodySmall, { color: theme.text2 }]}>{modelCopy(t, model, { photos: Platform.OS !== "web" }).goodFor}</Text>
       <Text style={[type.bodySmall, { color: theme.text3 }]}>{languages}</Text>
+      {state.kind === "arriving" && state.waiting === "network" ? (
+        <Text testID={`model-offline-${option.id}`} style={[type.bodySmall, { color: theme.text }]}>
+          {t(offlineKey("vault.state.noInternet"))}
+        </Text>
+      ) : null}
       {state.kind === "arriving" ? <Progress percent={state.percent} verifying={state.verifying} /> : null}
+      {state.kind === "arriving" && state.waiting ? (
+        <Text testID={`model-waiting-${option.id}`} style={[type.bodySmall, { color: theme.text2 }]}>
+          {t(state.waiting === "network" ? "vault.state.waitingNetwork" : "vault.state.waitingWifi")}
+        </Text>
+      ) : null}
       {state.kind === "no-space" ? (
         <Text testID={`model-nospace-${option.id}`} style={[type.bodySmall, { color: theme.danger }]}>
           {t("vault.state.needsSpace", { size: formatModelBytes(state.freeUpBytes) })}

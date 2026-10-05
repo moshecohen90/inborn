@@ -1,0 +1,39 @@
+{
+  "runId": "d5b-vault-online",
+  "_": "Doors 2 and 5. The connection comes back with the vault open: Fast starts by itself (or not) and completes.",
+  "steps": [
+    {
+      "op": "network",
+      "offline": false
+    },
+    {
+      "op": "sleep",
+      "ms": 8000
+    },
+    {
+      "op": "screenshot",
+      "name": "10-vault-fast-online-8s"
+    },
+    {
+      "op": "dump",
+      "name": "10-vault"
+    },
+    {
+      "op": "waitFor",
+      "testID": "use-fast",
+      "timeoutMs": 300000
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "screenshot",
+      "name": "11-vault-fast-ready"
+    },
+    {
+      "op": "dump",
+      "name": "11-vault"
+    }
+  ]
+}

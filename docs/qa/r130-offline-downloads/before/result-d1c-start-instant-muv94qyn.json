@@ -1,0 +1,88 @@
+{
+  "runId": "d1c-start-instant-muv94qyn",
+  "startedAt": "2026-10-05T12:54:30.840Z",
+  "finishedAt": "2026-10-05T12:54:57.626Z",
+  "ok": true,
+  "passed": 11,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "press",
+      "ok": true,
+      "ms": 174,
+      "detail": "cancel-download ← onPress"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1500,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-now-with ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "sealed-start appeared"
+    },
+    {
+      "i": 4,
+      "op": "sleep",
+      "ok": true,
+      "ms": 8000,
+      "detail": "8000 ms"
+    },
+    {
+      "i": 5,
+      "op": "press",
+      "ok": true,
+      "ms": 171,
+      "detail": "sealed-start ← onPress"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "lock-start appeared"
+    },
+    {
+      "i": 7,
+      "op": "press",
+      "ok": true,
+      "ms": 176,
+      "detail": "lock-start ← onPress"
+    },
+    {
+      "i": 8,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 9,
+      "op": "sleep",
+      "ok": true,
+      "ms": 15001,
+      "detail": "15000 ms"
+    },
+    {
+      "i": 10,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1595,
+      "detail": "05-chat-instant"
+    }
+  ],
+  "errors": []
+}

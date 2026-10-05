@@ -15,6 +15,8 @@ export interface PhotoHoldView {
   caption: Msg | null;
   keepOpen: boolean;
   cancel: Msg;
+  /** No connection: the card says so and that the download starts by itself. */
+  offline: boolean;
 }
 
 export const seerOf = (plan: PhotoPlan): string | null => (plan.kind === "switch" ? plan.alt.model : null);
@@ -45,7 +47,7 @@ function switchBody(path: PhotoPath, seer: string, count: number, size: (bytes: 
 
 export function photoHoldView(held: HeldPhoto, route: PhotoRoute, state: ExtensionState | null, { count, model, seer, size }: { count: number; model: string; seer: string; size: (bytes: number) => string }): PhotoHoldView {
   const cancel = { key: "extensions.vision.cancel", params: { count } };
-  const base = { progress: null, error: null, primary: null, secondary: null, caption: null, keepOpen: false, cancel };
+  const base = { progress: null, error: null, primary: null, secondary: null, caption: null, keepOpen: false, cancel, offline: false };
   if (held.kind === "none") return { ...base, title: { key: "chat.vision.holdTitleModel", params: { model } }, body: { key: "chat.attach.noVisionHere", params: { model } } };
   const path = activePath(held, route)!;
   const onAlt = held.kind === "switch" || route === "alt";
@@ -64,6 +66,8 @@ export function photoHoldView(held: HeldPhoto, route: PhotoRoute, state: Extensi
       return { ...base, title, body: running(path.bytes), progress: 1 };
     case "paused":
       return { ...base, title, body: running(s.bytes), progress: extensionPercent(s) / 100, primary: { action: "resume", label: { key: "chat.vision.download", params: { size: size(path.bytes - s.bytes) } } } };
+    case "offline":
+      return { ...base, ...wayOut, title, offline: true, body: { key: "vault.state.waitingNetwork" }, progress: extensionPercent(s) / 100 };
     case "stuck":
       return { ...base, title, body: { key: "extensions.stuck" }, primary: { action: "vault", label: { key: "voice.openVault" } } };
     case "unavailable":

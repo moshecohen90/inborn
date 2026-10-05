@@ -11,6 +11,8 @@ import {
   modelParts,
   pickDefault,
   roomNote,
+  backoffMs,
+  installErrorKind,
   isNoSpaceError,
   requiredFreeBytes,
   transition,
@@ -20,15 +22,16 @@ import {
   type GgufError,
   type InstallEvent,
   type InstallState,
+  type NetworkKind,
   type RoomNote,
   type StorageRoom,
 } from "@inborn/core";
 import type { DeliveryPlan, ModelDelivery } from "./delivery";
 import { DEV_MODELS_BASE_URL, devBuild } from "./devFlags";
 import { freeDiskBytes, readDevice, type DeviceInfo } from "./device";
-import { networkKind } from "./network";
+import { networkKind, onNetworkChange } from "./network";
 import { fileGgufHeader, fileSha256 } from "./hash";
-import { DEV_MODEL_HOSTS, HttpsDelivery, NoSpaceError, PausedError } from "./httpsDelivery";
+import { DEV_MODEL_HOSTS, HttpsDelivery, NoSpaceError, PausedError, WIFI_POLL_MS } from "./httpsDelivery";
 import { reportStorageFull } from "../services/storageFull";
 import { newestDelivery, type DeliveredInstall, type DeliveryCandidate } from "./lastDelivery";
 import { pickModelLocation, type ModelLocation } from "./locate";
@@ -84,6 +87,7 @@ export class VaultStore {
       manifest: this.manifest,
       wifiOnly: () => this.wifiOnlyPref,
       network: networkKind,
+      onNetworkChange: (listener: (kind: NetworkKind) => void) => onNetworkChange(listener),
       savedDownload: (id: string) => this.record.downloads[id],
       saveDownload: (id: string, state: unknown | null) => {
         if (state) this.record.downloads[id] = state as VaultRecord["downloads"][string];
@@ -491,7 +495,7 @@ export class VaultStore {
     if (this.state(id).kind !== "delivering") return this.state(id);
     try {
       let lastTick = 0;
-      const path = await this.delivery.deliver(model, (e) => {
+      const path = await this.deliverAcrossDrops(model, (e) => {
         downloadAwake.onEvent(id, e);
         /* Five parallel downloads tick every 100 ms each; one repaint per file per half second keeps the JS thread free for the small file's verify. */
         if (e.type === "progress" && e.bytes < e.total && Date.now() - lastTick < PROGRESS_TICK_MS) return;
@@ -519,6 +523,48 @@ export class VaultStore {
       if (msg === "play-unavailable") return this.dispatch(id, { type: "error", error: "no-delivery", retryable: false });
       return this.dispatch(id, { type: "error", error: msg, retryable: true });
     }
+  }
+
+  /**
+   * A transfer the connection dropped (Airplane Mode mid-download, a HEAD with no route) waits for a path and starts
+   * again by itself, from the saved resume data or the bytes on disk: no Try again. A path that claims to be up and
+   * still fails is retried a few times with backoff, then reported.
+   */
+  private async deliverAcrossDrops(model: CatalogModel, emit: (e: InstallEvent) => void): Promise<string> {
+    for (let attempt = 0; ; ) {
+      try {
+        return await this.delivery.deliver(model, emit);
+      } catch (e: unknown) {
+        if (installErrorKind(errorText(e)) !== "offline" || this.state(model.id).kind !== "delivering") throw e;
+        const online = (await networkKind()) !== "none";
+        if (online && attempt >= MAX_DROPS) throw e;
+        emit({ type: "waiting-for-network" });
+        if (online) await this.sleepUnlessCancelled(model.id, backoffMs(attempt++));
+        else await this.untilOnline(model.id);
+      }
+    }
+  }
+
+  /** Resolves once a path is back; throws "canceled" if the user cancelled the wait. */
+  private async untilOnline(id: string): Promise<void> {
+    while ((await networkKind()) === "none") await this.sleepUnlessCancelled(id, WIFI_POLL_MS);
+  }
+
+  private async sleepUnlessCancelled(id: string, ms: number): Promise<void> {
+    await new Promise<void>((resolve) => {
+      const timer = setTimeout(done, ms);
+      const unwatch = onNetworkChange(() => done());
+      const unsubscribe = this.subscribe(() => {
+        if (this.state(id).kind !== "delivering") done();
+      });
+      function done(): void {
+        clearTimeout(timer);
+        unwatch();
+        unsubscribe();
+        resolve();
+      }
+    });
+    if (this.state(id).kind !== "delivering") throw new Error("canceled");
   }
 
   private verify(model: CatalogModel, path: string, via: DeliverySource): Promise<InstallState> {
@@ -688,6 +734,8 @@ export function importedAsModel(imp: ImportedModel): CatalogModel {
 }
 
 const PROGRESS_TICK_MS = 500;
+/* A path that reports itself up yet drops every request (a Wi-Fi with no internet behind it) is reported after this many. */
+const MAX_DROPS = 3;
 const SPACE_POLL_MS = 5_000;
 
 const errorText = (e: unknown): string => (e instanceof Error ? e.message : String(e));

@@ -25,6 +25,8 @@ import { chooseFile } from "../../documents/chooseFile";
 import { font, useType } from "../../services/type";
 import { deviceNoun } from "../../lib/deviceNoun";
 import { roomNoteParams } from "../../lib/modelSheetLines";
+import { offlineKey } from "../../lib/offlineWording";
+import { useOffline } from "../../lib/useOffline";
 import { listClipping } from "../../lib/listClipping";
 import { useContentMaxWidth } from "../../lib/useLayout";
 import { Toggle } from "../../components/shell/primitives";
@@ -71,6 +73,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock, focus }: VaultS
   const { store, prefs, updatePrefs } = useAppServices();
   const { library } = store;
   const [confirm, setConfirm] = useState<Confirm | null>(null);
+  const offline = useOffline();
   const [hfOpen, setHfOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const device = vault.device;
@@ -366,6 +369,11 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock, focus }: VaultS
               ? t("vault.confirm.play", { size: formatModelBytes(confirm.entry.model.bytes) })
               : t("vault.confirm.https", { size: formatModelBytes(confirm?.entry.model.bytes ?? 0), host: confirm?.entry.plan?.host ?? "" })}
           </Text>
+          {offline ? (
+            <Text testID="confirm-offline" style={[type.body, { color: theme.text }]}>
+              {t(offlineKey("vault.confirm.offline"))}
+            </Text>
+          ) : null}
           {confirm?.entry.plan?.via === "https" ? (
             <View style={styles.switchRow}>
               <Text style={[type.body, { color: theme.text }]}>{t("vault.confirm.wifiOnly")}</Text>

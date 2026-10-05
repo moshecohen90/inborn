@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
+vi.mock("../licence/devFlags", () => ({ devBuild: () => false }));
 vi.mock("expo-network", () => ({ getNetworkStateAsync: async () => ({ type: "WIFI", isConnected: true }) }));
 
 const { kindOf } = await import("./network");

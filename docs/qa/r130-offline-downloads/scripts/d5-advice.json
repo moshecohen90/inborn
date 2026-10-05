@@ -1,0 +1,83 @@
+{
+  "runId": "d5-advice",
+  "_": "Door 5. A Japanese question on Instant: the model advice card offers Fast; Install tapped offline, then the vault card.",
+  "steps": [
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "日本語で、短い俳句を一つ書いてください。"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "waitFor",
+      "testID": "model-advice",
+      "timeoutMs": 240000
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "screenshot",
+      "name": "06-advice-card"
+    },
+    {
+      "op": "network",
+      "offline": true
+    },
+    {
+      "op": "press",
+      "testID": "model-advice-install"
+    },
+    {
+      "op": "sleep",
+      "ms": 2500
+    },
+    {
+      "op": "screenshot",
+      "name": "07-vault-from-advice-offline"
+    },
+    {
+      "op": "press",
+      "testID": "install-fast"
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "screenshot",
+      "name": "07b-confirm-sheet-offline"
+    },
+    {
+      "op": "press",
+      "testID": "confirm-download"
+    },
+    {
+      "op": "sleep",
+      "ms": 4000
+    },
+    {
+      "op": "screenshot",
+      "name": "08-vault-fast-tapped-offline"
+    },
+    {
+      "op": "dump",
+      "name": "08-vault"
+    },
+    {
+      "op": "sleep",
+      "ms": 12000
+    },
+    {
+      "op": "screenshot",
+      "name": "09-vault-fast-offline-16s"
+    },
+    {
+      "op": "dump",
+      "name": "09-vault"
+    }
+  ]
+}
