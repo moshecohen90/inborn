@@ -86,9 +86,19 @@ describe("model step offers", () => {
     expect(s.showWifiOnly).toBe(false);
   });
 
+  it("the source line keeps its host while the download waits for room, after it fails, and while it runs (round 131)", () => {
+    const host = (state: InstallState, freeBytes = 20e9) => {
+      const o = step({ entries: [entry(fast, state, httpsPlan(fast))], freeBytes }).options[0]!.state;
+      return "host" in o ? o.host : undefined;
+    };
+    expect(host(NOT_INSTALLED, 1e9)).toBe("models.inbornapp.com");
+    expect(host({ kind: "failed", error: "network", via: "https", retryable: true })).toBe("models.inbornapp.com");
+    expect(host({ kind: "delivering", via: "https", bytes: 0, total: 1.2e9, paused: false, waitingForWifi: true, needsConfirmation: false })).toBe("models.inbornapp.com");
+  });
+
   it("a download in flight reports its own progress and then the verify", () => {
     const delivering: InstallState = { kind: "delivering", via: "https", bytes: 600e6, total: 1.2e9, paused: false, waitingForWifi: false, needsConfirmation: false };
-    expect(step({ entries: [entry(fast, delivering, httpsPlan(fast))] }).options[0]!.state).toEqual({ kind: "arriving", via: "https", percent: 50, verifying: false });
+    expect(step({ entries: [entry(fast, delivering, httpsPlan(fast))] }).options[0]!.state).toEqual({ kind: "arriving", via: "https", host: "models.inbornapp.com", percent: 50, verifying: false });
     expect(step({ entries: [entry(fast, { kind: "verifying", via: "play", bytes: 1 }, playPlan(fast))] }).options[0]!.state).toEqual({ kind: "arriving", via: "play", percent: 100, verifying: true });
   });
 

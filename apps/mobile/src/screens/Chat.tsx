@@ -33,7 +33,13 @@ import {
   languageCodeOf,
   LANGUAGE_NAME_BY_CODE,
   adviseModel,
+  advisePhotoModel,
   betterForLanguage,
+  checkedAnswer,
+  citationLabel,
+  PICTURE_LINES,
+  PICTURE_RETRY,
+  PICTURE_SAMPLING,
   detectLanguage,
   detectUse,
   fileIntake,
@@ -72,6 +78,8 @@ import {
   reportText,
   type ContinueFrom,
   type Delta,
+  type ModelAdvice,
+  type TurnFacts,
   type GenOpts,
   type LoopHit,
   isNoSpaceError,
@@ -121,7 +129,7 @@ import { reindexNotice, type AnsweredMidReindex } from "../lib/reindexNotice";
 import { withPhotos } from "../lib/photoPrompt";
 import { dismissAfterSend } from "../lib/keyboardDismiss";
 import { imageDocuments, photoTextDocs, withPhotoText } from "../documents/photoDocs";
-import { carriesPage, isThinTurn, pageImagePrefix, planPage, type PagePlan } from "../documents/pagePhoto";
+import { carriesPage, coversAttachments, isThinTurn, pageImagePrefix, planPage, type PagePlan } from "../documents/pagePhoto";
 import { hasPageRenderer, pageInkAt, renderPageAt } from "../documents/extract";
 import { resolveDocUri } from "../documents/files";
 import { canCiteMarkers } from "../documents/library";
@@ -160,6 +168,8 @@ const AUTOPROMPT = AUTOPROMPT_ENV === "1" ? "Explain in about 150 words why the 
 /* EXPO_PUBLIC_AUTOPROMPT=file: a phone whose touch input adb cannot reach (OnePlus 6T) takes each prompt from Documents/dev-prompt.txt instead; the file is consumed once submitted. */
 const AUTOPROMPT_FILE = AUTOPROMPT_ENV === "file" ? "dev-prompt.txt" : null;
 const DEV_RESULTS = AUTOPROMPT !== null || AUTOPROMPT_FILE !== null || DEV_AUTOVOICE_DICTATE;
+/* QA builds only: every picture answer fails the check, so the honest line and its advice can be walked on a simulator. Store builds never set it. */
+const DEV_PICTURE_FAULT = process.env.EXPO_PUBLIC_DEV_PICTURE_FAULT === "1";
 /** Product ceiling for finishing a reply after the app goes to the background (§10.3 #21). */
 const BACKGROUND_GRACE_MS = 15_000;
 const NOTICE_KEY = "notice.canBeWrong";
@@ -276,6 +286,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const [attachOpen, setAttachOpen] = useState(false);
   /** A picture reached a model that cannot look at it (QA F36): the inline offer that switches to the one that can. */
   const [visionOffer, setVisionOffer] = useState<"switch" | "companion" | null>(null);
+  /* A picture answer the check replaced with the honest line, and a model on this device that sees better. */
+  const [photoAdvice, setPhotoAdvice] = useState<ModelAdvice | null>(null);
   /* Round 93: Send with files attached and no index model is held behind a card, the message kept in the composer. */
   const [docsHold, setDocsHold] = useState(false);
   /** The user chose, on that card, to go on with the word search in this chat. */
@@ -551,6 +563,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       if (!existingMessageId) setNoneMatched(false);
       if (!existingMessageId) setReindexing(null);
       if (!existingMessageId) setWordsOnly(false);
+      if (!existingMessageId) setPhotoAdvice(null);
       /* The first message moves the attachments off the draft key, so the gate reads the key this chat has now, not the one this render captured. */
       const attachKey = incognito ? `${RAM_ATTACH_PREFIX}${chatIdNow}` : chatIdNow;
       /* "Continue" resumes a partial answer with the passages it already saw, so the gate only decides fresh turns. */
@@ -591,7 +604,9 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       });
       /* F443: a resumed turn keeps the stopped turn's system prompt, so the model goes on under the same instructions and the engine's cache still matches. */
       const lengthLine = continueFrom ? planAnswerLength({ text: lastUser, use: detectUse({ text: lastUser, personaId: persona.id, personaIcon: persona.icon, hasDocuments: docs.documents.length > 0, dictated: lastDictated }), continuing: false }).instruction : length.instruction;
-      const system = turnSystemPrompt({ familySafe, tier: modelTier, photos: history.some((m) => m.images?.length), persona, chatPrompt: settings.systemPrompt, memory: facts, languageHint: languageHint(lastUser), length: lengthLine });
+      const sees = modelHasVision(model.id) && resolveVision(model.id) !== null;
+      const picture = sees && history.some((m) => m.images?.length) ? (carriesPage(history, docs.context.docIds) ? "page" : "photo") : undefined;
+      const system = turnSystemPrompt({ familySafe, tier: modelTier, photos: history.some((m) => m.images?.length), picture, persona, chatPrompt: settings.systemPrompt, memory: facts, languageHint: languageHint(lastUser), length: lengthLine });
       const prompt = buildPrompt({ system, summary: chat?.summary, summaryUpTo: chat?.summaryUpTo, messages: history.map((m, i) => ({ id: String(i), ...m })), nCtx, scale: tokenScale, reserve: replyReserve(length.maxTokens), imageTokens: imageMaxTokens(engine.id, model.id) });
       let messages = prompt.messages;
       /* Attached documents (§7.3, §8.5): retrieve, fence, cite. */
@@ -599,7 +614,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         try {
           const rag = await docs.buildPrompt(lastUser, history.slice(0, lastUserAt), nCtx, system, photoDocIds, thinPage);
           if (rag.reindexing) setReindexing(rag.reindexing);
-          if (rag.lexical) setWordsOnly(true);
+          /* A thin page went in whole, so a word search lost nothing there. */
+          if (rag.lexical && !thinPage) setWordsOnly(true);
           if (rag.prompt.noAnswer) {
             await answerWithoutModel("documents.notFound");
             return;
@@ -623,7 +639,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         const pictures = messages.reduce((n, m) => n + (m.images?.length ?? 0), 0) * (imageMaxTokens(engine.id, model.id) + IMAGE_WRAPPER_TOKENS);
         try {
           const photoText = await withPhotoText(messages, history[lastUserAt]?.images, seesPage ? [...docs.context.docIds, ...photoDocIds] : photoDocIds, (docIds) =>
-            library.ask(lastUser, { docIds, history: history.slice(0, lastUserAt), nCtx: nCtx - pictures, systemPrompt: system, strict: false, citeMarkers: canCiteMarkers(model.id), openers: noPassageOpeners(t) }),
+            library.ask(lastUser, { docIds, history: history.slice(0, lastUserAt), nCtx: nCtx - pictures, systemPrompt: system, strict: false, citeMarkers: canCiteMarkers(model.id), openers: noPassageOpeners(t), pagePicture: seesPage }),
           );
           messages = photoText.messages;
           if (photoText.rag) {
@@ -635,7 +651,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           console.warn("[documents] photo text", errorText(e));
         }
       }
-      const opts: GenOpts = { reasoning: thinkingAvailable && settings.thinking, maxTokens: length.maxTokens, ...(persona.temperature !== undefined ? { temperature: persona.temperature } : {}) };
+      let opts: GenOpts = { reasoning: thinkingAvailable && settings.thinking, maxTokens: length.maxTokens, ...(persona.temperature !== undefined ? { temperature: persona.temperature } : {}) };
       /* Photos in the prompt (§7.1): a projector fits one model's embedding width (QA F36), so a model without its own
          pack would answer as if the picture were not there. Never drop a picture without saying so. */
       if (messages.some((m) => m.images?.length)) {
@@ -677,8 +693,12 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           setVisionOffer(turnVision.offer);
           return;
         }
-        if (turnVision.kind === "drop") messages = messages.map(({ images: _drop, ...rest }) => rest);
+        if (turnVision.kind === "drop") messages = messages.map(({ images: _drop, ...rest }) => (picture && rest.role === "system" ? { ...rest, content: rest.content.replace(`\n\n${PICTURE_LINES[picture]}`, "") } : rest));
       }
+      /* Round 131: a fresh answer about a picture is checked against what the app knows about its turn before it is shown. */
+      const checksPicture = !existingMessageId && messages.some((m) => m.images?.length);
+      if (checksPicture && persona.temperature === undefined) opts = { ...opts, ...PICTURE_SAMPLING };
+      const turnFacts: TurnFacts = { pictureSent: true, sources: (citations ?? []).map((c) => citationLabel(c)), instructions: messages[0]?.role === "system" ? messages[0].content : "", question: lastUser };
       /* F369/F415: one guard for every engine. A second copy never reaches the screen: the guard stops that generation
          (only it, so the user's Stop still means the turn), keeps one copy, and continues once, silently, with harder sampling. */
       let looped = false;
@@ -696,7 +716,20 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const retry = () => run([...base, { role: "assistant", content: shown() }, { role: "user", content: CONTINUE_PROMPT }], { ...opts, ...LOOP_RETRY });
       const onRetry = (kept: string, hit: LoopHit) => console.log(describeLoopRetry(kept, hit));
       /* F443: the resumed turn opens with the text on screen; the retry above stays the round-111 user turn. */
-      for await (const d of guardLoops(run(messages, continueFrom ? { ...opts, continueFrom } : opts), stopLoop, { request: asked, retry, onRetry, prefix, instruction: CONTINUE_PROMPT })) {
+      const firstOpts = continueFrom ? { ...opts, continueFrom } : opts;
+      const source = checksPicture
+        ? checkedAnswer({
+            start: (again) => run(messages, again ? { ...opts, ...PICTURE_RETRY } : firstOpts),
+            stop: stopLoop,
+            cancelled: () => ac.signal.aborted,
+            facts: turnFacts,
+            honest: t("chat.vision.unsure"),
+            /* Not behind __DEV__: QA reads which sentences the user never saw. */
+            onFault: (fault, attempt) => console.log(`[picture-check] ${fault} on attempt ${attempt + 1}`),
+            forceFault: DEV_PICTURE_FAULT,
+          })
+        : run(messages, firstOpts);
+      for await (const d of guardLoops(source, stopLoop, { request: asked, retry, onRetry, prefix, instruction: CONTINUE_PROMPT })) {
         /* F431: the guard dropped a comma the seam left dangling ("capitals," + ". These"). */
         if (d.prefix !== undefined) prefix = d.prefix;
         if (d.trim !== undefined) {
@@ -758,6 +791,20 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const safety: SafetyMark | undefined = familySafeReplaced ? "family-safe" : undefined;
       /* A resumed turn's prompt tokens include the prefill, which the estimate does not count. */
       if (usage && !citations && !continueFrom) setTokenScale((prev) => calibrate(prompt.used, usage!.promptTokens, prev));
+      /* Neither attempt gave a sound answer about the picture: no sources under the honest line, and a model that sees better when there is one. */
+      if (checksPicture && !familySafeReplaced && reply === t("chat.vision.unsure")) {
+        citations = undefined;
+        sources = null;
+        if (Platform.OS !== "web") {
+          const vault = getVault();
+          const installed = vault
+            .entries()
+            .filter((e) => e.model.role === "chat" && !e.stray && e.state.kind === "ready")
+            .map((e) => e.model.id);
+          const turnUse = detectUse({ text: lastUser, personaId: persona.id, personaIcon: persona.icon, hasDocuments: docs.documents.length > 0 });
+          setPhotoAdvice(advisePhotoModel({ current: vault.model(model.id), use: turnUse, languageCode: detectLanguage(lastUser), device: { ...vault.device, pro: tier !== "free" }, installed, catalog: vault.manifest.models }));
+        }
+      }
       if (citations && isNotFoundReply(reply)) {
         reply = t("documents.notFound");
         citations = undefined;
@@ -840,11 +887,6 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     const text = input.trim() || (pendingImages.length ? t("chat.attach.photo") : "");
     if (!text || !session.current || busy || preparingPhotos > 0 || photoGating.current) return;
     if (!chatRef.current && chatBlockedByStorage()) return;
-    /* A file with no index model behind it is never sent as if it were read in full (round 93). */
-    if (planIndexHold({ attached: docs.documents.length, embedder: library.state().embedder.kind, wordsAccepted: wordsAccepted.current }) === "hold") {
-      setDocsHold(true);
-      return;
-    }
     photoGating.current = true;
     try {
       const page = await planPage({
@@ -862,6 +904,11 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         console.warn("[documents] page picture", errorText(e));
         return null;
       });
+      /* A file with no index model behind it is never sent as if it were read in full (round 93); a turn that carries every attached file whole needs no index. */
+      if (planIndexHold({ attached: docs.documents.length, embedder: library.state().embedder.kind, wordsAccepted: wordsAccepted.current, coveredWhole: coversAttachments(page, docs.documents) }) === "hold") {
+        setDocsHold(true);
+        return;
+      }
       await gatePhotoSend({
         hasImages: pendingImages.length > 0 || !!page?.picture,
         scanned: async () => {
@@ -1206,6 +1253,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const adviceSnoozed = chat?.adviceSnoozed ?? NO_SNOOZE;
   shownAdvice.current = adviceToShow(adviceChat, advice?.key ?? null, shownAdvice.current, adviceSnoozed);
   const adviceShown = advice && shownAdvice.current === advice.key && lastAssistant && status.kind === "ready" ? advice : null;
+  /* The honest line about a picture comes with its own offer, ahead of the use and language one. */
+  const cardAdvice = (photoAdvice && !adviceSnoozed.includes(photoAdvice.key) && status.kind === "ready" ? photoAdvice : null) ?? adviceShown;
   /* "Not now", Switch and Install all snooze the reason on the chat row, so it survives relaunch (§7.8). */
   const snoozeAdvice = (key: string) => {
     const id = chatRef.current;
@@ -1610,21 +1659,21 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           {persona.disclaimer ? ` · ${persona.disclaimer}` : ""}
         </Text>
       ) : null}
-      {adviceShown ? (
+      {cardAdvice ? (
         <ModelAdviceCard
-          advice={adviceShown}
+          advice={cardAdvice}
           theme={theme}
-          locked={!!paywallFor(tier, { kind: "model", proOnly: !!adviceShown.better.model.proOnly })}
-          bestLocked={!!adviceShown.best && !!paywallFor(tier, { kind: "model", proOnly: !!adviceShown.best.model.proOnly })}
+          locked={!!paywallFor(tier, { kind: "model", proOnly: !!cardAdvice.better.model.proOnly })}
+          bestLocked={!!cardAdvice.best && !!paywallFor(tier, { kind: "model", proOnly: !!cardAdvice.best.model.proOnly })}
           onSwitch={(id) => {
-            snoozeAdvice(adviceShown.key);
+            snoozeAdvice(cardAdvice.key);
             onSwitchModel?.(id);
           }}
           onInstall={(id) => {
-            snoozeAdvice(adviceShown.key);
+            snoozeAdvice(cardAdvice.key);
             onOpenVault?.(id);
           }}
-          onNotNow={() => snoozeAdvice(adviceShown.key)}
+          onNotNow={() => snoozeAdvice(cardAdvice.key)}
         />
       ) : null}
       {preparingVision ? (

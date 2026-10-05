@@ -95,6 +95,8 @@ export interface ModelAdvice {
   best?: ModelRecommendation;
   language?: { code: string; from: LanguageTier; to: LanguageTier };
   use?: { use: UseCase; from: UseTier; to: UseTier };
+  /** The loaded model could not give a sound answer about a picture, and `better` sees with a bigger model (round 131). */
+  photos?: true;
   /** One string per (offer, reason); the chat snoozes by it so the same reason never nags twice. */
   key: string;
 }
@@ -141,6 +143,19 @@ export function adviseModel(input: AdviceInput): ModelAdvice | null {
     ...(useGain ? { use: useGain } : {}),
     key: `${current.id}>${better.model.id}|${language ? `lang:${language.code}` : ""}|${useGain ? `use:${useGain.use}` : ""}`,
   };
+}
+
+/** After a picture answer the app could not show: a higher-tier model on this device that also sees, or null. */
+export function advisePhotoModel(input: AdviceInput): ModelAdvice | null {
+  const { current } = input;
+  if (!current?.tier) return null;
+  const offer = offerOf(
+    rankModels(input).filter((r) => r.model.vision && tierIndex(r.model) > tierIndex(current)),
+    input.device.pro,
+  );
+  if (!offer) return null;
+  /* The card's "best" line names a use or a language; a picture is neither, so only the offer itself is shown. */
+  return { current, better: offer.better, photos: true, key: `${current.id}>${offer.better.model.id}|photos` };
 }
 
 /**

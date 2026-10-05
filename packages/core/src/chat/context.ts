@@ -68,13 +68,22 @@ export interface TurnPromptParts extends SystemPromptParts {
   tier: Tier | undefined;
   /** Any photo in the turns the model will see. */
   photos: boolean;
+  /** What the pictures the model will see are: a photo, or the picture of an attached file's page. */
+  picture?: "photo" | "page" | undefined;
 }
+
+/* Round 131: told nothing, Instant and Fast answered a picture they had been sent with "I cannot see images". */
+export const PICTURE_LINES: Readonly<Record<"photo" | "page", string>> = {
+  photo: "This conversation comes with a picture, and you can see it. Answer from what the picture shows.",
+  page: "This conversation comes with a picture of a page of an attached file, and you can see it. Answer from what the picture shows.",
+};
 
 /** Every chat turn's system prompt; the family-safe line, when there is one, is its last sentence. */
 export function turnSystemPrompt(p: TurnPromptParts): string {
   const body = composeSystemPrompt({ ...p, baseline: p.baseline ?? (p.tier === "instant" || p.photos ? PLAIN_SAFETY_BASELINE : SAFETY_BASELINE) });
+  const seen = p.photos && p.picture ? `${body}\n\n${PICTURE_LINES[p.picture]}` : body;
   const line = familySafeLine(p);
-  return line ? `${body}\n\n${line}` : body;
+  return line ? `${seen}\n\n${line}` : seen;
 }
 
 export interface BudgetInput {

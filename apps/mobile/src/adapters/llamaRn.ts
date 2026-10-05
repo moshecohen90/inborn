@@ -104,7 +104,8 @@ export class LlamaRnLM implements LocalLM {
     const onAbort = () => void ctx.stopCompletion();
     signal.addEventListener("abort", onAbort, { once: true });
     const sampler = sampling(opts);
-    const wire = messages.map((m) => (m.images?.length && this.vision ? { role: m.role, content: [{ type: "text", text: m.content }, ...m.images.map((url) => ({ type: "image_url", image_url: { url } }))] } : { role: m.role, content: m.content }));
+    /* The picture before the words, as Qwen-VL was trained and as wllama sends it: after a long passage block the small models answered as if blind (round 131). */
+    const wire = messages.map((m) => (m.images?.length && this.vision ? { role: m.role, content: [...m.images.map((url) => ({ type: "image_url", image_url: { url } })), { type: "text", text: m.content }] } : { role: m.role, content: m.content }));
     const enableThinking = opts.reasoning ?? true;
     /* F443: this JSI has no continue_final_message, so the rendered history plus the prefill goes as a raw prompt; prefill_text lets the parser read the whole turn. */
     let input: Record<string, unknown> = { messages: wire };

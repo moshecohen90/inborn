@@ -1,0 +1,77 @@
+{
+  "runId": "s4-honest-forced",
+  "_": "Build with EXPO_PUBLIC_DEV_PICTURE_FAULT=1 (forced): a new chat, visual-page.pdf, 'What do you see?'. Both attempts fail the check, so the honest line shows once, with the photos advice card.",
+  "steps": [
+    {
+      "op": "deeplink",
+      "url": "/chats"
+    },
+    {
+      "op": "waitFor",
+      "testID": "new-chat",
+      "timeoutMs": 20000
+    },
+    {
+      "op": "press",
+      "testID": "new-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "start-chat",
+      "timeoutMs": 10000
+    },
+    {
+      "op": "press",
+      "testID": "start-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 5000
+    },
+    {
+      "op": "devPrompt",
+      "lines": [
+        "attach: visual-page.pdf"
+      ]
+    },
+    {
+      "op": "sleep",
+      "ms": 20000
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "What do you see?"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "sleep",
+      "ms": 2500
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 300000
+    },
+    {
+      "op": "sleep",
+      "ms": 2500
+    },
+    {
+      "op": "screenshot",
+      "name": "06-honest-line"
+    },
+    {
+      "op": "dump",
+      "name": "06-honest-line"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "runId": "s1c-start-instant",
+  "_": "The rest of s1b after a first pass stopped at the button's testID: Start now with Instant, through the seal and lock steps.",
+  "steps": [
+    {
+      "op": "press",
+      "testID": "start-chatting"
+    },
+    {
+      "op": "waitFor",
+      "testID": "sealed-start",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "sleep",
+      "ms": 8000
+    },
+    {
+      "op": "press",
+      "testID": "sealed-start"
+    },
+    {
+      "op": "waitFor",
+      "testID": "lock-start",
+      "timeoutMs": 20000
+    },
+    {
+      "op": "press",
+      "testID": "lock-start"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 20000
+    },
+    {
+      "op": "screenshot",
+      "name": "01d-chat"
+    },
+    {
+      "op": "dump",
+      "name": "01d-chat"
+    }
+  ]
+}

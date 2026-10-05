@@ -1,0 +1,159 @@
+{
+  "runId": "s1-onboard-muvgdrih",
+  "startedAt": "2026-10-05T16:17:44.325Z",
+  "finishedAt": "2026-10-05T16:17:50.991Z",
+  "ok": true,
+  "passed": 8,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "onboarding-continue appeared"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1201,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 2,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2214,
+      "detail": "01-welcome"
+    },
+    {
+      "i": 3,
+      "op": "press",
+      "ok": true,
+      "ms": 163,
+      "detail": "onboarding-continue ← onPress"
+    },
+    {
+      "i": 4,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-model appeared"
+    },
+    {
+      "i": 5,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 6,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1585,
+      "detail": "01-model-step"
+    },
+    {
+      "i": 7,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "onboarding-welcome",
+          "text": "Nothing leaves this phone. AI that runs on your device. No account, no cloud, and nothing you type ever leaves it. RUNS ON: Simulator iOS · 64 GB Continue This is AI. It can be wrong. Check important facts."
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "Open seal"
+        },
+        {
+          "testID": "runs-on",
+          "text": "RUNS ON: Simulator iOS · 64 GB"
+        },
+        {
+          "testID": "onboarding-continue",
+          "text": "Continue",
+          "pressable": true
+        },
+        {
+          "testID": "onboarding-model",
+          "text": "Choose your model Your model runs entirely on this phone. You can change it later. Instant READY NOW 533 MB · inside the app · nothing to download Quick answers and voice notes. Lightest on battery. Best in English, Chinese. Fast RECOMMENDED FOR THIS phone 1.28 GB · one download from localhost Everyday assistant: writing, questions, translation. Best balance on this device. Best in English, Chinese, Spanish, French and 4 more languages. Download only on Wi-Fi The download pauses on mobile data and resumes on Wi-Fi. You can add or remove models any time in the vault. Download Fast · 1.28 GB Start now with Instant"
+        },
+        {
+          "testID": "model-options",
+          "text": "Instant READY NOW 533 MB · inside the app · nothing to download Quick answers and voice notes. Lightest on battery. Best in English, Chinese. Fast RECOMMENDED FOR THIS phone 1.28 GB · one download from localhost Everyday assistant: writing, questions, translation. Best balance on this device. Best in English, Chinese, Spanish, French and 4 more languages."
+        },
+        {
+          "testID": "model-option-instant",
+          "text": "Instant READY NOW 533 MB · inside the app · nothing to download Quick answers and voice notes. Lightest on battery. Best in English, Chinese.",
+          "role": "radio",
+          "state": {
+            "selected": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "model-source-instant",
+          "text": "533 MB · inside the app · nothing to download"
+        },
+        {
+          "testID": "model-option-fast",
+          "text": "Fast RECOMMENDED FOR THIS phone 1.28 GB · one download from localhost Everyday assistant: writing, questions, translation. Best balance on this device. Best in English, Chinese, Spanish, French and 4 more languages.",
+          "role": "radio",
+          "state": {
+            "selected": true,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "model-source-fast",
+          "text": "1.28 GB · one download from localhost"
+        },
+        {
+          "testID": "wifi-only-block",
+          "text": "Download only on Wi-Fi The download pauses on mobile data and resumes on Wi-Fi."
+        },
+        {
+          "testID": "wifi-only",
+          "text": "",
+          "value": "true",
+          "pressable": true
+        },
+        {
+          "testID": "back",
+          "text": "",
+          "role": "button",
+          "label": "Back",
+          "pressable": true
+        },
+        {
+          "testID": "download-model",
+          "text": "Download Fast · 1.28 GB",
+          "pressable": true
+        },
+        {
+          "testID": "start-now-with",
+          "text": "Start now with Instant",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "01-model-step"
+    }
+  ],
+  "errors": []
+}
