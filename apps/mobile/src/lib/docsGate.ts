@@ -1,4 +1,4 @@
-import type { FileSection, NoPassageOpeners, WholeFilePlan } from "@inborn/core";
+import { plainChatKind, type FileSection, type NoPassageOpeners, type WholeFilePlan } from "@inborn/core";
 
 /**
  * What a chat turn does about attached documents, decided before anything reaches the model (§7.3 "answer only from my documents").
@@ -63,6 +63,12 @@ const refusalFor = (blocked: AttachmentBlock): RefusalKey =>
 export function askSheetRoute({ noAnswer }: { noAnswer: boolean }): "not-found" | "answer" {
   return noAnswer ? "not-found" : "answer";
 }
+
+/** Round 134D: the sheet keeps no history, so a thanks or a follow-up ("And now") gets one plain line instead of a search. */
+export const sheetPlainLine = (t: (key: string) => string, text: string): string | null => {
+  const kind = plainChatKind(text);
+  return kind === "acknowledgement" ? t("documents.ask.thanks") : kind === "follow-up" ? t("documents.ask.oneQuestion") : null;
+};
 
 export function saysNoneMatched({ continuing, attachedCount, usedPassages, smallTalk = false }: { continuing: boolean; attachedCount: number; usedPassages: number; smallTalk?: boolean }): boolean {
   return !continuing && !smallTalk && attachedCount > 0 && usedPassages === 0;

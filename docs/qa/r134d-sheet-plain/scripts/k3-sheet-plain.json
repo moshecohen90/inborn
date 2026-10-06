@@ -1,0 +1,185 @@
+{
+  "runId": "k3-sheet-plain",
+  "_": "Documents \u2192 select the 9-page fixture \u2192 Ask: 'thank you' and 'And now' get the sheet's plain lines with no search, no notice and no stats; 'Who can veto a bill?' still searches ('\u2026 passages'). DOCID is replaced by the shell with the id from k2's dump.",
+  "steps": [
+    {
+      "op": "waitFor",
+      "testID": "doc-select-DOCID",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "sleep",
+      "ms": 60000
+    },
+    {
+      "op": "press",
+      "testID": "doc-select-DOCID"
+    },
+    {
+      "op": "press",
+      "testID": "documents-ask-selected"
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-sheet",
+      "timeoutMs": 20000
+    },
+    {
+      "op": "screenshot",
+      "name": "03a-sheet"
+    },
+    {
+      "op": "type",
+      "testID": "ask-input",
+      "text": "thank you"
+    },
+    {
+      "op": "press",
+      "testID": "ask-send"
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-plain",
+      "timeoutMs": 10000
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "assertText",
+      "testID": "ask-plain",
+      "text": "You're welcome. Ask another question about these documents."
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-not-found",
+      "gone": true,
+      "timeoutMs": 1000
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-none-matched",
+      "gone": true,
+      "timeoutMs": 1000
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-answer",
+      "gone": true,
+      "timeoutMs": 1000
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-stats",
+      "gone": true,
+      "timeoutMs": 1000
+    },
+    {
+      "op": "screenshot",
+      "name": "03b-thanks"
+    },
+    {
+      "op": "dump",
+      "name": "03b-thanks"
+    },
+    {
+      "op": "type",
+      "testID": "ask-input",
+      "text": "And now"
+    },
+    {
+      "op": "press",
+      "testID": "ask-send"
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-plain",
+      "timeoutMs": 10000
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "assertText",
+      "testID": "ask-plain",
+      "text": "This sheet answers one question at a time"
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-not-found",
+      "gone": true,
+      "timeoutMs": 1000
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-none-matched",
+      "gone": true,
+      "timeoutMs": 1000
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-answer",
+      "gone": true,
+      "timeoutMs": 1000
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-stats",
+      "gone": true,
+      "timeoutMs": 1000
+    },
+    {
+      "op": "screenshot",
+      "name": "03c-and-now"
+    },
+    {
+      "op": "dump",
+      "name": "03c-and-now"
+    },
+    {
+      "op": "type",
+      "testID": "ask-input",
+      "text": "Who can veto a bill?"
+    },
+    {
+      "op": "press",
+      "testID": "ask-send"
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-stop",
+      "timeoutMs": 20000
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-stop",
+      "gone": true,
+      "timeoutMs": 600000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-plain",
+      "gone": true,
+      "timeoutMs": 1000
+    },
+    {
+      "op": "assertText",
+      "testID": "ask-stats",
+      "text": "passages"
+    },
+    {
+      "op": "screenshot",
+      "name": "04-question"
+    },
+    {
+      "op": "dump",
+      "name": "04-question"
+    }
+  ]
+}

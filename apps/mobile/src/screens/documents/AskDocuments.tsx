@@ -15,7 +15,7 @@ import { Toggle } from "../../components/shell/primitives";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useKeyboardLift } from "../../lib/keyboard";
 import { useOpenSheet } from "../../lib/openSheets";
-import { askSheetRoute, askStatsLine, noPassageOpeners, readingPagesLine, saysNoneMatched, summaryScope } from "../../lib/docsGate";
+import { askSheetRoute, askStatsLine, noPassageOpeners, readingPagesLine, saysNoneMatched, sheetPlainLine, summaryScope } from "../../lib/docsGate";
 import { useEntitlement } from "../../licence";
 import { ProTag } from "../../components/chat/Sheet";
 import { reindexNotice, type AnsweredMidReindex } from "../../lib/reindexNotice";
@@ -74,6 +74,7 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult, str
   const reindexLine = reindexNotice(reindexing, libraryState.documents);
   const [stats, setStats] = useState<string | null>(null);
   const [readingPages, setReadingPages] = useState<string | null>(null);
+  const [plainLine, setPlainLine] = useState<string | null>(null);
   const { can } = useEntitlement();
   const detailed = can("detailedStats");
   const statsLine = askStatsLine(stats, detailed);
@@ -112,6 +113,14 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult, str
     setReindexing(null);
     setStats(null);
     setReadingPages(null);
+    setPlainLine(null);
+    const plain = sheetPlainLine(t, text);
+    if (plain) {
+      setPlainLine(plain);
+      setPhase({ kind: "done" });
+      onResult?.({ question: text, answer: plain, citations: [], cited: false, notFound: false, retrieveMs: 0, promptTokens: 0, generateMs: 0, tokPerSec: 0, used: [] });
+      return;
+    }
     const ac = new AbortController();
     abort.current = ac;
     /* Round 132: "summarize this file" reads the files whole, as the chat does; it needs no search, so strict mode has nothing to refuse. */
@@ -231,6 +240,11 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult, str
           {notFound ? (
             <Text testID="ask-not-found" style={[styles.body, { color: theme.text }]}>
               {t("documents.notFound")}
+            </Text>
+          ) : null}
+          {plainLine ? (
+            <Text testID="ask-plain" style={[styles.body, { color: theme.text }]}>
+              {plainLine}
             </Text>
           ) : null}
           {answer ? (
