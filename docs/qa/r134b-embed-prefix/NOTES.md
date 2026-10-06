@@ -78,6 +78,52 @@ Simulator setup:
   are identical: cos 0.823 / 0.805 / 0.788 / 0.787, with 4 kept. The sheet answers about the veto
   (`sim/e4-sheet.png`). The search takes 231–344 ms, against 33–46 ms before, because the buggy path decoded one token.
 
+## Follow-up measurements: slot path vs the dummy-call fallback (`sim/6-modes.txt`)
+
+The same simulator setup was used, with a fresh simulator. One bundle carried the probe in four modes
+(`embed-probe.patch`, `scripts/embed-modes.json`):
+- `plain`: `ctx.embedding`, as on main.
+- `slot`: `ctx.parallel.embedding` on a raw context.
+- `dummy`: `ctx.embedding` followed by `ctx.embedding("~")`. `"~"` tokenizes to `<s> ' ~' </s>`, so the next real text
+  shares only BOS.
+- `adapter`: `LlamaRnEmbedder` as shipped.
+
+Each mode embedded the same 52 texts.
+
+| | plain (main) | dummy call (fallback i) | slot (shipped) |
+|---|---|---|---|
+| same passage twice | 0.7497 | 0.9814 | **1.0000** |
+| same question twice | 0.7395 | 1.0000 | **1.0000** |
+| vector vs Mac, 48 texts: min / mean | 0.884 / 0.958 | 0.977 / 0.992 | **0.9989 / 0.9999** |
+| 38 one-term pair cosines vs Mac: max / mean shift | 0.0796 / 0.0203 | 0.0173 / 0.0047 | **0.0055 / 0.0008** |
+| pairs moved > 0.001 | 35 / 38 | 33 / 38 | 10 / 38 |
+
+- **The dummy call fails the bar.** Losing BOS alone moves pair cosines by up to 0.017. That is 7× the 0.0023 margin
+  of the alone door.
+- **The slot path is exact up to backend numerics.**
+  - The same text gives 1.0000 every time.
+  - Vectors match the Mac's at 0.9999 on average. The minimum is 0.9989, on a Portuguese passage; everything else
+    is at or above 0.9990.
+  - The remaining gap is the llama.cpp backend floor. On the same Mac, the same file and the same texts, CPU vs Metal
+    gives vectors at min 0.9985 / mean 0.9992 and pair shifts up to 0.0053, with 28/38 pairs over 0.001.
+  - A 0.001 bar on pair cosines is therefore tighter than the difference between two llama.cpp backends on one
+    machine.
+  - The alone door's 0.0023 margin is within that noise on every engine, phone, Mac CPU or Mac Metal. This is a
+    separate item for whoever owns the doors.
+- **Cost.**
+  - A full text costs the same on both paths. Medians in the calmer runs: slot 330–346 ms per text, adapter
+    330–339 ms. The dummy mode is a near-full decode plus a 3-token call: 363 ms. `plain`'s first text, which is
+    decoded in full, took 325–366 ms.
+  - `plain` looks cheaper overall (median 94–183 ms) only because the bug decodes the suffix alone.
+  - Several runs read 2–3× slower, in every mode alike: slot up to 764 ms, adapter up to 1134 ms. These ran while the
+    Mac's load average was 25–124 with other rounds building, so they are contention, not the path.
+  - No mode comes near the 2× limit once contention is excluded. A clean timing needs a quiet machine (night) or a
+    real phone.
+- **Memory.** The context adds 620 MB of peak RSS with the slot path against 645 MB with `plain` (1 Hz `ps -o rss`
+  samples, context held 12 s). Slot mode adds no measurable memory.
+- **Decision:** keep the slot path (already merged). Fallback (i) stays out. The native one-line patch, clearing
+  `embd` in `llama_rn_context_completion::embedding()` before `loadPrompt`, is not needed for e5.
+
 ## Cost item for a later round (not fixed)
 
 Each chat turn about a file calls `library.ask` twice: `bestPage` (`Chat.tsx:952`) and `buildPrompt` (`Chat.tsx:654`).

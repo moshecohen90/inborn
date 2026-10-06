@@ -1,34 +1,67 @@
 diff --git a/apps/mobile/src/qa/runtime.ts b/apps/mobile/src/qa/runtime.ts
-index dabcbe3e..1f113cf4 100644
+index dabcbe3e..72795cc5 100644
 --- a/apps/mobile/src/qa/runtime.ts
 +++ b/apps/mobile/src/qa/runtime.ts
-@@ -169,6 +169,17 @@ export function createSurface(getHandle: () => unknown, runId: string): Surface
+@@ -169,6 +169,50 @@ export function createSurface(getHandle: () => unknown, runId: string): Surface
      cleanup,
      sleep,
      now: () => Date.now(),
-+    async embedProbe(texts) {
++    async embedProbe(texts, mode, holdMs) {
 +      const { resolveEmbedder } = await import("../documents/embedder");
++      const { initLlama } = await import("llama.rn");
 +      const r = resolveEmbedder();
 +      if (!r) throw new Error("embedProbe: no index model installed");
-+      const began = Date.now();
++      const round = (v: ArrayLike<number>) => Array.from(v, (x) => Math.round(x * 1e6) / 1e6);
 +      const vectors: number[][] = [];
-+      /* One text per call, as EmbedLanes hands them to the engine. */
-+      for (const t of texts) vectors.push(Array.from((await r.embedder.embed([t]))[0]!, (x) => Math.round(x * 1e6) / 1e6));
-+      await r.embedder.unload();
-+      return { vectors, model: r.path.split("/").pop() ?? r.path, ms: Date.now() - began };
++      const perText: number[] = [];
++      const t0 = Date.now();
++      if (mode === "adapter") {
++        await r.embedder.embed(["warm"]);
++        const loadMs = Date.now() - t0;
++        const began = Date.now();
++        for (const t of texts) {
++          const s = Date.now();
++          vectors.push(round((await r.embedder.embed([t]))[0]!));
++          perText.push(Date.now() - s);
++        }
++        const ms = Date.now() - began;
++        await sleep(holdMs);
++        await r.embedder.unload();
++        return { vectors, model: r.path.split("/").pop() ?? r.path, ms, perText, loadMs };
++      }
++      const n = r.contextTokens;
++      const ctx = await initLlama({ model: r.path, embedding: true, n_ctx: n, n_batch: n, n_ubatch: n, ...(mode === "slot" ? { n_parallel: 1 } : {}), pooling_type: "mean", embd_normalize: 2, n_gpu_layers: 99, use_mlock: false });
++      if (mode === "slot") await ctx.parallel.enable({ n_parallel: 1, n_batch: n });
++      const loadMs = Date.now() - t0;
++      const began = Date.now();
++      for (const t of texts) {
++        const s = Date.now();
++        if (mode === "slot") {
++          const { promise } = await ctx.parallel.embedding(t);
++          vectors.push(round((await promise).embedding));
++        } else {
++          vectors.push(round((await ctx.embedding(t)).embedding));
++          if (mode === "dummy") await ctx.embedding("~");
++        }
++        perText.push(Date.now() - s);
++      }
++      const ms = Date.now() - began;
++      await sleep(holdMs);
++      await ctx.release();
++      return { vectors, model: r.path.split("/").pop() ?? r.path, ms, perText, loadMs };
 +    },
    };
  }
  
 diff --git a/apps/mobile/src/qa/steps.ts b/apps/mobile/src/qa/steps.ts
-index cd7e4816..c22efdf6 100644
+index cd7e4816..96853b6f 100644
 --- a/apps/mobile/src/qa/steps.ts
 +++ b/apps/mobile/src/qa/steps.ts
 @@ -24,6 +24,7 @@ export type Step =
    | { op: "idleTimer"; disabled?: boolean }
    /** The app's own view of the network (round 130): offline without touching the Mac's. */
    | { op: "network"; offline: boolean }
-+  | { op: "embedProbe"; texts: string[] }
++  | { op: "embedProbe"; texts: string[]; mode?: "adapter" | "plain" | "slot" | "dummy"; holdMs?: number }
    | { op: "cleanup" };
  
  /** expo-file-system's two iOS URLSession configurations: nsurlsessiond out of process, or in the app's own process. */
@@ -36,7 +69,7 @@ index cd7e4816..c22efdf6 100644
    setOffline: (offline: boolean) => boolean;
    sleep: (ms: number) => Promise<void>;
    now: () => number;
-+  embedProbe?: (texts: string[]) => Promise<{ vectors: number[][]; model: string; ms: number }>;
++  embedProbe?: (texts: string[], mode: string, holdMs: number) => Promise<{ vectors: number[][]; model: string; ms: number; perText: number[]; loadMs: number }>;
  }
  
  export interface StepResult {
@@ -45,8 +78,8 @@ index cd7e4816..c22efdf6 100644
        await surface.sleep(SETTLE);
        return { detail: step.offline ? "offline" : "online" };
 +    case "embedProbe": {
-+      const r = await surface.embedProbe!(step.texts);
-+      return { detail: `${r.vectors.length} vectors · ${r.model} · ${r.ms} ms`, value: { text: r.model, props: { vectors: r.vectors } } };
++      const r = await surface.embedProbe!(step.texts, step.mode ?? "adapter", step.holdMs ?? 0);
++      return { detail: `${step.mode ?? "adapter"} · ${r.vectors.length} vectors · ${r.model} · load ${r.loadMs} ms · embed ${r.ms} ms`, value: { text: r.model, props: { vectors: r.vectors, perText: r.perText, loadMs: r.loadMs, ms: r.ms } } };
 +    }
      case "cleanup":
        surface.cleanup();
