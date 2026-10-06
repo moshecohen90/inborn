@@ -1,0 +1,546 @@
+{
+  "runId": "k3-sheet-plain-muwrxr21",
+  "startedAt": "2026-10-06T14:28:43.024Z",
+  "finishedAt": "2026-10-06T14:30:19.397Z",
+  "ok": true,
+  "passed": 37,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "doc-select-muwrwg6e-1-l2cbyz6z appeared"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 60012,
+      "detail": "60000 ms"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 151,
+      "detail": "doc-select-muwrwg6e-1-l2cbyz6z ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "documents-ask-selected ← onPress"
+    },
+    {
+      "i": 4,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "ask-sheet appeared"
+    },
+    {
+      "i": 5,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2220,
+      "detail": "03a-sheet"
+    },
+    {
+      "i": 6,
+      "op": "type",
+      "ok": true,
+      "ms": 163,
+      "detail": "ask-input = 9 chars"
+    },
+    {
+      "i": 7,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "ask-send ← onPress"
+    },
+    {
+      "i": 8,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "ask-plain appeared"
+    },
+    {
+      "i": 9,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 10,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"You're welcome. Ask another question about these documents.\" present"
+    },
+    {
+      "i": 11,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "ask-not-found gone"
+    },
+    {
+      "i": 12,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "ask-none-matched gone"
+    },
+    {
+      "i": 13,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "ask-answer gone"
+    },
+    {
+      "i": 14,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "ask-stats gone"
+    },
+    {
+      "i": 15,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3169,
+      "detail": "03b-thanks"
+    },
+    {
+      "i": 16,
+      "op": "dump",
+      "ok": true,
+      "ms": 0,
+      "nodes": [
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file 1 document · 55.6 KB on this device Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages Ask about 1 document Indexed on this device Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. You're welcome. Ask another question about these documents. ↑"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muwrwg6e-1-l2cbyz6z",
+          "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muwrwg6e-1-l2cbyz6z",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": true,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muwrwg6e-1-l2cbyz6z",
+          "text": "Indexed · 45 passages"
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Ask about 1 document",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "ask-sheet",
+          "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. You're welcome. Ask another question about these documents. ↑"
+        },
+        {
+          "testID": "ask-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "ask-plain",
+          "text": "You're welcome. Ask another question about these documents."
+        },
+        {
+          "testID": "ask-input",
+          "text": "",
+          "value": "thank you",
+          "pressable": true
+        },
+        {
+          "testID": "ask-send",
+          "text": "↑",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "03b-thanks"
+    },
+    {
+      "i": 17,
+      "op": "type",
+      "ok": true,
+      "ms": 161,
+      "detail": "ask-input = 7 chars"
+    },
+    {
+      "i": 18,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "ask-send ← onPress"
+    },
+    {
+      "i": 19,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "ask-plain appeared"
+    },
+    {
+      "i": 20,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 21,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"This sheet answers one question at a time\" present"
+    },
+    {
+      "i": 22,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "ask-not-found gone"
+    },
+    {
+      "i": 23,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "ask-none-matched gone"
+    },
+    {
+      "i": 24,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "ask-answer gone"
+    },
+    {
+      "i": 25,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "ask-stats gone"
+    },
+    {
+      "i": 26,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1901,
+      "detail": "03c-and-now"
+    },
+    {
+      "i": 27,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file 1 document · 55.6 KB on this device Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages Ask about 1 document Indexed on this device Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. This sheet answers one question at a time: ask the full question (for example, \"Summarize it in three lines\"). ↑"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muwrwg6e-1-l2cbyz6z",
+          "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muwrwg6e-1-l2cbyz6z",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": true,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muwrwg6e-1-l2cbyz6z",
+          "text": "Indexed · 45 passages"
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Ask about 1 document",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "ask-sheet",
+          "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. This sheet answers one question at a time: ask the full question (for example, \"Summarize it in three lines\"). ↑"
+        },
+        {
+          "testID": "ask-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "ask-plain",
+          "text": "This sheet answers one question at a time: ask the full question (for example, \"Summarize it in three lines\")."
+        },
+        {
+          "testID": "ask-input",
+          "text": "",
+          "value": "And now",
+          "pressable": true
+        },
+        {
+          "testID": "ask-send",
+          "text": "↑",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "03c-and-now"
+    },
+    {
+      "i": 28,
+      "op": "type",
+      "ok": true,
+      "ms": 164,
+      "detail": "ask-input = 20 chars"
+    },
+    {
+      "i": 29,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "ask-send ← onPress"
+    },
+    {
+      "i": 30,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "ask-stop appeared"
+    },
+    {
+      "i": 31,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 20535,
+      "detail": "ask-stop gone"
+    },
+    {
+      "i": 32,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2001,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 33,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "ask-plain gone"
+    },
+    {
+      "i": 34,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"passages\" present"
+    },
+    {
+      "i": 35,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2221,
+      "detail": "04-question"
+    },
+    {
+      "i": 36,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file 1 document · 55.6 KB on this device Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages Ask about 1 document Indexed on this device Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. INSTANT · ON-DEVICE AI [1] In the Constitution, no State can veto a bill; only the President of the United States has the power to veto bills. [1] constitution-9pages.pdf · p.3 search 296 ms · 4 passages · answer 20186 ms · 13.9 tok/s · prompt 875 tokens ↑"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muwrwg6e-1-l2cbyz6z",
+          "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muwrwg6e-1-l2cbyz6z",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": true,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muwrwg6e-1-l2cbyz6z",
+          "text": "Indexed · 45 passages"
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Ask about 1 document",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "ask-sheet",
+          "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. INSTANT · ON-DEVICE AI [1] In the Constitution, no State can veto a bill; only the President of the United States has the power to veto bills. [1] constitution-9pages.pdf · p.3 search 296 ms · 4 passages · answer 20186 ms · 13.9 tok/s · prompt 875 tokens ↑"
+        },
+        {
+          "testID": "ask-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "ask-answer",
+          "text": "[1] In the Constitution, no State can veto a bill; only the President of the United States has the power to veto bills."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.3"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.3",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3",
+          "pressable": true
+        },
+        {
+          "testID": "ask-stats",
+          "text": "search 296 ms · 4 passages · answer 20186 ms · 13.9 tok/s · prompt 875 tokens"
+        },
+        {
+          "testID": "ask-input",
+          "text": "",
+          "value": "Who can veto a bill?",
+          "pressable": true
+        },
+        {
+          "testID": "ask-send",
+          "text": "↑",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "04-question"
+    }
+  ],
+  "errors": []
+}
