@@ -68,7 +68,7 @@ const CONTENT_ASK = /tl;?dr|res[úu]m/u;
 /* A short turn is a follow-up only when every word asks to go on with the conversation; "treason clause" is a search. */
 const FOLLOW_UPS: readonly string[] = [
   // en
-  "and", "now", "next", "then", "more", "again", "continue", "go on", "keep going", "shorter", "longer", "simpler", "simplify", "shorten", "translate", "explain", "repeat",
+  "and", "now", "next", "then", "more", "again", "continue", "go on", "keep going", "shorter", "longer", "simpler", "briefer", "go", "on", "simplify", "shorten", "translate", "explain", "repeat",
   "elaborate", "expand", "rephrase", "also", "please", "it", "this", "that", "in", "to", "into", "as", "a", "ok", "okay", "so", "well", "detail", "details", "example", "examples",
   "bullet", "bullets", "points", "list", "english", "hebrew", "spanish", "french", "german", "portuguese", "japanese", "korean", "chinese", "italian", "russian", "arabic",
   // de
@@ -79,25 +79,25 @@ const FOLLOW_UPS: readonly string[] = [
   "explica", "explícalo", "repite", "amplía", "también", "por favor", "lo", "esto", "eso", "en", "al", "vale", "bueno", "entonces", "español", "inglés", "hebreo",
   // fr
   "et", "maintenant", "ensuite", "suivant", "puis", "plus", "encore", "continuez", "court", "long", "traduis", "traduire", "explique", "répète", "développe", "aussi",
-  "s'il te plaît", "s'il vous plaît", "stp", "svp", "le", "la", "ça", "ca", "cela", "alors", "bon", "français", "anglais", "hébreu",
+  "s'il te plaît", "s'il vous plaît", "stp", "svp", "le", "la", "ça", "ca", "cela", "ceci", "alors", "bon", "français", "anglais", "hébreu",
   // pt-BR
   "e", "agora", "próximo", "proximo", "depois", "mais", "de novo", "curto", "longo", "simples", "traduza", "traduz", "traduzir", "explique", "repete", "repita", "também",
   "isso", "isto", "o", "em", "para", "então", "bom", "português", "hebraico",
   // ja
-  "それで", "次は", "次", "もっと", "もう一度", "続けて", "続き", "短く", "長く", "簡単に", "翻訳して", "翻訳", "訳して", "説明して", "説明", "繰り返して", "詳しく", "お願いします",
+  "そして", "今", "それで", "次は", "次", "もっと", "もう一度", "続けて", "続き", "短く", "長く", "簡単に", "翻訳して", "翻訳", "訳して", "説明して", "説明", "繰り返して", "詳しく", "お願いします",
   "お願い", "ください", "これ", "それ", "も", "に", "を", "で", "じゃあ", "英語", "日本語", "ヘブライ語",
   // ko
-  "그리고", "이제", "그다음", "다음", "더", "다시", "계속해", "계속", "짧게", "길게", "쉽게", "번역해줘", "번역해", "설명해줘", "설명해", "반복해", "자세히", "줘", "주세요", "제발",
+  "그리고", "지금", "부탁해", "부탁", "이제", "그다음", "다음", "더", "다시", "계속해", "계속", "짧게", "길게", "쉽게", "번역해줘", "번역해", "설명해줘", "설명해", "반복해", "자세히", "줘", "주세요", "제발",
   "이거", "그거", "영어로", "한국어로", "히브리어로", "그래서", "좋아",
   // zh-Hant (and the simplified spellings)
   "然後呢", "然後", "然后", "現在", "现在", "下一個", "下一个", "接下來", "接下来", "更多", "再一次", "再來", "再", "繼續", "继续", "短一點", "短一点", "長一點", "长一点", "簡單一點",
   "简单一点", "翻譯", "翻译", "解釋", "解释", "重複", "重复", "詳細", "详细", "也", "請", "请", "它", "這個", "这个", "那個", "那个", "成", "英文", "中文", "希伯來文", "呢", "吧",
   // he
   "עכשיו", "הבא", "אחר כך", "עוד", "שוב", "המשך", "תמשיך", "תמשיכי", "קצר", "ארוך", "פשוט", "יותר", "תתרגם", "תתרגמי", "תרגם", "תסביר", "תסבירי", "הסבר", "תחזור", "תרחיב",
-  "בבקשה", "את", "זה", "גם", "לאנגלית", "לעברית", "באנגלית", "בעברית", "אוקיי", "אז", "טוב",
+  "בבקשה", "את", "זה", "זאת", "גם", "אנגלית", "עברית", "לאנגלית", "לעברית", "באנגלית", "בעברית", "אוקיי", "אז", "טוב",
 ];
-/* Hebrew glues "and" (ו) to the next word: "ועכשיו", "ותסביר". */
-const FOLLOW_UP = new RegExp(`^(?:(?:ו(?=\\p{Script=Hebrew})|(?:${alternation(FOLLOW_UPS)})${EDGE})\\s*)+$`, "u");
+/* Hebrew glues "and" (ו), "the" (ה), "in" (ב) and "to" (ל) to the next word: "ועכשיו", "באנגלית". */
+const FOLLOW_UP = new RegExp(`^(?:(?:[והבל](?=\\p{Script=Hebrew})|(?:${alternation(FOLLOW_UPS)})${EDGE})\\s*)+$`, "u");
 /* Han and kana carry no spaces between words: three characters count as about one word. */
 const CJK = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]/gu;
 

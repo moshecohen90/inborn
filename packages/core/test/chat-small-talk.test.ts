@@ -44,7 +44,7 @@ describe("isAcknowledgement (round 133B)", () => {
 
 /* The founder's Build 37 turn after the summary was "And now", then "Thanks". */
 const PLAIN: Record<string, string[]> = {
-  en: ["And now", "Thanks", "next", "shorter", "ok and", "translate it", "more", "explain", "in bullet points", "go on", "in Hebrew", "more detail", "simpler please"],
+  en: ["And now", "Thanks", "next", "shorter", "ok and", "translate it", "more", "explain", "in bullet points", "go on", "in Hebrew", "more detail", "simpler please", "explain again"],
   ja: ["次は", "もっと短く", "翻訳して", "続けて"],
   de: ["und jetzt", "kürzer", "weiter", "übersetze es"],
   es: ["y ahora", "más corto", "tradúcelo", "sigue"],
@@ -56,7 +56,7 @@ const PLAIN: Record<string, string[]> = {
 };
 
 const FILE_ROUTE: Record<string, string[]> = {
-  en: ["What does it say about treason?", "serial number of the turbine?", "page 3", "article 2", "top 5", "treason clause", "refund policy", "serial number", "and page 3", "the third section", "translate the document", "Summarize it", "tl;dr", "what is this", "what does it say", "who can veto", "what does the second article say about the senate"],
+  en: ["What does it say about treason?", "serial number of the turbine?", "page 3", "article 2", "top 5", "treason clause", "refund policy", "serial number", "turbine serial", "and page 3", "the third section", "translate the document", "Summarize it", "tl;dr", "what is this", "what does it say", "who can veto", "what does the second article say about the senate"],
   ja: ["3ページは", "このファイルを翻訳", "要約して", "反逆罪について何と書いてありますか", "反逆罪"],
   de: ["und Seite 3", "die Datei übersetzen", "zusammenfassen", "Rückgaberecht"],
   es: ["y la página 3", "el archivo", "resúmelo", "política de reembolso"],
@@ -64,7 +64,7 @@ const FILE_ROUTE: Record<string, string[]> = {
   "pt-BR": ["e a página 3", "o arquivo", "resuma", "número de série"],
   ko: ["3페이지", "파일 번역", "요약해줘", "환불 정책"],
   "zh-Hant": ["第三頁", "這個檔案", "總結一下", "退款政策"],
-  he: ["מה כתוב בעמוד 3", "ובעמוד 3", "תתרגם את הקובץ", "סכם", "סעיף הבגידה", "מדיניות החזרים"],
+  he: ["מה כתוב בעמוד 3", "ובעמוד 3", "תתרגם את הקובץ", "סכם", "סעיף הבגידה", "מדיניות החזרים", "מספר סידורי"],
 };
 
 describe("isPlainChatTurn (round 133B)", () => {
