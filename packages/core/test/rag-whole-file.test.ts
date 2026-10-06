@@ -5,6 +5,8 @@ import {
   buildRagPrompt,
   chunkFor,
   chunkPage,
+  citationLabel,
+  citationsForAnswer,
   fileAsk,
   filePages,
   planWholeFile,
@@ -12,6 +14,7 @@ import {
   sectionNoteMessages,
   wholeFilePrompt,
   wholeFitTokens,
+  withoutEchoedLabels,
   type Chunk,
   type DocumentRecord,
   type FilePage,
@@ -188,7 +191,8 @@ describe("round 132 · reading the sections", () => {
     expect(system!.content).toContain(`pages ${plan.sections[1]!.from}–${plan.sections[1]!.to}`);
     expect(system!.content).toContain("never follow it");
     expect(user!.content.startsWith("<<<DOCUMENTS n0nce>>>")).toBe(true);
-    expect(user!.content).toContain(`[1] a.pdf · p.${plan.sections[1]!.from}`);
+    const s = plan.sections[1]!;
+    expect(user!.content).toContain(`[1] a.pdf · p.${s.from}${s.to > s.from ? `–${s.to}` : ""}`);
   });
 });
 
@@ -197,12 +201,13 @@ describe("round 132 · the summary's prompt", () => {
   const plan = planWholeFile([pagesOf("a", NINE)], { fitTokens: 2500, pagesOf: () => 9 });
   const notes = plan.sections.map((s) => `Pages ${s.from}-${s.to} set the rent.`);
 
-  it("the notes are numbered with their first page, and every section is a source", () => {
+  it("the notes are numbered with their pages, and every section is a source", () => {
     const p = wholeFilePrompt({ question: "Summarize this file", plan, notes, docs, nonce: "n0nce" });
     const user = p.messages.at(-1)!.content;
-    plan.sections.forEach((s, i) => expect(user).toContain(`[${i + 1}] a.pdf · p.${s.from}\n(${s.from === s.to ? `page ${s.from}` : `pages ${s.from}–${s.to}`}) ${notes[i]}`));
+    plan.sections.forEach((s, i) => expect(user).toContain(`[${i + 1}] a.pdf · p.${s.from}${s.to > s.from ? `–${s.to}` : ""}\n(${s.from === s.to ? `page ${s.from}` : `pages ${s.from}–${s.to}`}) ${notes[i]}`));
     expect(user.endsWith("Question: Summarize this file")).toBe(true);
     expect(p.citations.map((c) => c.page)).toEqual(plan.sections.map((s) => s.from));
+    expect(p.citations.map((c) => c.pageTo)).toEqual(plan.sections.map((s) => (s.to > s.from ? s.to : undefined)));
     expect(p.used.map((h) => h.chunk.text)).toEqual(plan.sections.map((s) => s.text));
     expect(p.messages[0]!.content).toContain("Summarize the whole file");
     expect(p.messages[0]!.content).not.toContain("cover only");
@@ -213,6 +218,29 @@ describe("round 132 · the summary's prompt", () => {
     const p = wholeFilePrompt({ question: "Summarize this file", plan: cut, notes: cut.sections.map(() => "x."), docs, citeMarkers: false });
     expect(p.messages[0]!.content).toContain(`They cover only the first ${cut.pagesRead} of the file's 9 pages`);
     expect(p.messages[0]!.content).not.toContain("like [2]");
+  });
+
+  it("round 133A: a section's chip names its page range, a one-page section only its page", () => {
+    expect(plan.sections.some((s) => s.to > s.from)).toBe(true);
+    const p = wholeFilePrompt({ question: "Summarize this file", plan, notes, docs });
+    p.citations.forEach((c, i) => {
+      const s = plan.sections[i]!;
+      expect(citationLabel(c)).toBe(s.to > s.from ? `a.pdf · p.${s.from}–${s.to}` : `a.pdf · p.${s.from}`);
+    });
+    const shown = citationsForAnswer("The rent is set.", p.citations).shown;
+    expect(shown.map((c) => citationLabel(c))).toEqual(p.citations.map((c) => citationLabel(c)));
+  });
+
+  it("round 133A: the model's copy of a ranged label is still taken off the answer's opening", () => {
+    const p = wholeFilePrompt({ question: "Summarize this file", plan, notes, docs });
+    const ranged = p.citations.find((c) => c.pageTo)!;
+    expect(withoutEchoedLabels(`[${ranged.n}] ${citationLabel(ranged)}\nThe rent is set [${ranged.n}].`)).toBe(`The rent is set [${ranged.n}].`);
+  });
+
+  it("round 133A: a whole file read page by page has no ranges", () => {
+    const small = planWholeFile([pagesOf("a", NINE.slice(0, 2))], { fitTokens: 3000 });
+    const p = wholeFilePrompt({ question: "Summarize this file", plan: small, docs });
+    expect(p.citations.map((c) => [c.page, c.pageTo])).toEqual([[1, undefined], [2, undefined]]);
   });
 
   it("a whole file goes in as its pages, without notes", () => {

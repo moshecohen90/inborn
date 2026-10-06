@@ -21,8 +21,9 @@ export function pageGlyph(kind: DocKind, words: PageWords = PAGE_WORDS): string 
   return words[pageUnit(kind)];
 }
 
-export function citationLabel(c: Pick<Citation, "docName" | "kind" | "page">, words: PageWords = PAGE_WORDS): string {
-  return `${c.docName} · ${pageGlyph(c.kind, words)}${c.page}`;
+export function citationLabel(c: Pick<Citation, "docName" | "kind" | "page" | "pageTo">, words: PageWords = PAGE_WORDS): string {
+  const pages = c.pageTo && c.pageTo > c.page ? `${c.page}–${c.pageTo}` : `${c.page}`;
+  return `${c.docName} · ${pageGlyph(c.kind, words)}${pages}`;
 }
 
 export function snippetOf(text: string, max = SNIPPET_CHARS): string {
@@ -55,9 +56,9 @@ export function citedNumbers(answer: string): number[] {
 const WRAP = /^[\s*_>#-]*/;
 /* One header as the prompt writes it, "[n] <file> · part k" (or p.k, sheet k; "page k" in words). The name holds no
    "·", so a header matches one way only; repeating it inside one regex backtracks exponentially on near-headers. */
-const HEADER = /\[\d{1,2}\]\s*[^\n·]*?\s·\s(?:part|page|p\.|sheet)\s?\d+[\s*_.:,;]*/y;
+const HEADER = /\[\d{1,2}\]\s*[^\n·]*?\s·\s(?:part|page|p\.|sheet)\s?\d+(?:–\d+)?[\s*_.:,;]*/y;
 
-type LabelSource = Pick<Citation, "n" | "docName" | "kind" | "page">;
+type LabelSource = Pick<Citation, "n" | "docName" | "kind" | "page" | "pageTo">;
 
 function isLabelLine(line: string): boolean {
   let at = WRAP.exec(line)![0].length;
@@ -103,11 +104,11 @@ export function citationsForAnswer(answer: string, all: Citation[]): { shown: Ci
   return { shown, cited: true };
 }
 
-/* Unnumbered chips are only "where it came from": several passages of one page are one source. Numbered chips stay one per [n] so every mark resolves. */
+/* Unnumbered chips are only "where it came from": several passages of one page (or one section's pages) are one source. Numbered chips stay one per [n] so every mark resolves. */
 const onePerPage = (all: Citation[]): Citation[] => {
   const seen = new Set<string>();
   return all.filter((c) => {
-    const key = `${c.docId}\u0000${c.page}`;
+    const key = `${c.docId}\u0000${c.page}\u0000${c.pageTo ?? c.page}`;
     if (seen.has(key)) return false;
     seen.add(key);
     return true;

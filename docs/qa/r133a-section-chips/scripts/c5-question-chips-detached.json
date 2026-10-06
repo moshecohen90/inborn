@@ -1,0 +1,18 @@
+{
+  "runId": "c5-question-chips-detached",
+  "_": "The composer's attached-file row covered the last answer's chips (05): detach the file after the answer so the list ends above the composer, then shoot.",
+  "steps": [
+    {
+      "op": "press",
+      "testID": "attached-chip-muwmojag-1-2cqpjq6w"
+    },
+    {
+      "op": "sleep",
+      "ms": 3000
+    },
+    {
+      "op": "screenshot",
+      "name": "06-question-chips"
+    }
+  ]
+}

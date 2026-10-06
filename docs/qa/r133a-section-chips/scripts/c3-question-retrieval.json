@@ -1,0 +1,44 @@
+{
+  "runId": "c3-question-retrieval",
+  "_": "c2 left 'Who can veto a bill?' held on the index-model card (dev-vault.txt did not install it): Download, the question is sent once the model is in, and its chips are single pages.",
+  "steps": [
+    {
+      "op": "waitFor",
+      "testID": "docs-hold-download",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "press",
+      "testID": "docs-hold-download"
+    },
+    {
+      "op": "waitFor",
+      "testID": "docs-hold",
+      "gone": true,
+      "timeoutMs": 600000
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "timeoutMs": 120000
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 600000
+    },
+    {
+      "op": "sleep",
+      "ms": 3000
+    },
+    {
+      "op": "screenshot",
+      "name": "04-question"
+    },
+    {
+      "op": "dump",
+      "name": "04-question"
+    }
+  ]
+}

@@ -144,7 +144,7 @@ const span = (s: Pick<FileSection, "from" | "to">): string => (s.from === s.to ?
 
 /** The request for the note on one section: a few sentences of its points, the section fenced as data. */
 export function sectionNoteMessages(section: FileSection, doc: DocumentRecord | undefined, nonce: string = randomNonce()): Message[] {
-  const label = citationLabel({ docName: safeDocName(doc?.name ?? section.docId, nonce), kind: doc?.kind ?? "unknown", page: section.from });
+  const label = citationLabel({ docName: safeDocName(doc?.name ?? section.docId, nonce), kind: doc?.kind ?? "unknown", page: section.from, pageTo: section.to });
   return [
     {
       role: "system",
@@ -201,13 +201,13 @@ export function wholeFilePrompt(o: SummaryPromptOptions): RagPrompt {
   const nonce = o.nonce ?? randomNonce();
   const passages = o.plan.sections.map((s, i) => {
     const doc = o.docs.get(s.docId);
-    const label = citationLabel({ docName: safeDocName(doc?.name ?? s.docId, nonce), kind: doc?.kind ?? "unknown", page: s.from });
+    const label = citationLabel({ docName: safeDocName(doc?.name ?? s.docId, nonce), kind: doc?.kind ?? "unknown", page: s.from, pageTo: s.to });
     const text = o.plan.whole ? s.text : `(${span(s)}) ${stripInstructions(o.notes?.[i] ?? "").text}`;
     return { n: i + 1, label, text, tokens: estimateTokens(text) + estimateTokens(label) + 6 };
   });
   const lead = o.plan.whole
     ? `The whole of the user's file, every page in order, is between <<<DOCUMENTS ${nonce}>>> and <<<END DOCUMENTS ${nonce}>>>, each page numbered [n] with its file and page.`
-    : `Notes on every part of the user's file, in order, are between <<<DOCUMENTS ${nonce}>>> and <<<END DOCUMENTS ${nonce}>>>, each numbered [n] with its file and first page.`;
+    : `Notes on every part of the user's file, in order, are between <<<DOCUMENTS ${nonce}>>> and <<<END DOCUMENTS ${nonce}>>>, each numbered [n] with its file and pages.`;
   const cut = o.plan.pagesRead < o.plan.pagesTotal ? ` They cover only the first ${o.plan.pagesRead} of the file's ${o.plan.pagesTotal} pages; say nothing about the rest.` : "";
   const cite = o.citeMarkers ?? true ? " Cite each point with its number, like [2]." : "";
   const lang = o.answerLanguage ? ` Answer in the user's language (${o.answerLanguage}) unless asked otherwise.` : "";
@@ -219,7 +219,11 @@ export function wholeFilePrompt(o: SummaryPromptOptions): RagPrompt {
     { role: "user", content: `${fenceDocuments(passages, nonce)}\n\nQuestion: ${o.question}` },
   ];
   const promptTokens = estimateTokens(system) + estimateTokens(o.question) + 24 + passages.reduce((n, p) => n + p.tokens, 0);
-  return { messages, citations: buildCitations(used, o.docs), used, droppedForBudget: 0, noAnswer: false, promptTokens };
+  const citations = buildCitations(used, o.docs).map((c, i) => {
+    const to = o.plan.sections[i]!.to;
+    return to > c.page ? { ...c, pageTo: to } : c;
+  });
+  return { messages, citations, used, droppedForBudget: 0, noAnswer: false, promptTokens };
 }
 
 /** Tokens the summary prompt leaves the file when it goes in whole. */

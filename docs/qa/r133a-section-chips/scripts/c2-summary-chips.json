@@ -1,0 +1,100 @@
+{
+  "runId": "c2-summary-chips",
+  "_": "'install embed-e5' (dev-vault.txt, written by the shell) read by the vault screen, the 9-page fixture attached in the chat, 'Summarize it' on Instant (chips name page ranges), then 'Who can veto a bill?' on retrieval (single pages).",
+  "steps": [
+    {
+      "op": "deeplink",
+      "url": "/vault"
+    },
+    {
+      "op": "sleep",
+      "ms": 60000
+    },
+    {
+      "op": "deeplink",
+      "url": "/"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "devPrompt",
+      "lines": [
+        "attach: constitution-9pages.pdf"
+      ]
+    },
+    {
+      "op": "sleep",
+      "ms": 45000
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "Summarize it"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "waitFor",
+      "testID": "reading-pages",
+      "timeoutMs": 180000
+    },
+    {
+      "op": "screenshot",
+      "name": "02a-reading"
+    },
+    {
+      "op": "waitFor",
+      "testID": "reading-pages",
+      "gone": true,
+      "timeoutMs": 900000
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 600000
+    },
+    {
+      "op": "sleep",
+      "ms": 3000
+    },
+    {
+      "op": "screenshot",
+      "name": "02b-summary"
+    },
+    {
+      "op": "dump",
+      "name": "02b-summary"
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "Who can veto a bill?"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 600000
+    },
+    {
+      "op": "sleep",
+      "ms": 3000
+    },
+    {
+      "op": "screenshot",
+      "name": "03-question"
+    },
+    {
+      "op": "dump",
+      "name": "03-question"
+    }
+  ]
+}

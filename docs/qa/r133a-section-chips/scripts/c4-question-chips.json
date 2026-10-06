@@ -1,0 +1,18 @@
+{
+  "runId": "c4-question-chips",
+  "_": "The retrieval answer's chips sat under the composer in 04: close the model card so the list relayouts at its end, then shoot.",
+  "steps": [
+    {
+      "op": "press",
+      "testID": "model-advice-not-now"
+    },
+    {
+      "op": "sleep",
+      "ms": 3000
+    },
+    {
+      "op": "screenshot",
+      "name": "05-question-chips"
+    }
+  ]
+}
