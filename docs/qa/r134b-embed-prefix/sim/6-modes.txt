@@ -1,0 +1,32 @@
+# Accuracy per mode, 52 texts, vs llama-embedding on the Mac (Metal, batched)
+m-plain: twice passage 0.7497 question 0.7395 | to-Mac min 0.8842 mean 0.9578 | 38 pair cosines vs Mac: max shift 0.0796 mean 0.0203, >0.001: 35
+m-slot: twice passage 1.0000 question 1.0000 | to-Mac min 0.9989 mean 0.9999 | 38 pair cosines vs Mac: max shift 0.0055 mean 0.0008, >0.001: 10
+m-dummy: twice passage 0.9814 question 1.0000 | to-Mac min 0.9768 mean 0.9918 | 38 pair cosines vs Mac: max shift 0.0173 mean 0.0047, >0.001: 33
+m-adapter: twice passage 1.0000 question 1.0000 | to-Mac min 0.9989 mean 0.9999 | 38 pair cosines vs Mac: max shift 0.0055 mean 0.0008, >0.001: 10
+m3-adapter: twice passage 1.0000 question 1.0000 | to-Mac min 0.9989 mean 0.9999 | 38 pair cosines vs Mac: max shift 0.0055 mean 0.0008, >0.001: 10
+
+# Mac backend noise floor, same file and texts
+Mac CPU vs Mac GPU : vector min 0.9985 mean 0.9992 | pair shift max 0.0053 mean 0.0022 >0.001: 28/38
+phone slot vs Mac GPU: vector min 0.9989 mean 0.9999 | pair shift max 0.0055 mean 0.0008 >0.001: 10/38
+phone slot vs Mac CPU: vector min 0.9987 mean 0.9992 | pair shift max 0.0038 mean 0.0018 >0.001: 27/38
+
+# Time per text (ms), sim, Mac load average 25-124 during the runs
+plain    load  515 ms · 52 texts  16887 ms · median  182.5 · first text 325
+plain    load  396 ms · 52 texts   9530 ms · median   93.5 · first text 366
+slot     load  350 ms · 52 texts  19229 ms · median  351.0 · first text 345
+slot     load  469 ms · 52 texts  18964 ms · median  345.5 · first text 343
+slot     load  304 ms · 52 texts  17618 ms · median  330.0 · first text 308
+slot     load  564 ms · 52 texts  28506 ms · median  424.0 · first text 334
+slot     load  340 ms · 52 texts  38517 ms · median  763.5 · first text 542
+dummy    load  410 ms · 52 texts  20343 ms · median  363.0 · first text 528
+adapter  load  419 ms · 52 texts  58096 ms · median 1134.0 · first text 1069
+adapter  load  447 ms · 52 texts  42726 ms · median  428.0 · first text 1849
+adapter  load  365 ms · 52 texts  25968 ms · median  390.5 · first text 307
+adapter  load  413 ms · 52 texts  18025 ms · median  329.5 · first text 327
+adapter  load  441 ms · 52 texts  17666 ms · median  338.5 · first text 332
+
+# Process RSS (MB), sampled each second; context loaded and held 12 s
+plain    idle 1032 peak 1677 delta 645
+slot     idle 1060 peak 1680 delta 620
+dummy    idle 1002 peak 1649 delta 647
+adapter  idle 1052 peak 1568 delta 516
