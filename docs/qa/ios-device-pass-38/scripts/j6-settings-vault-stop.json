@@ -1,0 +1,175 @@
+{
+ "_": "J6: Settings opens, the vault opens on this phone, and Stop in the middle of a long answer leaves the text so far and a working composer.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/settings"
+  },
+  {
+   "op": "waitFor",
+   "testID": "row-wipe",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "screenshot",
+   "name": "J6-01-settings"
+  },
+  {
+   "op": "dump",
+   "name": "J6-01-settings"
+  },
+  {
+   "op": "deeplink",
+   "url": "/vault"
+  },
+  {
+   "op": "waitFor",
+   "testID": "best-for",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "value",
+   "testID": "best-for-use"
+  },
+  {
+   "op": "screenshot",
+   "name": "J6-02-vault"
+  },
+  {
+   "op": "dump",
+   "name": "J6-02-vault"
+  },
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "new-chat",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "press",
+   "testID": "new-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "start-chat",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "press",
+   "testID": "start-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "Write a long story of about 600 words about a lighthouse keeper."
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "waitFor",
+   "testID": "assistant-text",
+   "timeoutMs": 120000
+  },
+  {
+   "op": "sleep",
+   "ms": 4000
+  },
+  {
+   "op": "press",
+   "testID": "stop"
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 10000
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "screenshot",
+   "name": "J6-03-stopped"
+  },
+  {
+   "op": "dump",
+   "name": "J6-03-stopped"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "What is the capital of France?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "waitFor",
+   "testID": "assistant-text",
+   "timeoutMs": 240000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 400000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "screenshot",
+   "name": "J6-04-after-stop"
+  },
+  {
+   "op": "dump",
+   "name": "J6-04-after-stop"
+  },
+  {
+   "op": "assertText",
+   "text": "Could not load",
+   "absent": true
+  }
+ ]
+}

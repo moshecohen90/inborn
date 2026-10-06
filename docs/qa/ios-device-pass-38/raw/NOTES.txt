@@ -1,0 +1,100 @@
+2026-10-06 15:45:14 start ios-build-38; worktree at 28e2696a, commit 3569b0cc (3569b0cc6a11) buildNumber 37->38 + guard + ignore line
+2026-10-06 15:45:15 phone before twin: passcodeRequired: false; apps: com.inbornapp.mobile 1.0.0 37;com.inbornapp.mobile.uitests.xctrunner 1.0 1;
+2026-10-06 15:45:37 twin installed 15:45:15 -> 15:45:37 rc=0
+2026-10-06 15:45:43 p0-onboard start
+2026-10-06 15:46:29 p0-onboard rc=0 15:46:29 22 passed, 0 failed, 3 screenshots → <worktree>/docs/qa/ios-device-pass-38/screens
+2026-10-06 15:46:38 push 4 fixtures (the founder's file under a neutral name)
+2026-10-06 15:46:42 j2a-install-fast start
+2026-10-06 15:47:40 j2a-install-fast rc=0 15:47:40 15 passed, 0 failed, 3 screenshots → <worktree>/docs/qa/ios-device-pass-38/screens
+2026-10-06 15:47:50 f2-nine-fast start
+2026-10-06 15:49:48 f2-nine-fast rc=0 (private: details in private/)
+2026-10-06 15:50:21 f3a-and-now start
+2026-10-06 15:50:47 f3a-and-now rc=0 (private: details in private/)
+2026-10-06 15:50:47 f3b-thanks start
+2026-10-06 15:50:58 f3b-thanks rc=0 (private: details in private/)
+2026-10-06 15:50:58 f3c-shorter start
+2026-10-06 15:51:09 f3c-shorter rc=0 (private: details in private/)
+2026-10-06 15:51:09 f3d-retention-card start
+2026-10-06 15:51:51 f3d-retention-card rc=1 (private: details in private/)
+2026-10-06 15:53:01 f3a..f3d INVALID: the driver's inbox push failed at f3a, its fallback relaunched the app (--terminate-existing), so they ran in a fresh chat without the file and the screen rendered black; moved to private/invalid-relaunch/
+2026-10-06 15:53:32 f2-nine-fast start
+2026-10-06 15:53:34 f2-nine-fast rc=0 (private: details in private/)
+2026-10-06 15:53:57 f2-nine-fast-r2 start
+2026-10-06 16:00:36 f2-nine-fast-r2 rc=1 (private: details in private/)
+2026-10-06 16:00:52 f3a-and-now-r2 start
+2026-10-06 16:00:53 f3a-and-now-r2 preflight push failed (try 1)
+2026-10-06 16:01:17 f3a-and-now-r2 rc=0 (private: details in private/)
+2026-10-06 16:01:17 f3b-thanks-r2 start
+2026-10-06 16:01:30 f3b-thanks-r2 rc=0 (private: details in private/)
+2026-10-06 16:01:30 f3c-shorter-r2 start
+2026-10-06 16:01:43 f3c-shorter-r2 rc=0 (private: details in private/)
+2026-10-06 16:01:43 f3d-retention-card-r2 start
+2026-10-06 16:01:56 f3d-retention-card-r2 rc=0 (private: details in private/)
+2026-10-06 16:02:20 close-sheet start
+2026-10-06 16:02:28 close-sheet rc=0 (private: details in private/)
+2026-10-06 16:02:28 f3d-retention-card-r3 start
+2026-10-06 16:02:41 f3d-retention-card-r3 rc=0 (private: details in private/)
+2026-10-06 16:02:53 j2-fixture-fast start
+2026-10-06 16:07:00 j2-fixture-fast rc=0 16:07:00 44 passed, 0 failed, 4 screenshots → <worktree>/docs/qa/ios-device-pass-38/screens
+2026-10-06 16:07:10 j3a-and-now start
+2026-10-06 16:07:10 j3a-and-now preflight push failed (try 1)
+2026-10-06 16:07:35 j3a-and-now rc=0 16:07:34 12 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-38/screens
+2026-10-06 16:07:35 j3b-thanks start
+2026-10-06 16:07:46 j3b-thanks rc=0 16:07:45 12 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-38/screens
+2026-10-06 16:07:46 j3c-thank-you start
+2026-10-06 16:07:59 j3c-thank-you rc=0 16:07:58 12 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-38/screens
+2026-10-06 16:07:59 j3d-shorter start
+2026-10-06 16:08:10 j3d-shorter rc=0 16:08:10 12 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-38/screens
+2026-10-06 16:08:10 j3e-treason-card start
+2026-10-06 16:08:22 j3e-treason-card rc=0 16:08:22 13 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-38/screens
+2026-10-06 16:08:32 j3f-treason-download start
+2026-10-06 16:10:23 j3f-treason-download rc=0 16:10:23 31 passed, 0 failed, 3 screenshots → <worktree>/docs/qa/ios-device-pass-38/screens
+2026-10-06 16:10:43 f3e-chats start
+2026-10-06 16:10:49 f3e-chats rc=0 (private: details in private/)
+2026-10-06 16:11:20 f3e-retention-answer start
+2026-10-06 16:11:49 f3e-retention-answer rc=0 (private: details in private/)
+2026-10-06 16:12:04 j4a-documents start
+2026-10-06 16:12:14 j4a-documents rc=0 (private: details in private/)
+2026-10-06 16:12:26 f3f-deleting start
+2026-10-06 16:13:00 f3f-deleting rc=1 (private: details in private/)
+2026-10-06 16:13:37 j4b-sheet start
+2026-10-06 16:17:17 j4b-sheet rc=1 16:17:16   ! step 32 (assertText): assertText "passages" is not on screen under ask-stats
+2026-10-06 16:18:06 j4c-sheet-stats start
+2026-10-06 16:19:46 j4c-sheet-stats rc=1 16:19:45   ! step 17 (assertText): assertText "Summary of all 9 pages." is not on screen under ask-answer
+2026-10-06 16:20:09 j4d-veto-free start
+2026-10-06 16:20:24 j4d-veto-free rc=1 16:20:24   ! step 15 (value): value ask-answer: no node with that testID is mounted
+2026-10-06 16:20:24 j4d-veto-pro start
+2026-10-06 16:20:38 j4d-veto-pro rc=1 16:20:38   ! step 15 (value): value ask-answer: no node with that testID is mounted
+2026-10-06 16:20:51 sanity-chat start
+2026-10-06 16:20:52 sanity-chat preflight push failed (try 1)
+2026-10-06 16:21:07 sanity-chat rc=0 16:21:07 16 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-38/screens
+2026-10-06 16:21:28 sanity-chat-r2 start
+2026-10-06 16:21:39 sanity-chat-r2 rc=0 16:21:38 16 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-38/screens
+2026-10-06 16:22:06 ENGINE SILENT: since j4c (setTier pro + sheet summary) every Fast turn returns '' (prompt_n 1, predicted 0, loadMs ~40) in the sheet and in chat; no error in syslog; relaunching the twin to test reproduction
+2026-10-06 16:22:23 sanity-chat-r3 start
+2026-10-06 16:22:37 sanity-chat-r3 rc=0 16:22:37 16 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-38/screens
+2026-10-06 16:22:44 j4c-sheet-stats-r2 start
+2026-10-06 16:26:43 j4c-sheet-stats-r2 rc=0 16:26:42 30 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-38/screens
+2026-10-06 16:26:43 sanity-chat-r4 start
+2026-10-06 16:26:56 sanity-chat-r4 rc=0 16:26:55 16 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-38/screens
+2026-10-06 16:27:11 p4-sheet-his start
+2026-10-06 16:27:12 p4-sheet-his preflight push failed (try 1)
+2026-10-06 16:27:58 p4-sheet-his rc=0 (private: details in private/)
+2026-10-06 16:28:19 f3g-newchat start
+2026-10-06 16:28:59 f3g-newchat rc=0 (private: details in private/)
+2026-10-06 16:29:18 j5a-scan-instant start
+2026-10-06 16:30:10 j5a-scan-instant rc=0 16:30:10 58 passed, 0 failed, 4 screenshots → <worktree>/docs/qa/ios-device-pass-38/screens
+2026-10-06 16:30:11 j5b-photo-instant start
+2026-10-06 16:30:54 j5b-photo-instant rc=0 16:30:53 51 passed, 0 failed, 3 screenshots → <worktree>/docs/qa/ios-device-pass-38/screens
+2026-10-06 16:31:26 pretendTier(null) leaves the twin on Pro (harness); j5a/j5b ran on Pro -> moved to raw/on-pro/, relaunch twin, redo as -r2
+2026-10-06 16:31:43 j5a-scan-instant-r2 start
+2026-10-06 16:33:12 j5a-scan-instant-r2 rc=1 16:33:12   ! step 11 (press): press model-sheet-use-instant: not mounted
+2026-10-06 16:33:14 j5b-photo-instant-r2 start
+2026-10-06 16:33:53 j5b-photo-instant-r2 rc=0 16:33:52 51 passed, 0 failed, 3 screenshots → <worktree>/docs/qa/ios-device-pass-38/screens
+2026-10-06 16:34:17 j5a-scan-instant-r3 start
+2026-10-06 16:34:59 j5a-scan-instant-r3 rc=1 16:34:58   ! step 0 (press): press model-sheet-close: not mounted
+2026-10-06 16:35:09 j5c-photo-fast start
+2026-10-06 16:36:59 j5c-photo-fast rc=0 16:36:59 59 passed, 0 failed, 4 screenshots → <worktree>/docs/qa/ios-device-pass-38/screens
+2026-10-06 16:37:06 j6-settings-vault-stop start
+2026-10-06 16:37:53 j6-settings-vault-stop rc=0 16:37:52 39 passed, 0 failed, 4 screenshots → <worktree>/docs/qa/ios-device-pass-38/screens
+2026-10-06 16:38:15 twin uninstalled 16:38:12 rc=0; apps: com.inbornapp.mobile 1.0.0 37;com.inbornapp.mobile.uitests.xctrunner 1.0 1;

@@ -1,0 +1,60 @@
+16:34:18 pushing 53 steps as j5a-scan-instant-r3
+16:34:32 shot J5-01-composer-chip
+16:34:43 shot J5-02-sent-bubble
+16:34:51 shot J5-02-answer
+16:34:54 shot J5-02-ledger
+16:34:58 FAIL   0 press      press model-sheet-close: not mounted
+16:34:58 ok     1 waitFor    model-sheet gone
+16:34:58 ok     2 deeplink   /chats
+16:34:58 ok     3 waitFor    new-chat appeared
+16:34:58 ok     4 press      new-chat ← onPress
+16:34:58 ok     5 waitFor    start-chat appeared
+16:34:58 ok     6 press      start-chat ← onPress
+16:34:58 ok     7 waitFor    composer-input appeared
+16:34:58 ok     8 waitFor    Loading gone
+16:34:58 ok     9 sleep      1500 ms
+16:34:58 ok    10 value      INSTANT
+16:34:58 ok    11 assertText "INSTANT" present
+16:34:58 ok    12 devPrompt  attach: sign-scan.pdf
+16:34:58 ok    13 waitFor    attached-docs appeared
+16:34:58 ok    14 sleep      8000 ms
+16:34:58 ok    15 value      sign-scan.pdf
+16:34:58 ok    16 screenshot J5-01-composer-chip
+16:34:58 ok    17 type       composer-input = 16 chars
+16:34:58 ok    18 send       send ← onPress
+16:34:58 ok    19 waitFor    assistant-text appeared
+16:34:58 ok    20 value      
+16:34:58 ok    21 screenshot J5-02-sent-bubble
+16:34:58 ok    22 waitFor    stop gone
+16:34:58 ok    23 sleep      1500 ms
+16:34:58 ok    24 value      The image displays a weathered sign mounted on a yellow wall in Kyiv, Ukraine. The sign reads "КАРАСАЕВ" (Kara
+16:34:58 ok    25 sleep      2000 ms
+16:34:58 ok    26 waitFor    docs-hold gone
+16:34:58 ok    27 waitFor    vision-hold gone
+16:34:58 ok    28 assertText "cannot see" absent
+16:34:58 ok    29 assertText "can't see" absent
+16:34:58 ok    30 assertText "cannot physically see" absent
+16:34:58 ok    31 assertText "see images" absent
+16:34:58 ok    32 assertText "text-based" absent
+16:34:58 ok    33 assertText "unable to see" absent
+16:34:58 ok    34 assertText "not able to see" absent
+16:34:58 ok    35 assertText "don't have eyes" absent
+16:34:58 ok    36 assertText "The request specifies" absent
+16:34:58 ok    37 assertText "I will focus" absent
+16:34:58 ok    38 assertText "as an AI" absent
+16:34:58 ok    39 assertText "NOT_FOUND" absent
+16:34:58 ok    40 assertText "<<<" absent
+16:34:58 ok    41 assertText "The user is asking" absent
+16:34:58 ok    42 assertText "Your documents don't mention this" absent
+16:34:58 ok    43 assertText "is a scan. Run OCR" absent
+16:34:58 ok    44 waitFor    model-advice appeared
+16:34:58 ok    45 value      FAST sees pictures better than INSTANT.
+16:34:58 ok    46 assertText "FAST sees pictures better than INSTANT" present
+16:34:58 ok    47 screenshot J5-02-answer
+16:34:58 ok    48 dump       J5-02-answer
+16:34:58 ok    49 press      ledger-toggle ← onPress
+16:34:58 ok    50 sleep      1200 ms
+16:34:58 ok    51 value      MODEL INSTANT QUANT Q4_K CONTEXT 260 / 4096 MS / TOKEN 143 ms More detail · PRO
+16:34:58 ok    52 screenshot J5-02-ledger
+16:34:58 52 passed, 1 failed, 4 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-38/docs/qa/ios-device-pass-38/screens
+16:34:58   ! step 0 (press): press model-sheet-close: not mounted

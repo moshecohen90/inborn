@@ -1,0 +1,159 @@
+{
+ "_": "J4: Documents → select 'constitution-9pages.pdf' only (DOCID filled in by the shell) → Ask: 'Summarize it' shows 'Reading pages…' in the sheet, the answer with 'Summary of all 9 pages.', stats 'read … · 9 of 9 pages'; then 'Who can veto a bill?' is still a search ('… passages').",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/documents"
+  },
+  {
+   "op": "waitFor",
+   "testID": "doc-select-DOCID",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "press",
+   "testID": "doc-select-DOCID"
+  },
+  {
+   "op": "sleep",
+   "ms": 1000
+  },
+  {
+   "op": "value",
+   "testID": "documents-ask-selected"
+  },
+  {
+   "op": "press",
+   "testID": "documents-ask-selected"
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-sheet",
+   "timeoutMs": 20000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "screenshot",
+   "name": "J4-01-sheet"
+  },
+  {
+   "op": "type",
+   "testID": "ask-input",
+   "text": "Summarize it"
+  },
+  {
+   "op": "press",
+   "testID": "ask-send"
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-reading-pages",
+   "timeoutMs": 120000
+  },
+  {
+   "op": "value",
+   "testID": "ask-reading-pages"
+  },
+  {
+   "op": "screenshot",
+   "name": "J4-02-reading"
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "ask-answer"
+  },
+  {
+   "op": "value",
+   "testID": "ask-stats"
+  },
+  {
+   "op": "screenshot",
+   "name": "J4-03-summary"
+  },
+  {
+   "op": "assertText",
+   "testID": "ask-answer",
+   "text": "Summary of all 9 pages."
+  },
+  {
+   "op": "assertText",
+   "testID": "ask-stats",
+   "text": "9 of 9 pages"
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-none-matched",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-not-found",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "type",
+   "testID": "ask-input",
+   "text": "Who can veto a bill?"
+  },
+  {
+   "op": "press",
+   "testID": "ask-send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-stop",
+   "gone": true,
+   "timeoutMs": 600000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "ask-answer"
+  },
+  {
+   "op": "value",
+   "testID": "ask-stats"
+  },
+  {
+   "op": "screenshot",
+   "name": "J4-04-question"
+  },
+  {
+   "op": "assertText",
+   "testID": "ask-stats",
+   "text": "passages"
+  },
+  {
+   "op": "assertText",
+   "testID": "ask-answer",
+   "text": "Summary of all",
+   "absent": true
+  }
+ ]
+}

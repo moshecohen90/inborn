@@ -1,0 +1,24 @@
+== install --frozen-lockfile start 15:33:28
+== install --frozen-lockfile rc=0 end 15:33:40
+== typecheck start 15:33:40
+== typecheck rc=0 end 15:33:49
+== lint start 15:33:49
+== lint rc=0 end 15:33:56
+== test start 15:33:56
+== test rc=0 end 15:34:16
+GATES-DONE
+== per package
+apps/desktop test: # pass 4
+apps/desktop test: # fail 0
+apps/desktop test: # skipped 0
+packages/ui test:       Tests  23 passed (23)
+packages/i18n test:       Tests  24 passed (24)
+packages/core test:       Tests  1379 passed | 4 skipped (1383)
+apps/mobile test:       Tests  1426 passed (1426)
+== check:store (after the archive, in-tree archive present) rc=0
+  apps/mobile/ios/build/Inborn.xcarchive (models): OK vision-qwen35 vision-qwen35.gguf 204987232 B sha256 matches the catalog
+OK: iPhone UDID is in no commit patch
+OK: OnePlus 6T serial is in no commit patch
+OK: ASC key id is in no commit patch
+
+PASS: no personal identifier in the history of HEAD

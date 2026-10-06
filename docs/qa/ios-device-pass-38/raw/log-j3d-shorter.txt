@@ -1,0 +1,15 @@
+16:07:59 pushing 12 steps as j3d-shorter
+16:08:06 shot J3d-shorter
+16:08:10 ok     0 type       composer-input = 7 chars
+16:08:10 ok     1 send       send ← onPress
+16:08:10 ok     2 sleep      2500 ms
+16:08:10 ok     3 waitFor    stop gone
+16:08:10 ok     4 sleep      2500 ms
+16:08:10 ok     5 waitFor    docs-hold gone
+16:08:10 ok     6 waitFor    none-matched gone
+16:08:10 ok     7 waitFor    model-advice gone
+16:08:10 ok     8 assertText "468 MB" absent
+16:08:10 ok     9 assertText "Nothing in your documents matched this question" absent
+16:08:10 ok    10 screenshot J3d-shorter
+16:08:10 ok    11 dump       J3d-shorter
+16:08:10 12 passed, 0 failed, 1 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-38/docs/qa/ios-device-pass-38/screens

@@ -1,0 +1,26 @@
+{
+ "_": "J4: the Documents screen, dumped so the shell can pick the fixture's doc id (private: it lists the founder's file too).",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/documents"
+  },
+  {
+   "op": "waitFor",
+   "testID": "documents-screen",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "screenshot",
+   "name": "P4-00-documents"
+  },
+  {
+   "op": "dump",
+   "name": "P4-00-documents"
+  }
+ ]
+}

@@ -1,0 +1,15 @@
+16:07:35 pushing 12 steps as j3b-thanks
+16:07:42 shot J3b-thanks
+16:07:45 ok     0 type       composer-input = 6 chars
+16:07:45 ok     1 send       send ← onPress
+16:07:45 ok     2 sleep      2500 ms
+16:07:45 ok     3 waitFor    stop gone
+16:07:45 ok     4 sleep      2500 ms
+16:07:45 ok     5 waitFor    docs-hold gone
+16:07:45 ok     6 waitFor    none-matched gone
+16:07:45 ok     7 waitFor    model-advice gone
+16:07:45 ok     8 assertText "468 MB" absent
+16:07:45 ok     9 assertText "Nothing in your documents matched this question" absent
+16:07:45 ok    10 screenshot J3b-thanks
+16:07:45 ok    11 dump       J3b-thanks
+16:07:45 12 passed, 0 failed, 1 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-38/docs/qa/ios-device-pass-38/screens

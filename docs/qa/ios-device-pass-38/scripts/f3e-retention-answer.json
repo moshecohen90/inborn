@@ -1,0 +1,156 @@
+{
+ "_": "J3 PRIVATE: back in the founder's chat (CHATID filled in by the shell), 'What does it say about data retention?' now that the index model is in: no card, single-page chips above the file row, then the Redact row.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "chat-row-CHATID",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "press",
+   "testID": "chat-row-CHATID"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "value",
+   "testID": "attached-docs"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "What does it say about data retention?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "waitFor",
+   "testID": "docs-hold",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 600000
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "screenshot",
+   "name": "P3e-answer"
+  },
+  {
+   "op": "dump",
+   "name": "P3e-answer"
+  },
+  {
+   "op": "assertText",
+   "text": "The request specifies",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "I will focus",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "as an AI",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "NOT_FOUND",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "<<<",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "The user is asking",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "My name is Dana and my phone is 555-0100"
+  },
+  {
+   "op": "waitFor",
+   "testID": "redact-bar",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "screenshot",
+   "name": "P3e-redact-row"
+  },
+  {
+   "op": "dump",
+   "name": "P3e-redact-row"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": ""
+  },
+  {
+   "op": "waitFor",
+   "testID": "redact-bar",
+   "gone": true,
+   "timeoutMs": 10000
+  }
+ ]
+}

@@ -1,0 +1,27 @@
+{
+ "_": "Harness: closes a model sheet left open (f2's rerun opened it on a chat already on Fast, where the sheet has no 'use' button), then shows the end of the chat.",
+ "steps": [
+  {
+   "op": "press",
+   "testID": "model-sheet-close"
+  },
+  {
+   "op": "waitFor",
+   "testID": "model-sheet",
+   "gone": true,
+   "timeoutMs": 10000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "P3-chat-end"
+  },
+  {
+   "op": "dump",
+   "name": "P3-chat-end"
+  }
+ ]
+}

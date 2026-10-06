@@ -1,0 +1,285 @@
+{
+  "runId": "j4d-veto-free",
+  "startedAt": "2026-10-06T13:20:11.749Z",
+  "finishedAt": "2026-10-06T13:20:22.789Z",
+  "ok": false,
+  "passed": 19,
+  "failed": 1,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 152,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "ask-sheet gone"
+    },
+    {
+      "i": 2,
+      "op": "setTier",
+      "ok": true,
+      "ms": 166,
+      "detail": "free"
+    },
+    {
+      "i": 3,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 162,
+      "detail": "/documents"
+    },
+    {
+      "i": 4,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "doc-select-muwovio1-3-nj4d9v8b appeared"
+    },
+    {
+      "i": 5,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2000,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 6,
+      "op": "press",
+      "ok": true,
+      "ms": 158,
+      "detail": "doc-select-muwovio1-3-nj4d9v8b ← onPress"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1017,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 8,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "documents-ask-selected ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "ask-sheet appeared"
+    },
+    {
+      "i": 10,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "ask-input = 20 chars"
+    },
+    {
+      "i": 11,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "ask-send ← onPress"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2000,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 13,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "ask-stop gone"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2001,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 15,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value ask-answer: no node with that testID is mounted"
+    },
+    {
+      "i": 16,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2538,
+      "detail": "J4-07-veto-free"
+    },
+    {
+      "i": 17,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file 2 documents · 167 KB on this device Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages קובץ.pdf PDF · 9 pages · 111 KB Indexed · 41 passages Ask about 1 document Indexed on this device Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. SOURCES constitution-9pages.pdf · p.4 constitution-9pages.pdf · p.3 search 78 ms · 3 passages · answer 17 ms · 0.0 tok/s · prompt 685 tokens ↑"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muwovio1-3-nj4d9v8b",
+          "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muwovio1-3-nj4d9v8b",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": true,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muwovio1-3-nj4d9v8b",
+          "text": "Indexed · 45 passages"
+        },
+        {
+          "testID": "doc-row-muwoc8hc-1-tq26k7d9",
+          "text": "קובץ.pdf PDF · 9 pages · 111 KB Indexed · 41 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muwoc8hc-1-tq26k7d9",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muwoc8hc-1-tq26k7d9",
+          "text": "Indexed · 41 passages"
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Ask about 1 document",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "ask-sheet",
+          "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. SOURCES constitution-9pages.pdf · p.4 constitution-9pages.pdf · p.3 search 78 ms · 3 passages · answer 17 ms · 0.0 tok/s · prompt 685 tokens ↑"
+        },
+        {
+          "testID": "ask-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES constitution-9pages.pdf · p.4 constitution-9pages.pdf · p.3"
+        },
+        {
+          "testID": "citation-1",
+          "text": "constitution-9pages.pdf · p.4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "constitution-9pages.pdf · p.3",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3",
+          "pressable": true
+        },
+        {
+          "testID": "ask-stats",
+          "text": "search 78 ms · 3 passages · answer 17 ms · 0.0 tok/s · prompt 685 tokens"
+        },
+        {
+          "testID": "ask-input",
+          "text": "",
+          "value": "Who can veto a bill?",
+          "pressable": true
+        },
+        {
+          "testID": "ask-send",
+          "text": "↑",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J4-07-veto-free"
+    },
+    {
+      "i": 18,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 158,
+      "detail": "/chats"
+    },
+    {
+      "i": 19,
+      "op": "setTier",
+      "ok": true,
+      "ms": 183,
+      "detail": "free"
+    }
+  ],
+  "errors": [
+    "step 15 (value): value ask-answer: no node with that testID is mounted"
+  ]
+}

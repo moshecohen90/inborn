@@ -1,0 +1,19 @@
+16:20:58 pushing 16 steps as sanity-chat
+16:21:03 shot J4-08-chat-sanity
+16:21:07 ok     0 deeplink   /chats
+16:21:07 ok     1 waitFor    new-chat appeared
+16:21:07 ok     2 press      new-chat ← onPress
+16:21:07 ok     3 waitFor    start-chat appeared
+16:21:07 ok     4 press      start-chat ← onPress
+16:21:07 ok     5 waitFor    composer-input appeared
+16:21:07 ok     6 waitFor    Loading gone
+16:21:07 ok     7 sleep      1500 ms
+16:21:07 ok     8 value      FAST
+16:21:07 ok     9 type       composer-input = 30 chars
+16:21:07 ok    10 send       send ← onPress
+16:21:07 ok    11 waitFor    assistant-text appeared
+16:21:07 ok    12 waitFor    stop gone
+16:21:07 ok    13 sleep      1500 ms
+16:21:07 ok    14 value      
+16:21:07 ok    15 screenshot J4-08-chat-sanity
+16:21:07 16 passed, 0 failed, 1 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-38/docs/qa/ios-device-pass-38/screens

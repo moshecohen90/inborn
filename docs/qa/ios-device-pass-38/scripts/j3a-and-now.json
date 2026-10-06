@@ -1,0 +1,63 @@
+{
+ "_": "J3: the same chat, 'And now': a plain reply, no card, no none-matched line, no advice card.",
+ "steps": [
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "And now"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 300000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "docs-hold",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "waitFor",
+   "testID": "none-matched",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "waitFor",
+   "testID": "model-advice",
+   "gone": true,
+   "timeoutMs": 3000
+  },
+  {
+   "op": "assertText",
+   "text": "468 MB",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "Nothing in your documents matched this question",
+   "absent": true
+  },
+  {
+   "op": "screenshot",
+   "name": "J3a-and-now"
+  },
+  {
+   "op": "dump",
+   "name": "J3a-and-now"
+  }
+ ]
+}
