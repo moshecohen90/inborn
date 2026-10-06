@@ -2,6 +2,9 @@ import { HEADLINE_KEYS } from "@inborn/core";
 import type { GuardState } from "./guard";
 import type { DeviceState, Recommendation } from "./types";
 
+/** The banner's "Ran out of memory · Switched to …" line is up; the chat offers no way back to the model that did not fit (round 134J). */
+export const memorySwitchShowing = (d: DeviceState): boolean => d.recommendation.kind === "switchToInstant" && d.recommendation.reason === "memory";
+
 /** The shell's banner union from the policy's status (§8.8 rows); the full recommendation rides along as `policy`. */
 export function toDeviceState(g: GuardState): DeviceState {
   const r = g.recommendation;

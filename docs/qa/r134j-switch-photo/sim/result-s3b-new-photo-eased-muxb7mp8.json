@@ -1,0 +1,373 @@
+{
+  "runId": "s3b-new-photo-eased-muxb7mp8",
+  "startedAt": "2026-10-06T23:28:16.222Z",
+  "finishedAt": "2026-10-06T23:29:46.211Z",
+  "ok": true,
+  "passed": 13,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1911,
+      "detail": "05-eased-quiet-line"
+    },
+    {
+      "i": 1,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What do you see?",
+          "role": "text"
+        },
+        {
+          "testID": "user-images",
+          "text": ""
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI I see a brick wall with three large blackboards mounted horizontally in a window frame. The leftmost board lists \"Opening Hours\" for Monday to Sunday, while the middle one details breakfast and bistro menu items like avocado toast and salmon + cream cheese. The rightmost board advertises a membership program for £3 annually. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "I see a brick wall with three large blackboards mounted horizontally in a window frame. The leftmost board lists \"Opening Hours\" for Monday to Sunday, while the middle one details breakfast and bistro menu items like avocado toast and salmon + cream cheese. The rightmost board advertises a membership program for £3 annually."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "vision-released",
+          "text": "Photo pack released to free memory. A new photo loads it again."
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "05-eased-quiet-line"
+    },
+    {
+      "i": 2,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 154,
+      "detail": "image: cafe.jpg"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "pending-images appeared"
+    },
+    {
+      "i": 4,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2001,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 5,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 28 chars"
+    },
+    {
+      "i": 6,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2502,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 8,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 79166,
+      "detail": "stop gone"
+    },
+    {
+      "i": 9,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2016,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 10,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 11,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1904,
+      "detail": "06-new-photo-read-on-fast"
+    },
+    {
+      "i": 12,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What do you see?",
+          "role": "text"
+        },
+        {
+          "testID": "user-images",
+          "text": ""
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI I see a brick wall with three large blackboards mounted horizontally in a window frame. The leftmost board lists \"Opening Hours\" for Monday to Sunday, while the middle one details breakfast and bistro menu items like avocado toast and salmon + cream cheese. The rightmost board advertises a membership program for £3 annually. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "I see a brick wall with three large blackboards mounted horizontally in a window frame. The leftmost board lists \"Opening Hours\" for Monday to Sunday, while the middle one details breakfast and bistro menu items like avocado toast and salmon + cream cheese. The rightmost board advertises a membership program for £3 annually."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "06-new-photo-read-on-fast"
+    }
+  ],
+  "errors": []
+}

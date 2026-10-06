@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { DevicePolicy, HEADLINE_KEYS, defaultOverride, type DeviceSignals, type Recommendation } from "@inborn/core";
-import { toDeviceState } from "./mapState";
+import { memorySwitchShowing, toDeviceState } from "./mapState";
 import type { GuardState } from "./guard";
 
 const signals = (over: Partial<DeviceSignals> = {}): DeviceSignals => ({
@@ -89,5 +89,16 @@ describe("the boot-time RAM floor (F43)", () => {
     const state = toDeviceState(guardState(signals({ currentTier: "instant" }), policy));
     expect(state.policy?.headline).toBe(HEADLINE_KEYS.memorySwitched);
     expect(state.recommendation).toEqual({ kind: "switchToInstant", reason: "memory", auto: true });
+  });
+
+  /* Round 134J: the banner said Fast did not fit, and the picture card under it offered Fast a second later. */
+  it("the memory-switch line hides the picture advice card until the next answer retires it", () => {
+    const p = new DevicePolicy();
+    p.update(signals({ memoryPressure: "warning" }), defaultOverride("phone"), 0);
+    p.noteSwitched("fast", "instant", true, "memory");
+    expect(memorySwitchShowing(toDeviceState(guardState(signals({ memoryPressure: "warning", currentTier: "instant" }), p)))).toBe(true);
+    p.noteAnswered("instant");
+    expect(memorySwitchShowing(toDeviceState(guardState(signals({ memoryPressure: "warning", currentTier: "instant" }), p)))).toBe(false);
+    expect(memorySwitchShowing(toDeviceState(guardState(signals({ currentTier: "instant" }), p)))).toBe(false);
   });
 });

@@ -1,0 +1,63 @@
+{
+  "runId": "s3b-new-photo-eased",
+  "_": "After warning 1 (projector released, Fast kept, the quiet line): a NEW photo in the same chat must be read, with the projector loaded again.",
+  "steps": [
+    {
+      "op": "screenshot",
+      "name": "05-eased-quiet-line"
+    },
+    {
+      "op": "dump",
+      "name": "05-eased-quiet-line"
+    },
+    {
+      "op": "devPrompt",
+      "lines": [
+        "image: cafe.jpg"
+      ]
+    },
+    {
+      "op": "waitFor",
+      "testID": "pending-images",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "What drinks are on the menu?"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "sleep",
+      "ms": 2500
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 600000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "value",
+      "testID": "model-chip"
+    },
+    {
+      "op": "screenshot",
+      "name": "06-new-photo-read-on-fast"
+    },
+    {
+      "op": "dump",
+      "name": "06-new-photo-read-on-fast"
+    }
+  ]
+}

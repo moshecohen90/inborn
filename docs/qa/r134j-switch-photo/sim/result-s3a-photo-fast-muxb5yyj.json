@@ -1,0 +1,169 @@
+{
+  "runId": "s3a-photo-fast-muxb5yyj",
+  "startedAt": "2026-10-06T23:27:13.821Z",
+  "finishedAt": "2026-10-06T23:28:06.049Z",
+  "ok": true,
+  "passed": 20,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 1,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 166,
+      "detail": "/chats"
+    },
+    {
+      "i": 2,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 3,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 4,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 5,
+      "op": "press",
+      "ok": true,
+      "ms": 168,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 7,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 8,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1515,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 9,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 10,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 168,
+      "detail": "image: cafe.jpg"
+    },
+    {
+      "i": 11,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1315,
+      "detail": "pending-images appeared"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2001,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 13,
+      "op": "type",
+      "ok": true,
+      "ms": 169,
+      "detail": "composer-input = 16 chars"
+    },
+    {
+      "i": 14,
+      "op": "send",
+      "ok": true,
+      "ms": 180,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 15,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 16,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 41199,
+      "detail": "stop gone"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2018,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 18,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 19,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 659,
+      "detail": "04-photo-on-fast"
+    }
+  ],
+  "errors": []
+}

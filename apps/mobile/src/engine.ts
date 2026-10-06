@@ -69,15 +69,20 @@ export const peekEngine = (): Engine | null => raw;
 /** One load per app run: screens mount and unmount, the weights stay resident until idle unload or the guard drops them. */
 export function loadSession(nCtx = caps.nCtx): Promise<Session> {
   if (!session) {
-    const { engine, model } = getRaw();
+    const engine = getRaw();
     const vault = getVault();
     setState("loading");
-    /* A crash inside load() leaves the "loading" mark on disk, which quarantines the file at next boot (§10.1 #8). */
-    vault.markLoading(model.id, true);
     /* Never start a load while the previous weights are still being released. */
     const started = Date.now();
+    let model = engine.model;
     session = (unloading ?? Promise.resolve())
-      .then(() => engine.load(model, { nCtx, threads: caps.threads ?? undefined, gpuLayers: caps.gpuLayers ?? undefined }))
+      .then(() => {
+        /* Read after the release: a guard switch that unloaded the old weights has named the next model by then. */
+        model = engine.model;
+        /* A crash inside load() leaves the "loading" mark on disk, which quarantines the file at next boot (§10.1 #8). */
+        vault.markLoading(model.id, true);
+        return engine.engine.load(model, { nCtx, threads: caps.threads ?? undefined, gpuLayers: caps.gpuLayers ?? undefined });
+      })
       .then((s) => {
         lastLoadMs = Date.now() - started;
         vault.markLoading(model.id, false);
@@ -189,17 +194,59 @@ export function registerModelResolver(r: (tier: Tier) => ModelRef | null): void 
 }
 
 /** Switches between answers, never mid-answer (spec §6.5). Resolves false when no model of that tier is available; `load` false leaves the new model for the next message. */
-export async function switchModel(tier: Tier, load = true): Promise<boolean> {
+export function switchModel(tier: Tier, load = true): Promise<boolean> {
+  const done = runSwitch(tier, load);
+  const settled = done.then(
+    () => undefined,
+    () => undefined,
+  );
+  switching = settled;
+  void settled.then(() => {
+    if (switching === settled) switching = null;
+  });
+  return done;
+}
+
+async function runSwitch(tier: Tier, load: boolean): Promise<boolean> {
   const engine = getRaw();
   const ref = resolveModel?.(tier) ?? null;
   if (!ref) return false;
   if (ref.id === engine.model.id) return true;
   await waitIdle();
-  await unloadSession("switch");
+  /* Same tick as the unload: a turn that loads while the old weights are released must get the new model, not the old one without its projector (round 134J). */
+  const released = unloadSession("switch");
   engine.model = ref;
   sessionOverride = true;
+  for (const l of stateListeners) l(state);
+  await released;
   if (load) await loadSession();
   return true;
+}
+
+let switching: Promise<void> | null = null;
+
+/** The model the next answer runs on, once a switch the guard started has named it. */
+export async function settledModelId(): Promise<string> {
+  while (switching) await switching;
+  return getRaw().model.id;
+}
+
+/** The model the engine runs, a guard switch included; null before a screen created the engine. */
+export const engineModelId = (): string | null => raw?.model.id ?? null;
+
+/** The model whose weights answer right now; null while nothing is loaded. */
+export const getLoadedModelId = (): string | null => live?.model.id ?? null;
+
+let carriedOver = false;
+
+/** The chat sends a turn again because a guard switch moved it to another model; its answer belongs to the switch. */
+export const noteCarriedOver = (): void => void (carriedOver = true);
+
+/** Whether the answer that just finished was such a turn; reading clears it. */
+export function consumeCarriedOver(): boolean {
+  const was = carriedOver;
+  carriedOver = false;
+  return was;
 }
 
 export interface BenchmarkRun {
@@ -273,7 +320,14 @@ function guard(): Engine {
         throw e;
       }
       const release = turn;
-      const s = await loadSession();
+      let s: Session;
+      try {
+        s = await loadSession();
+        messages = await withProjector(s, messages);
+      } catch (e: unknown) {
+        release();
+        throw e;
+      }
       const ac = new AbortController();
       const onAbort = () => ac.abort();
       if (signal.aborted) ac.abort();
@@ -313,20 +367,64 @@ function guard(): Engine {
   };
 }
 
+type Seeing = LocalLM & { enableVision?: (path: string) => Promise<boolean> };
+
 /** Attaches the vision projector (spec §6.2) to the resident model; false when the engine or model cannot see. */
 export async function enableVision(mmprojPath: string): Promise<boolean> {
-  await loadSession();
-  const lm = getRaw().engine as LocalLM & { enableVision?: (path: string) => Promise<boolean> };
+  /* On the context's turn: a memory warning during the 668 MB load must not release the weights under it. */
+  const turn = await inference.acquire();
+  try {
+    return await attach(await loadSession(), mmprojPath);
+  } finally {
+    turn();
+  }
+}
+
+async function attach(s: Session, mmprojPath: string): Promise<boolean> {
+  const lm = getRaw().engine as Seeing;
   const on = lm.enableVision ? await lm.enableVision(mmprojPath) : false;
-  if (on) visionEased = false;
+  /* The guard unloaded these weights while the projector loaded: it is attached to nothing. */
+  if (live !== s) return false;
+  if (on) setVisionEased(false);
   return on;
 }
 
+let resolveProjector: ((modelId: string) => string | null) | null = null;
+
+/** Where the projector of a model is on disk, so a turn whose model changed under it attaches that model's own pack. */
+export function registerVisionResolver(r: (modelId: string) => string | null): void {
+  resolveProjector = r;
+}
+
+/**
+ * A picture never goes out blind (round 134J): an engine without its projector drops the image and the model answers
+ * from the text around it. A new picture gets the projector of the model that answers; older pictures stay out while
+ * the guard has eased memory, as round 134E decided.
+ */
+async function withProjector(s: Session, messages: Message[]): Promise<Message[]> {
+  if (!messages.some((m) => m.images?.length) || getRaw().engine.capabilities().vision) return messages;
+  const last = [...messages].reverse().find((m) => m.role === "user");
+  if (!last?.images?.length && visionEased) return messages.map(({ images: _drop, ...rest }) => rest);
+  const path = resolveProjector?.(s.model.id) ?? null;
+  if (path && (await attach(s, path))) return messages;
+  throw new Error("vision-unavailable");
+}
+
 let visionEased = false;
+const visionListeners = new Set<() => void>();
+const setVisionEased = (v: boolean) => {
+  if (v === visionEased) return;
+  visionEased = v;
+  for (const l of visionListeners) l();
+};
 
 /** True while the guard has dropped the projector to free memory; text turns then leave older pictures out instead of loading it again. */
 export const isVisionEased = (): boolean => visionEased;
-export const clearVisionEased = (): void => void (visionEased = false);
+export const clearVisionEased = (): void => setVisionEased(false);
+export function subscribeVisionEased(l: () => void): () => void {
+  visionListeners.add(l);
+  return () => void visionListeners.delete(l);
+}
 
 /** Frees the projector and its compute buffers and keeps the model; false when none was attached. */
 export async function releaseVision(): Promise<boolean> {
@@ -336,7 +434,7 @@ export async function releaseVision(): Promise<boolean> {
   const turn = await inference.acquire();
   try {
     const freed = await lm.releaseVision();
-    if (freed) visionEased = true;
+    if (freed) setVisionEased(true);
     return freed;
   } finally {
     turn();
@@ -348,5 +446,5 @@ export async function resetEngine(): Promise<void> {
   await unloadSession("switch").catch((e: unknown) => console.warn("[inborn] unload", e));
   raw = null;
   sessionOverride = false;
-  visionEased = false;
+  setVisionEased(false);
 }
