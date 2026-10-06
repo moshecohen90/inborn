@@ -1,0 +1,1505 @@
+{
+  "runId": "a2-follow-ups-muwqox4m",
+  "startedAt": "2026-10-06T13:53:51.300Z",
+  "finishedAt": "2026-10-06T13:56:55.899Z",
+  "ok": true,
+  "passed": 60,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 1,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 161,
+      "detail": "attach: constitution-9pages.pdf"
+    },
+    {
+      "i": 2,
+      "op": "sleep",
+      "ok": true,
+      "ms": 30002,
+      "detail": "30000 ms"
+    },
+    {
+      "i": 3,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 634,
+      "detail": "01-attached"
+    },
+    {
+      "i": 4,
+      "op": "type",
+      "ok": true,
+      "ms": 166,
+      "detail": "composer-input = 12 chars"
+    },
+    {
+      "i": 5,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5001,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 7,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 8,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 97331,
+      "detail": "stop gone"
+    },
+    {
+      "i": 9,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3014,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 11,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "none-matched gone"
+    },
+    {
+      "i": 12,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1905,
+      "detail": "02-summary"
+    },
+    {
+      "i": 13,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI The U.S. Constitution consists of five main sections covering the legislative branch, executive power (including taxation and war), and judicial authority, detailing specific powers for Congress to enact laws, establish federal agencies, and create tribunals, while restricting states' ability to tax without congressional consent and requiring new states to be admitted by both houses with state approval. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better. SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The U.S. Constitution consists of five main sections covering the legislative branch, executive power (including taxation and war), and judicial authority, detailing specific powers for Congress to enact laws, establish federal agencies, and create tribunals, while restricting states' ability to tax without congressional consent and requiring new states to be admitted by both houses with state approval. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "model-advice",
+          "text": "FAST is better at documents than INSTANT. SHARP is the best here for Documents · 2.74 GB PRO Install FAST · 1.28 GB Not now"
+        },
+        {
+          "testID": "model-advice-reason",
+          "text": "FAST is better at documents than INSTANT."
+        },
+        {
+          "testID": "model-advice-best",
+          "text": "SHARP is the best here for Documents · 2.74 GB PRO",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-best-pro",
+          "text": "PRO"
+        },
+        {
+          "testID": "model-advice-install",
+          "text": "Install FAST · 1.28 GB",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-not-now",
+          "text": "Not now",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muwqp0ym-1-i4xzzl4c",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "02-summary"
+    },
+    {
+      "i": 14,
+      "op": "type",
+      "ok": true,
+      "ms": 160,
+      "detail": "composer-input = 7 chars"
+    },
+    {
+      "i": 15,
+      "op": "send",
+      "ok": true,
+      "ms": 164,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5017,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 17,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 18,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 766,
+      "detail": "stop gone"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3015,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 20,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 21,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "none-matched gone"
+    },
+    {
+      "i": 22,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1274,
+      "detail": "03-shorter"
+    },
+    {
+      "i": 23,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI The U.S. Constitution consists of five main sections covering the legislative branch, executive power (including taxation and war), and judicial authority, detailing specific powers for Congress to enact laws, establish federal agencies, and create tribunals, while restricting states' ability to tax without congressional consent and requiring new states to be admitted by both houses with state approval. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better. SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The U.S. Constitution consists of five main sections covering the legislative branch, executive power (including taxation and war), and judicial authority, detailing specific powers for Congress to enact laws, establish federal agencies, and create tribunals, while restricting states' ability to tax without congressional consent and requiring new states to be admitted by both houses with state approval. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muwqp0ym-1-i4xzzl4c",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "03-shorter"
+    },
+    {
+      "i": 24,
+      "op": "type",
+      "ok": true,
+      "ms": 159,
+      "detail": "composer-input = 12 chars"
+    },
+    {
+      "i": 25,
+      "op": "send",
+      "ok": true,
+      "ms": 164,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 26,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5001,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 27,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 28,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "stop gone"
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3014,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 30,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 31,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "none-matched gone"
+    },
+    {
+      "i": 32,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1907,
+      "detail": "04-translate"
+    },
+    {
+      "i": 33,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI The U.S. Constitution consists of five main sections covering the legislative branch, executive power (including taxation and war), and judicial authority, detailing specific powers for Congress to enact laws, establish federal agencies, and create tribunals, while restricting states' ability to tax without congressional consent and requiring new states to be admitted by both houses with state approval. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better. SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The U.S. Constitution consists of five main sections covering the legislative branch, executive power (including taxation and war), and judicial authority, detailing specific powers for Congress to enact laws, establish federal agencies, and create tribunals, while restricting states' ability to tax without congressional consent and requiring new states to be admitted by both houses with state approval. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muwqp0ym-1-i4xzzl4c",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "04-translate"
+    },
+    {
+      "i": 34,
+      "op": "type",
+      "ok": true,
+      "ms": 157,
+      "detail": "composer-input = 7 chars"
+    },
+    {
+      "i": 35,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 36,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5002,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 37,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 38,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "stop gone"
+    },
+    {
+      "i": 39,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3002,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 40,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 41,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "none-matched gone"
+    },
+    {
+      "i": 42,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 650,
+      "detail": "05-and-now"
+    },
+    {
+      "i": 43,
+      "op": "dump",
+      "ok": true,
+      "ms": 0,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI The U.S. Constitution consists of five main sections covering the legislative branch, executive power (including taxation and war), and judicial authority, detailing specific powers for Congress to enact laws, establish federal agencies, and create tribunals, while restricting states' ability to tax without congressional consent and requiring new states to be admitted by both houses with state approval. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better. SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The U.S. Constitution consists of five main sections covering the legislative branch, executive power (including taxation and war), and judicial authority, detailing specific powers for Congress to enact laws, establish federal agencies, and create tribunals, while restricting states' ability to tax without congressional consent and requiring new states to be admitted by both houses with state approval. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muwqp0ym-1-i4xzzl4c",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "05-and-now"
+    },
+    {
+      "i": 44,
+      "op": "type",
+      "ok": true,
+      "ms": 160,
+      "detail": "composer-input = 9 chars"
+    },
+    {
+      "i": 45,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 46,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5017,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 47,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 48,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3967,
+      "detail": "stop gone"
+    },
+    {
+      "i": 49,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3018,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 50,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 51,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "none-matched gone"
+    },
+    {
+      "i": 52,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 952,
+      "detail": "06-thanks"
+    },
+    {
+      "i": 53,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI The U.S. Constitution consists of five main sections covering the legislative branch, executive power (including taxation and war), and judicial authority, detailing specific powers for Congress to enact laws, establish federal agencies, and create tribunals, while restricting states' ability to tax without congressional consent and requiring new states to be admitted by both houses with state approval. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better. SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The U.S. Constitution consists of five main sections covering the legislative branch, executive power (including taxation and war), and judicial authority, detailing specific powers for Congress to enact laws, establish federal agencies, and create tribunals, while restricting states' ability to tax without congressional consent and requiring new states to be admitted by both houses with state approval. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muwqp0ym-1-i4xzzl4c",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "06-thanks"
+    },
+    {
+      "i": 54,
+      "op": "type",
+      "ok": true,
+      "ms": 160,
+      "detail": "composer-input = 31 chars"
+    },
+    {
+      "i": 55,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 56,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "docs-hold appeared"
+    },
+    {
+      "i": 57,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2015,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 58,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 958,
+      "detail": "07-question-held"
+    },
+    {
+      "i": 59,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI The U.S. Constitution consists of five main sections covering the legislative branch, executive power (including taxation and war), and judicial authority, detailing specific powers for Congress to enact laws, establish federal agencies, and create tribunals, while restricting states' ability to tax without congressional consent and requiring new states to be admitted by both houses with state approval. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better. SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The U.S. Constitution consists of five main sections covering the legislative branch, executive power (including taxation and war), and judicial authority, detailing specific powers for Congress to enact laws, establish federal agencies, and create tribunals, while restricting states' ability to tax without congressional consent and requiring new states to be admitted by both houses with state approval. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "docs-hold",
+          "text": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched. Download · 468 MB Send, exact words only Cancel"
+        },
+        {
+          "testID": "docs-hold-body",
+          "text": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched."
+        },
+        {
+          "testID": "docs-hold-download",
+          "text": "Download · 468 MB",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "docs-hold-words",
+          "text": "Send, exact words only",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "docs-hold-cancel",
+          "text": "Cancel",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muwqp0ym-1-i4xzzl4c",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "redact-bar",
+          "text": "Redact"
+        },
+        {
+          "testID": "redact-open",
+          "text": "Redact",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "What does it say about treason?",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "07-question-held"
+    }
+  ],
+  "errors": []
+}

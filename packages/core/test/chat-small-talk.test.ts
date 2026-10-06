@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ACK_MAX_WORDS, LENGTH_TOKENS, SMALL_TALK_LINE, detectUse, isAcknowledgement, isPlainChatTurn, planAnswerLength, turnSystemPrompt } from "../src/index";
+import { ACK_MAX_WORDS, ANSWER_CEILING, FOLLOW_UP_LINE, LENGTH_TOKENS, SMALL_TALK_LINE, detectUse, isAcknowledgement, isPlainChatTurn, plainChatKind, planAnswerLength, turnSystemPrompt } from "../src/index";
 
 /* Round 133B: thanks, agreement, greetings and goodbyes in the eight launch languages and Hebrew. */
 const ACKS: Record<string, string[]> = {
@@ -96,13 +96,72 @@ describe("detectUse with a file attached (round 133B)", () => {
 });
 
 describe("the reply to thanks (round 133B)", () => {
-  it("one line in the system prompt and the short plan, only for a plain chat turn", () => {
+  it("one line in the system prompt and the short plan, only for an acknowledgement", () => {
     const base = { familySafe: false, tier: "instant" as const, photos: false };
-    expect(turnSystemPrompt({ ...base, smallTalk: true })).toContain(SMALL_TALK_LINE);
+    expect(turnSystemPrompt({ ...base, plainChat: "acknowledgement" })).toContain(SMALL_TALK_LINE);
     expect(turnSystemPrompt(base)).not.toContain(SMALL_TALK_LINE);
-    const plan = planAnswerLength({ text: "thank you", use: "chat", smallTalk: true });
+    const plan = planAnswerLength({ text: "thank you", use: "chat", plainChat: "acknowledgement" });
     expect(plan.length).toBe("short");
     expect(plan.maxTokens).toBe(LENGTH_TOKENS.short);
     expect(planAnswerLength({ text: "write me a long story", use: "writing" }).length).not.toBe("short");
+  });
+});
+
+/* Build 38: "shorter" after a summary got "You're welcome!", "And now" got an offer the model made up. */
+const FOLLOW_UPS: Record<string, string[]> = {
+  en: ["shorter", "longer", "more", "more detail", "simpler", "again", "continue", "go on", "And now", "next", "translate it", "in Hebrew", "in bullet points", "rephrase", "explain again"],
+  ja: ["次は", "もっと短く", "翻訳して", "続けて", "もっと詳しく"],
+  de: ["und jetzt", "kürzer", "weiter", "übersetze es", "länger"],
+  es: ["y ahora", "más corto", "tradúcelo", "sigue", "más largo"],
+  fr: ["et maintenant", "plus court", "traduis-le", "continue", "plus long"],
+  "pt-BR": ["e agora", "mais curto", "traduza", "continua", "mais longo"],
+  ko: ["그리고 이제", "더 짧게", "번역해 줘", "계속", "더 자세히"],
+  "zh-Hant": ["然後呢", "短一點", "翻譯它", "繼續", "長一點"],
+  he: ["ועכשיו", "יותר קצר", "תתרגם", "תמשיך", "תסביר שוב", "בעברית", "עוד"],
+};
+
+describe("plainChatKind (round 134A)", () => {
+  for (const [lang, list] of Object.entries(ACKS))
+    it(`${lang}: thanks, ok, greetings and goodbyes are acknowledgements`, () => {
+      for (const text of list) expect(plainChatKind(text), text).toBe("acknowledgement");
+    });
+  for (const [lang, list] of Object.entries(FOLLOW_UPS))
+    it(`${lang}: a short instruction or continuation is a follow-up, not an acknowledgement`, () => {
+      for (const text of list) expect(plainChatKind(text), text).toBe("follow-up");
+    });
+  for (const [lang, list] of Object.entries(FILE_ROUTE))
+    it(`${lang}: the file route is neither`, () => {
+      for (const text of list) expect(plainChatKind(text), text).toBeNull();
+    });
+  it("thanks with an instruction after it stays a file route, as in round 133B", () => {
+    for (const text of ["thanks, now shorter", "thanks, now translate it", "תודה, עכשיו תסכם"]) expect(plainChatKind(text), text).toBeNull();
+  });
+  it("isPlainChatTurn is either kind", () => {
+    for (const text of ["shorter", "thank you", "And now", "What does it say about treason?"]) expect(isPlainChatTurn(text), text).toBe(plainChatKind(text) !== null);
+  });
+});
+
+describe("the reply to a follow-up (round 134A)", () => {
+  const base = { familySafe: false, tier: "instant" as const, photos: false };
+  it("its own line: apply it to the previous answer, ask when unclear, never the thanks line", () => {
+    const system = turnSystemPrompt({ ...base, plainChat: "follow-up" });
+    expect(system).toContain(FOLLOW_UP_LINE);
+    expect(system).not.toContain(SMALL_TALK_LINE);
+    expect(turnSystemPrompt({ ...base, plainChat: "acknowledgement" })).not.toContain(FOLLOW_UP_LINE);
+    expect(turnSystemPrompt(base)).not.toContain(FOLLOW_UP_LINE);
+    expect(FOLLOW_UP_LINE).toMatch(/previous answer/);
+    expect(FOLLOW_UP_LINE).toMatch(/ask in one short sentence/);
+  });
+  it("never the short plan: a translation or 'longer' is as long as the answer it reworks", () => {
+    for (const text of ["longer", "translate it", "more detail", "And now", "shorter", "בעברית"]) {
+      const plan = planAnswerLength({ text, use: detectUse({ text, hasDocuments: true }), plainChat: "follow-up" });
+      expect(plan.length, text).toBe("long");
+      expect(plan.maxTokens, text).toBe(ANSWER_CEILING);
+    }
+    expect(planAnswerLength({ text: "longer", use: "chat" }).length).toBe("short");
+  });
+  it("a length the user names still wins", () => {
+    expect(planAnswerLength({ text: "in one sentence", use: "chat", plainChat: "follow-up" }).maxTokens).toBeLessThan(ANSWER_CEILING);
+    expect(planAnswerLength({ text: "shorter, briefly", use: "chat", plainChat: "follow-up" }).length).toBe("short");
   });
 });

@@ -1,0 +1,290 @@
+{
+  "runId": "a2-follow-ups",
+  "_": "Instant, no index model, the 9-page Constitution attached: 'Summarize it', then 'shorter', 'translate it', 'And now' and 'thank you' each answered by the model with no card, no 'none matched' line; 'What does it say about treason?' is held for the 468 MB index model as before. The shell copies the fixture into Documents first.",
+  "steps": [
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 120000
+    },
+    {
+      "op": "devPrompt",
+      "lines": [
+        "attach: constitution-9pages.pdf"
+      ]
+    },
+    {
+      "op": "sleep",
+      "ms": 30000
+    },
+    {
+      "op": "screenshot",
+      "name": "01-attached"
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "Summarize it"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "sleep",
+      "ms": 5000
+    },
+    {
+      "op": "waitFor",
+      "testID": "docs-hold",
+      "gone": true,
+      "timeoutMs": 1000
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 900000
+    },
+    {
+      "op": "sleep",
+      "ms": 3000
+    },
+    {
+      "op": "waitFor",
+      "testID": "docs-hold",
+      "gone": true,
+      "timeoutMs": 1000
+    },
+    {
+      "op": "waitFor",
+      "testID": "none-matched",
+      "gone": true,
+      "timeoutMs": 1000
+    },
+    {
+      "op": "screenshot",
+      "name": "02-summary"
+    },
+    {
+      "op": "dump",
+      "name": "02-summary"
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "shorter"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "sleep",
+      "ms": 5000
+    },
+    {
+      "op": "waitFor",
+      "testID": "docs-hold",
+      "gone": true,
+      "timeoutMs": 1000
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 300000
+    },
+    {
+      "op": "sleep",
+      "ms": 3000
+    },
+    {
+      "op": "waitFor",
+      "testID": "docs-hold",
+      "gone": true,
+      "timeoutMs": 1000
+    },
+    {
+      "op": "waitFor",
+      "testID": "none-matched",
+      "gone": true,
+      "timeoutMs": 1000
+    },
+    {
+      "op": "screenshot",
+      "name": "03-shorter"
+    },
+    {
+      "op": "dump",
+      "name": "03-shorter"
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "translate it"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "sleep",
+      "ms": 5000
+    },
+    {
+      "op": "waitFor",
+      "testID": "docs-hold",
+      "gone": true,
+      "timeoutMs": 1000
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 300000
+    },
+    {
+      "op": "sleep",
+      "ms": 3000
+    },
+    {
+      "op": "waitFor",
+      "testID": "docs-hold",
+      "gone": true,
+      "timeoutMs": 1000
+    },
+    {
+      "op": "waitFor",
+      "testID": "none-matched",
+      "gone": true,
+      "timeoutMs": 1000
+    },
+    {
+      "op": "screenshot",
+      "name": "04-translate"
+    },
+    {
+      "op": "dump",
+      "name": "04-translate"
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "And now"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "sleep",
+      "ms": 5000
+    },
+    {
+      "op": "waitFor",
+      "testID": "docs-hold",
+      "gone": true,
+      "timeoutMs": 1000
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 300000
+    },
+    {
+      "op": "sleep",
+      "ms": 3000
+    },
+    {
+      "op": "waitFor",
+      "testID": "docs-hold",
+      "gone": true,
+      "timeoutMs": 1000
+    },
+    {
+      "op": "waitFor",
+      "testID": "none-matched",
+      "gone": true,
+      "timeoutMs": 1000
+    },
+    {
+      "op": "screenshot",
+      "name": "05-and-now"
+    },
+    {
+      "op": "dump",
+      "name": "05-and-now"
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "thank you"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "sleep",
+      "ms": 5000
+    },
+    {
+      "op": "waitFor",
+      "testID": "docs-hold",
+      "gone": true,
+      "timeoutMs": 1000
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 300000
+    },
+    {
+      "op": "sleep",
+      "ms": 3000
+    },
+    {
+      "op": "waitFor",
+      "testID": "docs-hold",
+      "gone": true,
+      "timeoutMs": 1000
+    },
+    {
+      "op": "waitFor",
+      "testID": "none-matched",
+      "gone": true,
+      "timeoutMs": 1000
+    },
+    {
+      "op": "screenshot",
+      "name": "06-thanks"
+    },
+    {
+      "op": "dump",
+      "name": "06-thanks"
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "What does it say about treason?"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "waitFor",
+      "testID": "docs-hold",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "07-question-held"
+    },
+    {
+      "op": "dump",
+      "name": "07-question-held"
+    }
+  ]
+}

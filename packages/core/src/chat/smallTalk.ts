@@ -107,21 +107,27 @@ const wordCount = (folded: string): number => {
   return (rest ? rest.split(/\s+/u).length : 0) + Math.ceil(cjk / 3);
 };
 
+/* Round 134A: "shorter" after a summary got "You're welcome!" while it shared the thanks' reply line and short plan. */
+export type PlainChatKind = "acknowledgement" | "follow-up";
+
 /**
- * True for a turn the chat answers from the conversation with files attached: a thanks or a greeting
- * (`isAcknowledgement`), or a follow-up of a few words that only asks to go on ("And now", "shorter", "translate it"),
- * with no question mark, no digit and no file word.
+ * What kind of turn the chat answers from the conversation with files attached: a thanks or a greeting
+ * (`isAcknowledgement`), or a follow-up of a few words about the previous answer ("And now", "shorter", "translate it"),
+ * with no question mark, no digit and no file word. Null keeps the file route.
  */
-export function isPlainChatTurn(text: string): boolean {
-  if (isAcknowledgement(text)) return true;
-  if (/[?？\p{N}]/u.test(text)) return false;
+export function plainChatKind(text: string): PlainChatKind | null {
+  if (isAcknowledgement(text)) return "acknowledgement";
+  if (/[?？\p{N}]/u.test(text)) return null;
   const folded = text.normalize("NFKC").toLowerCase().replace(/[’`]/gu, "'").trim();
-  if (!folded || FILE_WORD.test(folded) || CONTENT_ASK.test(folded)) return false;
-  if (fileAsk(text) === "summary") return false;
+  if (!folded || FILE_WORD.test(folded) || CONTENT_ASK.test(folded)) return null;
+  if (fileAsk(text) === "summary") return null;
   const bare = folded.replace(/[^\p{L}\p{N}\s']+/gu, " ").replace(/\s+/gu, " ").trim();
   const words = wordCount(bare);
-  return words > 0 && words <= FOLLOW_UP_MAX_WORDS && FOLLOW_UP.test(bare);
+  return words > 0 && words <= FOLLOW_UP_MAX_WORDS && FOLLOW_UP.test(bare) ? "follow-up" : null;
 }
+
+/** True for either kind of plain chat turn: neither one searches the attached files. */
+export const isPlainChatTurn = (text: string): boolean => plainChatKind(text) !== null;
 
 /** True for a message that only thanks, agrees, greets or says goodbye, in the eight launch languages and Hebrew. */
 export function isAcknowledgement(text: string): boolean {

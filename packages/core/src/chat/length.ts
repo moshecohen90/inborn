@@ -1,4 +1,5 @@
 import type { UseCase } from "../catalog/types";
+import type { PlainChatKind } from "./smallTalk";
 
 /**
  * How long an answer should be (§10.5 #39, F38). A 0.8B model asked "What is 2 plus 2?" will happily spend its whole
@@ -173,8 +174,8 @@ export interface LengthSignals {
   continuing?: boolean;
   /** The cap the device guard allows right now; the plan never asks for more. */
   ceiling?: number;
-  /** Small talk or a short follow-up about the conversation (`isPlainChatTurn`): a sentence or two answers it. */
-  smallTalk?: boolean;
+  /** A thanks or a greeting is answered in a sentence or two; a follow-up reworks the previous answer (`plainChatKind`). */
+  plainChat?: PlainChatKind | null;
 }
 
 export interface AnswerLengthPlan {
@@ -204,10 +205,15 @@ export function planAnswerLength(s: LengthSignals): AnswerLengthPlan {
     length = "long";
     tokens = ANSWER_CEILING;
     instruction = LENGTH_INSTRUCTIONS.long;
-  } else if (explicit?.kind === "short" || s.smallTalk) {
+  } else if (explicit?.kind === "short" || s.plainChat === "acknowledgement") {
     length = "short";
     tokens = LENGTH_TOKENS.short;
     instruction = LENGTH_INSTRUCTIONS.short;
+  } else if (s.plainChat === "follow-up") {
+    /* "longer" or "translate it" is as long as the answer it reworks; the counting rule below would clip its one word to three sentences. */
+    length = "long";
+    tokens = ANSWER_CEILING;
+    instruction = LENGTH_INSTRUCTIONS.long;
   } else if (!s.spoken && isRewriteAsk(s.text)) {
     /* A rewrite is one text the size of the user's own; under the long plan the models answered with menus of versions. */
     length = "moderate";
