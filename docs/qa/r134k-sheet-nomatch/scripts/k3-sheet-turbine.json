@@ -1,0 +1,122 @@
+{
+  "runId": "k3-sheet-turbine",
+  "_": "Documents \u2192 the turbine report \u2192 Ask: three questions with no passage get the opener at once. DOCID_T from k2's dump.",
+  "steps": [
+    {
+      "op": "deeplink",
+      "url": "/documents"
+    },
+    {
+      "op": "waitFor",
+      "testID": "doc-select-DOCID_T",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "sleep",
+      "ms": 5000
+    },
+    {
+      "op": "press",
+      "testID": "doc-select-DOCID_T"
+    },
+    {
+      "op": "press",
+      "testID": "documents-ask-selected"
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-sheet",
+      "timeoutMs": 20000
+    },
+    {
+      "op": "type",
+      "testID": "ask-input",
+      "text": "Who won the 1998 World Cup?"
+    },
+    {
+      "op": "press",
+      "testID": "ask-send"
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-not-found",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "03a-who-won-the-1998-world-cup"
+    },
+    {
+      "op": "dump",
+      "name": "03a-who-won-the-1998-world-cup"
+    },
+    {
+      "op": "type",
+      "testID": "ask-input",
+      "text": "What does it say about the moon?"
+    },
+    {
+      "op": "press",
+      "testID": "ask-send"
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-not-found",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "03b-what-does-it-say-about-the-m"
+    },
+    {
+      "op": "dump",
+      "name": "03b-what-does-it-say-about-the-m"
+    },
+    {
+      "op": "type",
+      "testID": "ask-input",
+      "text": "Who wrote this report?"
+    },
+    {
+      "op": "press",
+      "testID": "ask-send"
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-not-found",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "03c-who-wrote-this-report"
+    },
+    {
+      "op": "dump",
+      "name": "03c-who-wrote-this-report"
+    }
+  ]
+}

@@ -1,0 +1,158 @@
+{
+  "runId": "k4-sheet-constitution",
+  "_": "Documents \u2192 the constitution \u2192 Ask: three no-passage questions get the opener; the veto question still searches and answers with chips. DOCID_C from k2's dump.",
+  "steps": [
+    {
+      "op": "deeplink",
+      "url": "/documents"
+    },
+    {
+      "op": "waitFor",
+      "testID": "doc-select-DOCID_C",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "sleep",
+      "ms": 5000
+    },
+    {
+      "op": "press",
+      "testID": "doc-select-DOCID_C"
+    },
+    {
+      "op": "press",
+      "testID": "documents-ask-selected"
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-sheet",
+      "timeoutMs": 20000
+    },
+    {
+      "op": "type",
+      "testID": "ask-input",
+      "text": "Who won the 1998 World Cup?"
+    },
+    {
+      "op": "press",
+      "testID": "ask-send"
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-not-found",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "04a-who-won-the-1998-world-cup"
+    },
+    {
+      "op": "dump",
+      "name": "04a-who-won-the-1998-world-cup"
+    },
+    {
+      "op": "type",
+      "testID": "ask-input",
+      "text": "What does it say about the moon?"
+    },
+    {
+      "op": "press",
+      "testID": "ask-send"
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-not-found",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "04b-what-does-it-say-about-the-m"
+    },
+    {
+      "op": "dump",
+      "name": "04b-what-does-it-say-about-the-m"
+    },
+    {
+      "op": "type",
+      "testID": "ask-input",
+      "text": "Who wrote this report?"
+    },
+    {
+      "op": "press",
+      "testID": "ask-send"
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-not-found",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "04c-who-wrote-this-report"
+    },
+    {
+      "op": "dump",
+      "name": "04c-who-wrote-this-report"
+    },
+    {
+      "op": "type",
+      "testID": "ask-input",
+      "text": "Who can veto a bill?"
+    },
+    {
+      "op": "press",
+      "testID": "ask-send"
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-answer",
+      "timeoutMs": 120000
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-stop",
+      "gone": true,
+      "timeoutMs": 600000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "04d-who-can-veto-a-bill"
+    },
+    {
+      "op": "dump",
+      "name": "04d-who-can-veto-a-bill"
+    }
+  ]
+}

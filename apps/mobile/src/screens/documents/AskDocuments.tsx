@@ -15,7 +15,7 @@ import { Toggle } from "../../components/shell/primitives";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useKeyboardLift } from "../../lib/keyboard";
 import { useOpenSheet } from "../../lib/openSheets";
-import { askSheetRoute, askStatsLine, noPassageOpeners, readingPagesLine, saysNoneMatched, sheetPlainLine, summaryScope } from "../../lib/docsGate";
+import { askSheetRoute, askStatsLine, noPassageOpeners, readingPagesLine, saysNoneMatched, sheetNotFoundLine, sheetPlainLine, summaryScope } from "../../lib/docsGate";
 import { useEntitlement } from "../../licence";
 import { ProTag } from "../../components/chat/Sheet";
 import { reindexNotice, type AnsweredMidReindex } from "../../lib/reindexNotice";
@@ -67,7 +67,7 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult, str
   const [phase, setPhase] = useState<Phase>({ kind: "idle" });
   const [answer, setAnswer] = useState("");
   const [citations, setCitations] = useState<{ shown: Citation[]; cited: boolean }>({ shown: [], cited: true });
-  const [notFound, setNotFound] = useState(false);
+  const [notFound, setNotFound] = useState<string | null>(null);
   const [noneMatched, setNoneMatched] = useState(false);
   const [wordsOnly, setWordsOnly] = useState(false);
   const [reindexing, setReindexing] = useState<AnsweredMidReindex | null>(null);
@@ -108,7 +108,7 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult, str
     if (!text || phase.kind === "retrieving" || phase.kind === "answering") return;
     setAnswer("");
     setCitations({ shown: [], cited: true });
-    setNotFound(false);
+    setNotFound(null);
     setNoneMatched(false);
     setWordsOnly(false);
     setReindexing(null);
@@ -145,12 +145,13 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult, str
       const used = scope
         ? scope.sections.flatMap((sec) => Array.from({ length: sec.to - sec.from + 1 }, (_, i) => ({ doc: library.document(sec.docId)?.name ?? sec.docId, page: sec.from + i, cosine: 0, bm25: 0 })))
         : prompt.used.map((h) => ({ doc: library.document(h.chunk.docId)?.name ?? h.chunk.docId, page: h.chunk.page, cosine: Number(h.cosine.toFixed(3)), bm25: Number(h.bm25.toFixed(2)) }));
-      const route = askSheetRoute({ noAnswer: prompt.noAnswer });
+      const route = scope ? "answer" : askSheetRoute({ noAnswer: prompt.noAnswer, usedPassages: prompt.used.length });
       if (route === "not-found") {
-        setNotFound(true);
+        const line = sheetNotFoundLine(t, prompt.droppedForBudget);
+        setNotFound(line);
         setPhase({ kind: "done" });
         setStats(t("documents.ask.retrieved", { ms: retrieveMs, count: 0 }));
-        onResult?.({ question: text, answer: "", citations: [], cited: false, notFound: true, retrieveMs, promptTokens: 0, generateMs: 0, tokPerSec: 0, used });
+        onResult?.({ question: text, answer: line, citations: [], cited: false, notFound: true, retrieveMs, promptTokens: 0, generateMs: 0, tokPerSec: 0, used: [] });
         return;
       }
       setPhase({ kind: "answering" });
@@ -176,7 +177,7 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult, str
       const isNotFound = !scope && isNotFoundReply(reply);
       const shown = isNotFound ? { shown: [], cited: false } : library.citationsFor(reply, groundedCitations(reply, text, prompt.used, prompt.citations));
       if (scope && reply.trim()) reply = `${reply.trimEnd()}\n\n*${summaryScope(t, scope, model.id === "instant" ? { current: chipLabel(t, model.id), better: chipLabel(t, "fast") } : undefined)}*`;
-      setNotFound(isNotFound);
+      setNotFound(isNotFound ? t("documents.notFound") : null);
       setAnswer(isNotFound ? "" : reply);
       setCitations(shown);
       if (!scope && !isNotFound && saysNoneMatched({ continuing: false, attachedCount: docs.length, usedPassages: shown.shown.length })) setNoneMatched(true);
@@ -241,7 +242,7 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult, str
           {phase.kind === "error" ? <Text style={[styles.body, { color: theme.danger }]}>{t(`documents.error.${phase.error}`, { defaultValue: phase.error })}</Text> : null}
           {notFound ? (
             <Text testID="ask-not-found" style={[styles.body, { color: theme.text }]}>
-              {t("documents.notFound")}
+              {notFound}
             </Text>
           ) : null}
           {plainLine ? (

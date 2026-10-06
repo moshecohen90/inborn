@@ -56,13 +56,14 @@ const refusalFor = (blocked: AttachmentBlock): RefusalKey =>
  * Never on Continue: that turn resumes a partial answer which may have cited the documents in its first half, and it
  * is forced past the gate with no retrieval of its own, so it has no passage count to report.
  */
-/**
- * Documents → Ask takes the chat's door (F416, Moshe 27.9): only strict mode's no-answer skips the model. With no
- * passage kept outside strict mode the question goes on as a general one, under the chat's "Answered without them".
- */
-export function askSheetRoute({ noAnswer }: { noAnswer: boolean }): "not-found" | "answer" {
-  return noAnswer ? "not-found" : "answer";
+/* Round 134K: the sheet is "Ask about N documents" with no history, so with no passage the model has nothing to add in either mode. */
+export function askSheetRoute({ noAnswer, usedPassages }: { noAnswer: boolean; usedPassages: number }): "not-found" | "answer" {
+  return noAnswer || usedPassages === 0 ? "not-found" : "answer";
 }
+
+/** The line the sheet shows instead of a model call when no passage was kept: the opener the model was told to start with. */
+export const sheetNotFoundLine = (t: (key: string) => string, droppedForBudget: number): string =>
+  droppedForBudget > 0 ? t("documents.opener.nothingFits") : t("documents.opener.nothingRelevant");
 
 /** Round 134D: the sheet keeps no history, so a thanks or a follow-up ("And now") gets one plain line instead of a search. */
 export const sheetPlainLine = (t: (key: string) => string, text: string): string | null => {

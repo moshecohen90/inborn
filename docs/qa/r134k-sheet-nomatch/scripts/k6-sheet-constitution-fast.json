@@ -1,0 +1,166 @@
+{
+  "runId": "k6-sheet-constitution-fast",
+  "_": "The shell wrote \"install fast\" (vault opened 120 s) and then \"use fast\" to dev-vault.txt; then k4 again on Fast.",
+  "steps": [
+    {
+      "op": "deeplink",
+      "url": "/vault"
+    },
+    {
+      "op": "sleep",
+      "ms": 10000
+    },
+    {
+      "op": "deeplink",
+      "url": "/documents"
+    },
+    {
+      "op": "waitFor",
+      "testID": "doc-select-DOCID_C",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "sleep",
+      "ms": 5000
+    },
+    {
+      "op": "press",
+      "testID": "doc-select-DOCID_C"
+    },
+    {
+      "op": "press",
+      "testID": "documents-ask-selected"
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-sheet",
+      "timeoutMs": 20000
+    },
+    {
+      "op": "type",
+      "testID": "ask-input",
+      "text": "Who won the 1998 World Cup?"
+    },
+    {
+      "op": "press",
+      "testID": "ask-send"
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-not-found",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "06a-who-won-the-1998-world-cup"
+    },
+    {
+      "op": "dump",
+      "name": "06a-who-won-the-1998-world-cup"
+    },
+    {
+      "op": "type",
+      "testID": "ask-input",
+      "text": "What does it say about the moon?"
+    },
+    {
+      "op": "press",
+      "testID": "ask-send"
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-not-found",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "06b-what-does-it-say-about-the-m"
+    },
+    {
+      "op": "dump",
+      "name": "06b-what-does-it-say-about-the-m"
+    },
+    {
+      "op": "type",
+      "testID": "ask-input",
+      "text": "Who wrote this report?"
+    },
+    {
+      "op": "press",
+      "testID": "ask-send"
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-not-found",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "06c-who-wrote-this-report"
+    },
+    {
+      "op": "dump",
+      "name": "06c-who-wrote-this-report"
+    },
+    {
+      "op": "type",
+      "testID": "ask-input",
+      "text": "Who can veto a bill?"
+    },
+    {
+      "op": "press",
+      "testID": "ask-send"
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-answer",
+      "timeoutMs": 120000
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-stop",
+      "gone": true,
+      "timeoutMs": 600000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "06d-who-can-veto-a-bill"
+    },
+    {
+      "op": "dump",
+      "name": "06d-who-can-veto-a-bill"
+    }
+  ]
+}

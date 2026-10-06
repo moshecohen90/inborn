@@ -40,16 +40,17 @@ describe("F7 · Documents → Ask says what the chat says when nothing matched",
   });
 });
 
-/* F416 (round 108, Moshe 27.9): Ask behaves like the chat: with no passage kept it answers from general knowledge under the chat's notice. */
-describe("F416 · Documents → Ask answers like the chat when nothing matched", () => {
+/* F416 (round 108) let the sheet answer generally with no passage; round 134K stops that: the sheet answers only from passages. */
+describe("F416 · Documents → Ask with no passage shows the opener, not a general answer", () => {
   const ask = src("../screens/documents/AskDocuments.tsx");
-  it("only strict mode's no-answer skips the model", () => {
-    expect(askSheetRoute({ noAnswer: true })).toBe("not-found");
-    expect(askSheetRoute({ noAnswer: false })).toBe("answer");
+  it("strict's no-answer and an empty passage list both skip the model", () => {
+    expect(askSheetRoute({ noAnswer: true, usedPassages: 0 })).toBe("not-found");
+    expect(askSheetRoute({ noAnswer: false, usedPassages: 0 })).toBe("not-found");
+    expect(askSheetRoute({ noAnswer: false, usedPassages: 1 })).toBe("answer");
   });
 
-  it("the sheet asks the model on every non-strict route and shows the chat's notice, not a sheet-only line", () => {
-    expect(ask).toContain("const route = askSheetRoute({ noAnswer: prompt.noAnswer });");
+  it("the not-found branch returns before the model; the chat's notice stays for an answer that cited nothing", () => {
+    expect(ask).toContain('const route = scope ? "answer" : askSheetRoute({ noAnswer: prompt.noAnswer, usedPassages: prompt.used.length });');
     expect(ask).toMatch(/if \(route === "not-found"\) \{[\s\S]{0,900}return;\n {6}\}[\s\S]{0,300}engine\.generate\(/);
     expect(ask).not.toContain("documents.ask.noneMatched");
     expect(ask).toMatch(/testID="ask-none-matched"[\s\S]{0,200}t\("documents\.noneMatched"\)/);
