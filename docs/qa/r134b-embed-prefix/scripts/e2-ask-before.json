@@ -1,0 +1,147 @@
+{
+ "runId": "e2-before",
+ "_": "BEFORE build: the same question twice in one chat with the PDF attached, then once in Documents \u2192 Ask. DOCID is the id from e1's dump.",
+ "steps": [
+  {
+   "op": "setTier",
+   "tier": "pro"
+  },
+  {
+   "op": "deeplink",
+   "url": "/"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 60000
+  },
+  {
+   "op": "devPrompt",
+   "lines": [
+    "attach: constitution-9pages.pdf"
+   ]
+  },
+  {
+   "op": "sleep",
+   "ms": 15000
+  },
+  {
+   "op": "waitFor",
+   "testID": "attached-docs",
+   "timeoutMs": 5000
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "Who can veto a bill?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 600000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "e2-chat-1"
+  },
+  {
+   "op": "dump",
+   "name": "e2-chat-1"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "Who can veto a bill?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 600000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "e2-chat-2"
+  },
+  {
+   "op": "dump",
+   "name": "e2-chat-2"
+  },
+  {
+   "op": "deeplink",
+   "url": "/documents"
+  },
+  {
+   "op": "waitFor",
+   "testID": "doc-select-DOCID",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "press",
+   "testID": "doc-select-DOCID"
+  },
+  {
+   "op": "press",
+   "testID": "documents-ask-selected"
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-sheet",
+   "timeoutMs": 20000
+  },
+  {
+   "op": "type",
+   "testID": "ask-input",
+   "text": "Who can veto a bill?"
+  },
+  {
+   "op": "press",
+   "testID": "ask-send"
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-stop",
+   "gone": true,
+   "timeoutMs": 600000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "e2-sheet"
+  },
+  {
+   "op": "dump",
+   "name": "e2-sheet"
+  }
+ ]
+}

@@ -194,6 +194,8 @@ export class LlamaRnLM implements LocalLM {
     if (!ctx) throw new Error("model not loaded");
     const out: Float32Array[] = [];
     for (const t of texts) {
+      /* embedding() keeps the previous call's tokens and decodes only the part after the shared prefix into an empty cache. */
+      await ctx.clearCache(false);
       const r = await ctx.embedding(t);
       out.push(Float32Array.from(r.embedding));
     }
@@ -225,6 +227,8 @@ export class LlamaRnLM implements LocalLM {
  * Loaded on first use, released by `unload()` (the document library calls it when indexing is idle).
  */
 export class LlamaRnEmbedder implements Embedder {
+  /* 2: vectors stored before r134b were embedded without the previous text's shared prefix, so those indexes are rebuilt. */
+  readonly revision = 2;
   private ctx: Ctx | null = null;
   private loading: Promise<Ctx> | null = null;
   loadMs = 0;
@@ -242,7 +246,8 @@ export class LlamaRnEmbedder implements Embedder {
       const started = Date.now();
       const n = this.contextTokens;
       /* Non-causal (BERT) attention needs the whole sequence in one micro-batch, so n_batch = n_ubatch = n_ctx. */
-      const ctx = await initLlama({ model: this.uri, embedding: true, n_ctx: n, n_batch: n, n_ubatch: n, pooling_type: "mean", embd_normalize: 2, n_gpu_layers: 99, use_mlock: false });
+      const ctx = await initLlama({ model: this.uri, embedding: true, n_ctx: n, n_batch: n, n_ubatch: n, n_parallel: 1, pooling_type: "mean", embd_normalize: 2, n_gpu_layers: 99, use_mlock: false });
+      await ctx.parallel.enable({ n_parallel: 1, n_batch: n });
       this.loadMs = Date.now() - started;
       if (__DEV__) console.log(`[llama.rn] embedder ${this.id} loaded in ${this.loadMs} ms`);
       this.ctx = ctx;
@@ -254,7 +259,11 @@ export class LlamaRnEmbedder implements Embedder {
   async embed(texts: string[]): Promise<Float32Array[]> {
     const ctx = await this.ready();
     const out: Float32Array[] = [];
-    for (const t of texts) out.push(Float32Array.from((await ctx.embedding(t)).embedding));
+    for (const t of texts) {
+      /* Not ctx.embedding(): it decodes only what follows the previous text's shared prefix, and clearCache cannot reset that on a BERT model (no KV memory). */
+      const { promise } = await ctx.parallel.embedding(t);
+      out.push(Float32Array.from((await promise).embedding));
+    }
     return out;
   }
 

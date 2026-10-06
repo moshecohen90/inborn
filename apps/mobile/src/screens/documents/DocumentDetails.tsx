@@ -26,7 +26,7 @@ export function DocumentDetails({ doc, theme, ocrEngine, onClose, onAsk, onDelet
     [t("documents.details.size"), formatBytes(doc.bytes)],
     [t("documents.details.chunks"), String(doc.chunkCount)],
     [t("documents.details.language"), doc.language ? t(`documents.language.${doc.language}`, { defaultValue: doc.language }) : "—"],
-    [t("documents.details.embedModel"), doc.embedModel ?? "—"],
+    [t("documents.details.embedModel"), doc.embedModel?.replace(/@\d+$/, "") ?? "—"], /* the stored value carries the embedder revision ("embed-e5@2"); the user sees the model */
     [t("documents.details.ocrPages"), doc.ocrPages ? `${doc.ocrPages} · ${ocrEngine}` : "0"],
     [t("documents.details.flagged"), String(doc.flaggedLines)],
     [t("documents.details.added"), new Date(doc.addedAt).toLocaleString()],

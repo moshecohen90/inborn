@@ -26,6 +26,9 @@ export function forDocuments(embedderId: string, texts: string[]): string[] {
   return p?.doc ? texts.map((t) => p.doc + t) : texts;
 }
 
+/** The `embedModel` a document indexed by this embedder stores: the catalog id, plus its revision once it has one. */
+export const indexModelOf = (e: Pick<Embedder, "id" | "revision">): string => (e.revision ? `${e.id}@${e.revision}` : e.id);
+
 export function forQuery(embedderId: string, text: string): string {
   return (prefixesFor(embedderId)?.query ?? "") + text;
 }
@@ -88,8 +91,8 @@ export class EmbedLanes {
   readonly index: Embedder;
 
   constructor(private readonly inner: Embedder) {
-    this.query = { id: inner.id, embed: (texts) => this.submit("query", texts) };
-    this.index = { id: inner.id, embed: (texts) => this.submit("index", texts) };
+    this.query = { id: inner.id, revision: inner.revision, embed: (texts) => this.submit("query", texts) };
+    this.index = { id: inner.id, revision: inner.revision, embed: (texts) => this.submit("index", texts) };
   }
 
   private submit(lane: "query" | "index", texts: string[]): Promise<Float32Array[]> {

@@ -4,7 +4,7 @@
  * full disk resumes from the last committed page and never leaves half a page behind.
  */
 import { chunkPage, type ChunkOptions } from "./chunker";
-import { forDocuments } from "./embedder";
+import { forDocuments, indexModelOf } from "./embedder";
 import { countInstructionLines } from "./injection";
 import { LEXICAL_INDEX_ID } from "./overview";
 import { detectScript } from "./tokens";
@@ -31,7 +31,7 @@ export interface IndexOptions {
 export const chunkId = (docId: string, page: number, ord: number): string => `${docId}:${page}:${ord}`;
 
 /** Vectors from another embedder live in another space (and here another dimension), so the document is rebuilt, never cosine-searched. */
-export const needsReindex = (doc: Pick<DocumentRecord, "embedModel" | "indexedPages">, embedderId: string): boolean => doc.indexedPages > 0 && doc.embedModel !== embedderId;
+export const needsReindex = (doc: Pick<DocumentRecord, "embedModel" | "indexedPages">, embedder: Pick<Embedder, "id" | "revision">): boolean => doc.indexedPages > 0 && doc.embedModel !== indexModelOf(embedder);
 
 /**
  * The record to re-queue: `indexDocument` rebuilds it from page 0, replacing one page at a time. The old rows of the pages
@@ -68,7 +68,7 @@ export async function reembedStored(o: { doc: DocumentRecord; store: EmbeddingSt
   await o.store.putChunks(chunks, vectors);
   const doc: DocumentRecord = {
     ...o.doc,
-    embedModel: o.embedder.id,
+    embedModel: indexModelOf(o.embedder),
     chunkCount: chunks.length,
     indexedPages: chunks.reduce((max, c) => Math.max(max, c.page), 0),
     status: chunks.length ? "indexed" : "empty",
@@ -92,7 +92,7 @@ export async function indexDocument(o: IndexOptions): Promise<DocumentRecord> {
   const started = now();
   const batchSize = o.batchSize ?? 8;
   const total = Math.min(o.opened.pages, o.maxPages ?? Infinity);
-  const doc: DocumentRecord = { ...o.doc, pages: o.opened.pages, status: "indexing", embedModel: o.embedder?.id ?? LEXICAL_INDEX_ID };
+  const doc: DocumentRecord = { ...o.doc, pages: o.opened.pages, status: "indexing", embedModel: o.embedder ? indexModelOf(o.embedder) : LEXICAL_INDEX_ID };
   const report = (phase: IndexProgress["phase"]) => o.onProgress?.({ docId: doc.id, phase, page: doc.indexedPages, pages: total, chunks: doc.chunkCount, elapsedMs: now() - started });
   const cancelled = () => o.signal?.aborted === true;
   /* Rows past the committed page are either a page interrupted mid-commit or the old embedder's rows of a rebuild:

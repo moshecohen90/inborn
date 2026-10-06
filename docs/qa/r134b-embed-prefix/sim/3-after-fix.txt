@@ -1,0 +1,45 @@
+# after (parallel slot): 52 vectors · multilingual-e5-large-instruct-Q6_K.gguf · 18747 ms
+same passage twice: cos(1st,2nd)=1.0000   same question twice: cos(1st,2nd)=1.0000
+vs Mac: passage 1st 1.0000 2nd 1.0000 · question 1st 1.0000 2nd 1.0000
+40 different questions, pairwise cosine: phone min 0.6246 mean 0.7519 max 1.0000 · Mac min 0.6275 mean 0.7525 max 1.0000
+phone vs Mac vector, same text (48 texts): min 0.9989 mean 0.9999
+question | kind | fixture (Mac) | Mac now | phone | phone-fixture
+yr-en 'What happened in 1998?' | on | 0.7569 | 0.7571 | 0.7536 | -0.0033
+yr-en 'How large is the warehouse?' | on | 0.8395 | 0.8401 | 0.8401 | +0.0006
+yr-en 'Who won the 1998 World Cup?' | off | 0.7303 | 0.7305 | 0.7306 | +0.0003
+yr-en 'How many calories are in 1200 grams of rice?' | off | 0.7390 | 0.7392 | 0.7392 | +0.0002
+yr-de 'Was geschah 1998?' | on | 0.7919 | 0.7916 | 0.7893 | -0.0026
+yr-de 'Wie groß ist das Lager?' | on | 0.8486 | 0.8484 | 0.8434 | -0.0052
+yr-de 'Wer hat die Weltmeisterschaft 1998 gewonnen?' | off | 0.7723 | 0.7719 | 0.7713 | -0.0010
+yr-de 'Wie viele Kalorien haben 1200 Gramm Reis?' | off | 0.7708 | 0.7705 | 0.7685 | -0.0023
+yr-fr "Que s'est-il passé en 1998 ?" | on | 0.7842 | 0.7842 | 0.7841 | -0.0001
+yr-fr "Quelle est la taille de l'entrepôt ?" | on | 0.8435 | 0.8435 | 0.8433 | -0.0002
+yr-fr 'Qui a gagné la Coupe du monde 1998 ?' | off | 0.7567 | 0.7569 | 0.7568 | +0.0001
+yr-fr 'Combien de calories dans 1200 grammes de riz ?' | off | 0.7643 | 0.7644 | 0.7644 | +0.0001
+yr-es '¿Qué pasó en 1998?' | on | 0.7884 | 0.7881 | 0.7881 | -0.0003
+yr-es '¿Qué tamaño tiene el almacén?' | on | 0.8381 | 0.8379 | 0.8379 | -0.0002
+yr-es '¿Quién ganó el Mundial de 1998?' | off | 0.7529 | 0.7522 | 0.7523 | -0.0006
+yr-es '¿Cuántas calorías tienen 1200 gramos de arroz?' | off | 0.7587 | 0.7584 | 0.7583 | -0.0004
+yr-pt 'O que aconteceu em 1998?' | on | 0.8045 | 0.8049 | 0.7993 | -0.0052
+yr-pt 'Qual é o tamanho do armazém?' | on | 0.8437 | 0.8437 | 0.8410 | -0.0027
+yr-pt 'Quem ganhou a Copa do Mundo de 1998?' | off | 0.7704 | 0.7707 | 0.7675 | -0.0029
+yr-pt 'Quantas calorias têm 1200 gramas de arroz?' | off | 0.7728 | 0.7727 | 0.7714 | -0.0014
+yr-he 'מה קרה ב-1998?' | on | 0.8197 | 0.8199 | 0.8198 | +0.0001
+yr-he 'מה גודל המחסן?' | on | 0.8534 | 0.8536 | 0.8551 | +0.0017
+yr-he 'מי זכה במונדיאל 1998?' | off | 0.8009 | 0.8012 | 0.8011 | +0.0002
+yr-he 'כמה קלוריות יש ב-1200 גרם אורז?' | off | 0.7878 | 0.7881 | 0.7881 | +0.0003
+yr-ko '1998년에 무슨 일이 있었나요?' | on | 0.8173 | 0.8166 | 0.8166 | -0.0007
+yr-ko '창고는 얼마나 넓은가요?' | on | 0.8591 | 0.8586 | 0.8586 | -0.0005
+yr-ko '1998년 월드컵 우승국은 어디인가요?' | off | 0.8042 | 0.8039 | 0.8038 | -0.0004
+yr-ko '쌀 1200그램은 몇 칼로리인가요?' | off | 0.7793 | 0.7787 | 0.7787 | -0.0006
+yr-ja '一九九八年に何がありましたか？' | on | 0.8185 | 0.8185 | 0.8185 | -0.0000
+yr-ja '倉庫の広さはどれくらいですか？' | on | 0.8486 | 0.8488 | 0.8488 | +0.0002
+yr-ja '一九九八年のワールドカップで優勝したのはどこですか？' | off | 0.8075 | 0.8077 | 0.8076 | +0.0001
+yr-ja '千二百グラムの米は何カロリーですか？' | off | 0.7696 | 0.7699 | 0.7698 | +0.0002
+yr-zh '一九九八年发生了什么？' | on | 0.8232 | 0.8229 | 0.8229 | -0.0003
+yr-zh '仓库有多大？' | on | 0.8568 | 0.8566 | 0.8537 | -0.0031
+yr-zh '一九九八年世界杯足球赛是谁赢的？' | off | 0.7871 | 0.7868 | 0.7868 | -0.0003
+yr-zh '一千二百克米饭有多少卡路里？' | off | 0.7718 | 0.7715 | 0.7715 | -0.0003
+nenji-whole '従業員は全部で何人ですか？' | on | 0.8526 | 0.8532 | 0.8533 | +0.0007
+nenji-whole '一九九八年のワールドカップで優勝したのはどこですか？' | off | 0.7863 | 0.7867 | 0.7866 | +0.0003
+max |phone - fixture| over 38 pairs: 0.0052

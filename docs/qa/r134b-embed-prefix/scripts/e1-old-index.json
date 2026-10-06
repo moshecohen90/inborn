@@ -1,0 +1,115 @@
+{
+ "runId": "e1-old-index",
+ "_": "BEFORE build (main's embedder): the 9-page PDF enters through the chat's file door and is indexed under embedModel embed-e5; the same question is asked twice in that chat.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 60000
+  },
+  {
+   "op": "devPrompt",
+   "lines": [
+    "attach: constitution-9pages.pdf"
+   ]
+  },
+  {
+   "op": "sleep",
+   "ms": 60000
+  },
+  {
+   "op": "deeplink",
+   "url": "/documents"
+  },
+  {
+   "op": "waitFor",
+   "testID": "documents-screen",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "e1-documents"
+  },
+  {
+   "op": "dump",
+   "name": "e1-documents"
+  },
+  {
+   "op": "deeplink",
+   "url": "/"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 60000
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "Who can veto a bill?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 600000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "e1-ask-1"
+  },
+  {
+   "op": "dump",
+   "name": "e1-ask-1"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "Who can veto a bill?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 600000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "e1-ask-2"
+  },
+  {
+   "op": "dump",
+   "name": "e1-ask-2"
+  }
+ ]
+}

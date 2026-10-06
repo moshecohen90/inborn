@@ -1,0 +1,43 @@
+{
+ "runId": "e3-relaunch",
+ "_": "AFTER build installed over the BEFORE data: launch, let the library re-embed the stale index, then read the document details.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/documents"
+  },
+  {
+   "op": "waitFor",
+   "testID": "documents-screen",
+   "timeoutMs": 60000
+  },
+  {
+   "op": "sleep",
+   "ms": 90000
+  },
+  {
+   "op": "screenshot",
+   "name": "e3-documents"
+  },
+  {
+   "op": "dump",
+   "name": "e3-documents"
+  },
+  {
+   "op": "press",
+   "testID": "doc-row-DOCID"
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "screenshot",
+   "name": "e3-details"
+  },
+  {
+   "op": "dump",
+   "name": "e3-details"
+  }
+ ]
+}

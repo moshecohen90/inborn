@@ -12,7 +12,7 @@ export { indexDocument, reembedStored, chunkId, needsReindex, reindexFrom, vecto
 export { isAboutAttachment, openingHits, lexicalEmbedder, LEXICAL_INDEX_ID } from "./overview";
 export { fileAsk, filePages, planWholeFile, readWholeFile, sectionNoteMessages, wholeFilePrompt, wholeFitTokens, SECTION_TOKENS, WHOLE_FILE_TOKENS, NOTE_TOKENS, SUMMARY_RESERVE, type FileAsk, type FilePage, type FileSection, type WholeFilePlan, type PlanOptions, type ReadOptions, type SummaryPromptOptions } from "./wholeFile";
 export { Retriever, DEFAULT_K, DEFAULT_CANDIDATES, type RetrieveOptions } from "./retriever";
-export { EmbedLanes, LocalLMEmbedder, hashEmbedder, hashVector, forDocuments, forQuery, usesNomicPrefixes, NOMIC_DOC_PREFIX, NOMIC_QUERY_PREFIX, E5_QUERY_PREFIX } from "./embedder";
+export { EmbedLanes, LocalLMEmbedder, hashEmbedder, hashVector, forDocuments, forQuery, indexModelOf, usesNomicPrefixes, NOMIC_DOC_PREFIX, NOMIC_QUERY_PREFIX, E5_QUERY_PREFIX } from "./embedder";
 export { MemoryEmbeddingStore, type StoreSnapshot } from "./store";
 export { SplitEmbeddingStore } from "./splitStore";
 export { SqlEmbeddingStore, RAG_SCHEMA_SQL, RAG_SQL, int8ToBase64, base64ToInt8, type SqlDriver, type SqlValue } from "./sql";

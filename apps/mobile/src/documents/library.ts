@@ -223,7 +223,7 @@ export class DocumentLibrary {
       }
       /* Without an index model every index is searched by its words (`ask`), so nothing is rebuilt until one lands. */
       if (!this.embedderRef) continue;
-      const stale = needsReindex(doc, this.embedderRef.embedder.id);
+      const stale = needsReindex(doc, this.embedderRef.embedder);
       /* A rebuild stopped by a kill or the background resumes at its last committed page, not from zero. */
       const unfinished = !stale && !!doc.reindexFrom;
       if (!stale && !unfinished) continue;
