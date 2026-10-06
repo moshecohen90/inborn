@@ -1,0 +1,54 @@
+{
+  "runId": "k2-index-and-import",
+  "_": "'install embed-e5' (written to dev-vault.txt by the shell) read by the vault screen, then the 9-page fixture enters the library through the chat's file door, then the Documents screen.",
+  "steps": [
+    {
+      "op": "deeplink",
+      "url": "/vault"
+    },
+    {
+      "op": "sleep",
+      "ms": 60000
+    },
+    {
+      "op": "deeplink",
+      "url": "/"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "devPrompt",
+      "lines": [
+        "attach: constitution-9pages.pdf"
+      ]
+    },
+    {
+      "op": "sleep",
+      "ms": 45000
+    },
+    {
+      "op": "deeplink",
+      "url": "/documents"
+    },
+    {
+      "op": "waitFor",
+      "testID": "documents-screen",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "sleep",
+      "ms": 3000
+    },
+    {
+      "op": "screenshot",
+      "name": "02-documents"
+    },
+    {
+      "op": "dump",
+      "name": "02-documents"
+    }
+  ]
+}

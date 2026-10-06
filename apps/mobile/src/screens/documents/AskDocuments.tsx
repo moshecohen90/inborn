@@ -4,7 +4,7 @@ import { AppModal } from "../../components/shell/AppModal";
 import { useTranslation } from "react-i18next";
 import { joinList } from "@inborn/i18n";
 import { radius, type Theme } from "@inborn/ui";
-import { isNotFoundReply, groundedCitations, directionOf, planAnswerLength, withoutEchoedLabels, type Citation, type DocumentRecord, type PaywallReason, type Session } from "@inborn/core";
+import { isNotFoundReply, fileAsk, groundedCitations, directionOf, planAnswerLength, withoutEchoedLabels, type Citation, type DocumentRecord, type PaywallReason, type Session, type WholeFilePlan } from "@inborn/core";
 import { getEngine, loadSession } from "../../engine";
 import { chipLabel } from "../../lib/models";
 import { Citations } from "../../documents/Citations";
@@ -15,7 +15,7 @@ import { Toggle } from "../../components/shell/primitives";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useKeyboardLift } from "../../lib/keyboard";
 import { useOpenSheet } from "../../lib/openSheets";
-import { askSheetRoute, askStatsLine, noPassageOpeners, saysNoneMatched } from "../../lib/docsGate";
+import { askSheetRoute, askStatsLine, noPassageOpeners, readingPagesLine, saysNoneMatched, summaryScope } from "../../lib/docsGate";
 import { useEntitlement } from "../../licence";
 import { ProTag } from "../../components/chat/Sheet";
 import { reindexNotice, type AnsweredMidReindex } from "../../lib/reindexNotice";
@@ -73,10 +73,33 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult, str
   const { state: libraryState } = useDocuments();
   const reindexLine = reindexNotice(reindexing, libraryState.documents);
   const [stats, setStats] = useState<string | null>(null);
+  const [readingPages, setReadingPages] = useState<string | null>(null);
   const { can } = useEntitlement();
   const detailed = can("detailedStats");
   const statsLine = askStatsLine(stats, detailed);
   const autoFired = useRef(false);
+
+  /** Round 132: the selected files whole, or section by section with "Reading pages 1–2 of 9…" in the sheet; null once Stop is pressed. */
+  const readWhole = async (s: Session, question: string, docIds: string[], system: string, signal: AbortSignal) => {
+    try {
+      return await library.readWhole(question, {
+        docIds,
+        nCtx: s.nCtx,
+        systemPrompt: system,
+        answerLanguage: i18n.language,
+        citeMarkers: canCiteMarkers(model.id),
+        signal,
+        onSection: (_i, section, plan) => setReadingPages(readingPagesLine(t, section, plan.pagesTotal)),
+        complete: async (wireMessages, maxTokens) => {
+          let out = "";
+          for await (const d of engine.generate(s, wireMessages, { reasoning: false, maxTokens, temperature: 0.3 }, signal)) if (d.text) out += d.text;
+          return out;
+        },
+      });
+    } finally {
+      setReadingPages(null);
+    }
+  };
 
   const ask = async (q: string) => {
     const text = q.trim();
@@ -88,18 +111,30 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult, str
     setWordsOnly(false);
     setReindexing(null);
     setStats(null);
+    setReadingPages(null);
     const ac = new AbortController();
     abort.current = ac;
+    /* Round 132: "summarize this file" reads the files whole, as the chat does; it needs no search, so strict mode has nothing to refuse. */
+    const summary = fileAsk(text) === "summary";
     try {
       setPhase({ kind: "loading" });
       const s = (session.current ??= await loadSession());
       setPhase({ kind: "retrieving" });
       /* F38: a one-line question over documents gets a one-line answer; a wider one keeps room for the passages it must join. */
-      const length = planAnswerLength({ text, use: "documents" });
-      const { prompt, retrieveMs, reindexing: rebuilding, lexical } = await library.ask(text, { docIds: docs.map((d) => d.id), strict: strict && !strictLocked, nCtx: s.nCtx, answerLanguage: i18n.language, citeMarkers: canCiteMarkers(model.id), systemPrompt: length.instruction, openers: noPassageOpeners(t) });
+      const length = planAnswerLength({ text, use: summary ? "summarize" : "documents" });
+      const docIds = docs.map((d) => d.id);
+      const readStarted = Date.now();
+      const whole = summary ? await readWhole(s, text, docIds, length.instruction, ac.signal) : null;
+      if (ac.signal.aborted) return setPhase({ kind: "idle" });
+      const scope: WholeFilePlan | null = whole?.plan ?? null;
+      const { prompt, retrieveMs, reindexing: rebuilding, lexical } = whole
+        ? { prompt: whole.prompt, retrieveMs: Date.now() - readStarted, reindexing: undefined, lexical: false }
+        : await library.ask(text, { docIds, strict: strict && !strictLocked, nCtx: s.nCtx, answerLanguage: i18n.language, citeMarkers: canCiteMarkers(model.id), systemPrompt: length.instruction, openers: noPassageOpeners(t) });
       setReindexing(rebuilding ?? null);
       setWordsOnly(!!lexical);
-      const used = prompt.used.map((h) => ({ doc: library.document(h.chunk.docId)?.name ?? h.chunk.docId, page: h.chunk.page, cosine: Number(h.cosine.toFixed(3)), bm25: Number(h.bm25.toFixed(2)) }));
+      const used = scope
+        ? scope.sections.flatMap((sec) => Array.from({ length: sec.to - sec.from + 1 }, (_, i) => ({ doc: library.document(sec.docId)?.name ?? sec.docId, page: sec.from + i, cosine: 0, bm25: 0 })))
+        : prompt.used.map((h) => ({ doc: library.document(h.chunk.docId)?.name ?? h.chunk.docId, page: h.chunk.page, cosine: Number(h.cosine.toFixed(3)), bm25: Number(h.bm25.toFixed(2)) }));
       const route = askSheetRoute({ noAnswer: prompt.noAnswer });
       if (route === "not-found") {
         setNotFound(true);
@@ -120,18 +155,29 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult, str
         if (d.done) tps = d.done.tokPerSec;
       }
       const generateMs = Date.now() - started;
+      /* A stopped summary is half of one: the sheet goes back to the question, as it does when Stop lands while reading. */
+      if (scope && ac.signal.aborted) {
+        setAnswer("");
+        return setPhase({ kind: "idle" });
+      }
       /* F457: the chips judge the words on screen, so a copied passage header is neither a citation mark nor evidence. */
       reply = withoutEchoedLabels(reply);
-      const isNotFound = isNotFoundReply(reply);
+      const isNotFound = !scope && isNotFoundReply(reply);
       const shown = isNotFound ? { shown: [], cited: false } : library.citationsFor(reply, groundedCitations(reply, text, prompt.used, prompt.citations));
+      if (scope && reply.trim()) reply = `${reply.trimEnd()}\n\n*${summaryScope(t, scope, model.id === "instant" ? { current: chipLabel(t, model.id), better: chipLabel(t, "fast") } : undefined)}*`;
       setNotFound(isNotFound);
       setAnswer(isNotFound ? "" : reply);
       setCitations(shown);
-      if (!isNotFound && saysNoneMatched({ continuing: false, attachedCount: docs.length, usedPassages: shown.shown.length })) setNoneMatched(true);
+      if (!scope && !isNotFound && saysNoneMatched({ continuing: false, attachedCount: docs.length, usedPassages: shown.shown.length })) setNoneMatched(true);
       setPhase({ kind: "done" });
-      setStats(`${t("documents.ask.retrieved", { ms: retrieveMs, count: prompt.used.length })} · ${t("documents.ask.generated", { ms: generateMs, tps: tps.toFixed(1), tokens: prompt.promptTokens })}`);
+      const found = scope ? t("documents.ask.read", { ms: retrieveMs, read: scope.pagesRead, count: scope.pagesTotal }) : t("documents.ask.retrieved", { ms: retrieveMs, count: prompt.used.length });
+      setStats(`${found} · ${t("documents.ask.generated", { ms: generateMs, tps: tps.toFixed(1), tokens: prompt.promptTokens })}`);
       onResult?.({ question: text, answer: reply, citations: shown.shown, cited: shown.cited, notFound: isNotFound, retrieveMs, promptTokens: prompt.promptTokens, generateMs, tokPerSec: tps, used });
     } catch (e: unknown) {
+      if (summary && ac.signal.aborted) {
+        setAnswer("");
+        return setPhase({ kind: "idle" });
+      }
       const error = errorText(e);
       setPhase({ kind: "error", error });
       onResult?.({ question: text, answer: `ERROR: ${error}`, citations: [], cited: false, notFound: false, retrieveMs: 0, promptTokens: 0, generateMs: 0, tokPerSec: 0, used: [] });
@@ -174,7 +220,13 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult, str
         </View>
         <ScrollView style={styles.answerWrap} contentContainerStyle={styles.answerContent}>
           {phase.kind === "loading" ? <Text style={[styles.mono, { color: theme.text3 }]}>{t("chat.loading", { model: chipLabel(t, model.id) })}</Text> : null}
-          {phase.kind === "retrieving" ? <Text style={[styles.mono, { color: theme.text3 }]}>{t("documents.ask.searching")}</Text> : null}
+          {phase.kind === "retrieving" && readingPages ? (
+            <Text testID="ask-reading-pages" style={[styles.mono, { color: theme.text3 }]}>
+              {readingPages}
+            </Text>
+          ) : phase.kind === "retrieving" ? (
+            <Text style={[styles.mono, { color: theme.text3 }]}>{t("documents.ask.searching")}</Text>
+          ) : null}
           {phase.kind === "error" ? <Text style={[styles.body, { color: theme.danger }]}>{t(`documents.error.${phase.error}`, { defaultValue: phase.error })}</Text> : null}
           {notFound ? (
             <Text testID="ask-not-found" style={[styles.body, { color: theme.text }]}>
