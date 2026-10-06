@@ -13,7 +13,7 @@ const [model, port, e5, nArg, pagesDir, photosDir, out, filter] = process.argv.s
 const route = process.env.ROUTE ?? "before";
 const n = Number(nArg);
 const N_CTX = 4096;
-const IMAGE_TOKENS = { instant: 512, fast: 1024 }[model];
+const IMAGE_TOKENS = Number(process.env.IMAGE_TOKENS) || { instant: 1024, fast: 1024 }[model];
 const persona = app.BUILT_IN_PERSONAS[0];
 const embedder = {
   id: "embed-e5",

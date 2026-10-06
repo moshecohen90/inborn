@@ -6,7 +6,7 @@ import type { NoPassageOpeners } from "@inborn/core";
  * `retrieve` alone may search: with nothing indexed attached to this chat, `DocumentLibrary.ask` would widen the
  * search to the whole library, which is not what the user attached (QA F34).
  */
-export type DocsTurn = { kind: "retrieve" } | { kind: "wait" } | { kind: "refuse"; messageKey: RefusalKey } | { kind: "model" };
+export type DocsTurn = { kind: "retrieve" } | { kind: "wait" } | { kind: "refuse"; messageKey: RefusalKey } | { kind: "model" } | { kind: "page" };
 
 export type RefusalKey = "documents.notFound" | "documents.noneAttached" | "documents.notRead" | "documents.searchFailed" | "documents.needsOcr" | "documents.needsIndexModel" | "documents.photoNotText" | "documents.noText";
 
@@ -24,6 +24,8 @@ export interface DocsTurnInput {
   indexing?: boolean;
   /** Set once nothing is being read any more and there is still no index. */
   blocked?: AttachmentBlock;
+  /** The model sees a page picture of an attached file in this conversation. */
+  seesPage?: boolean;
 }
 
 /* A picture attached as a file is read for its text, and a photo of a door has none: OCR on it is a dead end, the Photo button is not. */
@@ -80,9 +82,11 @@ export function askStatsLine(stats: string | null, detailed: boolean): string | 
   return detailed ? stats : null;
 }
 
-export function planDocsTurn({ strict, hasAttachment, hasIndex, indexing = false, blocked = null }: DocsTurnInput): DocsTurn {
+export function planDocsTurn({ strict, hasAttachment, hasIndex, indexing = false, blocked = null, seesPage = false }: DocsTurnInput): DocsTurn {
   if (hasAttachment && indexing) return { kind: "wait" };
   if (hasIndex) return { kind: "retrieve" };
+  /* Round 132: a scan with no text layer is answered from its page picture; the OCR refusal is for a model that cannot see it. */
+  if (hasAttachment && seesPage) return { kind: "page" };
   if (hasAttachment) return { kind: "refuse", messageKey: refusalFor(blocked) };
   if (!strict) return { kind: "model" };
   return { kind: "refuse", messageKey: "documents.noneAttached" };

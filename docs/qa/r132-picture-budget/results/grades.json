@@ -1,0 +1,185 @@
+{
+ "rubric": "docs/qa/v1-basics-baseline/README.md: 2 correct, user language, right-sized, nothing invented; 1 usable with a flaw; 0 wrong, invented, wrong language or useless (the honest line counts 0)",
+ "order": "page (FOUNDER, visual-page, slide-chart, receipt-photo, cafe-photo) x question (see, about, see-he) x sample 1-4",
+ "runs": "ROUTE=after, Instant, llama-server build 10809, same harness and day; only --image-max-tokens differs",
+ "grades": {
+  "after-instant-512": [
+   1,
+   0,
+   0,
+   1,
+   1,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   1,
+   0,
+   0,
+   0,
+   1,
+   0,
+   1,
+   0,
+   0,
+   0,
+   1,
+   1,
+   1,
+   1,
+   2,
+   2,
+   2,
+   1,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   2,
+   2,
+   2,
+   2,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0
+  ],
+  "after-instant-1024": [
+   1,
+   2,
+   1,
+   1,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   1,
+   1,
+   1,
+   2,
+   1,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   1,
+   0,
+   1,
+   2,
+   2,
+   2,
+   2,
+   0,
+   0,
+   0,
+   1,
+   1,
+   1,
+   1,
+   1,
+   2,
+   2,
+   2,
+   2,
+   0,
+   0,
+   0,
+   0,
+   2,
+   1,
+   1,
+   1,
+   0,
+   1,
+   1,
+   1,
+   0,
+   0,
+   0,
+   0
+  ]
+ },
+ "means": {
+  "after-instant-512": {
+   "FOUNDER": {
+    "en": 0.5,
+    "he": 0.0
+   },
+   "visual-page": {
+    "en": 0.38,
+    "he": 0.25
+   },
+   "slide-chart": {
+    "en": 1.38,
+    "he": 0.25
+   },
+   "receipt-photo": {
+    "en": 1.0,
+    "he": 0.25
+   },
+   "cafe-photo": {
+    "en": 0.25,
+    "he": 0.0
+   },
+   "all": {
+    "en": 0.7,
+    "he": 0.15
+   }
+  },
+  "after-instant-1024": {
+   "FOUNDER": {
+    "en": 0.75,
+    "he": 0.25
+   },
+   "visual-page": {
+    "en": 0.75,
+    "he": 0.0
+   },
+   "slide-chart": {
+    "en": 1.38,
+    "he": 0.25
+   },
+   "receipt-photo": {
+    "en": 1.5,
+    "he": 0.0
+   },
+   "cafe-photo": {
+    "en": 1.0,
+    "he": 0.0
+   },
+   "all": {
+    "en": 1.075,
+    "he": 0.1
+   }
+  }
+ }
+}

@@ -1,0 +1,76 @@
+{
+ "runId": "s2-scan-instant",
+ "_": "Instant: sign-scan.pdf (no text layer) attached, 'What do you see?'. The page picture in the bubble and an answer, no OCR refusal.",
+ "steps": [
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "devPrompt",
+   "lines": [
+    "attach: sign-scan.pdf"
+   ]
+  },
+  {
+   "op": "waitFor",
+   "testID": "attached-docs",
+   "timeoutMs": 60000
+  },
+  {
+   "op": "sleep",
+   "ms": 15000
+  },
+  {
+   "op": "value",
+   "testID": "attached-docs"
+  },
+  {
+   "op": "screenshot",
+   "name": "03-composer-chip"
+  },
+  {
+   "op": "dump",
+   "name": "03-composer-chip"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "What do you see?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "screenshot",
+   "name": "04-sent-bubble"
+  },
+  {
+   "op": "dump",
+   "name": "04-sent-bubble"
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 240000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "screenshot",
+   "name": "05-answer"
+  },
+  {
+   "op": "dump",
+   "name": "05-answer"
+  }
+ ]
+}

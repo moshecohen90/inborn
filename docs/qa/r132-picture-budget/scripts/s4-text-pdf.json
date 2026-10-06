@@ -1,0 +1,78 @@
+{
+ "runId": "s4-text-pdf",
+ "_": "A new Instant chat, turbine-report-3pages.pdf (a text PDF) and a question: unchanged, the index-model card holds it.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "new-chat",
+   "timeoutMs": 20000
+  },
+  {
+   "op": "press",
+   "testID": "new-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "start-chat",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "press",
+   "testID": "start-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 60000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "devPrompt",
+   "lines": [
+    "attach: turbine-report-3pages.pdf"
+   ]
+  },
+  {
+   "op": "sleep",
+   "ms": 20000
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "What does the report say about the turbine?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "waitFor",
+   "testID": "docs-hold",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "screenshot",
+   "name": "07-text-pdf-hold"
+  },
+  {
+   "op": "dump",
+   "name": "07-text-pdf-hold"
+  }
+ ]
+}
