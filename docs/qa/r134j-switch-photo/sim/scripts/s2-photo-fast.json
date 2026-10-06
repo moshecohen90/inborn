@@ -1,0 +1,23 @@
+{
+  "runId": "s2-photo-fast",
+  "_": "On Fast: the cafe photo and 'What do you see?'; Fast's photo pack is downloaded from the local model server, then the answer.",
+  "steps": [
+    { "op": "waitFor", "testID": "composer-input", "timeoutMs": 60000 },
+    { "op": "devPrompt", "lines": ["image: cafe.jpg"] },
+    { "op": "waitFor", "testID": "pending-images", "timeoutMs": 30000 },
+    { "op": "sleep", "ms": 2000 },
+    { "op": "type", "testID": "composer-input", "text": "What do you see?" },
+    { "op": "send" },
+    { "op": "waitFor", "testID": "vision-hold", "timeoutMs": 30000 },
+    { "op": "screenshot", "name": "02-pack-card" },
+    { "op": "press", "testID": "vision-hold-download" },
+    { "op": "waitFor", "testID": "vision-hold", "gone": true, "timeoutMs": 900000 },
+    { "op": "waitFor", "testID": "assistant-text", "timeoutMs": 240000 },
+    { "op": "sleep", "ms": 3000 },
+    { "op": "waitFor", "testID": "stop", "gone": true, "timeoutMs": 900000 },
+    { "op": "sleep", "ms": 2000 },
+    { "op": "value", "testID": "assistant-text" },
+    { "op": "value", "testID": "model-chip" },
+    { "op": "screenshot", "name": "03-photo-answer-fast" }
+  ]
+}

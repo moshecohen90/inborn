@@ -1,0 +1,33 @@
+{
+  "runId": "s3c-photo-then-warning",
+  "_": "A third photo turn; the script ends 3 s after Send and the shell raises warning 2 while the projector/picture prompt runs (inside 120 s of warning 1).",
+  "steps": [
+    {
+      "op": "devPrompt",
+      "lines": [
+        "image: cafe.jpg"
+      ]
+    },
+    {
+      "op": "waitFor",
+      "testID": "pending-images",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "What are the opening hours?"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "sleep",
+      "ms": 3000
+    }
+  ]
+}

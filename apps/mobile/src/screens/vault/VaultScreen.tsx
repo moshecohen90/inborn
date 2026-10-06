@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { modelName } from "../../lib/models";
 import { FOCUS_FLASH_MS, FOCUS_SETTLE_MS, focusScrollTarget } from "./focus";
 import { Platform, Pressable, SectionList, StyleSheet, Text, View } from "react-native";
@@ -13,7 +13,7 @@ import { BannerSpacer } from "../../components/shell/bannerInset";
 import { BENCH_PP, BENCH_TG, ENGINE_VERSION, extensions, findExtension, FIT_LANGUAGES, LANGUAGE_NAME_BY_CODE, USE_CASES, benchmarkKey, expectedSpeed, formatModelBytes, deviceRecommendation, recommendationRoomNote, groupByFit, parseBenchmark, paywallFor, goodAtAll, rankModels, recommendationIsWeak, type BenchmarkResult, type CatalogModel, type UseCase , type PaywallReason } from "@inborn/core";
 import { Sheet, SheetItem } from "../../components/chat/Sheet";
 import { useEntitlement } from "../../licence";
-import { benchmarkModel, resetEngine } from "../../engine";
+import { benchmarkModel, engineModelId, resetEngine, subscribeEngineState } from "../../engine";
 import { useAppServices } from "../../services/AppServices";
 import { useGgufOpenHandler, useVault, type VaultEntry } from "../../vault";
 import { DEV_AUTOIMPORT, DEV_AUTOINSTALL, DEV_VAULT_FILE, devBuild } from "../../vault/devFlags";
@@ -78,7 +78,9 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock, focus }: VaultS
   const [hfOpen, setHfOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const device = vault.device;
-  const active = vault.activeModel();
+  /* "In use" is the model the engine runs: after a memory switch that is Instant, while the chosen default stays Fast (round 134J). */
+  const running = useSyncExternalStore(subscribeEngineState, engineModelId);
+  const activeId = running ?? vault.activeModel()?.model.id;
 
   useEffect(() => vault.recheckSpace(), [vault]);
 
@@ -339,7 +341,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock, focus }: VaultS
             theme={theme}
             recommended={item.model.id === recommendedId}
             recommendedFor={{ uses: bestUses, languageCode: bestLanguage, weak: recommendedWeak }}
-            active={active?.model.id === item.model.id}
+            active={activeId === item.model.id}
             highlighted={item.model.id === flashId}
             disabledReason={section.disabled?.get(item.model.id)}
             lockedForTier={paywallFor(tier, { kind: "model", proOnly: !!item.model.proOnly })}
@@ -444,7 +446,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock, focus }: VaultS
         model={details}
         state={detailsState}
         theme={theme}
-        active={!!details && active?.model.id === details.id}
+        active={!!details && activeId === details.id}
         isDefault={!!details && vault.defaultModelId() === details.id}
         onClose={() => setDetails(null)}
         onSetDefault={() => {

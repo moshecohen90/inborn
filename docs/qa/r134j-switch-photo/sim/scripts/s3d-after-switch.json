@@ -1,0 +1,105 @@
+{
+  "runId": "s3d-after-switch",
+  "_": "After warning 2: the turn ends under 'Ran out of memory \u00b7 Switched to Instant', the photo is sent again on Instant with its bundled pack and read; then the model sheet and the vault show Instant in use.",
+  "steps": [
+    {
+      "op": "sleep",
+      "ms": 2500
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 600000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "value",
+      "testID": "model-chip"
+    },
+    {
+      "op": "screenshot",
+      "name": "07-switched-photo-read-on-instant"
+    },
+    {
+      "op": "dump",
+      "name": "07-switched-photo-read-on-instant"
+    },
+    {
+      "op": "press",
+      "testID": "ledger-toggle"
+    },
+    {
+      "op": "sleep",
+      "ms": 1200
+    },
+    {
+      "op": "screenshot",
+      "name": "08-ledger-instant"
+    },
+    {
+      "op": "press",
+      "testID": "ledger-toggle"
+    },
+    {
+      "op": "sleep",
+      "ms": 800
+    },
+    {
+      "op": "press",
+      "testID": "model-chip"
+    },
+    {
+      "op": "waitFor",
+      "testID": "model-sheet",
+      "timeoutMs": 10000
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "screenshot",
+      "name": "09-model-sheet"
+    },
+    {
+      "op": "dump",
+      "name": "09-model-sheet"
+    },
+    {
+      "op": "press",
+      "testID": "model-sheet-close"
+    },
+    {
+      "op": "sleep",
+      "ms": 1000
+    },
+    {
+      "op": "deeplink",
+      "url": "/vault"
+    },
+    {
+      "op": "sleep",
+      "ms": 3000
+    },
+    {
+      "op": "screenshot",
+      "name": "10-vault"
+    },
+    {
+      "op": "dump",
+      "name": "10-vault"
+    },
+    {
+      "op": "value",
+      "testID": "model-card-instant"
+    },
+    {
+      "op": "value",
+      "testID": "model-card-fast"
+    }
+  ]
+}

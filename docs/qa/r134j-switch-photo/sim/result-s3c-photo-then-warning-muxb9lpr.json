@@ -1,0 +1,53 @@
+{
+  "runId": "s3c-photo-then-warning-muxb9lpr",
+  "startedAt": "2026-10-06T23:29:48.251Z",
+  "finishedAt": "2026-10-06T23:29:55.074Z",
+  "ok": true,
+  "passed": 6,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 154,
+      "detail": "image: cafe.jpg"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1324,
+      "detail": "pending-images appeared"
+    },
+    {
+      "i": 2,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2010,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 3,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 27 chars"
+    },
+    {
+      "i": 4,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3002,
+      "detail": "3000 ms"
+    }
+  ],
+  "errors": []
+}

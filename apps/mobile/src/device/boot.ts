@@ -2,7 +2,8 @@ import { Platform } from "react-native";
 import { bootModel, type ModelTier } from "@inborn/core";
 import { getDeviceGuard } from "./guard";
 import { deviceRamGB } from "./signals";
-import { getEngine, registerModelResolver, switchModel } from "../engine";
+import { getEngine, registerModelResolver, registerVisionResolver, switchModel } from "../engine";
+import { modelHasVision, resolveVision } from "../images";
 import { getVault } from "../vault/store";
 import { installedTiers, resolveTier } from "../vault/tiers";
 
@@ -11,6 +12,7 @@ const DEV_TIER = __DEV__ ? process.env.EXPO_PUBLIC_DEVICE_TIER : undefined;
 
 /** Starts the guard for the whole run, UI or not: the protections (caps, stop, unload, switch) must not depend on a screen being mounted. */
 export function startDeviceGuard(): void {
+  registerVisionResolver((id) => (modelHasVision(id) ? resolveVision(id) : null));
   if (DEV_TIER) {
     const engine = getEngine();
     const uri = engine.model.uri;

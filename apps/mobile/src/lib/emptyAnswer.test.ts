@@ -39,6 +39,14 @@ describe("a memory warning after a picture turn (build 38 X6)", () => {
     expect(new MemoryStrikes().warn(0, "critical", true)).toBe("escalate");
   });
 
+  it("one pressure event UIKit reports twice a few ms apart is the first warning, not the second (round 134J)", () => {
+    const s = new MemoryStrikes();
+    expect(s.warn(0, "warning", true)).toBe("ease");
+    expect(s.warn(7, "warning", true)).toBe("same");
+    expect(s.due()).toBe(false);
+    expect(s.warn(114_000, "warning", false)).toBe("escalate");
+  });
+
   it("while the projector is dropped, an older picture is left out instead of loading it again; a new picture still waits for it", () => {
     const base = { hasImages: true, vaultScanned: true, modelSees: true, projectorInstalled: true, projectorAttached: false, otherModelSees: true };
     expect(planVisionTurn({ ...base, onLastUserMessage: false, memoryEased: true })).toEqual({ kind: "drop" });

@@ -17,7 +17,9 @@ import {
 } from "@inborn/core";
 import {
   getEngineState,
+  getLoadedModelId,
   getUnloadReason,
+  consumeCarriedOver,
   isGenerating,
   loadSession,
   noteBackground,
@@ -198,7 +200,7 @@ class DeviceGuard {
           if (!busy) {
             const tps = peekEngine()?.engine.stats().tokPerSec ?? 0;
             this.noteSpeed(tps);
-            if (tps > 0 && !wasStoppedByGuard()) this.policy.noteAnswered(tierOf(peekEngine()?.model.id ?? "instant"));
+            if (tps > 0 && !wasStoppedByGuard()) this.answered(tierOf(getLoadedModelId() ?? peekEngine()?.model.id ?? "instant"));
             void this.applyPendingSwitch();
           }
           this.schedule();
@@ -229,7 +231,11 @@ class DeviceGuard {
     let p = patch;
     if (p.memoryPressure === "warning" || p.memoryPressure === "critical") {
       const mobile = this.raw.deviceClass === "phone" || this.raw.deviceClass === "tablet";
-      if (mobile && this.strikes.warn(Date.now(), p.memoryPressure, peekEngine()?.engine.capabilities().vision === true) === "ease") {
+      const step = mobile ? this.strikes.warn(Date.now(), p.memoryPressure, peekEngine()?.engine.capabilities().vision === true) : "escalate";
+      if (step === "same") {
+        p = { ...p };
+        delete p.memoryPressure;
+      } else if (step === "ease") {
         p = { ...p };
         delete p.memoryPressure;
         this.memorySince = Date.now();
@@ -242,6 +248,11 @@ class DeviceGuard {
     this.raw = { ...this.raw, ...p };
     setCurrentSignals(this.raw);
     this.schedule();
+  }
+
+  /* The picture turn a memory switch carried to the new model ends under the "Ran out of memory" line; only the next answer retires it. */
+  private answered(tier: ModelTier): void {
+    if (!consumeCarriedOver()) this.policy.noteAnswered(tier);
   }
 
   /* First warning with a picture projector attached: the projector is most of what a picture turn left resident, so it goes and the model stays. */

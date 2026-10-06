@@ -91,7 +91,7 @@ import {
   type DocumentRecord,
   IMAGE_WRAPPER_TOKENS,
 } from "@inborn/core";
-import { enableVision, getEngine, isVisionEased, loadSession, wasStoppedByGuard } from "../engine";
+import { enableVision, getEngine, isVisionEased, loadSession, noteCarriedOver, settledModelId, subscribeVisionEased, wasStoppedByGuard } from "../engine";
 import { writeDevResult } from "../adapters/devModel";
 import { imageMaxTokens } from "../adapters/imageTokens";
 import { File, Paths } from "expo-file-system";
@@ -288,6 +288,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const [notice, setNotice] = useState(false);
   /* Read, not taken, on mount: the swap after a heal remounts this screen more than once. */
   const missingModel = useSyncExternalStore(subscribeVault, missingSnapshot);
+  const visionEased = useSyncExternalStore(subscribeVisionEased, isVisionEased);
   const [shortfallDismissed, setShortfallDismissed] = useState<string | null>(null);
   const [toast, setToast] = useState<string | null>(null);
   const [noneMatched, setNoneMatched] = useState(false);
@@ -538,7 +539,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     /* The guard may have swapped the weights since this render (§6.5): the turn waits for the session that will answer it and is built for that model. */
     const s = await loadSession().catch(() => held);
     session.current = s;
-    const { model } = getEngine();
+    const model = s.model;
     const nCtx = s.nCtx;
     const thinkingAvailable = model.id !== "instant";
     const modelTier = findModel(BUNDLED_MANIFEST, model.id)?.tier;
@@ -564,12 +565,25 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     let ragUsed: RetrievalHit[] = [];
     /* Set while streaming so the abort below is read as a replacement, not as the user's Stop (which would offer "Continue"). */
     let familySafeHit = false;
+    /* Round 134J: a memory switch moved this picture turn to another model before it was answered; it goes again there, with that model's own pack. */
+    let again = false;
+    const switchedUnder = async (): Promise<boolean> => {
+      if (ac.signal.aborted || existingMessageId || savedId) return false;
+      const next = await settledModelId();
+      if (next === model.id) return false;
+      console.log(`[chat] memory switch mid-turn: ${model.id} → ${next}, the picture goes again`);
+      again = true;
+      noteCarriedOver();
+      return true;
+    };
     const started = Date.now();
     /* The row changes identity the moment the partial answer is written through, and `patch` must follow it there. */
     let rowId = targetId;
     let savedId = existingMessageId ?? null;
     const partial = new PartialAnswerSaver();
     const patch = (fn: (r: Row) => Row) => setRows((all) => all.map((x) => (x.id === rowId ? fn(x) : x)));
+    /* The pending row was labelled at render time; a guard switch since then means another model answers it. */
+    if (!existingMessageId) patch((x) => (x.modelId === model.id ? x : { ...x, modelId: model.id }));
     const answerWithoutModel = async (key: string, values?: Record<string, unknown>, safety?: SafetyMark) => {
       const saved = await store.appendMessage({ chatId: chatIdNow, role: "assistant", content: t(key, values ?? {}), modelId: model.id, ...(safety ? { safety } : {}) });
       setRows((all) => all.map((x) => (x.id === rowId ? saved : x)));
@@ -755,6 +769,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           return;
         }
         if (turnVision.kind === "drop") messages = messages.map(({ images: _drop, ...rest }) => (picture && rest.role === "system" ? { ...rest, content: rest.content.replace(`\n\n${PICTURE_LINES[picture]}`, "") } : rest));
+        if (onLastUserMessage && (await switchedUnder())) return;
       }
       /* Round 131: a fresh answer about a picture is checked against what the app knows about its turn before it is shown. */
       const checksPicture = !existingMessageId && messages.some((m) => m.images?.length);
@@ -851,6 +866,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       let stopped = !familySafeReplaced && (ac.signal.aborted || guardStopped || loopCut);
       let stoppedBy: StoppedBy | undefined = !stopped ? undefined : loopCut ? "loop" : reason === "system" || guardStopped ? "system" : "user";
       const nothing = emptyTurn({ reply: shown(), reasoning, stoppedBy });
+      if (nothing === "systemStop" && guardStopped && checksPicture && (await switchedUnder())) return;
       if (nothing === "systemStop") {
         /* Not behind __DEV__: QA and a release log need to see a turn that came back empty. */
         console.log(`[chat] empty answer: ${usage?.promptTokens ?? "?"} prompt tokens, ${usage?.completionTokens ?? 0} generated, ${stoppedBy ?? "not stopped"}`);
@@ -938,7 +954,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         noSpace.current = true;
         if (savedId) patch((x) => ({ ...x, streaming: false }));
         else setRows((all) => all.filter((x) => x.id !== rowId));
-      } else {
+      } else if (!(e instanceof Error && e.message === "vision-unavailable" && (await switchedUnder()))) {
         const error = errorText(e);
         patch((x) => ({ ...x, streaming: false, error }));
       }
@@ -954,6 +970,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const result = { engine: engine.id, model: model.id, uri: model.uri, loadMs: loadMs.current, ...last, elapsedMs: Date.now() - started, info: "devInfo" in engine ? engine.devInfo : undefined };
       if (__DEV__) console.log("[stats]", JSON.stringify(result));
       if (DEV_RESULTS) writeDevResult({ ...result, reply });
+      if (again) await generate(chatIdNow, history, rowId, prefix, existingMessageId, continueFrom, photoDocIds, page);
     }
   };
 
@@ -1758,6 +1775,11 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           }}
           onNotNow={() => snoozeAdvice(cardAdvice.key)}
         />
+      ) : null}
+      {visionEased && rows.some((r) => r.images?.length) ? (
+        <View testID="vision-released" style={[styles.notice, { borderColor: theme.border }]}>
+          <Text style={[type.caption, styles.grow, { color: theme.text2 }]}>{t("chat.vision.released")}</Text>
+        </View>
       ) : null}
       {preparingVision ? (
         <View testID="preparing-vision" style={[styles.notice, { borderColor: theme.border }]}>

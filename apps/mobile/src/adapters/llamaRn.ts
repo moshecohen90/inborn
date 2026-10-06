@@ -30,7 +30,13 @@ export class LlamaRnLM implements LocalLM {
     try {
       const imageMaxTokens = phoneImageMaxTokens(this.session?.model.id, this.session?.nCtx ?? 4096);
       /* The simulator's Metal driver traps inside the projector's buffer upload (xpc misuse); real iPhones and Android take the GPU. */
-      this.vision = await ctx.initMultimodal({ path: mmprojPath, use_gpu: Platform.OS !== "ios" || isDevice, image_max_tokens: imageMaxTokens });
+      /* unload() waits on it: releasing the context under a projector that is still loading frees memory mtmd is writing. */
+      const init = ctx.initMultimodal({ path: mmprojPath, use_gpu: Platform.OS !== "ios" || isDevice, image_max_tokens: imageMaxTokens });
+      this.inflight = init;
+      const on = await init.finally(() => {
+        if (this.inflight === init) this.inflight = null;
+      });
+      this.vision = on && this.ctx === ctx;
       this.devInfo.imageMaxTokens = imageMaxTokens;
     } catch (e: unknown) {
       if (__DEV__) console.warn("[llama.rn] initMultimodal", e);

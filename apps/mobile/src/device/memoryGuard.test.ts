@@ -16,6 +16,9 @@ const engine = vi.hoisted(() => {
     unloads: [] as string[],
     switches: [] as string[],
     releases: 0,
+    carried: false,
+    /** The model whose weights are resident, when it is not the one the engine names. */
+    weights: null as string | null,
     activity: new Set<(busy: boolean) => void>(),
   };
   return e;
@@ -49,7 +52,13 @@ vi.mock("./signals", () => ({
 }));
 vi.mock("../engine", () => ({
   getEngineState: () => engine.state,
+  getLoadedModelId: () => (engine.state === "loaded" ? (engine.weights ?? engine.model) : null),
   getUnloadReason: () => null,
+  consumeCarriedOver: () => {
+    const was = engine.carried;
+    engine.carried = false;
+    return was;
+  },
   isGenerating: () => engine.generating,
   loadSession: async () => undefined,
   noteBackground() {},
@@ -156,7 +165,7 @@ describe("the device guard after a memory switch (round 134E)", () => {
     expect({ stops: engine.stops, releases: engine.releases, unloads: engine.unloads, switches: engine.switches }).toEqual({ stops: 1, releases: 1, unloads: [], switches: [] });
     expect(guard.getState()?.memoryPressure).toBe("normal");
     busy(false);
-    await settle();
+    await settle(5_000);
 
     engine.guardStop = false;
     busy(true);
@@ -166,5 +175,46 @@ describe("the device guard after a memory switch (round 134E)", () => {
     busy(false);
     await settle();
     expect(engine.switches).toEqual(["instant"]);
+  });
+
+  /* Round 134J: build 40, J6. The answer running across the switch was credited to Instant and retired the line at once. */
+  it("keeps the out-of-memory line through the photo turn the switch carried over, and retires it on the next answer", async () => {
+    Object.assign(engine, { model: "fast", state: "loaded", vision: false, guardStop: false, stops: 0, unloads: [], switches: [], releases: 0, carried: false, weights: null });
+    engine.activity.clear();
+    const guard = await freshGuard();
+    guard.setAvailableTiers(() => ["instant", "fast"]);
+    guard.subscribe(() => undefined);
+    await settle();
+    busy(true);
+    signals.onPatch?.({ memoryPressure: "warning" });
+    await settle();
+    busy(false);
+    await settle();
+    expect(engine.switches).toEqual(["instant"]);
+    const line = () => guard.getState()?.recommendation.headline ?? null;
+    expect(line()).toBe("device.memory.switched");
+
+    /* An answer still on the Fast weights, after the engine already names Instant, is not Instant's answer. */
+    engine.guardStop = false;
+    engine.state = "loaded";
+    engine.weights = "fast";
+    busy(true);
+    busy(false);
+    await settle();
+    expect(line()).toBe("device.memory.switched");
+
+    /* The chat sends the stopped photo again on Instant: that answer ends under the line. */
+    engine.weights = null;
+    engine.carried = true;
+    busy(true);
+    busy(false);
+    await settle();
+    expect(line()).toBe("device.memory.switched");
+
+    /* The next message's answer has read it. */
+    busy(true);
+    busy(false);
+    await settle();
+    expect(line()).toBeNull();
   });
 });
