@@ -1,0 +1,72 @@
+01:35:33 pushing 62 steps as j7-settings-stop
+01:35:37 shot J7-01-settings
+01:35:48 shot J7-02-vault
+01:36:02 shot J7-03-stopped
+01:36:12 shot J7-04-after-stop
+01:36:36 shot J7-05-why
+01:36:43 shot J7-06-chats
+01:36:49 shot J7-06-back
+01:36:55 ok     0 deeplink   /settings
+01:36:55 ok     1 waitFor    row-wipe appeared
+01:36:55 ok     2 sleep      1500 ms
+01:36:55 ok     3 screenshot J7-01-settings
+01:36:55 ok     4 dump       J7-01-settings
+01:36:55 ok     5 deeplink   /vault
+01:36:55 ok     6 waitFor    best-for appeared
+01:36:55 ok     7 value      Chat
+01:36:55 ok     8 sleep      3000 ms
+01:36:55 ok     9 screenshot J7-02-vault
+01:36:55 ok    10 dump       J7-02-vault
+01:36:55 ok    11 deeplink   /chats
+01:36:55 ok    12 waitFor    new-chat appeared
+01:36:55 ok    13 press      new-chat ← onPress
+01:36:55 ok    14 waitFor    start-chat appeared
+01:36:55 ok    15 press      start-chat ← onPress
+01:36:55 ok    16 waitFor    composer-input appeared
+01:36:55 ok    17 waitFor    Loading gone
+01:36:55 ok    18 sleep      1500 ms
+01:36:55 ok    19 value      INSTANT
+01:36:55 ok    20 type       composer-input = 64 chars
+01:36:55 ok    21 send       send ← onPress
+01:36:55 ok    22 waitFor    assistant-text appeared
+01:36:55 ok    23 sleep      4000 ms
+01:36:55 ok    24 press      stop ← onPress
+01:36:55 ok    25 sleep      2000 ms
+01:36:55 ok    26 waitFor    stop gone
+01:36:55 ok    27 value      The light of the Lighthouse Station, once a beacon against the indifferent Atlantic winds, has now become a fi
+01:36:55 ok    28 sleep      0 ms
+01:36:55 ok    29 screenshot J7-03-stopped
+01:36:55 ok    30 dump       J7-03-stopped
+01:36:55 ok    31 type       composer-input = 30 chars
+01:36:55 ok    32 send       send ← onPress
+01:36:55 ok    33 sleep      2500 ms
+01:36:55 ok    34 waitFor    reading-pages gone
+01:36:55 ok    35 waitFor    reading-docs gone
+01:36:55 ok    36 waitFor    stop gone
+01:36:55 ok    37 sleep      2500 ms
+01:36:55 ok    38 value      The light of the Lighthouse Station, once a beacon against the indifferent Atlantic winds, has now become a fi
+01:36:55 FAIL  39 assertText assertText "Paris" is not on screen under assistant-text
+01:36:55 ok    40 screenshot J7-04-after-stop
+01:36:55 ok    41 dump       J7-04-after-stop
+01:36:55 ok    42 type       composer-input = 22 chars
+01:36:55 ok    43 send       send ← onPress
+01:36:55 ok    44 sleep      2500 ms
+01:36:55 ok    45 waitFor    reading-pages gone
+01:36:55 ok    46 waitFor    reading-docs gone
+01:36:55 ok    47 waitFor    stop gone
+01:36:55 ok    48 sleep      2500 ms
+01:36:55 ok    49 value      The light of the Lighthouse Station, once a beacon against the indifferent Atlantic winds, has now become a fi
+01:36:55 ok    50 screenshot J7-05-why
+01:36:55 ok    51 dump       J7-05-why
+01:36:55 ok    52 press      open-chats ← onPress
+01:36:55 ok    53 waitFor    close-chats appeared
+01:36:55 ok    54 sleep      1500 ms
+01:36:55 ok    55 screenshot J7-06-chats
+01:36:55 ok    56 dump       J7-06-chats
+01:36:55 ok    57 press      close-chats ← onPress
+01:36:55 ok    58 waitFor    composer-input appeared
+01:36:55 ok    59 sleep      2500 ms
+01:36:55 ok    60 screenshot J7-06-back
+01:36:55 ok    61 dump       J7-06-back
+01:36:55 61 passed, 1 failed, 7 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-40/docs/qa/ios-device-pass-40/screens
+01:36:55   ! step 39 (assertText): assertText "Paris" is not on screen under assistant-text

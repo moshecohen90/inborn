@@ -1,0 +1,49 @@
+01:37:05 pushing 42 steps as j8-hebrew
+01:37:16 shot J8-05-hebrew
+01:37:24 shot J8-06-hebrew-thanks
+01:37:32 shot J8-07-english
+01:37:37 ok     0 deeplink   /chats
+01:37:37 ok     1 waitFor    new-chat appeared
+01:37:37 ok     2 press      new-chat ← onPress
+01:37:37 ok     3 waitFor    start-chat appeared
+01:37:37 ok     4 press      start-chat ← onPress
+01:37:37 ok     5 waitFor    composer-input appeared
+01:37:37 ok     6 waitFor    Loading gone
+01:37:37 ok     7 sleep      1500 ms
+01:37:37 ok     8 value      INSTANT
+01:37:37 ok     9 type       composer-input = 13 chars
+01:37:37 ok    10 send       send ← onPress
+01:37:37 ok    11 sleep      2500 ms
+01:37:37 ok    12 waitFor    reading-pages gone
+01:37:37 ok    13 waitFor    reading-docs gone
+01:37:37 ok    14 waitFor    stop gone
+01:37:37 ok    15 sleep      2500 ms
+01:37:37 ok    16 value      ברירת הצרפת היא מלון קטן שמתרחש בחוף הרוסי.
+01:37:37 ok    17 value      Slowing down to keep the phone cool
+01:37:37 FAIL  18 value      value model-advice: no node with that testID is mounted
+01:37:37 ok    19 value      INSTANT
+01:37:37 ok    20 screenshot J8-05-hebrew
+01:37:37 ok    21 dump       J8-05-hebrew
+01:37:37 ok    22 type       composer-input = 4 chars
+01:37:37 ok    23 send       send ← onPress
+01:37:37 ok    24 sleep      2500 ms
+01:37:37 ok    25 waitFor    reading-pages gone
+01:37:37 ok    26 waitFor    reading-docs gone
+01:37:37 ok    27 waitFor    stop gone
+01:37:37 ok    28 sleep      2500 ms
+01:37:37 ok    29 value      ברירת הצרפת היא מלון קטן שמתרחש בחוף הרוסי.
+01:37:37 ok    30 screenshot J8-06-hebrew-thanks
+01:37:37 ok    31 dump       J8-06-hebrew-thanks
+01:37:37 ok    32 type       composer-input = 29 chars
+01:37:37 ok    33 send       send ← onPress
+01:37:37 ok    34 sleep      2500 ms
+01:37:37 ok    35 waitFor    reading-pages gone
+01:37:37 ok    36 waitFor    reading-docs gone
+01:37:37 ok    37 waitFor    stop gone
+01:37:37 ok    38 sleep      2500 ms
+01:37:37 ok    39 value      ברירת הצרפת היא מלון קטן שמתרחש בחוף הרוסי.
+01:37:37 ok    40 screenshot J8-07-english
+01:37:37 ok    41 dump       J8-07-english
+01:37:37 41 passed, 1 failed, 3 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-40/docs/qa/ios-device-pass-40/screens
+01:37:37   ! step 18 (value): value model-advice: no node with that testID is mounted
+01:37:37   ! console.log: [chat] plain=acknowledgement window=3/3 maxTokens=224

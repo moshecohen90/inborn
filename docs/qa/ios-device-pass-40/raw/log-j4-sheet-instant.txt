@@ -1,0 +1,310 @@
+01:15:22 pushing 267 steps as j4-sheet-instant
+01:15:38 shot J4I-t-0-sheet
+01:15:45 shot J4I-t-1-nomatch
+01:15:53 shot J4I-t-2-nomatch
+01:16:00 shot J4I-t-3-nomatch
+01:16:07 shot J4I-t-4-nomatch
+01:16:14 shot J4I-t-5-thank-you
+01:16:21 shot J4I-t-6-and-now
+01:16:32 shot J4I-c-0-sheet
+01:16:39 shot J4I-c-1-nomatch
+01:16:47 shot J4I-c-2-nomatch
+01:16:54 shot J4I-c-3-nomatch
+01:17:01 shot J4I-c-4-nomatch
+01:17:09 shot J4I-c-5-thank-you
+01:17:16 shot J4I-c-6-and-now
+01:17:27 shot J4I-c-7-veto
+01:17:33 ok     0 deeplink   /chats
+01:17:33 ok     1 waitFor    new-chat appeared
+01:17:33 ok     2 press      new-chat ← onPress
+01:17:33 ok     3 waitFor    start-chat appeared
+01:17:33 ok     4 press      start-chat ← onPress
+01:17:33 ok     5 waitFor    composer-input appeared
+01:17:33 ok     6 waitFor    Loading gone
+01:17:33 ok     7 sleep      1500 ms
+01:17:33 ok     8 value      FAST
+01:17:33 ok     9 press      model-chip ← onPress
+01:17:33 ok    10 waitFor    model-sheet appeared
+01:17:33 ok    11 sleep      1500 ms
+01:17:33 ok    12 press      model-sheet-use-instant ← onPress
+01:17:33 ok    13 sleep      3000 ms
+01:17:33 FAIL  14 press      press model-sheet-close: not mounted
+01:17:33 ok    15 waitFor    Loading gone
+01:17:33 ok    16 sleep      1500 ms
+01:17:33 ok    17 value      INSTANT
+01:17:33 ok    18 assertText "INSTANT" present
+01:17:33 ok    19 deeplink   /documents
+01:17:33 ok    20 waitFor    doc-select-mux7eak0-2-hce6kyy6 appeared
+01:17:33 ok    21 sleep      2000 ms
+01:17:33 ok    22 press      doc-select-mux7eak0-2-hce6kyy6 ← onPress
+01:17:33 ok    23 sleep      1000 ms
+01:17:33 ok    24 value      Ask about 1 document
+01:17:33 ok    25 press      documents-ask-selected ← onPress
+01:17:33 ok    26 waitFor    ask-sheet appeared
+01:17:33 ok    27 sleep      1500 ms
+01:17:33 ok    28 sleep      500 ms
+01:17:33 ok    29 screenshot J4I-t-0-sheet
+01:17:33 ok    30 dump       J4I-t-0-sheet
+01:17:33 ok    31 type       ask-input = 22 chars
+01:17:33 ok    32 press      ask-send ← onPress
+01:17:33 ok    33 sleep      2500 ms
+01:17:33 ok    34 waitFor    ask-stop gone
+01:17:33 ok    35 sleep      2000 ms
+01:17:33 FAIL  36 value      value ask-plain: no node with that testID is mounted
+01:17:33 ok    37 value      Your documents don't mention this.
+01:17:33 FAIL  38 value      value citations: no node with that testID is mounted
+01:17:33 ok    39 assertText "If you do not know" absent
+01:17:33 ok    40 assertText "say only the opening" absent
+01:17:33 ok    41 assertText "stop after that sentence" absent
+01:17:33 ok    42 assertText "Start with" absent
+01:17:33 ok    43 assertText "were searched" absent
+01:17:33 ok    44 assertText "never say what" absent
+01:17:33 ok    45 assertText "Never say what" absent
+01:17:33 ok    46 sleep      0 ms
+01:17:33 ok    47 screenshot J4I-t-1-nomatch
+01:17:33 ok    48 dump       J4I-t-1-nomatch
+01:17:33 ok    49 type       ask-input = 32 chars
+01:17:33 ok    50 press      ask-send ← onPress
+01:17:33 ok    51 sleep      2500 ms
+01:17:33 ok    52 waitFor    ask-stop gone
+01:17:33 ok    53 sleep      2000 ms
+01:17:33 FAIL  54 value      value ask-plain: no node with that testID is mounted
+01:17:33 ok    55 value      Your documents don't mention this.
+01:17:33 FAIL  56 value      value citations: no node with that testID is mounted
+01:17:33 ok    57 assertText "If you do not know" absent
+01:17:33 ok    58 assertText "say only the opening" absent
+01:17:33 ok    59 assertText "stop after that sentence" absent
+01:17:33 ok    60 assertText "Start with" absent
+01:17:33 ok    61 assertText "were searched" absent
+01:17:33 ok    62 assertText "never say what" absent
+01:17:33 ok    63 assertText "Never say what" absent
+01:17:33 ok    64 sleep      0 ms
+01:17:33 ok    65 screenshot J4I-t-2-nomatch
+01:17:33 ok    66 dump       J4I-t-2-nomatch
+01:17:33 ok    67 type       ask-input = 38 chars
+01:17:33 ok    68 press      ask-send ← onPress
+01:17:33 ok    69 sleep      2500 ms
+01:17:33 ok    70 waitFor    ask-stop gone
+01:17:33 ok    71 sleep      2000 ms
+01:17:33 FAIL  72 value      value ask-plain: no node with that testID is mounted
+01:17:33 ok    73 value      Your documents don't mention this.
+01:17:33 FAIL  74 value      value citations: no node with that testID is mounted
+01:17:33 ok    75 assertText "If you do not know" absent
+01:17:33 ok    76 assertText "say only the opening" absent
+01:17:33 ok    77 assertText "stop after that sentence" absent
+01:17:33 ok    78 assertText "Start with" absent
+01:17:33 ok    79 assertText "were searched" absent
+01:17:33 ok    80 assertText "never say what" absent
+01:17:33 ok    81 assertText "Never say what" absent
+01:17:33 ok    82 sleep      0 ms
+01:17:33 ok    83 screenshot J4I-t-3-nomatch
+01:17:33 ok    84 dump       J4I-t-3-nomatch
+01:17:33 ok    85 type       ask-input = 27 chars
+01:17:33 ok    86 press      ask-send ← onPress
+01:17:33 ok    87 sleep      2500 ms
+01:17:33 ok    88 waitFor    ask-stop gone
+01:17:33 ok    89 sleep      2000 ms
+01:17:33 FAIL  90 value      value ask-plain: no node with that testID is mounted
+01:17:33 ok    91 value      Your documents don't mention this.
+01:17:33 FAIL  92 value      value citations: no node with that testID is mounted
+01:17:33 ok    93 assertText "If you do not know" absent
+01:17:33 ok    94 assertText "say only the opening" absent
+01:17:33 ok    95 assertText "stop after that sentence" absent
+01:17:33 ok    96 assertText "Start with" absent
+01:17:33 ok    97 assertText "were searched" absent
+01:17:33 ok    98 assertText "never say what" absent
+01:17:33 ok    99 assertText "Never say what" absent
+01:17:33 ok   100 sleep      0 ms
+01:17:33 ok   101 screenshot J4I-t-4-nomatch
+01:17:33 ok   102 dump       J4I-t-4-nomatch
+01:17:33 ok   103 type       ask-input = 9 chars
+01:17:33 ok   104 press      ask-send ← onPress
+01:17:33 ok   105 sleep      2500 ms
+01:17:33 ok   106 waitFor    ask-stop gone
+01:17:33 ok   107 sleep      2000 ms
+01:17:33 ok   108 value      You're welcome. Ask another question about these documents.
+01:17:33 FAIL 109 value      value ask-answer: no node with that testID is mounted
+01:17:33 FAIL 110 value      value citations: no node with that testID is mounted
+01:17:33 ok   111 assertText "Ask another question about these documents" present
+01:17:33 ok   112 waitFor    ask-none-matched gone
+01:17:33 ok   113 waitFor    ask-not-found gone
+01:17:33 ok   114 sleep      0 ms
+01:17:33 ok   115 screenshot J4I-t-5-thank-you
+01:17:33 ok   116 dump       J4I-t-5-thank-you
+01:17:33 ok   117 type       ask-input = 7 chars
+01:17:33 ok   118 press      ask-send ← onPress
+01:17:33 ok   119 sleep      2500 ms
+01:17:33 ok   120 waitFor    ask-stop gone
+01:17:33 ok   121 sleep      2000 ms
+01:17:33 ok   122 value      This sheet answers one question at a time: ask the full question (for example, "Summarize it in three lines").
+01:17:33 FAIL 123 value      value ask-answer: no node with that testID is mounted
+01:17:33 FAIL 124 value      value citations: no node with that testID is mounted
+01:17:33 ok   125 assertText "This sheet answers one question at a time" present
+01:17:33 ok   126 waitFor    ask-none-matched gone
+01:17:33 ok   127 waitFor    ask-not-found gone
+01:17:33 ok   128 sleep      0 ms
+01:17:33 ok   129 screenshot J4I-t-6-and-now
+01:17:33 ok   130 dump       J4I-t-6-and-now
+01:17:33 ok   131 deeplink   /chats
+01:17:33 ok   132 sleep      1500 ms
+01:17:33 ok   133 deeplink   /documents
+01:17:33 ok   134 waitFor    doc-select-mux7fiox-3-wwp98bch appeared
+01:17:33 ok   135 sleep      2000 ms
+01:17:33 ok   136 press      doc-select-mux7fiox-3-wwp98bch ← onPress
+01:17:33 ok   137 sleep      1000 ms
+01:17:33 ok   138 value      Ask about 1 document
+01:17:33 ok   139 press      documents-ask-selected ← onPress
+01:17:33 ok   140 waitFor    ask-sheet appeared
+01:17:33 ok   141 sleep      1500 ms
+01:17:33 ok   142 sleep      500 ms
+01:17:33 ok   143 screenshot J4I-c-0-sheet
+01:17:33 ok   144 dump       J4I-c-0-sheet
+01:17:33 ok   145 type       ask-input = 22 chars
+01:17:33 ok   146 press      ask-send ← onPress
+01:17:33 ok   147 sleep      2500 ms
+01:17:33 ok   148 waitFor    ask-stop gone
+01:17:33 ok   149 sleep      2000 ms
+01:17:33 FAIL 150 value      value ask-plain: no node with that testID is mounted
+01:17:33 ok   151 value      Your documents don't mention this.
+01:17:33 FAIL 152 value      value citations: no node with that testID is mounted
+01:17:33 ok   153 assertText "If you do not know" absent
+01:17:33 ok   154 assertText "say only the opening" absent
+01:17:33 ok   155 assertText "stop after that sentence" absent
+01:17:33 ok   156 assertText "Start with" absent
+01:17:33 ok   157 assertText "were searched" absent
+01:17:33 ok   158 assertText "never say what" absent
+01:17:33 ok   159 assertText "Never say what" absent
+01:17:33 ok   160 sleep      0 ms
+01:17:33 ok   161 screenshot J4I-c-1-nomatch
+01:17:33 ok   162 dump       J4I-c-1-nomatch
+01:17:33 ok   163 type       ask-input = 32 chars
+01:17:33 ok   164 press      ask-send ← onPress
+01:17:33 ok   165 sleep      2500 ms
+01:17:33 ok   166 waitFor    ask-stop gone
+01:17:33 ok   167 sleep      2000 ms
+01:17:33 FAIL 168 value      value ask-plain: no node with that testID is mounted
+01:17:33 ok   169 value      Your documents don't mention this.
+01:17:33 FAIL 170 value      value citations: no node with that testID is mounted
+01:17:33 ok   171 assertText "If you do not know" absent
+01:17:33 ok   172 assertText "say only the opening" absent
+01:17:33 ok   173 assertText "stop after that sentence" absent
+01:17:33 ok   174 assertText "Start with" absent
+01:17:33 ok   175 assertText "were searched" absent
+01:17:33 ok   176 assertText "never say what" absent
+01:17:33 ok   177 assertText "Never say what" absent
+01:17:33 ok   178 sleep      0 ms
+01:17:33 ok   179 screenshot J4I-c-2-nomatch
+01:17:33 ok   180 dump       J4I-c-2-nomatch
+01:17:33 ok   181 type       ask-input = 38 chars
+01:17:33 ok   182 press      ask-send ← onPress
+01:17:33 ok   183 sleep      2500 ms
+01:17:33 ok   184 waitFor    ask-stop gone
+01:17:33 ok   185 sleep      2000 ms
+01:17:33 FAIL 186 value      value ask-plain: no node with that testID is mounted
+01:17:33 ok   187 value      Your documents don't mention this.
+01:17:33 FAIL 188 value      value citations: no node with that testID is mounted
+01:17:33 ok   189 assertText "If you do not know" absent
+01:17:33 ok   190 assertText "say only the opening" absent
+01:17:33 ok   191 assertText "stop after that sentence" absent
+01:17:33 ok   192 assertText "Start with" absent
+01:17:33 ok   193 assertText "were searched" absent
+01:17:33 ok   194 assertText "never say what" absent
+01:17:33 ok   195 assertText "Never say what" absent
+01:17:33 ok   196 sleep      0 ms
+01:17:33 ok   197 screenshot J4I-c-3-nomatch
+01:17:33 ok   198 dump       J4I-c-3-nomatch
+01:17:33 ok   199 type       ask-input = 27 chars
+01:17:33 ok   200 press      ask-send ← onPress
+01:17:33 ok   201 sleep      2500 ms
+01:17:33 ok   202 waitFor    ask-stop gone
+01:17:33 ok   203 sleep      2000 ms
+01:17:33 FAIL 204 value      value ask-plain: no node with that testID is mounted
+01:17:33 ok   205 value      Your documents don't mention this. The 2018 World Cup was held in Qatar, but no specific individual won the to
+01:17:33 FAIL 206 value      value citations: no node with that testID is mounted
+01:17:33 ok   207 assertText "If you do not know" absent
+01:17:33 ok   208 assertText "say only the opening" absent
+01:17:33 ok   209 assertText "stop after that sentence" absent
+01:17:33 ok   210 assertText "Start with" absent
+01:17:33 ok   211 assertText "were searched" absent
+01:17:33 ok   212 assertText "never say what" absent
+01:17:33 ok   213 assertText "Never say what" absent
+01:17:33 ok   214 sleep      0 ms
+01:17:33 ok   215 screenshot J4I-c-4-nomatch
+01:17:33 ok   216 dump       J4I-c-4-nomatch
+01:17:33 ok   217 type       ask-input = 9 chars
+01:17:33 ok   218 press      ask-send ← onPress
+01:17:33 ok   219 sleep      2500 ms
+01:17:33 ok   220 waitFor    ask-stop gone
+01:17:33 ok   221 sleep      2000 ms
+01:17:33 ok   222 value      You're welcome. Ask another question about these documents.
+01:17:33 FAIL 223 value      value ask-answer: no node with that testID is mounted
+01:17:33 FAIL 224 value      value citations: no node with that testID is mounted
+01:17:33 ok   225 assertText "Ask another question about these documents" present
+01:17:33 ok   226 waitFor    ask-none-matched gone
+01:17:33 ok   227 waitFor    ask-not-found gone
+01:17:33 ok   228 sleep      0 ms
+01:17:33 ok   229 screenshot J4I-c-5-thank-you
+01:17:33 ok   230 dump       J4I-c-5-thank-you
+01:17:33 ok   231 type       ask-input = 7 chars
+01:17:33 ok   232 press      ask-send ← onPress
+01:17:33 ok   233 sleep      2500 ms
+01:17:33 ok   234 waitFor    ask-stop gone
+01:17:33 ok   235 sleep      2000 ms
+01:17:33 ok   236 value      This sheet answers one question at a time: ask the full question (for example, "Summarize it in three lines").
+01:17:33 FAIL 237 value      value ask-answer: no node with that testID is mounted
+01:17:33 FAIL 238 value      value citations: no node with that testID is mounted
+01:17:33 ok   239 assertText "This sheet answers one question at a time" present
+01:17:33 ok   240 waitFor    ask-none-matched gone
+01:17:33 ok   241 waitFor    ask-not-found gone
+01:17:33 ok   242 sleep      0 ms
+01:17:33 ok   243 screenshot J4I-c-6-and-now
+01:17:33 ok   244 dump       J4I-c-6-and-now
+01:17:33 ok   245 type       ask-input = 20 chars
+01:17:33 ok   246 press      ask-send ← onPress
+01:17:33 ok   247 sleep      2500 ms
+01:17:33 ok   248 waitFor    ask-stop gone
+01:17:33 ok   249 sleep      2000 ms
+01:17:33 FAIL 250 value      value ask-plain: no node with that testID is mounted
+01:17:33 ok   251 value      The President of the United States has the power to veto bills that have passed both the House and Senate, pro
+01:17:33 ok   252 value      SOURCES constitution-9pages.pdf · p.3 constitution-9pages.pdf · p.4
+01:17:33 ok   253 waitFor    ask-none-matched gone
+01:17:33 ok   254 waitFor    ask-not-found gone
+01:17:33 ok   255 assertText "If you do not know" absent
+01:17:33 ok   256 assertText "say only the opening" absent
+01:17:33 ok   257 assertText "stop after that sentence" absent
+01:17:33 ok   258 assertText "Start with" absent
+01:17:33 ok   259 assertText "were searched" absent
+01:17:33 ok   260 assertText "never say what" absent
+01:17:33 ok   261 assertText "Never say what" absent
+01:17:33 ok   262 sleep      0 ms
+01:17:33 ok   263 screenshot J4I-c-7-veto
+01:17:33 ok   264 dump       J4I-c-7-veto
+01:17:33 ok   265 deeplink   /chats
+01:17:33 ok   266 sleep      1500 ms
+01:17:33 241 passed, 26 failed, 15 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-40/docs/qa/ios-device-pass-40/screens
+01:17:33   ! step 14 (press): press model-sheet-close: not mounted
+01:17:33   ! step 36 (value): value ask-plain: no node with that testID is mounted
+01:17:33   ! step 38 (value): value citations: no node with that testID is mounted
+01:17:33   ! step 54 (value): value ask-plain: no node with that testID is mounted
+01:17:33   ! step 56 (value): value citations: no node with that testID is mounted
+01:17:33   ! step 72 (value): value ask-plain: no node with that testID is mounted
+01:17:33   ! step 74 (value): value citations: no node with that testID is mounted
+01:17:33   ! step 90 (value): value ask-plain: no node with that testID is mounted
+01:17:33   ! step 92 (value): value citations: no node with that testID is mounted
+01:17:33   ! step 109 (value): value ask-answer: no node with that testID is mounted
+01:17:33   ! step 110 (value): value citations: no node with that testID is mounted
+01:17:33   ! step 123 (value): value ask-answer: no node with that testID is mounted
+01:17:33   ! step 124 (value): value citations: no node with that testID is mounted
+01:17:33   ! step 150 (value): value ask-plain: no node with that testID is mounted
+01:17:33   ! step 152 (value): value citations: no node with that testID is mounted
+01:17:33   ! step 168 (value): value ask-plain: no node with that testID is mounted
+01:17:33   ! step 170 (value): value citations: no node with that testID is mounted
+01:17:33   ! step 186 (value): value ask-plain: no node with that testID is mounted
+01:17:33   ! step 188 (value): value citations: no node with that testID is mounted
+01:17:33   ! step 204 (value): value ask-plain: no node with that testID is mounted
+01:17:33   ! step 206 (value): value citations: no node with that testID is mounted
+01:17:33   ! step 223 (value): value ask-answer: no node with that testID is mounted
+01:17:33   ! step 224 (value): value citations: no node with that testID is mounted
+01:17:33   ! step 237 (value): value ask-answer: no node with that testID is mounted
+01:17:33   ! step 238 (value): value citations: no node with that testID is mounted
+01:17:33   ! step 250 (value): value ask-plain: no node with that testID is mounted

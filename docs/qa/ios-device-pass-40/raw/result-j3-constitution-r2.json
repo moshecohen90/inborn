@@ -1,0 +1,2719 @@
+{
+  "runId": "j3-constitution-r2",
+  "startedAt": "2026-10-06T21:42:15.865Z",
+  "finishedAt": "2026-10-06T21:51:27.747Z",
+  "ok": false,
+  "passed": 155,
+  "failed": 2,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 166,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1505,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 9,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "model-chip ← onPress"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "model-sheet appeared"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1505,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 12,
+      "op": "press",
+      "ok": false,
+      "ms": 2,
+      "detail": "press model-sheet-use-fast: not mounted"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3012,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 14,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "model-sheet-close ← onPress"
+    },
+    {
+      "i": 15,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1507,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 17,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 18,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"FAST\" present"
+    },
+    {
+      "i": 19,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 165,
+      "detail": "attach: constitution-9pages.pdf"
+    },
+    {
+      "i": 20,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1061,
+      "detail": "attached-docs appeared"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 20001,
+      "detail": "20000 ms"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "constitution-9pages.pdf",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "constitution-9pages.pdf"
+    },
+    {
+      "i": 23,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 4122,
+      "detail": "J3-01-attached"
+    },
+    {
+      "i": 24,
+      "op": "type",
+      "ok": true,
+      "ms": 161,
+      "detail": "composer-input = 12 chars"
+    },
+    {
+      "i": 25,
+      "op": "send",
+      "ok": true,
+      "ms": 221,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 26,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-pages appeared"
+    },
+    {
+      "i": 27,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Reading pages 1–2 of 9…",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Reading pages 1–2 of 9…"
+    },
+    {
+      "i": 28,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 29,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 8235,
+      "detail": "J3-02-reading"
+    },
+    {
+      "i": 30,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 156293,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 31,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 13053,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 32,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 70990,
+      "detail": "stop gone"
+    },
+    {
+      "i": 33,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2506,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 34,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements. Main Points: • Legislative Structure (Pages 1–2): Establishes a bicameral legislature with a Senate (100 senators, elected every six years) and House of Representatives (435 representatives, serving two years). Both houses must meet to conduct business but may adjourn up to three days without consent from the other. All legislative powers are vested in Congress [2]. • Revenue Bills & Eligibility (Pages 1–2): All bills raising revenue must originate in the House of Representatives before reaching the Senate. The document outlines specific eligibility requirements for members, including age and residency [2]. • Legislative Process & Powers (Pages 3–4): Bills require a two-thirds vote to pass both houses and become law; they cannot be rejected by the President without reconsideration. Congress has powers over commerce, currency, money, post offices, and raising armies, while restricting military funding to a two-year term [2]. • State Restrictions & Military (Pages 3–4): States are prohibited from issuing their own currency or entering treaties; they must pay all taxes into the federal treasury. The President serves as Commander-in-Chief of the armed forces [2]. • Judicial Power (Page 5–6): Judicial power is vested in a supreme court and inferior courts, with specific jurisdiction over ambassadors and states versus appellate cases. No state may levy duties on imports or exports without Congress's consent [3]. • Treaty & Admission (Pages 7–9): Treaties made under U.S. authority are the supreme law of the land. New states must receive consent from existing state legislatures and Congress before admission into the Union [4]. • Constitutionality & Oaths (Page 8–9): No person can be convicted of treason without evidence from two witnesses or an open confession; treaties are supreme law, and all federal officers must swear oaths supporting the Constitution [4]. Summary of all 9 pages.",
+        "props": {
+          "source": "This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements.\n\n**Main Points:**\n*   **Legislative Structure (Pages 1–2):** Establishes a bicameral legislature with a Senate (100 senators, elected every six years) and House of Representatives (435 representatives, serving two years). Both houses must meet to conduct business but may adjourn up to three days without consent from the other. All legislative powers are vested in Congress [2].\n*   **Revenue Bills & Eligibility (Pages 1–2):** All bills raising revenue must originate in the House of Representatives before reaching the Senate. The document outlines specific eligibility requirements for members, including age and residency [2].\n*   **Legislative Process & Powers (Pages 3–4):** Bills require a two-thirds vote to pass both houses and become law; they cannot be rejected by the President without reconsideration. Congress has powers over commerce, currency, money, post offices, and raising armies, while restricting military funding to a two-year term [2].\n*   **State Restrictions & Military (Pages 3–4):** States are prohibited from issuing their own currency or entering treaties; they must pay all taxes into the federal treasury. The President serves as Commander-in-Chief of the armed forces [2].\n*   **Judicial Power (Page 5–6):** Judicial power is vested in a supreme court and inferior courts, with specific jurisdiction over ambassadors and states versus appellate cases. No state may levy duties on imports or exports without Congress's consent [3].\n*   **Treaty & Admission (Pages 7–9):** Treaties made under U.S. authority are the supreme law of the land. New states must receive consent from existing state legislatures and Congress before admission into the Union [4].\n*   **Constitutionality & Oaths (Page 8–9):** No person can be convicted of treason without evidence from two witnesses or an open confession; treaties are supreme law, and all federal officers must swear oaths supporting the Constitution [4].\n\n*Summary of all 9 pages.*",
+          "disabled": false
+        }
+      },
+      "detail": "This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements. Main Points: • Legislative Structure (Pages 1–2):"
+    },
+    {
+      "i": 35,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "[2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "[2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+    },
+    {
+      "i": 36,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "constitution-9pages.pdf",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "constitution-9pages.pdf"
+    },
+    {
+      "i": 37,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Summary of all 9 pages.\" present"
+    },
+    {
+      "i": 38,
+      "op": "assertText",
+      "ok": false,
+      "ms": 1,
+      "detail": "assertText \"p.1–\" is not on screen under citations"
+    },
+    {
+      "i": 39,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2852,
+      "detail": "J3-02-summary"
+    },
+    {
+      "i": 40,
+      "op": "dump",
+      "ok": true,
+      "ms": 3,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements. Main Points: • Legislative Structure (Pages 1–2): Establishes a bicameral legislature with a Senate (100 senators, elected every six years) and House of Representatives (435 representatives, serving two years). Both houses must meet to conduct business but may adjourn up to three days without consent from the other. All legislative powers are vested in Congress [2]. • Revenue Bills & Eligibility (Pages 1–2): All bills raising revenue must originate in the House of Representatives before reaching the Senate. The document outlines specific eligibility requirements for members, including age and residency [2]. • Legislative Process & Powers (Pages 3–4): Bills require a two-thirds vote to pass both houses and become law; they cannot be rejected by the President without reconsideration. Congress has powers over commerce, currency, money, post offices, and raising armies, while restricting military funding to a two-year term [2]. • State Restrictions & Military (Pages 3–4): States are prohibited from issuing their own currency or entering treaties; they must pay all taxes into the federal treasury. The President serves as Commander-in-Chief of the armed forces [2]. • Judicial Power (Page 5–6): Judicial power is vested in a supreme court and inferior courts, with specific jurisdiction over ambassadors and states versus appellate cases. No state may levy duties on imports or exports without Congress's consent [3]. • Treaty & Admission (Pages 7–9): Treaties made under U.S. authority are the supreme law of the land. New states must receive consent from existing state legislatures and Congress before admission into the Union [4]. • Constitutionality & Oaths (Page 8–9): No person can be convicted of treason without evidence from two witnesses or an open confession; treaties are supreme law, and all federal officers must swear oaths supporting the Constitution [4]. Summary of all 9 pages. [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements. Main Points: • Legislative Structure (Pages 1–2): Establishes a bicameral legislature with a Senate (100 senators, elected every six years) and House of Representatives (435 representatives, serving two years). Both houses must meet to conduct business but may adjourn up to three days without consent from the other. All legislative powers are vested in Congress [2]. • Revenue Bills & Eligibility (Pages 1–2): All bills raising revenue must originate in the House of Representatives before reaching the Senate. The document outlines specific eligibility requirements for members, including age and residency [2]. • Legislative Process & Powers (Pages 3–4): Bills require a two-thirds vote to pass both houses and become law; they cannot be rejected by the President without reconsideration. Congress has powers over commerce, currency, money, post offices, and raising armies, while restricting military funding to a two-year term [2]. • State Restrictions & Military (Pages 3–4): States are prohibited from issuing their own currency or entering treaties; they must pay all taxes into the federal treasury. The President serves as Commander-in-Chief of the armed forces [2]. • Judicial Power (Page 5–6): Judicial power is vested in a supreme court and inferior courts, with specific jurisdiction over ambassadors and states versus appellate cases. No state may levy duties on imports or exports without Congress's consent [3]. • Treaty & Admission (Pages 7–9): Treaties made under U.S. authority are the supreme law of the land. New states must receive consent from existing state legislatures and Congress before admission into the Union [4]. • Constitutionality & Oaths (Page 8–9): No person can be convicted of treason without evidence from two witnesses or an open confession; treaties are supreme law, and all federal officers must swear oaths supporting the Constitution [4]. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-mux7fiox-3-wwp98bch",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J3-02-summary"
+    },
+    {
+      "i": 41,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"The request specifies\" absent"
+    },
+    {
+      "i": 42,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"I will focus\" absent"
+    },
+    {
+      "i": 43,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"as an AI\" absent"
+    },
+    {
+      "i": 44,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"NOT_FOUND\" absent"
+    },
+    {
+      "i": 45,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"<<<\" absent"
+    },
+    {
+      "i": 46,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"The user is asking\" absent"
+    },
+    {
+      "i": 47,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "ledger-toggle ← onPress"
+    },
+    {
+      "i": 48,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1217,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 49,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "MODEL FAST QUANT Q4_K CONTEXT 1300 / 4096 MS / TOKEN 161 ms More detail · PRO",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "MODEL FAST QUANT Q4_K CONTEXT 1300 / 4096 MS / TOKEN 161 ms More detail · PRO"
+    },
+    {
+      "i": 50,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2855,
+      "detail": "J3-02-ledger"
+    },
+    {
+      "i": 51,
+      "op": "press",
+      "ok": true,
+      "ms": 160,
+      "detail": "ledger-toggle ← onPress"
+    },
+    {
+      "i": 52,
+      "op": "sleep",
+      "ok": true,
+      "ms": 800,
+      "detail": "800 ms"
+    },
+    {
+      "i": 53,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 6 chars"
+    },
+    {
+      "i": 54,
+      "op": "send",
+      "ok": true,
+      "ms": 154,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 55,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2500,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 56,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 57,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 58,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 9449,
+      "detail": "stop gone"
+    },
+    {
+      "i": 59,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2510,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 60,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements. Main Points: • Legislative Structure (Pages 1–2): Establishes a bicameral legislature with a Senate (100 senators, elected every six years) and House of Representatives (435 representatives, serving two years). Both houses must meet to conduct business but may adjourn up to three days without consent from the other. All legislative powers are vested in Congress [2]. • Revenue Bills & Eligibility (Pages 1–2): All bills raising revenue must originate in the House of Representatives before reaching the Senate. The document outlines specific eligibility requirements for members, including age and residency [2]. • Legislative Process & Powers (Pages 3–4): Bills require a two-thirds vote to pass both houses and become law; they cannot be rejected by the President without reconsideration. Congress has powers over commerce, currency, money, post offices, and raising armies, while restricting military funding to a two-year term [2]. • State Restrictions & Military (Pages 3–4): States are prohibited from issuing their own currency or entering treaties; they must pay all taxes into the federal treasury. The President serves as Commander-in-Chief of the armed forces [2]. • Judicial Power (Page 5–6): Judicial power is vested in a supreme court and inferior courts, with specific jurisdiction over ambassadors and states versus appellate cases. No state may levy duties on imports or exports without Congress's consent [3]. • Treaty & Admission (Pages 7–9): Treaties made under U.S. authority are the supreme law of the land. New states must receive consent from existing state legislatures and Congress before admission into the Union [4]. • Constitutionality & Oaths (Page 8–9): No person can be convicted of treason without evidence from two witnesses or an open confession; treaties are supreme law, and all federal officers must swear oaths supporting the Constitution [4]. Summary of all 9 pages.",
+        "props": {
+          "source": "This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements.\n\n**Main Points:**\n*   **Legislative Structure (Pages 1–2):** Establishes a bicameral legislature with a Senate (100 senators, elected every six years) and House of Representatives (435 representatives, serving two years). Both houses must meet to conduct business but may adjourn up to three days without consent from the other. All legislative powers are vested in Congress [2].\n*   **Revenue Bills & Eligibility (Pages 1–2):** All bills raising revenue must originate in the House of Representatives before reaching the Senate. The document outlines specific eligibility requirements for members, including age and residency [2].\n*   **Legislative Process & Powers (Pages 3–4):** Bills require a two-thirds vote to pass both houses and become law; they cannot be rejected by the President without reconsideration. Congress has powers over commerce, currency, money, post offices, and raising armies, while restricting military funding to a two-year term [2].\n*   **State Restrictions & Military (Pages 3–4):** States are prohibited from issuing their own currency or entering treaties; they must pay all taxes into the federal treasury. The President serves as Commander-in-Chief of the armed forces [2].\n*   **Judicial Power (Page 5–6):** Judicial power is vested in a supreme court and inferior courts, with specific jurisdiction over ambassadors and states versus appellate cases. No state may levy duties on imports or exports without Congress's consent [3].\n*   **Treaty & Admission (Pages 7–9):** Treaties made under U.S. authority are the supreme law of the land. New states must receive consent from existing state legislatures and Congress before admission into the Union [4].\n*   **Constitutionality & Oaths (Page 8–9):** No person can be convicted of treason without evidence from two witnesses or an open confession; treaties are supreme law, and all federal officers must swear oaths supporting the Constitution [4].\n\n*Summary of all 9 pages.*",
+          "disabled": false
+        }
+      },
+      "detail": "This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements. Main Points: • Legislative Structure (Pages 1–2):"
+    },
+    {
+      "i": 61,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 62,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "none-matched gone"
+    },
+    {
+      "i": 63,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"468 MB\" absent"
+    },
+    {
+      "i": 64,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Nothing in your documents matched this question\" absent"
+    },
+    {
+      "i": 65,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3803,
+      "detail": "J3-03-thanks"
+    },
+    {
+      "i": 66,
+      "op": "dump",
+      "ok": true,
+      "ms": 4,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements. Main Points: • Legislative Structure (Pages 1–2): Establishes a bicameral legislature with a Senate (100 senators, elected every six years) and House of Representatives (435 representatives, serving two years). Both houses must meet to conduct business but may adjourn up to three days without consent from the other. All legislative powers are vested in Congress [2]. • Revenue Bills & Eligibility (Pages 1–2): All bills raising revenue must originate in the House of Representatives before reaching the Senate. The document outlines specific eligibility requirements for members, including age and residency [2]. • Legislative Process & Powers (Pages 3–4): Bills require a two-thirds vote to pass both houses and become law; they cannot be rejected by the President without reconsideration. Congress has powers over commerce, currency, money, post offices, and raising armies, while restricting military funding to a two-year term [2]. • State Restrictions & Military (Pages 3–4): States are prohibited from issuing their own currency or entering treaties; they must pay all taxes into the federal treasury. The President serves as Commander-in-Chief of the armed forces [2]. • Judicial Power (Page 5–6): Judicial power is vested in a supreme court and inferior courts, with specific jurisdiction over ambassadors and states versus appellate cases. No state may levy duties on imports or exports without Congress's consent [3]. • Treaty & Admission (Pages 7–9): Treaties made under U.S. authority are the supreme law of the land. New states must receive consent from existing state legislatures and Congress before admission into the Union [4]. • Constitutionality & Oaths (Page 8–9): No person can be convicted of treason without evidence from two witnesses or an open confession; treaties are supreme law, and all federal officers must swear oaths supporting the Constitution [4]. Summary of all 9 pages. [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements. Main Points: • Legislative Structure (Pages 1–2): Establishes a bicameral legislature with a Senate (100 senators, elected every six years) and House of Representatives (435 representatives, serving two years). Both houses must meet to conduct business but may adjourn up to three days without consent from the other. All legislative powers are vested in Congress [2]. • Revenue Bills & Eligibility (Pages 1–2): All bills raising revenue must originate in the House of Representatives before reaching the Senate. The document outlines specific eligibility requirements for members, including age and residency [2]. • Legislative Process & Powers (Pages 3–4): Bills require a two-thirds vote to pass both houses and become law; they cannot be rejected by the President without reconsideration. Congress has powers over commerce, currency, money, post offices, and raising armies, while restricting military funding to a two-year term [2]. • State Restrictions & Military (Pages 3–4): States are prohibited from issuing their own currency or entering treaties; they must pay all taxes into the federal treasury. The President serves as Commander-in-Chief of the armed forces [2]. • Judicial Power (Page 5–6): Judicial power is vested in a supreme court and inferior courts, with specific jurisdiction over ambassadors and states versus appellate cases. No state may levy duties on imports or exports without Congress's consent [3]. • Treaty & Admission (Pages 7–9): Treaties made under U.S. authority are the supreme law of the land. New states must receive consent from existing state legislatures and Congress before admission into the Union [4]. • Constitutionality & Oaths (Page 8–9): No person can be convicted of treason without evidence from two witnesses or an open confession; treaties are supreme law, and all federal officers must swear oaths supporting the Constitution [4]. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-mux7fiox-3-wwp98bch",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J3-03-thanks"
+    },
+    {
+      "i": 67,
+      "op": "type",
+      "ok": true,
+      "ms": 155,
+      "detail": "composer-input = 7 chars"
+    },
+    {
+      "i": 68,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 69,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2500,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 70,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 71,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 72,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 21227,
+      "detail": "stop gone"
+    },
+    {
+      "i": 73,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2506,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 74,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements. Main Points: • Legislative Structure (Pages 1–2): Establishes a bicameral legislature with a Senate (100 senators, elected every six years) and House of Representatives (435 representatives, serving two years). Both houses must meet to conduct business but may adjourn up to three days without consent from the other. All legislative powers are vested in Congress [2]. • Revenue Bills & Eligibility (Pages 1–2): All bills raising revenue must originate in the House of Representatives before reaching the Senate. The document outlines specific eligibility requirements for members, including age and residency [2]. • Legislative Process & Powers (Pages 3–4): Bills require a two-thirds vote to pass both houses and become law; they cannot be rejected by the President without reconsideration. Congress has powers over commerce, currency, money, post offices, and raising armies, while restricting military funding to a two-year term [2]. • State Restrictions & Military (Pages 3–4): States are prohibited from issuing their own currency or entering treaties; they must pay all taxes into the federal treasury. The President serves as Commander-in-Chief of the armed forces [2]. • Judicial Power (Page 5–6): Judicial power is vested in a supreme court and inferior courts, with specific jurisdiction over ambassadors and states versus appellate cases. No state may levy duties on imports or exports without Congress's consent [3]. • Treaty & Admission (Pages 7–9): Treaties made under U.S. authority are the supreme law of the land. New states must receive consent from existing state legislatures and Congress before admission into the Union [4]. • Constitutionality & Oaths (Page 8–9): No person can be convicted of treason without evidence from two witnesses or an open confession; treaties are supreme law, and all federal officers must swear oaths supporting the Constitution [4]. Summary of all 9 pages.",
+        "props": {
+          "source": "This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements.\n\n**Main Points:**\n*   **Legislative Structure (Pages 1–2):** Establishes a bicameral legislature with a Senate (100 senators, elected every six years) and House of Representatives (435 representatives, serving two years). Both houses must meet to conduct business but may adjourn up to three days without consent from the other. All legislative powers are vested in Congress [2].\n*   **Revenue Bills & Eligibility (Pages 1–2):** All bills raising revenue must originate in the House of Representatives before reaching the Senate. The document outlines specific eligibility requirements for members, including age and residency [2].\n*   **Legislative Process & Powers (Pages 3–4):** Bills require a two-thirds vote to pass both houses and become law; they cannot be rejected by the President without reconsideration. Congress has powers over commerce, currency, money, post offices, and raising armies, while restricting military funding to a two-year term [2].\n*   **State Restrictions & Military (Pages 3–4):** States are prohibited from issuing their own currency or entering treaties; they must pay all taxes into the federal treasury. The President serves as Commander-in-Chief of the armed forces [2].\n*   **Judicial Power (Page 5–6):** Judicial power is vested in a supreme court and inferior courts, with specific jurisdiction over ambassadors and states versus appellate cases. No state may levy duties on imports or exports without Congress's consent [3].\n*   **Treaty & Admission (Pages 7–9):** Treaties made under U.S. authority are the supreme law of the land. New states must receive consent from existing state legislatures and Congress before admission into the Union [4].\n*   **Constitutionality & Oaths (Page 8–9):** No person can be convicted of treason without evidence from two witnesses or an open confession; treaties are supreme law, and all federal officers must swear oaths supporting the Constitution [4].\n\n*Summary of all 9 pages.*",
+          "disabled": false
+        }
+      },
+      "detail": "This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements. Main Points: • Legislative Structure (Pages 1–2):"
+    },
+    {
+      "i": 75,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 76,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "none-matched gone"
+    },
+    {
+      "i": 77,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"468 MB\" absent"
+    },
+    {
+      "i": 78,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"Nothing in your documents matched this question\" absent"
+    },
+    {
+      "i": 79,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"welcome\" absent"
+    },
+    {
+      "i": 80,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"Welcome\" absent"
+    },
+    {
+      "i": 81,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"You're\" absent"
+    },
+    {
+      "i": 82,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 4129,
+      "detail": "J3-04-shorter"
+    },
+    {
+      "i": 83,
+      "op": "dump",
+      "ok": true,
+      "ms": 4,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements. Main Points: • Legislative Structure (Pages 1–2): Establishes a bicameral legislature with a Senate (100 senators, elected every six years) and House of Representatives (435 representatives, serving two years). Both houses must meet to conduct business but may adjourn up to three days without consent from the other. All legislative powers are vested in Congress [2]. • Revenue Bills & Eligibility (Pages 1–2): All bills raising revenue must originate in the House of Representatives before reaching the Senate. The document outlines specific eligibility requirements for members, including age and residency [2]. • Legislative Process & Powers (Pages 3–4): Bills require a two-thirds vote to pass both houses and become law; they cannot be rejected by the President without reconsideration. Congress has powers over commerce, currency, money, post offices, and raising armies, while restricting military funding to a two-year term [2]. • State Restrictions & Military (Pages 3–4): States are prohibited from issuing their own currency or entering treaties; they must pay all taxes into the federal treasury. The President serves as Commander-in-Chief of the armed forces [2]. • Judicial Power (Page 5–6): Judicial power is vested in a supreme court and inferior courts, with specific jurisdiction over ambassadors and states versus appellate cases. No state may levy duties on imports or exports without Congress's consent [3]. • Treaty & Admission (Pages 7–9): Treaties made under U.S. authority are the supreme law of the land. New states must receive consent from existing state legislatures and Congress before admission into the Union [4]. • Constitutionality & Oaths (Page 8–9): No person can be convicted of treason without evidence from two witnesses or an open confession; treaties are supreme law, and all federal officers must swear oaths supporting the Constitution [4]. Summary of all 9 pages. [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements. Main Points: • Legislative Structure (Pages 1–2): Establishes a bicameral legislature with a Senate (100 senators, elected every six years) and House of Representatives (435 representatives, serving two years). Both houses must meet to conduct business but may adjourn up to three days without consent from the other. All legislative powers are vested in Congress [2]. • Revenue Bills & Eligibility (Pages 1–2): All bills raising revenue must originate in the House of Representatives before reaching the Senate. The document outlines specific eligibility requirements for members, including age and residency [2]. • Legislative Process & Powers (Pages 3–4): Bills require a two-thirds vote to pass both houses and become law; they cannot be rejected by the President without reconsideration. Congress has powers over commerce, currency, money, post offices, and raising armies, while restricting military funding to a two-year term [2]. • State Restrictions & Military (Pages 3–4): States are prohibited from issuing their own currency or entering treaties; they must pay all taxes into the federal treasury. The President serves as Commander-in-Chief of the armed forces [2]. • Judicial Power (Page 5–6): Judicial power is vested in a supreme court and inferior courts, with specific jurisdiction over ambassadors and states versus appellate cases. No state may levy duties on imports or exports without Congress's consent [3]. • Treaty & Admission (Pages 7–9): Treaties made under U.S. authority are the supreme law of the land. New states must receive consent from existing state legislatures and Congress before admission into the Union [4]. • Constitutionality & Oaths (Page 8–9): No person can be convicted of treason without evidence from two witnesses or an open confession; treaties are supreme law, and all federal officers must swear oaths supporting the Constitution [4]. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-mux7fiox-3-wwp98bch",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J3-04-shorter"
+    },
+    {
+      "i": 84,
+      "op": "type",
+      "ok": true,
+      "ms": 157,
+      "detail": "composer-input = 4 chars"
+    },
+    {
+      "i": 85,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 86,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2671,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 87,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 88,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 89,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 96482,
+      "detail": "stop gone"
+    },
+    {
+      "i": 90,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 91,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements. Main Points: • Legislative Structure (Pages 1–2): Establishes a bicameral legislature with a Senate (100 senators, elected every six years) and House of Representatives (435 representatives, serving two years). Both houses must meet to conduct business but may adjourn up to three days without consent from the other. All legislative powers are vested in Congress [2]. • Revenue Bills & Eligibility (Pages 1–2): All bills raising revenue must originate in the House of Representatives before reaching the Senate. The document outlines specific eligibility requirements for members, including age and residency [2]. • Legislative Process & Powers (Pages 3–4): Bills require a two-thirds vote to pass both houses and become law; they cannot be rejected by the President without reconsideration. Congress has powers over commerce, currency, money, post offices, and raising armies, while restricting military funding to a two-year term [2]. • State Restrictions & Military (Pages 3–4): States are prohibited from issuing their own currency or entering treaties; they must pay all taxes into the federal treasury. The President serves as Commander-in-Chief of the armed forces [2]. • Judicial Power (Page 5–6): Judicial power is vested in a supreme court and inferior courts, with specific jurisdiction over ambassadors and states versus appellate cases. No state may levy duties on imports or exports without Congress's consent [3]. • Treaty & Admission (Pages 7–9): Treaties made under U.S. authority are the supreme law of the land. New states must receive consent from existing state legislatures and Congress before admission into the Union [4]. • Constitutionality & Oaths (Page 8–9): No person can be convicted of treason without evidence from two witnesses or an open confession; treaties are supreme law, and all federal officers must swear oaths supporting the Constitution [4]. Summary of all 9 pages.",
+        "props": {
+          "source": "This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements.\n\n**Main Points:**\n*   **Legislative Structure (Pages 1–2):** Establishes a bicameral legislature with a Senate (100 senators, elected every six years) and House of Representatives (435 representatives, serving two years). Both houses must meet to conduct business but may adjourn up to three days without consent from the other. All legislative powers are vested in Congress [2].\n*   **Revenue Bills & Eligibility (Pages 1–2):** All bills raising revenue must originate in the House of Representatives before reaching the Senate. The document outlines specific eligibility requirements for members, including age and residency [2].\n*   **Legislative Process & Powers (Pages 3–4):** Bills require a two-thirds vote to pass both houses and become law; they cannot be rejected by the President without reconsideration. Congress has powers over commerce, currency, money, post offices, and raising armies, while restricting military funding to a two-year term [2].\n*   **State Restrictions & Military (Pages 3–4):** States are prohibited from issuing their own currency or entering treaties; they must pay all taxes into the federal treasury. The President serves as Commander-in-Chief of the armed forces [2].\n*   **Judicial Power (Page 5–6):** Judicial power is vested in a supreme court and inferior courts, with specific jurisdiction over ambassadors and states versus appellate cases. No state may levy duties on imports or exports without Congress's consent [3].\n*   **Treaty & Admission (Pages 7–9):** Treaties made under U.S. authority are the supreme law of the land. New states must receive consent from existing state legislatures and Congress before admission into the Union [4].\n*   **Constitutionality & Oaths (Page 8–9):** No person can be convicted of treason without evidence from two witnesses or an open confession; treaties are supreme law, and all federal officers must swear oaths supporting the Constitution [4].\n\n*Summary of all 9 pages.*",
+          "disabled": false
+        }
+      },
+      "detail": "This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements. Main Points: • Legislative Structure (Pages 1–2):"
+    },
+    {
+      "i": 92,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 93,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "none-matched gone"
+    },
+    {
+      "i": 94,
+      "op": "assertText",
+      "ok": true,
+      "ms": 3,
+      "detail": "\"468 MB\" absent"
+    },
+    {
+      "i": 95,
+      "op": "assertText",
+      "ok": true,
+      "ms": 3,
+      "detail": "\"Nothing in your documents matched this question\" absent"
+    },
+    {
+      "i": 96,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"welcome\" absent"
+    },
+    {
+      "i": 97,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"Welcome\" absent"
+    },
+    {
+      "i": 98,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"You're\" absent"
+    },
+    {
+      "i": 99,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2857,
+      "detail": "J3-05-more"
+    },
+    {
+      "i": 100,
+      "op": "dump",
+      "ok": true,
+      "ms": 4,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements. Main Points: • Legislative Structure (Pages 1–2): Establishes a bicameral legislature with a Senate (100 senators, elected every six years) and House of Representatives (435 representatives, serving two years). Both houses must meet to conduct business but may adjourn up to three days without consent from the other. All legislative powers are vested in Congress [2]. • Revenue Bills & Eligibility (Pages 1–2): All bills raising revenue must originate in the House of Representatives before reaching the Senate. The document outlines specific eligibility requirements for members, including age and residency [2]. • Legislative Process & Powers (Pages 3–4): Bills require a two-thirds vote to pass both houses and become law; they cannot be rejected by the President without reconsideration. Congress has powers over commerce, currency, money, post offices, and raising armies, while restricting military funding to a two-year term [2]. • State Restrictions & Military (Pages 3–4): States are prohibited from issuing their own currency or entering treaties; they must pay all taxes into the federal treasury. The President serves as Commander-in-Chief of the armed forces [2]. • Judicial Power (Page 5–6): Judicial power is vested in a supreme court and inferior courts, with specific jurisdiction over ambassadors and states versus appellate cases. No state may levy duties on imports or exports without Congress's consent [3]. • Treaty & Admission (Pages 7–9): Treaties made under U.S. authority are the supreme law of the land. New states must receive consent from existing state legislatures and Congress before admission into the Union [4]. • Constitutionality & Oaths (Page 8–9): No person can be convicted of treason without evidence from two witnesses or an open confession; treaties are supreme law, and all federal officers must swear oaths supporting the Constitution [4]. Summary of all 9 pages. [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements. Main Points: • Legislative Structure (Pages 1–2): Establishes a bicameral legislature with a Senate (100 senators, elected every six years) and House of Representatives (435 representatives, serving two years). Both houses must meet to conduct business but may adjourn up to three days without consent from the other. All legislative powers are vested in Congress [2]. • Revenue Bills & Eligibility (Pages 1–2): All bills raising revenue must originate in the House of Representatives before reaching the Senate. The document outlines specific eligibility requirements for members, including age and residency [2]. • Legislative Process & Powers (Pages 3–4): Bills require a two-thirds vote to pass both houses and become law; they cannot be rejected by the President without reconsideration. Congress has powers over commerce, currency, money, post offices, and raising armies, while restricting military funding to a two-year term [2]. • State Restrictions & Military (Pages 3–4): States are prohibited from issuing their own currency or entering treaties; they must pay all taxes into the federal treasury. The President serves as Commander-in-Chief of the armed forces [2]. • Judicial Power (Page 5–6): Judicial power is vested in a supreme court and inferior courts, with specific jurisdiction over ambassadors and states versus appellate cases. No state may levy duties on imports or exports without Congress's consent [3]. • Treaty & Admission (Pages 7–9): Treaties made under U.S. authority are the supreme law of the land. New states must receive consent from existing state legislatures and Congress before admission into the Union [4]. • Constitutionality & Oaths (Page 8–9): No person can be convicted of treason without evidence from two witnesses or an open confession; treaties are supreme law, and all federal officers must swear oaths supporting the Constitution [4]. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-mux7fiox-3-wwp98bch",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J3-05-more"
+    },
+    {
+      "i": 101,
+      "op": "type",
+      "ok": true,
+      "ms": 157,
+      "detail": "composer-input = 23 chars"
+    },
+    {
+      "i": 102,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 103,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2500,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 104,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 105,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 106,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 27530,
+      "detail": "stop gone"
+    },
+    {
+      "i": 107,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2502,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 108,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements. Main Points: • Legislative Structure (Pages 1–2): Establishes a bicameral legislature with a Senate (100 senators, elected every six years) and House of Representatives (435 representatives, serving two years). Both houses must meet to conduct business but may adjourn up to three days without consent from the other. All legislative powers are vested in Congress [2]. • Revenue Bills & Eligibility (Pages 1–2): All bills raising revenue must originate in the House of Representatives before reaching the Senate. The document outlines specific eligibility requirements for members, including age and residency [2]. • Legislative Process & Powers (Pages 3–4): Bills require a two-thirds vote to pass both houses and become law; they cannot be rejected by the President without reconsideration. Congress has powers over commerce, currency, money, post offices, and raising armies, while restricting military funding to a two-year term [2]. • State Restrictions & Military (Pages 3–4): States are prohibited from issuing their own currency or entering treaties; they must pay all taxes into the federal treasury. The President serves as Commander-in-Chief of the armed forces [2]. • Judicial Power (Page 5–6): Judicial power is vested in a supreme court and inferior courts, with specific jurisdiction over ambassadors and states versus appellate cases. No state may levy duties on imports or exports without Congress's consent [3]. • Treaty & Admission (Pages 7–9): Treaties made under U.S. authority are the supreme law of the land. New states must receive consent from existing state legislatures and Congress before admission into the Union [4]. • Constitutionality & Oaths (Page 8–9): No person can be convicted of treason without evidence from two witnesses or an open confession; treaties are supreme law, and all federal officers must swear oaths supporting the Constitution [4]. Summary of all 9 pages.",
+        "props": {
+          "source": "This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements.\n\n**Main Points:**\n*   **Legislative Structure (Pages 1–2):** Establishes a bicameral legislature with a Senate (100 senators, elected every six years) and House of Representatives (435 representatives, serving two years). Both houses must meet to conduct business but may adjourn up to three days without consent from the other. All legislative powers are vested in Congress [2].\n*   **Revenue Bills & Eligibility (Pages 1–2):** All bills raising revenue must originate in the House of Representatives before reaching the Senate. The document outlines specific eligibility requirements for members, including age and residency [2].\n*   **Legislative Process & Powers (Pages 3–4):** Bills require a two-thirds vote to pass both houses and become law; they cannot be rejected by the President without reconsideration. Congress has powers over commerce, currency, money, post offices, and raising armies, while restricting military funding to a two-year term [2].\n*   **State Restrictions & Military (Pages 3–4):** States are prohibited from issuing their own currency or entering treaties; they must pay all taxes into the federal treasury. The President serves as Commander-in-Chief of the armed forces [2].\n*   **Judicial Power (Page 5–6):** Judicial power is vested in a supreme court and inferior courts, with specific jurisdiction over ambassadors and states versus appellate cases. No state may levy duties on imports or exports without Congress's consent [3].\n*   **Treaty & Admission (Pages 7–9):** Treaties made under U.S. authority are the supreme law of the land. New states must receive consent from existing state legislatures and Congress before admission into the Union [4].\n*   **Constitutionality & Oaths (Page 8–9):** No person can be convicted of treason without evidence from two witnesses or an open confession; treaties are supreme law, and all federal officers must swear oaths supporting the Constitution [4].\n\n*Summary of all 9 pages.*",
+          "disabled": false
+        }
+      },
+      "detail": "This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements. Main Points: • Legislative Structure (Pages 1–2):"
+    },
+    {
+      "i": 109,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 110,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "none-matched gone"
+    },
+    {
+      "i": 111,
+      "op": "assertText",
+      "ok": true,
+      "ms": 3,
+      "detail": "\"468 MB\" absent"
+    },
+    {
+      "i": 112,
+      "op": "assertText",
+      "ok": true,
+      "ms": 3,
+      "detail": "\"Nothing in your documents matched this question\" absent"
+    },
+    {
+      "i": 113,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"welcome\" absent"
+    },
+    {
+      "i": 114,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"Welcome\" absent"
+    },
+    {
+      "i": 115,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"You're\" absent"
+    },
+    {
+      "i": 116,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3491,
+      "detail": "J3-06-bullets"
+    },
+    {
+      "i": 117,
+      "op": "dump",
+      "ok": true,
+      "ms": 4,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements. Main Points: • Legislative Structure (Pages 1–2): Establishes a bicameral legislature with a Senate (100 senators, elected every six years) and House of Representatives (435 representatives, serving two years). Both houses must meet to conduct business but may adjourn up to three days without consent from the other. All legislative powers are vested in Congress [2]. • Revenue Bills & Eligibility (Pages 1–2): All bills raising revenue must originate in the House of Representatives before reaching the Senate. The document outlines specific eligibility requirements for members, including age and residency [2]. • Legislative Process & Powers (Pages 3–4): Bills require a two-thirds vote to pass both houses and become law; they cannot be rejected by the President without reconsideration. Congress has powers over commerce, currency, money, post offices, and raising armies, while restricting military funding to a two-year term [2]. • State Restrictions & Military (Pages 3–4): States are prohibited from issuing their own currency or entering treaties; they must pay all taxes into the federal treasury. The President serves as Commander-in-Chief of the armed forces [2]. • Judicial Power (Page 5–6): Judicial power is vested in a supreme court and inferior courts, with specific jurisdiction over ambassadors and states versus appellate cases. No state may levy duties on imports or exports without Congress's consent [3]. • Treaty & Admission (Pages 7–9): Treaties made under U.S. authority are the supreme law of the land. New states must receive consent from existing state legislatures and Congress before admission into the Union [4]. • Constitutionality & Oaths (Page 8–9): No person can be convicted of treason without evidence from two witnesses or an open confession; treaties are supreme law, and all federal officers must swear oaths supporting the Constitution [4]. Summary of all 9 pages. [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements. Main Points: • Legislative Structure (Pages 1–2): Establishes a bicameral legislature with a Senate (100 senators, elected every six years) and House of Representatives (435 representatives, serving two years). Both houses must meet to conduct business but may adjourn up to three days without consent from the other. All legislative powers are vested in Congress [2]. • Revenue Bills & Eligibility (Pages 1–2): All bills raising revenue must originate in the House of Representatives before reaching the Senate. The document outlines specific eligibility requirements for members, including age and residency [2]. • Legislative Process & Powers (Pages 3–4): Bills require a two-thirds vote to pass both houses and become law; they cannot be rejected by the President without reconsideration. Congress has powers over commerce, currency, money, post offices, and raising armies, while restricting military funding to a two-year term [2]. • State Restrictions & Military (Pages 3–4): States are prohibited from issuing their own currency or entering treaties; they must pay all taxes into the federal treasury. The President serves as Commander-in-Chief of the armed forces [2]. • Judicial Power (Page 5–6): Judicial power is vested in a supreme court and inferior courts, with specific jurisdiction over ambassadors and states versus appellate cases. No state may levy duties on imports or exports without Congress's consent [3]. • Treaty & Admission (Pages 7–9): Treaties made under U.S. authority are the supreme law of the land. New states must receive consent from existing state legislatures and Congress before admission into the Union [4]. • Constitutionality & Oaths (Page 8–9): No person can be convicted of treason without evidence from two witnesses or an open confession; treaties are supreme law, and all federal officers must swear oaths supporting the Constitution [4]. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-mux7fiox-3-wwp98bch",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J3-06-bullets"
+    },
+    {
+      "i": 118,
+      "op": "type",
+      "ok": true,
+      "ms": 157,
+      "detail": "composer-input = 22 chars"
+    },
+    {
+      "i": 119,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 120,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 121,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 122,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 123,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 39302,
+      "detail": "stop gone"
+    },
+    {
+      "i": 124,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2500,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 125,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements. Main Points: • Legislative Structure (Pages 1–2): Establishes a bicameral legislature with a Senate (100 senators, elected every six years) and House of Representatives (435 representatives, serving two years). Both houses must meet to conduct business but may adjourn up to three days without consent from the other. All legislative powers are vested in Congress [2]. • Revenue Bills & Eligibility (Pages 1–2): All bills raising revenue must originate in the House of Representatives before reaching the Senate. The document outlines specific eligibility requirements for members, including age and residency [2]. • Legislative Process & Powers (Pages 3–4): Bills require a two-thirds vote to pass both houses and become law; they cannot be rejected by the President without reconsideration. Congress has powers over commerce, currency, money, post offices, and raising armies, while restricting military funding to a two-year term [2]. • State Restrictions & Military (Pages 3–4): States are prohibited from issuing their own currency or entering treaties; they must pay all taxes into the federal treasury. The President serves as Commander-in-Chief of the armed forces [2]. • Judicial Power (Page 5–6): Judicial power is vested in a supreme court and inferior courts, with specific jurisdiction over ambassadors and states versus appellate cases. No state may levy duties on imports or exports without Congress's consent [3]. • Treaty & Admission (Pages 7–9): Treaties made under U.S. authority are the supreme law of the land. New states must receive consent from existing state legislatures and Congress before admission into the Union [4]. • Constitutionality & Oaths (Page 8–9): No person can be convicted of treason without evidence from two witnesses or an open confession; treaties are supreme law, and all federal officers must swear oaths supporting the Constitution [4]. Summary of all 9 pages.",
+        "props": {
+          "source": "This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements.\n\n**Main Points:**\n*   **Legislative Structure (Pages 1–2):** Establishes a bicameral legislature with a Senate (100 senators, elected every six years) and House of Representatives (435 representatives, serving two years). Both houses must meet to conduct business but may adjourn up to three days without consent from the other. All legislative powers are vested in Congress [2].\n*   **Revenue Bills & Eligibility (Pages 1–2):** All bills raising revenue must originate in the House of Representatives before reaching the Senate. The document outlines specific eligibility requirements for members, including age and residency [2].\n*   **Legislative Process & Powers (Pages 3–4):** Bills require a two-thirds vote to pass both houses and become law; they cannot be rejected by the President without reconsideration. Congress has powers over commerce, currency, money, post offices, and raising armies, while restricting military funding to a two-year term [2].\n*   **State Restrictions & Military (Pages 3–4):** States are prohibited from issuing their own currency or entering treaties; they must pay all taxes into the federal treasury. The President serves as Commander-in-Chief of the armed forces [2].\n*   **Judicial Power (Page 5–6):** Judicial power is vested in a supreme court and inferior courts, with specific jurisdiction over ambassadors and states versus appellate cases. No state may levy duties on imports or exports without Congress's consent [3].\n*   **Treaty & Admission (Pages 7–9):** Treaties made under U.S. authority are the supreme law of the land. New states must receive consent from existing state legislatures and Congress before admission into the Union [4].\n*   **Constitutionality & Oaths (Page 8–9):** No person can be convicted of treason without evidence from two witnesses or an open confession; treaties are supreme law, and all federal officers must swear oaths supporting the Constitution [4].\n\n*Summary of all 9 pages.*",
+          "disabled": false
+        }
+      },
+      "detail": "This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements. Main Points: • Legislative Structure (Pages 1–2):"
+    },
+    {
+      "i": 126,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 127,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "none-matched gone"
+    },
+    {
+      "i": 128,
+      "op": "assertText",
+      "ok": true,
+      "ms": 4,
+      "detail": "\"468 MB\" absent"
+    },
+    {
+      "i": 129,
+      "op": "assertText",
+      "ok": true,
+      "ms": 4,
+      "detail": "\"Nothing in your documents matched this question\" absent"
+    },
+    {
+      "i": 130,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"welcome\" absent"
+    },
+    {
+      "i": 131,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"Welcome\" absent"
+    },
+    {
+      "i": 132,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"You're\" absent"
+    },
+    {
+      "i": 133,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 4119,
+      "detail": "J3-07-french"
+    },
+    {
+      "i": 134,
+      "op": "dump",
+      "ok": true,
+      "ms": 5,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements. Main Points: • Legislative Structure (Pages 1–2): Establishes a bicameral legislature with a Senate (100 senators, elected every six years) and House of Representatives (435 representatives, serving two years). Both houses must meet to conduct business but may adjourn up to three days without consent from the other. All legislative powers are vested in Congress [2]. • Revenue Bills & Eligibility (Pages 1–2): All bills raising revenue must originate in the House of Representatives before reaching the Senate. The document outlines specific eligibility requirements for members, including age and residency [2]. • Legislative Process & Powers (Pages 3–4): Bills require a two-thirds vote to pass both houses and become law; they cannot be rejected by the President without reconsideration. Congress has powers over commerce, currency, money, post offices, and raising armies, while restricting military funding to a two-year term [2]. • State Restrictions & Military (Pages 3–4): States are prohibited from issuing their own currency or entering treaties; they must pay all taxes into the federal treasury. The President serves as Commander-in-Chief of the armed forces [2]. • Judicial Power (Page 5–6): Judicial power is vested in a supreme court and inferior courts, with specific jurisdiction over ambassadors and states versus appellate cases. No state may levy duties on imports or exports without Congress's consent [3]. • Treaty & Admission (Pages 7–9): Treaties made under U.S. authority are the supreme law of the land. New states must receive consent from existing state legislatures and Congress before admission into the Union [4]. • Constitutionality & Oaths (Page 8–9): No person can be convicted of treason without evidence from two witnesses or an open confession; treaties are supreme law, and all federal officers must swear oaths supporting the Constitution [4]. Summary of all 9 pages. [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements. Main Points: • Legislative Structure (Pages 1–2): Establishes a bicameral legislature with a Senate (100 senators, elected every six years) and House of Representatives (435 representatives, serving two years). Both houses must meet to conduct business but may adjourn up to three days without consent from the other. All legislative powers are vested in Congress [2]. • Revenue Bills & Eligibility (Pages 1–2): All bills raising revenue must originate in the House of Representatives before reaching the Senate. The document outlines specific eligibility requirements for members, including age and residency [2]. • Legislative Process & Powers (Pages 3–4): Bills require a two-thirds vote to pass both houses and become law; they cannot be rejected by the President without reconsideration. Congress has powers over commerce, currency, money, post offices, and raising armies, while restricting military funding to a two-year term [2]. • State Restrictions & Military (Pages 3–4): States are prohibited from issuing their own currency or entering treaties; they must pay all taxes into the federal treasury. The President serves as Commander-in-Chief of the armed forces [2]. • Judicial Power (Page 5–6): Judicial power is vested in a supreme court and inferior courts, with specific jurisdiction over ambassadors and states versus appellate cases. No state may levy duties on imports or exports without Congress's consent [3]. • Treaty & Admission (Pages 7–9): Treaties made under U.S. authority are the supreme law of the land. New states must receive consent from existing state legislatures and Congress before admission into the Union [4]. • Constitutionality & Oaths (Page 8–9): No person can be convicted of treason without evidence from two witnesses or an open confession; treaties are supreme law, and all federal officers must swear oaths supporting the Constitution [4]. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-mux7fiox-3-wwp98bch",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J3-07-french"
+    },
+    {
+      "i": 135,
+      "op": "type",
+      "ok": true,
+      "ms": 157,
+      "detail": "composer-input = 31 chars"
+    },
+    {
+      "i": 136,
+      "op": "send",
+      "ok": true,
+      "ms": 163,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 137,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "docs-hold appeared"
+    },
+    {
+      "i": 138,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2001,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 139,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched. Download · 468 MB Send, exact words only Cancel",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched. Download · 468 MB Send, exact words only Cancel"
+    },
+    {
+      "i": 140,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"468 MB\" present"
+    },
+    {
+      "i": 141,
+      "op": "sleep",
+      "ok": true,
+      "ms": 13,
+      "detail": "0 ms"
+    },
+    {
+      "i": 142,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 4440,
+      "detail": "J8-03-card"
+    },
+    {
+      "i": 143,
+      "op": "dump",
+      "ok": true,
+      "ms": 5,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements. Main Points: • Legislative Structure (Pages 1–2): Establishes a bicameral legislature with a Senate (100 senators, elected every six years) and House of Representatives (435 representatives, serving two years). Both houses must meet to conduct business but may adjourn up to three days without consent from the other. All legislative powers are vested in Congress [2]. • Revenue Bills & Eligibility (Pages 1–2): All bills raising revenue must originate in the House of Representatives before reaching the Senate. The document outlines specific eligibility requirements for members, including age and residency [2]. • Legislative Process & Powers (Pages 3–4): Bills require a two-thirds vote to pass both houses and become law; they cannot be rejected by the President without reconsideration. Congress has powers over commerce, currency, money, post offices, and raising armies, while restricting military funding to a two-year term [2]. • State Restrictions & Military (Pages 3–4): States are prohibited from issuing their own currency or entering treaties; they must pay all taxes into the federal treasury. The President serves as Commander-in-Chief of the armed forces [2]. • Judicial Power (Page 5–6): Judicial power is vested in a supreme court and inferior courts, with specific jurisdiction over ambassadors and states versus appellate cases. No state may levy duties on imports or exports without Congress's consent [3]. • Treaty & Admission (Pages 7–9): Treaties made under U.S. authority are the supreme law of the land. New states must receive consent from existing state legislatures and Congress before admission into the Union [4]. • Constitutionality & Oaths (Page 8–9): No person can be convicted of treason without evidence from two witnesses or an open confession; treaties are supreme law, and all federal officers must swear oaths supporting the Constitution [4]. Summary of all 9 pages. [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements. Main Points: • Legislative Structure (Pages 1–2): Establishes a bicameral legislature with a Senate (100 senators, elected every six years) and House of Representatives (435 representatives, serving two years). Both houses must meet to conduct business but may adjourn up to three days without consent from the other. All legislative powers are vested in Congress [2]. • Revenue Bills & Eligibility (Pages 1–2): All bills raising revenue must originate in the House of Representatives before reaching the Senate. The document outlines specific eligibility requirements for members, including age and residency [2]. • Legislative Process & Powers (Pages 3–4): Bills require a two-thirds vote to pass both houses and become law; they cannot be rejected by the President without reconsideration. Congress has powers over commerce, currency, money, post offices, and raising armies, while restricting military funding to a two-year term [2]. • State Restrictions & Military (Pages 3–4): States are prohibited from issuing their own currency or entering treaties; they must pay all taxes into the federal treasury. The President serves as Commander-in-Chief of the armed forces [2]. • Judicial Power (Page 5–6): Judicial power is vested in a supreme court and inferior courts, with specific jurisdiction over ambassadors and states versus appellate cases. No state may levy duties on imports or exports without Congress's consent [3]. • Treaty & Admission (Pages 7–9): Treaties made under U.S. authority are the supreme law of the land. New states must receive consent from existing state legislatures and Congress before admission into the Union [4]. • Constitutionality & Oaths (Page 8–9): No person can be convicted of treason without evidence from two witnesses or an open confession; treaties are supreme law, and all federal officers must swear oaths supporting the Constitution [4]. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "docs-hold",
+          "text": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched. Download · 468 MB Send, exact words only Cancel"
+        },
+        {
+          "testID": "docs-hold-body",
+          "text": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched."
+        },
+        {
+          "testID": "docs-hold-download",
+          "text": "Download · 468 MB",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "docs-hold-words",
+          "text": "Send, exact words only",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "docs-hold-cancel",
+          "text": "Cancel",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-mux7fiox-3-wwp98bch",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "redact-bar",
+          "text": "Redact"
+        },
+        {
+          "testID": "redact-open",
+          "text": "Redact",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "What does it say about treason?",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J8-03-card"
+    },
+    {
+      "i": 144,
+      "op": "press",
+      "ok": true,
+      "ms": 155,
+      "detail": "docs-hold-cancel ← onPress"
+    },
+    {
+      "i": 145,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 146,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1514,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 147,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2857,
+      "detail": "J8-03-cancelled"
+    },
+    {
+      "i": 148,
+      "op": "dump",
+      "ok": true,
+      "ms": 5,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements. Main Points: • Legislative Structure (Pages 1–2): Establishes a bicameral legislature with a Senate (100 senators, elected every six years) and House of Representatives (435 representatives, serving two years). Both houses must meet to conduct business but may adjourn up to three days without consent from the other. All legislative powers are vested in Congress [2]. • Revenue Bills & Eligibility (Pages 1–2): All bills raising revenue must originate in the House of Representatives before reaching the Senate. The document outlines specific eligibility requirements for members, including age and residency [2]. • Legislative Process & Powers (Pages 3–4): Bills require a two-thirds vote to pass both houses and become law; they cannot be rejected by the President without reconsideration. Congress has powers over commerce, currency, money, post offices, and raising armies, while restricting military funding to a two-year term [2]. • State Restrictions & Military (Pages 3–4): States are prohibited from issuing their own currency or entering treaties; they must pay all taxes into the federal treasury. The President serves as Commander-in-Chief of the armed forces [2]. • Judicial Power (Page 5–6): Judicial power is vested in a supreme court and inferior courts, with specific jurisdiction over ambassadors and states versus appellate cases. No state may levy duties on imports or exports without Congress's consent [3]. • Treaty & Admission (Pages 7–9): Treaties made under U.S. authority are the supreme law of the land. New states must receive consent from existing state legislatures and Congress before admission into the Union [4]. • Constitutionality & Oaths (Page 8–9): No person can be convicted of treason without evidence from two witnesses or an open confession; treaties are supreme law, and all federal officers must swear oaths supporting the Constitution [4]. Summary of all 9 pages. [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements. Main Points: • Legislative Structure (Pages 1–2): Establishes a bicameral legislature with a Senate (100 senators, elected every six years) and House of Representatives (435 representatives, serving two years). Both houses must meet to conduct business but may adjourn up to three days without consent from the other. All legislative powers are vested in Congress [2]. • Revenue Bills & Eligibility (Pages 1–2): All bills raising revenue must originate in the House of Representatives before reaching the Senate. The document outlines specific eligibility requirements for members, including age and residency [2]. • Legislative Process & Powers (Pages 3–4): Bills require a two-thirds vote to pass both houses and become law; they cannot be rejected by the President without reconsideration. Congress has powers over commerce, currency, money, post offices, and raising armies, while restricting military funding to a two-year term [2]. • State Restrictions & Military (Pages 3–4): States are prohibited from issuing their own currency or entering treaties; they must pay all taxes into the federal treasury. The President serves as Commander-in-Chief of the armed forces [2]. • Judicial Power (Page 5–6): Judicial power is vested in a supreme court and inferior courts, with specific jurisdiction over ambassadors and states versus appellate cases. No state may levy duties on imports or exports without Congress's consent [3]. • Treaty & Admission (Pages 7–9): Treaties made under U.S. authority are the supreme law of the land. New states must receive consent from existing state legislatures and Congress before admission into the Union [4]. • Constitutionality & Oaths (Page 8–9): No person can be convicted of treason without evidence from two witnesses or an open confession; treaties are supreme law, and all federal officers must swear oaths supporting the Constitution [4]. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-mux7fiox-3-wwp98bch",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "redact-bar",
+          "text": "Redact"
+        },
+        {
+          "testID": "redact-open",
+          "text": "Redact",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "What does it say about treason?",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J8-03-cancelled"
+    },
+    {
+      "i": 149,
+      "op": "type",
+      "ok": true,
+      "ms": 156,
+      "detail": "composer-input = 40 chars"
+    },
+    {
+      "i": 150,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "redact-bar appeared"
+    },
+    {
+      "i": 151,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3014,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 152,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3174,
+      "detail": "J8-04-tallest"
+    },
+    {
+      "i": 153,
+      "op": "dump",
+      "ok": true,
+      "ms": 5,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements. Main Points: • Legislative Structure (Pages 1–2): Establishes a bicameral legislature with a Senate (100 senators, elected every six years) and House of Representatives (435 representatives, serving two years). Both houses must meet to conduct business but may adjourn up to three days without consent from the other. All legislative powers are vested in Congress [2]. • Revenue Bills & Eligibility (Pages 1–2): All bills raising revenue must originate in the House of Representatives before reaching the Senate. The document outlines specific eligibility requirements for members, including age and residency [2]. • Legislative Process & Powers (Pages 3–4): Bills require a two-thirds vote to pass both houses and become law; they cannot be rejected by the President without reconsideration. Congress has powers over commerce, currency, money, post offices, and raising armies, while restricting military funding to a two-year term [2]. • State Restrictions & Military (Pages 3–4): States are prohibited from issuing their own currency or entering treaties; they must pay all taxes into the federal treasury. The President serves as Commander-in-Chief of the armed forces [2]. • Judicial Power (Page 5–6): Judicial power is vested in a supreme court and inferior courts, with specific jurisdiction over ambassadors and states versus appellate cases. No state may levy duties on imports or exports without Congress's consent [3]. • Treaty & Admission (Pages 7–9): Treaties made under U.S. authority are the supreme law of the land. New states must receive consent from existing state legislatures and Congress before admission into the Union [4]. • Constitutionality & Oaths (Page 8–9): No person can be convicted of treason without evidence from two witnesses or an open confession; treaties are supreme law, and all federal officers must swear oaths supporting the Constitution [4]. Summary of all 9 pages. [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This document summarizes the key provisions of The United States Constitution regarding its legislative structure, powers, and admission requirements. Main Points: • Legislative Structure (Pages 1–2): Establishes a bicameral legislature with a Senate (100 senators, elected every six years) and House of Representatives (435 representatives, serving two years). Both houses must meet to conduct business but may adjourn up to three days without consent from the other. All legislative powers are vested in Congress [2]. • Revenue Bills & Eligibility (Pages 1–2): All bills raising revenue must originate in the House of Representatives before reaching the Senate. The document outlines specific eligibility requirements for members, including age and residency [2]. • Legislative Process & Powers (Pages 3–4): Bills require a two-thirds vote to pass both houses and become law; they cannot be rejected by the President without reconsideration. Congress has powers over commerce, currency, money, post offices, and raising armies, while restricting military funding to a two-year term [2]. • State Restrictions & Military (Pages 3–4): States are prohibited from issuing their own currency or entering treaties; they must pay all taxes into the federal treasury. The President serves as Commander-in-Chief of the armed forces [2]. • Judicial Power (Page 5–6): Judicial power is vested in a supreme court and inferior courts, with specific jurisdiction over ambassadors and states versus appellate cases. No state may levy duties on imports or exports without Congress's consent [3]. • Treaty & Admission (Pages 7–9): Treaties made under U.S. authority are the supreme law of the land. New states must receive consent from existing state legislatures and Congress before admission into the Union [4]. • Constitutionality & Oaths (Page 8–9): No person can be convicted of treason without evidence from two witnesses or an open confession; treaties are supreme law, and all federal officers must swear oaths supporting the Constitution [4]. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-mux7fiox-3-wwp98bch",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "redact-bar",
+          "text": "Redact"
+        },
+        {
+          "testID": "redact-open",
+          "text": "Redact",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "My name is Dana and my phone is 555-0100",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J8-04-tallest"
+    },
+    {
+      "i": 154,
+      "op": "type",
+      "ok": true,
+      "ms": 156,
+      "detail": "composer-input = 0 chars"
+    },
+    {
+      "i": 155,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "redact-bar gone"
+    },
+    {
+      "i": 156,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1514,
+      "detail": "1500 ms"
+    }
+  ],
+  "errors": [
+    "step 12 (press): press model-sheet-use-fast: not mounted",
+    "step 38 (assertText): assertText \"p.1–\" is not on screen under citations",
+    "console.log: [chat] plain=acknowledgement window=3/3 maxTokens=224",
+    "console.log: [chat] plain=follow-up window=3/5 maxTokens=1024",
+    "console.log: [chat] plain=follow-up window=7/7 maxTokens=1024",
+    "console.log: [chat] plain=follow-up window=9/9 maxTokens=1024",
+    "console.log: [chat] plain=follow-up window=11/11 maxTokens=1024"
+  ]
+}

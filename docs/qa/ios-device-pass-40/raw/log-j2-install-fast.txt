@@ -1,0 +1,46 @@
+00:33:48 pushing 38 steps as j2-install-fast
+00:33:53 shot J2-00a-vault-fast
+00:34:12 shot J2-00b-fast-downloading
+00:34:31 shot J2-00c-fast-installed
+00:34:39 shot J2-01-new-chat
+00:34:44 shot J8-01-model-sheet
+00:34:52 shot J8-02-vault
+00:34:56 ok     0 deeplink   /vault
+00:34:56 ok     1 waitFor    best-for appeared
+00:34:56 ok     2 sleep      3000 ms
+00:34:56 ok     3 scrollTo   install-fast
+00:34:56 ok     4 screenshot J2-00a-vault-fast
+00:34:56 ok     5 press      install-fast ← onPress
+00:34:56 ok     6 sleep      1500 ms
+00:34:56 ok     7 press      confirm-download ← onPress
+00:34:56 ok     8 sleep      15000 ms
+00:34:56 ok     9 value      40% · 518 MB of 1.28 GB
+00:34:56 ok    10 screenshot J2-00b-fast-downloading
+00:34:56 ok    11 idleTimer  idle timer disabled: true
+00:34:56 ok    12 waitFor    use-fast appeared
+00:34:56 ok    13 value      Installed
+00:34:56 ok    14 screenshot J2-00c-fast-installed
+00:34:56 ok    15 deeplink   /chats
+00:34:56 ok    16 waitFor    new-chat appeared
+00:34:56 ok    17 press      new-chat ← onPress
+00:34:56 ok    18 waitFor    start-chat appeared
+00:34:56 ok    19 press      start-chat ← onPress
+00:34:56 ok    20 waitFor    composer-input appeared
+00:34:56 ok    21 waitFor    Loading gone
+00:34:56 ok    22 sleep      1500 ms
+00:34:56 ok    23 value      INSTANT
+00:34:56 ok    24 sleep      2000 ms
+00:34:56 ok    25 screenshot J2-01-new-chat
+00:34:56 ok    26 dump       J2-01-new-chat
+00:34:56 ok    27 press      model-chip ← onPress
+00:34:56 ok    28 waitFor    model-sheet appeared
+00:34:56 ok    29 sleep      1500 ms
+00:34:56 ok    30 screenshot J8-01-model-sheet
+00:34:56 ok    31 dump       J8-01-model-sheet
+00:34:56 ok    32 press      model-sheet-close ← onPress
+00:34:56 ok    33 deeplink   /vault
+00:34:56 ok    34 waitFor    best-for appeared
+00:34:56 ok    35 sleep      3000 ms
+00:34:56 ok    36 screenshot J8-02-vault
+00:34:56 ok    37 dump       J8-02-vault
+00:34:56 38 passed, 0 failed, 6 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-40/docs/qa/ios-device-pass-40/screens

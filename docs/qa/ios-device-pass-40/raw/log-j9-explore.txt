@@ -1,0 +1,52 @@
+01:37:57 pushing 140 steps as j9-explore
+01:38:03 shot J9-01-new-chat
+01:38:13 shot J9-02-hey
+01:38:23 shot J9-03-coffee
+01:38:29 shot J9-04-attach-sheet
+01:38:45 shot J9-05-file-attached
+01:38:55 shot J9-06-serial
+01:39:05 shot J9-07-who
+01:39:13 shot J9-08-thanks
+01:39:21 shot J9-09-translate
+01:39:29 shot J9-10-chip-draft
+01:39:37 shot J9-11-draft-answer
+01:39:43 shot J9-12-model-sheet
+01:39:49 shot J9-13-vault
+01:39:55 shot J9-14-chats
+01:40:21 shot J9-15-documents
+01:40:26 shot J9-16-after-documents
+Error: Command failed: xcrun devicectl device copy to --device <device> --domain-type appDataContainer --domain-identifier com.inbornapp.mobile.qa --source /var/folders/bs/j3064sy54033j4pr_swfdjnh0000gn/T/ios-qa-j9-explore/J9-16-after-documents.ok --destination Documents/qa/ack/j9-explore/J9-16-after-documents.ok
+ERROR: The specified file could not be transferred. (com.apple.dt.CoreDeviceError error 7000 (0x1B58))
+       ----------------------------------------
+           The connection was interrupted. (com.apple.Mercury.error error 1000 (0x3E8))
+           XPCConnectionDescription = <SystemXPCPeerConnection 0x78302de00> { <connection: 0x783054500> { name = com.apple.coredevice.filesandbox, listener = false, pid = 0, euid = 4294967295, egid = 4294967295, asid = 4294967295 } }
+
+    at genericNodeError (node:internal/errors:984:15)
+    at wrappedFn (node:internal/errors:538:14)
+    at checkExecSyncError (node:child_process:891:11)
+    at execFileSync (node:child_process:927:15)
+    at devicectl (file:///Users/moshecohen/dev/inborn-wt/ios-build-40/scripts/ios-qa.mjs:46:10)
+    at Object.push (file:///Users/moshecohen/dev/inborn-wt/ios-build-40/scripts/ios-qa.mjs:101:9)
+    at push (file:///Users/moshecohen/dev/inborn-wt/ios-build-40/scripts/ios-qa.mjs:120:43)
+    at main (file:///Users/moshecohen/dev/inborn-wt/ios-build-40/scripts/ios-qa.mjs:214:9) {
+  status: 1,
+  signal: null,
+  output: [
+    null,
+    '01:40:28  Acquired tunnel connection to device.\n' +
+      '01:40:28  Enabling developer disk image services.\n' +
+      '01:40:28  Acquired usage assertion.\n',
+    'ERROR: The specified file could not be transferred. (com.apple.dt.CoreDeviceError error 7000 (0x1B58))\n' +
+      '       ----------------------------------------\n' +
+      '           The connection was interrupted. (com.apple.Mercury.error error 1000 (0x3E8))\n' +
+      '           XPCConnectionDescription = <SystemXPCPeerConnection 0x78302de00> { <connection: 0x783054500> { name = com.apple.coredevice.filesandbox, listener = false, pid = 0, euid = 4294967295, egid = 4294967295, asid = 4294967295 } }\n'
+  ],
+  pid: 48535,
+  stdout: '01:40:28  Acquired tunnel connection to device.\n' +
+    '01:40:28  Enabling developer disk image services.\n' +
+    '01:40:28  Acquired usage assertion.\n',
+  stderr: 'ERROR: The specified file could not be transferred. (com.apple.dt.CoreDeviceError error 7000 (0x1B58))\n' +
+    '       ----------------------------------------\n' +
+    '           The connection was interrupted. (com.apple.Mercury.error error 1000 (0x3E8))\n' +
+    '           XPCConnectionDescription = <SystemXPCPeerConnection 0x78302de00> { <connection: 0x783054500> { name = com.apple.coredevice.filesandbox, listener = false, pid = 0, euid = 4294967295, egid = 4294967295, asid = 4294967295 } }\n'
+}

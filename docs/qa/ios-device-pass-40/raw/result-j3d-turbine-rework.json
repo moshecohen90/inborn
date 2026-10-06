@@ -1,0 +1,1761 @@
+{
+  "runId": "j3d-turbine-rework",
+  "startedAt": "2026-10-06T22:05:07.228Z",
+  "finishedAt": "2026-10-06T22:08:33.299Z",
+  "ok": false,
+  "passed": 113,
+  "failed": 4,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 165,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1515,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 9,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "model-chip ← onPress"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "model-sheet appeared"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1515,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 12,
+      "op": "press",
+      "ok": false,
+      "ms": 3,
+      "detail": "press model-sheet-use-fast: not mounted"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3014,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 14,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "model-sheet-close ← onPress"
+    },
+    {
+      "i": 15,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 17,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 18,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"FAST\" present"
+    },
+    {
+      "i": 19,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 165,
+      "detail": "attach: turbine-report-3pages.pdf"
+    },
+    {
+      "i": 20,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1067,
+      "detail": "attached-docs appeared"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 8017,
+      "detail": "8000 ms"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "turbine-report-3pages.pdf",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "turbine-report-3pages.pdf"
+    },
+    {
+      "i": 23,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 12 chars"
+    },
+    {
+      "i": 24,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 25,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 120158,
+      "detail": "waitFor reading-pages never appeared in 120000 ms"
+    },
+    {
+      "i": 26,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value reading-pages: no node with that testID is mounted"
+    },
+    {
+      "i": 27,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 28,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2538,
+      "detail": "J3d-01-reading"
+    },
+    {
+      "i": 29,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 30,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 31,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "stop gone"
+    },
+    {
+      "i": 32,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2509,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 33,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "This document is an inborn acceptance test report for a Rakovsky turbine with serial number RK-4417, and it lists three specific facts: the Halden warehouse roof was replaced in March 2019; the annual maintenance budget for the Halden plant is 284,000 euro; and the document itself has no other content. Summary of all 3 pages.",
+        "props": {
+          "source": "This document is an inborn acceptance test report for a Rakovsky turbine with serial number RK-4417, and it lists three specific facts: the Halden warehouse roof was replaced in March 2019; the annual maintenance budget for the Halden plant is 284,000 euro; and the document itself has no other content.\n\n*Summary of all 3 pages.*",
+          "disabled": false
+        }
+      },
+      "detail": "This document is an inborn acceptance test report for a Rakovsky turbine with serial number RK-4417, and it lists three specific facts: the Halden warehouse roof was replaced in March 2019; the annual"
+    },
+    {
+      "i": 34,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "SOURCES turbine-report-3pages.pdf · p.1 turbine-report-3pages.pdf · p.2 turbine-report-3pages.pdf · p.3",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "SOURCES turbine-report-3pages.pdf · p.1 turbine-report-3pages.pdf · p.2 turbine-report-3pages.pdf · p.3"
+    },
+    {
+      "i": 35,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "turbine-report-3pages.pdf",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "turbine-report-3pages.pdf"
+    },
+    {
+      "i": 36,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Summary of all 3 pages.\" present"
+    },
+    {
+      "i": 37,
+      "op": "assertText",
+      "ok": false,
+      "ms": 1,
+      "detail": "assertText \"p.1–\" is not on screen under citations"
+    },
+    {
+      "i": 38,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3484,
+      "detail": "J3d-01-summary"
+    },
+    {
+      "i": 39,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI This document is an inborn acceptance test report for a Rakovsky turbine with serial number RK-4417, and it lists three specific facts: the Halden warehouse roof was replaced in March 2019; the annual maintenance budget for the Halden plant is 284,000 euro; and the document itself has no other content. Summary of all 3 pages. SOURCES turbine-report-3pages.pdf · p.1 turbine-report-3pages.pdf · p.2 turbine-report-3pages.pdf · p.3 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This document is an inborn acceptance test report for a Rakovsky turbine with serial number RK-4417, and it lists three specific facts: the Halden warehouse roof was replaced in March 2019; the annual maintenance budget for the Halden plant is 284,000 euro; and the document itself has no other content. Summary of all 3 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES turbine-report-3pages.pdf · p.1 turbine-report-3pages.pdf · p.2 turbine-report-3pages.pdf · p.3"
+        },
+        {
+          "testID": "citation-1",
+          "text": "turbine-report-3pages.pdf · p.1",
+          "role": "button",
+          "label": "Open turbine-report-3pages.pdf · p.1",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "turbine-report-3pages.pdf · p.2",
+          "role": "button",
+          "label": "Open turbine-report-3pages.pdf · p.2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "turbine-report-3pages.pdf · p.3",
+          "role": "button",
+          "label": "Open turbine-report-3pages.pdf · p.3",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "turbine-report-3pages.pdf"
+        },
+        {
+          "testID": "attached-chip-mux7eak0-2-hce6kyy6",
+          "text": "turbine-report-3pages.pdf",
+          "role": "button",
+          "label": "Remove turbine-report-3pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J3d-01-summary"
+    },
+    {
+      "i": 40,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"The request specifies\" absent"
+    },
+    {
+      "i": 41,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"I will focus\" absent"
+    },
+    {
+      "i": 42,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"as an AI\" absent"
+    },
+    {
+      "i": 43,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"NOT_FOUND\" absent"
+    },
+    {
+      "i": 44,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"<<<\" absent"
+    },
+    {
+      "i": 45,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"The user is asking\" absent"
+    },
+    {
+      "i": 46,
+      "op": "press",
+      "ok": true,
+      "ms": 155,
+      "detail": "ledger-toggle ← onPress"
+    },
+    {
+      "i": 47,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1217,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 48,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "MODEL FAST QUANT Q4_K CONTEXT 597 / 4096 MS / TOKEN 167 ms More detail · PRO",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "MODEL FAST QUANT Q4_K CONTEXT 597 / 4096 MS / TOKEN 167 ms More detail · PRO"
+    },
+    {
+      "i": 49,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2538,
+      "detail": "J3d-01-ledger"
+    },
+    {
+      "i": 50,
+      "op": "press",
+      "ok": true,
+      "ms": 161,
+      "detail": "ledger-toggle ← onPress"
+    },
+    {
+      "i": 51,
+      "op": "sleep",
+      "ok": true,
+      "ms": 817,
+      "detail": "800 ms"
+    },
+    {
+      "i": 52,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 6 chars"
+    },
+    {
+      "i": 53,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 54,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2506,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 55,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 56,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 57,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3024,
+      "detail": "stop gone"
+    },
+    {
+      "i": 58,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2503,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 59,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "This document is an inborn acceptance test report for a Rakovsky turbine with serial number RK-4417, and it lists three specific facts: the Halden warehouse roof was replaced in March 2019; the annual maintenance budget for the Halden plant is 284,000 euro; and the document itself has no other content. Summary of all 3 pages.",
+        "props": {
+          "source": "This document is an inborn acceptance test report for a Rakovsky turbine with serial number RK-4417, and it lists three specific facts: the Halden warehouse roof was replaced in March 2019; the annual maintenance budget for the Halden plant is 284,000 euro; and the document itself has no other content.\n\n*Summary of all 3 pages.*",
+          "disabled": false
+        }
+      },
+      "detail": "This document is an inborn acceptance test report for a Rakovsky turbine with serial number RK-4417, and it lists three specific facts: the Halden warehouse roof was replaced in March 2019; the annual"
+    },
+    {
+      "i": 60,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 61,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "none-matched gone"
+    },
+    {
+      "i": 62,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"468 MB\" absent"
+    },
+    {
+      "i": 63,
+      "op": "assertText",
+      "ok": true,
+      "ms": 4,
+      "detail": "\"Nothing in your documents matched this question\" absent"
+    },
+    {
+      "i": 64,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3803,
+      "detail": "J3d-02-thanks"
+    },
+    {
+      "i": 65,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI This document is an inborn acceptance test report for a Rakovsky turbine with serial number RK-4417, and it lists three specific facts: the Halden warehouse roof was replaced in March 2019; the annual maintenance budget for the Halden plant is 284,000 euro; and the document itself has no other content. Summary of all 3 pages. SOURCES turbine-report-3pages.pdf · p.1 turbine-report-3pages.pdf · p.2 turbine-report-3pages.pdf · p.3 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This document is an inborn acceptance test report for a Rakovsky turbine with serial number RK-4417, and it lists three specific facts: the Halden warehouse roof was replaced in March 2019; the annual maintenance budget for the Halden plant is 284,000 euro; and the document itself has no other content. Summary of all 3 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES turbine-report-3pages.pdf · p.1 turbine-report-3pages.pdf · p.2 turbine-report-3pages.pdf · p.3"
+        },
+        {
+          "testID": "citation-1",
+          "text": "turbine-report-3pages.pdf · p.1",
+          "role": "button",
+          "label": "Open turbine-report-3pages.pdf · p.1",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "turbine-report-3pages.pdf · p.2",
+          "role": "button",
+          "label": "Open turbine-report-3pages.pdf · p.2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "turbine-report-3pages.pdf · p.3",
+          "role": "button",
+          "label": "Open turbine-report-3pages.pdf · p.3",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "turbine-report-3pages.pdf"
+        },
+        {
+          "testID": "attached-chip-mux7eak0-2-hce6kyy6",
+          "text": "turbine-report-3pages.pdf",
+          "role": "button",
+          "label": "Remove turbine-report-3pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J3d-02-thanks"
+    },
+    {
+      "i": 66,
+      "op": "type",
+      "ok": true,
+      "ms": 155,
+      "detail": "composer-input = 7 chars"
+    },
+    {
+      "i": 67,
+      "op": "send",
+      "ok": true,
+      "ms": 167,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 68,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2500,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 69,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 70,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 71,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 6934,
+      "detail": "stop gone"
+    },
+    {
+      "i": 72,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 73,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "This document is an inborn acceptance test report for a Rakovsky turbine with serial number RK-4417, and it lists three specific facts: the Halden warehouse roof was replaced in March 2019; the annual maintenance budget for the Halden plant is 284,000 euro; and the document itself has no other content. Summary of all 3 pages.",
+        "props": {
+          "source": "This document is an inborn acceptance test report for a Rakovsky turbine with serial number RK-4417, and it lists three specific facts: the Halden warehouse roof was replaced in March 2019; the annual maintenance budget for the Halden plant is 284,000 euro; and the document itself has no other content.\n\n*Summary of all 3 pages.*",
+          "disabled": false
+        }
+      },
+      "detail": "This document is an inborn acceptance test report for a Rakovsky turbine with serial number RK-4417, and it lists three specific facts: the Halden warehouse roof was replaced in March 2019; the annual"
+    },
+    {
+      "i": 74,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 75,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "none-matched gone"
+    },
+    {
+      "i": 76,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"468 MB\" absent"
+    },
+    {
+      "i": 77,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Nothing in your documents matched this question\" absent"
+    },
+    {
+      "i": 78,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"welcome\" absent"
+    },
+    {
+      "i": 79,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Welcome\" absent"
+    },
+    {
+      "i": 80,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"You're\" absent"
+    },
+    {
+      "i": 81,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3165,
+      "detail": "J3d-03-shorter"
+    },
+    {
+      "i": 82,
+      "op": "dump",
+      "ok": true,
+      "ms": 3,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI This document is an inborn acceptance test report for a Rakovsky turbine with serial number RK-4417, and it lists three specific facts: the Halden warehouse roof was replaced in March 2019; the annual maintenance budget for the Halden plant is 284,000 euro; and the document itself has no other content. Summary of all 3 pages. SOURCES turbine-report-3pages.pdf · p.1 turbine-report-3pages.pdf · p.2 turbine-report-3pages.pdf · p.3 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This document is an inborn acceptance test report for a Rakovsky turbine with serial number RK-4417, and it lists three specific facts: the Halden warehouse roof was replaced in March 2019; the annual maintenance budget for the Halden plant is 284,000 euro; and the document itself has no other content. Summary of all 3 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES turbine-report-3pages.pdf · p.1 turbine-report-3pages.pdf · p.2 turbine-report-3pages.pdf · p.3"
+        },
+        {
+          "testID": "citation-1",
+          "text": "turbine-report-3pages.pdf · p.1",
+          "role": "button",
+          "label": "Open turbine-report-3pages.pdf · p.1",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "turbine-report-3pages.pdf · p.2",
+          "role": "button",
+          "label": "Open turbine-report-3pages.pdf · p.2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "turbine-report-3pages.pdf · p.3",
+          "role": "button",
+          "label": "Open turbine-report-3pages.pdf · p.3",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "turbine-report-3pages.pdf"
+        },
+        {
+          "testID": "attached-chip-mux7eak0-2-hce6kyy6",
+          "text": "turbine-report-3pages.pdf",
+          "role": "button",
+          "label": "Remove turbine-report-3pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J3d-03-shorter"
+    },
+    {
+      "i": 83,
+      "op": "type",
+      "ok": true,
+      "ms": 158,
+      "detail": "composer-input = 4 chars"
+    },
+    {
+      "i": 84,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 85,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2542,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 86,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 87,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 88,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 6037,
+      "detail": "stop gone"
+    },
+    {
+      "i": 89,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2503,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 90,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "This document is an inborn acceptance test report for a Rakovsky turbine with serial number RK-4417, and it lists three specific facts: the Halden warehouse roof was replaced in March 2019; the annual maintenance budget for the Halden plant is 284,000 euro; and the document itself has no other content. Summary of all 3 pages.",
+        "props": {
+          "source": "This document is an inborn acceptance test report for a Rakovsky turbine with serial number RK-4417, and it lists three specific facts: the Halden warehouse roof was replaced in March 2019; the annual maintenance budget for the Halden plant is 284,000 euro; and the document itself has no other content.\n\n*Summary of all 3 pages.*",
+          "disabled": false
+        }
+      },
+      "detail": "This document is an inborn acceptance test report for a Rakovsky turbine with serial number RK-4417, and it lists three specific facts: the Halden warehouse roof was replaced in March 2019; the annual"
+    },
+    {
+      "i": 91,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 92,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "none-matched gone"
+    },
+    {
+      "i": 93,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"468 MB\" absent"
+    },
+    {
+      "i": 94,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Nothing in your documents matched this question\" absent"
+    },
+    {
+      "i": 95,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"welcome\" absent"
+    },
+    {
+      "i": 96,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Welcome\" absent"
+    },
+    {
+      "i": 97,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"You're\" absent"
+    },
+    {
+      "i": 98,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3799,
+      "detail": "J3d-04-more"
+    },
+    {
+      "i": 99,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI This document is an inborn acceptance test report for a Rakovsky turbine with serial number RK-4417, and it lists three specific facts: the Halden warehouse roof was replaced in March 2019; the annual maintenance budget for the Halden plant is 284,000 euro; and the document itself has no other content. Summary of all 3 pages. SOURCES turbine-report-3pages.pdf · p.1 turbine-report-3pages.pdf · p.2 turbine-report-3pages.pdf · p.3 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This document is an inborn acceptance test report for a Rakovsky turbine with serial number RK-4417, and it lists three specific facts: the Halden warehouse roof was replaced in March 2019; the annual maintenance budget for the Halden plant is 284,000 euro; and the document itself has no other content. Summary of all 3 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES turbine-report-3pages.pdf · p.1 turbine-report-3pages.pdf · p.2 turbine-report-3pages.pdf · p.3"
+        },
+        {
+          "testID": "citation-1",
+          "text": "turbine-report-3pages.pdf · p.1",
+          "role": "button",
+          "label": "Open turbine-report-3pages.pdf · p.1",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "turbine-report-3pages.pdf · p.2",
+          "role": "button",
+          "label": "Open turbine-report-3pages.pdf · p.2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "turbine-report-3pages.pdf · p.3",
+          "role": "button",
+          "label": "Open turbine-report-3pages.pdf · p.3",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "turbine-report-3pages.pdf"
+        },
+        {
+          "testID": "attached-chip-mux7eak0-2-hce6kyy6",
+          "text": "turbine-report-3pages.pdf",
+          "role": "button",
+          "label": "Remove turbine-report-3pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J3d-04-more"
+    },
+    {
+      "i": 100,
+      "op": "type",
+      "ok": true,
+      "ms": 159,
+      "detail": "composer-input = 7 chars"
+    },
+    {
+      "i": 101,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 102,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2513,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 103,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 104,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 105,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2202,
+      "detail": "stop gone"
+    },
+    {
+      "i": 106,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2500,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 107,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "This document is an inborn acceptance test report for a Rakovsky turbine with serial number RK-4417, and it lists three specific facts: the Halden warehouse roof was replaced in March 2019; the annual maintenance budget for the Halden plant is 284,000 euro; and the document itself has no other content. Summary of all 3 pages.",
+        "props": {
+          "source": "This document is an inborn acceptance test report for a Rakovsky turbine with serial number RK-4417, and it lists three specific facts: the Halden warehouse roof was replaced in March 2019; the annual maintenance budget for the Halden plant is 284,000 euro; and the document itself has no other content.\n\n*Summary of all 3 pages.*",
+          "disabled": false
+        }
+      },
+      "detail": "This document is an inborn acceptance test report for a Rakovsky turbine with serial number RK-4417, and it lists three specific facts: the Halden warehouse roof was replaced in March 2019; the annual"
+    },
+    {
+      "i": 108,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 109,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "none-matched gone"
+    },
+    {
+      "i": 110,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"468 MB\" absent"
+    },
+    {
+      "i": 111,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Nothing in your documents matched this question\" absent"
+    },
+    {
+      "i": 112,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"welcome\" absent"
+    },
+    {
+      "i": 113,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Welcome\" absent"
+    },
+    {
+      "i": 114,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"You're\" absent"
+    },
+    {
+      "i": 115,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 4117,
+      "detail": "J3d-05-shorter-again"
+    },
+    {
+      "i": 116,
+      "op": "dump",
+      "ok": true,
+      "ms": 3,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI This document is an inborn acceptance test report for a Rakovsky turbine with serial number RK-4417, and it lists three specific facts: the Halden warehouse roof was replaced in March 2019; the annual maintenance budget for the Halden plant is 284,000 euro; and the document itself has no other content. Summary of all 3 pages. SOURCES turbine-report-3pages.pdf · p.1 turbine-report-3pages.pdf · p.2 turbine-report-3pages.pdf · p.3 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This document is an inborn acceptance test report for a Rakovsky turbine with serial number RK-4417, and it lists three specific facts: the Halden warehouse roof was replaced in March 2019; the annual maintenance budget for the Halden plant is 284,000 euro; and the document itself has no other content. Summary of all 3 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES turbine-report-3pages.pdf · p.1 turbine-report-3pages.pdf · p.2 turbine-report-3pages.pdf · p.3"
+        },
+        {
+          "testID": "citation-1",
+          "text": "turbine-report-3pages.pdf · p.1",
+          "role": "button",
+          "label": "Open turbine-report-3pages.pdf · p.1",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "turbine-report-3pages.pdf · p.2",
+          "role": "button",
+          "label": "Open turbine-report-3pages.pdf · p.2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "turbine-report-3pages.pdf · p.3",
+          "role": "button",
+          "label": "Open turbine-report-3pages.pdf · p.3",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "turbine-report-3pages.pdf"
+        },
+        {
+          "testID": "attached-chip-mux7eak0-2-hce6kyy6",
+          "text": "turbine-report-3pages.pdf",
+          "role": "button",
+          "label": "Remove turbine-report-3pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J3d-05-shorter-again"
+    }
+  ],
+  "errors": [
+    "step 12 (press): press model-sheet-use-fast: not mounted",
+    "step 25 (waitFor): waitFor reading-pages never appeared in 120000 ms",
+    "step 26 (value): value reading-pages: no node with that testID is mounted",
+    "step 37 (assertText): assertText \"p.1–\" is not on screen under citations",
+    "console.log: [chat] plain=acknowledgement window=3/3 maxTokens=224",
+    "console.log: [chat] plain=follow-up window=3/5 maxTokens=1024",
+    "console.log: [chat] plain=follow-up window=7/7 maxTokens=1024",
+    "console.log: [chat] plain=follow-up window=9/9 maxTokens=1024"
+  ]
+}

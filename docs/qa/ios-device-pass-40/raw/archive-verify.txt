@@ -1,0 +1,103 @@
+== store archive
+CFBundleVersion = 40
+CFBundleShortVersionString = 1.0.0
+CFBundleIdentifier = com.inbornapp.mobile
+MinimumOSVersion = 17.0
+appex = AskInborn.appex id com.inbornapp.mobile.share-extension ver 40
+instant.gguf (catalog file Qwen3.5-0.8B-Q4_K_M.gguf) = 532517120 B sha256 bd258782e35f… catalog 532517120 B bd258782e35f… -> MATCH
+vision-qwen35.gguf (catalog file mmproj-Qwen3.5-0.8B-F16.gguf) = 204987232 B sha256 56e4c6cfe73b… catalog 204987232 B 56e4c6cfe73b… -> MATCH
+ggufs in the .app: instant.gguf, vision-qwen35.gguf
+Fast / Sharp model or their packs in the .app: none
+tessdata = eng.traineddata heb.traineddata
+ExpoBattery strings = 3
+signing = Authority=Apple Development: Moshe Cohen (WUCEF6CXDH) TeamIdentifier=NGCHN95667
+main.jsbundle = 7023538 B
+app size = 768M
+bundle strings: INBORN_QA_BRIDGE_V1=0 dev-prompt.txt=0 'console.log: '=0
+build stamp: HEAD a0916eb33b33; main.jsbundle carries it 1x as ASCII; buildInfo.generated.json in the worktree: {"commit":"a0916eb33b33","builtAt":"2026-10-06"}
+build 39's stamp 89dc36ce8409: 0x
+followUpWindow (round 134G): 1 as ASCII/UTF-8, 0 as UTF-16
+'apply this to your previous answer' (round 134G FOLLOW_UP_LINE): 1 as ASCII/UTF-8, 0 as UTF-16
+'[chat] plain=' (round 134G log line): 1 as ASCII/UTF-8, 0 as UTF-16
+withoutEchoedInstructions (round 134H): 1 as ASCII/UTF-8, 0 as UTF-16
+'say only the opening sentence' (round 134H startWith rule): 1 as ASCII/UTF-8, 0 as UTF-16
+'stop after that sentence' (the pre-134H rule): 0 as ASCII/UTF-8, 0 as UTF-16
+'is a short follow-up about your previous answer' (round 134A FOLLOW_UP_LINE): 1 as ASCII/UTF-8, 0 as UTF-16
+parallel.embedding / n_parallel (round 134B embedder): 1 as ASCII/UTF-8, 0 as UTF-16
+'Ask another question about these documents' (round 134D documents.ask.thanks): 1 as ASCII/UTF-8, 0 as UTF-16
+'This sheet answers one question at a time' (round 134D documents.ask.oneQuestion): 1 as ASCII/UTF-8, 0 as UTF-16
+'releasing the picture projector, keeping the model' (round 134E ease log): 1 as ASCII/UTF-8, 0 as UTF-16
+releaseMultimodal (round 134E releaseVision): 1 as ASCII/UTF-8, 0 as UTF-16
+'The system stopped generation' (chat.stoppedBySystem, round 134E empty answer): 1 as ASCII/UTF-8, 0 as UTF-16
+plainChatKind (round 134A): 1 as ASCII/UTF-8, 0 as UTF-16
+sheetPlainLine / testID ask-plain (round 134D): 1 as ASCII/UTF-8, 0 as UTF-16
+testID ask-plain (round 134D): 1 as ASCII/UTF-8, 0 as UTF-16
+emptyTurn (round 134E, empty answer -> system stop): 1 as ASCII/UTF-8, 0 as UTF-16
+releaseVision (round 134E): 2 as ASCII/UTF-8, 0 as UTF-16
+isolateName (round 134F, LRI…PDI): 1 as ASCII/UTF-8, 0 as UTF-16
+nameLine (round 134F): 1 as ASCII/UTF-8, 0 as UTF-16
+shownCitationLabel (round 134F chips): 1 as ASCII/UTF-8, 0 as UTF-16
+testID ask-reading-pages (round 132C, Ask sheet): 1 as ASCII/UTF-8, 0 as UTF-16
+'read {ms} ms' (round 132C documents.ask.read): 0 as ASCII/UTF-8, 1 as UTF-16
+pageTo (round 133A, ranged citation): 1 as ASCII/UTF-8, 0 as UTF-16
+'with its file and pages' (round 133A wholeFilePrompt lead): 1 as ASCII/UTF-8, 0 as UTF-16
+'is small talk or a short follow-up' (round 133B SMALL_TALK_LINE): 0 as ASCII/UTF-8, 0 as UTF-16
+'סבבה' (round 133B Hebrew acknowledgement): 0 as ASCII/UTF-8, 1 as UTF-16
+getNativeScrollRef (round 133C scrollListToEnd): 1 as ASCII/UTF-8, 0 as UTF-16
+'Summary of all' (round 132A documents.summary.whole): 1 as ASCII/UTF-8, 0 as UTF-16
+'Reading pages' (round 132A documents.summary.readingPages): 0 as ASCII/UTF-8, 1 as UTF-16
+'Reading page ' (round 132A readingPage): 0 as ASCII/UTF-8, 1 as UTF-16
+testID reading-pages (round 132A): 1 as ASCII/UTF-8, 0 as UTF-16
+'FAST summarizes files better' (round 132A Instant line): 1 as ASCII/UTF-8, 0 as UTF-16
+'[picture-check]' (round 131B answer check log): 1 as ASCII/UTF-8, 0 as UTF-16
+'This conversation comes with a picture' (round 131B PICTURE_LINES): 2 as ASCII/UTF-8, 0 as UTF-16
+'I have your picture, but I could not make it out' (round 131B chat.vision.unsure): 1 as ASCII/UTF-8, 0 as UTF-16
+'{better} sees pictures better than {current}' (round 131B advice): 1 as ASCII/UTF-8, 0 as UTF-16
+'Pick one or more.' (round 131A): 1 as ASCII/UTF-8, 0 as UTF-16
+'No model here is good at all of these' (round 131A): 1 as ASCII/UTF-8, 0 as UTF-16
+pdfpage- (round 130A, the page picture file): 1 as ASCII/UTF-8, 0 as UTF-16
+'I can read only the text of this page' (round 130A thin route): 1 as ASCII/UTF-8, 0 as UTF-16
+releaseWhenIndexed (round 130A, held index turn waits): 1 as ASCII/UTF-8, 0 as UTF-16
+claimsFileContent (round 130A, no invented file answers): 1 as ASCII/UTF-8, 0 as UTF-16
+renderPage (round 130A native page render): 1 as ASCII/UTF-8, 0 as UTF-16
+pageInk (round 130A native page ink): 1 as ASCII/UTF-8, 0 as UTF-16
+waiting-for-network (round 130B): 1 as ASCII/UTF-8, 0 as UTF-16
+'Waiting for a connection' (round 130B): 1 as ASCII/UTF-8, 0 as UTF-16
+forgetMissing (round 129, missing-file heal): 1 as ASCII/UTF-8, 0 as UTF-16
+takeMissing (round 129, chat line dismiss): 1 as ASCII/UTF-8, 0 as UTF-16
+testID model-missing (round 129): 1 as ASCII/UTF-8, 0 as UTF-16
+'is no longer on this' (round 129, chat.modelMissing): 1 as ASCII/UTF-8, 0 as UTF-16
+'is gone, forgetting it' (round 129 vault warn): 1 as ASCII/UTF-8, 0 as UTF-16
+allowSandbox (round 129, Apple Sandbox accepted): 1 as ASCII/UTF-8, 0 as UTF-16
+'[documents] photo text' (round 128, library picture = photo turn): 1 as ASCII/UTF-8, 0 as UTF-16
+claspGlow- (round 128, Seal draws the icon mark): 1 as ASCII/UTF-8, 0 as UTF-16
+clasp #F0B35B (round 128 sealMark): 1 as ASCII/UTF-8, 0 as UTF-16
+highlight #FFD9A3 (round 128 sealMark): 1 as ASCII/UTF-8, 0 as UTF-16
+dismissAfterSend (round 128 keyboard): 1 as ASCII/UTF-8, 0 as UTF-16
+'Start now with {name}' (round 127, onboarding): 1 as ASCII/UTF-8, 0 as UTF-16
+testID start-now-with (round 127): 1 as ASCII/UTF-8, 0 as UTF-16
+startNowWith (round 127, modelStep): 1 as ASCII/UTF-8, 0 as UTF-16
+imageTokens (round 127, context budget): 1 as ASCII/UTF-8, 0 as UTF-16
+image_max_tokens (llama.rn initMultimodal): 1 as ASCII/UTF-8, 0 as UTF-16
+model-advice-best-pro (round 127, advice card): 1 as ASCII/UTF-8, 0 as UTF-16
+catalog v8 signature 036616933e75…: 1 as ASCII/UTF-8, 0 as UTF-16
+catalog publishedAt 2026-10-04: 1 as ASCII/UTF-8, 0 as UTF-16
+'Install {model} first' (round 126): 1 as ASCII/UTF-8, 0 as UTF-16
+withoutEchoedLabels (round 126): 1 as ASCII/UTF-8, 0 as UTF-16
+continue_final_message (web only): 0 as ASCII/UTF-8, 0 as UTF-16
+== qa-bridge gate
+OK: /Users/moshecohen/dev/inborn-docs/builds/Inborn-40.xcarchive/Products/Applications/Inborn.app contains no QA bridge
+== shipping bundles
+  apps/mobile/ios/build/Inborn.xcarchive (iOS archive): OK: /Users/moshecohen/dev/inborn-wt/ios-build-40/apps/mobile/ios/build/Inborn.xcarchive contains no QA bridge
+
+PASS: 1 shipping artifact(s) carry no QA bridge.
+  apps/mobile/ios/build/Inborn.xcarchive (models): OK instant instant.gguf 532517120 B sha256 matches the catalog
+  apps/mobile/ios/build/Inborn.xcarchive (models): OK vision-qwen35 vision-qwen35.gguf 204987232 B sha256 matches the catalog
+rc=0
+== --models on the kept copy
+  /Users/moshecohen/dev/inborn-docs/builds/Inborn-40.xcarchive (models): OK instant instant.gguf 532517120 B sha256 matches the catalog
+  /Users/moshecohen/dev/inborn-docs/builds/Inborn-40.xcarchive (models): OK vision-qwen35 vision-qwen35.gguf 204987232 B sha256 matches the catalog
+
+PASS: every model the catalog ships is in the build, byte for byte.
+rc=0
+check:store rc=0
