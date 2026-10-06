@@ -1,0 +1,32 @@
+{
+  "runId": "s4c-continue",
+  "_": "Continue in the same chat: the old photo is left out instead of loading the projector again, and the story goes on.",
+  "steps": [
+    {
+      "op": "press",
+      "testID": "continue"
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 240000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "07-continued"
+    },
+    {
+      "op": "dump",
+      "name": "07-continued"
+    }
+  ]
+}

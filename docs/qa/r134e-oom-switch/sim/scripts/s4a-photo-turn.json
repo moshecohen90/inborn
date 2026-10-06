@@ -1,0 +1,99 @@
+{
+  "runId": "s4a-photo-turn",
+  "_": "Back on Instant (its photo pack is in the app): a new chat, a photo and 'What do you see?', then a long story started in the same chat; the shell raises a memory warning while the story streams (the script's last 30 s keep the console captured).",
+  "steps": [
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 90000
+    },
+    {
+      "op": "deeplink",
+      "url": "/chats"
+    },
+    {
+      "op": "waitFor",
+      "testID": "new-chat",
+      "timeoutMs": 20000
+    },
+    {
+      "op": "press",
+      "testID": "new-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "start-chat",
+      "timeoutMs": 10000
+    },
+    {
+      "op": "press",
+      "testID": "start-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "devPrompt",
+      "lines": [
+        "image: red-circle-cat.png"
+      ]
+    },
+    {
+      "op": "sleep",
+      "ms": 4000
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "What do you see?"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "sleep",
+      "ms": 2500
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 240000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "05-photo-answer"
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "Now write a long story about a lighthouse keeper."
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 30000
+    },
+    {
+      "op": "screenshot",
+      "name": "06-eased-stopped"
+    },
+    {
+      "op": "dump",
+      "name": "06-eased-stopped"
+    }
+  ]
+}

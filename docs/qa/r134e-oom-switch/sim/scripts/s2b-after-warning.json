@@ -1,0 +1,24 @@
+{
+  "runId": "s2b-after-warning",
+  "_": "Right after the warning: the story is stopped and the line says Fast was switched to Instant.",
+  "steps": [
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "screenshot",
+      "name": "03-stopped-switched"
+    },
+    {
+      "op": "dump",
+      "name": "03-stopped-switched"
+    }
+  ]
+}

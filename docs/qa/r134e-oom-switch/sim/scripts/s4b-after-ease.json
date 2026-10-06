@@ -1,0 +1,24 @@
+{
+  "runId": "s4b-after-ease",
+  "_": "After the warning: the story stopped with Continue, no out-of-memory line, the chip still INSTANT.",
+  "steps": [
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "06-eased-stopped"
+    },
+    {
+      "op": "dump",
+      "name": "06-eased-stopped"
+    }
+  ]
+}

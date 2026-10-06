@@ -92,6 +92,8 @@ interface Memory {
   restoredAt: number | null;
   explained: boolean;
   longAnswerAllowedUntil: number;
+  /** An answer finished on the model a memory switch moved to: the "Ran out of memory" line has been read. */
+  memoryLineRetired: boolean;
 }
 
 const fresh = (): Memory => ({
@@ -109,6 +111,7 @@ const fresh = (): Memory => ({
   restoredAt: null,
   explained: false,
   longAnswerAllowedUntil: 0,
+  memoryLineRetired: false,
 });
 
 const switchedForMemory = (a: Memory["autoSwitch"]): boolean => a?.reason === "memory" || a?.reason === "fit";
@@ -232,6 +235,19 @@ export class DevicePolicy {
       m.autoSwitch = { from: m.autoSwitch?.from ?? from, to, reason };
       m.keptSmaller = false;
     }
+  }
+
+  /** An answer finished on `tier`. On the model a memory switch moved to, that retires the "Ran out of memory" line; Switch back stays in the model sheet. */
+  noteAnswered(tier: ModelTier): void {
+    const m = this.mem;
+    if (m.autoSwitch?.reason !== "memory" || m.autoSwitch.to !== tier) return;
+    m.memoryLineRetired = true;
+    m.offered.add("memoryBack");
+  }
+
+  /** A fresh memory warning: its line shows again even if an answer retired the previous one. */
+  noteMemoryWarning(): void {
+    this.mem.memoryLineRetired = false;
   }
 
   /** The automatic restore ("Charging · back to Fast") was applied. */
@@ -507,7 +523,7 @@ export class DevicePolicy {
         button("continue");
         break;
     }
-    if (m.hidden.has(status)) {
+    if (m.hidden.has(status) || (status === "memory" && m.memoryLineRetired)) {
       rec.headline = null;
       rec.button = null;
     }

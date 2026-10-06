@@ -317,7 +317,30 @@ function guard(): Engine {
 export async function enableVision(mmprojPath: string): Promise<boolean> {
   await loadSession();
   const lm = getRaw().engine as LocalLM & { enableVision?: (path: string) => Promise<boolean> };
-  return lm.enableVision ? lm.enableVision(mmprojPath) : false;
+  const on = lm.enableVision ? await lm.enableVision(mmprojPath) : false;
+  if (on) visionEased = false;
+  return on;
+}
+
+let visionEased = false;
+
+/** True while the guard has dropped the projector to free memory; text turns then leave older pictures out instead of loading it again. */
+export const isVisionEased = (): boolean => visionEased;
+export const clearVisionEased = (): void => void (visionEased = false);
+
+/** Frees the projector and its compute buffers and keeps the model; false when none was attached. */
+export async function releaseVision(): Promise<boolean> {
+  const lm = raw?.engine as (LocalLM & { releaseVision?: () => Promise<boolean> }) | undefined;
+  if (!lm?.releaseVision || !lm.capabilities().vision) return false;
+  /* llama.rn runs a completion and the release on separate native workers: freeing the projector under a queued picture prompt segfaults in mtmd_tokenize. */
+  const turn = await inference.acquire();
+  try {
+    const freed = await lm.releaseVision();
+    if (freed) visionEased = true;
+    return freed;
+  } finally {
+    turn();
+  }
 }
 
 /** After the vault switches the default model: drop the weights and the engine so the next loadSession() picks the new file. */
@@ -325,4 +348,5 @@ export async function resetEngine(): Promise<void> {
   await unloadSession("switch").catch((e: unknown) => console.warn("[inborn] unload", e));
   raw = null;
   sessionOverride = false;
+  visionEased = false;
 }
