@@ -1,0 +1,821 @@
+{
+  "runId": "x4-sheet-plus",
+  "startedAt": "2026-10-06T13:55:05.980Z",
+  "finishedAt": "2026-10-06T13:57:19.475Z",
+  "ok": true,
+  "passed": 35,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 157,
+      "detail": "/documents"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "doc-select-muwqgemm-1-79gqrixl appeared"
+    },
+    {
+      "i": 2,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2002,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 3,
+      "op": "press",
+      "ok": true,
+      "ms": 156,
+      "detail": "doc-select-muwqgemm-1-79gqrixl ← onPress"
+    },
+    {
+      "i": 4,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1017,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 5,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "documents-ask-selected ← onPress"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "ask-sheet appeared"
+    },
+    {
+      "i": 7,
+      "op": "type",
+      "ok": true,
+      "ms": 166,
+      "detail": "ask-input = 12 chars"
+    },
+    {
+      "i": 8,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "ask-send ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2500,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 91957,
+      "detail": "ask-stop gone"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2002,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 12,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1933,
+      "detail": "X4-01-summary"
+    },
+    {
+      "i": 13,
+      "op": "dump",
+      "ok": true,
+      "ms": 5,
+      "nodes": [
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file · PRO 2 documents · 167 KB on this device Free: 1 document of up to 20 pages · Pro: no limit Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO קובץ.pdf PDF · 9 pages · 111 KB Indexed · 41 passages constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages Ask about 1 document Indexed on this device Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO FAST · ON-DEVICE AI The provided text is a summary of the first two pages (pages 1–2) of \"constitution-9pages.pdf.\" Main Points: • Structure: Establishes a bicameral legislature with the Senate and House of Representatives, where Senators are chosen by state legislatures for six-year terms while representatives are elected every two years. [1] • Eligibility & Representation: Mandates age requirements (25 in the House, 30 in the Senate) and residence within the state of election; mandates apportionment based on free persons and three-fifths of other inhabitants to ensure fair representation among states. [1] • Presidential Powers & Legislation: Requires bills from both chambers to be presented to the President for signing or vetoing; if the President returns a bill without objection within ten days (excluding Sundays), it becomes law unless Congress adjourns before its return, requiring a two-thirds vote in both houses. [2] • Commerce Clause & Orders: Grants Congress powers over national debt defense, uniform naturalization laws, coinage, and creation of federal tribunals; all orders requiring concurrence from both chambers must be approved by the President before taking effect. [2] • Supreme Court Jurisdiction: Establishes a single supreme court with appellate jurisdiction over ambassadors, maritime disputes, state-citizen controversies, and interstate/citizen cases. The trial of crimes (except impeachment) must be conducted by jury in the state where the crime occurred. [3] • Executive Leadership & Pardons: The President serves as Commander-in-Chief; holds the power to grant pardons for federal offenses and appoints judges and ambassadors with Senate approval. [3] • Constitutional Hierarchy & Treason: Establishes that the Constitution is the supreme law, superior to state laws, treaties under its authority, and defines treason as levying war against an enemy or aiding them; requires proof by two witnesses or a confession in open court for conviction. [4] Summary of all 9 pages. [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 ↑"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file · PRO",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "documents-free-limit",
+          "text": "Free: 1 document of up to 20 pages · Pro: no limit"
+        },
+        {
+          "testID": "pro-tag",
+          "text": "PRO",
+          "role": "button",
+          "label": "See Pro",
+          "pressable": true
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muwqmwde-2-91dcrlrs",
+          "text": "קובץ.pdf PDF · 9 pages · 111 KB Indexed · 41 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muwqmwde-2-91dcrlrs",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muwqmwde-2-91dcrlrs",
+          "text": "Indexed · 41 passages"
+        },
+        {
+          "testID": "doc-row-muwqgemm-1-79gqrixl",
+          "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muwqgemm-1-79gqrixl",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": true,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muwqgemm-1-79gqrixl",
+          "text": "Indexed · 45 passages"
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Ask about 1 document",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "ask-sheet",
+          "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO FAST · ON-DEVICE AI The provided text is a summary of the first two pages (pages 1–2) of \"constitution-9pages.pdf.\" Main Points: • Structure: Establishes a bicameral legislature with the Senate and House of Representatives, where Senators are chosen by state legislatures for six-year terms while representatives are elected every two years. [1] • Eligibility & Representation: Mandates age requirements (25 in the House, 30 in the Senate) and residence within the state of election; mandates apportionment based on free persons and three-fifths of other inhabitants to ensure fair representation among states. [1] • Presidential Powers & Legislation: Requires bills from both chambers to be presented to the President for signing or vetoing; if the President returns a bill without objection within ten days (excluding Sundays), it becomes law unless Congress adjourns before its return, requiring a two-thirds vote in both houses. [2] • Commerce Clause & Orders: Grants Congress powers over national debt defense, uniform naturalization laws, coinage, and creation of federal tribunals; all orders requiring concurrence from both chambers must be approved by the President before taking effect. [2] • Supreme Court Jurisdiction: Establishes a single supreme court with appellate jurisdiction over ambassadors, maritime disputes, state-citizen controversies, and interstate/citizen cases. The trial of crimes (except impeachment) must be conducted by jury in the state where the crime occurred. [3] • Executive Leadership & Pardons: The President serves as Commander-in-Chief; holds the power to grant pardons for federal offenses and appoints judges and ambassadors with Senate approval. [3] • Constitutional Hierarchy & Treason: Establishes that the Constitution is the supreme law, superior to state laws, treaties under its authority, and defines treason as levying war against an enemy or aiding them; requires proof by two witnesses or a confession in open court for conviction. [4] Summary of all 9 pages. [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 ↑"
+        },
+        {
+          "testID": "ask-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "ask-answer",
+          "text": "The provided text is a summary of the first two pages (pages 1–2) of \"constitution-9pages.pdf.\" Main Points: • Structure: Establishes a bicameral legislature with the Senate and House of Representatives, where Senators are chosen by state legislatures for six-year terms while representatives are elected every two years. [1] • Eligibility & Representation: Mandates age requirements (25 in the House, 30 in the Senate) and residence within the state of election; mandates apportionment based on free persons and three-fifths of other inhabitants to ensure fair representation among states. [1] • Presidential Powers & Legislation: Requires bills from both chambers to be presented to the President for signing or vetoing; if the President returns a bill without objection within ten days (excluding Sundays), it becomes law unless Congress adjourns before its return, requiring a two-thirds vote in both houses. [2] • Commerce Clause & Orders: Grants Congress powers over national debt defense, uniform naturalization laws, coinage, and creation of federal tribunals; all orders requiring concurrence from both chambers must be approved by the President before taking effect. [2] • Supreme Court Jurisdiction: Establishes a single supreme court with appellate jurisdiction over ambassadors, maritime disputes, state-citizen controversies, and interstate/citizen cases. The trial of crimes (except impeachment) must be conducted by jury in the state where the crime occurred. [3] • Executive Leadership & Pardons: The President serves as Commander-in-Chief; holds the power to grant pardons for federal offenses and appoints judges and ambassadors with Senate approval. [3] • Constitutional Hierarchy & Treason: Establishes that the Constitution is the supreme law, superior to state laws, treaties under its authority, and defines treason as levying war against an enemy or aiding them; requires proof by two witnesses or a confession in open court for conviction. [4] Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ask-input",
+          "text": "",
+          "value": "Summarize it",
+          "pressable": true
+        },
+        {
+          "testID": "ask-send",
+          "text": "↑",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "X4-01-summary"
+    },
+    {
+      "i": 14,
+      "op": "type",
+      "ok": true,
+      "ms": 162,
+      "detail": "ask-input = 7 chars"
+    },
+    {
+      "i": 15,
+      "op": "press",
+      "ok": true,
+      "ms": 155,
+      "detail": "ask-send ← onPress"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2500,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 17,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1862,
+      "detail": "ask-stop gone"
+    },
+    {
+      "i": 18,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2015,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 19,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2883,
+      "detail": "X4-02-and-now"
+    },
+    {
+      "i": 20,
+      "op": "dump",
+      "ok": true,
+      "ms": 3,
+      "nodes": [
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file · PRO 2 documents · 167 KB on this device Free: 1 document of up to 20 pages · Pro: no limit Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO קובץ.pdf PDF · 9 pages · 111 KB Indexed · 41 passages constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages Ask about 1 document Indexed on this device Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO FAST · ON-DEVICE AI Answer: The answer is \"The Migration or Importation of such Persons as any of the States now existing shall think proper to admit, shall not be prohibited by the Congress prior to the Year one thousand eight hundred and eight,\" [1]. [1] constitution-9pages.pdf · p.4 ↑"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file · PRO",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "documents-free-limit",
+          "text": "Free: 1 document of up to 20 pages · Pro: no limit"
+        },
+        {
+          "testID": "pro-tag",
+          "text": "PRO",
+          "role": "button",
+          "label": "See Pro",
+          "pressable": true
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muwqmwde-2-91dcrlrs",
+          "text": "קובץ.pdf PDF · 9 pages · 111 KB Indexed · 41 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muwqmwde-2-91dcrlrs",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muwqmwde-2-91dcrlrs",
+          "text": "Indexed · 41 passages"
+        },
+        {
+          "testID": "doc-row-muwqgemm-1-79gqrixl",
+          "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muwqgemm-1-79gqrixl",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": true,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muwqgemm-1-79gqrixl",
+          "text": "Indexed · 45 passages"
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Ask about 1 document",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "ask-sheet",
+          "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO FAST · ON-DEVICE AI Answer: The answer is \"The Migration or Importation of such Persons as any of the States now existing shall think proper to admit, shall not be prohibited by the Congress prior to the Year one thousand eight hundred and eight,\" [1]. [1] constitution-9pages.pdf · p.4 ↑"
+        },
+        {
+          "testID": "ask-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "ask-answer",
+          "text": "Answer: The answer is \"The Migration or Importation of such Persons as any of the States now existing shall think proper to admit, shall not be prohibited by the Congress prior to the Year one thousand eight hundred and eight,\" [1]."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.4"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.4",
+          "pressable": true
+        },
+        {
+          "testID": "ask-input",
+          "text": "",
+          "value": "And now",
+          "pressable": true
+        },
+        {
+          "testID": "ask-send",
+          "text": "↑",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "X4-02-and-now"
+    },
+    {
+      "i": 21,
+      "op": "type",
+      "ok": true,
+      "ms": 166,
+      "detail": "ask-input = 9 chars"
+    },
+    {
+      "i": 22,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "ask-send ← onPress"
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 24,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "ask-stop gone"
+    },
+    {
+      "i": 25,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2001,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 26,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3195,
+      "detail": "X4-03-thank-you"
+    },
+    {
+      "i": 27,
+      "op": "dump",
+      "ok": true,
+      "ms": 3,
+      "nodes": [
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file · PRO 2 documents · 167 KB on this device Free: 1 document of up to 20 pages · Pro: no limit Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO קובץ.pdf PDF · 9 pages · 111 KB Indexed · 41 passages constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages Ask about 1 document Indexed on this device Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO FAST · ON-DEVICE AI Your documents don't mention this. Nothing in your documents matched this question. Answered without them. ↑"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file · PRO",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "documents-free-limit",
+          "text": "Free: 1 document of up to 20 pages · Pro: no limit"
+        },
+        {
+          "testID": "pro-tag",
+          "text": "PRO",
+          "role": "button",
+          "label": "See Pro",
+          "pressable": true
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muwqmwde-2-91dcrlrs",
+          "text": "קובץ.pdf PDF · 9 pages · 111 KB Indexed · 41 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muwqmwde-2-91dcrlrs",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muwqmwde-2-91dcrlrs",
+          "text": "Indexed · 41 passages"
+        },
+        {
+          "testID": "doc-row-muwqgemm-1-79gqrixl",
+          "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muwqgemm-1-79gqrixl",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": true,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muwqgemm-1-79gqrixl",
+          "text": "Indexed · 45 passages"
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Ask about 1 document",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "ask-sheet",
+          "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO FAST · ON-DEVICE AI Your documents don't mention this. Nothing in your documents matched this question. Answered without them. ↑"
+        },
+        {
+          "testID": "ask-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "ask-answer",
+          "text": "Your documents don't mention this."
+        },
+        {
+          "testID": "ask-none-matched",
+          "text": "Nothing in your documents matched this question. Answered without them."
+        },
+        {
+          "testID": "ask-input",
+          "text": "",
+          "value": "thank you",
+          "pressable": true
+        },
+        {
+          "testID": "ask-send",
+          "text": "↑",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "X4-03-thank-you"
+    },
+    {
+      "i": 28,
+      "op": "type",
+      "ok": true,
+      "ms": 166,
+      "detail": "ask-input = 4 chars"
+    },
+    {
+      "i": 29,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "ask-send ← onPress"
+    },
+    {
+      "i": 30,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 31,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 5309,
+      "detail": "ask-stop gone"
+    },
+    {
+      "i": 32,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2001,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 33,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3505,
+      "detail": "X4-04-more"
+    },
+    {
+      "i": 34,
+      "op": "dump",
+      "ok": true,
+      "ms": 4,
+      "nodes": [
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file · PRO 2 documents · 167 KB on this device Free: 1 document of up to 20 pages · Pro: no limit Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO קובץ.pdf PDF · 9 pages · 111 KB Indexed · 41 passages constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages Ask about 1 document Indexed on this device Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO FAST · ON-DEVICE AI The provided text is the first two pages of \"constitution-9pages.pdf,\" which outlines the structure, powers, and eligibility requirements for the legislative, executive, judicial, and electoral branches of the United States government under the Constitution of 1787. SOURCES constitution-9pages.pdf · p.1 constitution-9pages.pdf · p.2 ↑"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file · PRO",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "documents-free-limit",
+          "text": "Free: 1 document of up to 20 pages · Pro: no limit"
+        },
+        {
+          "testID": "pro-tag",
+          "text": "PRO",
+          "role": "button",
+          "label": "See Pro",
+          "pressable": true
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muwqmwde-2-91dcrlrs",
+          "text": "קובץ.pdf PDF · 9 pages · 111 KB Indexed · 41 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muwqmwde-2-91dcrlrs",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muwqmwde-2-91dcrlrs",
+          "text": "Indexed · 41 passages"
+        },
+        {
+          "testID": "doc-row-muwqgemm-1-79gqrixl",
+          "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muwqgemm-1-79gqrixl",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": true,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muwqgemm-1-79gqrixl",
+          "text": "Indexed · 45 passages"
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Ask about 1 document",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "ask-sheet",
+          "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO FAST · ON-DEVICE AI The provided text is the first two pages of \"constitution-9pages.pdf,\" which outlines the structure, powers, and eligibility requirements for the legislative, executive, judicial, and electoral branches of the United States government under the Constitution of 1787. SOURCES constitution-9pages.pdf · p.1 constitution-9pages.pdf · p.2 ↑"
+        },
+        {
+          "testID": "ask-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "ask-answer",
+          "text": "The provided text is the first two pages of \"constitution-9pages.pdf,\" which outlines the structure, powers, and eligibility requirements for the legislative, executive, judicial, and electoral branches of the United States government under the Constitution of 1787."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES constitution-9pages.pdf · p.1 constitution-9pages.pdf · p.2"
+        },
+        {
+          "testID": "citation-1",
+          "text": "constitution-9pages.pdf · p.1",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1",
+          "pressable": true
+        },
+        {
+          "testID": "citation-7",
+          "text": "constitution-9pages.pdf · p.2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.2",
+          "pressable": true
+        },
+        {
+          "testID": "ask-input",
+          "text": "",
+          "value": "more",
+          "pressable": true
+        },
+        {
+          "testID": "ask-send",
+          "text": "↑",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "X4-04-more"
+    }
+  ],
+  "errors": []
+}

@@ -98,3 +98,32 @@
 2026-10-06 16:37:06 j6-settings-vault-stop start
 2026-10-06 16:37:53 j6-settings-vault-stop rc=0 16:37:52 39 passed, 0 failed, 4 screenshots → <worktree>/docs/qa/ios-device-pass-38/screens
 2026-10-06 16:38:15 twin uninstalled 16:38:12 rc=0; apps: com.inbornapp.mobile 1.0.0 37;com.inbornapp.mobile.uitests.xctrunner 1.0 1;
+2026-10-06 16:43:48 ADDENDUM start: phone passcodeRequired: false; apps: com.inbornapp.mobile 1.0.0 37;com.inbornapp.mobile.uitests.xctrunner 1.0 1;
+2026-10-06 16:44:10 twin reinstalled fresh 16:43:49 rc=0
+2026-10-06 16:44:10 x1-onboard-plus start
+2026-10-06 16:45:33 x1-onboard-plus rc=0 16:45:33 56 passed, 0 failed, 8 screenshots → <worktree>/docs/qa/ios-device-pass-38/screens
+2026-10-06 16:45:55 j2a-install-fast-x start
+2026-10-06 16:47:08 j2a-install-fast-x rc=0 16:47:07 15 passed, 0 failed, 3 screenshots → <worktree>/docs/qa/ios-device-pass-38/screens
+2026-10-06 16:47:08 x2-summary-plus start
+2026-10-06 16:49:16 x2-summary-plus rc=0 16:49:15 72 passed, 0 failed, 8 screenshots → <worktree>/docs/qa/ios-device-pass-38/screens
+2026-10-06 16:49:51 x3-card-plus start
+2026-10-06 16:51:38 x3-card-plus rc=0 16:51:38 69 passed, 0 failed, 10 screenshots → <worktree>/docs/qa/ios-device-pass-38/screens
+2026-10-06 16:52:05 xp2-summary-plus start
+2026-10-06 16:54:34 xp2-summary-plus rc=1 (private: details in private/)
+2026-10-06 16:54:55 j4a-documents-x start
+2026-10-06 16:55:04 j4a-documents-x rc=0 (private: details in private/)
+2026-10-06 16:55:04 x4-sheet-plus start
+2026-10-06 16:57:22 x4-sheet-plus rc=0 16:57:21 35 passed, 0 failed, 4 screenshots → <worktree>/docs/qa/ios-device-pass-38/screens
+2026-10-06 16:57:41 x5-picture-plus start
+2026-10-06 16:57:41 x5-picture-plus preflight push failed (try 1)
+2026-10-06 17:00:51 x5-picture-plus rc=1 17:00:51   ! step 74 (press): press model-sheet-close: not mounted
+2026-10-06 17:01:13 x6-stop-plus start
+2026-10-06 17:02:05 x6-stop-plus rc=1 17:02:04   ! step 13 (press): press stop: not mounted
+2026-10-06 17:02:35 x6b-after-oom start
+2026-10-06 17:02:58 x6b-after-oom rc=0 17:02:57 18 passed, 0 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-38/screens
+2026-10-06 17:03:42 j7-explore start
+2026-10-06 17:06:58 j7-explore rc=1 17:06:57   ! step 137 (press): press documents-close: not mounted
+2026-10-06 17:08:02 j7b-explore start
+2026-10-06 17:08:02 j7b-explore preflight push failed (try 1)
+2026-10-06 17:09:00 j7b-explore rc=0 17:08:59 46 passed, 0 failed, 7 screenshots → <worktree>/docs/qa/ios-device-pass-38/screens
+2026-10-06 17:09:23 ADDENDUM end: twin uninstalled 17:09:22 rc=0; apps: com.inbornapp.mobile 1.0.0 37;com.inbornapp.mobile.uitests.xctrunner 1.0 1;

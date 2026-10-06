@@ -1,0 +1,191 @@
+17:03:42 pushing 159 steps as j7-explore
+17:03:48 shot J7-01-new-chat
+17:03:56 shot J7-02-hey
+17:04:05 shot J7-03-vaccines
+17:04:10 shot J7-04-attach-sheet
+17:04:25 shot J7-05-file-attached
+17:04:33 shot J7-06-serial
+17:04:41 shot J7-07-thanks
+17:04:47 shot J7-08-chip-summarize
+17:04:52 shot J7-09-chip-translate
+17:04:57 shot J7-10-chip-draft
+17:05:03 shot J7-11-draft-answer
+17:05:11 shot J7-12-stopped
+17:05:16 shot J7-13-model-sheet
+17:05:21 shot J7-14-vault
+17:05:26 shot J7-15-after-vault
+17:05:32 shot J7-16-switching
+17:05:37 shot J7-17-on-fast
+17:05:49 shot J7-18-fast-question
+17:06:03 shot J7-19-chats
+17:06:28 shot J7-20-documents
+17:06:33 shot J7-21-after-documents
+17:06:38 shot J7-22-settings
+17:06:44 shot J7-23-paywall
+17:06:48 shot J7-24-after-paywall
+17:06:53 shot J7-25-after-settings
+17:06:57 ok     0 deeplink   /chats
+17:06:57 ok     1 waitFor    new-chat appeared
+17:06:57 ok     2 press      new-chat ← onPress
+17:06:57 ok     3 waitFor    start-chat appeared
+17:06:57 ok     4 press      start-chat ← onPress
+17:06:57 ok     5 waitFor    composer-input appeared
+17:06:57 ok     6 waitFor    Loading gone
+17:06:57 ok     7 sleep      1500 ms
+17:06:57 ok     8 value      INSTANT
+17:06:57 ok     9 sleep      2000 ms
+17:06:57 ok    10 screenshot J7-01-new-chat
+17:06:57 ok    11 dump       J7-01-new-chat
+17:06:57 ok    12 type       composer-input = 17 chars
+17:06:57 ok    13 send       send ← onPress
+17:06:57 ok    14 sleep      2500 ms
+17:06:57 ok    15 waitFor    reading-pages gone
+17:06:57 ok    16 waitFor    reading-docs gone
+17:06:57 ok    17 waitFor    stop gone
+17:06:57 ok    18 sleep      2500 ms
+17:06:57 ok    19 screenshot J7-02-hey
+17:06:57 ok    20 dump       J7-02-hey
+17:06:57 ok    21 type       composer-input = 21 chars
+17:06:57 ok    22 send       send ← onPress
+17:06:57 ok    23 sleep      2500 ms
+17:06:57 ok    24 waitFor    reading-pages gone
+17:06:57 ok    25 waitFor    reading-docs gone
+17:06:57 ok    26 waitFor    stop gone
+17:06:57 ok    27 sleep      2500 ms
+17:06:57 ok    28 screenshot J7-03-vaccines
+17:06:57 ok    29 dump       J7-03-vaccines
+17:06:57 ok    30 press      attach ← onPress
+17:06:57 ok    31 sleep      2000 ms
+17:06:57 ok    32 screenshot J7-04-attach-sheet
+17:06:57 ok    33 dump       J7-04-attach-sheet
+17:06:57 ok    34 press      attach-sheet-close ← onPress
+17:06:57 ok    35 devPrompt  attach: turbine-report-3pages.pdf
+17:06:57 ok    36 waitFor    attached-docs appeared
+17:06:57 ok    37 sleep      10000 ms
+17:06:57 ok    38 sleep      500 ms
+17:06:57 ok    39 screenshot J7-05-file-attached
+17:06:57 ok    40 dump       J7-05-file-attached
+17:06:57 ok    41 type       composer-input = 41 chars
+17:06:57 ok    42 send       send ← onPress
+17:06:57 ok    43 sleep      2500 ms
+17:06:57 ok    44 waitFor    reading-pages gone
+17:06:57 ok    45 waitFor    reading-docs gone
+17:06:57 ok    46 waitFor    stop gone
+17:06:57 ok    47 sleep      2500 ms
+17:06:57 ok    48 screenshot J7-06-serial
+17:06:57 ok    49 dump       J7-06-serial
+17:06:57 ok    50 type       composer-input = 7 chars
+17:06:57 ok    51 send       send ← onPress
+17:06:57 ok    52 sleep      2500 ms
+17:06:57 ok    53 waitFor    reading-pages gone
+17:06:57 ok    54 waitFor    reading-docs gone
+17:06:57 ok    55 waitFor    stop gone
+17:06:57 ok    56 sleep      2500 ms
+17:06:57 ok    57 screenshot J7-07-thanks
+17:06:57 ok    58 dump       J7-07-thanks
+17:06:57 ok    59 deeplink   /chats
+17:06:57 ok    60 waitFor    new-chat appeared
+17:06:57 ok    61 press      new-chat ← onPress
+17:06:57 ok    62 waitFor    start-chat appeared
+17:06:57 ok    63 press      start-chat ← onPress
+17:06:57 ok    64 waitFor    composer-input appeared
+17:06:57 ok    65 waitFor    Loading gone
+17:06:57 ok    66 sleep      1500 ms
+17:06:57 ok    67 value      INSTANT
+17:06:57 ok    68 press      suggestion-summarize ← onPress
+17:06:57 ok    69 sleep      1500 ms
+17:06:57 ok    70 screenshot J7-08-chip-summarize
+17:06:57 ok    71 dump       J7-08-chip-summarize
+17:06:57 ok    72 press      suggestion-translate ← onPress
+17:06:57 ok    73 sleep      1500 ms
+17:06:57 ok    74 screenshot J7-09-chip-translate
+17:06:57 ok    75 dump       J7-09-chip-translate
+17:06:57 ok    76 press      suggestion-draft ← onPress
+17:06:57 ok    77 sleep      1500 ms
+17:06:57 ok    78 screenshot J7-10-chip-draft
+17:06:57 ok    79 dump       J7-10-chip-draft
+17:06:57 ok    80 send       send ← onPress
+17:06:57 ok    81 sleep      2500 ms
+17:06:57 ok    82 waitFor    stop gone
+17:06:57 ok    83 sleep      2000 ms
+17:06:57 ok    84 screenshot J7-11-draft-answer
+17:06:57 ok    85 dump       J7-11-draft-answer
+17:06:57 ok    86 type       composer-input = 50 chars
+17:06:57 ok    87 send       send ← onPress
+17:06:57 ok    88 waitFor    assistant-text appeared
+17:06:57 ok    89 sleep      3000 ms
+17:06:57 ok    90 press      stop ← onPress
+17:06:57 ok    91 sleep      2000 ms
+17:06:57 ok    92 screenshot J7-12-stopped
+17:06:57 ok    93 dump       J7-12-stopped
+17:06:57 ok    94 press      model-chip ← onPress
+17:06:57 ok    95 sleep      1500 ms
+17:06:57 ok    96 screenshot J7-13-model-sheet
+17:06:57 ok    97 dump       J7-13-model-sheet
+17:06:57 ok    98 press      model-sheet-manage ← onPress
+17:06:57 ok    99 waitFor    best-for appeared
+17:06:57 ok   100 sleep      2000 ms
+17:06:57 ok   101 screenshot J7-14-vault
+17:06:57 ok   102 dump       J7-14-vault
+17:06:57 FAIL 103 press      press back: not mounted
+17:06:57 ok   104 sleep      2000 ms
+17:06:57 ok   105 screenshot J7-15-after-vault
+17:06:57 ok   106 dump       J7-15-after-vault
+17:06:57 ok   107 press      model-chip ← onPress
+17:06:57 ok   108 sleep      1500 ms
+17:06:57 ok   109 press      model-sheet-use-fast ← onPress
+17:06:57 ok   110 sleep      2000 ms
+17:06:57 ok   111 sleep      0 ms
+17:06:57 ok   112 screenshot J7-16-switching
+17:06:57 ok   113 dump       J7-16-switching
+17:06:57 ok   114 waitFor    Loading gone
+17:06:57 ok   115 sleep      2000 ms
+17:06:57 ok   116 screenshot J7-17-on-fast
+17:06:57 ok   117 dump       J7-17-on-fast
+17:06:57 ok   118 type       composer-input = 45 chars
+17:06:57 ok   119 send       send ← onPress
+17:06:57 ok   120 sleep      2500 ms
+17:06:57 ok   121 waitFor    reading-pages gone
+17:06:57 ok   122 waitFor    reading-docs gone
+17:06:57 ok   123 waitFor    stop gone
+17:06:57 ok   124 sleep      2500 ms
+17:06:57 ok   125 screenshot J7-18-fast-question
+17:06:57 ok   126 dump       J7-18-fast-question
+17:06:57 ok   127 press      open-chats ← onPress
+17:06:57 FAIL 128 waitFor    waitFor drawer-documents never appeared in 10000 ms
+17:06:57 ok   129 sleep      2000 ms
+17:06:57 ok   130 screenshot J7-19-chats
+17:06:57 ok   131 dump       J7-19-chats
+17:06:57 FAIL 132 press      press drawer-documents: not mounted
+17:06:57 FAIL 133 waitFor    waitFor documents-screen never appeared in 20000 ms
+17:06:57 ok   134 sleep      2000 ms
+17:06:57 ok   135 screenshot J7-20-documents
+17:06:57 ok   136 dump       J7-20-documents
+17:06:57 FAIL 137 press      press documents-close: not mounted
+17:06:57 ok   138 sleep      2000 ms
+17:06:57 ok   139 screenshot J7-21-after-documents
+17:06:57 ok   140 dump       J7-21-after-documents
+17:06:57 ok   141 press      drawer-settings ← onPress
+17:06:57 ok   142 waitFor    row-pro appeared
+17:06:57 ok   143 sleep      2000 ms
+17:06:57 ok   144 screenshot J7-22-settings
+17:06:57 ok   145 dump       J7-22-settings
+17:06:57 ok   146 press      row-pro ← onPress
+17:06:57 ok   147 waitFor    close-paywall appeared
+17:06:57 ok   148 sleep      2000 ms
+17:06:57 ok   149 screenshot J7-23-paywall
+17:06:57 ok   150 dump       J7-23-paywall
+17:06:57 ok   151 press      close-paywall ← onPress
+17:06:57 ok   152 sleep      2000 ms
+17:06:57 ok   153 screenshot J7-24-after-paywall
+17:06:57 ok   154 dump       J7-24-after-paywall
+17:06:57 ok   155 press      back ← onPress
+17:06:57 ok   156 sleep      2000 ms
+17:06:57 ok   157 screenshot J7-25-after-settings
+17:06:57 ok   158 dump       J7-25-after-settings
+17:06:57 154 passed, 5 failed, 25 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-38/docs/qa/ios-device-pass-38/screens
+17:06:57   ! step 103 (press): press back: not mounted
+17:06:57   ! step 128 (waitFor): waitFor drawer-documents never appeared in 10000 ms
+17:06:57   ! step 132 (press): press drawer-documents: not mounted
+17:06:57   ! step 133 (waitFor): waitFor documents-screen never appeared in 20000 ms
+17:06:57   ! step 137 (press): press documents-close: not mounted

@@ -1,0 +1,22 @@
+17:02:36 pushing 18 steps as x6b-after-oom
+17:02:45 shot X6-05-hello
+17:02:53 shot X6-06-title-again
+17:02:57 ok     0 type       composer-input = 6 chars
+17:02:57 ok     1 send       send ← onPress
+17:02:57 ok     2 sleep      2500 ms
+17:02:57 ok     3 waitFor    reading-pages gone
+17:02:57 ok     4 waitFor    reading-docs gone
+17:02:57 ok     5 waitFor    stop gone
+17:02:57 ok     6 sleep      2500 ms
+17:02:57 ok     7 screenshot X6-05-hello
+17:02:57 ok     8 dump       X6-05-hello
+17:02:57 ok     9 type       composer-input = 23 chars
+17:02:57 ok    10 send       send ← onPress
+17:02:57 ok    11 sleep      2500 ms
+17:02:57 ok    12 waitFor    reading-pages gone
+17:02:57 ok    13 waitFor    reading-docs gone
+17:02:57 ok    14 waitFor    stop gone
+17:02:57 ok    15 sleep      2500 ms
+17:02:57 ok    16 screenshot X6-06-title-again
+17:02:57 ok    17 dump       X6-06-title-again
+17:02:57 18 passed, 0 failed, 2 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-38/docs/qa/ios-device-pass-38/screens

@@ -117,9 +117,97 @@ Memory is the app's `physFootprint`, sampled every 1 to 3 s from the Mac (first 
 6. **Not walked:** the system file picker and keyboard (the bridge types through `onChangeText`), the keyboard up with a
    file attached, Hebrew asks, Stop in the Ask sheet, a file over about 20 pages (the "cut" scope line), and Android.
 
+## Past the goal (addendum, 16:43 → 17:02)
+
+The founder's rule: every bug he finds sits one step after the journey's goal. So every journey was walked again on a
+fresh install of the same twin, 2 to 3 natural steps further, with a screenshot each (`screens/X*`; the founder's file
+`private/XP2-*`). Scripts: `scripts/make-scripts-x.py`. The phone was still throttled throughout.
+
+| step past the goal | verdict | evidence |
+|---|---|---|
+| X1 onboarding → "Hi" | nothing odd: *"Hello! I'm glad to see you. How can I help today?"* | `X1-00-chat`, `X1-01-hi` |
+| X1 Chats list and back | nothing odd: back on the same chat at its end | `X1-02-chats`, `X1-02-back` |
+| X1 Settings mid-chat (Chats → Settings → ‹) | ‹ in Settings lands on the Chats list, not the chat; one more tap (×) to get back. Acceptable, but two steps | `X1-03-settings`, `X1-03-after-back`, `X1-03-chat` |
+| X1 "What can you do?" | **odd:** Instant answers *"I am a text-based AI assistant that cannot perform tasks like coding, image generation…"*: it denies the app's file and picture reading | `X1-04-what-can-you-do` |
+| X2 install Fast, then a new chat | **surprising:** the new chat opens on **Instant**, not on the model just installed | `X2-00c-fast-installed`, `X2-summary` |
+| X2 "Summarize it" on Instant (constitution) | **odd:** the summary starts *"The user has provided a document…"*, claims an "Amendments" section is missing, says the President *"serves in office until age 21"*, and prints a *"Question: Summarize it (excluding the missing Amendments section)"* line. Ends "Summary of all 9 pages. INSTANT can miss…" with chips p.1–2, p.7–9 and the **"FAST is better at documents"** card | `X2-summary` |
+| X2 "And now" | **odd:** *"You're welcome!"* | `X2-01-and-now` |
+| X2 "thank you" | nothing odd | `X2-02-thank-you` |
+| **X2 "more"** | **bug:** *"Your documents don't mention this."*: the user asked for more of the summary | `X2-03-more` |
+| X2 composer at its tallest (file + Redact rows) | nothing odd: the last answer's end and LEDGER above both rows | `X2-04-tallest` |
+| X2 Chats and back, "Who wrote it?" | the 468 MB card (no index model yet), by design | `X2-05-*`, `X2-06-one-more` |
+| X3 Cancel on the card | **odd:** "Who wrote it?" stays in the composer **with a Redact row** although it holds nothing personal | `X3-00-card`, `X3-01-cancelled` |
+| X3 "Thanks" after Cancel | nothing odd; the cancelled question is gone (never answered) | `X3-02-thanks` |
+| X3 treason → Download → answer | chips p.7 and p.2; the answer adds *"ensures punishment (such as death)"*, not in the text | `X3-03-treason` |
+| X3 "and the punishment?" | answered with chips (a real follow-up, searched): right route | `X3-04-punishment` |
+| X3 "thanks" | **odd:** *"I appreciate you asking. The punishment for treason under the U.S. Constitution is death…"*: a thanks gets a recap with an invented fact | `X3-05-thanks` |
+| X3 tallest composer, Chats and back | nothing odd | `X3-06-tallest`, `X3-07-*` |
+| X3 "Who can veto a bill?" | **odd:** *"…the President can veto any bill… but it does not specify who is eligible to exercise this power"*: contradicts itself | `X3-08-one-more` |
+| XP2 the founder's file on Fast, summary | 57.1 s, chips p.1–2 … p.8–9. **Bug: with a Hebrew file name every chip and the file row are bidi-scrambled**: `pdf · p.1–2.קובץ [1]`, `pdf.קובץ` | `private/XP2-summary` |
+| XP2 "And now" | **odd:** *"What's next?"* | `private/XP2-01-and-now` |
+| XP2 "thank you" | nothing odd | `private/XP2-02-thank-you` |
+| **XP2 "more"** | **bug:** *"You're more than welcome! If you need another summary…"*: "more" is read as thanks, the user gets nothing more | `private/XP2-03-more` |
+| XP2 tallest composer, Chats and back | nothing odd | `private/XP2-04-*`, `private/XP2-05-*` |
+| XP2 "Who wrote it?" (index model now in) | good: a one-sentence correct answer naming the author from page 1, chips p.1, p.2 | `private/XP2-06-one-more` |
+| **X4 Ask sheet: "Summarize it"** | works, but the answer opens *"The provided text is a summary of the first two pages (pages 1–2)"* after reading all 9 | `X4-01-summary` |
+| **X4 sheet "And now"** | **bug:** a random passage: *"Answer: The answer is "The Migration or Importation of such Persons…" [1]"* (133B is chat-only; the sheet is untouched) | `X4-02-and-now` |
+| **X4 sheet "thank you"** | **bug:** *"Your documents don't mention this."* + *"Nothing in your documents matched this question."* | `X4-03-thank-you` |
+| X4 sheet "more" | **odd:** a fresh summary of "the first two pages": the sheet keeps no history, each answer replaces the last, and the sent text stays in the input | `X4-04-more` |
+| X5 Instant scan → "Not now" on the picture advice card | **odd:** a second card appears at once: *"FAST is better at documents than INSTANT… Switch to FAST · Not now"*, and again after the next turn | `X5-01-scan`, `X5-02-not-now`, `X5-03-colours` |
+| X5 "and the colours?", "thanks" | nothing odd | `X5-03-colours`, `X5-04-thanks` |
+| X5 Fast café → pack card → Remove the photo | **odd:** the photo goes, "What do you see?" stays in the composer with a Redact row | `X5-06-pack-card`, `X5-07-removed` |
+| X5 next message, the photo again → Download | works; the answer says *"likely belonging to the cafe mentioned in my previous answer"* (it mentioned none) | `X5-08-next`, `X5-09-cafe` |
+| X5 "and the colours?", "thanks" on Fast | nothing odd | `X5-10-colours`, `X5-11-thanks` |
+| **X6 a long story on Fast right after X5's photo turn** | **bug:** **"Ran out of memory · Switched to Instant"** within 1.3 s; the story is *"The"* + *"The system stopped generation"*; Continue adds *"fog rolls"* and stops again | `X6-01-stopped`, `X6-02-continued` |
+| **X6 "Give it a title."** | **bug:** **no reply at all**: Instant, 160 prompt tokens, 0 generated, no error line, the user's bubble just sits there (`raw/devrun-x6-stop-plus.json`). The same silent-empty failure as finding 1 | `X6-04-one-more` |
+| X6 "Hello?", "Give the story a title." | recovered: *"The Whispering Beam"*; "Hello?" got an in-character reply as the keeper | `X6-05-hello`, `X6-06-title-again` |
+| X6 Chats and back | nothing odd; the out-of-memory banner then stays on every screen, every new chat, until the next model switch | `X6-03-*`, `J7-01..05` |
+
+## Exploratory (J7, 17:03 → 17:08, a new user's session)
+
+Small talk, a general question, the paperclip, a 3-page file and a question about it, thanks, the three starter chips,
+Stop, the model sheet and the vault, a switch to Fast, Chats, Settings and the paywall, Documents through the paperclip
+and its Ask sheet, then back to an old chat from the list. Screenshots `screens/J7-01` … `J7-32`. What worked: small
+talk, the vaccine answer, the turbine serial (*"RK-4417"*, chip p.1), Stop (*"Stopped · Continue"*), the paywall
+open/close, the old chat reopening at its end and answering the next question with a chip.
+
+Everything that looked wrong, slow, confusing, surprising or inconsistent:
+
+1. **Hebrew file names are bidi-reversed everywhere they are listed**: `jpg.בית קפה הגינה תפריט`, `pdf.קובץ` in the
+   attach sheet and on the Documents screen, and inside source chips (`pdf · p.1–2.קובץ`). (`J7-04`, `J7-27`, `private/XP2-*`)
+2. **The out-of-memory banner is sticky**: "Ran out of memory · Switched to Instant · SWITCH BACK" stays on every screen
+   and every new chat (`J7-01` … `J7-05`, the vault), long after it happened.
+3. **The model sheet and the vault disagree**: the sheet says INSTANT "In use" while the vault says FAST "Loaded · In
+   use" at the same moment (`J7-13`, `J7-14`).
+4. **The Documents screen contradicts the chat**: "Free: 1 document of up to 20 pages · Pro: no limit" above a list
+   of 5 documents; "Add file · PRO" while the chat's paperclip adds files on free; the café photo and the scan say
+   *"Scanned. Run OCR on this phone? · Run OCR · PRO"* although the chat read both as pictures (`J7-27`).
+5. **The attach sheet is titled "Attach documents"** but opens with Templates (a Work feature) and Photo/Camera, and lists
+   the two pictures as scans needing OCR (`J7-04`).
+6. **A Redact row appears for any draft**, even a starter-chip template or "What do you see?", so the composer grows
+   a row whenever anything is typed (`J7-08`, `X3-01`, `X5-07`).
+7. **The "Draft a message" chip** fills *"Draft a short, friendly message that"*, an unfinished sentence; sent as is,
+   the model invents a message (*"Subject: Just wanted to say hi! …Love seeing you!"*) (`J7-10`, `J7-11`).
+8. **The "FAST is better at documents" card appears the moment a file is attached**, before any question, and right
+   after "Not now" on another card (`J7-05`, `X5-02`).
+9. **"OUT 874 B" / "OUT 1.27 KB" in the Chats footer** of a "Nothing leaves this phone" app, with no explanation on that
+   screen (`X1-02-chats`, `J7-30`).
+10. **The vault promises "~15-24 tok/s on your phone"** for Fast; this phone measured 6.6 to 10.6 while hot (`J7-14`).
+11. **Facts on Instant and Fast**: the Roman Empire answer (*"600 BCE – 476 CE"*, *"Augustus (founder of Rome)"*), the
+    elephant answer (*"gray-headed African bush elephants"*), the "capital of France" extras in J6. Not round-related.
+12. **The Ask sheet on the turbine report**: "Who wrote this report?" → *"Your documents don't mention this."* +
+    none-matched, on a 3-page report (`J7-29`); not checked against the file's text.
+13. **Navigation**: the vault has only ×, no ‹ (my script's `back` press missed, so the model switch in `J7-15` …
+    `J7-17` happened under the vault, out of sight); Documents is reachable on a phone only through the paperclip's
+    "manage" link, not from the Chats list.
+14. **Slow with no feedback**: nothing over 10 s without a visible line in this session. The longest waits all had one
+    (reading line, download progress, the pack card). Not checked: what the screen shows during the 29 s between the
+    photo pack card closing and the first token in J5c.
+
 ## End state
 
-- `com.inbornapp.mobile.qa` was uninstalled at 16:38:12, rc 0. `devicectl device info apps` then lists the store app
+- `com.inbornapp.mobile.qa` was uninstalled at 16:38:12, reinstalled fresh for the addendum at 16:43:49, and
+  uninstalled again at 17:09:22, rc 0. `devicectl device info apps` then lists the store app
   **1.0.0 (37)**, untouched by this pass, and the other session's `com.inbornapp.mobile.uitests.xctrunner`, not touched.
 - The phone was unlocked at every check and was never locked or unlocked by this pass. No setting was changed, no
   account touched. No simulator, no XCUITest runner, port 8787 not touched. Every driver, build, memory sampler and

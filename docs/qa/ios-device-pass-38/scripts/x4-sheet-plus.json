@@ -1,0 +1,159 @@
+{
+ "_": "X4: Documents → 'constitution-9pages.pdf' → Ask: 'Summarize it', then 'And now', 'thank you', 'more' in the sheet. DOCID filled in by the shell.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/documents"
+  },
+  {
+   "op": "waitFor",
+   "testID": "doc-select-DOCID",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "press",
+   "testID": "doc-select-DOCID"
+  },
+  {
+   "op": "sleep",
+   "ms": 1000
+  },
+  {
+   "op": "press",
+   "testID": "documents-ask-selected"
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-sheet",
+   "timeoutMs": 20000
+  },
+  {
+   "op": "type",
+   "testID": "ask-input",
+   "text": "Summarize it"
+  },
+  {
+   "op": "press",
+   "testID": "ask-send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "X4-01-summary"
+  },
+  {
+   "op": "dump",
+   "name": "X4-01-summary"
+  },
+  {
+   "op": "type",
+   "testID": "ask-input",
+   "text": "And now"
+  },
+  {
+   "op": "press",
+   "testID": "ask-send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "X4-02-and-now"
+  },
+  {
+   "op": "dump",
+   "name": "X4-02-and-now"
+  },
+  {
+   "op": "type",
+   "testID": "ask-input",
+   "text": "thank you"
+  },
+  {
+   "op": "press",
+   "testID": "ask-send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "X4-03-thank-you"
+  },
+  {
+   "op": "dump",
+   "name": "X4-03-thank-you"
+  },
+  {
+   "op": "type",
+   "testID": "ask-input",
+   "text": "more"
+  },
+  {
+   "op": "press",
+   "testID": "ask-send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "X4-04-more"
+  },
+  {
+   "op": "dump",
+   "name": "X4-04-more"
+  }
+ ]
+}

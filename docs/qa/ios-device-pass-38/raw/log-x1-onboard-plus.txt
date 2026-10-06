@@ -1,0 +1,67 @@
+16:44:11 launching com.inbornapp.mobile.qa
+16:44:25 pushing 56 steps as x1-onboard-plus
+16:44:48 shot X1-00-chat
+16:44:57 shot X1-01-hi
+16:45:02 shot X1-02-chats
+16:45:07 shot X1-02-back
+16:45:12 shot X1-03-settings
+16:45:16 shot X1-03-after-back
+16:45:21 shot X1-03-chat
+16:45:29 shot X1-04-what-can-you-do
+16:45:33 ok     0 waitFor    onboarding-continue appeared
+16:45:33 ok     1 sleep      1200 ms
+16:45:33 ok     2 press      onboarding-continue ← onPress
+16:45:33 ok     3 waitFor    onboarding-model appeared
+16:45:33 ok     4 sleep      2500 ms
+16:45:33 ok     5 press      start-now-with ← onPress
+16:45:33 ok     6 waitFor    sealed-start appeared
+16:45:33 ok     7 sleep      5000 ms
+16:45:33 ok     8 press      sealed-start ← onPress
+16:45:33 ok     9 waitFor    lock-start appeared
+16:45:33 ok    10 press      lock-start ← onPress
+16:45:33 ok    11 waitFor    composer-input appeared
+16:45:33 ok    12 waitFor    Loading gone
+16:45:33 ok    13 sleep      2000 ms
+16:45:33 ok    14 screenshot X1-00-chat
+16:45:33 ok    15 type       composer-input = 2 chars
+16:45:33 ok    16 send       send ← onPress
+16:45:33 ok    17 sleep      2500 ms
+16:45:33 ok    18 waitFor    reading-pages gone
+16:45:33 ok    19 waitFor    reading-docs gone
+16:45:33 ok    20 waitFor    stop gone
+16:45:33 ok    21 sleep      2500 ms
+16:45:33 ok    22 screenshot X1-01-hi
+16:45:33 ok    23 dump       X1-01-hi
+16:45:33 ok    24 press      open-chats ← onPress
+16:45:33 ok    25 waitFor    close-chats appeared
+16:45:33 ok    26 sleep      1500 ms
+16:45:33 ok    27 screenshot X1-02-chats
+16:45:33 ok    28 press      close-chats ← onPress
+16:45:33 ok    29 waitFor    composer-input appeared
+16:45:33 ok    30 sleep      2500 ms
+16:45:33 ok    31 screenshot X1-02-back
+16:45:33 ok    32 dump       X1-02-back
+16:45:33 ok    33 press      open-chats ← onPress
+16:45:33 ok    34 waitFor    drawer-settings appeared
+16:45:33 ok    35 press      drawer-settings ← onPress
+16:45:33 ok    36 waitFor    row-wipe appeared
+16:45:33 ok    37 sleep      1500 ms
+16:45:33 ok    38 screenshot X1-03-settings
+16:45:33 ok    39 press      back ← onPress
+16:45:33 ok    40 sleep      2500 ms
+16:45:33 ok    41 screenshot X1-03-after-back
+16:45:33 ok    42 dump       X1-03-after-back
+16:45:33 ok    43 press      close-chats ← onPress
+16:45:33 ok    44 waitFor    composer-input appeared
+16:45:33 ok    45 sleep      2500 ms
+16:45:33 ok    46 screenshot X1-03-chat
+16:45:33 ok    47 type       composer-input = 16 chars
+16:45:33 ok    48 send       send ← onPress
+16:45:33 ok    49 sleep      2500 ms
+16:45:33 ok    50 waitFor    reading-pages gone
+16:45:33 ok    51 waitFor    reading-docs gone
+16:45:33 ok    52 waitFor    stop gone
+16:45:33 ok    53 sleep      2500 ms
+16:45:33 ok    54 screenshot X1-04-what-can-you-do
+16:45:33 ok    55 dump       X1-04-what-can-you-do
+16:45:33 56 passed, 0 failed, 8 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-38/docs/qa/ios-device-pass-38/screens

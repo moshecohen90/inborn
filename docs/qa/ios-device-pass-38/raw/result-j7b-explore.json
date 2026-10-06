@@ -1,0 +1,1926 @@
+{
+  "runId": "j7b-explore",
+  "startedAt": "2026-10-06T14:08:09.803Z",
+  "finishedAt": "2026-10-06T14:08:57.595Z",
+  "ok": true,
+  "passed": 46,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 158,
+      "detail": "/"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 2,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2017,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 3,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3198,
+      "detail": "J7-26-chat"
+    },
+    {
+      "i": 4,
+      "op": "dump",
+      "ok": true,
+      "ms": 4,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Draft a short, friendly message that",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI Subject: Just wanted to say hi! 🌞 Hi there! I'm just trying to stay connected. Hope your day is going well—what's on your mind? Anything exciting or anything you want to share? Love seeing you! ☀️ Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "Subject: Just wanted to say hi! 🌞 Hi there! I'm just trying to stay connected. Hope your day is going well—what's on your mind? Anything exciting or anything you want to share? Love seeing you! ☀️"
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J7-26-chat"
+    },
+    {
+      "i": 5,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "attach ← onPress"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1508,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 7,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "attach-manage ← onPress"
+    },
+    {
+      "i": 8,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 259,
+      "detail": "documents-screen appeared"
+    },
+    {
+      "i": 9,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2016,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 10,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2568,
+      "detail": "J7-27-documents"
+    },
+    {
+      "i": 11,
+      "op": "dump",
+      "ok": true,
+      "ms": 6,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Draft a short, friendly message that",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI Subject: Just wanted to say hi! 🌞 Hi there! I'm just trying to stay connected. Hope your day is going well—what's on your mind? Anything exciting or anything you want to share? Love seeing you! ☀️ Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "Subject: Just wanted to say hi! 🌞 Hi there! I'm just trying to stay connected. Hope your day is going well—what's on your mind? Anything exciting or anything you want to share? Love seeing you! ☀️"
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file · PRO 5 documents · 695 KB on this device Free: 1 document of up to 20 pages · Pro: no limit Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO turbine-report-3pages.pdf PDF · 3 pages · 1.73 KB Indexed · 3 passages בית קפה הגינה תפריט.jpg IMAGE · 1 page · 332 KB Scanned. Run OCR on this phone? Run OCR · PRO sign-scan.pdf PDF · 1 page · 195 KB Scanned. Run OCR on this phone? Run OCR · PRO קובץ.pdf PDF · 9 pages · 111 KB Indexed · 41 passages constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages Select documents to ask Indexed on this device"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file · PRO",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-free-limit",
+          "text": "Free: 1 document of up to 20 pages · Pro: no limit"
+        },
+        {
+          "testID": "pro-tag",
+          "text": "PRO",
+          "role": "button",
+          "label": "See Pro",
+          "pressable": true
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muwr29in-6-0hnb2emf",
+          "text": "turbine-report-3pages.pdf PDF · 3 pages · 1.73 KB Indexed · 3 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muwr29in-6-0hnb2emf",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muwr29in-6-0hnb2emf",
+          "text": "Indexed · 3 passages"
+        },
+        {
+          "testID": "doc-row-muwqvk5v-4-0is0lpd3",
+          "text": "בית קפה הגינה תפריט.jpg IMAGE · 1 page · 332 KB Scanned. Run OCR on this phone? Run OCR · PRO",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muwqvk5v-4-0is0lpd3",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "doc-state-muwqvk5v-4-0is0lpd3",
+          "text": "Scanned. Run OCR on this phone?"
+        },
+        {
+          "testID": "doc-ocr-muwqvk5v-4-0is0lpd3",
+          "text": "Run OCR · PRO",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muwqu7h5-3-yhwx6vnf",
+          "text": "sign-scan.pdf PDF · 1 page · 195 KB Scanned. Run OCR on this phone? Run OCR · PRO",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muwqu7h5-3-yhwx6vnf",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "doc-state-muwqu7h5-3-yhwx6vnf",
+          "text": "Scanned. Run OCR on this phone?"
+        },
+        {
+          "testID": "doc-ocr-muwqu7h5-3-yhwx6vnf",
+          "text": "Run OCR · PRO",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muwqmwde-2-91dcrlrs",
+          "text": "קובץ.pdf PDF · 9 pages · 111 KB Indexed · 41 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muwqmwde-2-91dcrlrs",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muwqmwde-2-91dcrlrs",
+          "text": "Indexed · 41 passages"
+        },
+        {
+          "testID": "doc-row-muwqgemm-1-79gqrixl",
+          "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muwqgemm-1-79gqrixl",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muwqgemm-1-79gqrixl",
+          "text": "Indexed · 45 passages"
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Select documents to ask",
+          "role": "button",
+          "disabled": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J7-27-documents"
+    },
+    {
+      "i": 12,
+      "op": "press",
+      "ok": true,
+      "ms": 160,
+      "detail": "doc-select-muwr29in-6-0hnb2emf ← onPress"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1016,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 517,
+      "detail": "500 ms"
+    },
+    {
+      "i": 15,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2867,
+      "detail": "J7-28-selected"
+    },
+    {
+      "i": 16,
+      "op": "dump",
+      "ok": true,
+      "ms": 7,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Draft a short, friendly message that",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI Subject: Just wanted to say hi! 🌞 Hi there! I'm just trying to stay connected. Hope your day is going well—what's on your mind? Anything exciting or anything you want to share? Love seeing you! ☀️ Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "Subject: Just wanted to say hi! 🌞 Hi there! I'm just trying to stay connected. Hope your day is going well—what's on your mind? Anything exciting or anything you want to share? Love seeing you! ☀️"
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file · PRO 5 documents · 695 KB on this device Free: 1 document of up to 20 pages · Pro: no limit Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO turbine-report-3pages.pdf PDF · 3 pages · 1.73 KB Indexed · 3 passages בית קפה הגינה תפריט.jpg IMAGE · 1 page · 332 KB Scanned. Run OCR on this phone? Run OCR · PRO sign-scan.pdf PDF · 1 page · 195 KB Scanned. Run OCR on this phone? Run OCR · PRO קובץ.pdf PDF · 9 pages · 111 KB Indexed · 41 passages constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages Ask about 1 document Indexed on this device"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file · PRO",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-free-limit",
+          "text": "Free: 1 document of up to 20 pages · Pro: no limit"
+        },
+        {
+          "testID": "pro-tag",
+          "text": "PRO",
+          "role": "button",
+          "label": "See Pro",
+          "pressable": true
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muwr29in-6-0hnb2emf",
+          "text": "turbine-report-3pages.pdf PDF · 3 pages · 1.73 KB Indexed · 3 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muwr29in-6-0hnb2emf",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": true,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muwr29in-6-0hnb2emf",
+          "text": "Indexed · 3 passages"
+        },
+        {
+          "testID": "doc-row-muwqvk5v-4-0is0lpd3",
+          "text": "בית קפה הגינה תפריט.jpg IMAGE · 1 page · 332 KB Scanned. Run OCR on this phone? Run OCR · PRO",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muwqvk5v-4-0is0lpd3",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "doc-state-muwqvk5v-4-0is0lpd3",
+          "text": "Scanned. Run OCR on this phone?"
+        },
+        {
+          "testID": "doc-ocr-muwqvk5v-4-0is0lpd3",
+          "text": "Run OCR · PRO",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muwqu7h5-3-yhwx6vnf",
+          "text": "sign-scan.pdf PDF · 1 page · 195 KB Scanned. Run OCR on this phone? Run OCR · PRO",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muwqu7h5-3-yhwx6vnf",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "doc-state-muwqu7h5-3-yhwx6vnf",
+          "text": "Scanned. Run OCR on this phone?"
+        },
+        {
+          "testID": "doc-ocr-muwqu7h5-3-yhwx6vnf",
+          "text": "Run OCR · PRO",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muwqmwde-2-91dcrlrs",
+          "text": "קובץ.pdf PDF · 9 pages · 111 KB Indexed · 41 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muwqmwde-2-91dcrlrs",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muwqmwde-2-91dcrlrs",
+          "text": "Indexed · 41 passages"
+        },
+        {
+          "testID": "doc-row-muwqgemm-1-79gqrixl",
+          "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muwqgemm-1-79gqrixl",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muwqgemm-1-79gqrixl",
+          "text": "Indexed · 45 passages"
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Ask about 1 document",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J7-28-selected"
+    },
+    {
+      "i": 17,
+      "op": "press",
+      "ok": true,
+      "ms": 160,
+      "detail": "documents-ask-selected ← onPress"
+    },
+    {
+      "i": 18,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "ask-sheet appeared"
+    },
+    {
+      "i": 19,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "ask-input = 22 chars"
+    },
+    {
+      "i": 20,
+      "op": "press",
+      "ok": true,
+      "ms": 163,
+      "detail": "ask-send ← onPress"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 22,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 5,
+      "detail": "ask-stop gone"
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2011,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 24,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3198,
+      "detail": "J7-29-ask"
+    },
+    {
+      "i": 25,
+      "op": "dump",
+      "ok": true,
+      "ms": 6,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Draft a short, friendly message that",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI Subject: Just wanted to say hi! 🌞 Hi there! I'm just trying to stay connected. Hope your day is going well—what's on your mind? Anything exciting or anything you want to share? Love seeing you! ☀️ Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "Subject: Just wanted to say hi! 🌞 Hi there! I'm just trying to stay connected. Hope your day is going well—what's on your mind? Anything exciting or anything you want to share? Love seeing you! ☀️"
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file · PRO 5 documents · 695 KB on this device Free: 1 document of up to 20 pages · Pro: no limit Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO turbine-report-3pages.pdf PDF · 3 pages · 1.73 KB Indexed · 3 passages בית קפה הגינה תפריט.jpg IMAGE · 1 page · 332 KB Scanned. Run OCR on this phone? Run OCR · PRO sign-scan.pdf PDF · 1 page · 195 KB Scanned. Run OCR on this phone? Run OCR · PRO קובץ.pdf PDF · 9 pages · 111 KB Indexed · 41 passages constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages Ask about 1 document Indexed on this device Close ASK YOUR DOCUMENTS Searching 1 document: turbine-report-3pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO FAST · ON-DEVICE AI Your documents don't mention this. Nothing in your documents matched this question. Answered without them. ↑"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file · PRO",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-free-limit",
+          "text": "Free: 1 document of up to 20 pages · Pro: no limit"
+        },
+        {
+          "testID": "pro-tag",
+          "text": "PRO",
+          "role": "button",
+          "label": "See Pro",
+          "pressable": true
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muwr29in-6-0hnb2emf",
+          "text": "turbine-report-3pages.pdf PDF · 3 pages · 1.73 KB Indexed · 3 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muwr29in-6-0hnb2emf",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": true,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muwr29in-6-0hnb2emf",
+          "text": "Indexed · 3 passages"
+        },
+        {
+          "testID": "doc-row-muwqvk5v-4-0is0lpd3",
+          "text": "בית קפה הגינה תפריט.jpg IMAGE · 1 page · 332 KB Scanned. Run OCR on this phone? Run OCR · PRO",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muwqvk5v-4-0is0lpd3",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "doc-state-muwqvk5v-4-0is0lpd3",
+          "text": "Scanned. Run OCR on this phone?"
+        },
+        {
+          "testID": "doc-ocr-muwqvk5v-4-0is0lpd3",
+          "text": "Run OCR · PRO",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muwqu7h5-3-yhwx6vnf",
+          "text": "sign-scan.pdf PDF · 1 page · 195 KB Scanned. Run OCR on this phone? Run OCR · PRO",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muwqu7h5-3-yhwx6vnf",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "doc-state-muwqu7h5-3-yhwx6vnf",
+          "text": "Scanned. Run OCR on this phone?"
+        },
+        {
+          "testID": "doc-ocr-muwqu7h5-3-yhwx6vnf",
+          "text": "Run OCR · PRO",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muwqmwde-2-91dcrlrs",
+          "text": "קובץ.pdf PDF · 9 pages · 111 KB Indexed · 41 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muwqmwde-2-91dcrlrs",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muwqmwde-2-91dcrlrs",
+          "text": "Indexed · 41 passages"
+        },
+        {
+          "testID": "doc-row-muwqgemm-1-79gqrixl",
+          "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muwqgemm-1-79gqrixl",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muwqgemm-1-79gqrixl",
+          "text": "Indexed · 45 passages"
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Ask about 1 document",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "ask-sheet",
+          "text": "Close ASK YOUR DOCUMENTS Searching 1 document: turbine-report-3pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO FAST · ON-DEVICE AI Your documents don't mention this. Nothing in your documents matched this question. Answered without them. ↑"
+        },
+        {
+          "testID": "ask-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "ask-answer",
+          "text": "Your documents don't mention this."
+        },
+        {
+          "testID": "ask-none-matched",
+          "text": "Nothing in your documents matched this question. Answered without them."
+        },
+        {
+          "testID": "ask-input",
+          "text": "",
+          "value": "Who wrote this report?",
+          "pressable": true
+        },
+        {
+          "testID": "ask-send",
+          "text": "↑",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J7-29-ask"
+    },
+    {
+      "i": 26,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 163,
+      "detail": "/chats"
+    },
+    {
+      "i": 27,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "chat-row-a37c923c-b7a2-4f73-8e91-5f4a39252e21 appeared"
+    },
+    {
+      "i": 28,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2002,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 29,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2870,
+      "detail": "J7-30-chats"
+    },
+    {
+      "i": 30,
+      "op": "dump",
+      "ok": true,
+      "ms": 4,
+      "nodes": [
+        {
+          "testID": "close-chats",
+          "text": "",
+          "role": "button",
+          "label": "Close",
+          "pressable": true
+        },
+        {
+          "testID": "select-toggle",
+          "text": "Select",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "chats-search",
+          "text": "",
+          "label": "Search",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "new-chat",
+          "text": "New chat",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "new-incognito",
+          "text": "Incognito",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-8438b5a0-e878-4f54-98c5-9a98182a2d74",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-8438b5a0-e878-4f54-98c5-9a98182a2d74",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-8438b5a0-e878-4f54-98c5-9a98182a2d74",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-8438b5a0-e878-4f54-98c5-9a98182a2d74",
+          "text": "Draft a short, friendly message that 7:05 AM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-5a24c049-5c67-41b4-89a8-07be780e91b8",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-5a24c049-5c67-41b4-89a8-07be780e91b8",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-5a24c049-5c67-41b4-89a8-07be780e91b8",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-5a24c049-5c67-41b4-89a8-07be780e91b8",
+          "text": "hey, how are you? 7:04 AM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-82c23e6b-6ecd-4fc3-bb49-bccef596f922",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-82c23e6b-6ecd-4fc3-bb49-bccef596f922",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-82c23e6b-6ecd-4fc3-bb49-bccef596f922",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-82c23e6b-6ecd-4fc3-bb49-bccef596f922",
+          "text": "Write a long story of about 7:02 AM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-32fc5e2e-be4c-4cb7-84f2-39c1e371904f",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-32fc5e2e-be4c-4cb7-84f2-39c1e371904f",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-32fc5e2e-be4c-4cb7-84f2-39c1e371904f",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-32fc5e2e-be4c-4cb7-84f2-39c1e371904f",
+          "text": "What is a good name for 7:00 AM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-3182b799-5375-4eb8-90eb-1694f0ba6d7c",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-3182b799-5375-4eb8-90eb-1694f0ba6d7c",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-3182b799-5375-4eb8-90eb-1694f0ba6d7c",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-3182b799-5375-4eb8-90eb-1694f0ba6d7c",
+          "text": "What do you see? 6:58 AM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-4f7d7846-2e68-40aa-acf0-bcb4f2e45539",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-4f7d7846-2e68-40aa-acf0-bcb4f2e45539",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-4f7d7846-2e68-40aa-acf0-bcb4f2e45539",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-4f7d7846-2e68-40aa-acf0-bcb4f2e45539",
+          "text": "Summarize it 6:54 AM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-a37c923c-b7a2-4f73-8e91-5f4a39252e21",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-a37c923c-b7a2-4f73-8e91-5f4a39252e21",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-a37c923c-b7a2-4f73-8e91-5f4a39252e21",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-a37c923c-b7a2-4f73-8e91-5f4a39252e21",
+          "text": "Summarize it 6:51 AM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-861ddeba-8ea9-478e-a303-6617489b80d4",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-861ddeba-8ea9-478e-a303-6617489b80d4",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-861ddeba-8ea9-478e-a303-6617489b80d4",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-861ddeba-8ea9-478e-a303-6617489b80d4",
+          "text": "Hi 6:45 AM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chats-footer",
+          "text": "PRO"
+        },
+        {
+          "testID": "open-personas",
+          "text": "",
+          "pressable": true
+        },
+        {
+          "testID": "open-memory",
+          "text": "",
+          "pressable": true
+        },
+        {
+          "testID": "open-folders",
+          "text": "PRO",
+          "pressable": true
+        },
+        {
+          "testID": "pro-tag",
+          "text": "PRO"
+        },
+        {
+          "testID": "new-chat-sheet",
+          "text": ""
+        },
+        {
+          "testID": "folder-sheet",
+          "text": ""
+        },
+        {
+          "testID": "vault-code-sheet",
+          "text": ""
+        },
+        {
+          "testID": "export-sheet",
+          "text": ""
+        },
+        {
+          "testID": "drawer-footer",
+          "text": "FAST · OUT 1.27 KB Settings ◯ Proof"
+        },
+        {
+          "testID": "drawer-meter",
+          "text": "FAST · OUT 1.27 KB"
+        },
+        {
+          "testID": "drawer-settings",
+          "text": "Settings",
+          "pressable": true
+        },
+        {
+          "testID": "drawer-proof",
+          "text": "◯ Proof",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J7-30-chats"
+    },
+    {
+      "i": 31,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "chat-row-a37c923c-b7a2-4f73-8e91-5f4a39252e21 ← onPress"
+    },
+    {
+      "i": 32,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 33,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 34,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3015,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 35,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3182,
+      "detail": "J7-31-old-chat"
+    },
+    {
+      "i": 36,
+      "op": "dump",
+      "ok": true,
+      "ms": 8,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI The user has provided a document titled \"constitution-9pages.pdf\" with notes numbered [1] through [4], covering the U.S. Constitution's structure, powers, and procedures. However, the text provided only covers parts of the book (specifically pages 1–2, 3–4, 5–6, and 7–9), omitting the final section on amendments and judicial interpretations found in later pages or a separate \"Amendments\" chapter within the original document structure. Summary of Provided Text: • Document Type: U.S. Constitution (specifically the Federalist/Constitutional acts). • Main Points Covered: • Senate Structure: Two Senators from each State, elected by legislature for six-year terms. • House Rules: Each House operates independently with its own rules on qualifications, quorum, and expulsion; bills must be sent to the President for approval (two-thirds of both Houses required). • Executive Power: The President is elected electors from each state, held for four years. Vacancies are filled by the House of Representatives. • Presidential Duties: Swear an oath; serves in office until age 21 and death (remedied to 35 or resignation/conviction). Commanding Army/Navy; can grant pardons except during impeachment. • Treason: Involves levying war or aiding enemies with two witnesses in open court; convicted individuals must be removed from service without penalty, but \"Attainder of treason\" (a severe punishment) has no other effects. • Missing Section: The text does not contain information regarding the Constitutional Amendments section, which is typically found at the end of this document type and covers changes made to the Constitution since its ratification. Since the user requested the whole answer including only facts from the text provided, I must explicitly state that this summary excludes amendments. If the user intended to ask about the Amendments chapter specifically because they didn't see it in their notes or thought the \"whole\" was there, they will need a separate document. Question: Summarize it (excluding the missing Amendments section) Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better. [1] constitution-9pages.pdf · p.1–2 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The user has provided a document titled \"constitution-9pages.pdf\" with notes numbered [1] through [4], covering the U.S. Constitution's structure, powers, and procedures. However, the text provided only covers parts of the book (specifically pages 1–2, 3–4, 5–6, and 7–9), omitting the final section on amendments and judicial interpretations found in later pages or a separate \"Amendments\" chapter within the original document structure. Summary of Provided Text: • Document Type: U.S. Constitution (specifically the Federalist/Constitutional acts). • Main Points Covered: • Senate Structure: Two Senators from each State, elected by legislature for six-year terms. • House Rules: Each House operates independently with its own rules on qualifications, quorum, and expulsion; bills must be sent to the President for approval (two-thirds of both Houses required). • Executive Power: The President is elected electors from each state, held for four years. Vacancies are filled by the House of Representatives. • Presidential Duties: Swear an oath; serves in office until age 21 and death (remedied to 35 or resignation/conviction). Commanding Army/Navy; can grant pardons except during impeachment. • Treason: Involves levying war or aiding enemies with two witnesses in open court; convicted individuals must be removed from service without penalty, but \"Attainder of treason\" (a severe punishment) has no other effects. • Missing Section: The text does not contain information regarding the Constitutional Amendments section, which is typically found at the end of this document type and covers changes made to the Constitution since its ratification. Since the user requested the whole answer including only facts from the text provided, I must explicitly state that this summary excludes amendments. If the user intended to ask about the Amendments chapter specifically because they didn't see it in their notes or thought the \"whole\" was there, they will need a separate document. Question: Summarize it (excluding the missing Amendments section) Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "constitution-9pages.pdf · p.2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "constitution-9pages.pdf · p.2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.2",
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muwqgemm-1-79gqrixl",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J7-31-old-chat"
+    },
+    {
+      "i": 37,
+      "op": "type",
+      "ok": true,
+      "ms": 161,
+      "detail": "composer-input = 35 chars"
+    },
+    {
+      "i": 38,
+      "op": "send",
+      "ok": true,
+      "ms": 194,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 39,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 40,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 4,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 41,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 4,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 42,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 4232,
+      "detail": "stop gone"
+    },
+    {
+      "i": 43,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2515,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 44,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1915,
+      "detail": "J7-32-old-chat-more"
+    },
+    {
+      "i": 45,
+      "op": "dump",
+      "ok": true,
+      "ms": 7,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI The user has provided a document titled \"constitution-9pages.pdf\" with notes numbered [1] through [4], covering the U.S. Constitution's structure, powers, and procedures. However, the text provided only covers parts of the book (specifically pages 1–2, 3–4, 5–6, and 7–9), omitting the final section on amendments and judicial interpretations found in later pages or a separate \"Amendments\" chapter within the original document structure. Summary of Provided Text: • Document Type: U.S. Constitution (specifically the Federalist/Constitutional acts). • Main Points Covered: • Senate Structure: Two Senators from each State, elected by legislature for six-year terms. • House Rules: Each House operates independently with its own rules on qualifications, quorum, and expulsion; bills must be sent to the President for approval (two-thirds of both Houses required). • Executive Power: The President is elected electors from each state, held for four years. Vacancies are filled by the House of Representatives. • Presidential Duties: Swear an oath; serves in office until age 21 and death (remedied to 35 or resignation/conviction). Commanding Army/Navy; can grant pardons except during impeachment. • Treason: Involves levying war or aiding enemies with two witnesses in open court; convicted individuals must be removed from service without penalty, but \"Attainder of treason\" (a severe punishment) has no other effects. • Missing Section: The text does not contain information regarding the Constitutional Amendments section, which is typically found at the end of this document type and covers changes made to the Constitution since its ratification. Since the user requested the whole answer including only facts from the text provided, I must explicitly state that this summary excludes amendments. If the user intended to ask about the Amendments chapter specifically because they didn't see it in their notes or thought the \"whole\" was there, they will need a separate document. Question: Summarize it (excluding the missing Amendments section) Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better. [1] constitution-9pages.pdf · p.1–2 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The user has provided a document titled \"constitution-9pages.pdf\" with notes numbered [1] through [4], covering the U.S. Constitution's structure, powers, and procedures. However, the text provided only covers parts of the book (specifically pages 1–2, 3–4, 5–6, and 7–9), omitting the final section on amendments and judicial interpretations found in later pages or a separate \"Amendments\" chapter within the original document structure. Summary of Provided Text: • Document Type: U.S. Constitution (specifically the Federalist/Constitutional acts). • Main Points Covered: • Senate Structure: Two Senators from each State, elected by legislature for six-year terms. • House Rules: Each House operates independently with its own rules on qualifications, quorum, and expulsion; bills must be sent to the President for approval (two-thirds of both Houses required). • Executive Power: The President is elected electors from each state, held for four years. Vacancies are filled by the House of Representatives. • Presidential Duties: Swear an oath; serves in office until age 21 and death (remedied to 35 or resignation/conviction). Commanding Army/Navy; can grant pardons except during impeachment. • Treason: Involves levying war or aiding enemies with two witnesses in open court; convicted individuals must be removed from service without penalty, but \"Attainder of treason\" (a severe punishment) has no other effects. • Missing Section: The text does not contain information regarding the Constitutional Amendments section, which is typically found at the end of this document type and covers changes made to the Constitution since its ratification. Since the user requested the whole answer including only facts from the text provided, I must explicitly state that this summary excludes amendments. If the user intended to ask about the Amendments chapter specifically because they didn't see it in their notes or thought the \"whole\" was there, they will need a separate document. Question: Summarize it (excluding the missing Amendments section) Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "constitution-9pages.pdf · p.2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "constitution-9pages.pdf · p.2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.2",
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muwqgemm-1-79gqrixl",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J7-32-old-chat-more"
+    }
+  ],
+  "errors": []
+}

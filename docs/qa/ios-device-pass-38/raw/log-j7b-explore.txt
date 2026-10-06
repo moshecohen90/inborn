@@ -1,0 +1,55 @@
+17:08:08 pushing 46 steps as j7b-explore
+17:08:12 shot J7-26-chat
+17:08:19 shot J7-27-documents
+17:08:24 shot J7-28-selected
+17:08:32 shot J7-29-ask
+17:08:37 shot J7-30-chats
+17:08:44 shot J7-31-old-chat
+17:08:55 shot J7-32-old-chat-more
+17:08:59 ok     0 deeplink   /
+17:08:59 ok     1 waitFor    composer-input appeared
+17:08:59 ok     2 sleep      2000 ms
+17:08:59 ok     3 screenshot J7-26-chat
+17:08:59 ok     4 dump       J7-26-chat
+17:08:59 ok     5 press      attach ← onPress
+17:08:59 ok     6 sleep      1500 ms
+17:08:59 ok     7 press      attach-manage ← onPress
+17:08:59 ok     8 waitFor    documents-screen appeared
+17:08:59 ok     9 sleep      2000 ms
+17:08:59 ok    10 screenshot J7-27-documents
+17:08:59 ok    11 dump       J7-27-documents
+17:08:59 ok    12 press      doc-select-muwr29in-6-0hnb2emf ← onPress
+17:08:59 ok    13 sleep      1000 ms
+17:08:59 ok    14 sleep      500 ms
+17:08:59 ok    15 screenshot J7-28-selected
+17:08:59 ok    16 dump       J7-28-selected
+17:08:59 ok    17 press      documents-ask-selected ← onPress
+17:08:59 ok    18 waitFor    ask-sheet appeared
+17:08:59 ok    19 type       ask-input = 22 chars
+17:08:59 ok    20 press      ask-send ← onPress
+17:08:59 ok    21 sleep      2500 ms
+17:08:59 ok    22 waitFor    ask-stop gone
+17:08:59 ok    23 sleep      2000 ms
+17:08:59 ok    24 screenshot J7-29-ask
+17:08:59 ok    25 dump       J7-29-ask
+17:08:59 ok    26 deeplink   /chats
+17:08:59 ok    27 waitFor    chat-row-a37c923c-b7a2-4f73-8e91-5f4a39252e21 appeared
+17:08:59 ok    28 sleep      2000 ms
+17:08:59 ok    29 screenshot J7-30-chats
+17:08:59 ok    30 dump       J7-30-chats
+17:08:59 ok    31 press      chat-row-a37c923c-b7a2-4f73-8e91-5f4a39252e21 ← onPress
+17:08:59 ok    32 waitFor    composer-input appeared
+17:08:59 ok    33 waitFor    Loading gone
+17:08:59 ok    34 sleep      3000 ms
+17:08:59 ok    35 screenshot J7-31-old-chat
+17:08:59 ok    36 dump       J7-31-old-chat
+17:08:59 ok    37 type       composer-input = 35 chars
+17:08:59 ok    38 send       send ← onPress
+17:08:59 ok    39 sleep      2500 ms
+17:08:59 ok    40 waitFor    reading-pages gone
+17:08:59 ok    41 waitFor    reading-docs gone
+17:08:59 ok    42 waitFor    stop gone
+17:08:59 ok    43 sleep      2500 ms
+17:08:59 ok    44 screenshot J7-32-old-chat-more
+17:08:59 ok    45 dump       J7-32-old-chat-more
+17:08:59 46 passed, 0 failed, 7 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-38/docs/qa/ios-device-pass-38/screens

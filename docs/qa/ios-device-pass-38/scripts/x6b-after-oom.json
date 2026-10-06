@@ -1,0 +1,89 @@
+{
+ "_": "X6 after the out-of-memory switch left an empty reply: the user tries again in the same chat.",
+ "steps": [
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "Hello?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-pages",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "screenshot",
+   "name": "X6-05-hello"
+  },
+  {
+   "op": "dump",
+   "name": "X6-05-hello"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "Give the story a title."
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-pages",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "screenshot",
+   "name": "X6-06-title-again"
+  },
+  {
+   "op": "dump",
+   "name": "X6-06-title-again"
+  }
+ ]
+}

@@ -1,0 +1,316 @@
+{
+ "_": "X3: in X2's chat: a real question → the 468 MB card → Cancel → the next message; the question again → Download → the answer → a follow-up and thanks, the composer at its tallest, Chats and back, one more.",
+ "steps": [
+  {
+   "op": "waitFor",
+   "testID": "docs-hold",
+   "timeoutMs": 5000
+  },
+  {
+   "op": "screenshot",
+   "name": "X3-00-card"
+  },
+  {
+   "op": "press",
+   "testID": "docs-hold-cancel"
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "X3-01-cancelled"
+  },
+  {
+   "op": "dump",
+   "name": "X3-01-cancelled"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "Thanks"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-pages",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "screenshot",
+   "name": "X3-02-thanks"
+  },
+  {
+   "op": "dump",
+   "name": "X3-02-thanks"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "What does it say about treason?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "waitFor",
+   "testID": "docs-hold",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "press",
+   "testID": "docs-hold-download"
+  },
+  {
+   "op": "idleTimer"
+  },
+  {
+   "op": "waitFor",
+   "testID": "docs-hold",
+   "gone": true,
+   "timeoutMs": 1800000
+  },
+  {
+   "op": "sleep",
+   "ms": 5000
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 600000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "screenshot",
+   "name": "X3-03-treason"
+  },
+  {
+   "op": "dump",
+   "name": "X3-03-treason"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "and the punishment?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-pages",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "screenshot",
+   "name": "X3-04-punishment"
+  },
+  {
+   "op": "dump",
+   "name": "X3-04-punishment"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "thanks"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-pages",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "screenshot",
+   "name": "X3-05-thanks"
+  },
+  {
+   "op": "dump",
+   "name": "X3-05-thanks"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "My name is Dana and my phone is 555-0100"
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "screenshot",
+   "name": "X3-06-tallest"
+  },
+  {
+   "op": "dump",
+   "name": "X3-06-tallest"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": ""
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "press",
+   "testID": "open-chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "close-chats",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "screenshot",
+   "name": "X3-07-chats"
+  },
+  {
+   "op": "press",
+   "testID": "close-chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "screenshot",
+   "name": "X3-07-back"
+  },
+  {
+   "op": "dump",
+   "name": "X3-07-back"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "Who can veto a bill?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-pages",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "screenshot",
+   "name": "X3-08-one-more"
+  },
+  {
+   "op": "dump",
+   "name": "X3-08-one-more"
+  }
+ ]
+}

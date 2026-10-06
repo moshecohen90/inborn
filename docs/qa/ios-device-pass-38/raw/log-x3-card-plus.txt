@@ -1,0 +1,81 @@
+16:49:52 pushing 69 steps as x3-card-plus
+16:49:53 shot X3-00-card
+16:49:59 shot X3-01-cancelled
+16:50:08 shot X3-02-thanks
+16:50:44 shot X3-03-treason
+16:50:54 shot X3-04-punishment
+16:51:05 shot X3-05-thanks
+16:51:14 shot X3-06-tallest
+16:51:20 shot X3-07-chats
+16:51:25 shot X3-07-back
+16:51:34 shot X3-08-one-more
+16:51:38 ok     0 waitFor    docs-hold appeared
+16:51:38 ok     1 screenshot X3-00-card
+16:51:38 ok     2 press      docs-hold-cancel ← onPress
+16:51:38 ok     3 sleep      2000 ms
+16:51:38 ok     4 screenshot X3-01-cancelled
+16:51:38 ok     5 dump       X3-01-cancelled
+16:51:38 ok     6 type       composer-input = 6 chars
+16:51:38 ok     7 send       send ← onPress
+16:51:38 ok     8 sleep      2500 ms
+16:51:38 ok     9 waitFor    reading-pages gone
+16:51:38 ok    10 waitFor    reading-docs gone
+16:51:38 ok    11 waitFor    stop gone
+16:51:38 ok    12 sleep      2500 ms
+16:51:38 ok    13 screenshot X3-02-thanks
+16:51:38 ok    14 dump       X3-02-thanks
+16:51:38 ok    15 type       composer-input = 31 chars
+16:51:38 ok    16 send       send ← onPress
+16:51:38 ok    17 waitFor    docs-hold appeared
+16:51:38 ok    18 press      docs-hold-download ← onPress
+16:51:38 ok    19 idleTimer  idle timer disabled: false
+16:51:38 ok    20 waitFor    docs-hold gone
+16:51:38 ok    21 sleep      5000 ms
+16:51:38 ok    22 waitFor    reading-docs gone
+16:51:38 ok    23 waitFor    stop gone
+16:51:38 ok    24 sleep      2500 ms
+16:51:38 ok    25 screenshot X3-03-treason
+16:51:38 ok    26 dump       X3-03-treason
+16:51:38 ok    27 type       composer-input = 19 chars
+16:51:38 ok    28 send       send ← onPress
+16:51:38 ok    29 sleep      2500 ms
+16:51:38 ok    30 waitFor    reading-pages gone
+16:51:38 ok    31 waitFor    reading-docs gone
+16:51:38 ok    32 waitFor    stop gone
+16:51:38 ok    33 sleep      2500 ms
+16:51:38 ok    34 screenshot X3-04-punishment
+16:51:38 ok    35 dump       X3-04-punishment
+16:51:38 ok    36 type       composer-input = 6 chars
+16:51:38 ok    37 send       send ← onPress
+16:51:38 ok    38 sleep      2500 ms
+16:51:38 ok    39 waitFor    reading-pages gone
+16:51:38 ok    40 waitFor    reading-docs gone
+16:51:38 ok    41 waitFor    stop gone
+16:51:38 ok    42 sleep      2500 ms
+16:51:38 ok    43 screenshot X3-05-thanks
+16:51:38 ok    44 dump       X3-05-thanks
+16:51:38 ok    45 type       composer-input = 40 chars
+16:51:38 ok    46 sleep      3000 ms
+16:51:38 ok    47 screenshot X3-06-tallest
+16:51:38 ok    48 dump       X3-06-tallest
+16:51:38 ok    49 type       composer-input = 0 chars
+16:51:38 ok    50 sleep      1500 ms
+16:51:38 ok    51 press      open-chats ← onPress
+16:51:38 ok    52 waitFor    close-chats appeared
+16:51:38 ok    53 sleep      1500 ms
+16:51:38 ok    54 screenshot X3-07-chats
+16:51:38 ok    55 press      close-chats ← onPress
+16:51:38 ok    56 waitFor    composer-input appeared
+16:51:38 ok    57 sleep      2500 ms
+16:51:38 ok    58 screenshot X3-07-back
+16:51:38 ok    59 dump       X3-07-back
+16:51:38 ok    60 type       composer-input = 20 chars
+16:51:38 ok    61 send       send ← onPress
+16:51:38 ok    62 sleep      2500 ms
+16:51:38 ok    63 waitFor    reading-pages gone
+16:51:38 ok    64 waitFor    reading-docs gone
+16:51:38 ok    65 waitFor    stop gone
+16:51:38 ok    66 sleep      2500 ms
+16:51:38 ok    67 screenshot X3-08-one-more
+16:51:38 ok    68 dump       X3-08-one-more
+16:51:38 69 passed, 0 failed, 10 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-38/docs/qa/ios-device-pass-38/screens

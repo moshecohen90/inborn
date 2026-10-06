@@ -1,0 +1,82 @@
+16:47:09 pushing 72 steps as x2-summary-plus
+16:48:12 shot X2-summary
+16:48:20 shot X2-01-and-now
+16:48:28 shot X2-02-thank-you
+16:48:39 shot X2-03-more
+16:48:46 shot X2-04-tallest
+16:48:54 shot X2-05-chats
+16:49:01 shot X2-05-back
+16:49:09 shot X2-06-one-more
+16:49:15 ok     0 deeplink   /chats
+16:49:15 ok     1 waitFor    new-chat appeared
+16:49:15 ok     2 press      new-chat ← onPress
+16:49:15 ok     3 waitFor    start-chat appeared
+16:49:15 ok     4 press      start-chat ← onPress
+16:49:15 ok     5 waitFor    composer-input appeared
+16:49:15 ok     6 waitFor    Loading gone
+16:49:15 ok     7 sleep      1500 ms
+16:49:15 ok     8 value      INSTANT
+16:49:15 ok     9 devPrompt  attach: constitution-9pages.pdf
+16:49:15 ok    10 waitFor    attached-docs appeared
+16:49:15 ok    11 sleep      20000 ms
+16:49:15 ok    12 type       composer-input = 12 chars
+16:49:15 ok    13 send       send ← onPress
+16:49:15 ok    14 sleep      2500 ms
+16:49:15 ok    15 waitFor    reading-pages gone
+16:49:15 ok    16 waitFor    reading-docs gone
+16:49:15 ok    17 waitFor    stop gone
+16:49:15 ok    18 sleep      2500 ms
+16:49:15 ok    19 screenshot X2-summary
+16:49:15 ok    20 dump       X2-summary
+16:49:15 ok    21 type       composer-input = 7 chars
+16:49:15 ok    22 send       send ← onPress
+16:49:15 ok    23 sleep      2500 ms
+16:49:15 ok    24 waitFor    reading-pages gone
+16:49:15 ok    25 waitFor    reading-docs gone
+16:49:15 ok    26 waitFor    stop gone
+16:49:15 ok    27 sleep      2500 ms
+16:49:15 ok    28 screenshot X2-01-and-now
+16:49:15 ok    29 dump       X2-01-and-now
+16:49:15 ok    30 type       composer-input = 9 chars
+16:49:15 ok    31 send       send ← onPress
+16:49:15 ok    32 sleep      2500 ms
+16:49:15 ok    33 waitFor    reading-pages gone
+16:49:15 ok    34 waitFor    reading-docs gone
+16:49:15 ok    35 waitFor    stop gone
+16:49:15 ok    36 sleep      2500 ms
+16:49:15 ok    37 screenshot X2-02-thank-you
+16:49:15 ok    38 dump       X2-02-thank-you
+16:49:15 ok    39 type       composer-input = 4 chars
+16:49:15 ok    40 send       send ← onPress
+16:49:15 ok    41 sleep      2500 ms
+16:49:15 ok    42 waitFor    reading-pages gone
+16:49:15 ok    43 waitFor    reading-docs gone
+16:49:15 ok    44 waitFor    stop gone
+16:49:15 ok    45 sleep      2500 ms
+16:49:15 ok    46 screenshot X2-03-more
+16:49:15 ok    47 dump       X2-03-more
+16:49:15 ok    48 type       composer-input = 40 chars
+16:49:15 ok    49 sleep      3000 ms
+16:49:15 ok    50 screenshot X2-04-tallest
+16:49:15 ok    51 dump       X2-04-tallest
+16:49:15 ok    52 type       composer-input = 0 chars
+16:49:15 ok    53 sleep      1500 ms
+16:49:15 ok    54 press      open-chats ← onPress
+16:49:15 ok    55 waitFor    close-chats appeared
+16:49:15 ok    56 sleep      1500 ms
+16:49:15 ok    57 screenshot X2-05-chats
+16:49:15 ok    58 press      close-chats ← onPress
+16:49:15 ok    59 waitFor    composer-input appeared
+16:49:15 ok    60 sleep      2500 ms
+16:49:15 ok    61 screenshot X2-05-back
+16:49:15 ok    62 dump       X2-05-back
+16:49:15 ok    63 type       composer-input = 13 chars
+16:49:15 ok    64 send       send ← onPress
+16:49:15 ok    65 sleep      2500 ms
+16:49:15 ok    66 waitFor    reading-pages gone
+16:49:15 ok    67 waitFor    reading-docs gone
+16:49:15 ok    68 waitFor    stop gone
+16:49:15 ok    69 sleep      2500 ms
+16:49:15 ok    70 screenshot X2-06-one-more
+16:49:15 ok    71 dump       X2-06-one-more
+16:49:15 72 passed, 0 failed, 8 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-38/docs/qa/ios-device-pass-38/screens
