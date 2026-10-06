@@ -5,13 +5,14 @@ import { useTheme } from "../services/theme";
 import { useTranslation } from "react-i18next";
 import { radius, type Theme } from "@inborn/ui";
 import { GlassFill, panelColor, panelStyle } from "../components/shell/NativeChrome";
-import { citationLabel, type Citation, type PageWords } from "@inborn/core";
+import type { Citation, PageWords } from "@inborn/core";
 import { getLibrary } from "./library";
 import { font } from "../services/type";
 import { useOpenSheet } from "../lib/openSheets";
 import { hasPanel } from "../lib/layout";
 import { useLayoutMode } from "../lib/useLayout";
 import { openSidePanel } from "../lib/sidePanel";
+import { nameLine, shownCitationLabel } from "../lib/fileNames";
 
 export interface CitationsProps {
   citations: Citation[];
@@ -46,13 +47,13 @@ export function Citations({ citations, cited = true, onOpen }: CitationsProps) {
             key={`${c.n}-${c.chunkId}`}
             testID={`citation-${c.n}`}
             accessibilityRole="button"
-            accessibilityLabel={t("documents.openPassage", { label: citationLabel(c, words) })}
+            accessibilityLabel={t("documents.openPassage", { label: shownCitationLabel(c, words) })}
             onPress={() => show(c)}
             style={[styles.chip, { backgroundColor: theme.surface2, borderColor: theme.border }]}
           >
-            <Text style={[styles.chipText, { color: theme.text2 }]}>
+            <Text style={[styles.chipText, { color: theme.text2 }, nameLine(c.docName)]}>
               {cited ? `[${c.n}] ` : ""}
-              {citationLabel(c, words)}
+              {shownCitationLabel(c, words)}
             </Text>
           </Pressable>
         ))}
@@ -87,7 +88,7 @@ export function PassagePanel({ citation }: { citation: Citation }) {
   const text = usePassageText(citation);
   return (
     <View testID="passage-panel" style={styles.panel}>
-      <Text style={[styles.label, { color: theme.text3 }]}>{citationLabel(citation, words)}</Text>
+      <Text style={[styles.label, { color: theme.text3 }, nameLine(citation.docName)]}>{shownCitationLabel(citation, words)}</Text>
       <ScrollView>
         <Text style={[styles.body, { color: theme.text }]}>{text}</Text>
       </ScrollView>
@@ -105,7 +106,7 @@ export function PassageSheet({ citation, theme, onClose }: { citation: Citation;
       <Pressable style={styles.backdrop} onPress={onClose}>
         <Pressable testID="passage-sheet" style={[styles.sheet, panelStyle, { backgroundColor: panelColor(theme.surface1), borderColor: theme.border }]} onPress={() => undefined}>
           <GlassFill />
-          <Text style={[styles.label, { color: theme.text3 }]}>{citationLabel(citation, words)}</Text>
+          <Text style={[styles.label, { color: theme.text3 }, nameLine(citation.docName)]}>{shownCitationLabel(citation, words)}</Text>
           <ScrollView style={styles.scroll}>
             <Text style={[styles.body, { color: theme.text }]}>{text}</Text>
           </ScrollView>

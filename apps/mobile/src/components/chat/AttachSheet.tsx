@@ -10,6 +10,7 @@ import { Toggle } from "../shell/primitives";
 import { documentState } from "../../documents/stateText";
 import { attachRowLock, fileRefusalKey } from "../../documents/libraryAttach";
 import { deviceNoun } from "../../lib/deviceNoun";
+import { nameLine } from "../../lib/fileNames";
 
 interface Props {
   visible: boolean;
@@ -79,6 +80,7 @@ export function AttachSheet({ visible, onClose, documents, attachedIds, tier, at
               key={d.id}
               testID={`attach-${d.id}`}
               label={d.name}
+              labelStyle={nameLine(d.name)}
               hint={locked && moment ? t(fileRefusalKey(moment)) : documentState(d, t, deviceNoun()).text}
               disabled={!ready && !on && !locked}
               onPress={() => (locked ? onUnlock?.(why) : on ? onDetach(d.id) : onAttach(d.id))}

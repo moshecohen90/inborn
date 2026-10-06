@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { Platform, Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from "react-native";
+import { Platform, Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions, type TextStyle } from "react-native";
 import { AppModal } from "../shell/AppModal";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import type { PaywallReason } from "@inborn/core";
@@ -87,13 +87,13 @@ function usePresentedOrRetry(visible: boolean): { key: number; onShow: () => voi
 }
 
 /** One tappable line inside a sheet. */
-export function SheetItem({ label, hint, onPress, danger, disabled, testID, trailing }: { label: string; hint?: string; onPress: () => void; danger?: boolean; disabled?: boolean; testID?: string; trailing?: ReactNode }) {
+export function SheetItem({ label, hint, onPress, danger, disabled, testID, trailing, labelStyle }: { label: string; hint?: string; onPress: () => void; danger?: boolean; disabled?: boolean; testID?: string; trailing?: ReactNode; labelStyle?: TextStyle }) {
   const type = useType();
   const theme = useTheme();
   return (
     <Pressable testID={testID} accessibilityRole="button" accessibilityState={{ disabled: !!disabled }} disabled={disabled} onPress={onPress} style={({ pressed }) => [styles.item, { backgroundColor: pressed ? theme.surface2 : "transparent", opacity: disabled ? 0.45 : 1 }]}>
       <View style={styles.itemText}>
-        <Text style={[type.body, { color: danger ? theme.danger : theme.text }]}>{label}</Text>
+        <Text style={[type.body, { color: danger ? theme.danger : theme.text }, labelStyle]}>{label}</Text>
         {hint ? <Text style={[type.bodySmall, { color: theme.text2 }]}>{hint}</Text> : null}
       </View>
       {trailing}

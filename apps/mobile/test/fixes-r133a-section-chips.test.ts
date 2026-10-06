@@ -41,7 +41,7 @@ describe("round 133A · a section's chip names its pages", () => {
 
   it("every chip and passage line prints its label through citationLabel", () => {
     const src = readFileSync(join(__dirname, "../src/documents/Citations.tsx"), "utf8");
-    expect(src.match(/citationLabel\((c|citation), words\)/g)?.length).toBe(4);
+    expect(src.match(/[cC]itationLabel\((c|citation), words\)/g)?.length).toBe(4);
     expect(src).not.toMatch(/\.page\}/);
   });
 });

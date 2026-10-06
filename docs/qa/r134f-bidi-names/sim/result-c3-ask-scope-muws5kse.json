@@ -1,0 +1,153 @@
+{
+  "runId": "c3-ask-scope-muws5kse",
+  "startedAt": "2026-10-06T14:34:48.400Z",
+  "finishedAt": "2026-10-06T14:34:52.006Z",
+  "ok": true,
+  "passed": 7,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "press",
+      "ok": true,
+      "ms": 158,
+      "detail": "doc-select-muws0vgd-1-chv8vlfq ← onPress"
+    },
+    {
+      "i": 1,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "documents-ask-selected ← onPress"
+    },
+    {
+      "i": 2,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "ask-sheet appeared"
+    },
+    {
+      "i": 3,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2002,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 4,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1267,
+      "detail": "05-ask-scope"
+    },
+    {
+      "i": 5,
+      "op": "dump",
+      "ok": true,
+      "ms": 0,
+      "nodes": [
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file 1 document · 55.6 KB on this device Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. DOCUMENT INDEX MODEL Exact-word search works now. The document index model (468 MB) adds search by meaning: it finds passages worded differently from your question, or in another language. Worth it for long files. It runs here and never uploads a word. Install · 468 MB קובץ.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages Ask about 1 document Indexed on this device Close ASK YOUR DOCUMENTS Searching 1 document: ⁦קובץ.pdf⁩ Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. ↑"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "embedder-card",
+          "text": "DOCUMENT INDEX MODEL Exact-word search works now. The document index model (468 MB) adds search by meaning: it finds passages worded differently from your question, or in another language. Worth it for long files. It runs here and never uploads a word. Install · 468 MB"
+        },
+        {
+          "testID": "embedder-install",
+          "text": "Install · 468 MB",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muws0vgd-1-chv8vlfq",
+          "text": "קובץ.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muws0vgd-1-chv8vlfq",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": true,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muws0vgd-1-chv8vlfq",
+          "text": "Indexed · 45 passages"
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Ask about 1 document",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "ask-sheet",
+          "text": "Close ASK YOUR DOCUMENTS Searching 1 document: ⁦קובץ.pdf⁩ Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. ↑"
+        },
+        {
+          "testID": "ask-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "ask-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "ask-send",
+          "text": "↑",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "05-ask-scope"
+    },
+    {
+      "i": 6,
+      "op": "cleanup",
+      "ok": true,
+      "ms": 12,
+      "detail": "qa namespace removed"
+    }
+  ],
+  "errors": []
+}

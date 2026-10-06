@@ -5,6 +5,7 @@ import { formatBytes, isSearchable, pageUnit, type DocumentRecord, type IndexPro
 import { font } from "../../services/type";
 import { deviceNoun } from "../../lib/deviceNoun";
 import { documentState } from "../../documents/stateText";
+import { nameLine } from "../../lib/fileNames";
 
 export interface DocumentRowProps {
   doc: DocumentRecord;
@@ -43,7 +44,7 @@ export function DocumentRow({ doc, progress, theme, selected, onPress, onToggleS
         {selected ? <Icon name="check" size={14} color={theme.bg} strokeWidth={3} /> : null}
       </Pressable>
       <View style={styles.body}>
-        <Text numberOfLines={1} style={[styles.name, { color: theme.text }]}>
+        <Text numberOfLines={1} style={[styles.name, { color: theme.text }, nameLine(doc.name)]}>
           {doc.name}
         </Text>
         <Text style={[styles.mono, { color: theme.text3 }]}>{meta}</Text>
