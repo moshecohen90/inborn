@@ -83,7 +83,7 @@ describe("round 130 · files attached and nothing matched: the answer never says
   });
 
   it("the no-passage rule says the files were searched, forbids telling what they say, and lets an unsure model stop after the opener", () => {
-    expect(NOTHING_RELEVANT_RULE).toBe(`Start with "Your documents don't mention this." The user's files were searched and nothing in them matched, so never say what they state or contain. If you do not know the answer for sure, stop after that sentence.`);
+    expect(NOTHING_RELEVANT_RULE).toBe(`The user's files were searched and nothing in them matched, so never say what they state or contain. If you do not know the answer for sure, say only the opening sentence. Start with "Your documents don't mention this."`);
     expect(NOTHING_RELEVANT_RULE).not.toContain("and then answer the question");
   });
 

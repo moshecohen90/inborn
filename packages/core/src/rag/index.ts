@@ -7,6 +7,7 @@ export { VectorIndex, normalize, quantize, dequantize, cosine, cosineQuantized, 
 export { reciprocalRankFusion, mmr, type Ranked, type MmrCandidate } from "./fusion";
 export { stripInstructions, countInstructionLines, looksLikeInstruction, fenceDocuments, fenceMarkers, randomNonce, safeDocName, MAX_DOC_NAME, UNNAMED_DOC, type StrippedText, type FencedPassage } from "./injection";
 export { buildCitations, citationLabel, citationsForAnswer, groundedCitations, withoutEchoedLabels, citedNumbers, pageGlyph, pageUnit, snippetOf, PAGE_WORDS, type PageUnit, type PageWords } from "./citations";
+export { withoutEchoedInstructions, systemOf } from "./echo";
 export { buildRagPrompt, trimHistory, isRelevant, NOT_FOUND_TOKEN, isNotFoundReply, NOTHING_RELEVANT_RULE, thinPageRule, openingRule, DEFAULT_OPENERS, DEFAULT_ANSWER_RESERVE, DEFAULT_HISTORY_SHARE, DEFAULT_MIN_COSINE, DEFAULT_MIN_COSINE_ALONE, DEFAULT_MIN_BM25, DEFAULT_EMBEDDER_ID, RELEVANCE_DOORS, UNMEASURED_DOORS, relevanceDoors, type RelevanceDoors, type PromptOptions, type NoPassageOpeners } from "./prompt";
 export { indexDocument, reembedStored, chunkId, needsReindex, reindexFrom, vectorsValidUpTo, isSearchable, IndexCancelled, type IndexOptions } from "./indexer";
 export { isAboutAttachment, openingHits, lexicalEmbedder, LEXICAL_INDEX_ID } from "./overview";

@@ -1,0 +1,105 @@
+{
+  "runId": "h5-hebrew-chat",
+  "_": "Right after onboarding, the first chat with no file: a Hebrew question, a Hebrew thanks, then an English question in the same chat.",
+  "steps": [
+    {
+      "op": "deeplink",
+      "url": "/"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "מה בירת צרפת?"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "sleep",
+      "ms": 4000
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 600000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "05a-hebrew-question"
+    },
+    {
+      "op": "dump",
+      "name": "05a-hebrew-question"
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "תודה רבה"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "sleep",
+      "ms": 4000
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 600000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "05b-hebrew-thanks"
+    },
+    {
+      "op": "dump",
+      "name": "05b-hebrew-thanks"
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "What is the capital of Italy?"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "sleep",
+      "ms": 4000
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 600000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "05c-english-question"
+    },
+    {
+      "op": "dump",
+      "name": "05c-english-question"
+    }
+  ]
+}

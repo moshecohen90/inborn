@@ -4,7 +4,7 @@ import { AppModal } from "../../components/shell/AppModal";
 import { useTranslation } from "react-i18next";
 import { joinList } from "@inborn/i18n";
 import { radius, type Theme } from "@inborn/ui";
-import { isNotFoundReply, fileAsk, groundedCitations, directionOf, planAnswerLength, withoutEchoedLabels, type Citation, type DocumentRecord, type PaywallReason, type Session, type WholeFilePlan } from "@inborn/core";
+import { isNotFoundReply, fileAsk, groundedCitations, directionOf, planAnswerLength, systemOf, withoutEchoedInstructions, withoutEchoedLabels, type Citation, type DocumentRecord, type PaywallReason, type Session, type WholeFilePlan } from "@inborn/core";
 import { getEngine, loadSession } from "../../engine";
 import { chipLabel } from "../../lib/models";
 import { Citations } from "../../documents/Citations";
@@ -157,10 +157,11 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult, str
       const started = Date.now();
       let reply = "";
       let tps = 0;
+      const instructions = systemOf(prompt.messages);
       for await (const d of engine.generate(s, prompt.messages, { reasoning: false, maxTokens: length.maxTokens }, ac.signal)) {
         if (d.text) {
           reply += d.text;
-          setAnswer(withoutEchoedLabels(reply, { streaming: true, citations: prompt.citations }));
+          setAnswer(withoutEchoedLabels(withoutEchoedInstructions(reply, instructions, { streaming: true }), { streaming: true, citations: prompt.citations }));
         }
         if (d.done) tps = d.done.tokPerSec;
       }
@@ -171,7 +172,7 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult, str
         return setPhase({ kind: "idle" });
       }
       /* F457: the chips judge the words on screen, so a copied passage header is neither a citation mark nor evidence. */
-      reply = withoutEchoedLabels(reply);
+      reply = withoutEchoedLabels(withoutEchoedInstructions(reply, instructions));
       const isNotFound = !scope && isNotFoundReply(reply);
       const shown = isNotFound ? { shown: [], cited: false } : library.citationsFor(reply, groundedCitations(reply, text, prompt.used, prompt.citations));
       if (scope && reply.trim()) reply = `${reply.trimEnd()}\n\n*${summaryScope(t, scope, model.id === "instant" ? { current: chipLabel(t, model.id), better: chipLabel(t, "fast") } : undefined)}*`;
