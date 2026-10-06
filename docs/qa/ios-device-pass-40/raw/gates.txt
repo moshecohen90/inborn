@@ -1,0 +1,20 @@
+== install --frozen-lockfile start 00:20:21
+== install --frozen-lockfile rc=0 end 00:20:33
+== typecheck start 00:20:33
+== typecheck rc=0 end 00:20:44
+== lint start 00:20:44
+== lint rc=0 end 00:20:54
+== test start 00:20:54
+== test rc=0 end 00:21:12
+GATES-DONE
+apps/desktop test: # tests 4
+apps/desktop test: # pass 4
+apps/desktop test: # fail 0
+packages/ui test:  Test Files  3 passed (3)
+packages/ui test:       Tests  23 passed (23)
+packages/i18n test:  Test Files  5 passed (5)
+packages/i18n test:       Tests  24 passed (24)
+packages/core test:  Test Files  109 passed | 3 skipped (112)
+packages/core test:       Tests  1446 passed | 4 skipped (1450)
+apps/mobile test:  Test Files  164 passed (164)
+apps/mobile test:       Tests  1451 passed (1451)

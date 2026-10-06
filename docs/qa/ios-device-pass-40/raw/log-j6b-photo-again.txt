@@ -1,0 +1,60 @@
+01:31:50 pushing 53 steps as j6b-photo-again
+01:31:53 shot J6b-00-chat
+01:32:03 shot J6b-01-photo-sent-bubble
+01:32:10 shot J6b-01-photo-answer
+01:32:14 shot J6b-01-photo-ledger
+01:32:40 shot J6b-02-wall
+01:32:47 ok     0 value      INSTANT
+01:32:47 ok     1 value      Slowing down to keep the phone cool
+01:32:47 ok     2 sleep      2000 ms
+01:32:47 ok     3 screenshot J6b-00-chat
+01:32:47 ok     4 dump       J6b-00-chat
+01:32:47 ok     5 devPrompt  attach: בית קפה הגינה תפריט.jpg
+01:32:47 ok     6 waitFor    pending-images appeared
+01:32:47 ok     7 sleep      3000 ms
+01:32:47 ok     8 value      Free: one photo per message
+01:32:47 ok     9 type       composer-input = 16 chars
+01:32:47 ok    10 send       send ← onPress
+01:32:47 ok    11 waitFor    assistant-text appeared
+01:32:47 ok    12 value      
+01:32:47 ok    13 screenshot J6b-01-photo-sent-bubble
+01:32:47 ok    14 waitFor    stop gone
+01:32:47 ok    15 sleep      3000 ms
+01:32:47 ok    16 value      The image displays a large chalkboard menu mounted on a red brick wall, likely belonging to a cafe or restaura
+01:32:47 ok    17 assertText "cannot see" absent
+01:32:47 ok    18 assertText "can't see" absent
+01:32:47 ok    19 assertText "cannot physically see" absent
+01:32:47 ok    20 assertText "see images" absent
+01:32:47 ok    21 assertText "text-based" absent
+01:32:47 ok    22 assertText "unable to see" absent
+01:32:47 ok    23 assertText "not able to see" absent
+01:32:47 ok    24 assertText "don't have eyes" absent
+01:32:47 ok    25 assertText "The request specifies" absent
+01:32:47 ok    26 assertText "I will focus" absent
+01:32:47 ok    27 assertText "as an AI" absent
+01:32:47 ok    28 assertText "NOT_FOUND" absent
+01:32:47 ok    29 assertText "<<<" absent
+01:32:47 ok    30 assertText "The user is asking" absent
+01:32:47 ok    31 assertText "Your documents don't mention this" absent
+01:32:47 ok    32 assertText "is a scan. Run OCR" absent
+01:32:47 ok    33 sleep      0 ms
+01:32:47 ok    34 screenshot J6b-01-photo-answer
+01:32:47 ok    35 dump       J6b-01-photo-answer
+01:32:47 ok    36 press      ledger-toggle ← onPress
+01:32:47 ok    37 sleep      1200 ms
+01:32:47 ok    38 value      MODEL INSTANT QUANT Q4_K CONTEXT — MS / TOKEN — More detail · PRO
+01:32:47 ok    39 screenshot J6b-01-photo-ledger
+01:32:47 ok    40 press      ledger-toggle ← onPress
+01:32:47 ok    41 sleep      800 ms
+01:32:47 ok    42 value      INSTANT
+01:32:47 ok    43 type       composer-input = 24 chars
+01:32:47 ok    44 send       send ← onPress
+01:32:47 ok    45 sleep      2500 ms
+01:32:47 ok    46 waitFor    reading-pages gone
+01:32:47 ok    47 waitFor    reading-docs gone
+01:32:47 ok    48 waitFor    stop gone
+01:32:47 ok    49 sleep      2500 ms
+01:32:47 ok    50 value      The image displays a large chalkboard menu mounted on a red brick wall, likely belonging to a cafe or restaura
+01:32:47 ok    51 screenshot J6b-02-wall
+01:32:47 ok    52 dump       J6b-02-wall
+01:32:47 53 passed, 0 failed, 5 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-40/docs/qa/ios-device-pass-40/screens

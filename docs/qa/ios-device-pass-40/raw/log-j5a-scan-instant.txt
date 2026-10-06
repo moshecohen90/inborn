@@ -1,0 +1,79 @@
+01:17:47 pushing 71 steps as j5a-scan-instant
+01:18:22 shot J5-01-sent-bubble
+01:18:29 shot J5-01-answer
+01:18:33 shot J5-01-ledger
+01:18:39 shot J5-02-not-now
+01:18:47 shot J5-03-colours
+01:18:52 ok     0 deeplink   /chats
+01:18:52 ok     1 waitFor    new-chat appeared
+01:18:52 ok     2 press      new-chat ← onPress
+01:18:52 ok     3 waitFor    start-chat appeared
+01:18:52 ok     4 press      start-chat ← onPress
+01:18:52 ok     5 waitFor    composer-input appeared
+01:18:52 ok     6 waitFor    Loading gone
+01:18:52 ok     7 sleep      1500 ms
+01:18:52 ok     8 value      INSTANT
+01:18:52 ok     9 press      model-chip ← onPress
+01:18:52 ok    10 waitFor    model-sheet appeared
+01:18:52 ok    11 sleep      1500 ms
+01:18:52 FAIL  12 press      press model-sheet-use-instant: not mounted
+01:18:52 ok    13 sleep      3000 ms
+01:18:52 ok    14 press      model-sheet-close ← onPress
+01:18:52 ok    15 waitFor    Loading gone
+01:18:52 ok    16 sleep      1500 ms
+01:18:52 ok    17 value      INSTANT
+01:18:52 ok    18 assertText "INSTANT" present
+01:18:52 ok    19 devPrompt  attach: sign-scan.pdf
+01:18:52 ok    20 waitFor    attached-docs appeared
+01:18:52 ok    21 sleep      10000 ms
+01:18:52 ok    22 value      sign-scan.pdf
+01:18:52 ok    23 type       composer-input = 16 chars
+01:18:52 ok    24 send       send ← onPress
+01:18:52 ok    25 waitFor    assistant-text appeared
+01:18:52 ok    26 value      
+01:18:52 ok    27 screenshot J5-01-sent-bubble
+01:18:52 ok    28 waitFor    stop gone
+01:18:52 ok    29 sleep      3000 ms
+01:18:52 ok    30 value      The image displays a weathered wooden wall painted in a bright yellow hue, featuring a rectangular sign mounte
+01:18:52 ok    31 assertText "cannot see" absent
+01:18:52 ok    32 assertText "can't see" absent
+01:18:52 ok    33 assertText "cannot physically see" absent
+01:18:52 ok    34 assertText "see images" absent
+01:18:52 ok    35 assertText "text-based" absent
+01:18:52 ok    36 assertText "unable to see" absent
+01:18:52 ok    37 assertText "not able to see" absent
+01:18:52 ok    38 assertText "don't have eyes" absent
+01:18:52 ok    39 assertText "The request specifies" absent
+01:18:52 ok    40 assertText "I will focus" absent
+01:18:52 ok    41 assertText "as an AI" absent
+01:18:52 ok    42 assertText "NOT_FOUND" absent
+01:18:52 ok    43 assertText "<<<" absent
+01:18:52 ok    44 assertText "The user is asking" absent
+01:18:52 ok    45 assertText "Your documents don't mention this" absent
+01:18:52 ok    46 assertText "is a scan. Run OCR" absent
+01:18:52 ok    47 sleep      0 ms
+01:18:52 ok    48 screenshot J5-01-answer
+01:18:52 ok    49 dump       J5-01-answer
+01:18:52 ok    50 press      ledger-toggle ← onPress
+01:18:52 ok    51 sleep      1200 ms
+01:18:52 ok    52 value      MODEL INSTANT QUANT Q4_K CONTEXT 271 / 4096 MS / TOKEN 125 ms More detail · PRO
+01:18:52 ok    53 screenshot J5-01-ledger
+01:18:52 ok    54 press      ledger-toggle ← onPress
+01:18:52 ok    55 sleep      800 ms
+01:18:52 ok    56 value      FAST sees pictures better than INSTANT.
+01:18:52 ok    57 press      model-advice-not-now ← onPress
+01:18:52 ok    58 sleep      1500 ms
+01:18:52 ok    59 screenshot J5-02-not-now
+01:18:52 ok    60 dump       J5-02-not-now
+01:18:52 ok    61 type       composer-input = 16 chars
+01:18:52 ok    62 send       send ← onPress
+01:18:52 ok    63 sleep      2500 ms
+01:18:52 ok    64 waitFor    reading-pages gone
+01:18:52 ok    65 waitFor    reading-docs gone
+01:18:52 ok    66 waitFor    stop gone
+01:18:52 ok    67 sleep      2500 ms
+01:18:52 ok    68 value      The image displays a weathered wooden wall painted in a bright yellow hue, featuring a rectangular sign mounte
+01:18:52 ok    69 screenshot J5-03-colours
+01:18:52 ok    70 dump       J5-03-colours
+01:18:52 70 passed, 1 failed, 5 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-40/docs/qa/ios-device-pass-40/screens
+01:18:52   ! step 12 (press): press model-sheet-use-instant: not mounted

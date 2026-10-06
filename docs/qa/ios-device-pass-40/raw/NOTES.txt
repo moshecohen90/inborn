@@ -1,0 +1,64 @@
+2026-10-07 00:23:17 start ios-build-40; worktree at d478a38f, commit a0916eb3 (a0916eb33b33) buildNumber 39->40 + guard + ignore line; gates rc 0 first run (core 1446/4 skipped, mobile 1451, i18n 24, ui 23, desktop)
+2026-10-07 00:23:17 phone before twin: passcodeRequired: false; apps: com.inbornapp.mobile 1.0.0 39;com.inbornapp.mobile.uitests.xctrunner 1.0 1;
+2026-10-07 00:26:35 archive 00:21:19->00:25:26 ok, verified (archive-verify.txt), check:store rc 0
+2026-10-07 00:30:59 twin installed 00:30:37 -> 00:30:59 rc=0
+2026-10-07 00:31:01 launched (no script, before any push) rc=0
+2026-10-07 00:31:35 j1-onboard start
+2026-10-07 00:33:24 j1-onboard rc=0 00:33:24   ! console.log: [chat] plain=acknowledgement window=1/1 maxTokens=224
+2026-10-07 00:33:47 push 5 fixtures (the founder's file under a neutral name)
+2026-10-07 00:33:47 j2-install-fast start
+2026-10-07 00:34:57 j2-install-fast rc=0 00:34:56 38 passed, 0 failed, 6 screenshots → <worktree>/docs/qa/ios-device-pass-40/screens
+2026-10-07 00:35:09 j3-constitution start
+2026-10-07 00:39:23 j3-constitution rc=1 00:39:22   ! console.log: [chat] plain=follow-up window=11/11 maxTokens=1024
+2026-10-07 00:39:44 p0-lists start
+2026-10-07 00:40:01 p0-lists rc=0 (private: details in private/)
+2026-10-07 00:41:16 x1-attach start
+2026-10-07 00:41:17 x1-attach preflight push failed (try 1)
+2026-10-07 00:41:45 x1-attach rc=0 (private: details in private/)
+2026-10-07 00:42:12 j3-constitution r1: the attach made a library record 'constitution-9pages.pdf ? · 0 B, could not find that file where it was saved' (failed/missing: no source on disk at import, no copy in Documents/documents); the summary got 'Inborn has not finished reading…'. Re-pushed the file 00:40 (listed present), probe x1 (turbine attach) indexed fine; re-running J3 in a new chat
+2026-10-07 00:42:12 j3-constitution-r2 start
+2026-10-07 00:51:30 j3-constitution-r2 rc=1 00:51:29   ! console.log: [chat] plain=follow-up window=11/11 maxTokens=1024
+2026-10-07 00:52:16 p3-founder start
+2026-10-07 00:52:18 p3-founder preflight push failed (try 1)
+2026-10-07 01:00:08 p3-founder rc=1 (private: details in private/)
+2026-10-07 01:00:44 p3-founder: driver exited on a devicectl transfer error (CoreDeviceError 7000, connection interrupted) after P3-10; the run finished on the phone, result copied from the container; P3-11 screenshots not taken
+2026-10-07 01:03:44 p3-founder: finished by finish.sh (P3-10 ack timed out on the phone, P3-11 shot+acked by hand), result pulled
+2026-10-07 01:05:04 j3d-turbine-rework start
+2026-10-07 01:08:36 j3d-turbine-rework rc=1 01:08:35   ! console.log: [chat] plain=follow-up window=9/9 maxTokens=1024
+2026-10-07 01:08:55 p0-lists-r2 start
+2026-10-07 01:09:11 p0-lists-r2 rc=0 (private: details in private/)
+2026-10-07 01:09:25 p5-founder-shorter start
+2026-10-07 01:09:55 p5-founder-shorter rc=0 (private: details in private/)
+2026-10-07 01:10:08 ids: CHATID (constitution r2 chat), DOCID, TURBINEID, HISID, HISCHAT filled in by the shell; p5-founder-shorter probe (private): 'shorter' after a sourced answer, engine reply = screen, not replaced
+2026-10-07 01:10:08 j3b-treason start
+2026-10-07 01:10:09 j3b-treason preflight push failed (try 1)
+2026-10-07 01:12:29 j3b-treason rc=0 01:12:29 44 passed, 0 failed, 4 screenshots → <worktree>/docs/qa/ios-device-pass-40/screens
+2026-10-07 01:12:40 j4-sheet-fast start
+2026-10-07 01:15:03 j4-sheet-fast rc=1 01:15:02   ! step 240 (value): value ask-plain: no node with that testID is mounted
+2026-10-07 01:15:21 j4-sheet-instant start
+2026-10-07 01:17:34 j4-sheet-instant rc=1 01:17:33   ! step 250 (value): value ask-plain: no node with that testID is mounted
+2026-10-07 01:17:46 j5a-scan-instant start
+2026-10-07 01:18:53 j5a-scan-instant rc=1 01:18:52   ! step 12 (press): press model-sheet-use-instant: not mounted
+2026-10-07 01:18:53 j5b-cafe-instant start
+2026-10-07 01:19:53 j5b-cafe-instant rc=1 01:19:52   ! console.log: [chat] plain=acknowledgement window=3/3 maxTokens=224
+2026-10-07 01:19:53 j5c-cafe-fast start
+2026-10-07 01:21:57 j5c-cafe-fast rc=1 01:21:57   ! step 14 (press): press model-sheet-close: not mounted
+2026-10-07 01:22:23 j6-story start
+2026-10-07 01:31:12 j6-story rc=0 01:31:11 130 passed, 0 failed, 12 screenshots → <worktree>/docs/qa/ios-device-pass-40/screens
+2026-10-07 01:31:46 syslog capture 1 died 01:20:58 (pymobiledevice3: connection terminated abruptly); J5c tail and J6 have no app log; capture 2 started
+2026-10-07 01:31:49 j6b-photo-again start
+2026-10-07 01:32:48 j6b-photo-again rc=0 01:32:47 53 passed, 0 failed, 5 screenshots → <worktree>/docs/qa/ios-device-pass-40/screens
+2026-10-07 01:34:48 x2-log start
+2026-10-07 01:35:23 x2-log rc=0 (private: details in private/)
+2026-10-07 01:35:33 J6: phone log archive collected (pymobiledevice3 syslog collect, private scratch only): UIKit 'Received memory warning' 01:28:26 and 01:30:20; app INFO lines are not kept in the archive. Capture 2 (filtered) got no React lines; capture 3 (unfiltered) from 01:34:45
+2026-10-07 01:35:33 j7-settings-stop start
+2026-10-07 01:36:55 j7-settings-stop rc=1 01:36:55   ! step 39 (assertText): assertText "Paris" is not on screen under assistant-text
+2026-10-07 01:37:05 j8-hebrew start
+2026-10-07 01:37:38 j8-hebrew rc=1 01:37:37   ! console.log: [chat] plain=acknowledgement window=3/3 maxTokens=224
+2026-10-07 01:37:50 j9-explore start
+2026-10-07 01:37:51 j9-explore preflight push failed (try 1)
+2026-10-07 01:40:29 j9-explore rc=1 }
+2026-10-07 01:40:29 j9b-explore start
+2026-10-07 01:50:50 j9b-explore rc=1 01:50:49   ! console.log: [chat] plain=follow-up window=25/25 maxTokens=1024
+2026-10-07 01:51:15 j9-explore: driver exited on a devicectl transfer error (CoreDeviceError 7000) after J9-16; J9-17..19 screenshots not taken (bridge ack timeouts); result copied from the container
+2026-10-07 01:52:01 twin uninstalled 01:51:58 rc=0; apps: com.inbornapp.mobile 1.0.0 39;com.inbornapp.mobile.uitests.xctrunner 1.0 1;

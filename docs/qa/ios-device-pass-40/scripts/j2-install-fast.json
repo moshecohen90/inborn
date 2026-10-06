@@ -1,0 +1,165 @@
+{
+ "_": "J2: the vault, Install Fast (from models.inbornapp.com), wait until installed; then a new chat: which model does it open on; then the model sheet and the vault side by side (J8, 'In use').",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/vault"
+  },
+  {
+   "op": "waitFor",
+   "testID": "best-for",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "scrollTo",
+   "testID": "install-fast"
+  },
+  {
+   "op": "screenshot",
+   "name": "J2-00a-vault-fast"
+  },
+  {
+   "op": "press",
+   "testID": "install-fast"
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "press",
+   "testID": "confirm-download"
+  },
+  {
+   "op": "sleep",
+   "ms": 15000
+  },
+  {
+   "op": "value",
+   "testID": "model-status-fast"
+  },
+  {
+   "op": "screenshot",
+   "name": "J2-00b-fast-downloading"
+  },
+  {
+   "op": "idleTimer"
+  },
+  {
+   "op": "waitFor",
+   "testID": "use-fast",
+   "timeoutMs": 1800000
+  },
+  {
+   "op": "value",
+   "testID": "model-status-fast"
+  },
+  {
+   "op": "screenshot",
+   "name": "J2-00c-fast-installed"
+  },
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "new-chat",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "press",
+   "testID": "new-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "start-chat",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "press",
+   "testID": "start-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "J2-01-new-chat"
+  },
+  {
+   "op": "dump",
+   "name": "J2-01-new-chat"
+  },
+  {
+   "op": "press",
+   "testID": "model-chip"
+  },
+  {
+   "op": "waitFor",
+   "testID": "model-sheet",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "screenshot",
+   "name": "J8-01-model-sheet"
+  },
+  {
+   "op": "dump",
+   "name": "J8-01-model-sheet"
+  },
+  {
+   "op": "press",
+   "testID": "model-sheet-close"
+  },
+  {
+   "op": "deeplink",
+   "url": "/vault"
+  },
+  {
+   "op": "waitFor",
+   "testID": "best-for",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "screenshot",
+   "name": "J8-02-vault"
+  },
+  {
+   "op": "dump",
+   "name": "J8-02-vault"
+  }
+ ]
+}

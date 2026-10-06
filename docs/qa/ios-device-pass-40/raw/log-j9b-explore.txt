@@ -1,0 +1,95 @@
+01:40:30 pushing 81 steps as j9b-explore
+01:48:43 shot J9-20-sheet-who
+01:48:50 shot J9-21-old-chat
+01:49:14 shot J9-22-impeachment
+01:49:34 shot J9-23-thanks
+01:49:57 shot J9-24-shorter
+01:50:19 shot J9-25-recipe
+01:50:44 shot J9-26-bullets
+01:50:49 ok     0 deeplink   /documents
+01:50:49 ok     1 waitFor    doc-select-mux7eak0-2-hce6kyy6 appeared
+01:50:49 ok     2 sleep      2000 ms
+01:50:49 ok     3 press      doc-select-mux7eak0-2-hce6kyy6 ← onPress
+01:50:49 ok     4 sleep      1000 ms
+01:50:49 ok     5 value      Ask about 1 document
+01:50:49 ok     6 press      documents-ask-selected ← onPress
+01:50:49 ok     7 waitFor    ask-sheet appeared
+01:50:49 ok     8 sleep      1500 ms
+01:50:49 ok     9 type       ask-input = 22 chars
+01:50:49 ok    10 press      ask-send ← onPress
+01:50:49 ok    11 sleep      2500 ms
+01:50:49 ok    12 waitFor    ask-stop gone
+01:50:49 ok    13 sleep      2000 ms
+01:50:49 FAIL  14 value      value ask-plain: no node with that testID is mounted
+01:50:49 ok    15 value      Your documents don't mention this.
+01:50:49 FAIL  16 value      value citations: no node with that testID is mounted
+01:50:49 ok    17 sleep      0 ms
+01:50:49 ok    18 screenshot J9-20-sheet-who
+01:50:49 ok    19 dump       J9-20-sheet-who
+01:50:49 ok    20 deeplink   /chats
+01:50:49 ok    21 waitFor    chat-row-fc33ef84-8f92-475a-b8a2-b2f83329eef4 appeared
+01:50:49 ok    22 press      chat-row-fc33ef84-8f92-475a-b8a2-b2f83329eef4 ← onPress
+01:50:49 ok    23 waitFor    composer-input appeared
+01:50:49 ok    24 waitFor    Loading gone
+01:50:49 ok    25 sleep      3000 ms
+01:50:49 ok    26 value      INSTANT
+01:50:49 ok    27 value      constitution-9pages.pdf
+01:50:49 ok    28 sleep      1000 ms
+01:50:49 ok    29 screenshot J9-21-old-chat
+01:50:49 ok    30 dump       J9-21-old-chat
+01:50:49 ok    31 type       composer-input = 35 chars
+01:50:49 ok    32 send       send ← onPress
+01:50:49 ok    33 sleep      2500 ms
+01:50:49 ok    34 waitFor    reading-pages gone
+01:50:49 ok    35 waitFor    reading-docs gone
+01:50:49 ok    36 waitFor    stop gone
+01:50:49 ok    37 sleep      2500 ms
+01:50:49 ok    38 value      This document summarizes the key provisions of The United States Constitution regarding its legislative struct
+01:50:49 ok    39 screenshot J9-22-impeachment
+01:50:49 ok    40 dump       J9-22-impeachment
+01:50:49 ok    41 type       composer-input = 13 chars
+01:50:49 ok    42 send       send ← onPress
+01:50:49 ok    43 sleep      2500 ms
+01:50:49 ok    44 waitFor    reading-pages gone
+01:50:49 ok    45 waitFor    reading-docs gone
+01:50:49 ok    46 waitFor    stop gone
+01:50:49 ok    47 sleep      2500 ms
+01:50:49 ok    48 value      This document summarizes the key provisions of The United States Constitution regarding its legislative struct
+01:50:49 ok    49 screenshot J9-23-thanks
+01:50:49 ok    50 dump       J9-23-thanks
+01:50:49 ok    51 type       composer-input = 7 chars
+01:50:49 ok    52 send       send ← onPress
+01:50:49 ok    53 sleep      2500 ms
+01:50:49 ok    54 waitFor    reading-pages gone
+01:50:49 ok    55 waitFor    reading-docs gone
+01:50:49 ok    56 waitFor    stop gone
+01:50:49 ok    57 sleep      2500 ms
+01:50:49 ok    58 value      This document summarizes the key provisions of The United States Constitution regarding its legislative struct
+01:50:49 ok    59 screenshot J9-24-shorter
+01:50:49 ok    60 dump       J9-24-shorter
+01:50:49 ok    61 type       composer-input = 36 chars
+01:50:49 ok    62 send       send ← onPress
+01:50:49 ok    63 sleep      2500 ms
+01:50:49 ok    64 waitFor    reading-pages gone
+01:50:49 ok    65 waitFor    reading-docs gone
+01:50:49 ok    66 waitFor    stop gone
+01:50:49 ok    67 sleep      2500 ms
+01:50:49 ok    68 value      This document summarizes the key provisions of The United States Constitution regarding its legislative struct
+01:50:49 ok    69 screenshot J9-25-recipe
+01:50:49 ok    70 dump       J9-25-recipe
+01:50:49 ok    71 type       composer-input = 23 chars
+01:50:49 ok    72 send       send ← onPress
+01:50:49 ok    73 sleep      2500 ms
+01:50:49 ok    74 waitFor    reading-pages gone
+01:50:49 ok    75 waitFor    reading-docs gone
+01:50:49 ok    76 waitFor    stop gone
+01:50:49 ok    77 sleep      2500 ms
+01:50:49 ok    78 value      This document summarizes the key provisions of The United States Constitution regarding its legislative struct
+01:50:49 ok    79 screenshot J9-26-bullets
+01:50:49 ok    80 dump       J9-26-bullets
+01:50:49 79 passed, 2 failed, 7 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-40/docs/qa/ios-device-pass-40/screens
+01:50:49   ! step 14 (value): value ask-plain: no node with that testID is mounted
+01:50:49   ! step 16 (value): value citations: no node with that testID is mounted
+01:50:49   ! console.log: [chat] plain=acknowledgement window=19/19 maxTokens=224
+01:50:49   ! console.log: [chat] plain=follow-up window=19/21 maxTokens=1024
+01:50:49   ! console.log: [chat] plain=follow-up window=25/25 maxTokens=1024

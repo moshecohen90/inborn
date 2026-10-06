@@ -1,0 +1,620 @@
+{
+ "_": "J9 exploratory, a new user's wander: small talk, a general question, the paperclip and its sheet, a 3-page file and a question, thanks, the starter chips, the model sheet and the vault, Chats, Documents, Settings and the paywall, an old chat from the list.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "new-chat",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "press",
+   "testID": "new-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "start-chat",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "press",
+   "testID": "start-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "J9-01-new-chat"
+  },
+  {
+   "op": "dump",
+   "name": "J9-01-new-chat"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "hey, how are you?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-pages",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "screenshot",
+   "name": "J9-02-hey"
+  },
+  {
+   "op": "dump",
+   "name": "J9-02-hey"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "Is coffee bad for you?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-pages",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "screenshot",
+   "name": "J9-03-coffee"
+  },
+  {
+   "op": "dump",
+   "name": "J9-03-coffee"
+  },
+  {
+   "op": "press",
+   "testID": "attach"
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "screenshot",
+   "name": "J9-04-attach-sheet"
+  },
+  {
+   "op": "dump",
+   "name": "J9-04-attach-sheet"
+  },
+  {
+   "op": "press",
+   "testID": "attach-sheet-close"
+  },
+  {
+   "op": "devPrompt",
+   "lines": [
+    "attach: turbine-report-3pages.pdf"
+   ]
+  },
+  {
+   "op": "waitFor",
+   "testID": "attached-docs",
+   "timeoutMs": 60000
+  },
+  {
+   "op": "sleep",
+   "ms": 10000
+  },
+  {
+   "op": "value",
+   "testID": "attached-docs"
+  },
+  {
+   "op": "sleep",
+   "ms": 500
+  },
+  {
+   "op": "screenshot",
+   "name": "J9-05-file-attached"
+  },
+  {
+   "op": "dump",
+   "name": "J9-05-file-attached"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "What is the serial number of the turbine?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-pages",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "screenshot",
+   "name": "J9-06-serial"
+  },
+  {
+   "op": "dump",
+   "name": "J9-06-serial"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "Who wrote this report?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-pages",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "screenshot",
+   "name": "J9-07-who"
+  },
+  {
+   "op": "dump",
+   "name": "J9-07-who"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "thanks!"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-pages",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "screenshot",
+   "name": "J9-08-thanks"
+  },
+  {
+   "op": "dump",
+   "name": "J9-08-thanks"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "translate it to French"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-pages",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "screenshot",
+   "name": "J9-09-translate"
+  },
+  {
+   "op": "dump",
+   "name": "J9-09-translate"
+  },
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "new-chat",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "press",
+   "testID": "new-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "start-chat",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "press",
+   "testID": "start-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "press",
+   "testID": "suggestion-draft"
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "screenshot",
+   "name": "J9-10-chip-draft"
+  },
+  {
+   "op": "dump",
+   "name": "J9-10-chip-draft"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 300000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "J9-11-draft-answer"
+  },
+  {
+   "op": "dump",
+   "name": "J9-11-draft-answer"
+  },
+  {
+   "op": "press",
+   "testID": "model-chip"
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "screenshot",
+   "name": "J9-12-model-sheet"
+  },
+  {
+   "op": "dump",
+   "name": "J9-12-model-sheet"
+  },
+  {
+   "op": "press",
+   "testID": "model-sheet-manage"
+  },
+  {
+   "op": "waitFor",
+   "testID": "best-for",
+   "timeoutMs": 20000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "J9-13-vault"
+  },
+  {
+   "op": "dump",
+   "name": "J9-13-vault"
+  },
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "new-chat",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "J9-14-chats"
+  },
+  {
+   "op": "dump",
+   "name": "J9-14-chats"
+  },
+  {
+   "op": "press",
+   "testID": "drawer-documents"
+  },
+  {
+   "op": "waitFor",
+   "testID": "documents-screen",
+   "timeoutMs": 20000
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "screenshot",
+   "name": "J9-15-documents"
+  },
+  {
+   "op": "dump",
+   "name": "J9-15-documents"
+  },
+  {
+   "op": "press",
+   "testID": "documents-close"
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "J9-16-after-documents"
+  },
+  {
+   "op": "dump",
+   "name": "J9-16-after-documents"
+  },
+  {
+   "op": "deeplink",
+   "url": "/settings"
+  },
+  {
+   "op": "waitFor",
+   "testID": "row-pro",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "J9-17-settings"
+  },
+  {
+   "op": "dump",
+   "name": "J9-17-settings"
+  },
+  {
+   "op": "press",
+   "testID": "row-pro"
+  },
+  {
+   "op": "waitFor",
+   "testID": "close-paywall",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "J9-18-paywall"
+  },
+  {
+   "op": "dump",
+   "name": "J9-18-paywall"
+  },
+  {
+   "op": "press",
+   "testID": "close-paywall"
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "J9-19-after-paywall"
+  },
+  {
+   "op": "dump",
+   "name": "J9-19-after-paywall"
+  }
+ ]
+}

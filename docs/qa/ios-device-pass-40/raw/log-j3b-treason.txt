@@ -1,0 +1,50 @@
+01:10:15 pushing 44 steps as j3b-treason
+01:11:05 shot J3-08-treason
+01:12:10 shot J3-09-treason-again
+01:12:17 shot J3-10-chats
+01:12:22 shot J3-10-back
+01:12:29 ok     0 deeplink   /chats
+01:12:29 ok     1 waitFor    chat-row-fc33ef84-8f92-475a-b8a2-b2f83329eef4 appeared
+01:12:29 ok     2 press      chat-row-fc33ef84-8f92-475a-b8a2-b2f83329eef4 ← onPress
+01:12:29 ok     3 waitFor    composer-input appeared
+01:12:29 ok     4 waitFor    Loading gone
+01:12:29 ok     5 sleep      3000 ms
+01:12:29 ok     6 value      FAST
+01:12:29 ok     7 value      constitution-9pages.pdf
+01:12:29 ok     8 type       composer-input = 31 chars
+01:12:29 ok     9 send       send ← onPress
+01:12:29 ok    10 sleep      2500 ms
+01:12:29 ok    11 waitFor    reading-pages gone
+01:12:29 ok    12 waitFor    reading-docs gone
+01:12:29 ok    13 waitFor    stop gone
+01:12:29 ok    14 sleep      2500 ms
+01:12:29 ok    15 value      This document summarizes the key provisions of The United States Constitution regarding its legislative struct
+01:12:29 ok    16 value      [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9
+01:12:29 ok    17 waitFor    none-matched gone
+01:12:29 ok    18 assertText "Your documents don't mention this" absent
+01:12:29 ok    19 screenshot J3-08-treason
+01:12:29 ok    20 dump       J3-08-treason
+01:12:29 ok    21 type       composer-input = 31 chars
+01:12:29 ok    22 send       send ← onPress
+01:12:29 ok    23 sleep      2500 ms
+01:12:29 ok    24 waitFor    reading-pages gone
+01:12:29 ok    25 waitFor    reading-docs gone
+01:12:29 ok    26 waitFor    stop gone
+01:12:29 ok    27 sleep      2500 ms
+01:12:29 ok    28 value      This document summarizes the key provisions of The United States Constitution regarding its legislative struct
+01:12:29 ok    29 value      [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9
+01:12:29 ok    30 waitFor    none-matched gone
+01:12:29 ok    31 assertText "Your documents don't mention this" absent
+01:12:29 ok    32 screenshot J3-09-treason-again
+01:12:29 ok    33 dump       J3-09-treason-again
+01:12:29 ok    34 press      open-chats ← onPress
+01:12:29 ok    35 waitFor    close-chats appeared
+01:12:29 ok    36 sleep      1500 ms
+01:12:29 ok    37 screenshot J3-10-chats
+01:12:29 ok    38 dump       J3-10-chats
+01:12:29 ok    39 press      close-chats ← onPress
+01:12:29 ok    40 waitFor    composer-input appeared
+01:12:29 ok    41 sleep      2500 ms
+01:12:29 ok    42 screenshot J3-10-back
+01:12:29 ok    43 dump       J3-10-back
+01:12:29 44 passed, 0 failed, 4 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-40/docs/qa/ios-device-pass-40/screens

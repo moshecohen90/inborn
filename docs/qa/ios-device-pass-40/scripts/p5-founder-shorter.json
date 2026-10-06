@@ -1,0 +1,127 @@
+{
+ "_": "J3 PRIVATE probe: the founder's chat (HISCHAT), whose last answer has passages; 'shorter': the shell compares dev-run.json's reply (the engine's words) with what the screen shows.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "chat-row-HISCHAT",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "press",
+   "testID": "chat-row-HISCHAT"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "value",
+   "testID": "attached-docs"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "shorter"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-pages",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "waitFor",
+   "testID": "docs-hold",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "waitFor",
+   "testID": "none-matched",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "assertText",
+   "text": "468 MB",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "Nothing in your documents matched this question",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "welcome",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "Welcome",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "You're",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "screenshot",
+   "name": "P5-01-shorter"
+  },
+  {
+   "op": "dump",
+   "name": "P5-01-shorter"
+  }
+ ]
+}

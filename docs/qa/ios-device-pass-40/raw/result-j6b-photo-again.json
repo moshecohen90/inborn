@@ -1,0 +1,869 @@
+{
+  "runId": "j6b-photo-again",
+  "startedAt": "2026-10-06T22:31:51.357Z",
+  "finishedAt": "2026-10-06T22:32:45.573Z",
+  "ok": true,
+  "passed": 53,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "INSTANT",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT"
+    },
+    {
+      "i": 1,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Slowing down to keep the phone cool",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Slowing down to keep the phone cool"
+    },
+    {
+      "i": 2,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2008,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 3,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3174,
+      "detail": "J6b-00-chat"
+    },
+    {
+      "i": 4,
+      "op": "dump",
+      "ok": true,
+      "ms": 3,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What do you see?",
+          "role": "text"
+        },
+        {
+          "testID": "user-images",
+          "text": ""
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The image displays a large chalkboard menu mounted on a red brick wall, likely belonging to a cafe or restaurant named \"The Garden Cafe Hove\" as indicated by the website URL at the top center of the board. The menu is organized into several sections: opening hours for Monday through Sunday (8-4 & 30), breakfast items like smashed avocado and toast; sandwiches such as bacon, smoked salmon, and quiche; hot drinks including coffee, espresso, and tea; and a section inviting patrons to become members with an annual fee. The board also features handwritten notes about new garden displays and updates on the cafe's offerings. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The image displays a large chalkboard menu mounted on a red brick wall, likely belonging to a cafe or restaurant named \"The Garden Cafe Hove\" as indicated by the website URL at the top center of the board. The menu is organized into several sections: opening hours for Monday through Sunday (8-4 & 30), breakfast items like smashed avocado and toast; sandwiches such as bacon, smoked salmon, and quiche; hot drinks including coffee, espresso, and tea; and a section inviting patrons to become members with an annual fee. The board also features handwritten notes about new garden displays and updates on the cafe's offerings."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J6b-00-chat"
+    },
+    {
+      "i": 5,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 156,
+      "detail": "attach: בית קפה הגינה תפריט.jpg"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 802,
+      "detail": "pending-images appeared"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3016,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 8,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Free: one photo per message",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Free: one photo per message"
+    },
+    {
+      "i": 9,
+      "op": "type",
+      "ok": true,
+      "ms": 166,
+      "detail": "composer-input = 16 chars"
+    },
+    {
+      "i": 10,
+      "op": "send",
+      "ok": true,
+      "ms": 172,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 11,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 12,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 13,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 6044,
+      "detail": "J6b-01-photo-sent-bubble"
+    },
+    {
+      "i": 14,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "stop gone"
+    },
+    {
+      "i": 15,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3008,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 16,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "The image displays a large chalkboard menu mounted on a red brick wall, likely belonging to a cafe or restaurant named \"The Garden Cafe Hove\" as indicated by the website URL at the top center of the board. The menu is organized into several sections: opening hours for Monday through Sunday (8-4 & 30), breakfast items like smashed avocado and toast; sandwiches such as bacon, smoked salmon, and quiche; hot drinks including coffee, espresso, and tea; and a section inviting patrons to become members with an annual fee. The board also features handwritten notes about new garden displays and updates on the cafe's offerings.",
+        "props": {
+          "source": "The image displays a large chalkboard menu mounted on a red brick wall, likely belonging to a cafe or restaurant named \"The Garden Cafe Hove\" as indicated by the website URL at the top center of the board. The menu is organized into several sections: opening hours for Monday through Sunday (8-4 & 30), breakfast items like smashed avocado and toast; sandwiches such as bacon, smoked salmon, and quiche; hot drinks including coffee, espresso, and tea; and a section inviting patrons to become members with an annual fee. The board also features handwritten notes about new garden displays and updates on the cafe's offerings.",
+          "disabled": false
+        }
+      },
+      "detail": "The image displays a large chalkboard menu mounted on a red brick wall, likely belonging to a cafe or restaurant named \"The Garden Cafe Hove\" as indicated by the website URL at the top center of the b"
+    },
+    {
+      "i": 17,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"cannot see\" absent"
+    },
+    {
+      "i": 18,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"can't see\" absent"
+    },
+    {
+      "i": 19,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"cannot physically see\" absent"
+    },
+    {
+      "i": 20,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"see images\" absent"
+    },
+    {
+      "i": 21,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"text-based\" absent"
+    },
+    {
+      "i": 22,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"unable to see\" absent"
+    },
+    {
+      "i": 23,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"not able to see\" absent"
+    },
+    {
+      "i": 24,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"don't have eyes\" absent"
+    },
+    {
+      "i": 25,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"The request specifies\" absent"
+    },
+    {
+      "i": 26,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"I will focus\" absent"
+    },
+    {
+      "i": 27,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"as an AI\" absent"
+    },
+    {
+      "i": 28,
+      "op": "assertText",
+      "ok": true,
+      "ms": 4,
+      "detail": "\"NOT_FOUND\" absent"
+    },
+    {
+      "i": 29,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"<<<\" absent"
+    },
+    {
+      "i": 30,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"The user is asking\" absent"
+    },
+    {
+      "i": 31,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Your documents don't mention this\" absent"
+    },
+    {
+      "i": 32,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"is a scan. Run OCR\" absent"
+    },
+    {
+      "i": 33,
+      "op": "sleep",
+      "ok": true,
+      "ms": 0,
+      "detail": "0 ms"
+    },
+    {
+      "i": 34,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3171,
+      "detail": "J6b-01-photo-answer"
+    },
+    {
+      "i": 35,
+      "op": "dump",
+      "ok": true,
+      "ms": 3,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What do you see?",
+          "role": "text"
+        },
+        {
+          "testID": "user-images",
+          "text": ""
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The image displays a large chalkboard menu mounted on a red brick wall, likely belonging to a cafe or restaurant named \"The Garden Cafe Hove\" as indicated by the website URL at the top center of the board. The menu is organized into several sections: opening hours for Monday through Sunday (8-4 & 30), breakfast items like smashed avocado and toast; sandwiches such as bacon, smoked salmon, and quiche; hot drinks including coffee, espresso, and tea; and a section inviting patrons to become members with an annual fee. The board also features handwritten notes about new garden displays and updates on the cafe's offerings. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The image displays a large chalkboard menu mounted on a red brick wall, likely belonging to a cafe or restaurant named \"The Garden Cafe Hove\" as indicated by the website URL at the top center of the board. The menu is organized into several sections: opening hours for Monday through Sunday (8-4 & 30), breakfast items like smashed avocado and toast; sandwiches such as bacon, smoked salmon, and quiche; hot drinks including coffee, espresso, and tea; and a section inviting patrons to become members with an annual fee. The board also features handwritten notes about new garden displays and updates on the cafe's offerings."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "vision-offer",
+          "text": "Photos need the photo pack. Open the vault"
+        },
+        {
+          "testID": "vision-offer-action",
+          "text": "Open the vault",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J6b-01-photo-answer"
+    },
+    {
+      "i": 36,
+      "op": "press",
+      "ok": true,
+      "ms": 155,
+      "detail": "ledger-toggle ← onPress"
+    },
+    {
+      "i": 37,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1216,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 38,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "MODEL INSTANT QUANT Q4_K CONTEXT — MS / TOKEN — More detail · PRO",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "MODEL INSTANT QUANT Q4_K CONTEXT — MS / TOKEN — More detail · PRO"
+    },
+    {
+      "i": 39,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3174,
+      "detail": "J6b-01-photo-ledger"
+    },
+    {
+      "i": 40,
+      "op": "press",
+      "ok": true,
+      "ms": 158,
+      "detail": "ledger-toggle ← onPress"
+    },
+    {
+      "i": 41,
+      "op": "sleep",
+      "ok": true,
+      "ms": 817,
+      "detail": "800 ms"
+    },
+    {
+      "i": 42,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "INSTANT",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT"
+    },
+    {
+      "i": 43,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 24 chars"
+    },
+    {
+      "i": 44,
+      "op": "send",
+      "ok": true,
+      "ms": 526,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 45,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2515,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 46,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 4,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 47,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 5,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 48,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 14547,
+      "detail": "stop gone"
+    },
+    {
+      "i": 49,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2503,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 50,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "The image displays a large chalkboard menu mounted on a red brick wall, likely belonging to a cafe or restaurant named \"The Garden Cafe Hove\" as indicated by the website URL at the top center of the board. The menu is organized into several sections: opening hours for Monday through Sunday (8-4 & 30), breakfast items like smashed avocado and toast; sandwiches such as bacon, smoked salmon, and quiche; hot drinks including coffee, espresso, and tea; and a section inviting patrons to become members with an annual fee. The board also features handwritten notes about new garden displays and updates on the cafe's offerings.",
+        "props": {
+          "source": "The image displays a large chalkboard menu mounted on a red brick wall, likely belonging to a cafe or restaurant named \"The Garden Cafe Hove\" as indicated by the website URL at the top center of the board. The menu is organized into several sections: opening hours for Monday through Sunday (8-4 & 30), breakfast items like smashed avocado and toast; sandwiches such as bacon, smoked salmon, and quiche; hot drinks including coffee, espresso, and tea; and a section inviting patrons to become members with an annual fee. The board also features handwritten notes about new garden displays and updates on the cafe's offerings.",
+          "disabled": false
+        }
+      },
+      "detail": "The image displays a large chalkboard menu mounted on a red brick wall, likely belonging to a cafe or restaurant named \"The Garden Cafe Hove\" as indicated by the website URL at the top center of the b"
+    },
+    {
+      "i": 51,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 6657,
+      "detail": "J6b-02-wall"
+    },
+    {
+      "i": 52,
+      "op": "dump",
+      "ok": true,
+      "ms": 10,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What do you see?",
+          "role": "text"
+        },
+        {
+          "testID": "user-images",
+          "text": ""
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The image displays a large chalkboard menu mounted on a red brick wall, likely belonging to a cafe or restaurant named \"The Garden Cafe Hove\" as indicated by the website URL at the top center of the board. The menu is organized into several sections: opening hours for Monday through Sunday (8-4 & 30), breakfast items like smashed avocado and toast; sandwiches such as bacon, smoked salmon, and quiche; hot drinks including coffee, espresso, and tea; and a section inviting patrons to become members with an annual fee. The board also features handwritten notes about new garden displays and updates on the cafe's offerings. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The image displays a large chalkboard menu mounted on a red brick wall, likely belonging to a cafe or restaurant named \"The Garden Cafe Hove\" as indicated by the website URL at the top center of the board. The menu is organized into several sections: opening hours for Monday through Sunday (8-4 & 30), breakfast items like smashed avocado and toast; sandwiches such as bacon, smoked salmon, and quiche; hot drinks including coffee, espresso, and tea; and a section inviting patrons to become members with an annual fee. The board also features handwritten notes about new garden displays and updates on the cafe's offerings."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "vision-offer",
+          "text": "Photos need the photo pack. Open the vault"
+        },
+        {
+          "testID": "vision-offer-action",
+          "text": "Open the vault",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J6b-02-wall"
+    }
+  ],
+  "errors": []
+}

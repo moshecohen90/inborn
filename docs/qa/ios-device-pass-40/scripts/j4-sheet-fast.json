@@ -1,0 +1,1231 @@
+{
+ "_": "J4 (134D + 134H) on Fast: Documents → the turbine report (TURBINEID) → Ask: four no-match questions (the opener only, no instruction text), 'thank you', 'And now'; then the constitution (DOCID): the same, then 'Who can veto a bill?' → a search with chips.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "chat-row-CHATID",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "press",
+   "testID": "chat-row-CHATID"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "value",
+   "testID": "attached-docs"
+  },
+  {
+   "op": "assertText",
+   "text": "FAST",
+   "testID": "model-chip"
+  },
+  {
+   "op": "deeplink",
+   "url": "/documents"
+  },
+  {
+   "op": "waitFor",
+   "testID": "doc-select-TURBINEID",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "press",
+   "testID": "doc-select-TURBINEID"
+  },
+  {
+   "op": "sleep",
+   "ms": 1000
+  },
+  {
+   "op": "value",
+   "testID": "documents-ask-selected"
+  },
+  {
+   "op": "press",
+   "testID": "documents-ask-selected"
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-sheet",
+   "timeoutMs": 20000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "sleep",
+   "ms": 500
+  },
+  {
+   "op": "screenshot",
+   "name": "J4F-t-0-sheet"
+  },
+  {
+   "op": "dump",
+   "name": "J4F-t-0-sheet"
+  },
+  {
+   "op": "type",
+   "testID": "ask-input",
+   "text": "Who wrote this report?"
+  },
+  {
+   "op": "press",
+   "testID": "ask-send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "ask-plain"
+  },
+  {
+   "op": "value",
+   "testID": "ask-answer"
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "assertText",
+   "text": "If you do not know",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "say only the opening",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "stop after that sentence",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "Start with",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "were searched",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "never say what",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "Never say what",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "sleep",
+   "ms": 0
+  },
+  {
+   "op": "screenshot",
+   "name": "J4F-t-1-nomatch"
+  },
+  {
+   "op": "dump",
+   "name": "J4F-t-1-nomatch"
+  },
+  {
+   "op": "type",
+   "testID": "ask-input",
+   "text": "What does it say about the moon?"
+  },
+  {
+   "op": "press",
+   "testID": "ask-send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "ask-plain"
+  },
+  {
+   "op": "value",
+   "testID": "ask-answer"
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "assertText",
+   "text": "If you do not know",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "say only the opening",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "stop after that sentence",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "Start with",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "were searched",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "never say what",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "Never say what",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "sleep",
+   "ms": 0
+  },
+  {
+   "op": "screenshot",
+   "name": "J4F-t-2-nomatch"
+  },
+  {
+   "op": "dump",
+   "name": "J4F-t-2-nomatch"
+  },
+  {
+   "op": "type",
+   "testID": "ask-input",
+   "text": "What does it say about chocolate cake?"
+  },
+  {
+   "op": "press",
+   "testID": "ask-send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "ask-plain"
+  },
+  {
+   "op": "value",
+   "testID": "ask-answer"
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "assertText",
+   "text": "If you do not know",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "say only the opening",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "stop after that sentence",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "Start with",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "were searched",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "never say what",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "Never say what",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "sleep",
+   "ms": 0
+  },
+  {
+   "op": "screenshot",
+   "name": "J4F-t-3-nomatch"
+  },
+  {
+   "op": "dump",
+   "name": "J4F-t-3-nomatch"
+  },
+  {
+   "op": "type",
+   "testID": "ask-input",
+   "text": "Who won the 2018 World Cup?"
+  },
+  {
+   "op": "press",
+   "testID": "ask-send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "ask-plain"
+  },
+  {
+   "op": "value",
+   "testID": "ask-answer"
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "assertText",
+   "text": "If you do not know",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "say only the opening",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "stop after that sentence",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "Start with",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "were searched",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "never say what",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "Never say what",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "sleep",
+   "ms": 0
+  },
+  {
+   "op": "screenshot",
+   "name": "J4F-t-4-nomatch"
+  },
+  {
+   "op": "dump",
+   "name": "J4F-t-4-nomatch"
+  },
+  {
+   "op": "type",
+   "testID": "ask-input",
+   "text": "thank you"
+  },
+  {
+   "op": "press",
+   "testID": "ask-send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "ask-plain"
+  },
+  {
+   "op": "value",
+   "testID": "ask-answer"
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "assertText",
+   "text": "Ask another question about these documents",
+   "testID": "ask-plain"
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-none-matched",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-not-found",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "sleep",
+   "ms": 0
+  },
+  {
+   "op": "screenshot",
+   "name": "J4F-t-5-thank-you"
+  },
+  {
+   "op": "dump",
+   "name": "J4F-t-5-thank-you"
+  },
+  {
+   "op": "type",
+   "testID": "ask-input",
+   "text": "And now"
+  },
+  {
+   "op": "press",
+   "testID": "ask-send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "ask-plain"
+  },
+  {
+   "op": "value",
+   "testID": "ask-answer"
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "assertText",
+   "text": "This sheet answers one question at a time",
+   "testID": "ask-plain"
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-none-matched",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-not-found",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "sleep",
+   "ms": 0
+  },
+  {
+   "op": "screenshot",
+   "name": "J4F-t-6-and-now"
+  },
+  {
+   "op": "dump",
+   "name": "J4F-t-6-and-now"
+  },
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "deeplink",
+   "url": "/documents"
+  },
+  {
+   "op": "waitFor",
+   "testID": "doc-select-DOCID",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "press",
+   "testID": "doc-select-DOCID"
+  },
+  {
+   "op": "sleep",
+   "ms": 1000
+  },
+  {
+   "op": "value",
+   "testID": "documents-ask-selected"
+  },
+  {
+   "op": "press",
+   "testID": "documents-ask-selected"
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-sheet",
+   "timeoutMs": 20000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "sleep",
+   "ms": 500
+  },
+  {
+   "op": "screenshot",
+   "name": "J4F-c-0-sheet"
+  },
+  {
+   "op": "dump",
+   "name": "J4F-c-0-sheet"
+  },
+  {
+   "op": "type",
+   "testID": "ask-input",
+   "text": "Who wrote this report?"
+  },
+  {
+   "op": "press",
+   "testID": "ask-send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "ask-plain"
+  },
+  {
+   "op": "value",
+   "testID": "ask-answer"
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "assertText",
+   "text": "If you do not know",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "say only the opening",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "stop after that sentence",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "Start with",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "were searched",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "never say what",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "Never say what",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "sleep",
+   "ms": 0
+  },
+  {
+   "op": "screenshot",
+   "name": "J4F-c-1-nomatch"
+  },
+  {
+   "op": "dump",
+   "name": "J4F-c-1-nomatch"
+  },
+  {
+   "op": "type",
+   "testID": "ask-input",
+   "text": "What does it say about the moon?"
+  },
+  {
+   "op": "press",
+   "testID": "ask-send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "ask-plain"
+  },
+  {
+   "op": "value",
+   "testID": "ask-answer"
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "assertText",
+   "text": "If you do not know",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "say only the opening",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "stop after that sentence",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "Start with",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "were searched",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "never say what",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "Never say what",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "sleep",
+   "ms": 0
+  },
+  {
+   "op": "screenshot",
+   "name": "J4F-c-2-nomatch"
+  },
+  {
+   "op": "dump",
+   "name": "J4F-c-2-nomatch"
+  },
+  {
+   "op": "type",
+   "testID": "ask-input",
+   "text": "What does it say about chocolate cake?"
+  },
+  {
+   "op": "press",
+   "testID": "ask-send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "ask-plain"
+  },
+  {
+   "op": "value",
+   "testID": "ask-answer"
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "assertText",
+   "text": "If you do not know",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "say only the opening",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "stop after that sentence",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "Start with",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "were searched",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "never say what",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "Never say what",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "sleep",
+   "ms": 0
+  },
+  {
+   "op": "screenshot",
+   "name": "J4F-c-3-nomatch"
+  },
+  {
+   "op": "dump",
+   "name": "J4F-c-3-nomatch"
+  },
+  {
+   "op": "type",
+   "testID": "ask-input",
+   "text": "Who won the 2018 World Cup?"
+  },
+  {
+   "op": "press",
+   "testID": "ask-send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "ask-plain"
+  },
+  {
+   "op": "value",
+   "testID": "ask-answer"
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "assertText",
+   "text": "If you do not know",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "say only the opening",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "stop after that sentence",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "Start with",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "were searched",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "never say what",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "Never say what",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "sleep",
+   "ms": 0
+  },
+  {
+   "op": "screenshot",
+   "name": "J4F-c-4-nomatch"
+  },
+  {
+   "op": "dump",
+   "name": "J4F-c-4-nomatch"
+  },
+  {
+   "op": "type",
+   "testID": "ask-input",
+   "text": "thank you"
+  },
+  {
+   "op": "press",
+   "testID": "ask-send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "ask-plain"
+  },
+  {
+   "op": "value",
+   "testID": "ask-answer"
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "assertText",
+   "text": "Ask another question about these documents",
+   "testID": "ask-plain"
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-none-matched",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-not-found",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "sleep",
+   "ms": 0
+  },
+  {
+   "op": "screenshot",
+   "name": "J4F-c-5-thank-you"
+  },
+  {
+   "op": "dump",
+   "name": "J4F-c-5-thank-you"
+  },
+  {
+   "op": "type",
+   "testID": "ask-input",
+   "text": "And now"
+  },
+  {
+   "op": "press",
+   "testID": "ask-send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "ask-plain"
+  },
+  {
+   "op": "value",
+   "testID": "ask-answer"
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "assertText",
+   "text": "This sheet answers one question at a time",
+   "testID": "ask-plain"
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-none-matched",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-not-found",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "sleep",
+   "ms": 0
+  },
+  {
+   "op": "screenshot",
+   "name": "J4F-c-6-and-now"
+  },
+  {
+   "op": "dump",
+   "name": "J4F-c-6-and-now"
+  },
+  {
+   "op": "type",
+   "testID": "ask-input",
+   "text": "Who can veto a bill?"
+  },
+  {
+   "op": "press",
+   "testID": "ask-send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "ask-plain"
+  },
+  {
+   "op": "value",
+   "testID": "ask-answer"
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-none-matched",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-not-found",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "assertText",
+   "text": "If you do not know",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "say only the opening",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "stop after that sentence",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "Start with",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "were searched",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "never say what",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "Never say what",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "sleep",
+   "ms": 0
+  },
+  {
+   "op": "screenshot",
+   "name": "J4F-c-7-veto"
+  },
+  {
+   "op": "dump",
+   "name": "J4F-c-7-veto"
+  },
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  }
+ ]
+}

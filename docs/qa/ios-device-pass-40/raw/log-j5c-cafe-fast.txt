@@ -1,0 +1,62 @@
+01:19:53 pushing 55 steps as j5c-cafe-fast
+01:20:12 shot J5-06-pack-card
+01:20:36 shot J5-07-after-card
+01:21:26 shot J5-08-answer
+01:21:50 shot J5-09-colours
+01:21:57 ok     0 deeplink   /chats
+01:21:57 ok     1 waitFor    new-chat appeared
+01:21:57 ok     2 press      new-chat ← onPress
+01:21:57 ok     3 waitFor    start-chat appeared
+01:21:57 ok     4 press      start-chat ← onPress
+01:21:57 ok     5 waitFor    composer-input appeared
+01:21:57 ok     6 waitFor    Loading gone
+01:21:57 ok     7 sleep      1500 ms
+01:21:57 ok     8 value      INSTANT
+01:21:57 ok     9 press      model-chip ← onPress
+01:21:57 ok    10 waitFor    model-sheet appeared
+01:21:57 ok    11 sleep      1500 ms
+01:21:57 ok    12 press      model-sheet-use-fast ← onPress
+01:21:57 ok    13 sleep      3000 ms
+01:21:57 FAIL  14 press      press model-sheet-close: not mounted
+01:21:57 ok    15 waitFor    Loading gone
+01:21:57 ok    16 sleep      1500 ms
+01:21:57 ok    17 value      FAST
+01:21:57 ok    18 assertText "FAST" present
+01:21:57 ok    19 devPrompt  attach: בית קפה הגינה תפריט.jpg
+01:21:57 ok    20 waitFor    pending-images appeared
+01:21:57 ok    21 sleep      3000 ms
+01:21:57 ok    22 value      Free: one photo per message
+01:21:57 ok    23 type       composer-input = 16 chars
+01:21:57 ok    24 send       send ← onPress
+01:21:57 ok    25 waitFor    vision-hold appeared
+01:21:57 ok    26 sleep      1500 ms
+01:21:57 ok    27 value      FAST needs its photo pack to see photos One 668 MB download, then this photo sends by itself. Download 668 MB 
+01:21:57 ok    28 sleep      0 ms
+01:21:57 ok    29 screenshot J5-06-pack-card
+01:21:57 ok    30 dump       J5-06-pack-card
+01:21:57 ok    31 press      vision-hold-download ← onPress
+01:21:57 ok    32 idleTimer  idle timer disabled: false
+01:21:57 ok    33 waitFor    vision-hold gone
+01:21:57 ok    34 sleep      1500 ms
+01:21:57 ok    35 screenshot J5-07-after-card
+01:21:57 ok    36 dump       J5-07-after-card
+01:21:57 ok    37 waitFor    assistant-text appeared
+01:21:57 ok    38 waitFor    stop gone
+01:21:57 ok    39 sleep      3000 ms
+01:21:57 ok    40 value      The image displays a large chalkboard menu mounted on a red brick wall, likely belonging to a cafe or restaura
+01:21:57 ok    41 value      FAST
+01:21:57 ok    42 sleep      0 ms
+01:21:57 ok    43 screenshot J5-08-answer
+01:21:57 ok    44 dump       J5-08-answer
+01:21:57 ok    45 type       composer-input = 16 chars
+01:21:57 ok    46 send       send ← onPress
+01:21:57 ok    47 sleep      2500 ms
+01:21:57 ok    48 waitFor    reading-pages gone
+01:21:57 ok    49 waitFor    reading-docs gone
+01:21:57 ok    50 waitFor    stop gone
+01:21:57 ok    51 sleep      2500 ms
+01:21:57 ok    52 value      The image displays a large chalkboard menu mounted on a red brick wall, likely belonging to a cafe or restaura
+01:21:57 ok    53 screenshot J5-09-colours
+01:21:57 ok    54 dump       J5-09-colours
+01:21:57 54 passed, 1 failed, 4 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-40/docs/qa/ios-device-pass-40/screens
+01:21:57   ! step 14 (press): press model-sheet-close: not mounted

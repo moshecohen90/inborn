@@ -1,0 +1,144 @@
+01:22:25 pushing 130 steps as j6-story
+01:22:32 shot J6-00-photo-sent-bubble
+01:24:05 shot J6-00-photo-answer
+01:24:13 shot J6-00-photo-ledger
+01:27:00 shot J6-01-story
+01:28:23 shot J6-02-title
+01:28:50 shot J6-03-shorter
+01:29:57 shot J6-04-chats
+01:30:02 shot J6-05-settings
+01:30:09 shot J6-06-back
+01:30:18 shot J6-07-photo-again-sent-bubble
+01:31:00 shot J6-07-photo-again-answer
+01:31:06 shot J6-07-photo-again-ledger
+01:31:11 ok     0 value      FAST
+01:31:11 ok     1 devPrompt  attach: בית קפה הגינה תפריט.jpg
+01:31:11 ok     2 waitFor    pending-images appeared
+01:31:11 ok     3 sleep      3000 ms
+01:31:11 ok     4 value      Free: one photo per message
+01:31:11 ok     5 type       composer-input = 16 chars
+01:31:11 ok     6 send       send ← onPress
+01:31:11 ok     7 waitFor    assistant-text appeared
+01:31:11 ok     8 value      
+01:31:11 ok     9 screenshot J6-00-photo-sent-bubble
+01:31:11 ok    10 waitFor    stop gone
+01:31:11 ok    11 sleep      3000 ms
+01:31:11 ok    12 value      The image displays a large chalkboard menu mounted on a red brick wall, likely belonging to a cafe or restaura
+01:31:11 ok    13 assertText "cannot see" absent
+01:31:11 ok    14 assertText "can't see" absent
+01:31:11 ok    15 assertText "cannot physically see" absent
+01:31:11 ok    16 assertText "see images" absent
+01:31:11 ok    17 assertText "text-based" absent
+01:31:11 ok    18 assertText "unable to see" absent
+01:31:11 ok    19 assertText "not able to see" absent
+01:31:11 ok    20 assertText "don't have eyes" absent
+01:31:11 ok    21 assertText "The request specifies" absent
+01:31:11 ok    22 assertText "I will focus" absent
+01:31:11 ok    23 assertText "as an AI" absent
+01:31:11 ok    24 assertText "NOT_FOUND" absent
+01:31:11 ok    25 assertText "<<<" absent
+01:31:11 ok    26 assertText "The user is asking" absent
+01:31:11 ok    27 assertText "Your documents don't mention this" absent
+01:31:11 ok    28 assertText "is a scan. Run OCR" absent
+01:31:11 ok    29 sleep      0 ms
+01:31:11 ok    30 screenshot J6-00-photo-answer
+01:31:11 ok    31 dump       J6-00-photo-answer
+01:31:11 ok    32 press      ledger-toggle ← onPress
+01:31:11 ok    33 sleep      1200 ms
+01:31:11 ok    34 value      MODEL FAST QUANT Q4_K CONTEXT 589 / 4096 MS / TOKEN 220 ms More detail · PRO
+01:31:11 ok    35 screenshot J6-00-photo-ledger
+01:31:11 ok    36 press      ledger-toggle ← onPress
+01:31:11 ok    37 sleep      800 ms
+01:31:11 ok    38 type       composer-input = 64 chars
+01:31:11 ok    39 send       send ← onPress
+01:31:11 ok    40 sleep      3000 ms
+01:31:11 ok    41 waitFor    stop gone
+01:31:11 ok    42 sleep      3000 ms
+01:31:11 ok    43 value      The image displays a large chalkboard menu mounted on a red brick wall, likely belonging to a cafe or restaura
+01:31:11 ok    44 value      Slowing down to keep the phone cool SWITCH TO INSTANT
+01:31:11 ok    45 value      FAST
+01:31:11 ok    46 sleep      0 ms
+01:31:11 ok    47 screenshot J6-01-story
+01:31:11 ok    48 dump       J6-01-story
+01:31:11 ok    49 type       composer-input = 16 chars
+01:31:11 ok    50 send       send ← onPress
+01:31:11 ok    51 sleep      2500 ms
+01:31:11 ok    52 waitFor    reading-pages gone
+01:31:11 ok    53 waitFor    reading-docs gone
+01:31:11 ok    54 waitFor    stop gone
+01:31:11 ok    55 sleep      2500 ms
+01:31:11 ok    56 value      The image displays a large chalkboard menu mounted on a red brick wall, likely belonging to a cafe or restaura
+01:31:11 ok    57 value      Slowing down to keep the phone cool SWITCH TO INSTANT
+01:31:11 ok    58 value      FAST
+01:31:11 ok    59 screenshot J6-02-title
+01:31:11 ok    60 dump       J6-02-title
+01:31:11 ok    61 type       composer-input = 23 chars
+01:31:11 ok    62 send       send ← onPress
+01:31:11 ok    63 sleep      2500 ms
+01:31:11 ok    64 waitFor    reading-pages gone
+01:31:11 ok    65 waitFor    reading-docs gone
+01:31:11 ok    66 waitFor    stop gone
+01:31:11 ok    67 sleep      2500 ms
+01:31:11 ok    68 value      The image displays a large chalkboard menu mounted on a red brick wall, likely belonging to a cafe or restaura
+01:31:11 ok    69 value      Slowing down to keep the phone cool SWITCH TO INSTANT
+01:31:11 ok    70 value      FAST
+01:31:11 ok    71 screenshot J6-03-shorter
+01:31:11 ok    72 dump       J6-03-shorter
+01:31:11 ok    73 press      open-chats ← onPress
+01:31:11 ok    74 waitFor    drawer-settings appeared
+01:31:11 ok    75 sleep      1500 ms
+01:31:11 ok    76 screenshot J6-04-chats
+01:31:11 ok    77 dump       J6-04-chats
+01:31:11 ok    78 press      drawer-settings ← onPress
+01:31:11 ok    79 waitFor    row-wipe appeared
+01:31:11 ok    80 value      Slowing down to keep the phone cool SWITCH TO INSTANT
+01:31:11 ok    81 sleep      1500 ms
+01:31:11 ok    82 screenshot J6-05-settings
+01:31:11 ok    83 dump       J6-05-settings
+01:31:11 ok    84 press      back ← onPress
+01:31:11 ok    85 sleep      1500 ms
+01:31:11 ok    86 press      close-chats ← onPress
+01:31:11 ok    87 waitFor    composer-input appeared
+01:31:11 ok    88 sleep      2000 ms
+01:31:11 ok    89 screenshot J6-06-back
+01:31:11 ok    90 dump       J6-06-back
+01:31:11 ok    91 devPrompt  attach: בית קפה הגינה תפריט.jpg
+01:31:11 ok    92 waitFor    pending-images appeared
+01:31:11 ok    93 sleep      3000 ms
+01:31:11 ok    94 value      Free: one photo per message
+01:31:11 ok    95 type       composer-input = 16 chars
+01:31:11 ok    96 send       send ← onPress
+01:31:11 ok    97 waitFor    assistant-text appeared
+01:31:11 ok    98 value      
+01:31:11 ok    99 screenshot J6-07-photo-again-sent-bubble
+01:31:11 ok   100 waitFor    stop gone
+01:31:11 ok   101 sleep      3000 ms
+01:31:11 ok   102 value      The image displays a large chalkboard menu mounted on a red brick wall, likely belonging to a cafe or restaura
+01:31:11 ok   103 assertText "cannot see" absent
+01:31:11 ok   104 assertText "can't see" absent
+01:31:11 ok   105 assertText "cannot physically see" absent
+01:31:11 ok   106 assertText "see images" absent
+01:31:11 ok   107 assertText "text-based" absent
+01:31:11 ok   108 assertText "unable to see" absent
+01:31:11 ok   109 assertText "not able to see" absent
+01:31:11 ok   110 assertText "don't have eyes" absent
+01:31:11 ok   111 assertText "The request specifies" absent
+01:31:11 ok   112 assertText "I will focus" absent
+01:31:11 ok   113 assertText "as an AI" absent
+01:31:11 ok   114 assertText "NOT_FOUND" absent
+01:31:11 ok   115 assertText "<<<" absent
+01:31:11 ok   116 assertText "The user is asking" absent
+01:31:11 ok   117 assertText "Your documents don't mention this" absent
+01:31:11 ok   118 assertText "is a scan. Run OCR" absent
+01:31:11 ok   119 sleep      0 ms
+01:31:11 ok   120 screenshot J6-07-photo-again-answer
+01:31:11 ok   121 dump       J6-07-photo-again-answer
+01:31:11 ok   122 press      ledger-toggle ← onPress
+01:31:11 ok   123 sleep      1200 ms
+01:31:11 ok   124 value      MODEL FAST QUANT Q4_K CONTEXT 1176 / 4096 MS / TOKEN 163 ms More detail · PRO
+01:31:11 ok   125 screenshot J6-07-photo-again-ledger
+01:31:11 ok   126 press      ledger-toggle ← onPress
+01:31:11 ok   127 sleep      800 ms
+01:31:11 ok   128 value      INSTANT
+01:31:11 ok   129 value      Slowing down to keep the phone cool
+01:31:11 130 passed, 0 failed, 12 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-40/docs/qa/ios-device-pass-40/screens
