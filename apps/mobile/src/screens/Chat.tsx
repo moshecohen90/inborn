@@ -14,12 +14,15 @@ import {
   plainChatKind,
   type WholeFilePlan,
   groundedCitations,
+  inheritedCitations,
   withoutEchoedLabels,
+  withoutStrayMarkers,
   type RetrievalHit,
   PASTE_OFFER_CHARS,
   PRODUCTS,
   buildPrompt,
   followUpWindow,
+  reworkedAnswer,
   replyReserve,
   calibrate,
   contextLevel,
@@ -672,6 +675,9 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const system = turnSystemPrompt({ familySafe, tier: modelTier, photos: history.some((m) => m.images?.length), picture, persona, chatPrompt: settings.systemPrompt, memory: facts, languageHint: languageHint(lastUser), length: lengthLine, plainChat });
       /* Round 134G: "shorter" after "Thanks" reworks the summary, not the "You're welcome" that came after it. */
       const turns = plainChat === "follow-up" ? followUpWindow(history) : history;
+      /* Round 134I: the reworked answer's sources, kept on its row; `history` is the wire copy without them. */
+      const reworked = plainChat === "follow-up" ? reworkedAnswer(history) : null;
+      const reworkedRow = reworked ? [...rowsRef.current].reverse().find((r) => r.role === "assistant" && r.content === reworked.content) : undefined;
       if (plainChat) console.log(`[chat] plain=${plainChat} window=${turns.length}/${history.length} maxTokens=${length.maxTokens}`);
       const prompt = buildPrompt({ system, summary: chat?.summary, summaryUpTo: chat?.summaryUpTo, messages: turns.map((m, i) => ({ id: String(i), ...m })), nCtx, scale: tokenScale, reserve: replyReserve(length.maxTokens), imageTokens: imageMaxTokens(engine.id, model.id, nCtx) });
       let messages = prompt.messages;
@@ -908,8 +914,19 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         if (saysNoneMatched({ continuing: !!existingMessageId, attachedCount: docs.documents.length, usedPassages: kept.length })) setNoneMatched(true);
         citations = kept.length ? kept : undefined;
       }
+      if (reworkedRow?.citations?.length && !familySafeReplaced) {
+        const kept = inheritedCitations(shown(), reworkedRow);
+        citations = kept.length ? kept : undefined;
+      }
+      if (!existingMessageId && !familySafeReplaced && docs.documents.length > 0) {
+        const bare = withoutStrayMarkers(reply, citations ?? []);
+        if (bare !== reply) {
+          reply = bare;
+          patch((x) => ({ ...x, content: shown() }));
+        }
+      }
       /* Files attached, no passage or page picture behind the answer, and it still says what a file states: it is replaced, not shown. */
-      if (!ragUsed.length && !existingMessageId && !familySafeReplaced && docs.documents.length > 0 && !messages.some((m) => m.images?.length) && claimsFileContent(reply)) {
+      if (!ragUsed.length && !citations?.length && !existingMessageId && !familySafeReplaced && docs.documents.length > 0 && !messages.some((m) => m.images?.length) && claimsFileContent(reply)) {
         reply = t("documents.opener.nothingRelevant");
         patch((x) => ({ ...x, content: shown() }));
       }

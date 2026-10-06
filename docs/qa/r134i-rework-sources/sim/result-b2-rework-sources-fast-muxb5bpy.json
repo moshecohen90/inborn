@@ -1,0 +1,1202 @@
+{
+  "runId": "b2-rework-sources-fast-muxb5bpy",
+  "startedAt": "2026-10-06T23:26:43.198Z",
+  "finishedAt": "2026-10-06T23:34:24.075Z",
+  "ok": true,
+  "passed": 49,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 156,
+      "detail": "/vault"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 10001,
+      "detail": "10000 ms"
+    },
+    {
+      "i": 2,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 164,
+      "detail": "/"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "open-chats appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "open-chats ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 6,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 7,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 8,
+      "op": "press",
+      "ok": true,
+      "ms": 163,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 10,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5016,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 11,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 168,
+      "detail": "attach: constitution-9pages.pdf"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 60001,
+      "detail": "60000 ms"
+    },
+    {
+      "i": 13,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1591,
+      "detail": "f01-attached"
+    },
+    {
+      "i": 14,
+      "op": "type",
+      "ok": true,
+      "ms": 158,
+      "detail": "composer-input = 12 chars"
+    },
+    {
+      "i": 15,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5001,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 17,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 257318,
+      "detail": "stop gone"
+    },
+    {
+      "i": 18,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3016,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 19,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 959,
+      "detail": "f02-summary"
+    },
+    {
+      "i": 20,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI This document provides a summary of the United States Constitution. • Structure of Government : Establishes a bicameral legislature with the Senate and House of Representatives, where representatives are apportioned by population and senators serve six-year terms [1]. • Legislative Powers : All legislative power is vested in Congress; the President must sign bills passed by both chambers or return them with objections, after which they become law unless Congress adjourns during that period [2]. • President's Role : The Constitution defines the President as Commander-in-Chief and head of state with a four-year term, citizenship requirements, age limits, and a multi-stage electoral process for election [3]. • Federal vs. State Powers : States cannot levy duties on imports or exports without Congressional consent; all such revenues go to the federal Treasury under congressional control [2][3]. • Constitutional Provisions : The document mandates uniformity across the nation regarding taxes, commerce, currency, and naturalization laws; it also establishes authority over the militia, fortifications, and coinage [2]. • Impeachment Procedures : Impeachments must be tried by the Senate with exclusive authority to conduct them; conviction requires two-thirds approval of the Senate [1]. • Treason Definition : A person cannot be convicted of treason unless there is testimony from two witnesses or a confession in open court [4]. • State Relations and Entry : The Constitution mandates full faith and credit between states for public acts and records while citizens retain privileges across state lines [4]; new states must receive consent from existing legislative bodies to join the union [4]. Summary of all 9 pages. [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This document provides a summary of the United States Constitution. • Structure of Government : Establishes a bicameral legislature with the Senate and House of Representatives, where representatives are apportioned by population and senators serve six-year terms [1]. • Legislative Powers : All legislative power is vested in Congress; the President must sign bills passed by both chambers or return them with objections, after which they become law unless Congress adjourns during that period [2]. • President's Role : The Constitution defines the President as Commander-in-Chief and head of state with a four-year term, citizenship requirements, age limits, and a multi-stage electoral process for election [3]. • Federal vs. State Powers : States cannot levy duties on imports or exports without Congressional consent; all such revenues go to the federal Treasury under congressional control [2][3]. • Constitutional Provisions : The document mandates uniformity across the nation regarding taxes, commerce, currency, and naturalization laws; it also establishes authority over the militia, fortifications, and coinage [2]. • Impeachment Procedures : Impeachments must be tried by the Senate with exclusive authority to conduct them; conviction requires two-thirds approval of the Senate [1]. • Treason Definition : A person cannot be convicted of treason unless there is testimony from two witnesses or a confession in open court [4]. • State Relations and Entry : The Constitution mandates full faith and credit between states for public acts and records while citizens retain privileges across state lines [4]; new states must receive consent from existing legislative bodies to join the union [4]. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muxamek1-1-rd0tctpr",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "f02-summary"
+    },
+    {
+      "i": 21,
+      "op": "type",
+      "ok": true,
+      "ms": 158,
+      "detail": "composer-input = 6 chars"
+    },
+    {
+      "i": 22,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5001,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 24,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 13751,
+      "detail": "stop gone"
+    },
+    {
+      "i": 25,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3015,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 26,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 643,
+      "detail": "f03-thanks"
+    },
+    {
+      "i": 27,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI This document provides a summary of the United States Constitution. • Structure of Government : Establishes a bicameral legislature with the Senate and House of Representatives, where representatives are apportioned by population and senators serve six-year terms [1]. • Legislative Powers : All legislative power is vested in Congress; the President must sign bills passed by both chambers or return them with objections, after which they become law unless Congress adjourns during that period [2]. • President's Role : The Constitution defines the President as Commander-in-Chief and head of state with a four-year term, citizenship requirements, age limits, and a multi-stage electoral process for election [3]. • Federal vs. State Powers : States cannot levy duties on imports or exports without Congressional consent; all such revenues go to the federal Treasury under congressional control [2][3]. • Constitutional Provisions : The document mandates uniformity across the nation regarding taxes, commerce, currency, and naturalization laws; it also establishes authority over the militia, fortifications, and coinage [2]. • Impeachment Procedures : Impeachments must be tried by the Senate with exclusive authority to conduct them; conviction requires two-thirds approval of the Senate [1]. • Treason Definition : A person cannot be convicted of treason unless there is testimony from two witnesses or a confession in open court [4]. • State Relations and Entry : The Constitution mandates full faith and credit between states for public acts and records while citizens retain privileges across state lines [4]; new states must receive consent from existing legislative bodies to join the union [4]. Summary of all 9 pages. [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This document provides a summary of the United States Constitution. • Structure of Government : Establishes a bicameral legislature with the Senate and House of Representatives, where representatives are apportioned by population and senators serve six-year terms [1]. • Legislative Powers : All legislative power is vested in Congress; the President must sign bills passed by both chambers or return them with objections, after which they become law unless Congress adjourns during that period [2]. • President's Role : The Constitution defines the President as Commander-in-Chief and head of state with a four-year term, citizenship requirements, age limits, and a multi-stage electoral process for election [3]. • Federal vs. State Powers : States cannot levy duties on imports or exports without Congressional consent; all such revenues go to the federal Treasury under congressional control [2][3]. • Constitutional Provisions : The document mandates uniformity across the nation regarding taxes, commerce, currency, and naturalization laws; it also establishes authority over the militia, fortifications, and coinage [2]. • Impeachment Procedures : Impeachments must be tried by the Senate with exclusive authority to conduct them; conviction requires two-thirds approval of the Senate [1]. • Treason Definition : A person cannot be convicted of treason unless there is testimony from two witnesses or a confession in open court [4]. • State Relations and Entry : The Constitution mandates full faith and credit between states for public acts and records while citizens retain privileges across state lines [4]; new states must receive consent from existing legislative bodies to join the union [4]. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muxamek1-1-rd0tctpr",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "f03-thanks"
+    },
+    {
+      "i": 28,
+      "op": "type",
+      "ok": true,
+      "ms": 157,
+      "detail": "composer-input = 7 chars"
+    },
+    {
+      "i": 29,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 30,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5002,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 31,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 16850,
+      "detail": "stop gone"
+    },
+    {
+      "i": 32,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3000,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 33,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1911,
+      "detail": "f04-shorter"
+    },
+    {
+      "i": 34,
+      "op": "dump",
+      "ok": true,
+      "ms": 4,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI This document provides a summary of the United States Constitution. • Structure of Government : Establishes a bicameral legislature with the Senate and House of Representatives, where representatives are apportioned by population and senators serve six-year terms [1]. • Legislative Powers : All legislative power is vested in Congress; the President must sign bills passed by both chambers or return them with objections, after which they become law unless Congress adjourns during that period [2]. • President's Role : The Constitution defines the President as Commander-in-Chief and head of state with a four-year term, citizenship requirements, age limits, and a multi-stage electoral process for election [3]. • Federal vs. State Powers : States cannot levy duties on imports or exports without Congressional consent; all such revenues go to the federal Treasury under congressional control [2][3]. • Constitutional Provisions : The document mandates uniformity across the nation regarding taxes, commerce, currency, and naturalization laws; it also establishes authority over the militia, fortifications, and coinage [2]. • Impeachment Procedures : Impeachments must be tried by the Senate with exclusive authority to conduct them; conviction requires two-thirds approval of the Senate [1]. • Treason Definition : A person cannot be convicted of treason unless there is testimony from two witnesses or a confession in open court [4]. • State Relations and Entry : The Constitution mandates full faith and credit between states for public acts and records while citizens retain privileges across state lines [4]; new states must receive consent from existing legislative bodies to join the union [4]. Summary of all 9 pages. [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This document provides a summary of the United States Constitution. • Structure of Government : Establishes a bicameral legislature with the Senate and House of Representatives, where representatives are apportioned by population and senators serve six-year terms [1]. • Legislative Powers : All legislative power is vested in Congress; the President must sign bills passed by both chambers or return them with objections, after which they become law unless Congress adjourns during that period [2]. • President's Role : The Constitution defines the President as Commander-in-Chief and head of state with a four-year term, citizenship requirements, age limits, and a multi-stage electoral process for election [3]. • Federal vs. State Powers : States cannot levy duties on imports or exports without Congressional consent; all such revenues go to the federal Treasury under congressional control [2][3]. • Constitutional Provisions : The document mandates uniformity across the nation regarding taxes, commerce, currency, and naturalization laws; it also establishes authority over the militia, fortifications, and coinage [2]. • Impeachment Procedures : Impeachments must be tried by the Senate with exclusive authority to conduct them; conviction requires two-thirds approval of the Senate [1]. • Treason Definition : A person cannot be convicted of treason unless there is testimony from two witnesses or a confession in open court [4]. • State Relations and Entry : The Constitution mandates full faith and credit between states for public acts and records while citizens retain privileges across state lines [4]; new states must receive consent from existing legislative bodies to join the union [4]. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muxamek1-1-rd0tctpr",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "f04-shorter"
+    },
+    {
+      "i": 35,
+      "op": "type",
+      "ok": true,
+      "ms": 152,
+      "detail": "composer-input = 23 chars"
+    },
+    {
+      "i": 36,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 37,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5026,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 38,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3175,
+      "detail": "stop gone"
+    },
+    {
+      "i": 39,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3000,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 40,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1590,
+      "detail": "f05-bullets"
+    },
+    {
+      "i": 41,
+      "op": "dump",
+      "ok": true,
+      "ms": 3,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI This document provides a summary of the United States Constitution. • Structure of Government : Establishes a bicameral legislature with the Senate and House of Representatives, where representatives are apportioned by population and senators serve six-year terms [1]. • Legislative Powers : All legislative power is vested in Congress; the President must sign bills passed by both chambers or return them with objections, after which they become law unless Congress adjourns during that period [2]. • President's Role : The Constitution defines the President as Commander-in-Chief and head of state with a four-year term, citizenship requirements, age limits, and a multi-stage electoral process for election [3]. • Federal vs. State Powers : States cannot levy duties on imports or exports without Congressional consent; all such revenues go to the federal Treasury under congressional control [2][3]. • Constitutional Provisions : The document mandates uniformity across the nation regarding taxes, commerce, currency, and naturalization laws; it also establishes authority over the militia, fortifications, and coinage [2]. • Impeachment Procedures : Impeachments must be tried by the Senate with exclusive authority to conduct them; conviction requires two-thirds approval of the Senate [1]. • Treason Definition : A person cannot be convicted of treason unless there is testimony from two witnesses or a confession in open court [4]. • State Relations and Entry : The Constitution mandates full faith and credit between states for public acts and records while citizens retain privileges across state lines [4]; new states must receive consent from existing legislative bodies to join the union [4]. Summary of all 9 pages. [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This document provides a summary of the United States Constitution. • Structure of Government : Establishes a bicameral legislature with the Senate and House of Representatives, where representatives are apportioned by population and senators serve six-year terms [1]. • Legislative Powers : All legislative power is vested in Congress; the President must sign bills passed by both chambers or return them with objections, after which they become law unless Congress adjourns during that period [2]. • President's Role : The Constitution defines the President as Commander-in-Chief and head of state with a four-year term, citizenship requirements, age limits, and a multi-stage electoral process for election [3]. • Federal vs. State Powers : States cannot levy duties on imports or exports without Congressional consent; all such revenues go to the federal Treasury under congressional control [2][3]. • Constitutional Provisions : The document mandates uniformity across the nation regarding taxes, commerce, currency, and naturalization laws; it also establishes authority over the militia, fortifications, and coinage [2]. • Impeachment Procedures : Impeachments must be tried by the Senate with exclusive authority to conduct them; conviction requires two-thirds approval of the Senate [1]. • Treason Definition : A person cannot be convicted of treason unless there is testimony from two witnesses or a confession in open court [4]. • State Relations and Entry : The Constitution mandates full faith and credit between states for public acts and records while citizens retain privileges across state lines [4]; new states must receive consent from existing legislative bodies to join the union [4]. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muxamek1-1-rd0tctpr",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "f05-bullets"
+    },
+    {
+      "i": 42,
+      "op": "type",
+      "ok": true,
+      "ms": 159,
+      "detail": "composer-input = 36 chars"
+    },
+    {
+      "i": 43,
+      "op": "send",
+      "ok": true,
+      "ms": 164,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 44,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5001,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 45,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 44420,
+      "detail": "stop gone"
+    },
+    {
+      "i": 46,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3014,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 47,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 961,
+      "detail": "f06-pancakes"
+    },
+    {
+      "i": 48,
+      "op": "dump",
+      "ok": true,
+      "ms": 5,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI This document provides a summary of the United States Constitution. • Structure of Government : Establishes a bicameral legislature with the Senate and House of Representatives, where representatives are apportioned by population and senators serve six-year terms [1]. • Legislative Powers : All legislative power is vested in Congress; the President must sign bills passed by both chambers or return them with objections, after which they become law unless Congress adjourns during that period [2]. • President's Role : The Constitution defines the President as Commander-in-Chief and head of state with a four-year term, citizenship requirements, age limits, and a multi-stage electoral process for election [3]. • Federal vs. State Powers : States cannot levy duties on imports or exports without Congressional consent; all such revenues go to the federal Treasury under congressional control [2][3]. • Constitutional Provisions : The document mandates uniformity across the nation regarding taxes, commerce, currency, and naturalization laws; it also establishes authority over the militia, fortifications, and coinage [2]. • Impeachment Procedures : Impeachments must be tried by the Senate with exclusive authority to conduct them; conviction requires two-thirds approval of the Senate [1]. • Treason Definition : A person cannot be convicted of treason unless there is testimony from two witnesses or a confession in open court [4]. • State Relations and Entry : The Constitution mandates full faith and credit between states for public acts and records while citizens retain privileges across state lines [4]; new states must receive consent from existing legislative bodies to join the union [4]. Summary of all 9 pages. [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This document provides a summary of the United States Constitution. • Structure of Government : Establishes a bicameral legislature with the Senate and House of Representatives, where representatives are apportioned by population and senators serve six-year terms [1]. • Legislative Powers : All legislative power is vested in Congress; the President must sign bills passed by both chambers or return them with objections, after which they become law unless Congress adjourns during that period [2]. • President's Role : The Constitution defines the President as Commander-in-Chief and head of state with a four-year term, citizenship requirements, age limits, and a multi-stage electoral process for election [3]. • Federal vs. State Powers : States cannot levy duties on imports or exports without Congressional consent; all such revenues go to the federal Treasury under congressional control [2][3]. • Constitutional Provisions : The document mandates uniformity across the nation regarding taxes, commerce, currency, and naturalization laws; it also establishes authority over the militia, fortifications, and coinage [2]. • Impeachment Procedures : Impeachments must be tried by the Senate with exclusive authority to conduct them; conviction requires two-thirds approval of the Senate [1]. • Treason Definition : A person cannot be convicted of treason unless there is testimony from two witnesses or a confession in open court [4]. • State Relations and Entry : The Constitution mandates full faith and credit between states for public acts and records while citizens retain privileges across state lines [4]; new states must receive consent from existing legislative bodies to join the union [4]. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "none-matched",
+          "text": "Nothing in your documents matched this question. Answered without them."
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muxamek1-1-rd0tctpr",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "f06-pancakes"
+    }
+  ],
+  "errors": [
+    "console.log: [chat] plain=acknowledgement window=3/3 maxTokens=224",
+    "console.log: [chat] plain=follow-up window=3/5 maxTokens=1024",
+    "console.log: [chat] plain=follow-up window=7/7 maxTokens=1024"
+  ]
+}

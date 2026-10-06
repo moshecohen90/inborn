@@ -1,5 +1,6 @@
 /** Citations: "contract.pdf · p.4" chips (spec S12) built from retrieval hits, and the [n] marks a model used. */
 import { bm25Tokens, isCjkFunctionTerm, isWeakTerm } from "./bm25";
+import { detectLanguage } from "../chat/detectLanguage";
 import { hasCjk } from "./text";
 import type { Citation, DocKind, DocumentRecord, RetrievalHit } from "./types";
 
@@ -146,9 +147,13 @@ export function mainScript(text: string): string {
  * ("Japan won the 1998 World Cup" under a company report, QA F366), gets no SOURCES strip.
  */
 export function groundedCitations(answer: string, question: string, used: RetrievalHit[], citations: Citation[]): Citation[] {
-  const asked = evidenceTerms(question);
+  /* The file's name is on the chip already: "the Constitution" said back about constitution.pdf is not taken from a passage. */
+  const asked = new Set([...evidenceTerms(question), ...citations.flatMap((c) => [...evidenceTerms(c.docName)])]);
   const said = [...evidenceTerms(answer)].filter((t) => !asked.has(t));
   const script = mainScript(answer);
+  /* Round 134I: a pancake recipe shared "make", "two" and "place" with a page of the constitution; a few common words are not a source. */
+  const comparable = used.filter((h) => mainScript(h.chunk.text) === script);
+  if (comparable.length && !takenFrom(said, comparable.map((h) => h.chunk.text))) return [];
   const grounded = new Set(
     used
       .filter((h) => {
@@ -160,4 +165,38 @@ export function groundedCitations(answer: string, question: string, used: Retrie
       .map((h) => h.chunk.id),
   );
   return citations.filter((c) => grounded.has(c.chunkId));
+}
+
+/** Below this share of an answer's own content words found in its sources, the answer was not taken from them. */
+export const MIN_SOURCE_SHARE = 1 / 3;
+
+const takenFrom = (said: readonly string[], sources: readonly string[]): boolean => {
+  const words = new Set(sources.flatMap((s) => [...evidenceTerms(s)]));
+  return said.filter((t) => words.has(t)).length >= MIN_SOURCE_SHARE * said.length;
+};
+
+/**
+ * The sources a follow-up ("shorter", "make it 3 bullet points") carries: those of the answer it reworks, when it restates
+ * that answer in its words or in another language. A rework has no passages of its own, so this is its grounding.
+ */
+export function inheritedCitations(rework: string, reworked: { content: string; citations?: readonly Citation[] | undefined }): Citation[] {
+  const from = [...(reworked.citations ?? [])];
+  if (!from.length || !rework.trim()) return [];
+  const [to, was] = [detectLanguage(rework), detectLanguage(reworked.content)];
+  if (to && was && to !== was) return from;
+  const said = [...evidenceTerms(rework)];
+  return said.length && takenFrom(said, [reworked.content]) ? from : [];
+}
+
+const MARKS = /\s?\[(\d{1,2}(?:\s*[,\u060C]\s*\d{1,2})*)\]/g;
+
+/** The answer without the [n] marks that open no chip under it ("removed from office [4]." with no SOURCES, round 134I). */
+export function withoutStrayMarkers(answer: string, citations: readonly Pick<Citation, "n">[]): string {
+  const known = new Set(citations.map((c) => c.n));
+  return answer.replace(MARKS, (mark, list: string) => {
+    const parts = list.split(/[,\u060C]/).map((p) => p.trim());
+    const kept = parts.filter((p) => known.has(Number(p)));
+    if (kept.length === parts.length) return mark;
+    return kept.length ? `${mark.startsWith("[") ? "" : mark[0]}[${kept.join(", ")}]` : "";
+  });
 }

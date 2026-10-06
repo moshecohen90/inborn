@@ -110,7 +110,7 @@ describe("round 130 · files attached and nothing matched: the answer never says
   });
 
   it("the chat replaces such an answer only when no passage and no page picture stood behind it", () => {
-    expect(chat).toContain("if (!ragUsed.length && !existingMessageId && !familySafeReplaced && docs.documents.length > 0 && !messages.some((m) => m.images?.length) && claimsFileContent(reply)) {");
+    expect(chat).toContain("if (!ragUsed.length && !citations?.length && !existingMessageId && !familySafeReplaced && docs.documents.length > 0 && !messages.some((m) => m.images?.length) && claimsFileContent(reply)) {");
     expect(chat).toMatch(/claimsFileContent\(reply\)\) \{\s*reply = t\("documents\.opener\.nothingRelevant"\);/);
   });
 });

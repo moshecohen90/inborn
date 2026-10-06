@@ -1,0 +1,1232 @@
+{
+  "runId": "b1-rework-sources-instant-muxam0xq",
+  "startedAt": "2026-10-06T23:11:28.720Z",
+  "finishedAt": "2026-10-06T23:15:54.574Z",
+  "ok": true,
+  "passed": 49,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 166,
+      "detail": "/vault"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 10001,
+      "detail": "10000 ms"
+    },
+    {
+      "i": 2,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 161,
+      "detail": "/"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "open-chats appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "open-chats ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 6,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 7,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 8,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 10,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5002,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 11,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 167,
+      "detail": "attach: constitution-9pages.pdf"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 60016,
+      "detail": "60000 ms"
+    },
+    {
+      "i": 13,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1903,
+      "detail": "i01-attached"
+    },
+    {
+      "i": 14,
+      "op": "type",
+      "ok": true,
+      "ms": 164,
+      "detail": "composer-input = 12 chars"
+    },
+    {
+      "i": 15,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5002,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 17,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 121915,
+      "detail": "stop gone"
+    },
+    {
+      "i": 18,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3016,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 19,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1907,
+      "detail": "i02-summary"
+    },
+    {
+      "i": 20,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI This file, \"constitution-9pages.pdf,\" is a United States Constitutional document detailing the structure of the legislative and executive branches. Its main points are: • Legislative: The Senate selects Senators (6-year terms via writs); Representatives are apportioned by population (free service + bound). • Executive: The President elects himself from states, requires at least 35 years of age; serves four-year terms with a VP chosen to ensure a majority. No state imposes duties/taxes on imports/exports without Congressional consent. • Treason & Taxation: Treason is defined as levying war or aiding enemies; no person can be convicted unless there are two witnesses to the act or a confession in court, and no tax may be imposed on import unless it does not exceed $10 per person (Section 9). No \"Attainder of Treason\" shall pass without the consent of other States. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better. SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This file, \"constitution-9pages.pdf,\" is a United States Constitutional document detailing the structure of the legislative and executive branches. Its main points are: • Legislative: The Senate selects Senators (6-year terms via writs); Representatives are apportioned by population (free service + bound). • Executive: The President elects himself from states, requires at least 35 years of age; serves four-year terms with a VP chosen to ensure a majority. No state imposes duties/taxes on imports/exports without Congressional consent. • Treason & Taxation: Treason is defined as levying war or aiding enemies; no person can be convicted unless there are two witnesses to the act or a confession in court, and no tax may be imposed on import unless it does not exceed $10 per person (Section 9). No \"Attainder of Treason\" shall pass without the consent of other States. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "model-advice",
+          "text": "FAST is better at documents than INSTANT. SHARP is the best here for Documents · 2.74 GB PRO Switch to FAST Not now"
+        },
+        {
+          "testID": "model-advice-reason",
+          "text": "FAST is better at documents than INSTANT."
+        },
+        {
+          "testID": "model-advice-best",
+          "text": "SHARP is the best here for Documents · 2.74 GB PRO",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-best-pro",
+          "text": "PRO"
+        },
+        {
+          "testID": "model-advice-switch",
+          "text": "Switch to FAST",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-not-now",
+          "text": "Not now",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muxamek1-1-rd0tctpr",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "i02-summary"
+    },
+    {
+      "i": 21,
+      "op": "type",
+      "ok": true,
+      "ms": 160,
+      "detail": "composer-input = 6 chars"
+    },
+    {
+      "i": 22,
+      "op": "send",
+      "ok": true,
+      "ms": 164,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5017,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 24,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2918,
+      "detail": "stop gone"
+    },
+    {
+      "i": 25,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3000,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 26,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1904,
+      "detail": "i03-thanks"
+    },
+    {
+      "i": 27,
+      "op": "dump",
+      "ok": true,
+      "ms": 0,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI This file, \"constitution-9pages.pdf,\" is a United States Constitutional document detailing the structure of the legislative and executive branches. Its main points are: • Legislative: The Senate selects Senators (6-year terms via writs); Representatives are apportioned by population (free service + bound). • Executive: The President elects himself from states, requires at least 35 years of age; serves four-year terms with a VP chosen to ensure a majority. No state imposes duties/taxes on imports/exports without Congressional consent. • Treason & Taxation: Treason is defined as levying war or aiding enemies; no person can be convicted unless there are two witnesses to the act or a confession in court, and no tax may be imposed on import unless it does not exceed $10 per person (Section 9). No \"Attainder of Treason\" shall pass without the consent of other States. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better. SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This file, \"constitution-9pages.pdf,\" is a United States Constitutional document detailing the structure of the legislative and executive branches. Its main points are: • Legislative: The Senate selects Senators (6-year terms via writs); Representatives are apportioned by population (free service + bound). • Executive: The President elects himself from states, requires at least 35 years of age; serves four-year terms with a VP chosen to ensure a majority. No state imposes duties/taxes on imports/exports without Congressional consent. • Treason & Taxation: Treason is defined as levying war or aiding enemies; no person can be convicted unless there are two witnesses to the act or a confession in court, and no tax may be imposed on import unless it does not exceed $10 per person (Section 9). No \"Attainder of Treason\" shall pass without the consent of other States. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muxamek1-1-rd0tctpr",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "i03-thanks"
+    },
+    {
+      "i": 28,
+      "op": "type",
+      "ok": true,
+      "ms": 163,
+      "detail": "composer-input = 7 chars"
+    },
+    {
+      "i": 29,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 30,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5002,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 31,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2366,
+      "detail": "stop gone"
+    },
+    {
+      "i": 32,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3017,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 33,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 956,
+      "detail": "i04-shorter"
+    },
+    {
+      "i": 34,
+      "op": "dump",
+      "ok": true,
+      "ms": 3,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI This file, \"constitution-9pages.pdf,\" is a United States Constitutional document detailing the structure of the legislative and executive branches. Its main points are: • Legislative: The Senate selects Senators (6-year terms via writs); Representatives are apportioned by population (free service + bound). • Executive: The President elects himself from states, requires at least 35 years of age; serves four-year terms with a VP chosen to ensure a majority. No state imposes duties/taxes on imports/exports without Congressional consent. • Treason & Taxation: Treason is defined as levying war or aiding enemies; no person can be convicted unless there are two witnesses to the act or a confession in court, and no tax may be imposed on import unless it does not exceed $10 per person (Section 9). No \"Attainder of Treason\" shall pass without the consent of other States. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better. SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This file, \"constitution-9pages.pdf,\" is a United States Constitutional document detailing the structure of the legislative and executive branches. Its main points are: • Legislative: The Senate selects Senators (6-year terms via writs); Representatives are apportioned by population (free service + bound). • Executive: The President elects himself from states, requires at least 35 years of age; serves four-year terms with a VP chosen to ensure a majority. No state imposes duties/taxes on imports/exports without Congressional consent. • Treason & Taxation: Treason is defined as levying war or aiding enemies; no person can be convicted unless there are two witnesses to the act or a confession in court, and no tax may be imposed on import unless it does not exceed $10 per person (Section 9). No \"Attainder of Treason\" shall pass without the consent of other States. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muxamek1-1-rd0tctpr",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "i04-shorter"
+    },
+    {
+      "i": 35,
+      "op": "type",
+      "ok": true,
+      "ms": 156,
+      "detail": "composer-input = 23 chars"
+    },
+    {
+      "i": 36,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 37,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5018,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 38,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "stop gone"
+    },
+    {
+      "i": 39,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3016,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 40,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 956,
+      "detail": "i05-bullets"
+    },
+    {
+      "i": 41,
+      "op": "dump",
+      "ok": true,
+      "ms": 3,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI This file, \"constitution-9pages.pdf,\" is a United States Constitutional document detailing the structure of the legislative and executive branches. Its main points are: • Legislative: The Senate selects Senators (6-year terms via writs); Representatives are apportioned by population (free service + bound). • Executive: The President elects himself from states, requires at least 35 years of age; serves four-year terms with a VP chosen to ensure a majority. No state imposes duties/taxes on imports/exports without Congressional consent. • Treason & Taxation: Treason is defined as levying war or aiding enemies; no person can be convicted unless there are two witnesses to the act or a confession in court, and no tax may be imposed on import unless it does not exceed $10 per person (Section 9). No \"Attainder of Treason\" shall pass without the consent of other States. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better. SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This file, \"constitution-9pages.pdf,\" is a United States Constitutional document detailing the structure of the legislative and executive branches. Its main points are: • Legislative: The Senate selects Senators (6-year terms via writs); Representatives are apportioned by population (free service + bound). • Executive: The President elects himself from states, requires at least 35 years of age; serves four-year terms with a VP chosen to ensure a majority. No state imposes duties/taxes on imports/exports without Congressional consent. • Treason & Taxation: Treason is defined as levying war or aiding enemies; no person can be convicted unless there are two witnesses to the act or a confession in court, and no tax may be imposed on import unless it does not exceed $10 per person (Section 9). No \"Attainder of Treason\" shall pass without the consent of other States. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muxamek1-1-rd0tctpr",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "i05-bullets"
+    },
+    {
+      "i": 42,
+      "op": "type",
+      "ok": true,
+      "ms": 161,
+      "detail": "composer-input = 36 chars"
+    },
+    {
+      "i": 43,
+      "op": "send",
+      "ok": true,
+      "ms": 163,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 44,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5002,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 45,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 11367,
+      "detail": "stop gone"
+    },
+    {
+      "i": 46,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3014,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 47,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1909,
+      "detail": "i06-pancakes"
+    },
+    {
+      "i": 48,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI This file, \"constitution-9pages.pdf,\" is a United States Constitutional document detailing the structure of the legislative and executive branches. Its main points are: • Legislative: The Senate selects Senators (6-year terms via writs); Representatives are apportioned by population (free service + bound). • Executive: The President elects himself from states, requires at least 35 years of age; serves four-year terms with a VP chosen to ensure a majority. No state imposes duties/taxes on imports/exports without Congressional consent. • Treason & Taxation: Treason is defined as levying war or aiding enemies; no person can be convicted unless there are two witnesses to the act or a confession in court, and no tax may be imposed on import unless it does not exceed $10 per person (Section 9). No \"Attainder of Treason\" shall pass without the consent of other States. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better. SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This file, \"constitution-9pages.pdf,\" is a United States Constitutional document detailing the structure of the legislative and executive branches. Its main points are: • Legislative: The Senate selects Senators (6-year terms via writs); Representatives are apportioned by population (free service + bound). • Executive: The President elects himself from states, requires at least 35 years of age; serves four-year terms with a VP chosen to ensure a majority. No state imposes duties/taxes on imports/exports without Congressional consent. • Treason & Taxation: Treason is defined as levying war or aiding enemies; no person can be convicted unless there are two witnesses to the act or a confession in court, and no tax may be imposed on import unless it does not exceed $10 per person (Section 9). No \"Attainder of Treason\" shall pass without the consent of other States. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "none-matched",
+          "text": "Nothing in your documents matched this question. Answered without them."
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muxamek1-1-rd0tctpr",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "i06-pancakes"
+    }
+  ],
+  "errors": [
+    "console.log: [chat] plain=acknowledgement window=3/3 maxTokens=224",
+    "console.log: [chat] plain=follow-up window=3/5 maxTokens=1024",
+    "console.log: [chat] plain=follow-up window=7/7 maxTokens=1024"
+  ]
+}

@@ -1,0 +1,218 @@
+{
+  "runId": "irework-sources-instant",
+  "_": "instant, the constitution fixture and the index model: summary, Thanks, shorter, make it 3 bullet points (each with the summary's chips, never the not-found line, every [n] resolving), then a pancake recipe (no chip). The shell writes `use instant` to Documents/dev-vault.txt and copies the fixture into Documents first.",
+  "steps": [
+    {
+      "op": "deeplink",
+      "url": "/vault"
+    },
+    {
+      "op": "sleep",
+      "ms": 10000
+    },
+    {
+      "op": "deeplink",
+      "url": "/"
+    },
+    {
+      "op": "waitFor",
+      "testID": "open-chats",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "press",
+      "testID": "open-chats"
+    },
+    {
+      "op": "waitFor",
+      "testID": "new-chat",
+      "timeoutMs": 15000
+    },
+    {
+      "op": "press",
+      "testID": "new-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "start-chat",
+      "timeoutMs": 15000
+    },
+    {
+      "op": "press",
+      "testID": "start-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 5000
+    },
+    {
+      "op": "devPrompt",
+      "lines": [
+        "attach: constitution-9pages.pdf"
+      ]
+    },
+    {
+      "op": "sleep",
+      "ms": 60000
+    },
+    {
+      "op": "screenshot",
+      "name": "i01-attached"
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "Summarize it"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "sleep",
+      "ms": 5000
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 900000
+    },
+    {
+      "op": "sleep",
+      "ms": 3000
+    },
+    {
+      "op": "screenshot",
+      "name": "i02-summary"
+    },
+    {
+      "op": "dump",
+      "name": "i02-summary"
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "Thanks"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "sleep",
+      "ms": 5000
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 900000
+    },
+    {
+      "op": "sleep",
+      "ms": 3000
+    },
+    {
+      "op": "screenshot",
+      "name": "i03-thanks"
+    },
+    {
+      "op": "dump",
+      "name": "i03-thanks"
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "shorter"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "sleep",
+      "ms": 5000
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 900000
+    },
+    {
+      "op": "sleep",
+      "ms": 3000
+    },
+    {
+      "op": "screenshot",
+      "name": "i04-shorter"
+    },
+    {
+      "op": "dump",
+      "name": "i04-shorter"
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "make it 3 bullet points"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "sleep",
+      "ms": 5000
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 900000
+    },
+    {
+      "op": "sleep",
+      "ms": 3000
+    },
+    {
+      "op": "screenshot",
+      "name": "i05-bullets"
+    },
+    {
+      "op": "dump",
+      "name": "i05-bullets"
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "Give me a quick recipe for pancakes."
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "sleep",
+      "ms": 5000
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 900000
+    },
+    {
+      "op": "sleep",
+      "ms": 3000
+    },
+    {
+      "op": "screenshot",
+      "name": "i06-pancakes"
+    },
+    {
+      "op": "dump",
+      "name": "i06-pancakes"
+    }
+  ]
+}
