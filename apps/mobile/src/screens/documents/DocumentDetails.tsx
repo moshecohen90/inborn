@@ -7,6 +7,7 @@ import { formatBytes, type DocumentRecord } from "@inborn/core";
 import { kindLabel } from "./DocumentRow";
 import { font } from "../../services/type";
 import { useOpenSheet } from "../../lib/openSheets";
+import { nameLine } from "../../lib/fileNames";
 
 export interface DocumentDetailsProps {
   doc: DocumentRecord;
@@ -38,7 +39,7 @@ export function DocumentDetails({ doc, theme, ocrEngine, onClose, onAsk, onDelet
         <Pressable testID="doc-details" style={[styles.sheet, panelStyle, { backgroundColor: panelColor(theme.surface1), borderColor: theme.border }]} onPress={() => undefined}>
           <GlassFill />
           <Text style={[styles.label, { color: theme.text3 }]}>{t("documents.details.title")}</Text>
-          <Text style={[styles.name, { color: theme.text }]}>{doc.name}</Text>
+          <Text style={[styles.name, { color: theme.text }, nameLine(doc.name)]}>{doc.name}</Text>
           <ScrollView style={styles.scroll}>
             {rows.map(([k, v]) => (
               <View key={k} style={[styles.row, { borderColor: theme.border }]}>

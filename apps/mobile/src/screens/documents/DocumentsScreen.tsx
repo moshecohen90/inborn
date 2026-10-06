@@ -33,6 +33,7 @@ import { font } from "../../services/type";
 import { Actions, Toggle } from "../../components/shell/primitives";
 import { ProTag } from "../../components/chat/Sheet";
 import { installFailureText } from "../../vault/failureText";
+import { isolateName, nameLine } from "../../lib/fileNames";
 
 export interface DocumentsScreenProps {
   onClose: () => void;
@@ -135,7 +136,7 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
       if (!picked) return;
       const name = pickedName(picked.uri, picked.name);
       const kind = sniffPicked(picked.uri, name);
-      if (kind === "image") return setToast(t("documents.drop.photo", { names: name }));
+      if (kind === "image") return setToast(t("documents.drop.photo", { names: isolateName(name) }));
       /* Excel / HTML are Work (§7.3 row 8): the file is not copied in; the card below is the value moment (§12.3). */
       const verdict = fileIntake(tier, kind, state.documents.length);
       if (proOverride === undefined && verdict.kind === "paywall") {
@@ -170,8 +171,8 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
         else if (plan.rejected.some((r) => r.reason === "over-free-limit")) onUnlock?.("document");
         const photos = plan.rejected.filter((r) => r.reason === "photo");
         const others = plan.rejected.filter((r) => r.reason !== "photo");
-        if (others.length) setToast(t("documents.drop.skipped", { names: others.map((r) => r.name).join(", ") }));
-        else if (photos.length) setToast(t("documents.drop.photo", { names: photos.map((r) => r.name).join(", ") }));
+        if (others.length) setToast(t("documents.drop.skipped", { names: others.map((r) => isolateName(r.name)).join(", ") }));
+        else if (photos.length) setToast(t("documents.drop.photo", { names: photos.map((r) => isolateName(r.name)).join(", ") }));
       } finally {
         importing.current = false;
       }
@@ -308,7 +309,7 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
       </View>
       {toast ? (
         <View style={[styles.toast, { backgroundColor: theme.surface2, borderColor: theme.border }]}>
-          <Text style={[styles.body, { color: theme.text }]}>{toast}</Text>
+          <Text style={[styles.body, { color: theme.text }, nameLine(toast)]}>{toast}</Text>
         </View>
       ) : null}
       {details ? (

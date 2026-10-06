@@ -20,6 +20,7 @@ import { useEntitlement } from "../../licence";
 import { ProTag } from "../../components/chat/Sheet";
 import { reindexNotice, type AnsweredMidReindex } from "../../lib/reindexNotice";
 import { useDocuments } from "../../documents/hooks";
+import { isolateName, nameLine } from "../../lib/fileNames";
 
 export interface AskDocumentsProps {
   docs: DocumentRecord[];
@@ -193,7 +194,7 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult, str
   }, []);
 
   const busy = phase.kind === "loading" || phase.kind === "retrieving" || phase.kind === "answering";
-  const names = joinList(i18n.language, docs.map((d) => d.name));
+  const names = joinList(i18n.language, docs.map((d) => isolateName(d.name)));
   const insets = useSafeAreaInsets();
   const lift = useKeyboardLift();
   useOpenSheet(true, onClose);
@@ -207,7 +208,7 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult, str
           <Text style={[styles.label, { color: theme.text3 }]}>{t("documents.ask.title")}</Text>
           <View style={styles.headerBtn} />
         </View>
-        <Text numberOfLines={2} style={[styles.scope, { color: theme.text2 }]}>
+        <Text numberOfLines={2} style={[styles.scope, { color: theme.text2 }, nameLine(names)]}>
           {t("documents.ask.scope", { count: docs.length, names })}
         </Text>
         <View style={[styles.strictRow, { borderColor: theme.border }]}>

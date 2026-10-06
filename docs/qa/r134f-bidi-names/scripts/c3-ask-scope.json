@@ -1,0 +1,34 @@
+{
+  "runId": "c3-ask-scope",
+  "_": "The Documents screen: select קובץ.pdf (its id from c2's dump) and open Ask; the scope line names the file.",
+  "steps": [
+    {
+      "op": "press",
+      "testID": "doc-select-muws0vgd-1-chv8vlfq"
+    },
+    {
+      "op": "press",
+      "testID": "documents-ask-selected"
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-sheet",
+      "timeoutMs": 10000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "05-ask-scope"
+    },
+    {
+      "op": "dump",
+      "name": "05-ask-scope"
+    },
+    {
+      "op": "cleanup"
+    }
+  ]
+}

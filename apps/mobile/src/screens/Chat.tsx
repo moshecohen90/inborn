@@ -163,6 +163,7 @@ import { FREE_PAGE_CAP as FREE_PAGE_CAP_SHARE, RAM_ATTACH_PREFIX, sharedName, sn
 import { deviceNoun } from "../lib/deviceNoun";
 import { useAppServices } from "../services/AppServices";
 import { useUpdateHold } from "../web/updateHold";
+import { isolateName, nameLine } from "../lib/fileNames";
 
 type Row = AssistantRow;
 type Status = { kind: "loading" } | { kind: "ready" } | { kind: "error"; error: string; missing?: boolean };
@@ -1223,7 +1224,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
             continue;
           }
           const doc = await library.importFile(f.uri, name, { pageCap: tier === "free" ? FREE_PAGE_CAP_SHARE : undefined, incognito });
-          if (doc.status === "failed" || doc.status === "empty") flash(t("quick.fileFailed", { name }));
+          if (doc.status === "failed" || doc.status === "empty") flash(t("quick.fileFailed", { name: isolateName(name) }));
           else {
             docs.attach(doc.id);
             attached++;
@@ -1841,9 +1842,9 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       {attachedNames.length || docs.strict ? (
         <View testID="attached-docs" style={styles.chips}>
           {docs.documents.map((d) => (
-            <Pressable key={d.id} testID={`attached-chip-${d.id}`} accessibilityRole="button" accessibilityLabel={t("chat.attach.detach", { name: d.name })} onPress={() => docs.detach(d.id)} style={[shape.chip, styles.docChip, { backgroundColor: theme.surface2, borderColor: theme.accent }]}>
+            <Pressable key={d.id} testID={`attached-chip-${d.id}`} accessibilityRole="button" accessibilityLabel={t("chat.attach.detach", { name: isolateName(d.name) })} onPress={() => docs.detach(d.id)} style={[shape.chip, styles.docChip, { backgroundColor: theme.surface2, borderColor: theme.accent }]}>
               <Icon name="paperclip" size={12} color={theme.accent} />
-              <Text numberOfLines={1} style={[type.caption, styles.docChipText, { color: theme.text }]}>
+              <Text numberOfLines={1} style={[type.caption, styles.docChipText, { color: theme.text }, nameLine(d.name)]}>
                 {d.name}
               </Text>
               <Icon name="x" size={12} color={theme.text3} />

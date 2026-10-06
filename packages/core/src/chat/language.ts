@@ -15,6 +15,13 @@ export function directionOf(text: string): Direction {
   return "ltr";
 }
 
+export const hasRtl = (text: string): boolean => RTL_RANGE.test(text);
+
+/** A file name set inside other text, held in LRI…PDI: FSI would make "קובץ.pdf" an RTL run reading "pdf.קובץ", and no isolate lets ".pdf" or a neighbour's words cross it. */
+export function isolateName(name: string): string {
+  return hasRtl(name) && !name.startsWith("\u2066") ? `\u2066${name}\u2069` : name;
+}
+
 export type Script = "hebrew" | "arabic" | "cyrillic" | "cjk" | "japanese" | "korean" | "greek" | "latin" | "other";
 
 /** Dominant script by character count, ignoring digits and punctuation. */

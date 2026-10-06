@@ -1,0 +1,574 @@
+{
+  "runId": "c2-hebrew-name-muws0tf1",
+  "startedAt": "2026-10-06T14:31:06.292Z",
+  "finishedAt": "2026-10-06T14:34:26.032Z",
+  "ok": true,
+  "passed": 24,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 163,
+      "detail": "/"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 2,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 166,
+      "detail": "attach: קובץ.pdf"
+    },
+    {
+      "i": 3,
+      "op": "sleep",
+      "ok": true,
+      "ms": 45001,
+      "detail": "45000 ms"
+    },
+    {
+      "i": 4,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1909,
+      "detail": "01-attached-row"
+    },
+    {
+      "i": 5,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "empty-headline",
+          "text": "Nothing leaves this phone."
+        },
+        {
+          "testID": "suggestion-summarize",
+          "text": "Summarize text",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-translate",
+          "text": "Translate",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-draft",
+          "text": "Draft a message",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "קובץ.pdf"
+        },
+        {
+          "testID": "attached-chip-muws0vgd-1-chv8vlfq",
+          "text": "קובץ.pdf",
+          "role": "button",
+          "label": "Remove ⁦קובץ.pdf⁩ from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "01-attached-row"
+    },
+    {
+      "i": 6,
+      "op": "type",
+      "ok": true,
+      "ms": 158,
+      "detail": "composer-input = 12 chars"
+    },
+    {
+      "i": 7,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 8,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-pages appeared"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 125335,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 12750,
+      "detail": "stop gone"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3001,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 12,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 639,
+      "detail": "02-summary-chips"
+    },
+    {
+      "i": 13,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI The document is a constitutional excerpt summarizing the U.S. government's legislative and executive branches, specifically focusing on powers regarding the House of Representatives (elected by states), the Senate (representing state representation), their joint control over revenue bills requiring two-thirds agreement, and the President's authority to sign laws or reject them with objections. It also details the three-tier system: Articles, Treaties, and Laws, where no religious test is required for office qualification and supreme law prevails over all others. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better. SOURCES ⁦קובץ.pdf⁩ · p.1–2 ⁦קובץ.pdf⁩ · p.3–4 ⁦קובץ.pdf⁩ · p.5–6 ⁦קובץ.pdf⁩ · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The document is a constitutional excerpt summarizing the U.S. government's legislative and executive branches, specifically focusing on powers regarding the House of Representatives (elected by states), the Senate (representing state representation), their joint control over revenue bills requiring two-thirds agreement, and the President's authority to sign laws or reject them with objections. It also details the three-tier system: Articles, Treaties, and Laws, where no religious test is required for office qualification and supreme law prevails over all others. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES ⁦קובץ.pdf⁩ · p.1–2 ⁦קובץ.pdf⁩ · p.3–4 ⁦קובץ.pdf⁩ · p.5–6 ⁦קובץ.pdf⁩ · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "⁦קובץ.pdf⁩ · p.1–2",
+          "role": "button",
+          "label": "Open ⁦קובץ.pdf⁩ · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "⁦קובץ.pdf⁩ · p.3–4",
+          "role": "button",
+          "label": "Open ⁦קובץ.pdf⁩ · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "⁦קובץ.pdf⁩ · p.5–6",
+          "role": "button",
+          "label": "Open ⁦קובץ.pdf⁩ · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "⁦קובץ.pdf⁩ · p.7–9",
+          "role": "button",
+          "label": "Open ⁦קובץ.pdf⁩ · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "model-advice",
+          "text": "SHARP is better at documents than INSTANT. Install SHARP · 2.74 GB Not now"
+        },
+        {
+          "testID": "model-advice-reason",
+          "text": "SHARP is better at documents than INSTANT."
+        },
+        {
+          "testID": "model-advice-install",
+          "text": "Install SHARP · 2.74 GB",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-not-now",
+          "text": "Not now",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "קובץ.pdf"
+        },
+        {
+          "testID": "attached-chip-muws0vgd-1-chv8vlfq",
+          "text": "קובץ.pdf",
+          "role": "button",
+          "label": "Remove ⁦קובץ.pdf⁩ from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "02-summary-chips"
+    },
+    {
+      "i": 14,
+      "op": "press",
+      "ok": true,
+      "ms": 158,
+      "detail": "attach ← onPress"
+    },
+    {
+      "i": 15,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "attach-sheet appeared"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 17,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2839,
+      "detail": "03-attach-sheet"
+    },
+    {
+      "i": 18,
+      "op": "press",
+      "ok": true,
+      "ms": 160,
+      "detail": "attach-sheet-close ← onPress"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1017,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 20,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 150,
+      "detail": "/documents"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3018,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 22,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1591,
+      "detail": "04-documents"
+    },
+    {
+      "i": 23,
+      "op": "dump",
+      "ok": true,
+      "ms": 0,
+      "nodes": [
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file 1 document · 55.6 KB on this device Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. DOCUMENT INDEX MODEL Exact-word search works now. The document index model (468 MB) adds search by meaning: it finds passages worded differently from your question, or in another language. Worth it for long files. It runs here and never uploads a word. Install · 468 MB קובץ.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages Select documents to ask Indexed on this device"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "embedder-card",
+          "text": "DOCUMENT INDEX MODEL Exact-word search works now. The document index model (468 MB) adds search by meaning: it finds passages worded differently from your question, or in another language. Worth it for long files. It runs here and never uploads a word. Install · 468 MB"
+        },
+        {
+          "testID": "embedder-install",
+          "text": "Install · 468 MB",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muws0vgd-1-chv8vlfq",
+          "text": "קובץ.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muws0vgd-1-chv8vlfq",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muws0vgd-1-chv8vlfq",
+          "text": "Indexed · 45 passages"
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Select documents to ask",
+          "role": "button",
+          "disabled": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "04-documents"
+    }
+  ],
+  "errors": []
+}
