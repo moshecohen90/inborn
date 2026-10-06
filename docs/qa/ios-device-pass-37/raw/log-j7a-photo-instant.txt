@@ -1,0 +1,60 @@
+13:53:32 pushing 53 steps as j7a-photo-instant
+13:53:32 inbox missing — launching once to create it
+13:53:59 shot J7-01-thumbnail-chip
+13:54:05 shot J7-02-sent-bubble
+13:54:11 shot J7-02-answer
+13:54:14 shot J7-02-ledger
+13:54:18 ok     0 deeplink   /chats
+13:54:18 ok     1 waitFor    new-chat appeared
+13:54:18 ok     2 press      new-chat ← onPress
+13:54:18 ok     3 waitFor    start-chat appeared
+13:54:18 ok     4 press      start-chat ← onPress
+13:54:18 ok     5 waitFor    composer-input appeared
+13:54:18 ok     6 waitFor    Loading gone
+13:54:18 ok     7 sleep      1500 ms
+13:54:18 ok     8 value      INSTANT
+13:54:18 ok     9 assertText "INSTANT" present
+13:54:18 ok    10 devPrompt  attach: בית קפה הגינה תפריט.jpg
+13:54:18 ok    11 waitFor    pending-images appeared
+13:54:18 ok    12 sleep      8000 ms
+13:54:18 ok    13 value      Free: one photo per message
+13:54:18 ok    14 waitFor    attached-docs gone
+13:54:18 ok    15 screenshot J7-01-thumbnail-chip
+13:54:18 ok    16 type       composer-input = 16 chars
+13:54:18 ok    17 send       send ← onPress
+13:54:18 ok    18 waitFor    assistant-text appeared
+13:54:18 ok    19 value      
+13:54:18 ok    20 screenshot J7-02-sent-bubble
+13:54:18 ok    21 waitFor    stop gone
+13:54:18 ok    22 sleep      1500 ms
+13:54:18 ok    23 value      The image displays a chalkboard menu on a brick wall, listing various food items and their prices for differen
+13:54:18 ok    24 sleep      2000 ms
+13:54:18 ok    25 waitFor    docs-hold gone
+13:54:18 ok    26 waitFor    vision-hold gone
+13:54:18 ok    27 assertText "cannot see" absent
+13:54:18 ok    28 assertText "can't see" absent
+13:54:18 ok    29 assertText "cannot physically see" absent
+13:54:18 ok    30 assertText "see images" absent
+13:54:18 ok    31 assertText "text-based" absent
+13:54:18 ok    32 assertText "unable to see" absent
+13:54:18 ok    33 assertText "not able to see" absent
+13:54:18 ok    34 assertText "don't have eyes" absent
+13:54:18 ok    35 assertText "The request specifies" absent
+13:54:18 ok    36 assertText "I will focus" absent
+13:54:18 ok    37 assertText "as an AI" absent
+13:54:18 ok    38 assertText "NOT_FOUND" absent
+13:54:18 ok    39 assertText "<<<" absent
+13:54:18 ok    40 assertText "The user is asking" absent
+13:54:18 ok    41 assertText "Your documents don't mention this" absent
+13:54:18 ok    42 assertText "is a scan. Run OCR" absent
+13:54:18 ok    43 waitFor    model-advice appeared
+13:54:18 ok    44 value      FAST sees pictures better than INSTANT.
+13:54:18 ok    45 value      Install FAST · 1.28 GB
+13:54:18 ok    46 assertText "FAST sees pictures better than INSTANT" present
+13:54:18 ok    47 screenshot J7-02-answer
+13:54:18 ok    48 dump       J7-02-answer
+13:54:18 ok    49 press      ledger-toggle ← onPress
+13:54:18 ok    50 sleep      1200 ms
+13:54:18 ok    51 value      MODEL INSTANT QUANT Q4_K CONTEXT 218 / 4096 MS / TOKEN 32 ms More detail · PRO
+13:54:18 ok    52 screenshot J7-02-ledger
+13:54:18 53 passed, 0 failed, 4 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-37/docs/qa/ios-device-pass-37/screens

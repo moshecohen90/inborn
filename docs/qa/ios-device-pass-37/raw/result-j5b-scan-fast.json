@@ -1,0 +1,521 @@
+{
+  "runId": "j5b-scan-fast",
+  "startedAt": "2026-10-06T11:08:53.113Z",
+  "finishedAt": "2026-10-06T11:09:24.438Z",
+  "ok": true,
+  "passed": 48,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 151,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1508,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 9,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"FAST\" present"
+    },
+    {
+      "i": 10,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 165,
+      "detail": "attach: sign-scan.pdf"
+    },
+    {
+      "i": 11,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1334,
+      "detail": "attached-docs appeared"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 8000,
+      "detail": "8000 ms"
+    },
+    {
+      "i": 13,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "sign-scan.pdf",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "sign-scan.pdf"
+    },
+    {
+      "i": 14,
+      "op": "type",
+      "ok": true,
+      "ms": 166,
+      "detail": "composer-input = 16 chars"
+    },
+    {
+      "i": 15,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 16,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 5335,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 17,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 18,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3490,
+      "detail": "J5-05-sent-bubble"
+    },
+    {
+      "i": 19,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "stop gone"
+    },
+    {
+      "i": 20,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1507,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 21,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The image displays a weathered street sign mounted on a yellow-painted wooden wall, featuring Cyrillic text in two rows: \"КАРАСАЕВ\" (Karasaev) in white on the blue upper section and \"көчөсу\" (kəčəsü) in blue on the white lower section. A green pipe runs vertically to the left of the sign, which appears to be an old or rural location based on its style and condition.",
+        "props": {
+          "source": "The image displays a weathered street sign mounted on a yellow-painted wooden wall, featuring Cyrillic text in two rows: \"КАРАСАЕВ\" (Karasaev) in white on the blue upper section and \"көчөсу\" (kəčəsü) in blue on the white lower section. A green pipe runs vertically to the left of the sign, which appears to be an old or rural location based on its style and condition.",
+          "disabled": false
+        }
+      },
+      "detail": "The image displays a weathered street sign mounted on a yellow-painted wooden wall, featuring Cyrillic text in two rows: \"КАРАСАЕВ\" (Karasaev) in white on the blue upper section and \"көчөсу\" (kəčəsü) "
+    },
+    {
+      "i": 22,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2014,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 23,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 5,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 24,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "vision-hold gone"
+    },
+    {
+      "i": 25,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"cannot see\" absent"
+    },
+    {
+      "i": 26,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"can't see\" absent"
+    },
+    {
+      "i": 27,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"cannot physically see\" absent"
+    },
+    {
+      "i": 28,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"see images\" absent"
+    },
+    {
+      "i": 29,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"text-based\" absent"
+    },
+    {
+      "i": 30,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"unable to see\" absent"
+    },
+    {
+      "i": 31,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"not able to see\" absent"
+    },
+    {
+      "i": 32,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"don't have eyes\" absent"
+    },
+    {
+      "i": 33,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"The request specifies\" absent"
+    },
+    {
+      "i": 34,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"I will focus\" absent"
+    },
+    {
+      "i": 35,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"as an AI\" absent"
+    },
+    {
+      "i": 36,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"NOT_FOUND\" absent"
+    },
+    {
+      "i": 37,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"<<<\" absent"
+    },
+    {
+      "i": 38,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"The user is asking\" absent"
+    },
+    {
+      "i": 39,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Your documents don't mention this\" absent"
+    },
+    {
+      "i": 40,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"is a scan. Run OCR\" absent"
+    },
+    {
+      "i": 41,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "model-advice gone"
+    },
+    {
+      "i": 42,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3495,
+      "detail": "J5-05-answer"
+    },
+    {
+      "i": 43,
+      "op": "dump",
+      "ok": true,
+      "ms": 10,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What do you see?",
+          "role": "text"
+        },
+        {
+          "testID": "user-images",
+          "text": ""
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The image displays a weathered street sign mounted on a yellow-painted wooden wall, featuring Cyrillic text in two rows: \"КАРАСАЕВ\" (Karasaev) in white on the blue upper section and \"көчөсу\" (kəčəsü) in blue on the white lower section. A green pipe runs vertically to the left of the sign, which appears to be an old or rural location based on its style and condition. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The image displays a weathered street sign mounted on a yellow-painted wooden wall, featuring Cyrillic text in two rows: \"КАРАСАЕВ\" (Karasaev) in white on the blue upper section and \"көчөсу\" (kəčəsü) in blue on the white lower section. A green pipe runs vertically to the left of the sign, which appears to be an old or rural location based on its style and condition."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "sign-scan.pdf"
+        },
+        {
+          "testID": "attached-chip-muwk4y0o-1-33spahni",
+          "text": "sign-scan.pdf",
+          "role": "button",
+          "label": "Remove sign-scan.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J5-05-answer"
+    },
+    {
+      "i": 44,
+      "op": "press",
+      "ok": true,
+      "ms": 161,
+      "detail": "ledger-toggle ← onPress"
+    },
+    {
+      "i": 45,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1204,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 46,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "MODEL FAST QUANT Q4_K CONTEXT 295 / 4096 MS / TOKEN 66 ms More detail · PRO",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "MODEL FAST QUANT Q4_K CONTEXT 295 / 4096 MS / TOKEN 66 ms More detail · PRO"
+    },
+    {
+      "i": 47,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2253,
+      "detail": "J5-05-ledger"
+    }
+  ],
+  "errors": []
+}

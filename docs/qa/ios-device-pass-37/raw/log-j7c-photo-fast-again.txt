@@ -1,0 +1,42 @@
+14:13:05 pushing 37 steps as j7c-photo-fast-again
+14:13:34 shot J7-04-sent-bubble
+14:13:46 shot J7-04-answer
+14:13:50 shot J7-04-ledger
+14:13:54 ok     0 deeplink   /chats
+14:13:54 ok     1 waitFor    new-chat appeared
+14:13:54 ok     2 press      new-chat ← onPress
+14:13:54 ok     3 waitFor    start-chat appeared
+14:13:54 ok     4 press      start-chat ← onPress
+14:13:54 ok     5 waitFor    composer-input appeared
+14:13:54 ok     6 waitFor    Loading gone
+14:13:54 ok     7 sleep      1500 ms
+14:13:54 ok     8 value      INSTANT
+14:13:54 ok     9 press      model-chip ← onPress
+14:13:54 ok    10 waitFor    model-sheet-use-fast appeared
+14:13:54 ok    11 press      model-sheet-use-fast ← onPress
+14:13:54 ok    12 sleep      3000 ms
+14:13:54 ok    13 waitFor    Loading gone
+14:13:54 ok    14 sleep      1500 ms
+14:13:54 ok    15 value      FAST
+14:13:54 ok    16 assertText "FAST" present
+14:13:54 ok    17 devPrompt  attach: בית קפה הגינה תפריט.jpg
+14:13:54 ok    18 waitFor    pending-images appeared
+14:13:54 ok    19 sleep      8000 ms
+14:13:54 ok    20 value      Free: one photo per message
+14:13:54 ok    21 type       composer-input = 16 chars
+14:13:54 ok    22 send       send ← onPress
+14:13:54 ok    23 waitFor    assistant-text appeared
+14:13:54 ok    24 screenshot J7-04-sent-bubble
+14:13:54 ok    25 waitFor    stop gone
+14:13:54 ok    26 sleep      1500 ms
+14:13:54 ok    27 value      The image displays an outdoor chalkboard menu mounted on a brick wall, likely belonging to The Garden Cafe & H
+14:13:54 ok    28 sleep      2000 ms
+14:13:54 ok    29 value      FAST
+14:13:54 ok    30 value      Slowing down to keep the phone cool SWITCH TO INSTANT
+14:13:54 ok    31 screenshot J7-04-answer
+14:13:54 ok    32 dump       J7-04-answer
+14:13:54 ok    33 press      ledger-toggle ← onPress
+14:13:54 ok    34 sleep      1200 ms
+14:13:54 ok    35 value      MODEL FAST QUANT Q4_K CONTEXT 353 / 4096 MS / TOKEN 78 ms More detail · PRO
+14:13:54 ok    36 screenshot J7-04-ledger
+14:13:54 37 passed, 0 failed, 3 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-37/docs/qa/ios-device-pass-37/screens

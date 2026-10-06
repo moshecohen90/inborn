@@ -1,0 +1,45 @@
+{
+  "runId": "j2-ledger",
+  "startedAt": "2026-10-06T10:51:32.896Z",
+  "finishedAt": "2026-10-06T10:51:37.465Z",
+  "ok": true,
+  "passed": 4,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "press",
+      "ok": true,
+      "ms": 158,
+      "detail": "ledger-toggle ← onPress"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1217,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 2,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "MODEL INSTANT QUANT Q4_K CONTEXT 272 / 4096 MS / TOKEN 32 ms More detail · PRO",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "MODEL INSTANT QUANT Q4_K CONTEXT 272 / 4096 MS / TOKEN 32 ms More detail · PRO"
+    },
+    {
+      "i": 3,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3192,
+      "detail": "J2-02-ledger"
+    }
+  ],
+  "errors": []
+}

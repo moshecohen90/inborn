@@ -1,0 +1,25 @@
+13:54:50 pushing 22 steps as j6-text-hold
+13:55:04 shot J6-01-index-card
+13:55:08 ok     0 deeplink   /chats
+13:55:08 ok     1 waitFor    new-chat appeared
+13:55:08 ok     2 press      new-chat ← onPress
+13:55:08 ok     3 waitFor    start-chat appeared
+13:55:08 ok     4 press      start-chat ← onPress
+13:55:08 ok     5 waitFor    composer-input appeared
+13:55:08 ok     6 waitFor    Loading gone
+13:55:08 ok     7 sleep      1500 ms
+13:55:08 ok     8 value      INSTANT
+13:55:08 ok     9 assertText "INSTANT" present
+13:55:08 ok    10 devPrompt  attach: turbine-report-3pages.pdf
+13:55:08 ok    11 waitFor    attached-docs appeared
+13:55:08 ok    12 sleep      8000 ms
+13:55:08 ok    13 value      turbine-report-3pages.pdf
+13:55:08 ok    14 type       composer-input = 50 chars
+13:55:08 ok    15 send       send ← onPress
+13:55:08 ok    16 waitFor    docs-hold appeared
+13:55:08 ok    17 sleep      1500 ms
+13:55:08 ok    18 value      The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact wo
+13:55:08 ok    19 assertText "468 MB" present
+13:55:08 ok    20 screenshot J6-01-index-card
+13:55:08 ok    21 dump       J6-01-index-card
+13:55:08 22 passed, 0 failed, 1 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-37/docs/qa/ios-device-pass-37/screens

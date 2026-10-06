@@ -1,0 +1,514 @@
+{
+  "runId": "j4c-fixture-fast",
+  "startedAt": "2026-10-06T11:00:34.004Z",
+  "finishedAt": "2026-10-06T11:03:41.955Z",
+  "ok": true,
+  "passed": 41,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 155,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1508,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 9,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"FAST\" present"
+    },
+    {
+      "i": 10,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 164,
+      "detail": "attach: constitution-9pages.pdf"
+    },
+    {
+      "i": 11,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1329,
+      "detail": "attached-docs appeared"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 20001,
+      "detail": "20000 ms"
+    },
+    {
+      "i": 13,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "constitution-9pages.pdf",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "constitution-9pages.pdf"
+    },
+    {
+      "i": 14,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1911,
+      "detail": "J4-04-attached"
+    },
+    {
+      "i": 15,
+      "op": "type",
+      "ok": true,
+      "ms": 161,
+      "detail": "composer-input = 19 chars"
+    },
+    {
+      "i": 16,
+      "op": "send",
+      "ok": true,
+      "ms": 167,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 17,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-pages appeared"
+    },
+    {
+      "i": 18,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Reading pages 1–2 of 9…",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Reading pages 1–2 of 9…"
+    },
+    {
+      "i": 19,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 20,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2855,
+      "detail": "J4-05-reading"
+    },
+    {
+      "i": 21,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 102919,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 22,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 8001,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 23,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 38846,
+      "detail": "stop gone"
+    },
+    {
+      "i": 24,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2506,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 25,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "This file is a summary of the provisions from the United States Constitution, specifically covering its structure and key powers. • Legislative Structure : The document establishes a bicameral legislature with the House of Representatives (elected every two years) and the Senate (two senators per state elected by their legislatures for six-year terms). • Revenue Bills : All revenue bills must originate in the House and require passage in both chambers before becoming law. • Impeachment Powers : The Senate holds sole power to try impeachments, while the House has exclusive authority over impeachment proceedings. Conviction requires a two-thirds vote in each house. • Presidential Approval : Bills must be presented to the President for approval; if rejected with objections, they return to Congress which must pass them by a two-thirds vote in both houses. If not returned within ten days (excluding Sundays), it automatically becomes law unless Congress adjourns during that period. • Executive Powers : The President serves four-year terms and appoints judges and treaties require Senate approval. State-level taxes on imports/exports require Congressional consent for collection and must be remitted to the federal Treasury. • Judicial Authority : The judiciary handles cases involving ambassadors or disputes between states, with all state taxes required to go through Congress. • Treason Definition : Treason is defined as levying war against the United States or aiding its enemies; conviction requires two witnesses or an open confession and cannot be declared by the President alone without congressional punishment limits. • State Relations : The document enforces full faith and credit among states, requiring each state to recognize public records and judicial proceedings of every other state, and ensuring citizens in one state are entitled to privileges enjoyed by others. Summary of all 9 pages.",
+        "props": {
+          "source": "This file is a summary of the provisions from the United States Constitution, specifically covering its structure and key powers.\n\n*   **Legislative Structure**: The document establishes a bicameral legislature with the House of Representatives (elected every two years) and the Senate (two senators per state elected by their legislatures for six-year terms).\n*   **Revenue Bills**: All revenue bills must originate in the House and require passage in both chambers before becoming law.\n*   **Impeachment Powers**: The Senate holds sole power to try impeachments, while the House has exclusive authority over impeachment proceedings. Conviction requires a two-thirds vote in each house.\n*   **Presidential Approval**: Bills must be presented to the President for approval; if rejected with objections, they return to Congress which must pass them by a two-thirds vote in both houses. If not returned within ten days (excluding Sundays), it automatically becomes law unless Congress adjourns during that period.\n*   **Executive Powers**: The President serves four-year terms and appoints judges and treaties require Senate approval. State-level taxes on imports/exports require Congressional consent for collection and must be remitted to the federal Treasury.\n*   **Judicial Authority**: The judiciary handles cases involving ambassadors or disputes between states, with all state taxes required to go through Congress.\n*   **Treason Definition**: Treason is defined as levying war against the United States or aiding its enemies; conviction requires two witnesses or an open confession and cannot be declared by the President alone without congressional punishment limits.\n*   **State Relations**: The document enforces full faith and credit among states, requiring each state to recognize public records and judicial proceedings of every other state, and ensuring citizens in one state are entitled to privileges enjoyed by others.\n\n*Summary of all 9 pages.*",
+          "disabled": false
+        }
+      },
+      "detail": "This file is a summary of the provisions from the United States Constitution, specifically covering its structure and key powers. • Legislative Structure : The document establishes a bicameral legisla"
+    },
+    {
+      "i": 26,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "SOURCES constitution-9pages.pdf · p.1 constitution-9pages.pdf · p.3 constitution-9pages.pdf · p.5 constitution-9pages.pdf · p.7",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "SOURCES constitution-9pages.pdf · p.1 constitution-9pages.pdf · p.3 constitution-9pages.pdf · p.5 constitution-9pages.pdf · p.7"
+    },
+    {
+      "i": 27,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Summary of all 9 pages.\" present"
+    },
+    {
+      "i": 28,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2853,
+      "detail": "J4-05-summary"
+    },
+    {
+      "i": 29,
+      "op": "dump",
+      "ok": true,
+      "ms": 3,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize this file",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI This file is a summary of the provisions from the United States Constitution, specifically covering its structure and key powers. • Legislative Structure : The document establishes a bicameral legislature with the House of Representatives (elected every two years) and the Senate (two senators per state elected by their legislatures for six-year terms). • Revenue Bills : All revenue bills must originate in the House and require passage in both chambers before becoming law. • Impeachment Powers : The Senate holds sole power to try impeachments, while the House has exclusive authority over impeachment proceedings. Conviction requires a two-thirds vote in each house. • Presidential Approval : Bills must be presented to the President for approval; if rejected with objections, they return to Congress which must pass them by a two-thirds vote in both houses. If not returned within ten days (excluding Sundays), it automatically becomes law unless Congress adjourns during that period. • Executive Powers : The President serves four-year terms and appoints judges and treaties require Senate approval. State-level taxes on imports/exports require Congressional consent for collection and must be remitted to the federal Treasury. • Judicial Authority : The judiciary handles cases involving ambassadors or disputes between states, with all state taxes required to go through Congress. • Treason Definition : Treason is defined as levying war against the United States or aiding its enemies; conviction requires two witnesses or an open confession and cannot be declared by the President alone without congressional punishment limits. • State Relations : The document enforces full faith and credit among states, requiring each state to recognize public records and judicial proceedings of every other state, and ensuring citizens in one state are entitled to privileges enjoyed by others. Summary of all 9 pages. SOURCES constitution-9pages.pdf · p.1 constitution-9pages.pdf · p.3 constitution-9pages.pdf · p.5 constitution-9pages.pdf · p.7 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This file is a summary of the provisions from the United States Constitution, specifically covering its structure and key powers. • Legislative Structure : The document establishes a bicameral legislature with the House of Representatives (elected every two years) and the Senate (two senators per state elected by their legislatures for six-year terms). • Revenue Bills : All revenue bills must originate in the House and require passage in both chambers before becoming law. • Impeachment Powers : The Senate holds sole power to try impeachments, while the House has exclusive authority over impeachment proceedings. Conviction requires a two-thirds vote in each house. • Presidential Approval : Bills must be presented to the President for approval; if rejected with objections, they return to Congress which must pass them by a two-thirds vote in both houses. If not returned within ten days (excluding Sundays), it automatically becomes law unless Congress adjourns during that period. • Executive Powers : The President serves four-year terms and appoints judges and treaties require Senate approval. State-level taxes on imports/exports require Congressional consent for collection and must be remitted to the federal Treasury. • Judicial Authority : The judiciary handles cases involving ambassadors or disputes between states, with all state taxes required to go through Congress. • Treason Definition : Treason is defined as levying war against the United States or aiding its enemies; conviction requires two witnesses or an open confession and cannot be declared by the President alone without congressional punishment limits. • State Relations : The document enforces full faith and credit among states, requiring each state to recognize public records and judicial proceedings of every other state, and ensuring citizens in one state are entitled to privileges enjoyed by others. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES constitution-9pages.pdf · p.1 constitution-9pages.pdf · p.3 constitution-9pages.pdf · p.5 constitution-9pages.pdf · p.7"
+        },
+        {
+          "testID": "citation-1",
+          "text": "constitution-9pages.pdf · p.1",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "constitution-9pages.pdf · p.3",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "constitution-9pages.pdf · p.5",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "constitution-9pages.pdf · p.7",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muwki5r9-4-2pfzntal",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J4-05-summary"
+    },
+    {
+      "i": 30,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"The request specifies\" absent"
+    },
+    {
+      "i": 31,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"I will focus\" absent"
+    },
+    {
+      "i": 32,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"as an AI\" absent"
+    },
+    {
+      "i": 33,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"NOT_FOUND\" absent"
+    },
+    {
+      "i": 34,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"<<<\" absent"
+    },
+    {
+      "i": 35,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"The user is asking\" absent"
+    },
+    {
+      "i": 36,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"Nothing in your documents matched this question\" absent"
+    },
+    {
+      "i": 37,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "ledger-toggle ← onPress"
+    },
+    {
+      "i": 38,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1200,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 39,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "MODEL FAST QUANT Q4_K CONTEXT 1268 / 4096 MS / TOKEN 107 ms More detail · PRO",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "MODEL FAST QUANT Q4_K CONTEXT 1268 / 4096 MS / TOKEN 107 ms More detail · PRO"
+    },
+    {
+      "i": 40,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2855,
+      "detail": "J4-05-ledger"
+    }
+  ],
+  "errors": []
+}

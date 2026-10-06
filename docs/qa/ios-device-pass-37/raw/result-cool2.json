@@ -1,0 +1,32 @@
+{
+  "runId": "cool2",
+  "startedAt": "2026-10-06T11:12:55.891Z",
+  "finishedAt": "2026-10-06T11:12:58.053Z",
+  "ok": true,
+  "passed": 3,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 158,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2000,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 2,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 4,
+      "detail": "banner-thermal gone"
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,19 @@
+{
+ "_": "Between runs: wait until the app's thermal banner ('Slowing down to keep the phone cool') is gone, so the timed turns are not throttled.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "waitFor",
+   "testID": "banner-thermal",
+   "gone": true,
+   "timeoutMs": 900000
+  }
+ ]
+}

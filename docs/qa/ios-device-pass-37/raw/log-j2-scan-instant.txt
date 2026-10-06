@@ -1,0 +1,53 @@
+13:50:16 pushing 48 steps as j2-scan-instant
+13:50:29 shot J2-01-composer-chip
+13:50:37 shot J2-02-sent-bubble
+13:50:43 shot J2-02-answer
+13:50:46 ok     0 deeplink   /chats
+13:50:46 ok     1 waitFor    new-chat appeared
+13:50:46 ok     2 press      new-chat ← onPress
+13:50:46 ok     3 waitFor    start-chat appeared
+13:50:46 ok     4 press      start-chat ← onPress
+13:50:46 ok     5 waitFor    composer-input appeared
+13:50:46 ok     6 waitFor    Loading gone
+13:50:46 ok     7 sleep      1500 ms
+13:50:46 ok     8 value      INSTANT
+13:50:46 ok     9 assertText "INSTANT" present
+13:50:46 ok    10 devPrompt  attach: sign-scan.pdf
+13:50:46 ok    11 waitFor    attached-docs appeared
+13:50:46 ok    12 sleep      8000 ms
+13:50:46 ok    13 value      sign-scan.pdf
+13:50:46 ok    14 screenshot J2-01-composer-chip
+13:50:46 ok    15 type       composer-input = 16 chars
+13:50:46 ok    16 send       send ← onPress
+13:50:46 ok    17 waitFor    assistant-text appeared
+13:50:46 ok    18 value      
+13:50:46 ok    19 screenshot J2-02-sent-bubble
+13:50:46 ok    20 waitFor    stop gone
+13:50:46 ok    21 sleep      1500 ms
+13:50:46 ok    22 value      The image displays a weathered sign mounted on a yellow wall, featuring Cyrillic text: "КАРАСАЕВ" (Karasev) an
+13:50:46 ok    23 sleep      2000 ms
+13:50:46 ok    24 waitFor    docs-hold gone
+13:50:46 ok    25 waitFor    vision-hold gone
+13:50:46 ok    26 assertText "cannot see" absent
+13:50:46 ok    27 assertText "can't see" absent
+13:50:46 ok    28 assertText "cannot physically see" absent
+13:50:46 ok    29 assertText "see images" absent
+13:50:46 ok    30 assertText "text-based" absent
+13:50:46 ok    31 assertText "unable to see" absent
+13:50:46 ok    32 assertText "not able to see" absent
+13:50:46 ok    33 assertText "don't have eyes" absent
+13:50:46 ok    34 assertText "The request specifies" absent
+13:50:46 ok    35 assertText "I will focus" absent
+13:50:46 ok    36 assertText "as an AI" absent
+13:50:46 ok    37 assertText "NOT_FOUND" absent
+13:50:46 ok    38 assertText "<<<" absent
+13:50:46 ok    39 assertText "The user is asking" absent
+13:50:46 ok    40 assertText "Your documents don't mention this" absent
+13:50:46 ok    41 assertText "is a scan. Run OCR" absent
+13:50:46 ok    42 waitFor    model-advice appeared
+13:50:46 ok    43 value      FAST sees pictures better than INSTANT.
+13:50:46 ok    44 value      Install FAST · 1.28 GB
+13:50:46 ok    45 assertText "FAST sees pictures better than INSTANT" present
+13:50:46 ok    46 screenshot J2-02-answer
+13:50:46 ok    47 dump       J2-02-answer
+13:50:46 48 passed, 0 failed, 3 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-37/docs/qa/ios-device-pass-37/screens

@@ -1,0 +1,69 @@
+{
+ "_": "J4 PRIVATE: the same chat; the held 'What is this file about?' waits for the index model to finish reading the file, then its answer (the f4 run stopped while it was still reading).",
+ "steps": [
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 4000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 600000
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "screenshot",
+   "name": "P4-04-about-answer"
+  },
+  {
+   "op": "dump",
+   "name": "P4-04-about-answer"
+  },
+  {
+   "op": "assertText",
+   "text": "The request specifies",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "I will focus",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "as an AI",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "NOT_FOUND",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "<<<",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "The user is asking",
+   "testID": "assistant-text",
+   "absent": true
+  }
+ ]
+}

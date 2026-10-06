@@ -1,0 +1,54 @@
+14:09:38 pushing 48 steps as j7b-photo-fast
+14:09:57 shot J7-03-sent-bubble
+14:10:07 shot J7-03-answer
+14:10:10 shot J7-03-ledger
+14:10:13 ok     0 deeplink   /chats
+14:10:13 ok     1 waitFor    new-chat appeared
+14:10:13 ok     2 press      new-chat ← onPress
+14:10:13 ok     3 waitFor    start-chat appeared
+14:10:13 ok     4 press      start-chat ← onPress
+14:10:13 ok     5 waitFor    composer-input appeared
+14:10:13 ok     6 waitFor    Loading gone
+14:10:13 ok     7 sleep      1500 ms
+14:10:13 ok     8 value      FAST
+14:10:13 ok     9 assertText "FAST" present
+14:10:13 ok    10 devPrompt  attach: בית קפה הגינה תפריט.jpg
+14:10:13 ok    11 waitFor    pending-images appeared
+14:10:13 ok    12 sleep      8000 ms
+14:10:13 ok    13 value      Free: one photo per message
+14:10:13 ok    14 type       composer-input = 16 chars
+14:10:13 ok    15 send       send ← onPress
+14:10:13 ok    16 waitFor    assistant-text appeared
+14:10:13 ok    17 value      
+14:10:13 ok    18 screenshot J7-03-sent-bubble
+14:10:13 ok    19 waitFor    stop gone
+14:10:13 ok    20 sleep      1500 ms
+14:10:13 ok    21 value      I have your picture, but I could not make it out well enough to give a reliable answer.
+14:10:13 ok    22 sleep      2000 ms
+14:10:13 ok    23 waitFor    docs-hold gone
+14:10:13 ok    24 waitFor    vision-hold gone
+14:10:13 ok    25 assertText "cannot see" absent
+14:10:13 ok    26 assertText "can't see" absent
+14:10:13 ok    27 assertText "cannot physically see" absent
+14:10:13 ok    28 assertText "see images" absent
+14:10:13 ok    29 assertText "text-based" absent
+14:10:13 ok    30 assertText "unable to see" absent
+14:10:13 ok    31 assertText "not able to see" absent
+14:10:13 ok    32 assertText "don't have eyes" absent
+14:10:13 ok    33 assertText "The request specifies" absent
+14:10:13 ok    34 assertText "I will focus" absent
+14:10:13 ok    35 assertText "as an AI" absent
+14:10:13 ok    36 assertText "NOT_FOUND" absent
+14:10:13 ok    37 assertText "<<<" absent
+14:10:13 ok    38 assertText "The user is asking" absent
+14:10:13 ok    39 assertText "Your documents don't mention this" absent
+14:10:13 ok    40 assertText "is a scan. Run OCR" absent
+14:10:13 FAIL  41 waitFor    waitFor model-advice never went away in 3000 ms
+14:10:13 ok    42 screenshot J7-03-answer
+14:10:13 ok    43 dump       J7-03-answer
+14:10:13 ok    44 press      ledger-toggle ← onPress
+14:10:13 ok    45 sleep      1200 ms
+14:10:13 ok    46 value      MODEL INSTANT QUANT Q4_K CONTEXT 157 / 4096 MS / TOKEN — More detail · PRO
+14:10:13 ok    47 screenshot J7-03-ledger
+14:10:13 47 passed, 1 failed, 3 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-37/docs/qa/ios-device-pass-37/screens
+14:10:13   ! step 41 (waitFor): waitFor model-advice never went away in 3000 ms
