@@ -153,6 +153,7 @@ import { COLUMN_WIDTH } from "../lib/layout";
 import { setSidebarOpen, useSidebarOpen } from "../lib/sidebar";
 import { useWide } from "../lib/useLayout";
 import { useKeyboardLift } from "../lib/keyboard";
+import { composerInset, scrollListToEnd } from "../lib/listEnd";
 import { useFontScale, useTheme } from "../lib/theme";
 import { afterSheetClose } from "../lib/sheetHandover";
 import { useEntitlement, useLicence } from "../licence";
@@ -1024,7 +1025,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       setRows((all) => [...all, user, { id: pendingId, chatId: chatIdNow, role: "assistant", content: "", modelId: model.id, createdAt: Date.now(), streaming: true }]);
       nearBottom.current = true;
       follow.current = true;
-      requestAnimationFrame(() => list.current?.scrollToEnd({ animated: true }));
+      requestAnimationFrame(() => scrollListToEnd(list.current, Platform.OS, true));
       const history: Message[] = wire(rowsRef.current).map(toMessage);
       await generate(chatIdNow, history, pendingId, "", undefined, undefined, photoDocIds, page);
       if (noSpace.current) throw new Error("no-space");
@@ -1151,7 +1152,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       if (!file.exists) return;
       const raw = file.textSync().trim();
       file.delete();
-      if (raw === "/scroll") return list.current?.scrollToEnd({ animated: false });
+      if (raw === "/scroll") return scrollListToEnd(list.current, Platform.OS, false);
       const lines = raw.split("\n");
       const images = lines.filter((l) => l.startsWith("image:")).map((l) => new File(Paths.document, l.slice("image:".length).trim()));
       if (images.length) return setPendingImages(images.map((f) => ({ uri: f.uri, width: 0, height: 0, bytes: f.size ?? 0 })));
@@ -1262,7 +1263,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const user = await store.appendMessage({ chatId: chatIdNow, role: "user", content: userTurn });
       const answer = await store.appendMessage({ chatId: chatIdNow, role: "assistant", content: result, modelId: model.id });
       setRows((all) => [...all, user, answer]);
-      requestAnimationFrame(() => list.current?.scrollToEnd({ animated: true }));
+      requestAnimationFrame(() => scrollListToEnd(list.current, Platform.OS, true));
     } catch (e: unknown) {
       flash(errorText(e));
     }
@@ -1587,17 +1588,21 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
 
   const [topH, setTopH] = useState(0);
   const [bottomH, setBottomH] = useState(0);
-  useEffect(() => {
-    if (liquidGlass && bottomH && nearBottom.current) list.current?.scrollToEnd({ animated: false });
-  }, [bottomH]);
+  const bottomInset = composerInset(bottomH, lift, insets.bottom);
   const listHeight = useRef(0);
-  /* Android clamps a far offset to the real end, while scrollToEnd's last-cell frame lags a streaming cell by one layout and landed a line short with the keyboard up (QA N1); larger offsets overflow the native int. Twice, so the clamp sees the frame that just grew. */
+  /* Twice, so the second pass sees the frame that just grew (QA N1). */
   const pinToEnd = () => {
-    const once = () => (Platform.OS === "android" ? list.current?.scrollToOffset({ offset: 1e6, animated: false }) : list.current?.scrollToEnd({ animated: false }));
+    const once = () => scrollListToEnd(list.current, Platform.OS, false);
     once();
     requestAnimationFrame(once);
   };
   const following = () => follow.current || nearBottom.current;
+  /* An attached file, the Redact row or a hold card grows the floating composer; the end it now covers comes back into view once the padding lands. */
+  useEffect(() => {
+    if (!liquidGlass || !bottomH || !following()) return;
+    settleUntil.current = Date.now() + SETTLE_MS;
+    pinToEnd();
+  }, [bottomInset]);
   /* The keyboard lift shrinks the list but keeps its top offset, so the last answer would slide under the composer (QA N1). */
   const onListLayout = (e: LayoutChangeEvent) => {
     const h = e.nativeEvent.layout.height;
@@ -1885,7 +1890,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         data={rows}
         keyExtractor={(r) => r.id}
         /* The list hugs the bottom so a conversation grows upward; an empty chat has nothing to hug, and at desktop height that left 380 px of nothing above the seal (QA F235). */
-        contentContainerStyle={[styles.list, rows.length ? null : styles.listEmpty, wide ? styles.column : null, liquidGlass ? { paddingTop: topH + 8, paddingBottom: bottomH + 8 } : null]}
+        contentContainerStyle={[styles.list, rows.length ? null : styles.listEmpty, wide ? styles.column : null, liquidGlass ? { paddingTop: topH + 8, paddingBottom: bottomInset } : null]}
         onScroll={onScroll}
         onLayout={onListLayout}
         scrollEventThrottle={64}
