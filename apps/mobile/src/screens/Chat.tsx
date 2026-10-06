@@ -19,6 +19,7 @@ import {
   PASTE_OFFER_CHARS,
   PRODUCTS,
   buildPrompt,
+  followUpWindow,
   replyReserve,
   calibrate,
   contextLevel,
@@ -652,7 +653,10 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const sees = modelHasVision(model.id) && resolveVision(model.id) !== null;
       const picture = sees && history.some((m) => m.images?.length) ? (carriesPage(history, docs.context.docIds) ? "page" : "photo") : undefined;
       const system = turnSystemPrompt({ familySafe, tier: modelTier, photos: history.some((m) => m.images?.length), picture, persona, chatPrompt: settings.systemPrompt, memory: facts, languageHint: languageHint(lastUser), length: lengthLine, plainChat });
-      const prompt = buildPrompt({ system, summary: chat?.summary, summaryUpTo: chat?.summaryUpTo, messages: history.map((m, i) => ({ id: String(i), ...m })), nCtx, scale: tokenScale, reserve: replyReserve(length.maxTokens), imageTokens: imageMaxTokens(engine.id, model.id, nCtx) });
+      /* Round 134G: "shorter" after "Thanks" reworks the summary, not the "You're welcome" that came after it. */
+      const turns = plainChat === "follow-up" ? followUpWindow(history) : history;
+      if (plainChat) console.log(`[chat] plain=${plainChat} window=${turns.length}/${history.length} maxTokens=${length.maxTokens}`);
+      const prompt = buildPrompt({ system, summary: chat?.summary, summaryUpTo: chat?.summaryUpTo, messages: turns.map((m, i) => ({ id: String(i), ...m })), nCtx, scale: tokenScale, reserve: replyReserve(length.maxTokens), imageTokens: imageMaxTokens(engine.id, model.id, nCtx) });
       let messages = prompt.messages;
       let scope: WholeFilePlan | null = null;
       /* Attached documents (§7.3, §8.5): retrieve, fence, cite. */
