@@ -99,9 +99,20 @@ export function withoutEchoedLabels(answer: string, opts: { streaming?: boolean;
 /** Chips to show under an answer: the cited ones first in citation order, then the rest only when nothing was cited. */
 export function citationsForAnswer(answer: string, all: Citation[]): { shown: Citation[]; cited: boolean } {
   const shown = citedNumbers(answer).flatMap((n) => all.filter((c) => c.n === n));
-  if (!shown.length) return { shown: all, cited: false };
+  if (!shown.length) return { shown: onePerPage(all), cited: false };
   return { shown, cited: true };
 }
+
+/* Unnumbered chips are only "where it came from": several passages of one page are one source. Numbered chips stay one per [n] so every mark resolves. */
+const onePerPage = (all: Citation[]): Citation[] => {
+  const seen = new Set<string>();
+  return all.filter((c) => {
+    const key = `${c.docId}\u0000${c.page}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+};
 
 const NUMERAL = /[\p{N}〇零一二三四五六七八九十百千万億兆两]/u;
 

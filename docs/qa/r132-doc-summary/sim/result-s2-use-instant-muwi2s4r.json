@@ -1,0 +1,185 @@
+{
+  "runId": "s2-use-instant-muwi2s4r",
+  "startedAt": "2026-10-06T09:52:55.946Z",
+  "finishedAt": "2026-10-06T09:53:28.208Z",
+  "ok": true,
+  "passed": 7,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 153,
+      "detail": "/vault"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 10017,
+      "detail": "10000 ms"
+    },
+    {
+      "i": 2,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 166,
+      "detail": "/"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 4,
+      "op": "sleep",
+      "ok": true,
+      "ms": 20017,
+      "detail": "20000 ms"
+    },
+    {
+      "i": 5,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1908,
+      "detail": "02-chat-instant"
+    },
+    {
+      "i": 6,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "empty-headline",
+          "text": "Nothing leaves this phone."
+        },
+        {
+          "testID": "suggestion-summarize",
+          "text": "Summarize text",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-translate",
+          "text": "Translate",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-draft",
+          "text": "Draft a message",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "02-chat-instant"
+    }
+  ],
+  "errors": []
+}

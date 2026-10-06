@@ -1,0 +1,79 @@
+{
+  "runId": "s1-onboard-fast",
+  "_": "Fresh install with Fast and the index model already on the phone: welcome, pick Fast, Start chatting through the seal and lock steps.",
+  "steps": [
+    {
+      "op": "waitFor",
+      "testID": "onboarding-continue",
+      "timeoutMs": 90000
+    },
+    {
+      "op": "press",
+      "testID": "onboarding-continue"
+    },
+    {
+      "op": "waitFor",
+      "testID": "onboarding-model",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "sleep",
+      "ms": 3000
+    },
+    {
+      "op": "press",
+      "testID": "model-option-fast"
+    },
+    {
+      "op": "sleep",
+      "ms": 1000
+    },
+    {
+      "op": "screenshot",
+      "name": "01-model-step-fast"
+    },
+    {
+      "op": "press",
+      "testID": "start-chatting"
+    },
+    {
+      "op": "waitFor",
+      "testID": "sealed-start",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "sleep",
+      "ms": 8000
+    },
+    {
+      "op": "press",
+      "testID": "sealed-start"
+    },
+    {
+      "op": "waitFor",
+      "testID": "lock-start",
+      "timeoutMs": 20000
+    },
+    {
+      "op": "press",
+      "testID": "lock-start"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 20000
+    },
+    {
+      "op": "screenshot",
+      "name": "01-chat-fast"
+    },
+    {
+      "op": "dump",
+      "name": "01-chat-fast"
+    }
+  ]
+}

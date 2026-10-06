@@ -1,4 +1,4 @@
-import type { NoPassageOpeners } from "@inborn/core";
+import type { FileSection, NoPassageOpeners, WholeFilePlan } from "@inborn/core";
 
 /**
  * What a chat turn does about attached documents, decided before anything reaches the model (§7.3 "answer only from my documents").
@@ -74,6 +74,16 @@ export const claimsFileContent = (answer: string): boolean => FILE_CLAIM.test(an
 
 /** The sentences a documents answer with no passage opens with, in the UI language: a quoted English one pulled other languages into English (F449). */
 export const noPassageOpeners = (t: (key: string) => string): NoPassageOpeners => ({ nothingRelevant: t("documents.opener.nothingRelevant"), nothingFits: t("documents.opener.nothingFits"), thinPage: t("documents.opener.thinPage") });
+
+/** The line under a summary that says how much of the file it read (round 132): all of it, or the first pages of a longer one. */
+export const summaryScope = (t: (key: string, values?: Record<string, unknown>) => string, plan: Pick<WholeFilePlan, "pagesRead" | "pagesTotal">, smallModel?: { current: string; better: string }): string =>
+  (plan.pagesRead >= plan.pagesTotal ? t("documents.summary.whole", { count: plan.pagesTotal }) : t("documents.summary.cut", { read: plan.pagesRead, count: plan.pagesTotal })) +
+  /* Round 132: Instant's summaries of long files mixed up details in 1 of 2 graded answers; it says so under the answer. */
+  (smallModel ? ` ${t("documents.summary.smallModel", smallModel)}` : "");
+
+/** "Reading page 3 of 9…", or the span a section covers, while a summary reads the file. */
+export const readingPagesLine = (t: (key: string, values?: Record<string, unknown>) => string, section: Pick<FileSection, "from" | "to">, of: number): string =>
+  section.from === section.to ? t("documents.summary.readingPage", { page: section.from, count: of }) : t("documents.summary.readingPages", { from: section.from, to: section.to, count: of });
 
 /** The Ask sheet's timing line is §7.8 "detailed statistics", the Pro row the chat's ledger already gates. */
 export function askStatsLine(stats: string | null, detailed: boolean): string | null {

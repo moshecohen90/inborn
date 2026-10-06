@@ -1,0 +1,35 @@
+{
+  "runId": "s2-use-instant",
+  "_": "'use instant' (written to dev-vault.txt by the shell) read by the vault screen; a model switch opens a new chat.",
+  "steps": [
+    {
+      "op": "deeplink",
+      "url": "/vault"
+    },
+    {
+      "op": "sleep",
+      "ms": 10000
+    },
+    {
+      "op": "deeplink",
+      "url": "/"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 20000
+    },
+    {
+      "op": "screenshot",
+      "name": "02-chat-instant"
+    },
+    {
+      "op": "dump",
+      "name": "02-chat-instant"
+    }
+  ]
+}

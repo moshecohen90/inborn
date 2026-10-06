@@ -127,4 +127,14 @@ describe("citation marks", () => {
     expect(citationsForAnswer("answer [3] and [1]", all)).toEqual({ shown: [all[2], all[0]], cited: true });
     expect(citationsForAnswer("answer [9]", all)).toEqual({ shown: all, cited: false });
   });
+
+  it("unnumbered chips show each page once, the first passage of it; numbered chips stay one per mark", () => {
+    const docs = new Map([["d1", doc("d1", "a.pdf")], ["d2", doc("d2", "b.pdf")]]);
+    const opening = [1, 1, 1, 1, 1, 1, 2, 2].map((page, i) => ({ ...hit("d1", page, `passage ${i}`), chunk: { ...hit("d1", page, "").chunk, id: `d1:${page}:${i}`, ord: i, text: `passage ${i}` } }));
+    const all = buildRagPrompt({ question: "q", hits: [...opening, hit("d2", 1, "other file")], docs, strict: false, nCtx: 4096 }).citations;
+    const { shown, cited } = citationsForAnswer("This file is the Constitution.", all);
+    expect(cited).toBe(false);
+    expect(shown.map((c) => [c.docId, c.page, c.n])).toEqual([["d1", 1, 1], ["d1", 2, 7], ["d2", 1, 9]]);
+    expect(citationsForAnswer("x [2] y [1] z [7]", all)).toEqual({ shown: [all[1], all[0], all[6]], cited: true });
+  });
 });
