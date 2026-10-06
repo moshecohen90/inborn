@@ -123,6 +123,8 @@ import { emptyTurn, silenced } from "../lib/emptyAnswer";
 import { noteGenerationEnded } from "../lib/pausedTurn";
 import { PartialAnswerSaver } from "../lib/partialAnswer";
 import { gatePhotoSend, planVisionTurn } from "../lib/visionGate";
+import { useDeviceState } from "../device/useDeviceState";
+import { memorySwitchShowing } from "../device/mapState";
 import { ExtensionHoldCard } from "../components/chat/ExtensionHoldCard";
 import { PhotoHoldCard } from "../components/chat/PhotoHoldCard";
 import { seerOf, type HeldPhoto } from "../extensions/photoCard";
@@ -289,6 +291,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   /* Read, not taken, on mount: the swap after a heal remounts this screen more than once. */
   const missingModel = useSyncExternalStore(subscribeVault, missingSnapshot);
   const visionEased = useSyncExternalStore(subscribeVisionEased, isVisionEased);
+  const memorySwitched = memorySwitchShowing(useDeviceState());
   const [shortfallDismissed, setShortfallDismissed] = useState<string | null>(null);
   const [toast, setToast] = useState<string | null>(null);
   const [noneMatched, setNoneMatched] = useState(false);
@@ -1350,7 +1353,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   shownAdvice.current = adviceToShow(adviceChat, advice?.key ?? null, shownAdvice.current, adviceSnoozed);
   const adviceShown = advice && shownAdvice.current === advice.key && lastAssistant && status.kind === "ready" ? advice : null;
   /* The honest line about a picture comes with its own offer, ahead of the use and language one. */
-  const cardAdvice = (photoAdvice && !adviceSnoozed.includes(photoAdvice.key) && status.kind === "ready" ? photoAdvice : null) ?? adviceShown;
+  const cardAdvice = (photoAdvice && !adviceSnoozed.includes(photoAdvice.key) && status.kind === "ready" && !memorySwitched ? photoAdvice : null) ?? adviceShown;
   /* "Not now", Switch and Install all snooze the reason on the chat row, so it survives relaunch (§7.8). */
   const snoozeAdvice = (key: string) => {
     const id = chatRef.current;

@@ -70,6 +70,8 @@ Instant with no line, Instant then said "no photo model installed", and the vaul
 7. **One pressure event reported twice is one warning.** On the simulator, UIKit logged "Received memory warning."
    twice, 7 ms apart, for a single event. The second report escalated straight to a switch. In
    `memoryStrikes.ts:8`, a warning within 2 s of an ease is the same warning (`"same"`, ignored in `guard.ts:235`).
+8. **No picture advice card under the memory-switch line.** `sim/07` showed "FAST sees pictures better than INSTANT ·
+   Switch to FAST" right under "Switched to Instant". `mapState.ts` `memorySwitchShowing` (the banner's own condition) hides `photoAdvice` in `Chat.tsx` `cardAdvice` until the next answer retires the line.
 
 ## Tests
 
