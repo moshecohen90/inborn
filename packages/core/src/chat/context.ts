@@ -108,6 +108,16 @@ export function followUpWindow<M extends Pick<Message, "role" | "content" | "ima
   return kept.slice(0, kept.map((m) => m.role).lastIndexOf("user")).some((m) => m.role === "assistant") ? kept : [...messages];
 }
 
+/** The answer a follow-up reworks: the last answer of its window, past any thanks; null when the follow-up opens the chat. */
+export function reworkedAnswer<M extends Pick<Message, "role" | "content" | "images">>(messages: readonly M[]): M | null {
+  const window = followUpWindow(messages);
+  for (let i = window.map((m) => m.role).lastIndexOf("user") - 1; i >= 0; i--) {
+    if (window[i]!.role === "assistant") return window[i]!;
+    if (window[i]!.role === "user") return null;
+  }
+  return null;
+}
+
 export const PLAIN_CHAT_LINES: Readonly<Record<PlainChatKind, string>> = { acknowledgement: SMALL_TALK_LINE, "follow-up": FOLLOW_UP_LINE };
 
 /* Round 131: told nothing, Instant and Fast answered a picture they had been sent with "I cannot see images". */

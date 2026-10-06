@@ -1,0 +1,32 @@
+{
+  "runId": "v1-install-muxaglbi",
+  "startedAt": "2026-10-06T23:07:15.477Z",
+  "finishedAt": "2026-10-06T23:11:17.538Z",
+  "ok": true,
+  "passed": 3,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 156,
+      "detail": "/vault"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 240001,
+      "detail": "240000 ms"
+    },
+    {
+      "i": 2,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1904,
+      "detail": "v1-vault"
+    }
+  ],
+  "errors": []
+}
