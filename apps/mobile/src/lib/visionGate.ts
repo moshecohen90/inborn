@@ -30,11 +30,14 @@ export interface VisionTurnInput {
   onLastUserMessage: boolean;
   /** Another model in the catalog could see it (the "switch" way out). */
   otherModelSees: boolean;
+  /** The guard dropped the projector on a memory warning; loading it again for an older picture would bring the warning back. */
+  memoryEased?: boolean;
 }
 
 export function planVisionTurn(i: VisionTurnInput): VisionTurn {
   if (!i.hasImages) return { kind: "send" };
   if (i.projectorAttached) return { kind: "send" };
+  if (i.memoryEased && !i.onLastUserMessage) return { kind: "drop" };
   /* Before the scan lands, every model looks like it has no projector: the one thing that must not happen is answering. */
   if (!i.vaultScanned) return { kind: "wait" };
   if (i.modelSees && i.projectorInstalled) return { kind: "wait" };

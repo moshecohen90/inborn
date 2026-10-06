@@ -23,7 +23,9 @@ import {
   noteBackground,
   noteForeground,
   peekEngine,
+  clearVisionEased,
   consumePausedByGuard,
+  releaseVision,
   setGenerationCaps,
   setPauseCheck,
   stopGeneration,
@@ -31,11 +33,13 @@ import {
   subscribeEngineState,
   switchModel,
   unloadSession,
+  wasStoppedByGuard,
   type EngineState,
 } from "../engine";
 import { isAndroidSnapshot } from "../../modules/device-guard";
 import { backgroundTask, onBackgroundTaskExpire } from "../../modules/background-task";
 import { createBackgroundHold } from "./bgHold";
+import { MemoryStrikes } from "./memoryStrikes";
 import { getVault } from "../vault/store";
 import { getPausedTurn, subscribePausedTurn } from "../lib/pausedTurn";
 import { loadPrefs, savePrefs, writeDevSnapshot } from "./prefs";
@@ -75,6 +79,7 @@ class DeviceGuard {
   private explain: { from: ModelTier; to: ModelTier } | null = null;
   private backgroundedAt: number | null = null;
   private memorySince: number | null = null;
+  private readonly strikes = new MemoryStrikes();
   private debounce: ReturnType<typeof setTimeout> | null = null;
   private ticker: ReturnType<typeof setInterval> | null = null;
   private criticalUnload: ReturnType<typeof setTimeout> | null = null;
@@ -170,6 +175,7 @@ class DeviceGuard {
       const prefs = loadPrefs();
       this.explained = prefs.explained === true;
       this.override = { ...defaultOverride(raw.deviceClass), ...prefs };
+      if (raw.memoryPressure === "warning" || raw.memoryPressure === "critical") this.strikes.warn(Date.now(), raw.memoryPressure, false);
       this.stopSources.push(
         subscribeSignals((patch) => this.patch(patch)),
         AppState.addEventListener("change", (s: AppStateStatus) => {
@@ -190,7 +196,9 @@ class DeviceGuard {
         subscribeActivity((busy) => {
           this.bgHold.sync(this.backgroundedAt !== null, busy);
           if (!busy) {
-            this.noteSpeed(peekEngine()?.engine.stats().tokPerSec ?? 0);
+            const tps = peekEngine()?.engine.stats().tokPerSec ?? 0;
+            this.noteSpeed(tps);
+            if (tps > 0 && !wasStoppedByGuard()) this.policy.noteAnswered(tierOf(peekEngine()?.model.id ?? "instant"));
             void this.applyPendingSwitch();
           }
           this.schedule();
@@ -216,12 +224,31 @@ class DeviceGuard {
     });
   }
 
-  private patch(p: Partial<RawSignals>): void {
+  private patch(patch: Partial<RawSignals>): void {
     if (!this.raw) return;
-    if (p.memoryPressure === "warning" || p.memoryPressure === "critical") this.memorySince = Date.now();
+    let p = patch;
+    if (p.memoryPressure === "warning" || p.memoryPressure === "critical") {
+      const mobile = this.raw.deviceClass === "phone" || this.raw.deviceClass === "tablet";
+      if (mobile && this.strikes.warn(Date.now(), p.memoryPressure, peekEngine()?.engine.capabilities().vision === true) === "ease") {
+        p = { ...p };
+        delete p.memoryPressure;
+        this.memorySince = Date.now();
+        this.ease();
+      } else {
+        this.memorySince = Date.now();
+        this.policy.noteMemoryWarning();
+      }
+    }
     this.raw = { ...this.raw, ...p };
     setCurrentSignals(this.raw);
     this.schedule();
+  }
+
+  /* First warning with a picture projector attached: the projector is most of what a picture turn left resident, so it goes and the model stays. */
+  private ease(): void {
+    if (isGenerating()) stopGeneration();
+    console.log("[device] memory warning: releasing the picture projector, keeping the model");
+    void releaseVision().catch((e: unknown) => console.warn("[inborn] release projector", e));
   }
 
   /** Bytes of the model the engine is mapping or holds mapped, null while nothing is resident (a load that thrashes is caught too). */
@@ -245,6 +272,7 @@ class DeviceGuard {
     if (this.raw && this.memorySince !== null && Date.now() - this.memorySince >= MEMORY_RECOVERY_MS) {
       if (s && memoryHealthy(s) && polled === "normal") {
         this.memorySince = null;
+        clearVisionEased();
         this.raw = { ...this.raw, memoryPressure: "normal" };
         setCurrentSignals(this.raw);
       } else this.memorySince = Date.now();
@@ -287,8 +315,11 @@ class DeviceGuard {
 
   private apply(rec: Recommendation, before: Recommendation | null, s: DeviceSignals): void {
     setGenerationCaps({ maxTokens: rec.maxTokens, threads: rec.threads, gpuLayers: rec.gpuLayers, nCtx: rec.contextCap });
-    if (rec.stopGeneration && isGenerating()) stopGeneration();
-    if (rec.unloadAfterMs === 0 && getEngineState() !== "unloaded") void unloadSession(rec.status === "memory" ? "memory" : "critical");
+    /* The memory status outlives its warning by 50 s or more; stopping and unloading on every evaluation killed each answer the smaller model began. */
+    const owed = rec.status !== "memory" || this.strikes.due();
+    if (rec.status === "memory") this.strikes.acted();
+    if (owed && rec.stopGeneration && isGenerating()) stopGeneration();
+    if (owed && rec.unloadAfterMs === 0 && getEngineState() !== "unloaded") void unloadSession(rec.status === "memory" ? "memory" : "critical");
     else if (rec.unloadAfterMs && rec.status === "thermalCritical" && !this.criticalUnload) {
       this.criticalUnload = setTimeout(() => {
         this.criticalUnload = null;

@@ -1,0 +1,46 @@
+{
+  "runId": "s2a-story-muwsssac",
+  "startedAt": "2026-10-06T14:52:50.457Z",
+  "finishedAt": "2026-10-06T14:52:56.683Z",
+  "ok": true,
+  "passed": 5,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "type",
+      "ok": true,
+      "ms": 155,
+      "detail": "composer-input = 45 chars"
+    },
+    {
+      "i": 1,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 2,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "stop appeared"
+    },
+    {
+      "i": 3,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4001,
+      "detail": "4000 ms"
+    },
+    {
+      "i": 4,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1905,
+      "detail": "02-story-streaming"
+    }
+  ],
+  "errors": []
+}

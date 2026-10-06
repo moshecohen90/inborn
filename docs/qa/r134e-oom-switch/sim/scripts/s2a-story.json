@@ -1,0 +1,27 @@
+{
+  "runId": "s2a-story",
+  "_": "On Fast: a long story; the script ends while it streams, and the shell raises the memory warning (Simulator > Debug > Simulate Memory Warning).",
+  "steps": [
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "Write a long story about a lighthouse keeper."
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 4000
+    },
+    {
+      "op": "screenshot",
+      "name": "02-story-streaming"
+    }
+  ]
+}

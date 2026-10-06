@@ -1,0 +1,72 @@
+{
+  "runId": "s5-forced-empty",
+  "_": "Second bundle with EXPO_PUBLIC_DEV_EMPTY_ANSWER=1 (every answer streams no words): a new chat and one message end in the system-stop line with Continue, not an empty bubble or a vanished row.",
+  "steps": [
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 90000
+    },
+    {
+      "op": "deeplink",
+      "url": "/chats"
+    },
+    {
+      "op": "waitFor",
+      "testID": "new-chat",
+      "timeoutMs": 20000
+    },
+    {
+      "op": "press",
+      "testID": "new-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "start-chat",
+      "timeoutMs": 10000
+    },
+    {
+      "op": "press",
+      "testID": "start-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 3000
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "Give me a name for a lighthouse."
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 180000
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "screenshot",
+      "name": "08-forced-empty"
+    },
+    {
+      "op": "dump",
+      "name": "08-forced-empty"
+    }
+  ]
+}

@@ -40,6 +40,17 @@ export class LlamaRnLM implements LocalLM {
     return this.vision;
   }
 
+  /** Drops the projector, keeping the model and its context; the next picture turn attaches it again. */
+  async releaseVision(): Promise<boolean> {
+    const ctx = this.ctx;
+    if (!ctx || !this.vision) return false;
+    if (this.inflight) await this.inflight.catch(() => undefined);
+    await ctx.releaseMultimodal();
+    this.vision = false;
+    this.mmproj = null;
+    return true;
+  }
+
   async load(model: ModelRef, opts: LoadOptions): Promise<Session> {
     await this.unload();
     this.ctx = await initLlama({
@@ -150,6 +161,8 @@ export class LlamaRnLM implements LocalLM {
           reasoning_format: "auto",
         },
         (data) => {
+          /* rewind() clears the stop flag when the native worker starts the completion, so a stop sent before that is lost; repeat it on the first token. */
+          if (signal.aborted) void ctx.stopCompletion();
           if (!ttft) ttft = Date.now() - started;
           if (data.accumulated_text === undefined) push({ text: data.token });
           else emit(data.content, data.reasoning_content);

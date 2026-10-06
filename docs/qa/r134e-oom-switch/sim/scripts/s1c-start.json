@@ -1,0 +1,45 @@
+{
+  "runId": "s1c-start",
+  "_": "After the Fast download: Start chatting, seal and lock steps, to the chat on Fast.",
+  "steps": [
+    {
+      "op": "press",
+      "testID": "start-chatting"
+    },
+    {
+      "op": "waitFor",
+      "testID": "sealed-start",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "sleep",
+      "ms": 8000
+    },
+    {
+      "op": "press",
+      "testID": "sealed-start"
+    },
+    {
+      "op": "waitFor",
+      "testID": "lock-start",
+      "timeoutMs": 20000
+    },
+    {
+      "op": "press",
+      "testID": "lock-start"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 120000
+    },
+    {
+      "op": "sleep",
+      "ms": 10000
+    },
+    {
+      "op": "screenshot",
+      "name": "01-chat-fast"
+    }
+  ]
+}

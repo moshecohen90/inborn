@@ -261,6 +261,18 @@ describe("§6.5 table — heat, memory, background", () => {
     expect(run(p, signals({ memoryPressure: "critical", currentTier: "instant" }), phone(), 92_000).status).toBe("memory");
   });
 
+  it("an answer finished on the switched-to model retires the memory line; a fresh warning brings it back (build 38 X6)", () => {
+    const p = new DevicePolicy();
+    run(p, signals({ memoryPressure: "warning" }));
+    p.noteSwitched("fast", "instant", true, "memory");
+    p.noteAnswered("instant");
+    expect(run(p, signals({ memoryPressure: "warning", currentTier: "instant" }), phone(), 1).headline).toBeNull();
+    expect(run(p, signals({ currentTier: "instant" }), phone(), 90_000).headline).toBeNull();
+    expect(run(p, signals({ currentTier: "instant" }), phone(), 111_000)).toMatchObject({ status: "normal", headline: null });
+    p.noteMemoryWarning();
+    expect(run(p, signals({ memoryPressure: "warning", currentTier: "instant" }), phone(), 112_000).headline).toBe(HEADLINE_KEYS.memorySwitched);
+  });
+
   it("memory pressure with no Instant installed: stop and unload, the line says so, nothing is promised", () => {
     const r = run(new DevicePolicy(), signals({ memoryPressure: "warning", generating: true, availableTiers: ["fast"] }));
     expect(r).toMatchObject({ status: "memory", recommendation: "act", action: "unloadModel", targetTier: null, stopGeneration: true, unloadAfterMs: 0, headline: HEADLINE_KEYS.memoryStopped, button: null });

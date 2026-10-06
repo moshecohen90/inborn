@@ -1,0 +1,36 @@
+{
+  "runId": "s3-next-message",
+  "_": "Inside the memory hold (seconds after the warning): the next message is answered on Instant, and the line goes once it finishes.",
+  "steps": [
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "Give it a title."
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 180000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "04-next-answered"
+    },
+    {
+      "op": "dump",
+      "name": "04-next-answered"
+    }
+  ]
+}

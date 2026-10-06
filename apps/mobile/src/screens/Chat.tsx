@@ -90,7 +90,7 @@ import {
   type DocumentRecord,
   IMAGE_WRAPPER_TOKENS,
 } from "@inborn/core";
-import { enableVision, getEngine, loadSession, wasStoppedByGuard } from "../engine";
+import { enableVision, getEngine, isVisionEased, loadSession, wasStoppedByGuard } from "../engine";
 import { writeDevResult } from "../adapters/devModel";
 import { imageMaxTokens } from "../adapters/imageTokens";
 import { File, Paths } from "expo-file-system";
@@ -118,6 +118,7 @@ import { browserModels, reopenModelSheet } from "../components/chat/browserModel
 import { adviceToShow } from "../lib/modelAdviceMemory";
 import { isDictatedSend } from "../lib/dictatedDraft";
 import { listClipping } from "../lib/listClipping";
+import { emptyTurn, silenced } from "../lib/emptyAnswer";
 import { noteGenerationEnded } from "../lib/pausedTurn";
 import { PartialAnswerSaver } from "../lib/partialAnswer";
 import { gatePhotoSend, planVisionTurn } from "../lib/visionGate";
@@ -175,6 +176,8 @@ const AUTOPROMPT_FILE = AUTOPROMPT_ENV === "file" ? "dev-prompt.txt" : null;
 const DEV_RESULTS = AUTOPROMPT !== null || AUTOPROMPT_FILE !== null || DEV_AUTOVOICE_DICTATE;
 /* QA builds only: every picture answer fails the check, so the honest line and its advice can be walked on a simulator. Store builds never set it. */
 const DEV_PICTURE_FAULT = process.env.EXPO_PUBLIC_DEV_PICTURE_FAULT === "1";
+/* QA: every answer streams nothing, the "prompt_n 1, 0 tokens" failure of build 38. */
+const DEV_EMPTY_ANSWER = process.env.EXPO_PUBLIC_DEV_EMPTY_ANSWER === "1";
 /** Product ceiling for finishing a reply after the app goes to the background (§10.3 #21). */
 const BACKGROUND_GRACE_MS = 15_000;
 const NOTICE_KEY = "notice.canBeWrong";
@@ -217,7 +220,7 @@ export { afterSheetClose };
 const subscribeVault = (listener: () => void) => getVault().subscribe(listener);
 const missingSnapshot = () => getVault().missingModel();
 const errorText = (e: unknown) => (e instanceof Error ? e.message : String(e));
-const wire = (rows: readonly Row[]): Pick<ChatMessage, "id" | "role" | "content" | "images">[] => rows.filter((r) => !r.streaming && !r.error).map(({ id, role, content, images }) => ({ id, role, content, ...(images?.length ? { images } : {}) }));
+const wire = (rows: readonly Row[]): Pick<ChatMessage, "id" | "role" | "content" | "images">[] => rows.filter((r) => !r.streaming && !r.error && (r.role !== "assistant" || r.content)).map(({ id, role, content, images }) => ({ id, role, content, ...(images?.length ? { images } : {}) }));
 const toMessage = ({ role, content, images }: Pick<ChatMessage, "role" | "content" | "images">): Message => ({ role, content, ...(images?.length ? { images: images.map(imageUri) } : {}) });
 
 const NO_SNOOZE: readonly string[] = [];
@@ -523,13 +526,20 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
    * `history` is the wire conversation to send; `prefix` is content already on the target row.
    */
   const generate = async (chatIdNow: string, history: Message[], targetId: string, prefix: string, existingMessageId?: string, continueFrom?: ContinueFrom, photoDocIds: readonly string[] = [], page: PagePlan | null = null) => {
-    const s = session.current;
-    if (!s) return;
+    const held = session.current;
+    if (!held) return;
     dismissAfterSend(Platform.OS, Keyboard);
     setBusy(true);
     const ac = new AbortController();
     abort.current = ac;
     stopReason.current = null;
+    /* The guard may have swapped the weights since this render (§6.5): the turn waits for the session that will answer it and is built for that model. */
+    const s = await loadSession().catch(() => held);
+    session.current = s;
+    const { model } = getEngine();
+    const nCtx = s.nCtx;
+    const thinkingAvailable = model.id !== "instant";
+    const modelTier = findModel(BUNDLED_MANIFEST, model.id)?.tier;
     let reply = "";
     /* F390: Continue joins the rest to the words on screen with the separator the script uses, decided once on the first text;
        a resumed turn (F443) needs none, the engine wrote the rest of the same text. */
@@ -713,6 +723,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
             projectorAttached: attached,
             onLastUserMessage,
             otherModelSees: seerOf(photoPlanHere(model.id, tier !== "free")) !== null,
+            memoryEased: isVisionEased(),
           });
         let turnVision = plan();
         /* The projector is 205 MB and the vault reads the disk at launch: the picture waits for it, on screen, instead of being answered around (QA F294). */
@@ -753,6 +764,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const run = (wireMessages: Message[], o: GenOpts) => {
         attempt = new AbortController();
         if (ac.signal.aborted) attempt.abort();
+        if (DEV_EMPTY_ANSWER) return silenced(engine.generate(s, wireMessages, o, attempt.signal));
         return engine.generate(s, wireMessages, o, attempt.signal);
       };
       const stopLoop = () => attempt.abort();
@@ -766,7 +778,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         ? checkedAnswer({
             start: (again) => run(messages, again ? { ...opts, ...PICTURE_RETRY } : firstOpts),
             stop: stopLoop,
-            cancelled: () => ac.signal.aborted,
+            cancelled: () => ac.signal.aborted || wasStoppedByGuard(),
             facts: turnFacts,
             honest: t("chat.vision.unsure"),
             /* Not behind __DEV__: QA reads which sentences the user never saw. */
@@ -831,8 +843,15 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       /* The guard aborts through its own controller (background grace on Android, heat, memory): still a system stop with "Continue". */
       const guardStopped = wasStoppedByGuard();
       const loopCut = !familySafeReplaced && looped;
-      const stopped = !familySafeReplaced && (ac.signal.aborted || guardStopped || loopCut);
-      const stoppedBy: StoppedBy | undefined = !stopped ? undefined : loopCut ? "loop" : reason === "system" || guardStopped ? "system" : "user";
+      let stopped = !familySafeReplaced && (ac.signal.aborted || guardStopped || loopCut);
+      let stoppedBy: StoppedBy | undefined = !stopped ? undefined : loopCut ? "loop" : reason === "system" || guardStopped ? "system" : "user";
+      const nothing = emptyTurn({ reply: shown(), reasoning, stoppedBy });
+      if (nothing === "systemStop") {
+        /* Not behind __DEV__: QA and a release log need to see a turn that came back empty. */
+        console.log(`[chat] empty answer: ${usage?.promptTokens ?? "?"} prompt tokens, ${usage?.completionTokens ?? 0} generated, ${stoppedBy ?? "not stopped"}`);
+        stopped = true;
+        stoppedBy = "system";
+      }
       const safety: SafetyMark | undefined = familySafeReplaced ? "family-safe" : undefined;
       if (scope && !stopped && !familySafeReplaced && reply.trim()) {
         reply = `${reply.trimEnd()}\n\n*${summaryScope(t, scope, model.id === "instant" ? { current: chipLabel(t, model.id), better: chipLabel(t, "fast") } : undefined)}*`;
@@ -871,7 +890,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         patch((x) => ({ ...x, content: shown() }));
       }
       let keptId: string | null = null;
-      if (!reply && !reasoning && stopped && !savedId) {
+      if (nothing === "drop" && !savedId) {
         setRows((all) => all.filter((x) => x.id !== rowId));
       } else if (savedId) {
         keptId = savedId;
@@ -1084,6 +1103,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const continueRow = async (row: Row) => {
     const id = chatRef.current;
     if (!id || busy) return;
+    /* Nothing to go on from: Continue on an empty answer asks again. */
+    if (!row.content && !row.reasoning) return regenerate(row);
     const at = rowsRef.current.findIndex((r) => r.id === row.id);
     const before = wire(rowsRef.current.slice(0, at)).map(toMessage);
     /* F443: an engine that resumes the turn goes on from the words on screen, with no "Continue" user turn; any other gets the round-111 request. */
