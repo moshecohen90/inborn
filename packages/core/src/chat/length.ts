@@ -173,6 +173,8 @@ export interface LengthSignals {
   continuing?: boolean;
   /** The cap the device guard allows right now; the plan never asks for more. */
   ceiling?: number;
+  /** Small talk or a short follow-up about the conversation (`isPlainChatTurn`): a sentence or two answers it. */
+  smallTalk?: boolean;
 }
 
 export interface AnswerLengthPlan {
@@ -202,7 +204,7 @@ export function planAnswerLength(s: LengthSignals): AnswerLengthPlan {
     length = "long";
     tokens = ANSWER_CEILING;
     instruction = LENGTH_INSTRUCTIONS.long;
-  } else if (explicit?.kind === "short") {
+  } else if (explicit?.kind === "short" || s.smallTalk) {
     length = "short";
     tokens = LENGTH_TOKENS.short;
     instruction = LENGTH_INSTRUCTIONS.short;
