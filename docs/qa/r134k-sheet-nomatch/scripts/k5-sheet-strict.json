@@ -1,0 +1,78 @@
+{
+  "runId": "k5-sheet-strict",
+  "_": "Strict on: the same opener, at once. Strict is switched back off at the end.",
+  "steps": [
+    {
+      "op": "deeplink",
+      "url": "/documents"
+    },
+    {
+      "op": "waitFor",
+      "testID": "doc-select-DOCID_C",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "sleep",
+      "ms": 5000
+    },
+    {
+      "op": "press",
+      "testID": "doc-select-DOCID_C"
+    },
+    {
+      "op": "press",
+      "testID": "documents-ask-selected"
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-sheet",
+      "timeoutMs": 20000
+    },
+    {
+      "op": "press",
+      "testID": "ask-strict"
+    },
+    {
+      "op": "sleep",
+      "ms": 1000
+    },
+    {
+      "op": "type",
+      "testID": "ask-input",
+      "text": "Who won the 1998 World Cup?"
+    },
+    {
+      "op": "press",
+      "testID": "ask-send"
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-not-found",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "05-strict-world-cup"
+    },
+    {
+      "op": "dump",
+      "name": "05-strict-world-cup"
+    },
+    {
+      "op": "press",
+      "testID": "ask-strict"
+    },
+    {
+      "op": "sleep",
+      "ms": 1000
+    }
+  ]
+}

@@ -1,0 +1,728 @@
+{
+  "runId": "k6-sheet-constitution-fast-muxao51z",
+  "startedAt": "2026-10-06T23:13:07.377Z",
+  "finishedAt": "2026-10-06T23:14:19.823Z",
+  "ok": true,
+  "passed": 37,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 155,
+      "detail": "/vault"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 10001,
+      "detail": "10000 ms"
+    },
+    {
+      "i": 2,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 165,
+      "detail": "/documents"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "doc-select-muxadqb7-1-xl8sxbtw appeared"
+    },
+    {
+      "i": 4,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5016,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 5,
+      "op": "press",
+      "ok": true,
+      "ms": 151,
+      "detail": "doc-select-muxadqb7-1-xl8sxbtw ← onPress"
+    },
+    {
+      "i": 6,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "documents-ask-selected ← onPress"
+    },
+    {
+      "i": 7,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "ask-sheet appeared"
+    },
+    {
+      "i": 8,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "ask-input = 27 chars"
+    },
+    {
+      "i": 9,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "ask-send ← onPress"
+    },
+    {
+      "i": 10,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1502,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 11,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "ask-not-found appeared"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2002,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 13,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1903,
+      "detail": "06a-who-won-the-1998-world-cup"
+    },
+    {
+      "i": 14,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file 2 documents · 57.4 KB on this device Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. turbine-report-3pages.pdf PDF · 3 pages · 1.73 KB Indexed · 3 passages constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages Ask about 1 document Indexed on this device Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. Your documents don't mention this. search 478 ms · 0 passages ↑"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muxaep45-2-40g9b1vs",
+          "text": "turbine-report-3pages.pdf PDF · 3 pages · 1.73 KB Indexed · 3 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muxaep45-2-40g9b1vs",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muxaep45-2-40g9b1vs",
+          "text": "Indexed · 3 passages"
+        },
+        {
+          "testID": "doc-row-muxadqb7-1-xl8sxbtw",
+          "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muxadqb7-1-xl8sxbtw",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": true,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muxadqb7-1-xl8sxbtw",
+          "text": "Indexed · 45 passages"
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Ask about 1 document",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "ask-sheet",
+          "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. Your documents don't mention this. search 478 ms · 0 passages ↑"
+        },
+        {
+          "testID": "ask-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "ask-not-found",
+          "text": "Your documents don't mention this."
+        },
+        {
+          "testID": "ask-stats",
+          "text": "search 478 ms · 0 passages"
+        },
+        {
+          "testID": "ask-input",
+          "text": "",
+          "value": "Who won the 1998 World Cup?",
+          "pressable": true
+        },
+        {
+          "testID": "ask-send",
+          "text": "↑",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "06a-who-won-the-1998-world-cup"
+    },
+    {
+      "i": 15,
+      "op": "type",
+      "ok": true,
+      "ms": 161,
+      "detail": "ask-input = 32 chars"
+    },
+    {
+      "i": 16,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "ask-send ← onPress"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1502,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 18,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "ask-not-found appeared"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2014,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 20,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 640,
+      "detail": "06b-what-does-it-say-about-the-m"
+    },
+    {
+      "i": 21,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file 2 documents · 57.4 KB on this device Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. turbine-report-3pages.pdf PDF · 3 pages · 1.73 KB Indexed · 3 passages constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages Ask about 1 document Indexed on this device Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. Your documents don't mention this. search 442 ms · 0 passages ↑"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muxaep45-2-40g9b1vs",
+          "text": "turbine-report-3pages.pdf PDF · 3 pages · 1.73 KB Indexed · 3 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muxaep45-2-40g9b1vs",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muxaep45-2-40g9b1vs",
+          "text": "Indexed · 3 passages"
+        },
+        {
+          "testID": "doc-row-muxadqb7-1-xl8sxbtw",
+          "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muxadqb7-1-xl8sxbtw",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": true,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muxadqb7-1-xl8sxbtw",
+          "text": "Indexed · 45 passages"
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Ask about 1 document",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "ask-sheet",
+          "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. Your documents don't mention this. search 442 ms · 0 passages ↑"
+        },
+        {
+          "testID": "ask-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "ask-not-found",
+          "text": "Your documents don't mention this."
+        },
+        {
+          "testID": "ask-stats",
+          "text": "search 442 ms · 0 passages"
+        },
+        {
+          "testID": "ask-input",
+          "text": "",
+          "value": "What does it say about the moon?",
+          "pressable": true
+        },
+        {
+          "testID": "ask-send",
+          "text": "↑",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "06b-what-does-it-say-about-the-m"
+    },
+    {
+      "i": 22,
+      "op": "type",
+      "ok": true,
+      "ms": 158,
+      "detail": "ask-input = 22 chars"
+    },
+    {
+      "i": 23,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "ask-send ← onPress"
+    },
+    {
+      "i": 24,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 25,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "ask-not-found appeared"
+    },
+    {
+      "i": 26,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2001,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 27,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 954,
+      "detail": "06c-who-wrote-this-report"
+    },
+    {
+      "i": 28,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file 2 documents · 57.4 KB on this device Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. turbine-report-3pages.pdf PDF · 3 pages · 1.73 KB Indexed · 3 passages constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages Ask about 1 document Indexed on this device Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. Your documents don't mention this. search 254 ms · 0 passages ↑"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muxaep45-2-40g9b1vs",
+          "text": "turbine-report-3pages.pdf PDF · 3 pages · 1.73 KB Indexed · 3 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muxaep45-2-40g9b1vs",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muxaep45-2-40g9b1vs",
+          "text": "Indexed · 3 passages"
+        },
+        {
+          "testID": "doc-row-muxadqb7-1-xl8sxbtw",
+          "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muxadqb7-1-xl8sxbtw",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": true,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muxadqb7-1-xl8sxbtw",
+          "text": "Indexed · 45 passages"
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Ask about 1 document",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "ask-sheet",
+          "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. Your documents don't mention this. search 254 ms · 0 passages ↑"
+        },
+        {
+          "testID": "ask-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "ask-not-found",
+          "text": "Your documents don't mention this."
+        },
+        {
+          "testID": "ask-stats",
+          "text": "search 254 ms · 0 passages"
+        },
+        {
+          "testID": "ask-input",
+          "text": "",
+          "value": "Who wrote this report?",
+          "pressable": true
+        },
+        {
+          "testID": "ask-send",
+          "text": "↑",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "06c-who-wrote-this-report"
+    },
+    {
+      "i": 29,
+      "op": "type",
+      "ok": true,
+      "ms": 159,
+      "detail": "ask-input = 20 chars"
+    },
+    {
+      "i": 30,
+      "op": "press",
+      "ok": true,
+      "ms": 151,
+      "detail": "ask-send ← onPress"
+    },
+    {
+      "i": 31,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1502,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 32,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 33214,
+      "detail": "ask-answer appeared"
+    },
+    {
+      "i": 33,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3466,
+      "detail": "ask-stop gone"
+    },
+    {
+      "i": 34,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2016,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 35,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1274,
+      "detail": "06d-who-can-veto-a-bill"
+    },
+    {
+      "i": 36,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file 2 documents · 57.4 KB on this device Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. turbine-report-3pages.pdf PDF · 3 pages · 1.73 KB Indexed · 3 passages constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages Ask about 1 document Indexed on this device Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. FAST · ON-DEVICE AI No one can veto a bill according to the provided documents. The text describes procedures for how bills are presented, reconsidered by both Houses, and passed (or failed) under certain conditions such as presidential approval or majority votes in Congress, but it does not mention a Veto power. SOURCES constitution-9pages.pdf · p.3 constitution-9pages.pdf · p.4 search 278 ms · 4 passages · answer 37861 ms · 16.5 tok/s · prompt 892 tokens ↑"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muxaep45-2-40g9b1vs",
+          "text": "turbine-report-3pages.pdf PDF · 3 pages · 1.73 KB Indexed · 3 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muxaep45-2-40g9b1vs",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muxaep45-2-40g9b1vs",
+          "text": "Indexed · 3 passages"
+        },
+        {
+          "testID": "doc-row-muxadqb7-1-xl8sxbtw",
+          "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muxadqb7-1-xl8sxbtw",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": true,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muxadqb7-1-xl8sxbtw",
+          "text": "Indexed · 45 passages"
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Ask about 1 document",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "ask-sheet",
+          "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. FAST · ON-DEVICE AI No one can veto a bill according to the provided documents. The text describes procedures for how bills are presented, reconsidered by both Houses, and passed (or failed) under certain conditions such as presidential approval or majority votes in Congress, but it does not mention a Veto power. SOURCES constitution-9pages.pdf · p.3 constitution-9pages.pdf · p.4 search 278 ms · 4 passages · answer 37861 ms · 16.5 tok/s · prompt 892 tokens ↑"
+        },
+        {
+          "testID": "ask-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "ask-answer",
+          "text": "No one can veto a bill according to the provided documents. The text describes procedures for how bills are presented, reconsidered by both Houses, and passed (or failed) under certain conditions such as presidential approval or majority votes in Congress, but it does not mention a Veto power."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES constitution-9pages.pdf · p.3 constitution-9pages.pdf · p.4"
+        },
+        {
+          "testID": "citation-1",
+          "text": "constitution-9pages.pdf · p.3",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "constitution-9pages.pdf · p.4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.4",
+          "pressable": true
+        },
+        {
+          "testID": "ask-stats",
+          "text": "search 278 ms · 4 passages · answer 37861 ms · 16.5 tok/s · prompt 892 tokens"
+        },
+        {
+          "testID": "ask-input",
+          "text": "",
+          "value": "Who can veto a bill?",
+          "pressable": true
+        },
+        {
+          "testID": "ask-send",
+          "text": "↑",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "06d-who-can-veto-a-bill"
+    }
+  ],
+  "errors": []
+}

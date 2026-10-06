@@ -1,0 +1,192 @@
+{
+  "runId": "k2-index-and-import-muxace23",
+  "startedAt": "2026-10-06T23:03:59.055Z",
+  "finishedAt": "2026-10-06T23:06:19.804Z",
+  "ok": true,
+  "passed": 13,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 161,
+      "detail": "/vault"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 60019,
+      "detail": "60000 ms"
+    },
+    {
+      "i": 2,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 165,
+      "detail": "/"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 4,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 166,
+      "detail": "attach: constitution-9pages.pdf"
+    },
+    {
+      "i": 5,
+      "op": "sleep",
+      "ok": true,
+      "ms": 45017,
+      "detail": "45000 ms"
+    },
+    {
+      "i": 6,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 168,
+      "detail": "attach: turbine-report-3pages.pdf"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 30017,
+      "detail": "30000 ms"
+    },
+    {
+      "i": 8,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 165,
+      "detail": "/documents"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "documents-screen appeared"
+    },
+    {
+      "i": 10,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3001,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 11,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1869,
+      "detail": "02-documents"
+    },
+    {
+      "i": 12,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file 2 documents · 57.4 KB on this device Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. turbine-report-3pages.pdf PDF · 1.73 KB Waiting… Cancel constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexing 66% · page 6 of 9 Cancel Select documents to ask Indexed on this device"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muxaep45-2-40g9b1vs",
+          "text": "turbine-report-3pages.pdf PDF · 1.73 KB Waiting… Cancel",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muxaep45-2-40g9b1vs",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "doc-state-muxaep45-2-40g9b1vs",
+          "text": "Waiting…"
+        },
+        {
+          "testID": "doc-cancel-muxaep45-2-40g9b1vs",
+          "text": "Cancel",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muxadqb7-1-xl8sxbtw",
+          "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexing 66% · page 6 of 9 Cancel",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muxadqb7-1-xl8sxbtw",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muxadqb7-1-xl8sxbtw",
+          "text": "Indexing 66% · page 6 of 9"
+        },
+        {
+          "testID": "doc-cancel-muxadqb7-1-xl8sxbtw",
+          "text": "Cancel",
+          "pressable": true
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Select documents to ask",
+          "role": "button",
+          "disabled": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "02-documents"
+    }
+  ],
+  "errors": []
+}
