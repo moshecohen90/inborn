@@ -37,6 +37,8 @@ export interface PromptOptions {
   thinPage?: boolean;
   /** The model also sees the picture of the page these passages come from (round 131). */
   pagePicture?: boolean;
+  /** `hits` are the opening of a longer file: its first `pages` pages of `of` (round 132). */
+  opening?: { pages: number; of: number };
 }
 
 /** The exact token the model returns when strict mode finds nothing; the app renders the localized sentence instead. */
@@ -126,8 +128,12 @@ export const DEFAULT_MIN_COSINE_ALONE = SHIPPED.alone;
 export const isRelevant = (h: RetrievalHit, doors: RelevanceDoors = SHIPPED): boolean =>
   h.cosine > doors.alone || h.bm25Terms >= 2 || (h.bm25Terms >= 1 && (h.bm25 >= doors.minBm25 || h.cosine >= doors.corroborate));
 
+/** Only the opening of the file reached the model: the answer says what the file is, and never passes for a summary of it. */
+export const openingRule = (pages: number, of: number): string =>
+  ` These passages are only the opening of the file, ${pages === 1 ? "page 1" : `pages 1–${pages}`} of ${of}. Say what kind of file it is and what it is about in one to three sentences, and never present that as a summary of the whole file.`;
+
 /* The document rules say what to write, never a rule to report on: Instant (0.8B) narrated rule words back into its answer (F449). */
-function rules(nonce: string, strict: boolean, answerLanguage?: string, citeMarkers = true, thinPage?: string, pagePicture = false): string {
+function rules(nonce: string, strict: boolean, answerLanguage?: string, citeMarkers = true, thinPage?: string, pagePicture = false, opening?: { pages: number; of: number }): string {
   const lang = answerLanguage ? ` Answer in the user's language (${answerLanguage}) unless asked otherwise.` : "";
   const cite = citeMarkers ? ` Cite every fact you take from a passage with its number, like [2].` : "";
   const strictRule = strict
@@ -143,6 +149,7 @@ function rules(nonce: string, strict: boolean, answerLanguage?: string, citeMark
     cite +
     strictRule +
     (thinPage ? thinPageRule(thinPage) : "") +
+    (opening && opening.of > opening.pages ? openingRule(opening.pages, opening.of) : "") +
     lang
   );
 }
@@ -172,7 +179,7 @@ export function buildRagPrompt(o: PromptOptions): RagPrompt {
   }
   /* The floor decides the passages in both modes: an answer the documents did not carry must not be handed a SOURCES list (QA F161). */
   const candidates = relevant;
-  const system = base + rules(nonce, o.strict, o.answerLanguage, o.citeMarkers ?? true, o.thinPage ? (o.openers?.thinPage ?? DEFAULT_OPENERS.thinPage) : undefined, o.pagePicture);
+  const system = base + rules(nonce, o.strict, o.answerLanguage, o.citeMarkers ?? true, o.thinPage ? (o.openers?.thinPage ?? DEFAULT_OPENERS.thinPage) : undefined, o.pagePicture, o.opening);
   const fixed = estimateTokens(system) + estimateTokens(o.question) + 24;
   const historyBudget = Math.floor(o.nCtx * (o.historyShare ?? DEFAULT_HISTORY_SHARE));
   const history = trimHistory(o.history ?? [], historyBudget);

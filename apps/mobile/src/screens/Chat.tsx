@@ -9,6 +9,8 @@ import {
   BUILT_IN_PERSONAS,
   DEFAULT_PERSONA_ID,
   isNotFoundReply,
+  fileAsk,
+  type WholeFilePlan,
   groundedCitations,
   withoutEchoedLabels,
   type RetrievalHit,
@@ -124,7 +126,7 @@ import { switchChatModel } from "../extensions/chatModel";
 import { stashHeldTurn, takeHeldTurn } from "../lib/heldTurn";
 import { EMBED_MODEL_ID } from "../documents/embedder";
 import { visionTimeHint } from "../extensions/timeHint";
-import { claimsFileContent, noPassageOpeners, planDocsTurn, planIndexHold, releaseWhenIndexed, saysNoneMatched } from "../lib/docsGate";
+import { claimsFileContent, noPassageOpeners, planDocsTurn, planIndexHold, readingPagesLine, releaseWhenIndexed, saysNoneMatched, summaryScope } from "../lib/docsGate";
 import { reindexNotice, type AnsweredMidReindex } from "../lib/reindexNotice";
 import { withPhotos } from "../lib/photoPrompt";
 import { dismissAfterSend } from "../lib/keyboardDismiss";
@@ -296,6 +298,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
   const [wordsOnly, setWordsOnly] = useState(false);
   /** How many attached documents this turn is waiting for before it answers (QA F125/F126); 0 means it is not waiting. */
   const [readingDocs, setReadingDocs] = useState(0);
+  /** The pages a summary is reading now (round 132); null when it is not reading. */
+  const [readingPages, setReadingPages] = useState<string | null>(null);
   const [preparingVision, setPreparingVision] = useState(false);
   /* QA F343: Send with a photo nothing here can see keeps the message and the photo in the composer behind this card. */
   const [photoHold, setPhotoHold] = useState<HeldPhoto | null>(null);
@@ -490,6 +494,27 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     return id;
   };
 
+  /** Round 132: the attached files whole, or section by section with "Reading page 3 of 9…" on screen; null once Stop is pressed. */
+  const readWholeFile = async (s: Session, system: string, question: string, signal: AbortSignal) => {
+    try {
+      return await library.readWhole(question, {
+        docIds: docs.context.docIds,
+        nCtx,
+        systemPrompt: system,
+        citeMarkers: canCiteMarkers(model.id),
+        signal,
+        onSection: (_i, section, plan) => setReadingPages(readingPagesLine(t, section, plan.pagesTotal)),
+        complete: async (wireMessages, maxTokens) => {
+          let out = "";
+          for await (const d of engine.generate(s, wireMessages, { reasoning: false, maxTokens, temperature: 0.3 }, signal)) if (d.text) out += d.text;
+          return out;
+        },
+      });
+    } finally {
+      setReadingPages(null);
+    }
+  };
+
   /**
    * One generation: streams into `targetId` (a fresh pending row, or an existing partial when continuing).
    * `history` is the wire conversation to send; `prefix` is content already on the target row.
@@ -596,10 +621,12 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         await answerWithoutModel("chat.familySafe.refused", undefined, "family-safe");
         return;
       }
+      /* Round 132: "summarize this file" reads the whole file; the opening passages alone could only say what the file is. */
+      const summary = turn.kind === "retrieve" && !existingMessageId && !seesPage && !thinPage && !photoDocIds.length && fileAsk(lastUser) === "summary";
       /* F38: how long this answer should be, as one line in the prompt and a cap for this turn. "Continue" asks for the rest, so it gets the ceiling. */
       const length = planAnswerLength({
         text: lastUser,
-        use: detectUse({ text: lastUser, personaId: persona.id, personaIcon: persona.icon, hasDocuments: docs.documents.length > 0, dictated: lastDictated }),
+        use: summary ? "summarize" : detectUse({ text: lastUser, personaId: persona.id, personaIcon: persona.icon, hasDocuments: docs.documents.length > 0, dictated: lastDictated }),
         continuing: !!existingMessageId,
       });
       /* F443: a resumed turn keeps the stopped turn's system prompt, so the model goes on under the same instructions and the engine's cache still matches. */
@@ -609,10 +636,17 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const system = turnSystemPrompt({ familySafe, tier: modelTier, photos: history.some((m) => m.images?.length), picture, persona, chatPrompt: settings.systemPrompt, memory: facts, languageHint: languageHint(lastUser), length: lengthLine });
       const prompt = buildPrompt({ system, summary: chat?.summary, summaryUpTo: chat?.summaryUpTo, messages: history.map((m, i) => ({ id: String(i), ...m })), nCtx, scale: tokenScale, reserve: replyReserve(length.maxTokens), imageTokens: imageMaxTokens(engine.id, model.id) });
       let messages = prompt.messages;
+      let scope: WholeFilePlan | null = null;
       /* Attached documents (§7.3, §8.5): retrieve, fence, cite. */
       if (turn.kind === "retrieve" && !seesPage) {
         try {
-          const rag = await docs.buildPrompt(lastUser, history.slice(0, lastUserAt), nCtx, system, photoDocIds, thinPage);
+          const whole = summary ? await readWholeFile(s, system, lastUser, ac.signal) : null;
+          if (ac.signal.aborted) {
+            setRows((all) => all.filter((x) => x.id !== rowId));
+            return;
+          }
+          scope = whole?.plan ?? null;
+          const rag = whole ? { prompt: whole.prompt, retrieveMs: 0 } : await docs.buildPrompt(lastUser, history.slice(0, lastUserAt), nCtx, system, photoDocIds, thinPage);
           if (rag.reindexing) setReindexing(rag.reindexing);
           /* A thin page went in whole, so a word search lost nothing there. */
           if (rag.lexical && !thinPage) setWordsOnly(true);
@@ -628,6 +662,10 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           ragUsed = rag.prompt.used;
           messages = withPhotos(messages, lastUserAt >= 0 ? history[lastUserAt]!.images : undefined);
         } catch (e: unknown) {
+          if (ac.signal.aborted) {
+            setRows((all) => all.filter((x) => x.id !== rowId));
+            return;
+          }
           /* A search that failed must not leave the model answering as if nothing were attached, nor claim the file has no text (QA F353). */
           console.warn("[documents] search failed", errorText(e));
           await answerWithoutModel("documents.searchFailed");
@@ -789,6 +827,10 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const stopped = !familySafeReplaced && (ac.signal.aborted || guardStopped || loopCut);
       const stoppedBy: StoppedBy | undefined = !stopped ? undefined : loopCut ? "loop" : reason === "system" || guardStopped ? "system" : "user";
       const safety: SafetyMark | undefined = familySafeReplaced ? "family-safe" : undefined;
+      if (scope && !stopped && !familySafeReplaced && reply.trim()) {
+        reply = `${reply.trimEnd()}\n\n*${summaryScope(t, scope, model.id === "instant" ? { current: chipLabel(t, model.id), better: chipLabel(t, "fast") } : undefined)}*`;
+        patch((x) => ({ ...x, content: shown() }));
+      }
       /* A resumed turn's prompt tokens include the prefill, which the estimate does not count. */
       if (usage && !citations && !continueFrom) setTokenScale((prev) => calibrate(prompt.used, usage!.promptTokens, prev));
       /* Neither attempt gave a sound answer about the picture: no sources under the honest line. */
@@ -906,7 +948,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         return null;
       });
       /* A file with no index model behind it is never sent as if it were read in full (round 93); a turn that carries every attached file whole needs no index. */
-      if (planIndexHold({ attached: docs.documents.length, embedder: library.state().embedder.kind, wordsAccepted: wordsAccepted.current, coveredWhole: coversAttachments(page, docs.documents) }) === "hold") {
+      if (planIndexHold({ attached: docs.documents.length, embedder: library.state().embedder.kind, wordsAccepted: wordsAccepted.current, coveredWhole: coversAttachments(page, docs.documents) || fileAsk(text) === "summary" }) === "hold") {
         setDocsHold(true);
         return;
       }
@@ -1680,6 +1722,11 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       {preparingVision ? (
         <View testID="preparing-vision" style={[styles.notice, { borderColor: theme.border }]}>
           <Text style={[type.caption, styles.grow, { color: theme.text2 }]}>{t("chat.vision.preparing")}</Text>
+        </View>
+      ) : null}
+      {readingPages ? (
+        <View testID="reading-pages" style={[styles.notice, { borderColor: theme.border }]}>
+          <Text style={[type.caption, styles.grow, { color: theme.text2 }]}>{readingPages}</Text>
         </View>
       ) : null}
       {readingDocs ? (

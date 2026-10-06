@@ -1,0 +1,104 @@
+{
+  "runId": "s5-fast-ask",
+  "_": "Fast, fresh chat: the same file and the same two questions.",
+  "steps": [
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "devPrompt",
+      "lines": [
+        "attach: constitution-9pages.pdf"
+      ]
+    },
+    {
+      "op": "sleep",
+      "ms": 30000
+    },
+    {
+      "op": "screenshot",
+      "name": "05a-attached"
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "What is this file about?"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 300000
+    },
+    {
+      "op": "sleep",
+      "ms": 3000
+    },
+    {
+      "op": "screenshot",
+      "name": "05b-about"
+    },
+    {
+      "op": "dump",
+      "name": "05b-about"
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "Summarize this file"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "waitFor",
+      "testID": "reading-pages",
+      "timeoutMs": 120000
+    },
+    {
+      "op": "screenshot",
+      "name": "05c-reading"
+    },
+    {
+      "op": "dump",
+      "name": "05c-reading"
+    },
+    {
+      "op": "waitFor",
+      "testID": "reading-pages",
+      "gone": true,
+      "timeoutMs": 600000
+    },
+    {
+      "op": "sleep",
+      "ms": 4000
+    },
+    {
+      "op": "screenshot",
+      "name": "05d-writing"
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 600000
+    },
+    {
+      "op": "sleep",
+      "ms": 3000
+    },
+    {
+      "op": "screenshot",
+      "name": "05e-summary"
+    },
+    {
+      "op": "dump",
+      "name": "05e-summary"
+    }
+  ]
+}

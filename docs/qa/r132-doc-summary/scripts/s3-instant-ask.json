@@ -1,0 +1,104 @@
+{
+  "runId": "s3-instant-ask",
+  "_": "Instant, fresh chat: the 9-page Constitution attached, 'What is this file about?' (opening, framed), then 'Summarize this file' (progress line, then the summary with sources, the scope line and the Instant line).",
+  "steps": [
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "devPrompt",
+      "lines": [
+        "attach: constitution-9pages.pdf"
+      ]
+    },
+    {
+      "op": "sleep",
+      "ms": 30000
+    },
+    {
+      "op": "screenshot",
+      "name": "03a-attached"
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "What is this file about?"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 300000
+    },
+    {
+      "op": "sleep",
+      "ms": 3000
+    },
+    {
+      "op": "screenshot",
+      "name": "03b-about"
+    },
+    {
+      "op": "dump",
+      "name": "03b-about"
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "Summarize this file"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "waitFor",
+      "testID": "reading-pages",
+      "timeoutMs": 120000
+    },
+    {
+      "op": "screenshot",
+      "name": "03c-reading"
+    },
+    {
+      "op": "dump",
+      "name": "03c-reading"
+    },
+    {
+      "op": "waitFor",
+      "testID": "reading-pages",
+      "gone": true,
+      "timeoutMs": 600000
+    },
+    {
+      "op": "sleep",
+      "ms": 4000
+    },
+    {
+      "op": "screenshot",
+      "name": "03d-writing"
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 600000
+    },
+    {
+      "op": "sleep",
+      "ms": 3000
+    },
+    {
+      "op": "screenshot",
+      "name": "03e-summary"
+    },
+    {
+      "op": "dump",
+      "name": "03e-summary"
+    }
+  ]
+}

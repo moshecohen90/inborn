@@ -7,6 +7,7 @@ import {
   chunkFor,
   citationsForAnswer,
   embedBudget,
+  filePages,
   indexDocument,
   isAboutAttachment,
   lexicalEmbedder,
@@ -18,7 +19,11 @@ import {
   newId,
   reindexFrom,
   reembedStored,
+  planWholeFile,
+  readWholeFile,
   vectorsValidUpTo,
+  wholeFilePrompt,
+  wholeFitTokens,
   isSearchable as searchable,
   type Citation,
   type DocumentRecord,
@@ -28,7 +33,9 @@ import {
   type NoPassageOpeners,
   type OpenedDocument,
   type RagPrompt,
+  type ReadOptions,
   type TextExtractor,
+  type WholeFilePlan,
 } from "@inborn/core";
 import { MemoryEmbeddingStore, SplitEmbeddingStore } from "@inborn/core";
 import { openRagStore, ragStoreKind } from "./db";
@@ -102,6 +109,16 @@ export interface AskResult {
   lexical?: boolean;
 }
 
+export interface WholeFileOptions extends AskOptions {
+  complete: ReadOptions["complete"];
+  onSection?: ReadOptions["onSection"];
+  signal?: AbortSignal;
+}
+
+export interface WholeFileResult {
+  prompt: RagPrompt;
+  plan: WholeFilePlan;
+}
 
 /** A pending or running indexing job. */
 interface Job {
@@ -614,10 +631,35 @@ export class DocumentLibrary {
     const doors = relevanceDoors(embedderId);
     const thin = o.page && docIds.includes(o.page.docId) ? o.page : null;
     if (thin) hits = pageHits(await store.chunksOf(thin.docId), thin.page, hits.filter((h) => overview || isRelevant(h, doors)));
-    const prompt = buildRagPrompt({ question, hits, docs: this.docs, strict, embedderId, nCtx: o.nCtx ?? 4096, history: o.history, systemPrompt: o.systemPrompt, answerLanguage: o.answerLanguage, citeMarkers: o.citeMarkers, overview: overview || !!thin, openers: o.openers, thinPage: !!thin, pagePicture: o.pagePicture });
+    const only = overview && !thin && docIds.length === 1 && hits.length ? this.docs.get(docIds[0]!) : undefined;
+    const opening = only ? { pages: Math.max(...hits.map((h) => h.chunk.page)), of: only.pages } : undefined;
+    const prompt = buildRagPrompt({ question, hits, docs: this.docs, strict, embedderId, nCtx: o.nCtx ?? 4096, history: o.history, systemPrompt: o.systemPrompt, answerLanguage: o.answerLanguage, citeMarkers: o.citeMarkers, overview: overview || !!thin, openers: o.openers, thinPage: !!thin, pagePicture: o.pagePicture, opening });
     /* Not behind __DEV__: F282 was a release build citing an off-topic passage, and no screen prints the two numbers that decided it. */
     console.log(`[rag] strict=${strict}${lexical ? " words-only" : ""}${overview ? " overview" : ""}${rebuilding.length ? ` reindexing=${rebuilding.length}/${docIds.length}` : ""} hits=${hits.length} used=${prompt.used.length} ${retrieveMs} ms | ${hits.map((h) => `${h.chunk.docId}#${h.chunk.ord} cos=${h.cosine.toFixed(3)} terms=${h.bm25Terms} bm25=${h.bm25.toFixed(2)} ${overview || isRelevant(h, doors) ? "KEPT" : "dropped"}`).join(" · ")}`);
     return { prompt, retrieveMs, ...(rebuilding.length ? { reindexing: { pending: rebuilding.length, total: docIds.length, ids: rebuilding.map((d) => d.id) } } : {}), ...(lexical ? { lexical: true } : {}) };
+  }
+
+  /**
+   * The whole of the attached files for an ask that needs all of it (round 132): in whole when it fits the prompt,
+   * otherwise read section by section through `complete`. Null when nothing attached has text, or once `signal` aborts.
+   */
+  async readWhole(question: string, o: WholeFileOptions): Promise<WholeFileResult | null> {
+    await this.ready();
+    const store = this.store;
+    if (!store) throw new Error("no-store");
+    const docIds = (o.docIds ?? []).filter((id) => {
+      const d = this.docs.get(id);
+      return !!d && searchable(d);
+    });
+    const files = (await Promise.all(docIds.map((id) => store.chunksOf(id)))).map(filePages);
+    const plan = planWholeFile(files, { fitTokens: wholeFitTokens(o.nCtx ?? 4096, o.systemPrompt, question), pagesOf: (id) => this.docs.get(id)?.pages ?? 0 });
+    if (!plan.sections.length) return null;
+    const started = Date.now();
+    const notes = plan.whole ? undefined : await readWholeFile(plan, { complete: o.complete, docs: this.docs, onSection: o.onSection, signal: o.signal });
+    if (notes === null) return null;
+    const prompt = wholeFilePrompt({ question, plan, notes, docs: this.docs, systemPrompt: o.systemPrompt, answerLanguage: o.answerLanguage, citeMarkers: o.citeMarkers });
+    console.log(`[rag] whole-file ${plan.whole ? "whole" : `sections=${plan.sections.length}`} pages=${plan.pagesRead}/${plan.pagesTotal} prompt≈${prompt.promptTokens} ${Date.now() - started} ms`);
+    return { prompt, plan };
   }
 
   /** Characters stored for each page of a document, kept until the document changes (asked on every send with a PDF). */

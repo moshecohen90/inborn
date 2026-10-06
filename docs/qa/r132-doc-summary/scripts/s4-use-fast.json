@@ -1,0 +1,35 @@
+{
+  "runId": "s4-use-fast",
+  "_": "'use fast' the same way: a new chat on Fast.",
+  "steps": [
+    {
+      "op": "deeplink",
+      "url": "/vault"
+    },
+    {
+      "op": "sleep",
+      "ms": 10000
+    },
+    {
+      "op": "deeplink",
+      "url": "/"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 20000
+    },
+    {
+      "op": "screenshot",
+      "name": "04-chat-fast"
+    },
+    {
+      "op": "dump",
+      "name": "04-chat-fast"
+    }
+  ]
+}
