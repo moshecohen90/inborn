@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { chunkFor, chunkPage, clipToTokens, E5_QUERY_PREFIX, embedBudget, EMBED_TOKEN_SAFETY, estimateRagTokens, forDocuments, forQuery, indexDocument, MemoryEmbeddingStore, hashEmbedder, needsReindex, reindexFrom, Retriever, type DocumentRecord, type Embedder } from "../src/rag";
+import { chunkFor, chunkPage, clipToTokens, E5_QUERY_PREFIX, EmbedLanes, embedBudget, EMBED_TOKEN_SAFETY, estimateRagTokens, forDocuments, forQuery, indexDocument, indexModelOf, MemoryEmbeddingStore, hashEmbedder, needsReindex, reindexFrom, Retriever, type DocumentRecord, type Embedder } from "../src/rag";
 
 /* Worst real/estimate ratio measured against the shipped embedder's tokenizer (docs/qa/embed-multilingual/token-ratios.txt). */
 const WORST_MEASURED_RATIO = 1.84;
@@ -64,14 +64,27 @@ describe("F335 · no text past the embedder's 512 positions", () => {
 
 describe("F336 · which documents are rebuilt after the embedder changes", () => {
   const base: DocumentRecord = { id: "d", name: "d.txt", kind: "txt", bytes: 1, pages: 3, addedAt: 0, status: "indexed", indexedPages: 3, chunkCount: 9, flaggedLines: 2, ocrPages: 1, embedModel: "embed-nomic" };
+  const E5 = { id: "embed-e5" };
 
   it("any committed page from another embedder, whatever the status, and a record from before embedModel existed", () => {
-    expect(needsReindex(base, "embed-e5")).toBe(true);
+    expect(needsReindex(base, E5)).toBe(true);
     const record = (d: DocumentRecord): DocumentRecord => d;
-    expect(needsReindex(record({ ...base, status: "cancelled", indexedPages: 1 }), "embed-e5")).toBe(true);
-    expect(needsReindex({ ...base, embedModel: undefined }, "embed-e5")).toBe(true);
-    expect(needsReindex({ ...base, embedModel: "embed-e5" }, "embed-e5")).toBe(false);
-    expect(needsReindex(record({ ...base, indexedPages: 0, chunkCount: 0 }), "embed-e5")).toBe(false);
+    expect(needsReindex(record({ ...base, status: "cancelled", indexedPages: 1 }), E5)).toBe(true);
+    expect(needsReindex({ ...base, embedModel: undefined }, E5)).toBe(true);
+    expect(needsReindex({ ...base, embedModel: "embed-e5" }, E5)).toBe(false);
+    expect(needsReindex(record({ ...base, indexedPages: 0, chunkCount: 0 }), E5)).toBe(false);
+  });
+
+  it("r134b: an index stored before the embedder's revision is rebuilt, and the rebuilt one is not", async () => {
+    const fixed = { id: "embed-e5", revision: 2 };
+    expect(indexModelOf(fixed)).toBe("embed-e5@2");
+    expect(needsReindex({ ...base, embedModel: "embed-e5" }, fixed)).toBe(true);
+    const store = new MemoryEmbeddingStore();
+    const e5: Embedder = { ...fixed, embed: (t) => hashEmbedder(64).embed(t) };
+    const rebuilt = await indexDocument({ doc: reindexFrom({ ...base, embedModel: "embed-e5" }), opened: { pages: 1, page: async () => ({ page: 1, text: "Zwei Standorte.", needsOcr: false }), close: async () => undefined }, embedder: new EmbedLanes(e5).index, store });
+    expect(rebuilt.embedModel).toBe("embed-e5@2");
+    expect(needsReindex(rebuilt, fixed)).toBe(false);
+    expect(needsReindex(rebuilt, E5)).toBe(true);
   });
 
   it("restarts from page 0 and drops the old rows, vectors included", async () => {

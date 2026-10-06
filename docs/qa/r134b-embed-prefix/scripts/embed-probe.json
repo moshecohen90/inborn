@@ -1,0 +1,70 @@
+{
+ "runId": "embed-probe",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/vault"
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "embedProbe",
+   "texts": [
+    "Aoba Trading was founded in 1998 in Sendai. Its warehouse covers 1200 square metres and ships timber to 40 countries.",
+    "Aoba Trading was founded in 1998 in Sendai. Its warehouse covers 1200 square metres and ships timber to 40 countries.",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: How large is the warehouse?",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: How large is the warehouse?",
+    "Aoba Trading was founded in 1998 in Sendai. Its warehouse covers 1200 square metres and ships timber to 40 countries.",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: What happened in 1998?",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: How large is the warehouse?",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: Who won the 1998 World Cup?",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: How many calories are in 1200 grams of rice?",
+    "Aoba Trading wurde 1998 in Sendai gegründet. Das Lager umfasst 1200 Quadratmeter und liefert Holz in 40 Länder.",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: Was geschah 1998?",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: Wie groß ist das Lager?",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: Wer hat die Weltmeisterschaft 1998 gewonnen?",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: Wie viele Kalorien haben 1200 Gramm Reis?",
+    "Aoba Trading a été fondée en 1998 à Sendai. Son entrepôt couvre 1200 mètres carrés et expédie du bois vers 40 pays.",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: Que s'est-il passé en 1998 ?",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: Quelle est la taille de l'entrepôt ?",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: Qui a gagné la Coupe du monde 1998 ?",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: Combien de calories dans 1200 grammes de riz ?",
+    "Aoba Trading se fundó en 1998 en Sendai. Su almacén ocupa 1200 metros cuadrados y envía madera a 40 países.",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: ¿Qué pasó en 1998?",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: ¿Qué tamaño tiene el almacén?",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: ¿Quién ganó el Mundial de 1998?",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: ¿Cuántas calorías tienen 1200 gramos de arroz?",
+    "A Aoba Trading foi fundada em 1998 em Sendai. O armazém ocupa 1200 metros quadrados e envia madeira para 40 países.",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: O que aconteceu em 1998?",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: Qual é o tamanho do armazém?",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: Quem ganhou a Copa do Mundo de 1998?",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: Quantas calorias têm 1200 gramas de arroz?",
+    "אאובה טריידינג נוסדה ב-1998 בסנדאי. המחסן שלה משתרע על 1200 מטרים רבועים ומשלח עצים ל-40 מדינות.",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: מה קרה ב-1998?",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: מה גודל המחסן?",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: מי זכה במונדיאל 1998?",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: כמה קלוריות יש ב-1200 גרם אורז?",
+    "한빛물산은 1998년 센다이에서 설립되었다. 창고 면적은 1200제곱미터이며 40개국에 목재를 수출한다.",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: 1998년에 무슨 일이 있었나요?",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: 창고는 얼마나 넓은가요?",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: 1998년 월드컵 우승국은 어디인가요?",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: 쌀 1200그램은 몇 칼로리인가요?",
+    "青葉商事は一九九八年に仙台で設立された。倉庫の面積は千二百平方メートルで、四十か国に木材を出荷している。",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: 一九九八年に何がありましたか？",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: 倉庫の広さはどれくらいですか？",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: 一九九八年のワールドカップで優勝したのはどこですか？",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: 千二百グラムの米は何カロリーですか？",
+    "青叶商事于一九九八年在仙台成立，其仓库面积为一千二百平方米，向四十个国家出口木材。",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: 一九九八年发生了什么？",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: 仓库有多大？",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: 一九九八年世界杯足球赛是谁赢的？",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: 一千二百克米饭有多少卡路里？",
+    "青葉商事の二〇二五年度の年次報告によると、社員数は三百八十二名であり、主要拠点は仙台と福岡の二か所である。\n\n同社の設立は一九六二年で、当初は木材の輸入を専門としていた。\n\n二〇二五年度の売上高は前年度より七パーセント増え、営業利益率は九パーセントであった。\n\n主力商品は業務用の包装資材と、industrial向けの接着剤の二系統である。\n\n環境方針として、二〇三〇年までに自社施設の電力をすべて再生可能エネルギーに切り替える計画を掲げている。\n\n取締役会は七名で構成され、そのうち三名は社外取締役である。",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: 従業員は全部で何人ですか？",
+    "Instruct: Given a question, retrieve the passage of a document that answers it\nQuery: 一九九八年のワールドカップで優勝したのはどこですか？"
+   ]
+  }
+ ]
+}

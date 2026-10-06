@@ -133,6 +133,8 @@ export interface EmbeddingStore {
 export interface Embedder {
   /** Catalog id of the embedding model ("embed-e5", "null"); it picks the task prefixes (`forDocuments`, `forQuery`). */
   readonly id: string;
+  /** Bumped when a fix changes this embedder's vectors, so indexes stored under the old revision are rebuilt (`indexModelOf`). */
+  readonly revision?: number;
   embed(texts: string[]): Promise<Float32Array[]>;
 }
 
