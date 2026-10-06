@@ -1,0 +1,22 @@
+{
+ "runId": "s3-library",
+ "_": "The Documents library row of the scan: its status line.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/documents"
+  },
+  {
+   "op": "sleep",
+   "ms": 4000
+  },
+  {
+   "op": "screenshot",
+   "name": "06-library"
+  },
+  {
+   "op": "dump",
+   "name": "06-library"
+  }
+ ]
+}

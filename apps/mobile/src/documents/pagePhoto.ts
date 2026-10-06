@@ -23,8 +23,11 @@ const shows = (path: string, docId: string): boolean => path.includes(`pdfpage-$
 export const carriesPage = (messages: readonly Message[], docIds: readonly string[]): boolean =>
   messages.some((m) => m.images?.some((p) => docIds.some((id) => shows(p, id))));
 
-/** A PDF whose pages are read and whose file is still held: the only documents a page can be rendered from. */
-export const pageReadable = (d: DocumentRecord): boolean => d.kind === "pdf" && d.status === "indexed" && d.indexedPages > 0 && !!d.uri;
+/* A scan with no text layer ends "needs-ocr", or "empty" once OCR found nothing: its pages are still pictures (round 132). */
+const READ_STATUSES: ReadonlySet<DocumentRecord["status"]> = new Set(["indexed", "needs-ocr", "empty"]);
+
+/** A PDF whose pages are read, with or without text, and whose file is still held: the only documents a page can be rendered from. */
+export const pageReadable = (d: DocumentRecord): boolean => d.kind === "pdf" && READ_STATUSES.has(d.status) && d.indexedPages > 0 && !!d.uri;
 
 export interface PagePhotoInput {
   /** Photos the user put in the composer: theirs win, and the PDF stays text-only for this turn. */
@@ -84,10 +87,11 @@ export const isThinTurn = (plan: PagePlan | null): plan is PagePlan => !!plan &&
 
 /**
  * The turn carries every attached file whole: one file of one page, sent as its picture or, on the thin route, as all
- * of its text. Retrieval has nothing to choose there, so the index model would add nothing (round 131).
+ * of its text; or a scan with no text at all, sent as its page picture. Retrieval has nothing to choose there, so the
+ * index model would add nothing (rounds 131, 132).
  */
 export const coversAttachments = (plan: PagePlan | null, attached: readonly DocumentRecord[]): boolean =>
-  !!plan && attached.length === 1 && attached[0]!.id === plan.doc.id && plan.doc.pages === 1 && (plan.picture || isThinTurn(plan));
+  !!plan && attached.length === 1 && attached[0]!.id === plan.doc.id && (plan.doc.pages === 1 || (plan.picture && plan.doc.chunkCount === 0)) && (plan.picture || isThinTurn(plan));
 
 /** The thin page's own passages first, in reading order, then the other passages that bear on the question. */
 export function pageHits(docChunks: readonly Chunk[], page: number, relevant: readonly RetrievalHit[]): RetrievalHit[] {

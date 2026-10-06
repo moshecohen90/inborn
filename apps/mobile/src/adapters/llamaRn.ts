@@ -28,7 +28,7 @@ export class LlamaRnLM implements LocalLM {
     if (!ctx) throw new Error("model not loaded");
     if (this.vision && this.mmproj === mmprojPath) return true;
     try {
-      const imageMaxTokens = phoneImageMaxTokens(this.session?.model.id);
+      const imageMaxTokens = phoneImageMaxTokens(this.session?.model.id, this.session?.nCtx ?? 4096);
       /* The simulator's Metal driver traps inside the projector's buffer upload (xpc misuse); real iPhones and Android take the GPU. */
       this.vision = await ctx.initMultimodal({ path: mmprojPath, use_gpu: Platform.OS !== "ios" || isDevice, image_max_tokens: imageMaxTokens });
       this.devInfo.imageMaxTokens = imageMaxTokens;

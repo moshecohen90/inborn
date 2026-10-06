@@ -1,0 +1,22 @@
+{
+ "runId": "s5a-use-fast",
+ "_": "Open the vault so it reads Documents/dev-vault.txt (use fast): Fast adopted from Documents/models, no photo pack.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/vault"
+  },
+  {
+   "op": "sleep",
+   "ms": 10000
+  },
+  {
+   "op": "screenshot",
+   "name": "08a-vault-fast"
+  },
+  {
+   "op": "dump",
+   "name": "08a-vault-fast"
+  }
+ ]
+}

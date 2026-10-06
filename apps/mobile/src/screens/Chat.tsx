@@ -592,7 +592,9 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       /* The first message moves the attachments off the draft key, so the gate reads the key this chat has now, not the one this render captured. */
       const attachKey = incognito ? `${RAM_ATTACH_PREFIX}${chatIdNow}` : chatIdNow;
       /* "Continue" resumes a partial answer with the passages it already saw, so the gate only decides fresh turns. */
-      const planTurn = () => planDocsTurn({ strict: docs.strict, ...library.attachmentState(attachKey) });
+      /* Round 130: a page picture of an attached PDF is in the conversation, so passages join it only when they bear on the question. */
+      const seesPage = !existingMessageId && modelHasVision(model.id) && resolveVision(model.id) !== null && carriesPage(history, docs.context.docIds);
+      const planTurn = () => planDocsTurn({ strict: docs.strict, ...library.attachmentState(attachKey), seesPage });
       let turn: ReturnType<typeof planDocsTurn> = !existingMessageId && lastUser ? planTurn() : { kind: "model" };
       /* A file the user attached is read before it is answered about, never after (QA F125/F126). */
       if (turn.kind === "wait") {
@@ -610,8 +612,6 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         await answerWithoutModel(turn.messageKey);
         return;
       }
-      /* Round 130: a page picture of an attached PDF is in the conversation, so passages join it only when they bear on the question. */
-      const seesPage = !existingMessageId && modelHasVision(model.id) && resolveVision(model.id) !== null && carriesPage(history, docs.context.docIds);
       /* A page of crumbs whose picture is not going to the model: it gets all of the page's text and is told it cannot see the rest. */
       const thinPage = !existingMessageId && !seesPage && isThinTurn(page) ? { docId: page.doc.id, page: page.page } : undefined;
       /* The turn answers from the model although files are attached: say the files are not in this answer (QA F161). */
@@ -634,7 +634,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const sees = modelHasVision(model.id) && resolveVision(model.id) !== null;
       const picture = sees && history.some((m) => m.images?.length) ? (carriesPage(history, docs.context.docIds) ? "page" : "photo") : undefined;
       const system = turnSystemPrompt({ familySafe, tier: modelTier, photos: history.some((m) => m.images?.length), picture, persona, chatPrompt: settings.systemPrompt, memory: facts, languageHint: languageHint(lastUser), length: lengthLine });
-      const prompt = buildPrompt({ system, summary: chat?.summary, summaryUpTo: chat?.summaryUpTo, messages: history.map((m, i) => ({ id: String(i), ...m })), nCtx, scale: tokenScale, reserve: replyReserve(length.maxTokens), imageTokens: imageMaxTokens(engine.id, model.id) });
+      const prompt = buildPrompt({ system, summary: chat?.summary, summaryUpTo: chat?.summaryUpTo, messages: history.map((m, i) => ({ id: String(i), ...m })), nCtx, scale: tokenScale, reserve: replyReserve(length.maxTokens), imageTokens: imageMaxTokens(engine.id, model.id, nCtx) });
       let messages = prompt.messages;
       let scope: WholeFilePlan | null = null;
       /* Attached documents (§7.3, §8.5): retrieve, fence, cite. */
@@ -674,7 +674,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       }
       if ((turn.kind === "model" && photoDocIds.length) || (turn.kind === "retrieve" && seesPage)) {
         /* The passages are fitted into what the pictures leave of the context. */
-        const pictures = messages.reduce((n, m) => n + (m.images?.length ?? 0), 0) * (imageMaxTokens(engine.id, model.id) + IMAGE_WRAPPER_TOKENS);
+        const pictures = messages.reduce((n, m) => n + (m.images?.length ?? 0), 0) * (imageMaxTokens(engine.id, model.id, nCtx) + IMAGE_WRAPPER_TOKENS);
         try {
           const photoText = await withPhotoText(messages, history[lastUserAt]?.images, seesPage ? [...docs.context.docIds, ...photoDocIds] : photoDocIds, (docIds) =>
             library.ask(lastUser, { docIds, history: history.slice(0, lastUserAt), nCtx: nCtx - pictures, systemPrompt: system, strict: false, citeMarkers: canCiteMarkers(model.id), openers: noPassageOpeners(t), pagePicture: seesPage }),

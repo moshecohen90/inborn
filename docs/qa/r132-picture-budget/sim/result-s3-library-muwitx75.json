@@ -1,0 +1,126 @@
+{
+  "runId": "s3-library-muwitx75",
+  "startedAt": "2026-10-06T10:13:47.291Z",
+  "finishedAt": "2026-10-06T10:13:53.356Z",
+  "ok": true,
+  "passed": 4,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 156,
+      "detail": "/documents"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 4001,
+      "detail": "4000 ms"
+    },
+    {
+      "i": 2,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1907,
+      "detail": "06-library"
+    },
+    {
+      "i": 3,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file · PRO 1 document · 195 KB on this device Free: 1 document of up to 20 pages · Pro: no limit Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO DOCUMENT INDEX MODEL Exact-word search works now. The document index model (468 MB) adds search by meaning: it finds passages worded differently from your question, or in another language. Worth it for long files. It runs here and never uploads a word. Install · 468 MB sign-scan.pdf PDF · 1 page · 195 KB Scanned. Run OCR on this phone? Run OCR · PRO Select documents to ask Indexed on this device"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file · PRO",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "documents-free-limit",
+          "text": "Free: 1 document of up to 20 pages · Pro: no limit"
+        },
+        {
+          "testID": "pro-tag",
+          "text": "PRO",
+          "role": "button",
+          "label": "See Pro",
+          "pressable": true
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "embedder-card",
+          "text": "DOCUMENT INDEX MODEL Exact-word search works now. The document index model (468 MB) adds search by meaning: it finds passages worded differently from your question, or in another language. Worth it for long files. It runs here and never uploads a word. Install · 468 MB"
+        },
+        {
+          "testID": "embedder-install",
+          "text": "Install · 468 MB",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muwisutw-1-5lst398e",
+          "text": "sign-scan.pdf PDF · 1 page · 195 KB Scanned. Run OCR on this phone? Run OCR · PRO",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muwisutw-1-5lst398e",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "doc-state-muwisutw-1-5lst398e",
+          "text": "Scanned. Run OCR on this phone?"
+        },
+        {
+          "testID": "doc-ocr-muwisutw-1-5lst398e",
+          "text": "Run OCR · PRO",
+          "pressable": true
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Select documents to ask",
+          "role": "button",
+          "disabled": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "06-library"
+    }
+  ],
+  "errors": []
+}
