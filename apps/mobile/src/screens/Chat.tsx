@@ -11,6 +11,7 @@ import {
   isNotFoundReply,
   fileAsk,
   isPlainChatTurn,
+  plainChatKind,
   type WholeFilePlan,
   groundedCitations,
   withoutEchoedLabels,
@@ -594,7 +595,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       /* The first message moves the attachments off the draft key, so the gate reads the key this chat has now, not the one this render captured. */
       const attachKey = incognito ? `${RAM_ATTACH_PREFIX}${chatIdNow}` : chatIdNow;
       /* Round 133B: "thank you" or "And now" after an answer about a file is chat, not a question for the file. */
-      const smallTalk = !existingMessageId && isPlainChatTurn(lastUser) && !history[lastUserAt]?.images?.length && !photoDocIds.length;
+      const plainChat = !existingMessageId && !history[lastUserAt]?.images?.length && !photoDocIds.length ? plainChatKind(lastUser) : null;
+      const smallTalk = plainChat !== null;
       /* "Continue" resumes a partial answer with the passages it already saw, so the gate only decides fresh turns. */
       /* Round 130: a page picture of an attached PDF is in the conversation, so passages join it only when they bear on the question. */
       const seesPage = !existingMessageId && modelHasVision(model.id) && resolveVision(model.id) !== null && carriesPage(history, docs.context.docIds);
@@ -632,13 +634,13 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         text: lastUser,
         use: summary ? "summarize" : detectUse({ text: lastUser, personaId: persona.id, personaIcon: persona.icon, hasDocuments: docs.documents.length > 0, dictated: lastDictated }),
         continuing: !!existingMessageId,
-        smallTalk,
+        plainChat,
       });
       /* F443: a resumed turn keeps the stopped turn's system prompt, so the model goes on under the same instructions and the engine's cache still matches. */
       const lengthLine = continueFrom ? planAnswerLength({ text: lastUser, use: detectUse({ text: lastUser, personaId: persona.id, personaIcon: persona.icon, hasDocuments: docs.documents.length > 0, dictated: lastDictated }), continuing: false }).instruction : length.instruction;
       const sees = modelHasVision(model.id) && resolveVision(model.id) !== null;
       const picture = sees && history.some((m) => m.images?.length) ? (carriesPage(history, docs.context.docIds) ? "page" : "photo") : undefined;
-      const system = turnSystemPrompt({ familySafe, tier: modelTier, photos: history.some((m) => m.images?.length), picture, persona, chatPrompt: settings.systemPrompt, memory: facts, languageHint: languageHint(lastUser), length: lengthLine, smallTalk });
+      const system = turnSystemPrompt({ familySafe, tier: modelTier, photos: history.some((m) => m.images?.length), picture, persona, chatPrompt: settings.systemPrompt, memory: facts, languageHint: languageHint(lastUser), length: lengthLine, plainChat });
       const prompt = buildPrompt({ system, summary: chat?.summary, summaryUpTo: chat?.summaryUpTo, messages: history.map((m, i) => ({ id: String(i), ...m })), nCtx, scale: tokenScale, reserve: replyReserve(length.maxTokens), imageTokens: imageMaxTokens(engine.id, model.id, nCtx) });
       let messages = prompt.messages;
       let scope: WholeFilePlan | null = null;

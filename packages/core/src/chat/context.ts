@@ -2,6 +2,7 @@ import type { Tier } from "../catalog/types";
 import type { Message } from "../llm/types";
 import { familySafeLine } from "./contentSafety";
 import { PLAIN_SAFETY_BASELINE, SAFETY_BASELINE } from "./personas";
+import type { PlainChatKind } from "./smallTalk";
 import type { ChatMessage, MemoryFact, Persona } from "./types";
 
 /** Tokens kept free for the reply; generation stops there anyway (§10.5 #39: max tokens with "continue"). */
@@ -70,13 +71,19 @@ export interface TurnPromptParts extends SystemPromptParts {
   photos: boolean;
   /** What the pictures the model will see are: a photo, or the picture of an attached file's page. */
   picture?: "photo" | "page" | undefined;
-  /** The user's turn is small talk or a short follow-up about the conversation (`isPlainChatTurn`). */
-  smallTalk?: boolean | undefined;
+  /** The user's turn is a thanks or a greeting, or a short follow-up about the previous answer (`plainChatKind`). */
+  plainChat?: PlainChatKind | null | undefined;
 }
 
 /* Round 133B: told nothing, Instant answered "thank you" with "I will try to answer your question again soon". */
 export const SMALL_TALK_LINE =
-  "The user's last message is small talk or a short follow-up about the conversation, not a question about the files: reply in one or two short, friendly sentences from the conversation and do not describe or mention the files.";
+  "The user's last message is small talk, not a question about the files: reply in one or two short, friendly sentences from the conversation and do not describe or mention the files.";
+
+/* Round 134A: under the small-talk line Instant answered "shorter" with "You're welcome!" and "And now" with an offer it made up. */
+export const FOLLOW_UP_LINE =
+  "The user's last message is a short follow-up about your previous answer: apply it to that answer using the conversation (make it shorter or longer, continue it, translate it, rephrase it, add detail) and do not search or describe the files again. If the follow-up is unclear, or asks to go on when there is nothing left to continue, ask in one short sentence what they would like next instead of offering something new.";
+
+export const PLAIN_CHAT_LINES: Readonly<Record<PlainChatKind, string>> = { acknowledgement: SMALL_TALK_LINE, "follow-up": FOLLOW_UP_LINE };
 
 /* Round 131: told nothing, Instant and Fast answered a picture they had been sent with "I cannot see images". */
 export const PICTURE_LINES: Readonly<Record<"photo" | "page", string>> = {
@@ -88,7 +95,7 @@ export const PICTURE_LINES: Readonly<Record<"photo" | "page", string>> = {
 export function turnSystemPrompt(p: TurnPromptParts): string {
   const body = composeSystemPrompt({ ...p, baseline: p.baseline ?? (p.tier === "instant" || p.photos ? PLAIN_SAFETY_BASELINE : SAFETY_BASELINE) });
   const pictured = p.photos && p.picture ? `${body}\n\n${PICTURE_LINES[p.picture]}` : body;
-  const seen = p.smallTalk ? `${pictured}\n\n${SMALL_TALK_LINE}` : pictured;
+  const seen = p.plainChat ? `${pictured}\n\n${PLAIN_CHAT_LINES[p.plainChat]}` : pictured;
   const line = familySafeLine(p);
   return line ? `${seen}\n\n${line}` : seen;
 }
