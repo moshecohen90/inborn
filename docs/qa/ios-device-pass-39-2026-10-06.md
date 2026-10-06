@@ -164,3 +164,19 @@ Screens `J9-01` … `J9-24`. What looked wrong: findings 2, 3, 4 and the items s
 - The phone was unlocked at every check and was never locked or unlocked by this pass. No setting was changed, no
   account touched. No simulator, no XCUITest runner, port 8787 not touched. Every driver, build, memory sampler and
   syslog capture this pass started has exited.
+
+## Handover: update (23:37–23:38)
+
+- Before: store app 1.0.0 (38). Its data container held `Documents/models/vault.json` (826 B), the Fast gguf
+  (1.19 GB), one document (111 KB), `documents.json`, the prefs files and `SQLite/inborn.db` (4 KB) + wal (1.1 MB) + shm
+  (32 KB), the chats. No index model and no photo pack.
+- `devicectl device install app` of `Inborn-39.xcarchive/Products/Applications/Inborn.app` (com.inbornapp.mobile,
+  CFBundleVersion 39): 23:37:41 → 23:38:03, rc 0. `device info apps` lists com.inbornapp.mobile **1.0.0 (39)**.
+- One launch at 23:38:07, no taps.
+- After the launch, every file is there with the same size: vault.json 826 B, the Fast gguf 1.19 GB, the document
+  111 KB, inborn.db 4 KB + wal 1.1 MB + shm 32 KB. Only the modification times of vault.json, the shm, `licence.bin` and
+  `device-prefs.json` moved to 23:38 (the launch).
+- The store app has no index model, so round 134B's one-time re-embedding has nothing to rebuild here.
+- First screen: a new chat on FAST, "Nothing leaves this phone." with the three starter chips
+  (`screens/S01-store-first-screen-39.png`). The app is left running there.
+- No setting changed, no lock/unlock, no sign-in, the xctrunner was not touched, and nothing was uploaded.
