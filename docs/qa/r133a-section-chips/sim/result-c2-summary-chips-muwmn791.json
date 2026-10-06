@@ -1,0 +1,570 @@
+{
+  "runId": "c2-summary-chips-muwmn791",
+  "startedAt": "2026-10-06T12:00:32.395Z",
+  "finishedAt": "2026-10-06T12:04:04.841Z",
+  "ok": true,
+  "passed": 21,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 158,
+      "detail": "/vault"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 60002,
+      "detail": "60000 ms"
+    },
+    {
+      "i": 2,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 166,
+      "detail": "/"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 4,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 166,
+      "detail": "attach: constitution-9pages.pdf"
+    },
+    {
+      "i": 5,
+      "op": "sleep",
+      "ok": true,
+      "ms": 45001,
+      "detail": "45000 ms"
+    },
+    {
+      "i": 6,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 12 chars"
+    },
+    {
+      "i": 7,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 8,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-pages appeared"
+    },
+    {
+      "i": 9,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1902,
+      "detail": "02a-reading"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 86661,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 11,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 9815,
+      "detail": "stop gone"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3000,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 13,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 640,
+      "detail": "02b-summary"
+    },
+    {
+      "i": 14,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI The file is a United States Constitution document (specifically the Federal Convention of 1789), which outlines the federal legislative framework, powers of taxation and commerce regulation, executive structure (President/Vice President), and treasonous acts. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better. SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The file is a United States Constitution document (specifically the Federal Convention of 1789), which outlines the federal legislative framework, powers of taxation and commerce regulation, executive structure (President/Vice President), and treasonous acts. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "model-advice",
+          "text": "SHARP is better at documents than INSTANT. Install SHARP · 2.74 GB Not now"
+        },
+        {
+          "testID": "model-advice-reason",
+          "text": "SHARP is better at documents than INSTANT."
+        },
+        {
+          "testID": "model-advice-install",
+          "text": "Install SHARP · 2.74 GB",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-not-now",
+          "text": "Not now",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muwmojag-1-2cqpjq6w",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "02b-summary"
+    },
+    {
+      "i": 15,
+      "op": "type",
+      "ok": true,
+      "ms": 161,
+      "detail": "composer-input = 20 chars"
+    },
+    {
+      "i": 16,
+      "op": "send",
+      "ok": true,
+      "ms": 164,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 17,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "stop gone"
+    },
+    {
+      "i": 18,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3000,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 19,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1273,
+      "detail": "03-question"
+    },
+    {
+      "i": 20,
+      "op": "dump",
+      "ok": true,
+      "ms": 0,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI The file is a United States Constitution document (specifically the Federal Convention of 1789), which outlines the federal legislative framework, powers of taxation and commerce regulation, executive structure (President/Vice President), and treasonous acts. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better. SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The file is a United States Constitution document (specifically the Federal Convention of 1789), which outlines the federal legislative framework, powers of taxation and commerce regulation, executive structure (President/Vice President), and treasonous acts. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "model-advice",
+          "text": "SHARP is better at documents than INSTANT. Install SHARP · 2.74 GB Not now"
+        },
+        {
+          "testID": "model-advice-reason",
+          "text": "SHARP is better at documents than INSTANT."
+        },
+        {
+          "testID": "model-advice-install",
+          "text": "Install SHARP · 2.74 GB",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-not-now",
+          "text": "Not now",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "docs-hold",
+          "text": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched. Download · 468 MB Send, exact words only Cancel"
+        },
+        {
+          "testID": "docs-hold-body",
+          "text": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched."
+        },
+        {
+          "testID": "docs-hold-download",
+          "text": "Download · 468 MB",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "docs-hold-words",
+          "text": "Send, exact words only",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "docs-hold-cancel",
+          "text": "Cancel",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muwmojag-1-2cqpjq6w",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "redact-bar",
+          "text": "Redact"
+        },
+        {
+          "testID": "redact-open",
+          "text": "Redact",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "Who can veto a bill?",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "03-question"
+    }
+  ],
+  "errors": []
+}

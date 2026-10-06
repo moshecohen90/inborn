@@ -155,6 +155,8 @@ export interface Citation {
   docName: string;
   kind: DocKind;
   page: number;
+  /** Last page of a whole-file section read as one passage (pages 1–2); absent for one page. */
+  pageTo?: number;
   chunkId: string;
   snippet: string;
 }
