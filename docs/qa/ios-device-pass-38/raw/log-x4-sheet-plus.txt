@@ -1,0 +1,41 @@
+16:55:05 pushing 35 steps as x4-sheet-plus
+16:56:46 shot X4-01-summary
+16:56:56 shot X4-02-and-now
+16:57:04 shot X4-03-thank-you
+16:57:17 shot X4-04-more
+16:57:21 ok     0 deeplink   /documents
+16:57:21 ok     1 waitFor    doc-select-muwqgemm-1-79gqrixl appeared
+16:57:21 ok     2 sleep      2000 ms
+16:57:21 ok     3 press      doc-select-muwqgemm-1-79gqrixl ← onPress
+16:57:21 ok     4 sleep      1000 ms
+16:57:21 ok     5 press      documents-ask-selected ← onPress
+16:57:21 ok     6 waitFor    ask-sheet appeared
+16:57:21 ok     7 type       ask-input = 12 chars
+16:57:21 ok     8 press      ask-send ← onPress
+16:57:21 ok     9 sleep      2500 ms
+16:57:21 ok    10 waitFor    ask-stop gone
+16:57:21 ok    11 sleep      2000 ms
+16:57:21 ok    12 screenshot X4-01-summary
+16:57:21 ok    13 dump       X4-01-summary
+16:57:21 ok    14 type       ask-input = 7 chars
+16:57:21 ok    15 press      ask-send ← onPress
+16:57:21 ok    16 sleep      2500 ms
+16:57:21 ok    17 waitFor    ask-stop gone
+16:57:21 ok    18 sleep      2000 ms
+16:57:21 ok    19 screenshot X4-02-and-now
+16:57:21 ok    20 dump       X4-02-and-now
+16:57:21 ok    21 type       ask-input = 9 chars
+16:57:21 ok    22 press      ask-send ← onPress
+16:57:21 ok    23 sleep      2500 ms
+16:57:21 ok    24 waitFor    ask-stop gone
+16:57:21 ok    25 sleep      2000 ms
+16:57:21 ok    26 screenshot X4-03-thank-you
+16:57:21 ok    27 dump       X4-03-thank-you
+16:57:21 ok    28 type       ask-input = 4 chars
+16:57:21 ok    29 press      ask-send ← onPress
+16:57:21 ok    30 sleep      2500 ms
+16:57:21 ok    31 waitFor    ask-stop gone
+16:57:21 ok    32 sleep      2000 ms
+16:57:21 ok    33 screenshot X4-04-more
+16:57:21 ok    34 dump       X4-04-more
+16:57:21 35 passed, 0 failed, 4 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-38/docs/qa/ios-device-pass-38/screens

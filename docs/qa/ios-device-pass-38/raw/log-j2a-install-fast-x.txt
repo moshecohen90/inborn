@@ -1,0 +1,20 @@
+16:45:55 pushing 15 steps as j2a-install-fast-x
+16:46:00 shot X2-00a-vault-fast
+16:46:20 shot X2-00b-fast-downloading
+16:47:03 shot X2-00c-fast-installed
+16:47:07 ok     0 deeplink   /vault
+16:47:07 ok     1 waitFor    best-for appeared
+16:47:07 ok     2 sleep      3000 ms
+16:47:07 ok     3 scrollTo   install-fast
+16:47:07 ok     4 screenshot X2-00a-vault-fast
+16:47:07 ok     5 press      install-fast ← onPress
+16:47:07 ok     6 sleep      1500 ms
+16:47:07 ok     7 press      confirm-download ← onPress
+16:47:07 ok     8 sleep      15000 ms
+16:47:07 ok     9 value      26% · 336 MB of 1.28 GB
+16:47:07 ok    10 screenshot X2-00b-fast-downloading
+16:47:07 ok    11 idleTimer  idle timer disabled: true
+16:47:07 ok    12 waitFor    use-fast appeared
+16:47:07 ok    13 value      Installed
+16:47:07 ok    14 screenshot X2-00c-fast-installed
+16:47:07 15 passed, 0 failed, 3 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-38/docs/qa/ios-device-pass-38/screens

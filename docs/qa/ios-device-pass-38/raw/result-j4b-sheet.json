@@ -1,0 +1,284 @@
+{
+  "runId": "j4b-sheet",
+  "startedAt": "2026-10-06T13:13:39.550Z",
+  "finishedAt": "2026-10-06T13:17:14.867Z",
+  "ok": false,
+  "passed": 30,
+  "failed": 4,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 151,
+      "detail": "/documents"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "doc-select-muwovio1-3-nj4d9v8b appeared"
+    },
+    {
+      "i": 2,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2017,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 3,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "doc-select-muwovio1-3-nj4d9v8b ← onPress"
+    },
+    {
+      "i": 4,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1016,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 5,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Ask about 1 document",
+        "props": {
+          "accessibilityRole": "button",
+          "disabled": false,
+          "accessibilityState": {
+            "disabled": false
+          }
+        }
+      },
+      "detail": "Ask about 1 document"
+    },
+    {
+      "i": 6,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "documents-ask-selected ← onPress"
+    },
+    {
+      "i": 7,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "ask-sheet appeared"
+    },
+    {
+      "i": 8,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1500,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 9,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2532,
+      "detail": "J4-01-sheet"
+    },
+    {
+      "i": 10,
+      "op": "type",
+      "ok": true,
+      "ms": 160,
+      "detail": "ask-input = 12 chars"
+    },
+    {
+      "i": 11,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "ask-send ← onPress"
+    },
+    {
+      "i": 12,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "ask-reading-pages appeared"
+    },
+    {
+      "i": 13,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Reading pages 1–2 of 9…",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Reading pages 1–2 of 9…"
+    },
+    {
+      "i": 14,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 6341,
+      "detail": "J4-02-reading"
+    },
+    {
+      "i": 15,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 178590,
+      "detail": "ask-stop gone"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2001,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 17,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "The provided text is a summary of the powers and procedures outlined in the U.S. Constitution, covering its creation structure, legislative requirements, presidential duties, and specific clauses regarding treason, state admission, and taxation. Main Points: • Legislative Structure : The United States Congress consists of the Senate (equal representation) and House of Representatives (based on population), which hold separate powers for impeachment trials and legislation [1]. Both houses must meet at least once annually in December unless specified otherwise [1]. • Presidential Role : The President is elected for four years, while the Supreme Court holds judicial power exclusively [3]. New states must receive consent from both their legislatures and federal Congress before admission [4], though existing debts remain valid under this Constitution as they were prior to it [4]. • Legislative Authority : All bills passed by both houses must be presented to the President for approval; if not signed within ten days (excluding Sundays), they become law automatically unless Congress adjourns during that period [2]. Orders requiring concurrence from both houses require presidential approval or a two-thirds vote in each house [2], and only natural-born citizens are eligible to serve as President [3]. • Taxation and Commerce : The Constitution grants the power to levy taxes for national debts, defense, commerce regulation, coinage of money, and creation of inferior tribunals [2]. No state can levy taxes on imports or exports without Congress's consent [3], and only natural-born citizens are eligible to serve as President [3]. • Treason Provisions : The document mandates that no person shall be convicted of treason unless there is testimony from two witnesses or a confession in open court [4]. It grants the power to declare punishments for treason but limits attainder to only during the life of the individual attainted [4]. Summary of all 9 pages.",
+        "props": {
+          "source": "The provided text is a summary of the powers and procedures outlined in the U.S. Constitution, covering its creation structure, legislative requirements, presidential duties, and specific clauses regarding treason, state admission, and taxation.\n\n**Main Points:**\n*   **Legislative Structure**: The United States Congress consists of the Senate (equal representation) and House of Representatives (based on population), which hold separate powers for impeachment trials and legislation [1]. Both houses must meet at least once annually in December unless specified otherwise [1].\n*   **Presidential Role**: The President is elected for four years, while the Supreme Court holds judicial power exclusively [3]. New states must receive consent from both their legislatures and federal Congress before admission [4], though existing debts remain valid under this Constitution as they were prior to it [4].\n*   **Legislative Authority**: All bills passed by both houses must be presented to the President for approval; if not signed within ten days (excluding Sundays), they become law automatically unless Congress adjourns during that period [2]. Orders requiring concurrence from both houses require presidential approval or a two-thirds vote in each house [2], and only natural-born citizens are eligible to serve as President [3].\n*   **Taxation and Commerce**: The Constitution grants the power to levy taxes for national debts, defense, commerce regulation, coinage of money, and creation of inferior tribunals [2]. No state can levy taxes on imports or exports without Congress's consent [3], and only natural-born citizens are eligible to serve as President [3].\n*   **Treason Provisions**: The document mandates that no person shall be convicted of treason unless there is testimony from two witnesses or a confession in open court [4]. It grants the power to declare punishments for treason but limits attainder to only during the life of the individual attainted [4].\n\n*Summary of all 9 pages.*",
+          "disabled": false
+        }
+      },
+      "detail": "The provided text is a summary of the powers and procedures outlined in the U.S. Constitution, covering its creation structure, legislative requirements, presidential duties, and specific clauses rega"
+    },
+    {
+      "i": 18,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value ask-stats: no node with that testID is mounted"
+    },
+    {
+      "i": 19,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2539,
+      "detail": "J4-03-summary"
+    },
+    {
+      "i": 20,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Summary of all 9 pages.\" present"
+    },
+    {
+      "i": 21,
+      "op": "assertText",
+      "ok": false,
+      "ms": 1,
+      "detail": "assertText \"9 of 9 pages\" is not on screen under ask-stats"
+    },
+    {
+      "i": 22,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "ask-none-matched gone"
+    },
+    {
+      "i": 23,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "ask-not-found gone"
+    },
+    {
+      "i": 24,
+      "op": "type",
+      "ok": true,
+      "ms": 155,
+      "detail": "ask-input = 20 chars"
+    },
+    {
+      "i": 25,
+      "op": "press",
+      "ok": true,
+      "ms": 216,
+      "detail": "ask-send ← onPress"
+    },
+    {
+      "i": 26,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2001,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 27,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 11684,
+      "detail": "ask-stop gone"
+    },
+    {
+      "i": 28,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2001,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 29,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "No State can veto a bill as it is not a legislative body, and only the President of the United States has the power to veto bills passed by Congress [2], [3].",
+        "props": {
+          "source": "No State can veto a bill as it is not a legislative body, and only the President of the United States has the power to veto bills passed by Congress [2], [3].",
+          "disabled": false
+        }
+      },
+      "detail": "No State can veto a bill as it is not a legislative body, and only the President of the United States has the power to veto bills passed by Congress [2], [3]."
+    },
+    {
+      "i": 30,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value ask-stats: no node with that testID is mounted"
+    },
+    {
+      "i": 31,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1904,
+      "detail": "J4-04-question"
+    },
+    {
+      "i": 32,
+      "op": "assertText",
+      "ok": false,
+      "ms": 1,
+      "detail": "assertText \"passages\" is not on screen under ask-stats"
+    },
+    {
+      "i": 33,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Summary of all\" absent"
+    }
+  ],
+  "errors": [
+    "step 18 (value): value ask-stats: no node with that testID is mounted",
+    "step 21 (assertText): assertText \"9 of 9 pages\" is not on screen under ask-stats",
+    "step 30 (value): value ask-stats: no node with that testID is mounted",
+    "step 32 (assertText): assertText \"passages\" is not on screen under ask-stats"
+  ]
+}

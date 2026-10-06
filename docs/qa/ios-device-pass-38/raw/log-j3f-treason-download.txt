@@ -1,0 +1,36 @@
+16:08:33 pushing 31 steps as j3f-treason-download
+16:08:41 shot J3f-downloading
+16:10:13 shot J3f-answer
+16:10:19 shot J3f-redact-row
+16:10:23 ok     0 type       composer-input = 31 chars
+16:10:23 ok     1 send       send ← onPress
+16:10:23 ok     2 waitFor    docs-hold appeared
+16:10:23 ok     3 sleep      1500 ms
+16:10:23 ok     4 press      docs-hold-download ← onPress
+16:10:23 ok     5 sleep      4000 ms
+16:10:23 ok     6 value      Downloading the document index model… 14%. Your message is sent when it's ready. Keep Inborn open: the downloa
+16:10:23 ok     7 screenshot J3f-downloading
+16:10:23 ok     8 idleTimer  idle timer disabled: true
+16:10:23 ok     9 waitFor    docs-hold gone
+16:10:23 ok    10 sleep      5000 ms
+16:10:23 ok    11 waitFor    reading-docs gone
+16:10:23 ok    12 sleep      3000 ms
+16:10:23 ok    13 waitFor    stop gone
+16:10:23 ok    14 sleep      3000 ms
+16:10:23 ok    15 value      constitution-9pages.pdf
+16:10:23 ok    16 screenshot J3f-answer
+16:10:23 ok    17 dump       J3f-answer
+16:10:23 ok    18 assertText "The request specifies" absent
+16:10:23 ok    19 assertText "I will focus" absent
+16:10:23 ok    20 assertText "as an AI" absent
+16:10:23 ok    21 assertText "NOT_FOUND" absent
+16:10:23 ok    22 assertText "<<<" absent
+16:10:23 ok    23 assertText "The user is asking" absent
+16:10:23 ok    24 type       composer-input = 40 chars
+16:10:23 ok    25 waitFor    redact-bar appeared
+16:10:23 ok    26 sleep      3000 ms
+16:10:23 ok    27 screenshot J3f-redact-row
+16:10:23 ok    28 dump       J3f-redact-row
+16:10:23 ok    29 type       composer-input = 0 chars
+16:10:23 ok    30 waitFor    redact-bar gone
+16:10:23 31 passed, 0 failed, 3 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-38/docs/qa/ios-device-pass-38/screens

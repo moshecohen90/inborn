@@ -1,0 +1,297 @@
+{
+  "runId": "j3d-shorter",
+  "startedAt": "2026-10-06T13:07:59.895Z",
+  "finishedAt": "2026-10-06T13:08:08.464Z",
+  "ok": true,
+  "passed": 12,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "type",
+      "ok": true,
+      "ms": 159,
+      "detail": "composer-input = 7 chars"
+    },
+    {
+      "i": 1,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 2,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2621,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 560,
+      "detail": "stop gone"
+    },
+    {
+      "i": 4,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2502,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "none-matched gone"
+    },
+    {
+      "i": 7,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "model-advice gone"
+    },
+    {
+      "i": 8,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"468 MB\" absent"
+    },
+    {
+      "i": 9,
+      "op": "assertText",
+      "ok": true,
+      "ms": 6,
+      "detail": "\"Nothing in your documents matched this question\" absent"
+    },
+    {
+      "i": 10,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2546,
+      "detail": "J3d-shorter"
+    },
+    {
+      "i": 11,
+      "op": "dump",
+      "ok": true,
+      "ms": 4,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The file is a summary of the United States Constitution's key provisions, covering its legislative structure, powers, and judicial system. • Legislative Structure establishes a bicameral legislature with two senators per state (six-year terms) and representatives elected every two years based on population (three-fifths rule). Both houses have sole impeachment/expulsion power, but only a majority is needed for a quorum [1]. The House initiates revenue bills exclusively; both houses may propose or concur with amendments to other legislation [1]. • Legislative Process requires bills to be presented to the President, who signs them into law (becoming effective unless Congress adjourns) or returns objections within ten days [2]; orders/resolutions require presidential approval and a two-thirds vote in both houses if disapproved [2]. Section 8 grants Congress powers including taxation, borrowing money, regulating commerce, establishing naturalization laws, coinage, post offices, patent rights, military tribunals, declaring war, raising armies (limited to two years), maintaining navies, and exclusive legislative authority over federal property [2]. • Judicial System vests judicial power in a single supreme court and inferior courts established by Congress; judges hold office during good behavior. The judiciary has original jurisdiction over cases involving ambassadors/public ministers/consuls or disputes between states, while appellate jurisdiction applies to other cases under specified conditions [3]. All trials for crimes (except impeachment) must be conducted by jury within the state where the crime occurred unless directed otherwise by Congress [3]. • Treason and State Powers defines treason as levying war, adhering to enemies, or aiding them, requiring conviction on testimony from two witnesses or an open court confession [4]; it mandates full faith and credit for public acts among states, ensuring citizens can be delivered if they flee justice while guaranteeing each state a republican form of government against invasion or domestic violence [4]. The document establishes the supremacy of federal laws over state laws, requiring all officials to swear an oath supporting them, and sets the ratification process for new states by nine conventions with unanimous consent [4]. Summary of all 9 pages. [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger MODEL FAST QUANT Q4_K CONTEXT 1320 / 4096 MS / TOKEN 140 ms More detail · PRO"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The file is a summary of the United States Constitution's key provisions, covering its legislative structure, powers, and judicial system. • Legislative Structure establishes a bicameral legislature with two senators per state (six-year terms) and representatives elected every two years based on population (three-fifths rule). Both houses have sole impeachment/expulsion power, but only a majority is needed for a quorum [1]. The House initiates revenue bills exclusively; both houses may propose or concur with amendments to other legislation [1]. • Legislative Process requires bills to be presented to the President, who signs them into law (becoming effective unless Congress adjourns) or returns objections within ten days [2]; orders/resolutions require presidential approval and a two-thirds vote in both houses if disapproved [2]. Section 8 grants Congress powers including taxation, borrowing money, regulating commerce, establishing naturalization laws, coinage, post offices, patent rights, military tribunals, declaring war, raising armies (limited to two years), maintaining navies, and exclusive legislative authority over federal property [2]. • Judicial System vests judicial power in a single supreme court and inferior courts established by Congress; judges hold office during good behavior. The judiciary has original jurisdiction over cases involving ambassadors/public ministers/consuls or disputes between states, while appellate jurisdiction applies to other cases under specified conditions [3]. All trials for crimes (except impeachment) must be conducted by jury within the state where the crime occurred unless directed otherwise by Congress [3]. • Treason and State Powers defines treason as levying war, adhering to enemies, or aiding them, requiring conviction on testimony from two witnesses or an open court confession [4]; it mandates full faith and credit for public acts among states, ensuring citizens can be delivered if they flee justice while guaranteeing each state a republican form of government against invasion or domestic violence [4]. The document establishes the supremacy of federal laws over state laws, requiring all officials to swear an oath supporting them, and sets the ratification process for new states by nine conventions with unanimous consent [4]. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": true
+          },
+          "pressable": true
+        },
+        {
+          "testID": "ledger",
+          "text": "MODEL FAST QUANT Q4_K CONTEXT 1320 / 4096 MS / TOKEN 140 ms More detail · PRO"
+        },
+        {
+          "testID": "ledger-model",
+          "text": "FAST"
+        },
+        {
+          "testID": "ledger-quant",
+          "text": "Q4_K"
+        },
+        {
+          "testID": "ledger-context",
+          "text": "1320 / 4096"
+        },
+        {
+          "testID": "ledger-msPerToken",
+          "text": "140 ms"
+        },
+        {
+          "testID": "ledger-detail-pro",
+          "text": "More detail · PRO",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muwovio1-3-nj4d9v8b",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J3d-shorter"
+    }
+  ],
+  "errors": []
+}

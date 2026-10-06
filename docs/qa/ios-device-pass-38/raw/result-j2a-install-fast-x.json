@@ -1,0 +1,134 @@
+{
+  "runId": "j2a-install-fast-x",
+  "startedAt": "2026-10-06T13:45:56.790Z",
+  "finishedAt": "2026-10-06T13:47:05.773Z",
+  "ok": true,
+  "passed": 15,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 155,
+      "detail": "/vault"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "best-for appeared"
+    },
+    {
+      "i": 2,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3001,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 3,
+      "op": "scrollTo",
+      "ok": true,
+      "ms": 8,
+      "detail": "install-fast"
+    },
+    {
+      "i": 4,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2555,
+      "detail": "X2-00a-vault-fast"
+    },
+    {
+      "i": 5,
+      "op": "press",
+      "ok": true,
+      "ms": 169,
+      "detail": "install-fast ← onPress"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1500,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 7,
+      "op": "press",
+      "ok": true,
+      "ms": 183,
+      "detail": "confirm-download ← onPress"
+    },
+    {
+      "i": 8,
+      "op": "sleep",
+      "ok": true,
+      "ms": 15010,
+      "detail": "15000 ms"
+    },
+    {
+      "i": 9,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "26% · 336 MB of 1.28 GB",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "26% · 336 MB of 1.28 GB"
+    },
+    {
+      "i": 10,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3534,
+      "detail": "X2-00b-fast-downloading"
+    },
+    {
+      "i": 11,
+      "op": "idleTimer",
+      "ok": true,
+      "ms": 1,
+      "detail": "idle timer disabled: true",
+      "value": {
+        "text": "true",
+        "props": {
+          "idleTimerDisabled": true
+        }
+      }
+    },
+    {
+      "i": 12,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 39680,
+      "detail": "use-fast appeared"
+    },
+    {
+      "i": 13,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Installed",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Installed"
+    },
+    {
+      "i": 14,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3180,
+      "detail": "X2-00c-fast-installed"
+    }
+  ],
+  "errors": []
+}

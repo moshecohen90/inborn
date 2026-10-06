@@ -1,0 +1,65 @@
+16:35:09 pushing 59 steps as j5c-photo-fast
+16:35:29 shot J5-04-pack-card
+16:36:31 shot J5-05-sent-bubble
+16:36:51 shot J5-05-answer
+16:36:55 shot J5-05-ledger
+16:36:59 ok     0 deeplink   /chats
+16:36:59 ok     1 waitFor    new-chat appeared
+16:36:59 ok     2 press      new-chat ← onPress
+16:36:59 ok     3 waitFor    start-chat appeared
+16:36:59 ok     4 press      start-chat ← onPress
+16:36:59 ok     5 waitFor    composer-input appeared
+16:36:59 ok     6 waitFor    Loading gone
+16:36:59 ok     7 sleep      1500 ms
+16:36:59 ok     8 value      INSTANT
+16:36:59 ok     9 press      model-chip ← onPress
+16:36:59 ok    10 waitFor    model-sheet-use-fast appeared
+16:36:59 ok    11 press      model-sheet-use-fast ← onPress
+16:36:59 ok    12 sleep      3000 ms
+16:36:59 ok    13 waitFor    Loading gone
+16:36:59 ok    14 sleep      1500 ms
+16:36:59 ok    15 value      FAST
+16:36:59 ok    16 assertText "FAST" present
+16:36:59 ok    17 devPrompt  attach: בית קפה הגינה תפריט.jpg
+16:36:59 ok    18 waitFor    pending-images appeared
+16:36:59 ok    19 sleep      8000 ms
+16:36:59 ok    20 value      Free: one photo per message
+16:36:59 ok    21 type       composer-input = 16 chars
+16:36:59 ok    22 send       send ← onPress
+16:36:59 ok    23 waitFor    vision-hold appeared
+16:36:59 ok    24 sleep      1500 ms
+16:36:59 ok    25 value      FAST needs its photo pack to see photos One 668 MB download, then this photo sends by itself. Download 668 MB 
+16:36:59 ok    26 assertText "668 MB" present
+16:36:59 ok    27 screenshot J5-04-pack-card
+16:36:59 ok    28 press      vision-hold-download ← onPress
+16:36:59 ok    29 idleTimer  idle timer disabled: false
+16:36:59 ok    30 waitFor    vision-hold gone
+16:36:59 ok    31 waitFor    assistant-text appeared
+16:36:59 ok    32 value      
+16:36:59 ok    33 screenshot J5-05-sent-bubble
+16:36:59 ok    34 waitFor    stop gone
+16:36:59 ok    35 sleep      1500 ms
+16:36:59 ok    36 value      The image displays an outdoor chalkboard menu attached to a red brick wall, likely belonging to "The Garden Ca
+16:36:59 ok    37 sleep      2000 ms
+16:36:59 ok    38 value      FAST
+16:36:59 ok    39 screenshot J5-05-answer
+16:36:59 ok    40 dump       J5-05-answer
+16:36:59 ok    41 assertText "cannot see" absent
+16:36:59 ok    42 assertText "can't see" absent
+16:36:59 ok    43 assertText "cannot physically see" absent
+16:36:59 ok    44 assertText "see images" absent
+16:36:59 ok    45 assertText "text-based" absent
+16:36:59 ok    46 assertText "unable to see" absent
+16:36:59 ok    47 assertText "not able to see" absent
+16:36:59 ok    48 assertText "don't have eyes" absent
+16:36:59 ok    49 assertText "The request specifies" absent
+16:36:59 ok    50 assertText "I will focus" absent
+16:36:59 ok    51 assertText "as an AI" absent
+16:36:59 ok    52 assertText "NOT_FOUND" absent
+16:36:59 ok    53 assertText "<<<" absent
+16:36:59 ok    54 assertText "The user is asking" absent
+16:36:59 ok    55 press      ledger-toggle ← onPress
+16:36:59 ok    56 sleep      1200 ms
+16:36:59 ok    57 value      MODEL FAST QUANT Q4_K CONTEXT 339 / 4096 MS / TOKEN 155 ms More detail · PRO
+16:36:59 ok    58 screenshot J5-05-ledger
+16:36:59 59 passed, 0 failed, 4 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-38/docs/qa/ios-device-pass-38/screens

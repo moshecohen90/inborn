@@ -1,0 +1,48 @@
+17:01:15 pushing 40 steps as x6-stop-plus
+17:01:28 shot X6-01-stopped
+17:01:37 shot X6-02-continued
+17:01:44 shot X6-03-chats
+17:01:50 shot X6-03-back
+17:02:00 shot X6-04-one-more
+17:02:04 ok     0 deeplink   /chats
+17:02:04 ok     1 waitFor    new-chat appeared
+17:02:04 ok     2 press      new-chat ← onPress
+17:02:04 ok     3 waitFor    start-chat appeared
+17:02:04 ok     4 press      start-chat ← onPress
+17:02:04 ok     5 waitFor    composer-input appeared
+17:02:04 ok     6 waitFor    Loading gone
+17:02:04 ok     7 sleep      1500 ms
+17:02:04 ok     8 value      FAST
+17:02:04 ok     9 type       composer-input = 64 chars
+17:02:04 ok    10 send       send ← onPress
+17:02:04 ok    11 waitFor    assistant-text appeared
+17:02:04 ok    12 sleep      4000 ms
+17:02:04 FAIL  13 press      press stop: not mounted
+17:02:04 ok    14 sleep      2500 ms
+17:02:04 ok    15 screenshot X6-01-stopped
+17:02:04 ok    16 press      continue ← onPress
+17:02:04 ok    17 sleep      2500 ms
+17:02:04 ok    18 waitFor    stop gone
+17:02:04 ok    19 sleep      2500 ms
+17:02:04 ok    20 screenshot X6-02-continued
+17:02:04 ok    21 dump       X6-02-continued
+17:02:04 ok    22 press      open-chats ← onPress
+17:02:04 ok    23 waitFor    close-chats appeared
+17:02:04 ok    24 sleep      1500 ms
+17:02:04 ok    25 screenshot X6-03-chats
+17:02:04 ok    26 press      close-chats ← onPress
+17:02:04 ok    27 waitFor    composer-input appeared
+17:02:04 ok    28 sleep      2500 ms
+17:02:04 ok    29 screenshot X6-03-back
+17:02:04 ok    30 dump       X6-03-back
+17:02:04 ok    31 type       composer-input = 16 chars
+17:02:04 ok    32 send       send ← onPress
+17:02:04 ok    33 sleep      2500 ms
+17:02:04 ok    34 waitFor    reading-pages gone
+17:02:04 ok    35 waitFor    reading-docs gone
+17:02:04 ok    36 waitFor    stop gone
+17:02:04 ok    37 sleep      2500 ms
+17:02:04 ok    38 screenshot X6-04-one-more
+17:02:04 ok    39 dump       X6-04-one-more
+17:02:04 39 passed, 1 failed, 5 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-38/docs/qa/ios-device-pass-38/screens
+17:02:04   ! step 13 (press): press stop: not mounted

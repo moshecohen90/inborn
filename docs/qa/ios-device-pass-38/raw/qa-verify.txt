@@ -1,0 +1,69 @@
+== QA twin (EXPO_PUBLIC_QA=1, DEV_MODEL_HOST=localhost)
+CFBundleVersion = 38
+CFBundleShortVersionString = 1.0.0
+CFBundleIdentifier = com.inbornapp.mobile.qa
+MinimumOSVersion = 17.0
+appex = none
+instant.gguf (catalog file Qwen3.5-0.8B-Q4_K_M.gguf) = 532517120 B sha256 bd258782e35f… catalog 532517120 B bd258782e35f… -> MATCH
+vision-qwen35.gguf (catalog file mmproj-Qwen3.5-0.8B-F16.gguf) = 204987232 B sha256 56e4c6cfe73b… catalog 204987232 B 56e4c6cfe73b… -> MATCH
+ggufs in the .app: instant.gguf, vision-qwen35.gguf
+Fast / Sharp model or their packs in the .app: none
+tessdata = eng.traineddata heb.traineddata
+ExpoBattery strings = 90
+signing = Authority=Apple Development: Moshe Cohen (WUCEF6CXDH) TeamIdentifier=NGCHN95667
+main.jsbundle = 7037440 B
+app size = 786M
+bundle strings: INBORN_QA_BRIDGE_V1=1 dev-prompt.txt=1 'console.log: '=1
+build stamp: HEAD 3569b0cc6a11; main.jsbundle carries it 1x as ASCII; buildInfo.generated.json in the worktree: {"commit":"3569b0cc6a11","builtAt":"2026-10-06"}
+build 37's stamp 12c769a43611: 0x
+testID ask-reading-pages (round 132C, Ask sheet): 1 as ASCII/UTF-8, 0 as UTF-16
+'read {ms} ms' (round 132C documents.ask.read): 0 as ASCII/UTF-8, 1 as UTF-16
+pageTo (round 133A, ranged citation): 1 as ASCII/UTF-8, 0 as UTF-16
+'with its file and pages' (round 133A wholeFilePrompt lead): 1 as ASCII/UTF-8, 0 as UTF-16
+'is small talk or a short follow-up' (round 133B SMALL_TALK_LINE): 1 as ASCII/UTF-8, 0 as UTF-16
+'סבבה' (round 133B Hebrew acknowledgement): 0 as ASCII/UTF-8, 1 as UTF-16
+getNativeScrollRef (round 133C scrollListToEnd): 1 as ASCII/UTF-8, 0 as UTF-16
+'Summary of all' (round 132A documents.summary.whole): 1 as ASCII/UTF-8, 0 as UTF-16
+'Reading pages' (round 132A documents.summary.readingPages): 0 as ASCII/UTF-8, 1 as UTF-16
+'Reading page ' (round 132A readingPage): 0 as ASCII/UTF-8, 1 as UTF-16
+testID reading-pages (round 132A): 1 as ASCII/UTF-8, 0 as UTF-16
+'FAST summarizes files better' (round 132A Instant line): 1 as ASCII/UTF-8, 0 as UTF-16
+'[picture-check]' (round 131B answer check log): 1 as ASCII/UTF-8, 0 as UTF-16
+'This conversation comes with a picture' (round 131B PICTURE_LINES): 2 as ASCII/UTF-8, 0 as UTF-16
+'I have your picture, but I could not make it out' (round 131B chat.vision.unsure): 1 as ASCII/UTF-8, 0 as UTF-16
+'{better} sees pictures better than {current}' (round 131B advice): 1 as ASCII/UTF-8, 0 as UTF-16
+'Pick one or more.' (round 131A): 1 as ASCII/UTF-8, 0 as UTF-16
+'No model here is good at all of these' (round 131A): 1 as ASCII/UTF-8, 0 as UTF-16
+pdfpage- (round 130A, the page picture file): 1 as ASCII/UTF-8, 0 as UTF-16
+'I can read only the text of this page' (round 130A thin route): 1 as ASCII/UTF-8, 0 as UTF-16
+releaseWhenIndexed (round 130A, held index turn waits): 1 as ASCII/UTF-8, 0 as UTF-16
+claimsFileContent (round 130A, no invented file answers): 1 as ASCII/UTF-8, 0 as UTF-16
+renderPage (round 130A native page render): 1 as ASCII/UTF-8, 0 as UTF-16
+pageInk (round 130A native page ink): 1 as ASCII/UTF-8, 0 as UTF-16
+waiting-for-network (round 130B): 1 as ASCII/UTF-8, 0 as UTF-16
+'Waiting for a connection' (round 130B): 1 as ASCII/UTF-8, 0 as UTF-16
+forgetMissing (round 129, missing-file heal): 1 as ASCII/UTF-8, 0 as UTF-16
+takeMissing (round 129, chat line dismiss): 1 as ASCII/UTF-8, 0 as UTF-16
+testID model-missing (round 129): 1 as ASCII/UTF-8, 0 as UTF-16
+'is no longer on this' (round 129, chat.modelMissing): 1 as ASCII/UTF-8, 0 as UTF-16
+'is gone, forgetting it' (round 129 vault warn): 1 as ASCII/UTF-8, 0 as UTF-16
+allowSandbox (round 129, Apple Sandbox accepted): 1 as ASCII/UTF-8, 0 as UTF-16
+'[documents] photo text' (round 128, library picture = photo turn): 1 as ASCII/UTF-8, 0 as UTF-16
+claspGlow- (round 128, Seal draws the icon mark): 1 as ASCII/UTF-8, 0 as UTF-16
+clasp #F0B35B (round 128 sealMark): 1 as ASCII/UTF-8, 0 as UTF-16
+highlight #FFD9A3 (round 128 sealMark): 1 as ASCII/UTF-8, 0 as UTF-16
+dismissAfterSend (round 128 keyboard): 1 as ASCII/UTF-8, 0 as UTF-16
+'Start now with {name}' (round 127, onboarding): 1 as ASCII/UTF-8, 0 as UTF-16
+testID start-now-with (round 127): 1 as ASCII/UTF-8, 0 as UTF-16
+startNowWith (round 127, modelStep): 1 as ASCII/UTF-8, 0 as UTF-16
+imageTokens (round 127, context budget): 1 as ASCII/UTF-8, 0 as UTF-16
+image_max_tokens (llama.rn initMultimodal): 1 as ASCII/UTF-8, 0 as UTF-16
+model-advice-best-pro (round 127, advice card): 1 as ASCII/UTF-8, 0 as UTF-16
+catalog v8 signature 036616933e75…: 1 as ASCII/UTF-8, 0 as UTF-16
+catalog publishedAt 2026-10-04: 1 as ASCII/UTF-8, 0 as UTF-16
+'Install {model} first' (round 126): 1 as ASCII/UTF-8, 0 as UTF-16
+withoutEchoedLabels (round 126): 1 as ASCII/UTF-8, 0 as UTF-16
+continue_final_message (web only): 0 as ASCII/UTF-8, 0 as UTF-16
+instant.gguf identical to the archive's
+vision-qwen35.gguf identical to the archive's
+bundle host strings: localhost 2 x, models.inbornapp.com 1 x

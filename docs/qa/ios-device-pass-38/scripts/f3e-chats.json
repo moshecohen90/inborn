@@ -1,0 +1,22 @@
+{
+ "_": "J3 PRIVATE: the chat list, dumped so the shell can find the founder's chat id (it lists the file's chat title).",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "new-chat",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "dump",
+   "name": "P3e-chats"
+  }
+ ]
+}

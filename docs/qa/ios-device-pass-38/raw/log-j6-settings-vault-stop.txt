@@ -1,0 +1,45 @@
+16:37:06 pushing 39 steps as j6-settings-vault-stop
+16:37:10 shot J6-01-settings
+16:37:17 shot J6-02-vault
+16:37:28 shot J6-03-stopped
+16:37:49 shot J6-04-after-stop
+16:37:52 ok     0 deeplink   /settings
+16:37:52 ok     1 waitFor    row-wipe appeared
+16:37:52 ok     2 sleep      1500 ms
+16:37:52 ok     3 screenshot J6-01-settings
+16:37:52 ok     4 dump       J6-01-settings
+16:37:52 ok     5 deeplink   /vault
+16:37:52 ok     6 waitFor    best-for appeared
+16:37:52 ok     7 sleep      3000 ms
+16:37:52 ok     8 value      Chat
+16:37:52 ok     9 screenshot J6-02-vault
+16:37:52 ok    10 dump       J6-02-vault
+16:37:52 ok    11 deeplink   /chats
+16:37:52 ok    12 waitFor    new-chat appeared
+16:37:52 ok    13 press      new-chat ← onPress
+16:37:52 ok    14 waitFor    start-chat appeared
+16:37:52 ok    15 press      start-chat ← onPress
+16:37:52 ok    16 waitFor    composer-input appeared
+16:37:52 ok    17 waitFor    Loading gone
+16:37:52 ok    18 sleep      1500 ms
+16:37:52 ok    19 value      FAST
+16:37:52 ok    20 type       composer-input = 64 chars
+16:37:52 ok    21 send       send ← onPress
+16:37:52 ok    22 waitFor    assistant-text appeared
+16:37:52 ok    23 sleep      4000 ms
+16:37:52 ok    24 press      stop ← onPress
+16:37:52 ok    25 sleep      2000 ms
+16:37:52 ok    26 waitFor    stop gone
+16:37:52 ok    27 value      The wind howled like a dying beast against the jagged black cliffs of Blackwood Cove, carrying with it the sal
+16:37:52 ok    28 screenshot J6-03-stopped
+16:37:52 ok    29 dump       J6-03-stopped
+16:37:52 ok    30 type       composer-input = 30 chars
+16:37:52 ok    31 send       send ← onPress
+16:37:52 ok    32 waitFor    assistant-text appeared
+16:37:52 ok    33 waitFor    stop gone
+16:37:52 ok    34 sleep      1500 ms
+16:37:52 ok    35 value      The wind howled like a dying beast against the jagged black cliffs of Blackwood Cove, carrying with it the sal
+16:37:52 ok    36 screenshot J6-04-after-stop
+16:37:52 ok    37 dump       J6-04-after-stop
+16:37:52 ok    38 assertText "Could not load" absent
+16:37:52 39 passed, 0 failed, 4 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-38/docs/qa/ios-device-pass-38/screens

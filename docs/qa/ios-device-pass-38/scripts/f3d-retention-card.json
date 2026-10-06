@@ -1,0 +1,61 @@
+{
+ "_": "J3 PRIVATE: the same chat, 'What does it say about data retention?' with no index model: the 468 MB card; Cancel.",
+ "steps": [
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "What does it say about data retention?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "waitFor",
+   "testID": "docs-hold",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "docs-hold"
+  },
+  {
+   "op": "assertText",
+   "text": "468 MB",
+   "testID": "docs-hold"
+  },
+  {
+   "op": "screenshot",
+   "name": "P3d-card"
+  },
+  {
+   "op": "dump",
+   "name": "P3d-card"
+  },
+  {
+   "op": "press",
+   "testID": "docs-hold-cancel"
+  },
+  {
+   "op": "waitFor",
+   "testID": "docs-hold",
+   "gone": true,
+   "timeoutMs": 10000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "screenshot",
+   "name": "P3d-cancelled"
+  },
+  {
+   "op": "dump",
+   "name": "P3d-cancelled"
+  }
+ ]
+}

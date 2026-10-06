@@ -1,0 +1,15 @@
+16:07:46 pushing 12 steps as j3c-thank-you
+16:07:55 shot J3c-thank-you
+16:07:58 ok     0 type       composer-input = 9 chars
+16:07:58 ok     1 send       send ← onPress
+16:07:58 ok     2 sleep      2500 ms
+16:07:58 ok     3 waitFor    stop gone
+16:07:58 ok     4 sleep      2500 ms
+16:07:58 ok     5 waitFor    docs-hold gone
+16:07:58 ok     6 waitFor    none-matched gone
+16:07:58 ok     7 waitFor    model-advice gone
+16:07:58 ok     8 assertText "468 MB" absent
+16:07:58 ok     9 assertText "Nothing in your documents matched this question" absent
+16:07:58 ok    10 screenshot J3c-thank-you
+16:07:58 ok    11 dump       J3c-thank-you
+16:07:58 12 passed, 0 failed, 1 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-38/docs/qa/ios-device-pass-38/screens

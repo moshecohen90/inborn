@@ -1,0 +1,240 @@
+{
+  "runId": "j4c-sheet-stats-r2",
+  "startedAt": "2026-10-06T13:22:45.830Z",
+  "finishedAt": "2026-10-06T13:26:41.447Z",
+  "ok": true,
+  "passed": 30,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 165,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "ask-sheet gone"
+    },
+    {
+      "i": 2,
+      "op": "setTier",
+      "ok": true,
+      "ms": 195,
+      "detail": "pro"
+    },
+    {
+      "i": 3,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 154,
+      "detail": "/documents"
+    },
+    {
+      "i": 4,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "doc-select-muwovio1-3-nj4d9v8b appeared"
+    },
+    {
+      "i": 5,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2001,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 6,
+      "op": "press",
+      "ok": true,
+      "ms": 157,
+      "detail": "doc-select-muwovio1-3-nj4d9v8b ← onPress"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1017,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 8,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "documents-ask-selected ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "ask-sheet appeared"
+    },
+    {
+      "i": 10,
+      "op": "type",
+      "ok": true,
+      "ms": 166,
+      "detail": "ask-input = 12 chars"
+    },
+    {
+      "i": 11,
+      "op": "press",
+      "ok": true,
+      "ms": 158,
+      "detail": "ask-send ← onPress"
+    },
+    {
+      "i": 12,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "ask-reading-pages appeared"
+    },
+    {
+      "i": 13,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 203549,
+      "detail": "ask-stop gone"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2001,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 15,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "The provided text is an excerpt from a document titled \"constitution-9pages.pdf\" (specifically pages 1–4) that summarizes the United States Constitution. Its main points are: • [1] The U.S. Constitution establishes a bicameral legislature with the House of Representatives and the Senate; only the House has power to impeach, both houses try impeachments requiring two-thirds approval; all revenue bills originate in the House; members are protected from arrest but cannot hold federal offices simultaneously with elected representatives. • [2] Bills must be presented to the President for signature or return within ten days (excluding Sundays); if not returned while Congress is adjourned, it becomes law unless Congress adjourns before receiving it. Orders requiring concurrence must also have presidential approval; Section 8 grants Congress powers regarding taxes/defense, commerce regulation, naturalization/bankruptcy laws, coinage, and federal tribunals. • [3] The President serves four-year terms, appoints electors based on state representation, holds the office until death or resignation, is Commander-in-Chief, can grant pardons (except for impeachment), and must receive an oath to execute the Constitution; the President negotiates treaties with two-thirds Senate approval. • [4] No person is convicted of treason except by testimony from two witnesses or a confession in open court; full faith and credit is given to public acts of other states, each state guarantees a republican form of government against invasion, and federal laws prevail over state laws requiring ratification by nine states through their conventions. Summary of all 9 pages.",
+        "props": {
+          "source": "The provided text is an excerpt from a document titled \"constitution-9pages.pdf\" (specifically pages 1–4) that summarizes the United States Constitution. Its main points are:\n\n*   [1] The U.S. Constitution establishes a bicameral legislature with the House of Representatives and the Senate; only the House has power to impeach, both houses try impeachments requiring two-thirds approval; all revenue bills originate in the House; members are protected from arrest but cannot hold federal offices simultaneously with elected representatives.\n*   [2] Bills must be presented to the President for signature or return within ten days (excluding Sundays); if not returned while Congress is adjourned, it becomes law unless Congress adjourns before receiving it. Orders requiring concurrence must also have presidential approval; Section 8 grants Congress powers regarding taxes/defense, commerce regulation, naturalization/bankruptcy laws, coinage, and federal tribunals.\n*   [3] The President serves four-year terms, appoints electors based on state representation, holds the office until death or resignation, is Commander-in-Chief, can grant pardons (except for impeachment), and must receive an oath to execute the Constitution; the President negotiates treaties with two-thirds Senate approval.\n*   [4] No person is convicted of treason except by testimony from two witnesses or a confession in open court; full faith and credit is given to public acts of other states, each state guarantees a republican form of government against invasion, and federal laws prevail over state laws requiring ratification by nine states through their conventions.\n\n*Summary of all 9 pages.*",
+          "disabled": false
+        }
+      },
+      "detail": "The provided text is an excerpt from a document titled \"constitution-9pages.pdf\" (specifically pages 1–4) that summarizes the United States Constitution. Its main points are: • [1] The U.S. Constituti"
+    },
+    {
+      "i": 16,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "read 147956 ms · 9 of 9 pages · answer 55551 ms · 6.9 tok/s · prompt 928 tokens",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "read 147956 ms · 9 of 9 pages · answer 55551 ms · 6.9 tok/s · prompt 928 tokens"
+    },
+    {
+      "i": 17,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Summary of all 9 pages.\" present"
+    },
+    {
+      "i": 18,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"9 of 9 pages\" present"
+    },
+    {
+      "i": 19,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3169,
+      "detail": "J4-05r-summary-stats"
+    },
+    {
+      "i": 20,
+      "op": "type",
+      "ok": true,
+      "ms": 160,
+      "detail": "ask-input = 20 chars"
+    },
+    {
+      "i": 21,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "ask-send ← onPress"
+    },
+    {
+      "i": 22,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2000,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 23,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 15186,
+      "detail": "ask-stop gone"
+    },
+    {
+      "i": 24,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2001,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 25,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "search 2249 ms · 4 passages · answer 15076 ms · 6.9 tok/s · prompt 893 tokens",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "search 2249 ms · 4 passages · answer 15076 ms · 6.9 tok/s · prompt 893 tokens"
+    },
+    {
+      "i": 26,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"passages\" present"
+    },
+    {
+      "i": 27,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2854,
+      "detail": "J4-06r-question-stats"
+    },
+    {
+      "i": 28,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 159,
+      "detail": "/chats"
+    },
+    {
+      "i": 29,
+      "op": "setTier",
+      "ok": true,
+      "ms": 184,
+      "detail": "free"
+    }
+  ],
+  "errors": []
+}

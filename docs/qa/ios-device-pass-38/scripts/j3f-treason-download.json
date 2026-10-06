@@ -1,0 +1,152 @@
+{
+ "_": "J3: 'What does it say about treason?' again, Download on the card: the index model, the answer with single-page chips above the file row, then the Redact row.",
+ "steps": [
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "What does it say about treason?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "waitFor",
+   "testID": "docs-hold",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "press",
+   "testID": "docs-hold-download"
+  },
+  {
+   "op": "sleep",
+   "ms": 4000
+  },
+  {
+   "op": "value",
+   "testID": "docs-hold"
+  },
+  {
+   "op": "screenshot",
+   "name": "J3f-downloading"
+  },
+  {
+   "op": "idleTimer"
+  },
+  {
+   "op": "waitFor",
+   "testID": "docs-hold",
+   "gone": true,
+   "timeoutMs": 1800000
+  },
+  {
+   "op": "sleep",
+   "ms": 5000
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 600000
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "value",
+   "testID": "attached-docs"
+  },
+  {
+   "op": "screenshot",
+   "name": "J3f-answer"
+  },
+  {
+   "op": "dump",
+   "name": "J3f-answer"
+  },
+  {
+   "op": "assertText",
+   "text": "The request specifies",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "I will focus",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "as an AI",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "NOT_FOUND",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "<<<",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "The user is asking",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "My name is Dana and my phone is 555-0100"
+  },
+  {
+   "op": "waitFor",
+   "testID": "redact-bar",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "screenshot",
+   "name": "J3f-redact-row"
+  },
+  {
+   "op": "dump",
+   "name": "J3f-redact-row"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": ""
+  },
+  {
+   "op": "waitFor",
+   "testID": "redact-bar",
+   "gone": true,
+   "timeoutMs": 10000
+  }
+ ]
+}

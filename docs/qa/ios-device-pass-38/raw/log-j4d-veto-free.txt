@@ -1,0 +1,24 @@
+16:20:10 pushing 20 steps as j4d-veto-free
+16:20:20 shot J4-07-veto-free
+16:20:24 ok     0 deeplink   /chats
+16:20:24 ok     1 waitFor    ask-sheet gone
+16:20:24 ok     2 setTier    free
+16:20:24 ok     3 deeplink   /documents
+16:20:24 ok     4 waitFor    doc-select-muwovio1-3-nj4d9v8b appeared
+16:20:24 ok     5 sleep      2000 ms
+16:20:24 ok     6 press      doc-select-muwovio1-3-nj4d9v8b ← onPress
+16:20:24 ok     7 sleep      1000 ms
+16:20:24 ok     8 press      documents-ask-selected ← onPress
+16:20:24 ok     9 waitFor    ask-sheet appeared
+16:20:24 ok    10 type       ask-input = 20 chars
+16:20:24 ok    11 press      ask-send ← onPress
+16:20:24 ok    12 sleep      2000 ms
+16:20:24 ok    13 waitFor    ask-stop gone
+16:20:24 ok    14 sleep      2000 ms
+16:20:24 FAIL  15 value      value ask-answer: no node with that testID is mounted
+16:20:24 ok    16 screenshot J4-07-veto-free
+16:20:24 ok    17 dump       J4-07-veto-free
+16:20:24 ok    18 deeplink   /chats
+16:20:24 ok    19 setTier    free
+16:20:24 19 passed, 1 failed, 1 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-38/docs/qa/ios-device-pass-38/screens
+16:20:24   ! step 15 (value): value ask-answer: no node with that testID is mounted

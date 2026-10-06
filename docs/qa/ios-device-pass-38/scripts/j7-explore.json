@@ -1,0 +1,693 @@
+{
+ "_": "J7 exploratory: small talk, a general question, the paperclip, a file and a question about it, thanks, the three starter chips, Stop, the vault, a model switch, Documents and its Ask sheet, Settings and the paywall.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "new-chat",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "press",
+   "testID": "new-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "start-chat",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "press",
+   "testID": "start-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "J7-01-new-chat"
+  },
+  {
+   "op": "dump",
+   "name": "J7-01-new-chat"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "hey, how are you?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-pages",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "screenshot",
+   "name": "J7-02-hey"
+  },
+  {
+   "op": "dump",
+   "name": "J7-02-hey"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "How do vaccines work?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-pages",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "screenshot",
+   "name": "J7-03-vaccines"
+  },
+  {
+   "op": "dump",
+   "name": "J7-03-vaccines"
+  },
+  {
+   "op": "press",
+   "testID": "attach"
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "J7-04-attach-sheet"
+  },
+  {
+   "op": "dump",
+   "name": "J7-04-attach-sheet"
+  },
+  {
+   "op": "press",
+   "testID": "attach-sheet-close"
+  },
+  {
+   "op": "devPrompt",
+   "lines": [
+    "attach: turbine-report-3pages.pdf"
+   ]
+  },
+  {
+   "op": "waitFor",
+   "testID": "attached-docs",
+   "timeoutMs": 60000
+  },
+  {
+   "op": "sleep",
+   "ms": 10000
+  },
+  {
+   "op": "sleep",
+   "ms": 500
+  },
+  {
+   "op": "screenshot",
+   "name": "J7-05-file-attached"
+  },
+  {
+   "op": "dump",
+   "name": "J7-05-file-attached"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "What is the serial number of the turbine?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-pages",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "screenshot",
+   "name": "J7-06-serial"
+  },
+  {
+   "op": "dump",
+   "name": "J7-06-serial"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "thanks!"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-pages",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "screenshot",
+   "name": "J7-07-thanks"
+  },
+  {
+   "op": "dump",
+   "name": "J7-07-thanks"
+  },
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "new-chat",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "press",
+   "testID": "new-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "start-chat",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "press",
+   "testID": "start-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "press",
+   "testID": "suggestion-summarize"
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "screenshot",
+   "name": "J7-08-chip-summarize"
+  },
+  {
+   "op": "dump",
+   "name": "J7-08-chip-summarize"
+  },
+  {
+   "op": "press",
+   "testID": "suggestion-translate"
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "screenshot",
+   "name": "J7-09-chip-translate"
+  },
+  {
+   "op": "dump",
+   "name": "J7-09-chip-translate"
+  },
+  {
+   "op": "press",
+   "testID": "suggestion-draft"
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "screenshot",
+   "name": "J7-10-chip-draft"
+  },
+  {
+   "op": "dump",
+   "name": "J7-10-chip-draft"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 300000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "J7-11-draft-answer"
+  },
+  {
+   "op": "dump",
+   "name": "J7-11-draft-answer"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "Explain the history of the Roman Empire in detail."
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "waitFor",
+   "testID": "assistant-text",
+   "timeoutMs": 120000
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "press",
+   "testID": "stop"
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "J7-12-stopped"
+  },
+  {
+   "op": "dump",
+   "name": "J7-12-stopped"
+  },
+  {
+   "op": "press",
+   "testID": "model-chip"
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "screenshot",
+   "name": "J7-13-model-sheet"
+  },
+  {
+   "op": "dump",
+   "name": "J7-13-model-sheet"
+  },
+  {
+   "op": "press",
+   "testID": "model-sheet-manage"
+  },
+  {
+   "op": "waitFor",
+   "testID": "best-for",
+   "timeoutMs": 20000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "J7-14-vault"
+  },
+  {
+   "op": "dump",
+   "name": "J7-14-vault"
+  },
+  {
+   "op": "press",
+   "testID": "back"
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "J7-15-after-vault"
+  },
+  {
+   "op": "dump",
+   "name": "J7-15-after-vault"
+  },
+  {
+   "op": "press",
+   "testID": "model-chip"
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "press",
+   "testID": "model-sheet-use-fast"
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "sleep",
+   "ms": 0
+  },
+  {
+   "op": "screenshot",
+   "name": "J7-16-switching"
+  },
+  {
+   "op": "dump",
+   "name": "J7-16-switching"
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 240000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "J7-17-on-fast"
+  },
+  {
+   "op": "dump",
+   "name": "J7-17-on-fast"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "Which is bigger, a blue whale or an elephant?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-pages",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "screenshot",
+   "name": "J7-18-fast-question"
+  },
+  {
+   "op": "dump",
+   "name": "J7-18-fast-question"
+  },
+  {
+   "op": "press",
+   "testID": "open-chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "drawer-documents",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "J7-19-chats"
+  },
+  {
+   "op": "dump",
+   "name": "J7-19-chats"
+  },
+  {
+   "op": "press",
+   "testID": "drawer-documents"
+  },
+  {
+   "op": "waitFor",
+   "testID": "documents-screen",
+   "timeoutMs": 20000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "J7-20-documents"
+  },
+  {
+   "op": "dump",
+   "name": "J7-20-documents"
+  },
+  {
+   "op": "press",
+   "testID": "documents-close"
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "J7-21-after-documents"
+  },
+  {
+   "op": "dump",
+   "name": "J7-21-after-documents"
+  },
+  {
+   "op": "press",
+   "testID": "drawer-settings"
+  },
+  {
+   "op": "waitFor",
+   "testID": "row-pro",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "J7-22-settings"
+  },
+  {
+   "op": "dump",
+   "name": "J7-22-settings"
+  },
+  {
+   "op": "press",
+   "testID": "row-pro"
+  },
+  {
+   "op": "waitFor",
+   "testID": "close-paywall",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "J7-23-paywall"
+  },
+  {
+   "op": "dump",
+   "name": "J7-23-paywall"
+  },
+  {
+   "op": "press",
+   "testID": "close-paywall"
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "J7-24-after-paywall"
+  },
+  {
+   "op": "dump",
+   "name": "J7-24-after-paywall"
+  },
+  {
+   "op": "press",
+   "testID": "back"
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "J7-25-after-settings"
+  },
+  {
+   "op": "dump",
+   "name": "J7-25-after-settings"
+  }
+ ]
+}

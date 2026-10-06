@@ -1,0 +1,17 @@
+16:08:10 pushing 13 steps as j3e-treason-card
+16:08:14 shot J3e-card
+16:08:19 shot J3e-cancelled
+16:08:22 ok     0 type       composer-input = 31 chars
+16:08:22 ok     1 send       send ← onPress
+16:08:22 ok     2 waitFor    docs-hold appeared
+16:08:22 ok     3 sleep      2000 ms
+16:08:22 ok     4 value      The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact wo
+16:08:22 ok     5 assertText "468 MB" present
+16:08:22 ok     6 screenshot J3e-card
+16:08:22 ok     7 dump       J3e-card
+16:08:22 ok     8 press      docs-hold-cancel ← onPress
+16:08:22 ok     9 waitFor    docs-hold gone
+16:08:22 ok    10 sleep      1500 ms
+16:08:22 ok    11 screenshot J3e-cancelled
+16:08:22 ok    12 dump       J3e-cancelled
+16:08:22 13 passed, 0 failed, 2 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-38/docs/qa/ios-device-pass-38/screens

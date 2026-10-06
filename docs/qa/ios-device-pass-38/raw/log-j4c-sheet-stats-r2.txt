@@ -1,0 +1,34 @@
+16:22:45 pushing 30 steps as j4c-sheet-stats-r2
+16:26:16 shot J4-05r-summary-stats
+16:26:39 shot J4-06r-question-stats
+16:26:42 ok     0 deeplink   /chats
+16:26:42 ok     1 waitFor    ask-sheet gone
+16:26:42 ok     2 setTier    pro
+16:26:42 ok     3 deeplink   /documents
+16:26:42 ok     4 waitFor    doc-select-muwovio1-3-nj4d9v8b appeared
+16:26:42 ok     5 sleep      2000 ms
+16:26:42 ok     6 press      doc-select-muwovio1-3-nj4d9v8b ← onPress
+16:26:42 ok     7 sleep      1000 ms
+16:26:42 ok     8 press      documents-ask-selected ← onPress
+16:26:42 ok     9 waitFor    ask-sheet appeared
+16:26:42 ok    10 type       ask-input = 12 chars
+16:26:42 ok    11 press      ask-send ← onPress
+16:26:42 ok    12 waitFor    ask-reading-pages appeared
+16:26:42 ok    13 waitFor    ask-stop gone
+16:26:42 ok    14 sleep      2000 ms
+16:26:42 ok    15 value      The provided text is an excerpt from a document titled "constitution-9pages.pdf" (specifically pages 1–4) that
+16:26:42 ok    16 value      read 147956 ms · 9 of 9 pages · answer 55551 ms · 6.9 tok/s · prompt 928 tokens
+16:26:42 ok    17 assertText "Summary of all 9 pages." present
+16:26:42 ok    18 assertText "9 of 9 pages" present
+16:26:42 ok    19 screenshot J4-05r-summary-stats
+16:26:42 ok    20 type       ask-input = 20 chars
+16:26:42 ok    21 press      ask-send ← onPress
+16:26:42 ok    22 sleep      2000 ms
+16:26:42 ok    23 waitFor    ask-stop gone
+16:26:42 ok    24 sleep      2000 ms
+16:26:42 ok    25 value      search 2249 ms · 4 passages · answer 15076 ms · 6.9 tok/s · prompt 893 tokens
+16:26:42 ok    26 assertText "passages" present
+16:26:42 ok    27 screenshot J4-06r-question-stats
+16:26:42 ok    28 deeplink   /chats
+16:26:42 ok    29 setTier    free
+16:26:42 30 passed, 0 failed, 2 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-38/docs/qa/ios-device-pass-38/screens

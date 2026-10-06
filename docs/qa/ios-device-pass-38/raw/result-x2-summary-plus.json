@@ -1,0 +1,1734 @@
+{
+  "runId": "x2-summary-plus",
+  "startedAt": "2026-10-06T13:47:09.870Z",
+  "finishedAt": "2026-10-06T13:49:12.673Z",
+  "ok": true,
+  "passed": 72,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 156,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "INSTANT",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT"
+    },
+    {
+      "i": 9,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 164,
+      "detail": "attach: constitution-9pages.pdf"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1334,
+      "detail": "attached-docs appeared"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 20001,
+      "detail": "20000 ms"
+    },
+    {
+      "i": 12,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 12 chars"
+    },
+    {
+      "i": 13,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 15,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 17584,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 16,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 17,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 15473,
+      "detail": "stop gone"
+    },
+    {
+      "i": 18,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2510,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 19,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2564,
+      "detail": "X2-summary"
+    },
+    {
+      "i": 20,
+      "op": "dump",
+      "ok": true,
+      "ms": 5,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI The user has provided a document titled \"constitution-9pages.pdf\" with notes numbered [1] through [4], covering the U.S. Constitution's structure, powers, and procedures. However, the text provided only covers parts of the book (specifically pages 1–2, 3–4, 5–6, and 7–9), omitting the final section on amendments and judicial interpretations found in later pages or a separate \"Amendments\" chapter within the original document structure. Summary of Provided Text: • Document Type: U.S. Constitution (specifically the Federalist/Constitutional acts). • Main Points Covered: • Senate Structure: Two Senators from each State, elected by legislature for six-year terms. • House Rules: Each House operates independently with its own rules on qualifications, quorum, and expulsion; bills must be sent to the President for approval (two-thirds of both Houses required). • Executive Power: The President is elected electors from each state, held for four years. Vacancies are filled by the House of Representatives. • Presidential Duties: Swear an oath; serves in office until age 21 and death (remedied to 35 or resignation/conviction). Commanding Army/Navy; can grant pardons except during impeachment. • Treason: Involves levying war or aiding enemies with two witnesses in open court; convicted individuals must be removed from service without penalty, but \"Attainder of treason\" (a severe punishment) has no other effects. • Missing Section: The text does not contain information regarding the Constitutional Amendments section, which is typically found at the end of this document type and covers changes made to the Constitution since its ratification. Since the user requested the whole answer including only facts from the text provided, I must explicitly state that this summary excludes amendments. If the user intended to ask about the Amendments chapter specifically because they didn't see it in their notes or thought the \"whole\" was there, they will need a separate document. Question: Summarize it (excluding the missing Amendments section) Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better. [1] constitution-9pages.pdf · p.1–2 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The user has provided a document titled \"constitution-9pages.pdf\" with notes numbered [1] through [4], covering the U.S. Constitution's structure, powers, and procedures. However, the text provided only covers parts of the book (specifically pages 1–2, 3–4, 5–6, and 7–9), omitting the final section on amendments and judicial interpretations found in later pages or a separate \"Amendments\" chapter within the original document structure. Summary of Provided Text: • Document Type: U.S. Constitution (specifically the Federalist/Constitutional acts). • Main Points Covered: • Senate Structure: Two Senators from each State, elected by legislature for six-year terms. • House Rules: Each House operates independently with its own rules on qualifications, quorum, and expulsion; bills must be sent to the President for approval (two-thirds of both Houses required). • Executive Power: The President is elected electors from each state, held for four years. Vacancies are filled by the House of Representatives. • Presidential Duties: Swear an oath; serves in office until age 21 and death (remedied to 35 or resignation/conviction). Commanding Army/Navy; can grant pardons except during impeachment. • Treason: Involves levying war or aiding enemies with two witnesses in open court; convicted individuals must be removed from service without penalty, but \"Attainder of treason\" (a severe punishment) has no other effects. • Missing Section: The text does not contain information regarding the Constitutional Amendments section, which is typically found at the end of this document type and covers changes made to the Constitution since its ratification. Since the user requested the whole answer including only facts from the text provided, I must explicitly state that this summary excludes amendments. If the user intended to ask about the Amendments chapter specifically because they didn't see it in their notes or thought the \"whole\" was there, they will need a separate document. Question: Summarize it (excluding the missing Amendments section) Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "model-advice",
+          "text": "FAST is better at documents than INSTANT. SHARP is the best here for Documents · 2.74 GB PRO Switch to FAST Not now"
+        },
+        {
+          "testID": "model-advice-reason",
+          "text": "FAST is better at documents than INSTANT."
+        },
+        {
+          "testID": "model-advice-best",
+          "text": "SHARP is the best here for Documents · 2.74 GB PRO",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-best-pro",
+          "text": "PRO"
+        },
+        {
+          "testID": "model-advice-switch",
+          "text": "Switch to FAST",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-not-now",
+          "text": "Not now",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muwqgemm-1-79gqrixl",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "X2-summary"
+    },
+    {
+      "i": 21,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 7 chars"
+    },
+    {
+      "i": 22,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2500,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 24,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 25,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 26,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "stop gone"
+    },
+    {
+      "i": 27,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2509,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 28,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2546,
+      "detail": "X2-01-and-now"
+    },
+    {
+      "i": 29,
+      "op": "dump",
+      "ok": true,
+      "ms": 6,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI The user has provided a document titled \"constitution-9pages.pdf\" with notes numbered [1] through [4], covering the U.S. Constitution's structure, powers, and procedures. However, the text provided only covers parts of the book (specifically pages 1–2, 3–4, 5–6, and 7–9), omitting the final section on amendments and judicial interpretations found in later pages or a separate \"Amendments\" chapter within the original document structure. Summary of Provided Text: • Document Type: U.S. Constitution (specifically the Federalist/Constitutional acts). • Main Points Covered: • Senate Structure: Two Senators from each State, elected by legislature for six-year terms. • House Rules: Each House operates independently with its own rules on qualifications, quorum, and expulsion; bills must be sent to the President for approval (two-thirds of both Houses required). • Executive Power: The President is elected electors from each state, held for four years. Vacancies are filled by the House of Representatives. • Presidential Duties: Swear an oath; serves in office until age 21 and death (remedied to 35 or resignation/conviction). Commanding Army/Navy; can grant pardons except during impeachment. • Treason: Involves levying war or aiding enemies with two witnesses in open court; convicted individuals must be removed from service without penalty, but \"Attainder of treason\" (a severe punishment) has no other effects. • Missing Section: The text does not contain information regarding the Constitutional Amendments section, which is typically found at the end of this document type and covers changes made to the Constitution since its ratification. Since the user requested the whole answer including only facts from the text provided, I must explicitly state that this summary excludes amendments. If the user intended to ask about the Amendments chapter specifically because they didn't see it in their notes or thought the \"whole\" was there, they will need a separate document. Question: Summarize it (excluding the missing Amendments section) Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better. [1] constitution-9pages.pdf · p.1–2 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The user has provided a document titled \"constitution-9pages.pdf\" with notes numbered [1] through [4], covering the U.S. Constitution's structure, powers, and procedures. However, the text provided only covers parts of the book (specifically pages 1–2, 3–4, 5–6, and 7–9), omitting the final section on amendments and judicial interpretations found in later pages or a separate \"Amendments\" chapter within the original document structure. Summary of Provided Text: • Document Type: U.S. Constitution (specifically the Federalist/Constitutional acts). • Main Points Covered: • Senate Structure: Two Senators from each State, elected by legislature for six-year terms. • House Rules: Each House operates independently with its own rules on qualifications, quorum, and expulsion; bills must be sent to the President for approval (two-thirds of both Houses required). • Executive Power: The President is elected electors from each state, held for four years. Vacancies are filled by the House of Representatives. • Presidential Duties: Swear an oath; serves in office until age 21 and death (remedied to 35 or resignation/conviction). Commanding Army/Navy; can grant pardons except during impeachment. • Treason: Involves levying war or aiding enemies with two witnesses in open court; convicted individuals must be removed from service without penalty, but \"Attainder of treason\" (a severe punishment) has no other effects. • Missing Section: The text does not contain information regarding the Constitutional Amendments section, which is typically found at the end of this document type and covers changes made to the Constitution since its ratification. Since the user requested the whole answer including only facts from the text provided, I must explicitly state that this summary excludes amendments. If the user intended to ask about the Amendments chapter specifically because they didn't see it in their notes or thought the \"whole\" was there, they will need a separate document. Question: Summarize it (excluding the missing Amendments section) Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muwqgemm-1-79gqrixl",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "X2-01-and-now"
+    },
+    {
+      "i": 30,
+      "op": "type",
+      "ok": true,
+      "ms": 166,
+      "detail": "composer-input = 9 chars"
+    },
+    {
+      "i": 31,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 32,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2500,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 33,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 4,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 34,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 35,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "stop gone"
+    },
+    {
+      "i": 36,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 37,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3190,
+      "detail": "X2-02-thank-you"
+    },
+    {
+      "i": 38,
+      "op": "dump",
+      "ok": true,
+      "ms": 7,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI The user has provided a document titled \"constitution-9pages.pdf\" with notes numbered [1] through [4], covering the U.S. Constitution's structure, powers, and procedures. However, the text provided only covers parts of the book (specifically pages 1–2, 3–4, 5–6, and 7–9), omitting the final section on amendments and judicial interpretations found in later pages or a separate \"Amendments\" chapter within the original document structure. Summary of Provided Text: • Document Type: U.S. Constitution (specifically the Federalist/Constitutional acts). • Main Points Covered: • Senate Structure: Two Senators from each State, elected by legislature for six-year terms. • House Rules: Each House operates independently with its own rules on qualifications, quorum, and expulsion; bills must be sent to the President for approval (two-thirds of both Houses required). • Executive Power: The President is elected electors from each state, held for four years. Vacancies are filled by the House of Representatives. • Presidential Duties: Swear an oath; serves in office until age 21 and death (remedied to 35 or resignation/conviction). Commanding Army/Navy; can grant pardons except during impeachment. • Treason: Involves levying war or aiding enemies with two witnesses in open court; convicted individuals must be removed from service without penalty, but \"Attainder of treason\" (a severe punishment) has no other effects. • Missing Section: The text does not contain information regarding the Constitutional Amendments section, which is typically found at the end of this document type and covers changes made to the Constitution since its ratification. Since the user requested the whole answer including only facts from the text provided, I must explicitly state that this summary excludes amendments. If the user intended to ask about the Amendments chapter specifically because they didn't see it in their notes or thought the \"whole\" was there, they will need a separate document. Question: Summarize it (excluding the missing Amendments section) Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better. [1] constitution-9pages.pdf · p.1–2 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The user has provided a document titled \"constitution-9pages.pdf\" with notes numbered [1] through [4], covering the U.S. Constitution's structure, powers, and procedures. However, the text provided only covers parts of the book (specifically pages 1–2, 3–4, 5–6, and 7–9), omitting the final section on amendments and judicial interpretations found in later pages or a separate \"Amendments\" chapter within the original document structure. Summary of Provided Text: • Document Type: U.S. Constitution (specifically the Federalist/Constitutional acts). • Main Points Covered: • Senate Structure: Two Senators from each State, elected by legislature for six-year terms. • House Rules: Each House operates independently with its own rules on qualifications, quorum, and expulsion; bills must be sent to the President for approval (two-thirds of both Houses required). • Executive Power: The President is elected electors from each state, held for four years. Vacancies are filled by the House of Representatives. • Presidential Duties: Swear an oath; serves in office until age 21 and death (remedied to 35 or resignation/conviction). Commanding Army/Navy; can grant pardons except during impeachment. • Treason: Involves levying war or aiding enemies with two witnesses in open court; convicted individuals must be removed from service without penalty, but \"Attainder of treason\" (a severe punishment) has no other effects. • Missing Section: The text does not contain information regarding the Constitutional Amendments section, which is typically found at the end of this document type and covers changes made to the Constitution since its ratification. Since the user requested the whole answer including only facts from the text provided, I must explicitly state that this summary excludes amendments. If the user intended to ask about the Amendments chapter specifically because they didn't see it in their notes or thought the \"whole\" was there, they will need a separate document. Question: Summarize it (excluding the missing Amendments section) Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muwqgemm-1-79gqrixl",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "X2-02-thank-you"
+    },
+    {
+      "i": 39,
+      "op": "type",
+      "ok": true,
+      "ms": 162,
+      "detail": "composer-input = 4 chars"
+    },
+    {
+      "i": 40,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 41,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2500,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 42,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 43,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 44,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1317,
+      "detail": "stop gone"
+    },
+    {
+      "i": 45,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 46,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 4132,
+      "detail": "X2-03-more"
+    },
+    {
+      "i": 47,
+      "op": "dump",
+      "ok": true,
+      "ms": 6,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI The user has provided a document titled \"constitution-9pages.pdf\" with notes numbered [1] through [4], covering the U.S. Constitution's structure, powers, and procedures. However, the text provided only covers parts of the book (specifically pages 1–2, 3–4, 5–6, and 7–9), omitting the final section on amendments and judicial interpretations found in later pages or a separate \"Amendments\" chapter within the original document structure. Summary of Provided Text: • Document Type: U.S. Constitution (specifically the Federalist/Constitutional acts). • Main Points Covered: • Senate Structure: Two Senators from each State, elected by legislature for six-year terms. • House Rules: Each House operates independently with its own rules on qualifications, quorum, and expulsion; bills must be sent to the President for approval (two-thirds of both Houses required). • Executive Power: The President is elected electors from each state, held for four years. Vacancies are filled by the House of Representatives. • Presidential Duties: Swear an oath; serves in office until age 21 and death (remedied to 35 or resignation/conviction). Commanding Army/Navy; can grant pardons except during impeachment. • Treason: Involves levying war or aiding enemies with two witnesses in open court; convicted individuals must be removed from service without penalty, but \"Attainder of treason\" (a severe punishment) has no other effects. • Missing Section: The text does not contain information regarding the Constitutional Amendments section, which is typically found at the end of this document type and covers changes made to the Constitution since its ratification. Since the user requested the whole answer including only facts from the text provided, I must explicitly state that this summary excludes amendments. If the user intended to ask about the Amendments chapter specifically because they didn't see it in their notes or thought the \"whole\" was there, they will need a separate document. Question: Summarize it (excluding the missing Amendments section) Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better. [1] constitution-9pages.pdf · p.1–2 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The user has provided a document titled \"constitution-9pages.pdf\" with notes numbered [1] through [4], covering the U.S. Constitution's structure, powers, and procedures. However, the text provided only covers parts of the book (specifically pages 1–2, 3–4, 5–6, and 7–9), omitting the final section on amendments and judicial interpretations found in later pages or a separate \"Amendments\" chapter within the original document structure. Summary of Provided Text: • Document Type: U.S. Constitution (specifically the Federalist/Constitutional acts). • Main Points Covered: • Senate Structure: Two Senators from each State, elected by legislature for six-year terms. • House Rules: Each House operates independently with its own rules on qualifications, quorum, and expulsion; bills must be sent to the President for approval (two-thirds of both Houses required). • Executive Power: The President is elected electors from each state, held for four years. Vacancies are filled by the House of Representatives. • Presidential Duties: Swear an oath; serves in office until age 21 and death (remedied to 35 or resignation/conviction). Commanding Army/Navy; can grant pardons except during impeachment. • Treason: Involves levying war or aiding enemies with two witnesses in open court; convicted individuals must be removed from service without penalty, but \"Attainder of treason\" (a severe punishment) has no other effects. • Missing Section: The text does not contain information regarding the Constitutional Amendments section, which is typically found at the end of this document type and covers changes made to the Constitution since its ratification. Since the user requested the whole answer including only facts from the text provided, I must explicitly state that this summary excludes amendments. If the user intended to ask about the Amendments chapter specifically because they didn't see it in their notes or thought the \"whole\" was there, they will need a separate document. Question: Summarize it (excluding the missing Amendments section) Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muwqgemm-1-79gqrixl",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "X2-03-more"
+    },
+    {
+      "i": 48,
+      "op": "type",
+      "ok": true,
+      "ms": 162,
+      "detail": "composer-input = 40 chars"
+    },
+    {
+      "i": 49,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3016,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 50,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 6032,
+      "detail": "X2-04-tallest"
+    },
+    {
+      "i": 51,
+      "op": "dump",
+      "ok": true,
+      "ms": 6,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI The user has provided a document titled \"constitution-9pages.pdf\" with notes numbered [1] through [4], covering the U.S. Constitution's structure, powers, and procedures. However, the text provided only covers parts of the book (specifically pages 1–2, 3–4, 5–6, and 7–9), omitting the final section on amendments and judicial interpretations found in later pages or a separate \"Amendments\" chapter within the original document structure. Summary of Provided Text: • Document Type: U.S. Constitution (specifically the Federalist/Constitutional acts). • Main Points Covered: • Senate Structure: Two Senators from each State, elected by legislature for six-year terms. • House Rules: Each House operates independently with its own rules on qualifications, quorum, and expulsion; bills must be sent to the President for approval (two-thirds of both Houses required). • Executive Power: The President is elected electors from each state, held for four years. Vacancies are filled by the House of Representatives. • Presidential Duties: Swear an oath; serves in office until age 21 and death (remedied to 35 or resignation/conviction). Commanding Army/Navy; can grant pardons except during impeachment. • Treason: Involves levying war or aiding enemies with two witnesses in open court; convicted individuals must be removed from service without penalty, but \"Attainder of treason\" (a severe punishment) has no other effects. • Missing Section: The text does not contain information regarding the Constitutional Amendments section, which is typically found at the end of this document type and covers changes made to the Constitution since its ratification. Since the user requested the whole answer including only facts from the text provided, I must explicitly state that this summary excludes amendments. If the user intended to ask about the Amendments chapter specifically because they didn't see it in their notes or thought the \"whole\" was there, they will need a separate document. Question: Summarize it (excluding the missing Amendments section) Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better. [1] constitution-9pages.pdf · p.1–2 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The user has provided a document titled \"constitution-9pages.pdf\" with notes numbered [1] through [4], covering the U.S. Constitution's structure, powers, and procedures. However, the text provided only covers parts of the book (specifically pages 1–2, 3–4, 5–6, and 7–9), omitting the final section on amendments and judicial interpretations found in later pages or a separate \"Amendments\" chapter within the original document structure. Summary of Provided Text: • Document Type: U.S. Constitution (specifically the Federalist/Constitutional acts). • Main Points Covered: • Senate Structure: Two Senators from each State, elected by legislature for six-year terms. • House Rules: Each House operates independently with its own rules on qualifications, quorum, and expulsion; bills must be sent to the President for approval (two-thirds of both Houses required). • Executive Power: The President is elected electors from each state, held for four years. Vacancies are filled by the House of Representatives. • Presidential Duties: Swear an oath; serves in office until age 21 and death (remedied to 35 or resignation/conviction). Commanding Army/Navy; can grant pardons except during impeachment. • Treason: Involves levying war or aiding enemies with two witnesses in open court; convicted individuals must be removed from service without penalty, but \"Attainder of treason\" (a severe punishment) has no other effects. • Missing Section: The text does not contain information regarding the Constitutional Amendments section, which is typically found at the end of this document type and covers changes made to the Constitution since its ratification. Since the user requested the whole answer including only facts from the text provided, I must explicitly state that this summary excludes amendments. If the user intended to ask about the Amendments chapter specifically because they didn't see it in their notes or thought the \"whole\" was there, they will need a separate document. Question: Summarize it (excluding the missing Amendments section) Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muwqgemm-1-79gqrixl",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "redact-bar",
+          "text": "Redact"
+        },
+        {
+          "testID": "redact-open",
+          "text": "Redact",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "My name is Dana and my phone is 555-0100",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "X2-04-tallest"
+    },
+    {
+      "i": 52,
+      "op": "type",
+      "ok": true,
+      "ms": 163,
+      "detail": "composer-input = 0 chars"
+    },
+    {
+      "i": 53,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 54,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "open-chats ← onPress"
+    },
+    {
+      "i": 55,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "close-chats appeared"
+    },
+    {
+      "i": 56,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 57,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3196,
+      "detail": "X2-05-chats"
+    },
+    {
+      "i": 58,
+      "op": "press",
+      "ok": true,
+      "ms": 169,
+      "detail": "close-chats ← onPress"
+    },
+    {
+      "i": 59,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 60,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2516,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 61,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3814,
+      "detail": "X2-05-back"
+    },
+    {
+      "i": 62,
+      "op": "dump",
+      "ok": true,
+      "ms": 9,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI The user has provided a document titled \"constitution-9pages.pdf\" with notes numbered [1] through [4], covering the U.S. Constitution's structure, powers, and procedures. However, the text provided only covers parts of the book (specifically pages 1–2, 3–4, 5–6, and 7–9), omitting the final section on amendments and judicial interpretations found in later pages or a separate \"Amendments\" chapter within the original document structure. Summary of Provided Text: • Document Type: U.S. Constitution (specifically the Federalist/Constitutional acts). • Main Points Covered: • Senate Structure: Two Senators from each State, elected by legislature for six-year terms. • House Rules: Each House operates independently with its own rules on qualifications, quorum, and expulsion; bills must be sent to the President for approval (two-thirds of both Houses required). • Executive Power: The President is elected electors from each state, held for four years. Vacancies are filled by the House of Representatives. • Presidential Duties: Swear an oath; serves in office until age 21 and death (remedied to 35 or resignation/conviction). Commanding Army/Navy; can grant pardons except during impeachment. • Treason: Involves levying war or aiding enemies with two witnesses in open court; convicted individuals must be removed from service without penalty, but \"Attainder of treason\" (a severe punishment) has no other effects. • Missing Section: The text does not contain information regarding the Constitutional Amendments section, which is typically found at the end of this document type and covers changes made to the Constitution since its ratification. Since the user requested the whole answer including only facts from the text provided, I must explicitly state that this summary excludes amendments. If the user intended to ask about the Amendments chapter specifically because they didn't see it in their notes or thought the \"whole\" was there, they will need a separate document. Question: Summarize it (excluding the missing Amendments section) Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better. [1] constitution-9pages.pdf · p.1–2 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The user has provided a document titled \"constitution-9pages.pdf\" with notes numbered [1] through [4], covering the U.S. Constitution's structure, powers, and procedures. However, the text provided only covers parts of the book (specifically pages 1–2, 3–4, 5–6, and 7–9), omitting the final section on amendments and judicial interpretations found in later pages or a separate \"Amendments\" chapter within the original document structure. Summary of Provided Text: • Document Type: U.S. Constitution (specifically the Federalist/Constitutional acts). • Main Points Covered: • Senate Structure: Two Senators from each State, elected by legislature for six-year terms. • House Rules: Each House operates independently with its own rules on qualifications, quorum, and expulsion; bills must be sent to the President for approval (two-thirds of both Houses required). • Executive Power: The President is elected electors from each state, held for four years. Vacancies are filled by the House of Representatives. • Presidential Duties: Swear an oath; serves in office until age 21 and death (remedied to 35 or resignation/conviction). Commanding Army/Navy; can grant pardons except during impeachment. • Treason: Involves levying war or aiding enemies with two witnesses in open court; convicted individuals must be removed from service without penalty, but \"Attainder of treason\" (a severe punishment) has no other effects. • Missing Section: The text does not contain information regarding the Constitutional Amendments section, which is typically found at the end of this document type and covers changes made to the Constitution since its ratification. Since the user requested the whole answer including only facts from the text provided, I must explicitly state that this summary excludes amendments. If the user intended to ask about the Amendments chapter specifically because they didn't see it in their notes or thought the \"whole\" was there, they will need a separate document. Question: Summarize it (excluding the missing Amendments section) Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muwqgemm-1-79gqrixl",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "X2-05-back"
+    },
+    {
+      "i": 63,
+      "op": "type",
+      "ok": true,
+      "ms": 161,
+      "detail": "composer-input = 13 chars"
+    },
+    {
+      "i": 64,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 65,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2500,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 66,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 4,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 67,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 68,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "stop gone"
+    },
+    {
+      "i": 69,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 70,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3505,
+      "detail": "X2-06-one-more"
+    },
+    {
+      "i": 71,
+      "op": "dump",
+      "ok": true,
+      "ms": 6,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI The user has provided a document titled \"constitution-9pages.pdf\" with notes numbered [1] through [4], covering the U.S. Constitution's structure, powers, and procedures. However, the text provided only covers parts of the book (specifically pages 1–2, 3–4, 5–6, and 7–9), omitting the final section on amendments and judicial interpretations found in later pages or a separate \"Amendments\" chapter within the original document structure. Summary of Provided Text: • Document Type: U.S. Constitution (specifically the Federalist/Constitutional acts). • Main Points Covered: • Senate Structure: Two Senators from each State, elected by legislature for six-year terms. • House Rules: Each House operates independently with its own rules on qualifications, quorum, and expulsion; bills must be sent to the President for approval (two-thirds of both Houses required). • Executive Power: The President is elected electors from each state, held for four years. Vacancies are filled by the House of Representatives. • Presidential Duties: Swear an oath; serves in office until age 21 and death (remedied to 35 or resignation/conviction). Commanding Army/Navy; can grant pardons except during impeachment. • Treason: Involves levying war or aiding enemies with two witnesses in open court; convicted individuals must be removed from service without penalty, but \"Attainder of treason\" (a severe punishment) has no other effects. • Missing Section: The text does not contain information regarding the Constitutional Amendments section, which is typically found at the end of this document type and covers changes made to the Constitution since its ratification. Since the user requested the whole answer including only facts from the text provided, I must explicitly state that this summary excludes amendments. If the user intended to ask about the Amendments chapter specifically because they didn't see it in their notes or thought the \"whole\" was there, they will need a separate document. Question: Summarize it (excluding the missing Amendments section) Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better. [1] constitution-9pages.pdf · p.1–2 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The user has provided a document titled \"constitution-9pages.pdf\" with notes numbered [1] through [4], covering the U.S. Constitution's structure, powers, and procedures. However, the text provided only covers parts of the book (specifically pages 1–2, 3–4, 5–6, and 7–9), omitting the final section on amendments and judicial interpretations found in later pages or a separate \"Amendments\" chapter within the original document structure. Summary of Provided Text: • Document Type: U.S. Constitution (specifically the Federalist/Constitutional acts). • Main Points Covered: • Senate Structure: Two Senators from each State, elected by legislature for six-year terms. • House Rules: Each House operates independently with its own rules on qualifications, quorum, and expulsion; bills must be sent to the President for approval (two-thirds of both Houses required). • Executive Power: The President is elected electors from each state, held for four years. Vacancies are filled by the House of Representatives. • Presidential Duties: Swear an oath; serves in office until age 21 and death (remedied to 35 or resignation/conviction). Commanding Army/Navy; can grant pardons except during impeachment. • Treason: Involves levying war or aiding enemies with two witnesses in open court; convicted individuals must be removed from service without penalty, but \"Attainder of treason\" (a severe punishment) has no other effects. • Missing Section: The text does not contain information regarding the Constitutional Amendments section, which is typically found at the end of this document type and covers changes made to the Constitution since its ratification. Since the user requested the whole answer including only facts from the text provided, I must explicitly state that this summary excludes amendments. If the user intended to ask about the Amendments chapter specifically because they didn't see it in their notes or thought the \"whole\" was there, they will need a separate document. Question: Summarize it (excluding the missing Amendments section) Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "docs-hold",
+          "text": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched. Download · 468 MB Send, exact words only Cancel"
+        },
+        {
+          "testID": "docs-hold-body",
+          "text": "The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact words are matched."
+        },
+        {
+          "testID": "docs-hold-download",
+          "text": "Download · 468 MB",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "docs-hold-words",
+          "text": "Send, exact words only",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "docs-hold-cancel",
+          "text": "Cancel",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muwqgemm-1-79gqrixl",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "redact-bar",
+          "text": "Redact"
+        },
+        {
+          "testID": "redact-open",
+          "text": "Redact",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "Who wrote it?",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "X2-06-one-more"
+    }
+  ],
+  "errors": []
+}

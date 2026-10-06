@@ -1,0 +1,44 @@
+16:13:38 pushing 34 steps as j4b-sheet
+16:13:45 shot J4-01-sheet
+16:13:48 shot J4-02-reading
+16:16:55 shot J4-03-summary
+16:17:13 shot J4-04-question
+16:17:16 ok     0 deeplink   /documents
+16:17:16 ok     1 waitFor    doc-select-muwovio1-3-nj4d9v8b appeared
+16:17:16 ok     2 sleep      2000 ms
+16:17:16 ok     3 press      doc-select-muwovio1-3-nj4d9v8b ← onPress
+16:17:16 ok     4 sleep      1000 ms
+16:17:16 ok     5 value      Ask about 1 document
+16:17:16 ok     6 press      documents-ask-selected ← onPress
+16:17:16 ok     7 waitFor    ask-sheet appeared
+16:17:16 ok     8 sleep      1500 ms
+16:17:16 ok     9 screenshot J4-01-sheet
+16:17:16 ok    10 type       ask-input = 12 chars
+16:17:16 ok    11 press      ask-send ← onPress
+16:17:16 ok    12 waitFor    ask-reading-pages appeared
+16:17:16 ok    13 value      Reading pages 1–2 of 9…
+16:17:16 ok    14 screenshot J4-02-reading
+16:17:16 ok    15 waitFor    ask-stop gone
+16:17:16 ok    16 sleep      2000 ms
+16:17:16 ok    17 value      The provided text is a summary of the powers and procedures outlined in the U.S. Constitution, covering its cr
+16:17:16 FAIL  18 value      value ask-stats: no node with that testID is mounted
+16:17:16 ok    19 screenshot J4-03-summary
+16:17:16 ok    20 assertText "Summary of all 9 pages." present
+16:17:16 FAIL  21 assertText assertText "9 of 9 pages" is not on screen under ask-stats
+16:17:16 ok    22 waitFor    ask-none-matched gone
+16:17:16 ok    23 waitFor    ask-not-found gone
+16:17:16 ok    24 type       ask-input = 20 chars
+16:17:16 ok    25 press      ask-send ← onPress
+16:17:16 ok    26 sleep      2000 ms
+16:17:16 ok    27 waitFor    ask-stop gone
+16:17:16 ok    28 sleep      2000 ms
+16:17:16 ok    29 value      No State can veto a bill as it is not a legislative body, and only the President of the United States has the 
+16:17:16 FAIL  30 value      value ask-stats: no node with that testID is mounted
+16:17:16 ok    31 screenshot J4-04-question
+16:17:16 FAIL  32 assertText assertText "passages" is not on screen under ask-stats
+16:17:16 ok    33 assertText "Summary of all" absent
+16:17:16 30 passed, 4 failed, 4 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-38/docs/qa/ios-device-pass-38/screens
+16:17:16   ! step 18 (value): value ask-stats: no node with that testID is mounted
+16:17:16   ! step 21 (assertText): assertText "9 of 9 pages" is not on screen under ask-stats
+16:17:16   ! step 30 (value): value ask-stats: no node with that testID is mounted
+16:17:16   ! step 32 (assertText): assertText "passages" is not on screen under ask-stats
