@@ -60,9 +60,12 @@ export const DEFAULT_OPENERS: Required<NoPassageOpeners> = {
   thinPage: "I can read only the text of this page, not its pictures.",
 };
 
-/* Quoted in the user's language (F449); "then answer the question" made Instant invent what the file states, and without "were searched" Fast said it had no access to them. */
+/*
+ * Quoted in the user's language (F449); "then answer the question" made Instant invent what the file states, and without
+ * "were searched" Fast said it had no access to them. The quote comes last: Fast copied the instruction that followed it.
+ */
 const startWith = (sentence: string, searched: boolean): string =>
-  `Start with "${sentence}"${searched ? " The user's files were searched and nothing in them matched, so never say what they state or contain." : " Never say what the user's files state, say or contain."} If you do not know the answer for sure, stop after that sentence.`;
+  `${searched ? "The user's files were searched and nothing in them matched, so never say what they state or contain." : "Never say what the user's files state, say or contain."} If you do not know the answer for sure, say only the opening sentence. Start with "${sentence}"`;
 
 /** A page with only crumbs of text whose pictures did not reach the model: say what it has, never what it cannot see. */
 export const thinPageRule = (opener: string): string =>

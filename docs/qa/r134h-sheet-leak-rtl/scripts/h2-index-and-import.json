@@ -1,0 +1,64 @@
+{
+  "runId": "h2-index-and-import",
+  "_": "'install embed-e5' (written to dev-vault.txt by the shell), then the constitution and the turbine report enter the library through the chat's file door; Documents dump gives their ids.",
+  "steps": [
+    {
+      "op": "deeplink",
+      "url": "/vault"
+    },
+    {
+      "op": "sleep",
+      "ms": 60000
+    },
+    {
+      "op": "deeplink",
+      "url": "/"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "devPrompt",
+      "lines": [
+        "attach: constitution-9pages.pdf"
+      ]
+    },
+    {
+      "op": "sleep",
+      "ms": 45000
+    },
+    {
+      "op": "devPrompt",
+      "lines": [
+        "attach: turbine-report-3pages.pdf"
+      ]
+    },
+    {
+      "op": "sleep",
+      "ms": 30000
+    },
+    {
+      "op": "deeplink",
+      "url": "/documents"
+    },
+    {
+      "op": "waitFor",
+      "testID": "documents-screen",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "sleep",
+      "ms": 3000
+    },
+    {
+      "op": "screenshot",
+      "name": "02-documents"
+    },
+    {
+      "op": "dump",
+      "name": "02-documents"
+    }
+  ]
+}

@@ -1,0 +1,238 @@
+{
+  "runId": "h6-probe",
+  "steps": [
+    {
+      "op": "sleep",
+      "ms": 8000
+    },
+    {
+      "op": "deeplink",
+      "url": "/documents"
+    },
+    {
+      "op": "waitFor",
+      "testID": "doc-select-DOCID_T",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 4000
+    },
+    {
+      "op": "press",
+      "testID": "doc-select-DOCID_T"
+    },
+    {
+      "op": "press",
+      "testID": "documents-ask-selected"
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-sheet",
+      "timeoutMs": 20000
+    },
+    {
+      "op": "type",
+      "testID": "ask-input",
+      "text": "Who wrote this report?"
+    },
+    {
+      "op": "press",
+      "testID": "ask-send"
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-stop",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-stop",
+      "gone": true,
+      "timeoutMs": 600000
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "dump",
+      "name": "t-who"
+    },
+    {
+      "op": "type",
+      "testID": "ask-input",
+      "text": "Who is the author of this report?"
+    },
+    {
+      "op": "press",
+      "testID": "ask-send"
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-stop",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-stop",
+      "gone": true,
+      "timeoutMs": 600000
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "dump",
+      "name": "t-author"
+    },
+    {
+      "op": "type",
+      "testID": "ask-input",
+      "text": "What year was the turbine built?"
+    },
+    {
+      "op": "press",
+      "testID": "ask-send"
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-stop",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-stop",
+      "gone": true,
+      "timeoutMs": 600000
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "dump",
+      "name": "t-year"
+    },
+    {
+      "op": "deeplink",
+      "url": "/"
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "deeplink",
+      "url": "/documents"
+    },
+    {
+      "op": "waitFor",
+      "testID": "doc-select-DOCID_C",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 4000
+    },
+    {
+      "op": "press",
+      "testID": "doc-select-DOCID_C"
+    },
+    {
+      "op": "press",
+      "testID": "documents-ask-selected"
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-sheet",
+      "timeoutMs": 20000
+    },
+    {
+      "op": "type",
+      "testID": "ask-input",
+      "text": "Who wrote this report?"
+    },
+    {
+      "op": "press",
+      "testID": "ask-send"
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-stop",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-stop",
+      "gone": true,
+      "timeoutMs": 600000
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "dump",
+      "name": "c-who"
+    },
+    {
+      "op": "type",
+      "testID": "ask-input",
+      "text": "What does it say about the moon landing?"
+    },
+    {
+      "op": "press",
+      "testID": "ask-send"
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-stop",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-stop",
+      "gone": true,
+      "timeoutMs": 600000
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "dump",
+      "name": "c-moon"
+    },
+    {
+      "op": "type",
+      "testID": "ask-input",
+      "text": "What is the capital of France?"
+    },
+    {
+      "op": "press",
+      "testID": "ask-send"
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-stop",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-stop",
+      "gone": true,
+      "timeoutMs": 600000
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "dump",
+      "name": "c-paris"
+    }
+  ],
+  "_": "Six no-match questions, three per file, dumped not shot; run once per prompt variant and model (the shell rebundles the JS between runs and writes 'use fast' / 'use instant' to dev-vault.txt)."
+}

@@ -1,0 +1,128 @@
+{
+  "runId": "h4-sheet-constitution",
+  "_": "Documents → the constitution → Ask: the leaked question and two more. DOCID_C from h2's dump.",
+  "steps": [
+    {
+      "op": "deeplink",
+      "url": "/documents"
+    },
+    {
+      "op": "waitFor",
+      "testID": "doc-select-DOCID_C",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "sleep",
+      "ms": 5000
+    },
+    {
+      "op": "press",
+      "testID": "doc-select-DOCID_C"
+    },
+    {
+      "op": "press",
+      "testID": "documents-ask-selected"
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-sheet",
+      "timeoutMs": 20000
+    },
+    {
+      "op": "type",
+      "testID": "ask-input",
+      "text": "Who wrote this report?"
+    },
+    {
+      "op": "press",
+      "testID": "ask-send"
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-stop",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-stop",
+      "gone": true,
+      "timeoutMs": 600000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "04a-constitution-who-wrote"
+    },
+    {
+      "op": "dump",
+      "name": "04a-constitution-who-wrote"
+    },
+    {
+      "op": "type",
+      "testID": "ask-input",
+      "text": "What does it say about the moon landing?"
+    },
+    {
+      "op": "press",
+      "testID": "ask-send"
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-stop",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-stop",
+      "gone": true,
+      "timeoutMs": 600000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "04b-constitution-moon"
+    },
+    {
+      "op": "dump",
+      "name": "04b-constitution-moon"
+    },
+    {
+      "op": "type",
+      "testID": "ask-input",
+      "text": "Who can veto a bill?"
+    },
+    {
+      "op": "press",
+      "testID": "ask-send"
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-stop",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "waitFor",
+      "testID": "ask-stop",
+      "gone": true,
+      "timeoutMs": 600000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "04c-constitution-veto"
+    },
+    {
+      "op": "dump",
+      "name": "04c-constitution-veto"
+    }
+  ]
+}

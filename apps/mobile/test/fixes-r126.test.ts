@@ -153,9 +153,9 @@ describe("F457 · both screens that show a documents answer drop the copied pass
   const src = (rel: string) => readFileSync(join(__dirname, "../src", rel), "utf8");
   it("Ask your documents: held back while streaming, dropped from the final answer that the chips read", () => {
     const ask = src("screens/documents/AskDocuments.tsx");
-    expect(ask).toContain("setAnswer(withoutEchoedLabels(reply, { streaming: true, citations: prompt.citations }));");
-    expect(ask).toContain("reply = withoutEchoedLabels(reply);");
-    expect(ask.indexOf("reply = withoutEchoedLabels(reply);")).toBeLessThan(ask.indexOf("library.citationsFor(reply,"));
+    expect(ask).toContain("setAnswer(withoutEchoedLabels(withoutEchoedInstructions(reply, instructions, { streaming: true }), { streaming: true, citations: prompt.citations }));");
+    expect(ask).toContain("reply = withoutEchoedLabels(withoutEchoedInstructions(reply, instructions));");
+    expect(ask.indexOf("reply = withoutEchoedLabels(withoutEchoedInstructions(reply, instructions));")).toBeLessThan(ask.indexOf("library.citationsFor(reply,"));
   });
   it("the chat with attached files: the row, its stored copy and Continue all read the same text", () => {
     const chat = src("screens/Chat.tsx");

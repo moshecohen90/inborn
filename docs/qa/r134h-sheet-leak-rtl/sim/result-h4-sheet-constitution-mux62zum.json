@@ -1,0 +1,570 @@
+{
+  "runId": "h4-sheet-constitution-mux62zum",
+  "startedAt": "2026-10-06T21:04:41.973Z",
+  "finishedAt": "2026-10-06T21:05:46.425Z",
+  "ok": true,
+  "passed": 27,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 154,
+      "detail": "/documents"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "doc-select-mux5hjp1-1-dcd7ukf2 appeared"
+    },
+    {
+      "i": 2,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5002,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 3,
+      "op": "press",
+      "ok": true,
+      "ms": 163,
+      "detail": "doc-select-mux5hjp1-1-dcd7ukf2 ← onPress"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "documents-ask-selected ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "ask-sheet appeared"
+    },
+    {
+      "i": 6,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "ask-input = 22 chars"
+    },
+    {
+      "i": 7,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "ask-send ← onPress"
+    },
+    {
+      "i": 8,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "ask-stop appeared"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 518,
+      "detail": "ask-stop gone"
+    },
+    {
+      "i": 10,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2017,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 11,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 11727,
+      "detail": "04a-constitution-who-wrote"
+    },
+    {
+      "i": 12,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file · PRO 2 documents · 57.4 KB on this device Free: 1 document of up to 20 pages · Pro: no limit Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO turbine-report-3pages.pdf PDF · 3 pages · 1.73 KB Indexed · 3 passages constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages Ask about 1 document Indexed on this device Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO INSTANT · ON-DEVICE AI Your documents don't mention this. Nothing in your documents matched this question. Answered without them. ↑"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file · PRO",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "documents-free-limit",
+          "text": "Free: 1 document of up to 20 pages · Pro: no limit"
+        },
+        {
+          "testID": "pro-tag",
+          "text": "PRO",
+          "role": "button",
+          "label": "See Pro",
+          "pressable": true
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-mux5iiiu-2-gh1ddskq",
+          "text": "turbine-report-3pages.pdf PDF · 3 pages · 1.73 KB Indexed · 3 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-mux5iiiu-2-gh1ddskq",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-mux5iiiu-2-gh1ddskq",
+          "text": "Indexed · 3 passages"
+        },
+        {
+          "testID": "doc-row-mux5hjp1-1-dcd7ukf2",
+          "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-mux5hjp1-1-dcd7ukf2",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": true,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-mux5hjp1-1-dcd7ukf2",
+          "text": "Indexed · 45 passages"
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Ask about 1 document",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "ask-sheet",
+          "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO INSTANT · ON-DEVICE AI Your documents don't mention this. Nothing in your documents matched this question. Answered without them. ↑"
+        },
+        {
+          "testID": "ask-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "ask-answer",
+          "text": "Your documents don't mention this."
+        },
+        {
+          "testID": "ask-none-matched",
+          "text": "Nothing in your documents matched this question. Answered without them."
+        },
+        {
+          "testID": "ask-input",
+          "text": "",
+          "value": "Who wrote this report?",
+          "pressable": true
+        },
+        {
+          "testID": "ask-send",
+          "text": "↑",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "04a-constitution-who-wrote"
+    },
+    {
+      "i": 13,
+      "op": "type",
+      "ok": true,
+      "ms": 156,
+      "detail": "ask-input = 40 chars"
+    },
+    {
+      "i": 14,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "ask-send ← onPress"
+    },
+    {
+      "i": 15,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "ask-stop appeared"
+    },
+    {
+      "i": 16,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 799,
+      "detail": "ask-stop gone"
+    },
+    {
+      "i": 17,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2001,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 18,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 11408,
+      "detail": "04b-constitution-moon"
+    },
+    {
+      "i": 19,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file · PRO 2 documents · 57.4 KB on this device Free: 1 document of up to 20 pages · Pro: no limit Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO turbine-report-3pages.pdf PDF · 3 pages · 1.73 KB Indexed · 3 passages constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages Ask about 1 document Indexed on this device Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO INSTANT · ON-DEVICE AI Your documents don't mention this. Nothing in your documents matched this question. Answered without them. ↑"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file · PRO",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "documents-free-limit",
+          "text": "Free: 1 document of up to 20 pages · Pro: no limit"
+        },
+        {
+          "testID": "pro-tag",
+          "text": "PRO",
+          "role": "button",
+          "label": "See Pro",
+          "pressable": true
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-mux5iiiu-2-gh1ddskq",
+          "text": "turbine-report-3pages.pdf PDF · 3 pages · 1.73 KB Indexed · 3 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-mux5iiiu-2-gh1ddskq",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-mux5iiiu-2-gh1ddskq",
+          "text": "Indexed · 3 passages"
+        },
+        {
+          "testID": "doc-row-mux5hjp1-1-dcd7ukf2",
+          "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-mux5hjp1-1-dcd7ukf2",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": true,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-mux5hjp1-1-dcd7ukf2",
+          "text": "Indexed · 45 passages"
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Ask about 1 document",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "ask-sheet",
+          "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO INSTANT · ON-DEVICE AI Your documents don't mention this. Nothing in your documents matched this question. Answered without them. ↑"
+        },
+        {
+          "testID": "ask-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "ask-answer",
+          "text": "Your documents don't mention this."
+        },
+        {
+          "testID": "ask-none-matched",
+          "text": "Nothing in your documents matched this question. Answered without them."
+        },
+        {
+          "testID": "ask-input",
+          "text": "",
+          "value": "What does it say about the moon landing?",
+          "pressable": true
+        },
+        {
+          "testID": "ask-send",
+          "text": "↑",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "04b-constitution-moon"
+    },
+    {
+      "i": 20,
+      "op": "type",
+      "ok": true,
+      "ms": 157,
+      "detail": "ask-input = 20 chars"
+    },
+    {
+      "i": 21,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "ask-send ← onPress"
+    },
+    {
+      "i": 22,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "ask-stop appeared"
+    },
+    {
+      "i": 23,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 15768,
+      "detail": "ask-stop gone"
+    },
+    {
+      "i": 24,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2015,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 25,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 11729,
+      "detail": "04c-constitution-veto"
+    },
+    {
+      "i": 26,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file · PRO 2 documents · 57.4 KB on this device Free: 1 document of up to 20 pages · Pro: no limit Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO turbine-report-3pages.pdf PDF · 3 pages · 1.73 KB Indexed · 3 passages constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages Ask about 1 document Indexed on this device Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO INSTANT · ON-DEVICE AI [1] The President is the only one with the constitutional power to veto a bill that has been passed by both the House of Representatives and the Senate, provided it was approved after two-thirds of each house agreed. Alternative: If Congress fails to return a bill within ten days without intervening adjournment, it becomes law, allowing for no further vetting. [1] constitution-9pages.pdf · p.3 ↑"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file · PRO",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "documents-free-limit",
+          "text": "Free: 1 document of up to 20 pages · Pro: no limit"
+        },
+        {
+          "testID": "pro-tag",
+          "text": "PRO",
+          "role": "button",
+          "label": "See Pro",
+          "pressable": true
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-mux5iiiu-2-gh1ddskq",
+          "text": "turbine-report-3pages.pdf PDF · 3 pages · 1.73 KB Indexed · 3 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-mux5iiiu-2-gh1ddskq",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-mux5iiiu-2-gh1ddskq",
+          "text": "Indexed · 3 passages"
+        },
+        {
+          "testID": "doc-row-mux5hjp1-1-dcd7ukf2",
+          "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-mux5hjp1-1-dcd7ukf2",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": true,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-mux5hjp1-1-dcd7ukf2",
+          "text": "Indexed · 45 passages"
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Ask about 1 document",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "ask-sheet",
+          "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO INSTANT · ON-DEVICE AI [1] The President is the only one with the constitutional power to veto a bill that has been passed by both the House of Representatives and the Senate, provided it was approved after two-thirds of each house agreed. Alternative: If Congress fails to return a bill within ten days without intervening adjournment, it becomes law, allowing for no further vetting. [1] constitution-9pages.pdf · p.3 ↑"
+        },
+        {
+          "testID": "ask-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "ask-answer",
+          "text": "[1] The President is the only one with the constitutional power to veto a bill that has been passed by both the House of Representatives and the Senate, provided it was approved after two-thirds of each house agreed. Alternative: If Congress fails to return a bill within ten days without intervening adjournment, it becomes law, allowing for no further vetting."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.3"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.3",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3",
+          "pressable": true
+        },
+        {
+          "testID": "ask-input",
+          "text": "",
+          "value": "Who can veto a bill?",
+          "pressable": true
+        },
+        {
+          "testID": "ask-send",
+          "text": "↑",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "04c-constitution-veto"
+    }
+  ],
+  "errors": []
+}
