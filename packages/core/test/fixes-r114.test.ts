@@ -117,7 +117,7 @@ describe("F428 · the head rule changes round 113's parenthetical rule, and keep
     const r = await guarded(list, RUN1.request);
     expect(r.loop).toBeUndefined();
     expect(r.shown).toBe(list);
-  });
+  }, 30_000); // 25 streamed items with real waits take ~8 s when parallel builds load the machine
 
   it("a True/False key, bare or with a reason per line, is not cut", () => {
     const bare = Array.from({ length: 30 }, (_, i) => `${i + 1}. ${["True", "False", "True", "True", "False"][i % 5]}`).join("\n");
