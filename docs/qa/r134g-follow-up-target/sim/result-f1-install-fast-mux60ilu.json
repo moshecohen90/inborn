@@ -1,0 +1,32 @@
+{
+  "runId": "f1-install-fast-mux60ilu",
+  "startedAt": "2026-10-06T21:02:46.472Z",
+  "finishedAt": "2026-10-06T21:04:57.403Z",
+  "ok": true,
+  "passed": 3,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 154,
+      "detail": "/vault"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 120002,
+      "detail": "120000 ms"
+    },
+    {
+      "i": 2,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 10775,
+      "detail": "f1-vault"
+    }
+  ],
+  "errors": []
+}

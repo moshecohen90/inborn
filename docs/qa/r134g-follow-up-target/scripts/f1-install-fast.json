@@ -1,0 +1,18 @@
+{
+  "runId": "f1-install-fast",
+  "_": "The shell writes `install fast` to Documents/dev-vault.txt; the vault reads it on mount and downloads Fast from scripts/serve-models.mjs on :8798.",
+  "steps": [
+    {
+      "op": "deeplink",
+      "url": "/vault"
+    },
+    {
+      "op": "sleep",
+      "ms": 120000
+    },
+    {
+      "op": "screenshot",
+      "name": "f1-vault"
+    }
+  ]
+}

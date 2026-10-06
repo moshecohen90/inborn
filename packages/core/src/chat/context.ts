@@ -2,7 +2,7 @@ import type { Tier } from "../catalog/types";
 import type { Message } from "../llm/types";
 import { familySafeLine } from "./contentSafety";
 import { PLAIN_SAFETY_BASELINE, SAFETY_BASELINE } from "./personas";
-import type { PlainChatKind } from "./smallTalk";
+import { isAcknowledgement, type PlainChatKind } from "./smallTalk";
 import type { ChatMessage, MemoryFact, Persona } from "./types";
 
 /** Tokens kept free for the reply; generation stops there anyway (§10.5 #39: max tokens with "continue"). */
@@ -81,7 +81,32 @@ export const SMALL_TALK_LINE =
 
 /* Round 134A: under the small-talk line Instant answered "shorter" with "You're welcome!" and "And now" with an offer it made up. */
 export const FOLLOW_UP_LINE =
-  "The user's last message is a short follow-up about your previous answer: apply it to that answer using the conversation (make it shorter or longer, continue it, translate it, rephrase it, add detail) and do not search or describe the files again. If the follow-up is unclear, or asks to go on when there is nothing left to continue, ask in one short sentence what they would like next instead of offering something new.";
+  "The user's last message is a short follow-up about your previous answer: apply this to your previous answer, using the conversation (make it shorter or longer, continue it, translate it, turn it into a list, rephrase it, add detail) and do not search or describe the files again. If the follow-up is unclear, or asks to go on when there is nothing left to continue, ask in one short sentence what they would like next instead of offering something new.";
+
+/**
+ * The conversation a follow-up is answered from: the thanks and greetings after the last real answer are left out, with
+ * their replies, so the answer the model reworks is the one it sees last (round 134G: "shorter" after "Thanks" →
+ * "You're welcome" got "You're welcome! Enjoy your day."). A turn that carries a picture is kept. Unchanged when nothing
+ * real was answered yet.
+ */
+export function followUpWindow<M extends Pick<Message, "role" | "content" | "images">>(messages: readonly M[]): M[] {
+  const last = messages.map((m) => m.role).lastIndexOf("user");
+  if (last < 0) return [...messages];
+  const drop = new Set<number>();
+  const before = (i: number): number => {
+    while (i >= 0 && messages[i]!.role === "system") i--;
+    return i;
+  };
+  for (let a = before(last - 1); a > 0 && messages[a]!.role === "assistant"; ) {
+    const u = before(a - 1);
+    const turn = messages[u];
+    if (!turn || turn.role !== "user" || turn.images?.length || !isAcknowledgement(turn.content)) break;
+    drop.add(a).add(u);
+    a = before(u - 1);
+  }
+  const kept = messages.filter((_, i) => !drop.has(i));
+  return kept.slice(0, kept.map((m) => m.role).lastIndexOf("user")).some((m) => m.role === "assistant") ? kept : [...messages];
+}
 
 export const PLAIN_CHAT_LINES: Readonly<Record<PlainChatKind, string>> = { acknowledgement: SMALL_TALK_LINE, "follow-up": FOLLOW_UP_LINE };
 
