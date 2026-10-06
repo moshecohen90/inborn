@@ -1,0 +1,107 @@
+19:24:28 pushing 91 steps as j4-sheet
+19:24:36 shot J4-01-sheet
+19:24:40 shot J4-02-reading
+19:27:35 shot J4-03-summary
+19:27:42 shot J4-04-thank-you
+19:27:49 shot J4-05-and-now
+19:28:11 shot J4-06-veto
+19:28:30 shot J4-07-veto-again
+19:28:39 shot J4-08-details
+19:28:43 ok     0 deeplink   /documents
+19:28:43 ok     1 waitFor    doc-select-muwvhmt8-1-b4v9vv5s appeared
+19:28:43 ok     2 sleep      2000 ms
+19:28:43 ok     3 press      doc-select-muwvhmt8-1-b4v9vv5s ← onPress
+19:28:43 ok     4 sleep      1000 ms
+19:28:43 ok     5 value      Ask about 1 document
+19:28:43 ok     6 press      documents-ask-selected ← onPress
+19:28:43 ok     7 waitFor    ask-sheet appeared
+19:28:43 ok     8 sleep      1500 ms
+19:28:43 ok     9 screenshot J4-01-sheet
+19:28:43 ok    10 type       ask-input = 12 chars
+19:28:43 ok    11 press      ask-send ← onPress
+19:28:43 ok    12 waitFor    ask-reading-pages appeared
+19:28:43 ok    13 value      Reading pages 1–2 of 9…
+19:28:43 ok    14 screenshot J4-02-reading
+19:28:43 ok    15 waitFor    ask-stop gone
+19:28:43 ok    16 sleep      2000 ms
+19:28:43 ok    17 value      Based on the provided text, here is a summary of US Constitution (1870) , covering pages 1–9: • [1] Bicameral 
+19:28:43 ok    18 assertText "Summary of all 9 pages." present
+19:28:43 ok    19 waitFor    ask-none-matched gone
+19:28:43 ok    20 waitFor    ask-not-found gone
+19:28:43 ok    21 sleep      0 ms
+19:28:43 ok    22 screenshot J4-03-summary
+19:28:43 ok    23 dump       J4-03-summary
+19:28:43 ok    24 type       ask-input = 9 chars
+19:28:43 ok    25 press      ask-send ← onPress
+19:28:43 ok    26 sleep      2500 ms
+19:28:43 ok    27 waitFor    ask-stop gone
+19:28:43 ok    28 sleep      2000 ms
+19:28:43 ok    29 value      You're welcome. Ask another question about these documents.
+19:28:43 FAIL  30 value      value ask-answer: no node with that testID is mounted
+19:28:43 FAIL  31 value      value citations: no node with that testID is mounted
+19:28:43 ok    32 assertText "You're welcome. Ask another question about these documents." present
+19:28:43 ok    33 waitFor    ask-none-matched gone
+19:28:43 ok    34 waitFor    ask-not-found gone
+19:28:43 ok    35 sleep      0 ms
+19:28:43 ok    36 screenshot J4-04-thank-you
+19:28:43 ok    37 dump       J4-04-thank-you
+19:28:43 ok    38 type       ask-input = 7 chars
+19:28:43 ok    39 press      ask-send ← onPress
+19:28:43 ok    40 sleep      2500 ms
+19:28:43 ok    41 waitFor    ask-stop gone
+19:28:43 ok    42 sleep      2000 ms
+19:28:43 ok    43 value      This sheet answers one question at a time: ask the full question (for example, "Summarize it in three lines").
+19:28:43 FAIL  44 value      value ask-answer: no node with that testID is mounted
+19:28:43 FAIL  45 value      value citations: no node with that testID is mounted
+19:28:43 ok    46 assertText "This sheet answers one question at a time" present
+19:28:43 ok    47 waitFor    ask-none-matched gone
+19:28:43 ok    48 waitFor    ask-not-found gone
+19:28:43 ok    49 sleep      0 ms
+19:28:43 ok    50 screenshot J4-05-and-now
+19:28:43 ok    51 dump       J4-05-and-now
+19:28:43 ok    52 type       ask-input = 20 chars
+19:28:43 ok    53 press      ask-send ← onPress
+19:28:43 ok    54 sleep      2500 ms
+19:28:43 ok    55 waitFor    ask-stop gone
+19:28:43 ok    56 sleep      2000 ms
+19:28:43 FAIL  57 value      value ask-plain: no node with that testID is mounted
+19:28:43 ok    58 value      The President can veto a bill [1], but if he does not approve it, the House may reconsider the Bill to see if 
+19:28:43 ok    59 value      [1] constitution-9pages.pdf · p.3
+19:28:43 ok    60 assertText "Summary of all" absent
+19:28:43 ok    61 waitFor    ask-none-matched gone
+19:28:43 ok    62 waitFor    ask-not-found gone
+19:28:43 ok    63 sleep      0 ms
+19:28:43 ok    64 screenshot J4-06-veto
+19:28:43 ok    65 dump       J4-06-veto
+19:28:43 ok    66 type       ask-input = 20 chars
+19:28:43 ok    67 press      ask-send ← onPress
+19:28:43 ok    68 sleep      2500 ms
+19:28:43 ok    69 waitFor    ask-stop gone
+19:28:43 ok    70 sleep      2000 ms
+19:28:43 FAIL  71 value      value ask-plain: no node with that testID is mounted
+19:28:43 ok    72 value      [1] A President can veto a bill if he does not approve it and returns the legislation with his objections to t
+19:28:43 ok    73 value      [1] constitution-9pages.pdf · p.3
+19:28:43 ok    74 sleep      0 ms
+19:28:43 ok    75 screenshot J4-07-veto-again
+19:28:43 ok    76 dump       J4-07-veto-again
+19:28:43 ok    77 deeplink   /chats
+19:28:43 ok    78 sleep      1500 ms
+19:28:43 ok    79 deeplink   /documents
+19:28:43 ok    80 waitFor    doc-row-muwvhmt8-1-b4v9vv5s appeared
+19:28:43 ok    81 sleep      1500 ms
+19:28:43 ok    82 press      doc-row-muwvhmt8-1-b4v9vv5s ← onPress
+19:28:43 ok    83 waitFor    doc-details appeared
+19:28:43 ok    84 sleep      1500 ms
+19:28:43 ok    85 value      DOCUMENT constitution-9pages.pdf Type PDF Pages 9 Size 55.6 KB Passages 45 Language English / Latin Index mode
+19:28:43 ok    86 assertText "embed-e5" present
+19:28:43 ok    87 assertText "@2" absent
+19:28:43 ok    88 sleep      0 ms
+19:28:43 ok    89 screenshot J4-08-details
+19:28:43 ok    90 dump       J4-08-details
+19:28:43 85 passed, 6 failed, 8 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-39/docs/qa/ios-device-pass-39/screens
+19:28:43   ! step 30 (value): value ask-answer: no node with that testID is mounted
+19:28:43   ! step 31 (value): value citations: no node with that testID is mounted
+19:28:43   ! step 44 (value): value ask-answer: no node with that testID is mounted
+19:28:43   ! step 45 (value): value citations: no node with that testID is mounted
+19:28:43   ! step 57 (value): value ask-plain: no node with that testID is mounted
+19:28:43   ! step 71 (value): value ask-plain: no node with that testID is mounted

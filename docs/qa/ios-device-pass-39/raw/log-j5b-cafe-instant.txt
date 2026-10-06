@@ -1,0 +1,73 @@
+19:37:56 pushing 66 steps as j5b-cafe-instant
+19:38:20 shot J5-04-sent-bubble
+19:38:25 shot J5-04-answer
+19:38:29 shot J5-04-ledger
+19:38:45 shot J5-05-thanks
+19:38:49 ok     0 deeplink   /chats
+19:38:49 ok     1 waitFor    new-chat appeared
+19:38:49 ok     2 press      new-chat ← onPress
+19:38:49 ok     3 waitFor    start-chat appeared
+19:38:49 ok     4 press      start-chat ← onPress
+19:38:49 ok     5 waitFor    composer-input appeared
+19:38:49 ok     6 waitFor    Loading gone
+19:38:49 ok     7 sleep      1500 ms
+19:38:49 ok     8 value      INSTANT
+19:38:49 ok     9 press      model-chip ← onPress
+19:38:49 ok    10 waitFor    model-sheet appeared
+19:38:49 ok    11 sleep      1500 ms
+19:38:49 FAIL  12 press      press model-sheet-use-instant: not mounted
+19:38:49 ok    13 sleep      3000 ms
+19:38:49 ok    14 press      model-sheet-close ← onPress
+19:38:49 ok    15 waitFor    Loading gone
+19:38:49 ok    16 sleep      1500 ms
+19:38:49 ok    17 value      INSTANT
+19:38:49 ok    18 assertText "INSTANT" present
+19:38:49 ok    19 devPrompt  attach: בית קפה הגינה תפריט.jpg
+19:38:49 ok    20 waitFor    pending-images appeared
+19:38:49 ok    21 sleep      3000 ms
+19:38:49 ok    22 value      Free: one photo per message
+19:38:49 ok    23 type       composer-input = 16 chars
+19:38:49 ok    24 send       send ← onPress
+19:38:49 ok    25 waitFor    assistant-text appeared
+19:38:49 ok    26 value      
+19:38:49 ok    27 screenshot J5-04-sent-bubble
+19:38:49 ok    28 waitFor    stop gone
+19:38:49 ok    29 sleep      3000 ms
+19:38:49 ok    30 value      A chalkboard menu on a brick wall at The Cards Cafe in London.
+19:38:49 ok    31 assertText "cannot see" absent
+19:38:49 ok    32 assertText "can't see" absent
+19:38:49 ok    33 assertText "cannot physically see" absent
+19:38:49 ok    34 assertText "see images" absent
+19:38:49 ok    35 assertText "text-based" absent
+19:38:49 ok    36 assertText "unable to see" absent
+19:38:49 ok    37 assertText "not able to see" absent
+19:38:49 ok    38 assertText "don't have eyes" absent
+19:38:49 ok    39 assertText "The request specifies" absent
+19:38:49 ok    40 assertText "I will focus" absent
+19:38:49 ok    41 assertText "as an AI" absent
+19:38:49 ok    42 assertText "NOT_FOUND" absent
+19:38:49 ok    43 assertText "<<<" absent
+19:38:49 ok    44 assertText "The user is asking" absent
+19:38:49 ok    45 assertText "Your documents don't mention this" absent
+19:38:49 ok    46 assertText "is a scan. Run OCR" absent
+19:38:49 ok    47 sleep      0 ms
+19:38:49 ok    48 screenshot J5-04-answer
+19:38:49 ok    49 dump       J5-04-answer
+19:38:49 ok    50 press      ledger-toggle ← onPress
+19:38:49 ok    51 sleep      1200 ms
+19:38:49 ok    52 value      MODEL INSTANT QUANT Q4_K CONTEXT 207 / 4096 MS / TOKEN 216 ms More detail · PRO
+19:38:49 ok    53 screenshot J5-04-ledger
+19:38:49 ok    54 press      ledger-toggle ← onPress
+19:38:49 ok    55 sleep      800 ms
+19:38:49 ok    56 type       composer-input = 6 chars
+19:38:49 ok    57 send       send ← onPress
+19:38:49 ok    58 sleep      2500 ms
+19:38:49 ok    59 waitFor    reading-pages gone
+19:38:49 ok    60 waitFor    reading-docs gone
+19:38:49 ok    61 waitFor    stop gone
+19:38:49 ok    62 sleep      2500 ms
+19:38:49 ok    63 value      A chalkboard menu on a brick wall at The Cards Cafe in London.
+19:38:49 ok    64 screenshot J5-05-thanks
+19:38:49 ok    65 dump       J5-05-thanks
+19:38:49 65 passed, 1 failed, 4 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-39/docs/qa/ios-device-pass-39/screens
+19:38:49   ! step 12 (press): press model-sheet-use-instant: not mounted

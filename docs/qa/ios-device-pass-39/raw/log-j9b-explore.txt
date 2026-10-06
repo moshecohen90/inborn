@@ -1,0 +1,79 @@
+23:30:43 pushing 70 steps as j9b-explore
+23:30:57 shot J9-20-sheet-who
+23:31:04 shot J9-21-old-chat
+23:31:47 shot J9-22-impeachment
+23:32:03 shot J9-23-hebrew
+23:32:14 shot J9-24-hebrew-thanks
+23:32:19 ok     0 deeplink   /documents
+23:32:19 ok     1 waitFor    doc-select-mux4qwgy-9-mqma2wsm appeared
+23:32:19 ok     2 sleep      2000 ms
+23:32:19 ok     3 press      doc-select-mux4qwgy-9-mqma2wsm ← onPress
+23:32:19 ok     4 sleep      1000 ms
+23:32:19 ok     5 value      Ask about 1 document
+23:32:19 ok     6 press      documents-ask-selected ← onPress
+23:32:19 ok     7 waitFor    ask-sheet appeared
+23:32:19 ok     8 sleep      1500 ms
+23:32:19 ok     9 type       ask-input = 22 chars
+23:32:19 ok    10 press      ask-send ← onPress
+23:32:19 ok    11 sleep      2500 ms
+23:32:19 ok    12 waitFor    ask-stop gone
+23:32:19 ok    13 sleep      2000 ms
+23:32:19 FAIL  14 value      value ask-plain: no node with that testID is mounted
+23:32:19 ok    15 value      Your documents don't mention this. If you do not know the answer for sure, stop after that sentence.
+23:32:19 FAIL  16 value      value citations: no node with that testID is mounted
+23:32:19 ok    17 sleep      0 ms
+23:32:19 ok    18 screenshot J9-20-sheet-who
+23:32:19 ok    19 dump       J9-20-sheet-who
+23:32:19 ok    20 deeplink   /chats
+23:32:19 ok    21 waitFor    chat-row-fd61229d-a510-42d9-8805-3e7e27ca7b01 appeared
+23:32:19 ok    22 press      chat-row-fd61229d-a510-42d9-8805-3e7e27ca7b01 ← onPress
+23:32:19 ok    23 waitFor    composer-input appeared
+23:32:19 ok    24 waitFor    Loading gone
+23:32:19 ok    25 sleep      3000 ms
+23:32:19 ok    26 value      FAST
+23:32:19 ok    27 value      constitution-9pages.pdf
+23:32:19 ok    28 sleep      1000 ms
+23:32:19 ok    29 screenshot J9-21-old-chat
+23:32:19 ok    30 dump       J9-21-old-chat
+23:32:19 ok    31 type       composer-input = 35 chars
+23:32:19 ok    32 send       send ← onPress
+23:32:19 ok    33 sleep      2500 ms
+23:32:19 ok    34 waitFor    reading-pages gone
+23:32:19 ok    35 waitFor    reading-docs gone
+23:32:19 ok    36 waitFor    stop gone
+23:32:19 ok    37 sleep      2500 ms
+23:32:19 ok    38 value      The file is a summary of the Constitution of the United States, outlining its structure and key powers. Main P
+23:32:19 ok    39 screenshot J9-22-impeachment
+23:32:19 ok    40 dump       J9-22-impeachment
+23:32:19 ok    41 deeplink   /chats
+23:32:19 ok    42 waitFor    new-chat appeared
+23:32:19 ok    43 press      new-chat ← onPress
+23:32:19 ok    44 waitFor    start-chat appeared
+23:32:19 ok    45 press      start-chat ← onPress
+23:32:19 ok    46 waitFor    composer-input appeared
+23:32:19 ok    47 waitFor    Loading gone
+23:32:19 ok    48 sleep      1500 ms
+23:32:19 ok    49 value      FAST
+23:32:19 ok    50 type       composer-input = 40 chars
+23:32:19 ok    51 send       send ← onPress
+23:32:19 ok    52 sleep      2500 ms
+23:32:19 ok    53 waitFor    reading-pages gone
+23:32:19 ok    54 waitFor    reading-docs gone
+23:32:19 ok    55 waitFor    stop gone
+23:32:19 ok    56 sleep      2500 ms
+23:32:19 ok    57 value      השעה בטוקיו כשהשעה בישראל שתיים וחצי בצהריים היא בערך 12:45.
+23:32:19 ok    58 screenshot J9-23-hebrew
+23:32:19 ok    59 dump       J9-23-hebrew
+23:32:19 ok    60 type       composer-input = 4 chars
+23:32:19 ok    61 send       send ← onPress
+23:32:19 ok    62 sleep      2500 ms
+23:32:19 ok    63 waitFor    reading-pages gone
+23:32:19 ok    64 waitFor    reading-docs gone
+23:32:19 ok    65 waitFor    stop gone
+23:32:19 ok    66 sleep      2500 ms
+23:32:19 ok    67 value      השעה בטוקיו כשהשעה בישראל שתיים וחצי בצהריים היא בערך 12:45.
+23:32:19 ok    68 screenshot J9-24-hebrew-thanks
+23:32:19 ok    69 dump       J9-24-hebrew-thanks
+23:32:19 68 passed, 2 failed, 5 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-39/docs/qa/ios-device-pass-39/screens
+23:32:19   ! step 14 (value): value ask-plain: no node with that testID is mounted
+23:32:19   ! step 16 (value): value citations: no node with that testID is mounted

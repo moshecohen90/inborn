@@ -1,0 +1,90 @@
+19:28:56 pushing 82 steps as j3c-shorter-direct
+19:29:18 shot J3c-01-reading
+19:32:58 shot J3c-01-summary
+19:33:02 shot J3c-01-ledger
+19:34:00 shot J3c-02-shorter
+19:34:32 shot J3c-03-three-bullets
+19:34:36 ok     0 deeplink   /chats
+19:34:36 ok     1 waitFor    new-chat appeared
+19:34:36 ok     2 press      new-chat ← onPress
+19:34:36 ok     3 waitFor    start-chat appeared
+19:34:36 ok     4 press      start-chat ← onPress
+19:34:36 ok     5 waitFor    composer-input appeared
+19:34:36 ok     6 waitFor    Loading gone
+19:34:36 ok     7 sleep      1500 ms
+19:34:36 ok     8 value      FAST
+19:34:36 ok     9 press      model-chip ← onPress
+19:34:36 ok    10 waitFor    model-sheet appeared
+19:34:36 ok    11 sleep      1500 ms
+19:34:36 FAIL  12 press      press model-sheet-use-fast: not mounted
+19:34:36 ok    13 sleep      3000 ms
+19:34:36 ok    14 press      model-sheet-close ← onPress
+19:34:36 ok    15 waitFor    Loading gone
+19:34:36 ok    16 sleep      1500 ms
+19:34:36 ok    17 value      FAST
+19:34:36 ok    18 assertText "FAST" present
+19:34:36 ok    19 devPrompt  attach: constitution-9pages.pdf
+19:34:36 ok    20 waitFor    attached-docs appeared
+19:34:36 ok    21 sleep      10000 ms
+19:34:36 ok    22 value      constitution-9pages.pdf
+19:34:36 ok    23 type       composer-input = 12 chars
+19:34:36 ok    24 send       send ← onPress
+19:34:36 ok    25 waitFor    reading-pages appeared
+19:34:36 ok    26 value      Reading pages 1–2 of 9…
+19:34:36 ok    27 waitFor    docs-hold gone
+19:34:36 ok    28 screenshot J3c-01-reading
+19:34:36 ok    29 waitFor    reading-pages gone
+19:34:36 ok    30 waitFor    assistant-text appeared
+19:34:36 ok    31 waitFor    stop gone
+19:34:36 ok    32 sleep      2500 ms
+19:34:36 ok    33 value      The provided document is a summary of the United States Constitution . Its main points are: • [1] The Constitu
+19:34:36 ok    34 value      [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4
+19:34:36 ok    35 value      constitution-9pages.pdf
+19:34:36 ok    36 assertText "Summary of all 9 pages." present
+19:34:36 ok    37 assertText "p.1–" present
+19:34:36 ok    38 screenshot J3c-01-summary
+19:34:36 ok    39 dump       J3c-01-summary
+19:34:36 ok    40 assertText "The request specifies" absent
+19:34:36 ok    41 assertText "I will focus" absent
+19:34:36 ok    42 assertText "as an AI" absent
+19:34:36 ok    43 assertText "NOT_FOUND" absent
+19:34:36 ok    44 assertText "<<<" absent
+19:34:36 ok    45 assertText "The user is asking" absent
+19:34:36 ok    46 press      ledger-toggle ← onPress
+19:34:36 ok    47 sleep      1200 ms
+19:34:36 ok    48 value      MODEL FAST QUANT Q4_K CONTEXT 1214 / 4096 MS / TOKEN 153 ms More detail · PRO
+19:34:36 ok    49 screenshot J3c-01-ledger
+19:34:36 ok    50 press      ledger-toggle ← onPress
+19:34:36 ok    51 sleep      800 ms
+19:34:36 ok    52 type       composer-input = 7 chars
+19:34:36 ok    53 send       send ← onPress
+19:34:36 ok    54 sleep      2500 ms
+19:34:36 ok    55 waitFor    reading-pages gone
+19:34:36 ok    56 waitFor    reading-docs gone
+19:34:36 ok    57 waitFor    stop gone
+19:34:36 ok    58 sleep      2500 ms
+19:34:36 ok    59 value      The provided document is a summary of the United States Constitution . Its main points are: • [1] The Constitu
+19:34:36 ok    60 waitFor    docs-hold gone
+19:34:36 ok    61 waitFor    none-matched gone
+19:34:36 ok    62 assertText "468 MB" absent
+19:34:36 ok    63 assertText "Nothing in your documents matched this question" absent
+19:34:36 ok    64 assertText "welcome" absent
+19:34:36 ok    65 assertText "Welcome" absent
+19:34:36 ok    66 screenshot J3c-02-shorter
+19:34:36 ok    67 dump       J3c-02-shorter
+19:34:36 ok    68 type       composer-input = 23 chars
+19:34:36 ok    69 send       send ← onPress
+19:34:36 ok    70 sleep      2500 ms
+19:34:36 ok    71 waitFor    reading-pages gone
+19:34:36 ok    72 waitFor    reading-docs gone
+19:34:36 ok    73 waitFor    stop gone
+19:34:36 ok    74 sleep      2500 ms
+19:34:36 ok    75 value      The provided document is a summary of the United States Constitution . Its main points are: • [1] The Constitu
+19:34:36 ok    76 waitFor    docs-hold gone
+19:34:36 ok    77 waitFor    none-matched gone
+19:34:36 ok    78 assertText "468 MB" absent
+19:34:36 ok    79 assertText "Nothing in your documents matched this question" absent
+19:34:36 ok    80 screenshot J3c-03-three-bullets
+19:34:36 ok    81 dump       J3c-03-three-bullets
+19:34:36 81 passed, 1 failed, 5 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-39/docs/qa/ios-device-pass-39/screens
+19:34:36   ! step 12 (press): press model-sheet-use-fast: not mounted

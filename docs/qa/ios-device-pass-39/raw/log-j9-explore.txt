@@ -1,0 +1,164 @@
+23:26:27 pushing 140 steps as j9-explore
+23:26:33 shot J9-01-new-chat
+23:26:46 shot J9-02-hey
+23:27:00 shot J9-03-coffee
+23:27:10 shot J9-04-attach-sheet
+23:27:28 shot J9-05-file-attached
+23:27:45 shot J9-06-serial
+23:27:58 shot J9-07-who
+23:28:12 shot J9-08-thanks
+23:28:29 shot J9-09-translate
+23:28:37 shot J9-10-chip-draft
+23:28:48 shot J9-11-draft-answer
+23:28:54 shot J9-12-model-sheet
+23:29:00 shot J9-13-vault
+23:29:06 shot J9-14-chats
+23:29:31 shot J9-15-documents
+23:29:37 shot J9-16-after-documents
+23:29:42 shot J9-17-settings
+23:29:48 shot J9-18-paywall
+23:29:54 shot J9-19-after-paywall
+23:29:58 ok     0 deeplink   /chats
+23:29:58 ok     1 waitFor    new-chat appeared
+23:29:58 ok     2 press      new-chat ← onPress
+23:29:58 ok     3 waitFor    start-chat appeared
+23:29:58 ok     4 press      start-chat ← onPress
+23:29:58 ok     5 waitFor    composer-input appeared
+23:29:58 ok     6 waitFor    Loading gone
+23:29:58 ok     7 sleep      1500 ms
+23:29:58 ok     8 value      FAST
+23:29:58 ok     9 sleep      2000 ms
+23:29:58 ok    10 screenshot J9-01-new-chat
+23:29:58 ok    11 dump       J9-01-new-chat
+23:29:58 ok    12 type       composer-input = 17 chars
+23:29:58 ok    13 send       send ← onPress
+23:29:58 ok    14 sleep      2500 ms
+23:29:58 ok    15 waitFor    reading-pages gone
+23:29:58 ok    16 waitFor    reading-docs gone
+23:29:58 ok    17 waitFor    stop gone
+23:29:58 ok    18 sleep      2500 ms
+23:29:58 ok    19 value      I'm doing well, thanks for asking! How can I assist you today?
+23:29:58 ok    20 screenshot J9-02-hey
+23:29:58 ok    21 dump       J9-02-hey
+23:29:58 ok    22 type       composer-input = 22 chars
+23:29:58 ok    23 send       send ← onPress
+23:29:58 ok    24 sleep      2500 ms
+23:29:58 ok    25 waitFor    reading-pages gone
+23:29:58 ok    26 waitFor    reading-docs gone
+23:29:58 ok    27 waitFor    stop gone
+23:29:58 ok    28 sleep      2500 ms
+23:29:58 ok    29 value      I'm doing well, thanks for asking! How can I assist you today?
+23:29:58 ok    30 screenshot J9-03-coffee
+23:29:58 ok    31 dump       J9-03-coffee
+23:29:58 ok    32 press      attach ← onPress
+23:29:58 ok    33 sleep      1500 ms
+23:29:58 ok    34 screenshot J9-04-attach-sheet
+23:29:58 ok    35 dump       J9-04-attach-sheet
+23:29:58 ok    36 press      attach-sheet-close ← onPress
+23:29:58 ok    37 devPrompt  attach: turbine-report-3pages.pdf
+23:29:58 ok    38 waitFor    attached-docs appeared
+23:29:58 ok    39 sleep      10000 ms
+23:29:58 ok    40 value      turbine-report-3pages.pdf
+23:29:58 ok    41 sleep      500 ms
+23:29:58 ok    42 screenshot J9-05-file-attached
+23:29:58 ok    43 dump       J9-05-file-attached
+23:29:58 ok    44 type       composer-input = 41 chars
+23:29:58 ok    45 send       send ← onPress
+23:29:58 ok    46 sleep      2500 ms
+23:29:58 ok    47 waitFor    reading-pages gone
+23:29:58 ok    48 waitFor    reading-docs gone
+23:29:58 ok    49 waitFor    stop gone
+23:29:58 ok    50 sleep      2500 ms
+23:29:58 ok    51 value      I'm doing well, thanks for asking! How can I assist you today?
+23:29:58 ok    52 screenshot J9-06-serial
+23:29:58 ok    53 dump       J9-06-serial
+23:29:58 ok    54 type       composer-input = 22 chars
+23:29:58 ok    55 send       send ← onPress
+23:29:58 ok    56 sleep      2500 ms
+23:29:58 ok    57 waitFor    reading-pages gone
+23:29:58 ok    58 waitFor    reading-docs gone
+23:29:58 ok    59 waitFor    stop gone
+23:29:58 ok    60 sleep      2500 ms
+23:29:58 ok    61 value      I'm doing well, thanks for asking! How can I assist you today?
+23:29:58 ok    62 screenshot J9-07-who
+23:29:58 ok    63 dump       J9-07-who
+23:29:58 ok    64 type       composer-input = 7 chars
+23:29:58 ok    65 send       send ← onPress
+23:29:58 ok    66 sleep      2500 ms
+23:29:58 ok    67 waitFor    reading-pages gone
+23:29:58 ok    68 waitFor    reading-docs gone
+23:29:58 ok    69 waitFor    stop gone
+23:29:58 ok    70 sleep      2500 ms
+23:29:58 ok    71 value      I'm doing well, thanks for asking! How can I assist you today?
+23:29:58 ok    72 screenshot J9-08-thanks
+23:29:58 ok    73 dump       J9-08-thanks
+23:29:58 ok    74 type       composer-input = 22 chars
+23:29:58 ok    75 send       send ← onPress
+23:29:58 ok    76 sleep      2500 ms
+23:29:58 ok    77 waitFor    reading-pages gone
+23:29:58 ok    78 waitFor    reading-docs gone
+23:29:58 ok    79 waitFor    stop gone
+23:29:58 ok    80 sleep      2500 ms
+23:29:58 ok    81 value      I'm doing well, thanks for asking! How can I assist you today?
+23:29:58 ok    82 screenshot J9-09-translate
+23:29:58 ok    83 dump       J9-09-translate
+23:29:58 ok    84 deeplink   /chats
+23:29:58 ok    85 waitFor    new-chat appeared
+23:29:58 ok    86 press      new-chat ← onPress
+23:29:58 ok    87 waitFor    start-chat appeared
+23:29:58 ok    88 press      start-chat ← onPress
+23:29:58 ok    89 waitFor    composer-input appeared
+23:29:58 ok    90 waitFor    Loading gone
+23:29:58 ok    91 sleep      1500 ms
+23:29:58 ok    92 value      FAST
+23:29:58 ok    93 press      suggestion-draft ← onPress
+23:29:58 ok    94 sleep      1500 ms
+23:29:58 ok    95 screenshot J9-10-chip-draft
+23:29:58 ok    96 dump       J9-10-chip-draft
+23:29:58 ok    97 send       send ← onPress
+23:29:58 ok    98 sleep      2500 ms
+23:29:58 ok    99 waitFor    stop gone
+23:29:58 ok   100 sleep      2000 ms
+23:29:58 ok   101 screenshot J9-11-draft-answer
+23:29:58 ok   102 dump       J9-11-draft-answer
+23:29:58 ok   103 press      model-chip ← onPress
+23:29:58 ok   104 sleep      1500 ms
+23:29:58 ok   105 screenshot J9-12-model-sheet
+23:29:58 ok   106 dump       J9-12-model-sheet
+23:29:58 ok   107 press      model-sheet-manage ← onPress
+23:29:58 ok   108 waitFor    best-for appeared
+23:29:58 ok   109 sleep      2000 ms
+23:29:58 ok   110 screenshot J9-13-vault
+23:29:58 ok   111 dump       J9-13-vault
+23:29:58 ok   112 deeplink   /chats
+23:29:58 ok   113 waitFor    new-chat appeared
+23:29:58 ok   114 sleep      2000 ms
+23:29:58 ok   115 screenshot J9-14-chats
+23:29:58 ok   116 dump       J9-14-chats
+23:29:58 FAIL 117 press      press drawer-documents: not mounted
+23:29:58 FAIL 118 waitFor    waitFor documents-screen never appeared in 20000 ms
+23:29:58 ok   119 sleep      3000 ms
+23:29:58 ok   120 screenshot J9-15-documents
+23:29:58 ok   121 dump       J9-15-documents
+23:29:58 FAIL 122 press      press documents-close: not mounted
+23:29:58 ok   123 sleep      2000 ms
+23:29:58 ok   124 screenshot J9-16-after-documents
+23:29:58 ok   125 dump       J9-16-after-documents
+23:29:58 ok   126 deeplink   /settings
+23:29:58 ok   127 waitFor    row-pro appeared
+23:29:58 ok   128 sleep      2000 ms
+23:29:58 ok   129 screenshot J9-17-settings
+23:29:58 ok   130 dump       J9-17-settings
+23:29:58 ok   131 press      row-pro ← onPress
+23:29:58 ok   132 waitFor    close-paywall appeared
+23:29:58 ok   133 sleep      2000 ms
+23:29:58 ok   134 screenshot J9-18-paywall
+23:29:58 ok   135 dump       J9-18-paywall
+23:29:58 ok   136 press      close-paywall ← onPress
+23:29:58 ok   137 sleep      2000 ms
+23:29:58 ok   138 screenshot J9-19-after-paywall
+23:29:58 ok   139 dump       J9-19-after-paywall
+23:29:58 137 passed, 3 failed, 19 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-39/docs/qa/ios-device-pass-39/screens
+23:29:58   ! step 117 (press): press drawer-documents: not mounted
+23:29:58   ! step 118 (waitFor): waitFor documents-screen never appeared in 20000 ms
+23:29:58   ! step 122 (press): press documents-close: not mounted

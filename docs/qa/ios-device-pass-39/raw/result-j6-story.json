@@ -1,0 +1,2703 @@
+{
+  "runId": "j6-story",
+  "startedAt": "2026-10-06T20:15:45.277Z",
+  "finishedAt": "2026-10-06T20:24:23.691Z",
+  "ok": false,
+  "passed": 125,
+  "failed": 5,
+  "steps": [
+    {
+      "i": 0,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 1,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 159,
+      "detail": "attach: בית קפה הגינה תפריט.jpg"
+    },
+    {
+      "i": 2,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1067,
+      "detail": "pending-images appeared"
+    },
+    {
+      "i": 3,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3017,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 4,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Free: one photo per message",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Free: one photo per message"
+    },
+    {
+      "i": 5,
+      "op": "type",
+      "ok": true,
+      "ms": 166,
+      "detail": "composer-input = 16 chars"
+    },
+    {
+      "i": 6,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 7,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 8,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 9,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 4457,
+      "detail": "J6-00-photo-sent-bubble"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 67764,
+      "detail": "stop gone"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3015,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 12,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "The image displays an outdoor chalkboard menu board mounted on a red brick wall, likely belonging to \"The Garden Cafe Hove\" as indicated by the website address at the top center. The board is divided into five sections: opening hours (Monday-Friday 8-4), breakfast options like smashed avocado and bacon sandwich; sandwiches including tuna salad and paella; hot drinks such as coffee and tea; a list of snacks like chips, toast, and fruit; and a section inviting customers to become members for £3 annually. A blue pipe runs along the bottom edge of the brickwork.",
+        "props": {
+          "source": "The image displays an outdoor chalkboard menu board mounted on a red brick wall, likely belonging to \"The Garden Cafe Hove\" as indicated by the website address at the top center. The board is divided into five sections: opening hours (Monday-Friday 8-4), breakfast options like smashed avocado and bacon sandwich; sandwiches including tuna salad and paella; hot drinks such as coffee and tea; a list of snacks like chips, toast, and fruit; and a section inviting customers to become members for £3 annually. A blue pipe runs along the bottom edge of the brickwork.",
+          "disabled": false
+        }
+      },
+      "detail": "The image displays an outdoor chalkboard menu board mounted on a red brick wall, likely belonging to \"The Garden Cafe Hove\" as indicated by the website address at the top center. The board is divided "
+    },
+    {
+      "i": 13,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"cannot see\" absent"
+    },
+    {
+      "i": 14,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"can't see\" absent"
+    },
+    {
+      "i": 15,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"cannot physically see\" absent"
+    },
+    {
+      "i": 16,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"see images\" absent"
+    },
+    {
+      "i": 17,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"text-based\" absent"
+    },
+    {
+      "i": 18,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"unable to see\" absent"
+    },
+    {
+      "i": 19,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"not able to see\" absent"
+    },
+    {
+      "i": 20,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"don't have eyes\" absent"
+    },
+    {
+      "i": 21,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"The request specifies\" absent"
+    },
+    {
+      "i": 22,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"I will focus\" absent"
+    },
+    {
+      "i": 23,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"as an AI\" absent"
+    },
+    {
+      "i": 24,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"NOT_FOUND\" absent"
+    },
+    {
+      "i": 25,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"<<<\" absent"
+    },
+    {
+      "i": 26,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"The user is asking\" absent"
+    },
+    {
+      "i": 27,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Your documents don't mention this\" absent"
+    },
+    {
+      "i": 28,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"is a scan. Run OCR\" absent"
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2,
+      "detail": "0 ms"
+    },
+    {
+      "i": 30,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 9210,
+      "detail": "J6-00-photo-answer"
+    },
+    {
+      "i": 31,
+      "op": "dump",
+      "ok": true,
+      "ms": 5,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What do you see?",
+          "role": "text"
+        },
+        {
+          "testID": "user-images",
+          "text": ""
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The image displays an outdoor chalkboard menu board mounted on a red brick wall, likely belonging to \"The Garden Cafe Hove\" as indicated by the website address at the top center. The board is divided into five sections: opening hours (Monday-Friday 8-4), breakfast options like smashed avocado and bacon sandwich; sandwiches including tuna salad and paella; hot drinks such as coffee and tea; a list of snacks like chips, toast, and fruit; and a section inviting customers to become members for £3 annually. A blue pipe runs along the bottom edge of the brickwork. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The image displays an outdoor chalkboard menu board mounted on a red brick wall, likely belonging to \"The Garden Cafe Hove\" as indicated by the website address at the top center. The board is divided into five sections: opening hours (Monday-Friday 8-4), breakfast options like smashed avocado and bacon sandwich; sandwiches including tuna salad and paella; hot drinks such as coffee and tea; a list of snacks like chips, toast, and fruit; and a section inviting customers to become members for £3 annually. A blue pipe runs along the bottom edge of the brickwork."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J6-00-photo-answer"
+    },
+    {
+      "i": 32,
+      "op": "press",
+      "ok": true,
+      "ms": 152,
+      "detail": "ledger-toggle ← onPress"
+    },
+    {
+      "i": 33,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1217,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 34,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "MODEL FAST QUANT Q4_K CONTEXT 554 / 4096 MS / TOKEN 161 ms More detail · PRO",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "MODEL FAST QUANT Q4_K CONTEXT 554 / 4096 MS / TOKEN 161 ms More detail · PRO"
+    },
+    {
+      "i": 35,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 6043,
+      "detail": "J6-00-photo-ledger"
+    },
+    {
+      "i": 36,
+      "op": "press",
+      "ok": true,
+      "ms": 171,
+      "detail": "ledger-toggle ← onPress"
+    },
+    {
+      "i": 37,
+      "op": "sleep",
+      "ok": true,
+      "ms": 817,
+      "detail": "800 ms"
+    },
+    {
+      "i": 38,
+      "op": "type",
+      "ok": true,
+      "ms": 169,
+      "detail": "composer-input = 64 chars"
+    },
+    {
+      "i": 39,
+      "op": "send",
+      "ok": true,
+      "ms": 236,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 40,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3001,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 41,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 169656,
+      "detail": "stop gone"
+    },
+    {
+      "i": 42,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3002,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 43,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The image displays an outdoor chalkboard menu board mounted on a red brick wall, likely belonging to \"The Garden Cafe Hove\" as indicated by the website address at the top center. The board is divided into five sections: opening hours (Monday-Friday 8-4), breakfast options like smashed avocado and bacon sandwich; sandwiches including tuna salad and paella; hot drinks such as coffee and tea; a list of snacks like chips, toast, and fruit; and a section inviting customers to become members for £3 annually. A blue pipe runs along the bottom edge of the brickwork.",
+        "props": {
+          "source": "The image displays an outdoor chalkboard menu board mounted on a red brick wall, likely belonging to \"The Garden Cafe Hove\" as indicated by the website address at the top center. The board is divided into five sections: opening hours (Monday-Friday 8-4), breakfast options like smashed avocado and bacon sandwich; sandwiches including tuna salad and paella; hot drinks such as coffee and tea; a list of snacks like chips, toast, and fruit; and a section inviting customers to become members for £3 annually. A blue pipe runs along the bottom edge of the brickwork.",
+          "disabled": false
+        }
+      },
+      "detail": "The image displays an outdoor chalkboard menu board mounted on a red brick wall, likely belonging to \"The Garden Cafe Hove\" as indicated by the website address at the top center. The board is divided "
+    },
+    {
+      "i": 44,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 45,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 46,
+      "op": "sleep",
+      "ok": true,
+      "ms": 11,
+      "detail": "0 ms"
+    },
+    {
+      "i": 47,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 6027,
+      "detail": "J6-01-story"
+    },
+    {
+      "i": 48,
+      "op": "dump",
+      "ok": true,
+      "ms": 6,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What do you see?",
+          "role": "text"
+        },
+        {
+          "testID": "user-images",
+          "text": ""
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The image displays an outdoor chalkboard menu board mounted on a red brick wall, likely belonging to \"The Garden Cafe Hove\" as indicated by the website address at the top center. The board is divided into five sections: opening hours (Monday-Friday 8-4), breakfast options like smashed avocado and bacon sandwich; sandwiches including tuna salad and paella; hot drinks such as coffee and tea; a list of snacks like chips, toast, and fruit; and a section inviting customers to become members for £3 annually. A blue pipe runs along the bottom edge of the brickwork. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The image displays an outdoor chalkboard menu board mounted on a red brick wall, likely belonging to \"The Garden Cafe Hove\" as indicated by the website address at the top center. The board is divided into five sections: opening hours (Monday-Friday 8-4), breakfast options like smashed avocado and bacon sandwich; sandwiches including tuna salad and paella; hot drinks such as coffee and tea; a list of snacks like chips, toast, and fruit; and a section inviting customers to become members for £3 annually. A blue pipe runs along the bottom edge of the brickwork."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J6-01-story"
+    },
+    {
+      "i": 49,
+      "op": "type",
+      "ok": true,
+      "ms": 169,
+      "detail": "composer-input = 16 chars"
+    },
+    {
+      "i": 50,
+      "op": "send",
+      "ok": true,
+      "ms": 307,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 51,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 52,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 5,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 53,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 54,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 60723,
+      "detail": "stop gone"
+    },
+    {
+      "i": 55,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 56,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "The image displays an outdoor chalkboard menu board mounted on a red brick wall, likely belonging to \"The Garden Cafe Hove\" as indicated by the website address at the top center. The board is divided into five sections: opening hours (Monday-Friday 8-4), breakfast options like smashed avocado and bacon sandwich; sandwiches including tuna salad and paella; hot drinks such as coffee and tea; a list of snacks like chips, toast, and fruit; and a section inviting customers to become members for £3 annually. A blue pipe runs along the bottom edge of the brickwork.",
+        "props": {
+          "source": "The image displays an outdoor chalkboard menu board mounted on a red brick wall, likely belonging to \"The Garden Cafe Hove\" as indicated by the website address at the top center. The board is divided into five sections: opening hours (Monday-Friday 8-4), breakfast options like smashed avocado and bacon sandwich; sandwiches including tuna salad and paella; hot drinks such as coffee and tea; a list of snacks like chips, toast, and fruit; and a section inviting customers to become members for £3 annually. A blue pipe runs along the bottom edge of the brickwork.",
+          "disabled": false
+        }
+      },
+      "detail": "The image displays an outdoor chalkboard menu board mounted on a red brick wall, likely belonging to \"The Garden Cafe Hove\" as indicated by the website address at the top center. The board is divided "
+    },
+    {
+      "i": 57,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 58,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 59,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 5404,
+      "detail": "J6-02-title"
+    },
+    {
+      "i": 60,
+      "op": "dump",
+      "ok": true,
+      "ms": 7,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What do you see?",
+          "role": "text"
+        },
+        {
+          "testID": "user-images",
+          "text": ""
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The image displays an outdoor chalkboard menu board mounted on a red brick wall, likely belonging to \"The Garden Cafe Hove\" as indicated by the website address at the top center. The board is divided into five sections: opening hours (Monday-Friday 8-4), breakfast options like smashed avocado and bacon sandwich; sandwiches including tuna salad and paella; hot drinks such as coffee and tea; a list of snacks like chips, toast, and fruit; and a section inviting customers to become members for £3 annually. A blue pipe runs along the bottom edge of the brickwork. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The image displays an outdoor chalkboard menu board mounted on a red brick wall, likely belonging to \"The Garden Cafe Hove\" as indicated by the website address at the top center. The board is divided into five sections: opening hours (Monday-Friday 8-4), breakfast options like smashed avocado and bacon sandwich; sandwiches including tuna salad and paella; hot drinks such as coffee and tea; a list of snacks like chips, toast, and fruit; and a section inviting customers to become members for £3 annually. A blue pipe runs along the bottom edge of the brickwork."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J6-02-title"
+    },
+    {
+      "i": 61,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 23 chars"
+    },
+    {
+      "i": 62,
+      "op": "send",
+      "ok": true,
+      "ms": 278,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 63,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2505,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 64,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 65,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 66,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 10085,
+      "detail": "stop gone"
+    },
+    {
+      "i": 67,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 68,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "The image displays an outdoor chalkboard menu board mounted on a red brick wall, likely belonging to \"The Garden Cafe Hove\" as indicated by the website address at the top center. The board is divided into five sections: opening hours (Monday-Friday 8-4), breakfast options like smashed avocado and bacon sandwich; sandwiches including tuna salad and paella; hot drinks such as coffee and tea; a list of snacks like chips, toast, and fruit; and a section inviting customers to become members for £3 annually. A blue pipe runs along the bottom edge of the brickwork.",
+        "props": {
+          "source": "The image displays an outdoor chalkboard menu board mounted on a red brick wall, likely belonging to \"The Garden Cafe Hove\" as indicated by the website address at the top center. The board is divided into five sections: opening hours (Monday-Friday 8-4), breakfast options like smashed avocado and bacon sandwich; sandwiches including tuna salad and paella; hot drinks such as coffee and tea; a list of snacks like chips, toast, and fruit; and a section inviting customers to become members for £3 annually. A blue pipe runs along the bottom edge of the brickwork.",
+          "disabled": false
+        }
+      },
+      "detail": "The image displays an outdoor chalkboard menu board mounted on a red brick wall, likely belonging to \"The Garden Cafe Hove\" as indicated by the website address at the top center. The board is divided "
+    },
+    {
+      "i": 69,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 70,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 71,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 9187,
+      "detail": "J6-03-shorter"
+    },
+    {
+      "i": 72,
+      "op": "dump",
+      "ok": true,
+      "ms": 12,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What do you see?",
+          "role": "text"
+        },
+        {
+          "testID": "user-images",
+          "text": ""
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The image displays an outdoor chalkboard menu board mounted on a red brick wall, likely belonging to \"The Garden Cafe Hove\" as indicated by the website address at the top center. The board is divided into five sections: opening hours (Monday-Friday 8-4), breakfast options like smashed avocado and bacon sandwich; sandwiches including tuna salad and paella; hot drinks such as coffee and tea; a list of snacks like chips, toast, and fruit; and a section inviting customers to become members for £3 annually. A blue pipe runs along the bottom edge of the brickwork. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The image displays an outdoor chalkboard menu board mounted on a red brick wall, likely belonging to \"The Garden Cafe Hove\" as indicated by the website address at the top center. The board is divided into five sections: opening hours (Monday-Friday 8-4), breakfast options like smashed avocado and bacon sandwich; sandwiches including tuna salad and paella; hot drinks such as coffee and tea; a list of snacks like chips, toast, and fruit; and a section inviting customers to become members for £3 annually. A blue pipe runs along the bottom edge of the brickwork."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J6-03-shorter"
+    },
+    {
+      "i": 73,
+      "op": "press",
+      "ok": true,
+      "ms": 325,
+      "detail": "open-chats ← onPress"
+    },
+    {
+      "i": 74,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "drawer-settings appeared"
+    },
+    {
+      "i": 75,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1515,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 76,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 4753,
+      "detail": "J6-04-chats"
+    },
+    {
+      "i": 77,
+      "op": "dump",
+      "ok": true,
+      "ms": 18,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What do you see?",
+          "role": "text"
+        },
+        {
+          "testID": "user-images",
+          "text": ""
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The image displays an outdoor chalkboard menu board mounted on a red brick wall, likely belonging to \"The Garden Cafe Hove\" as indicated by the website address at the top center. The board is divided into five sections: opening hours (Monday-Friday 8-4), breakfast options like smashed avocado and bacon sandwich; sandwiches including tuna salad and paella; hot drinks such as coffee and tea; a list of snacks like chips, toast, and fruit; and a section inviting customers to become members for £3 annually. A blue pipe runs along the bottom edge of the brickwork. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The image displays an outdoor chalkboard menu board mounted on a red brick wall, likely belonging to \"The Garden Cafe Hove\" as indicated by the website address at the top center. The board is divided into five sections: opening hours (Monday-Friday 8-4), breakfast options like smashed avocado and bacon sandwich; sandwiches including tuna salad and paella; hot drinks such as coffee and tea; a list of snacks like chips, toast, and fruit; and a section inviting customers to become members for £3 annually. A blue pipe runs along the bottom edge of the brickwork."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "close-chats",
+          "text": "",
+          "role": "button",
+          "label": "Close",
+          "pressable": true
+        },
+        {
+          "testID": "select-toggle",
+          "text": "Select",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chats-search",
+          "text": "",
+          "label": "Search",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "new-chat",
+          "text": "New chat",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "new-incognito",
+          "text": "Incognito",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-101cd22e-0fbe-4298-bd9d-9701fd69ee4d",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-101cd22e-0fbe-4298-bd9d-9701fd69ee4d",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-101cd22e-0fbe-4298-bd9d-9701fd69ee4d",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-101cd22e-0fbe-4298-bd9d-9701fd69ee4d",
+          "text": "What do you see? 1:21 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-927beed4-6e9d-478c-b97c-3aa937dd90d6",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-927beed4-6e9d-478c-b97c-3aa937dd90d6",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-927beed4-6e9d-478c-b97c-3aa937dd90d6",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-927beed4-6e9d-478c-b97c-3aa937dd90d6",
+          "text": "What do you see? 9:38 AM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-75e1b739-0942-4aff-9033-a4b859a13852",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-75e1b739-0942-4aff-9033-a4b859a13852",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-75e1b739-0942-4aff-9033-a4b859a13852",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-75e1b739-0942-4aff-9033-a4b859a13852",
+          "text": "What do you see? 9:37 AM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-8c9ff9e0-51db-4796-97dc-acd065560a66",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-8c9ff9e0-51db-4796-97dc-acd065560a66",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-8c9ff9e0-51db-4796-97dc-acd065560a66",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-8c9ff9e0-51db-4796-97dc-acd065560a66",
+          "text": "Summarize it 9:34 AM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-fd61229d-a510-42d9-8805-3e7e27ca7b01",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-fd61229d-a510-42d9-8805-3e7e27ca7b01",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-fd61229d-a510-42d9-8805-3e7e27ca7b01",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-fd61229d-a510-42d9-8805-3e7e27ca7b01",
+          "text": "Summarize it 9:23 AM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-885b045d-22c4-424b-a45d-4b262d66066b",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-885b045d-22c4-424b-a45d-4b262d66066b",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-885b045d-22c4-424b-a45d-4b262d66066b",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-885b045d-22c4-424b-a45d-4b262d66066b",
+          "text": "Summarize it 9:20 AM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-84d16031-acb9-406a-a110-27e59d256cff",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-84d16031-acb9-406a-a110-27e59d256cff",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-84d16031-acb9-406a-a110-27e59d256cff",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-84d16031-acb9-406a-a110-27e59d256cff",
+          "text": "Hi 9:05 AM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chats-footer",
+          "text": "PRO"
+        },
+        {
+          "testID": "open-personas",
+          "text": "",
+          "pressable": true
+        },
+        {
+          "testID": "open-memory",
+          "text": "",
+          "pressable": true
+        },
+        {
+          "testID": "open-folders",
+          "text": "PRO",
+          "pressable": true
+        },
+        {
+          "testID": "pro-tag",
+          "text": "PRO"
+        },
+        {
+          "testID": "new-chat-sheet",
+          "text": ""
+        },
+        {
+          "testID": "folder-sheet",
+          "text": ""
+        },
+        {
+          "testID": "vault-code-sheet",
+          "text": ""
+        },
+        {
+          "testID": "export-sheet",
+          "text": ""
+        },
+        {
+          "testID": "drawer-footer",
+          "text": "FAST · OUT 1.27 KB Settings ◯ Proof"
+        },
+        {
+          "testID": "drawer-meter",
+          "text": "FAST · OUT 1.27 KB"
+        },
+        {
+          "testID": "drawer-settings",
+          "text": "Settings",
+          "pressable": true
+        },
+        {
+          "testID": "drawer-proof",
+          "text": "◯ Proof",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J6-04-chats"
+    },
+    {
+      "i": 78,
+      "op": "press",
+      "ok": true,
+      "ms": 505,
+      "detail": "drawer-settings ← onPress"
+    },
+    {
+      "i": 79,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 11,
+      "detail": "row-wipe appeared"
+    },
+    {
+      "i": 80,
+      "op": "value",
+      "ok": false,
+      "ms": 3,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 81,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 82,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 5709,
+      "detail": "J6-05-settings"
+    },
+    {
+      "i": 83,
+      "op": "dump",
+      "ok": true,
+      "ms": 17,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What do you see?",
+          "role": "text"
+        },
+        {
+          "testID": "user-images",
+          "text": ""
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The image displays an outdoor chalkboard menu board mounted on a red brick wall, likely belonging to \"The Garden Cafe Hove\" as indicated by the website address at the top center. The board is divided into five sections: opening hours (Monday-Friday 8-4), breakfast options like smashed avocado and bacon sandwich; sandwiches including tuna salad and paella; hot drinks such as coffee and tea; a list of snacks like chips, toast, and fruit; and a section inviting customers to become members for £3 annually. A blue pipe runs along the bottom edge of the brickwork. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The image displays an outdoor chalkboard menu board mounted on a red brick wall, likely belonging to \"The Garden Cafe Hove\" as indicated by the website address at the top center. The board is divided into five sections: opening hours (Monday-Friday 8-4), breakfast options like smashed avocado and bacon sandwich; sandwiches including tuna salad and paella; hot drinks such as coffee and tea; a list of snacks like chips, toast, and fruit; and a section inviting customers to become members for £3 annually. A blue pipe runs along the bottom edge of the brickwork."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "close-chats",
+          "text": "",
+          "role": "button",
+          "label": "Close",
+          "pressable": true
+        },
+        {
+          "testID": "select-toggle",
+          "text": "Select",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chats-search",
+          "text": "",
+          "label": "Search",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "new-chat",
+          "text": "New chat",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "new-incognito",
+          "text": "Incognito",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-101cd22e-0fbe-4298-bd9d-9701fd69ee4d",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-101cd22e-0fbe-4298-bd9d-9701fd69ee4d",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-101cd22e-0fbe-4298-bd9d-9701fd69ee4d",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-101cd22e-0fbe-4298-bd9d-9701fd69ee4d",
+          "text": "What do you see? 1:21 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-927beed4-6e9d-478c-b97c-3aa937dd90d6",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-927beed4-6e9d-478c-b97c-3aa937dd90d6",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-927beed4-6e9d-478c-b97c-3aa937dd90d6",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-927beed4-6e9d-478c-b97c-3aa937dd90d6",
+          "text": "What do you see? 9:38 AM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-75e1b739-0942-4aff-9033-a4b859a13852",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-75e1b739-0942-4aff-9033-a4b859a13852",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-75e1b739-0942-4aff-9033-a4b859a13852",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-75e1b739-0942-4aff-9033-a4b859a13852",
+          "text": "What do you see? 9:37 AM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-8c9ff9e0-51db-4796-97dc-acd065560a66",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-8c9ff9e0-51db-4796-97dc-acd065560a66",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-8c9ff9e0-51db-4796-97dc-acd065560a66",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-8c9ff9e0-51db-4796-97dc-acd065560a66",
+          "text": "Summarize it 9:34 AM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-fd61229d-a510-42d9-8805-3e7e27ca7b01",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-fd61229d-a510-42d9-8805-3e7e27ca7b01",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-fd61229d-a510-42d9-8805-3e7e27ca7b01",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-fd61229d-a510-42d9-8805-3e7e27ca7b01",
+          "text": "Summarize it 9:23 AM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-885b045d-22c4-424b-a45d-4b262d66066b",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-885b045d-22c4-424b-a45d-4b262d66066b",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-885b045d-22c4-424b-a45d-4b262d66066b",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-885b045d-22c4-424b-a45d-4b262d66066b",
+          "text": "Summarize it 9:20 AM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-84d16031-acb9-406a-a110-27e59d256cff",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-84d16031-acb9-406a-a110-27e59d256cff",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-84d16031-acb9-406a-a110-27e59d256cff",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-84d16031-acb9-406a-a110-27e59d256cff",
+          "text": "Hi 9:05 AM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chats-footer",
+          "text": "PRO"
+        },
+        {
+          "testID": "open-personas",
+          "text": "",
+          "pressable": true
+        },
+        {
+          "testID": "open-memory",
+          "text": "",
+          "pressable": true
+        },
+        {
+          "testID": "open-folders",
+          "text": "PRO",
+          "pressable": true
+        },
+        {
+          "testID": "pro-tag",
+          "text": "PRO"
+        },
+        {
+          "testID": "new-chat-sheet",
+          "text": ""
+        },
+        {
+          "testID": "folder-sheet",
+          "text": ""
+        },
+        {
+          "testID": "vault-code-sheet",
+          "text": ""
+        },
+        {
+          "testID": "export-sheet",
+          "text": ""
+        },
+        {
+          "testID": "drawer-footer",
+          "text": "FAST · OUT 1.27 KB Settings ◯ Proof"
+        },
+        {
+          "testID": "drawer-meter",
+          "text": "FAST · OUT 1.27 KB"
+        },
+        {
+          "testID": "drawer-settings",
+          "text": "Settings",
+          "pressable": true
+        },
+        {
+          "testID": "drawer-proof",
+          "text": "◯ Proof",
+          "pressable": true
+        },
+        {
+          "testID": "settings",
+          "text": "Inborn Pro See what's in Pro See what Pro adds to the free app. FREE APPEARANCE Theme Auto Dark Light Dark at night, 18:00-06:00, and whenever the system is dark. Text size 90% Default 115% 130% 150% 175% 200% SECURITY Require a passcode Your passcode opens Inborn. Also hides chats in the app switcher. Set a passcode Hide in app switcher Chats are blurred while Inborn is in the background. Screenshot protection iOS cannot block screenshots. Inborn hides chats while the screen is recorded or mirrored. Auto-delete chats Off 1 day 7 days 30 days Chats stay until you delete them. Clipboard expiry Off 60 s Delete everything Chats, key, documents. No recovery. CHAT Model FAST Family-safe mode Keeps sexually explicit, graphic and self-harm content out of answers. It reduces that content; it cannot catch all of it. Haptics Sounds Off. There are none. PERFORMANCE Eco Balanced Max Auto power management Smaller model on low battery or heat. On for phones, off on desktop. Never switch my model automatically LANGUAGE App language English Answer language hint Follows the app language DOWNLOADS Wi-Fi only Storage location Internal ACCESSIBILITY Reduce motion Follows the system setting. Off PRIVACY & STORAGE Privacy & storage Reports Answers you reported, kept on this device Proof Pro for Work Audit log Per-vault, hash-chained, never message content Verify a signed record Check a .json record's hash and signature Architecture statement Dated, printable, for a compliance file ABOUT About Model licenses We collect nothing. There is nothing to opt out of. Settings"
+        },
+        {
+          "testID": "row-pro",
+          "text": "See what's in Pro See what Pro adds to the free app. FREE",
+          "value": "FREE",
+          "pressable": true
+        },
+        {
+          "testID": "theme-mode",
+          "text": "Auto Dark Light",
+          "value": "auto",
+          "pressable": true
+        },
+        {
+          "testID": "theme-mode-sub",
+          "text": "Dark at night, 18:00-06:00, and whenever the system is dark."
+        },
+        {
+          "testID": "text-scale",
+          "text": "90% Default 115% 130% 150% 175% 200%",
+          "value": "1",
+          "pressable": true
+        },
+        {
+          "testID": "row-lock",
+          "text": "Require a passcode Your passcode opens Inborn. Also hides chats in the app switcher.",
+          "pressable": true
+        },
+        {
+          "testID": "row-hide",
+          "text": "Hide in app switcher Chats are blurred while Inborn is in the background.",
+          "pressable": true
+        },
+        {
+          "testID": "row-screenshots",
+          "text": "Screenshot protection iOS cannot block screenshots. Inborn hides chats while the screen is recorded or mirrored.",
+          "pressable": true
+        },
+        {
+          "testID": "auto-delete",
+          "text": "Off 1 day 7 days 30 days",
+          "value": "0",
+          "pressable": true
+        },
+        {
+          "testID": "auto-delete-sub",
+          "text": "Chats stay until you delete them."
+        },
+        {
+          "testID": "row-wipe",
+          "text": "Delete everything Chats, key, documents. No recovery.",
+          "pressable": true
+        },
+        {
+          "testID": "row-family-safe",
+          "text": "Family-safe mode Keeps sexually explicit, graphic and self-harm content out of answers. It reduces that content; it cannot catch all of it.",
+          "pressable": true
+        },
+        {
+          "testID": "row-language",
+          "text": "App language English",
+          "value": "English",
+          "pressable": true
+        },
+        {
+          "testID": "row-wifi-only",
+          "text": "Wi-Fi only",
+          "pressable": true
+        },
+        {
+          "testID": "row-storage",
+          "text": "Privacy & storage",
+          "pressable": true
+        },
+        {
+          "testID": "row-reports",
+          "text": "Reports Answers you reported, kept on this device",
+          "pressable": true
+        },
+        {
+          "testID": "row-proof",
+          "text": "Proof",
+          "pressable": true
+        },
+        {
+          "testID": "row-audit",
+          "text": "Audit log Per-vault, hash-chained, never message content",
+          "pressable": true
+        },
+        {
+          "testID": "row-verify",
+          "text": "Verify a signed record Check a .json record's hash and signature",
+          "pressable": true
+        },
+        {
+          "testID": "row-statement",
+          "text": "Architecture statement Dated, printable, for a compliance file",
+          "pressable": true
+        },
+        {
+          "testID": "row-about",
+          "text": "About",
+          "pressable": true
+        },
+        {
+          "testID": "back",
+          "text": "",
+          "role": "button",
+          "label": "Back",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J6-05-settings"
+    },
+    {
+      "i": 84,
+      "op": "press",
+      "ok": true,
+      "ms": 168,
+      "detail": "back ← onPress"
+    },
+    {
+      "i": 85,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1509,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 86,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "close-chats ← onPress"
+    },
+    {
+      "i": 87,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 88,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2002,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 89,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 7280,
+      "detail": "J6-06-back"
+    },
+    {
+      "i": 90,
+      "op": "dump",
+      "ok": true,
+      "ms": 17,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What do you see?",
+          "role": "text"
+        },
+        {
+          "testID": "user-images",
+          "text": ""
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The image displays an outdoor chalkboard menu board mounted on a red brick wall, likely belonging to \"The Garden Cafe Hove\" as indicated by the website address at the top center. The board is divided into five sections: opening hours (Monday-Friday 8-4), breakfast options like smashed avocado and bacon sandwich; sandwiches including tuna salad and paella; hot drinks such as coffee and tea; a list of snacks like chips, toast, and fruit; and a section inviting customers to become members for £3 annually. A blue pipe runs along the bottom edge of the brickwork. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The image displays an outdoor chalkboard menu board mounted on a red brick wall, likely belonging to \"The Garden Cafe Hove\" as indicated by the website address at the top center. The board is divided into five sections: opening hours (Monday-Friday 8-4), breakfast options like smashed avocado and bacon sandwich; sandwiches including tuna salad and paella; hot drinks such as coffee and tea; a list of snacks like chips, toast, and fruit; and a section inviting customers to become members for £3 annually. A blue pipe runs along the bottom edge of the brickwork."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J6-06-back"
+    },
+    {
+      "i": 91,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 172,
+      "detail": "attach: בית קפה הגינה תפריט.jpg"
+    },
+    {
+      "i": 92,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 11251,
+      "detail": "pending-images appeared"
+    },
+    {
+      "i": 93,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3016,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 94,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "Free: one photo per message",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Free: one photo per message"
+    },
+    {
+      "i": 95,
+      "op": "type",
+      "ok": true,
+      "ms": 164,
+      "detail": "composer-input = 16 chars"
+    },
+    {
+      "i": 96,
+      "op": "send",
+      "ok": true,
+      "ms": 201,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 97,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 98,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 99,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 13009,
+      "detail": "J6-07-photo-again-sent-bubble"
+    },
+    {
+      "i": 100,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 71614,
+      "detail": "stop gone"
+    },
+    {
+      "i": 101,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3011,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 102,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The image displays an outdoor chalkboard menu board mounted on a red brick wall, likely belonging to \"The Garden Cafe Hove\" as indicated by the website address at the top center. The board is divided into five sections: opening hours (Monday-Friday 8-4), breakfast options like smashed avocado and bacon sandwich; sandwiches including tuna salad and paella; hot drinks such as coffee and tea; a list of snacks like chips, toast, and fruit; and a section inviting customers to become members for £3 annually. A blue pipe runs along the bottom edge of the brickwork.",
+        "props": {
+          "source": "The image displays an outdoor chalkboard menu board mounted on a red brick wall, likely belonging to \"The Garden Cafe Hove\" as indicated by the website address at the top center. The board is divided into five sections: opening hours (Monday-Friday 8-4), breakfast options like smashed avocado and bacon sandwich; sandwiches including tuna salad and paella; hot drinks such as coffee and tea; a list of snacks like chips, toast, and fruit; and a section inviting customers to become members for £3 annually. A blue pipe runs along the bottom edge of the brickwork.",
+          "disabled": false
+        }
+      },
+      "detail": "The image displays an outdoor chalkboard menu board mounted on a red brick wall, likely belonging to \"The Garden Cafe Hove\" as indicated by the website address at the top center. The board is divided "
+    },
+    {
+      "i": 103,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"cannot see\" absent"
+    },
+    {
+      "i": 104,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"can't see\" absent"
+    },
+    {
+      "i": 105,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"cannot physically see\" absent"
+    },
+    {
+      "i": 106,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"see images\" absent"
+    },
+    {
+      "i": 107,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"text-based\" absent"
+    },
+    {
+      "i": 108,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"unable to see\" absent"
+    },
+    {
+      "i": 109,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"not able to see\" absent"
+    },
+    {
+      "i": 110,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"don't have eyes\" absent"
+    },
+    {
+      "i": 111,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"The request specifies\" absent"
+    },
+    {
+      "i": 112,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"I will focus\" absent"
+    },
+    {
+      "i": 113,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"as an AI\" absent"
+    },
+    {
+      "i": 114,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"NOT_FOUND\" absent"
+    },
+    {
+      "i": 115,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"<<<\" absent"
+    },
+    {
+      "i": 116,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"The user is asking\" absent"
+    },
+    {
+      "i": 117,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Your documents don't mention this\" absent"
+    },
+    {
+      "i": 118,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"is a scan. Run OCR\" absent"
+    },
+    {
+      "i": 119,
+      "op": "sleep",
+      "ok": true,
+      "ms": 0,
+      "detail": "0 ms"
+    },
+    {
+      "i": 120,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 5804,
+      "detail": "J6-07-photo-again-answer"
+    },
+    {
+      "i": 121,
+      "op": "dump",
+      "ok": true,
+      "ms": 7,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What do you see?",
+          "role": "text"
+        },
+        {
+          "testID": "user-images",
+          "text": ""
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The image displays an outdoor chalkboard menu board mounted on a red brick wall, likely belonging to \"The Garden Cafe Hove\" as indicated by the website address at the top center. The board is divided into five sections: opening hours (Monday-Friday 8-4), breakfast options like smashed avocado and bacon sandwich; sandwiches including tuna salad and paella; hot drinks such as coffee and tea; a list of snacks like chips, toast, and fruit; and a section inviting customers to become members for £3 annually. A blue pipe runs along the bottom edge of the brickwork. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The image displays an outdoor chalkboard menu board mounted on a red brick wall, likely belonging to \"The Garden Cafe Hove\" as indicated by the website address at the top center. The board is divided into five sections: opening hours (Monday-Friday 8-4), breakfast options like smashed avocado and bacon sandwich; sandwiches including tuna salad and paella; hot drinks such as coffee and tea; a list of snacks like chips, toast, and fruit; and a section inviting customers to become members for £3 annually. A blue pipe runs along the bottom edge of the brickwork."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J6-07-photo-again-answer"
+    },
+    {
+      "i": 122,
+      "op": "press",
+      "ok": true,
+      "ms": 168,
+      "detail": "ledger-toggle ← onPress"
+    },
+    {
+      "i": 123,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1202,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 124,
+      "op": "value",
+      "ok": true,
+      "ms": 5,
+      "value": {
+        "text": "MODEL FAST QUANT Q4_K CONTEXT 1465 / 4096 MS / TOKEN 181 ms More detail · PRO",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "MODEL FAST QUANT Q4_K CONTEXT 1465 / 4096 MS / TOKEN 181 ms More detail · PRO"
+    },
+    {
+      "i": 125,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 6329,
+      "detail": "J6-07-photo-again-ledger"
+    },
+    {
+      "i": 126,
+      "op": "press",
+      "ok": true,
+      "ms": 182,
+      "detail": "ledger-toggle ← onPress"
+    },
+    {
+      "i": 127,
+      "op": "sleep",
+      "ok": true,
+      "ms": 816,
+      "detail": "800 ms"
+    },
+    {
+      "i": 128,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 129,
+      "op": "value",
+      "ok": false,
+      "ms": 2,
+      "detail": "value banners: no node with that testID is mounted"
+    }
+  ],
+  "errors": [
+    "step 44 (value): value banners: no node with that testID is mounted",
+    "step 57 (value): value banners: no node with that testID is mounted",
+    "step 69 (value): value banners: no node with that testID is mounted",
+    "step 80 (value): value banners: no node with that testID is mounted",
+    "step 129 (value): value banners: no node with that testID is mounted"
+  ]
+}
