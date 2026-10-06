@@ -1,0 +1,66 @@
+{
+ "_": "J4: the vault, Install Fast (1.28 GB from models.inbornapp.com), wait until it is installed.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/vault"
+  },
+  {
+   "op": "waitFor",
+   "testID": "best-for",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "scrollTo",
+   "testID": "install-fast"
+  },
+  {
+   "op": "screenshot",
+   "name": "J4-01-vault-fast"
+  },
+  {
+   "op": "press",
+   "testID": "install-fast"
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "press",
+   "testID": "confirm-download"
+  },
+  {
+   "op": "sleep",
+   "ms": 15000
+  },
+  {
+   "op": "value",
+   "testID": "model-status-fast"
+  },
+  {
+   "op": "screenshot",
+   "name": "J4-02-fast-downloading"
+  },
+  {
+   "op": "idleTimer"
+  },
+  {
+   "op": "waitFor",
+   "testID": "use-fast",
+   "timeoutMs": 1800000
+  },
+  {
+   "op": "value",
+   "testID": "model-status-fast"
+  },
+  {
+   "op": "screenshot",
+   "name": "J4-03-fast-installed"
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+14:04:04 pushing 54 steps as j5-scan-fast-pack
+14:04:19 shot J5-01-pack-card
+14:04:25 shot J5-02-pack-downloading
+14:05:25 shot J5-03-sent-with-picture
+14:05:35 shot J5-04-fast-answer
+14:05:39 ok     0 deeplink   /chats
+14:05:39 ok     1 waitFor    new-chat appeared
+14:05:39 ok     2 press      new-chat ← onPress
+14:05:39 ok     3 waitFor    start-chat appeared
+14:05:39 ok     4 press      start-chat ← onPress
+14:05:39 ok     5 waitFor    composer-input appeared
+14:05:39 ok     6 waitFor    Loading gone
+14:05:39 ok     7 sleep      1500 ms
+14:05:39 ok     8 value      FAST
+14:05:39 ok     9 assertText "FAST" present
+14:05:39 ok    10 devPrompt  attach: sign-scan.pdf
+14:05:39 ok    11 waitFor    attached-docs appeared
+14:05:39 ok    12 sleep      8000 ms
+14:05:39 ok    13 value      sign-scan.pdf
+14:05:39 ok    14 type       composer-input = 16 chars
+14:05:39 ok    15 send       send ← onPress
+14:05:39 ok    16 waitFor    vision-hold appeared
+14:05:39 ok    17 sleep      1500 ms
+14:05:39 ok    18 value      FAST needs its photo pack to see photos One 668 MB download, then this photo sends by itself. Download 668 MB 
+14:05:39 ok    19 assertText "668 MB" present
+14:05:39 ok    20 screenshot J5-01-pack-card
+14:05:39 ok    21 press      vision-hold-download ← onPress
+14:05:39 ok    22 sleep      4000 ms
+14:05:39 ok    23 value      FAST needs its photo pack to see photos Downloading the photo pack: 77 of 668 MB. Keep Inborn open: the downlo
+14:05:39 ok    24 screenshot J5-02-pack-downloading
+14:05:39 ok    25 idleTimer  idle timer disabled: true
+14:05:39 ok    26 waitFor    vision-hold gone
+14:05:39 ok    27 waitFor    assistant-text appeared
+14:05:39 ok    28 value      
+14:05:39 ok    29 screenshot J5-03-sent-with-picture
+14:05:39 ok    30 waitFor    stop gone
+14:05:39 ok    31 sleep      1500 ms
+14:05:39 ok    32 value      The image displays a weathered blue and white street sign mounted on a yellow-painted wooden wall; the upper s
+14:05:39 ok    33 sleep      2000 ms
+14:05:39 ok    34 assertText "FAST" present
+14:05:39 ok    35 waitFor    model-advice gone
+14:05:39 ok    36 screenshot J5-04-fast-answer
+14:05:39 ok    37 dump       J5-04-fast-answer
+14:05:39 ok    38 assertText "cannot see" absent
+14:05:39 ok    39 assertText "can't see" absent
+14:05:39 ok    40 assertText "cannot physically see" absent
+14:05:39 ok    41 assertText "see images" absent
+14:05:39 ok    42 assertText "text-based" absent
+14:05:39 ok    43 assertText "unable to see" absent
+14:05:39 ok    44 assertText "not able to see" absent
+14:05:39 ok    45 assertText "don't have eyes" absent
+14:05:39 ok    46 assertText "The request specifies" absent
+14:05:39 ok    47 assertText "I will focus" absent
+14:05:39 ok    48 assertText "as an AI" absent
+14:05:39 ok    49 assertText "NOT_FOUND" absent
+14:05:39 ok    50 assertText "<<<" absent
+14:05:39 ok    51 assertText "The user is asking" absent
+14:05:39 ok    52 assertText "Your documents don't mention this" absent
+14:05:39 ok    53 assertText "is a scan. Run OCR" absent
+14:05:39 54 passed, 0 failed, 4 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-37/docs/qa/ios-device-pass-37/screens

@@ -1,0 +1,20 @@
+13:55:13 pushing 15 steps as j4a-install-fast
+13:55:19 shot J4-01-vault-fast
+13:55:38 shot J4-02-fast-downloading
+13:56:32 shot J4-03-fast-installed
+13:56:36 ok     0 deeplink   /vault
+13:56:36 ok     1 waitFor    best-for appeared
+13:56:36 ok     2 sleep      3000 ms
+13:56:36 ok     3 scrollTo   install-fast
+13:56:36 ok     4 screenshot J4-01-vault-fast
+13:56:36 ok     5 press      install-fast ← onPress
+13:56:36 ok     6 sleep      1500 ms
+13:56:36 ok     7 press      confirm-download ← onPress
+13:56:36 ok     8 sleep      15000 ms
+13:56:36 ok     9 value      17% · 228 MB of 1.28 GB
+13:56:36 ok    10 screenshot J4-02-fast-downloading
+13:56:36 ok    11 idleTimer  idle timer disabled: true
+13:56:36 ok    12 waitFor    use-fast appeared
+13:56:36 ok    13 value      Installed
+13:56:36 ok    14 screenshot J4-03-fast-installed
+13:56:36 15 passed, 0 failed, 3 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-37/docs/qa/ios-device-pass-37/screens

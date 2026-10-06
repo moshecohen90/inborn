@@ -1,0 +1,44 @@
+14:14:06 pushing 38 steps as j8-settings-vault-stop
+14:14:09 shot J8-01-settings
+14:14:16 shot J8-02-vault
+14:14:28 shot J8-03-stopped
+14:14:35 shot J8-04-after-stop
+14:14:39 ok     0 deeplink   /settings
+14:14:39 ok     1 waitFor    row-wipe appeared
+14:14:39 ok     2 sleep      1500 ms
+14:14:39 ok     3 screenshot J8-01-settings
+14:14:39 ok     4 dump       J8-01-settings
+14:14:39 ok     5 deeplink   /vault
+14:14:39 ok     6 waitFor    best-for appeared
+14:14:39 ok     7 sleep      3000 ms
+14:14:39 ok     8 value      Chat
+14:14:39 ok     9 screenshot J8-02-vault
+14:14:39 ok    10 dump       J8-02-vault
+14:14:39 ok    11 deeplink   /chats
+14:14:39 ok    12 waitFor    new-chat appeared
+14:14:39 ok    13 press      new-chat ← onPress
+14:14:39 ok    14 waitFor    start-chat appeared
+14:14:39 ok    15 press      start-chat ← onPress
+14:14:39 ok    16 waitFor    composer-input appeared
+14:14:39 ok    17 waitFor    Loading gone
+14:14:39 ok    18 sleep      1500 ms
+14:14:39 ok    19 value      FAST
+14:14:39 ok    20 type       composer-input = 64 chars
+14:14:39 ok    21 send       send ← onPress
+14:14:39 ok    22 waitFor    assistant-text appeared
+14:14:39 ok    23 sleep      4000 ms
+14:14:39 ok    24 press      stop ← onPress
+14:14:39 ok    25 sleep      2000 ms
+14:14:39 ok    26 waitFor    stop gone
+14:14:39 ok    27 value      The wind howled through the narrow windows of Elara's cottage, a sound that seemed to echo inside the small wo
+14:14:39 ok    28 screenshot J8-03-stopped
+14:14:39 ok    29 dump       J8-03-stopped
+14:14:39 ok    30 type       composer-input = 30 chars
+14:14:39 ok    31 send       send ← onPress
+14:14:39 ok    32 waitFor    assistant-text appeared
+14:14:39 ok    33 waitFor    stop gone
+14:14:39 ok    34 sleep      1500 ms
+14:14:39 ok    35 value      The wind howled through the narrow windows of Elara's cottage, a sound that seemed to echo inside the small wo
+14:14:39 ok    36 screenshot J8-04-after-stop
+14:14:39 ok    37 assertText "Could not load" absent
+14:14:39 38 passed, 0 failed, 4 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-37/docs/qa/ios-device-pass-37/screens

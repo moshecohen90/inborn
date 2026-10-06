@@ -1,0 +1,191 @@
+{
+  "runId": "p0-onboard",
+  "startedAt": "2026-10-06T10:49:14.071Z",
+  "finishedAt": "2026-10-06T10:49:44.885Z",
+  "ok": true,
+  "passed": 22,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "onboarding-continue appeared"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1201,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 2,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3502,
+      "detail": "J1-00-welcome"
+    },
+    {
+      "i": 3,
+      "op": "press",
+      "ok": true,
+      "ms": 168,
+      "detail": "onboarding-continue ← onPress"
+    },
+    {
+      "i": 4,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "onboarding-model appeared"
+    },
+    {
+      "i": 5,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2508,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 6,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "1.28 GB · one download from models.inbornapp.com",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "1.28 GB · one download from models.inbornapp.com"
+    },
+    {
+      "i": 7,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"models.inbornapp.com\" present"
+    },
+    {
+      "i": 8,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1926,
+      "detail": "J1-01-model-step"
+    },
+    {
+      "i": 9,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Start now with Instant",
+        "props": {
+          "title": "Start now with Instant",
+          "accessibilityRole": "button",
+          "accessibilityState": {
+            "disabled": false
+          },
+          "disabled": false
+        }
+      },
+      "detail": "Start now with Instant"
+    },
+    {
+      "i": 10,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "start-now-with ← onPress"
+    },
+    {
+      "i": 11,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "sealed-start appeared"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5002,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 13,
+      "op": "press",
+      "ok": true,
+      "ms": 156,
+      "detail": "sealed-start ← onPress"
+    },
+    {
+      "i": 14,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "lock-start appeared"
+    },
+    {
+      "i": 15,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "lock-start ← onPress"
+    },
+    {
+      "i": 16,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 17,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 11427,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 18,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2016,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 19,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "INSTANT",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT"
+    },
+    {
+      "i": 20,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"INSTANT\" present"
+    },
+    {
+      "i": 21,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2562,
+      "detail": "J1-02-chat-instant"
+    }
+  ],
+  "errors": []
+}

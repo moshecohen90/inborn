@@ -1,0 +1,43 @@
+2026-10-06 13:48:07 start ios-build-37; worktree at 8f8bea07, commit 12c769a4 (12c769a43611) buildNumber 36->37 + guard
+2026-10-06 13:48:07 phone before twin: passcodeRequired: false; apps: com.inbornapp.mobile 1.0.0 36;com.inbornapp.mobile.uitests.xctrunner 1.0 1;
+2026-10-06 13:48:37 twin installed 13:48:15 -> 13:48:37 rc=0
+2026-10-06 13:48:58 p0-onboard start
+2026-10-06 13:49:47 p0-onboard rc=0 13:49:46 22 passed, 0 failed, 3 screenshots → <worktree>/docs/qa/ios-device-pass-37/screens
+push 6 fixtures (founder files under neutral names) 13:50:11
+2026-10-06 13:50:16 j2-scan-instant start
+2026-10-06 13:50:47 j2-scan-instant rc=0 13:50:46 48 passed, 0 failed, 3 screenshots → <worktree>/docs/qa/ios-device-pass-37/screens
+2026-10-06 13:51:31 j2-ledger start
+2026-10-06 13:51:39 j2-ledger rc=0 13:51:39 4 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-37/screens
+2026-10-06 13:51:48 f3-s1 start
+2026-10-06 13:52:20 f3-s1 rc=0 (private: details in private/)
+2026-10-06 13:52:23 f3-s2 start
+2026-10-06 13:52:51 f3-s2 rc=0 (private: details in private/)
+2026-10-06 13:53:32 j7a-photo-instant start
+2026-10-06 13:54:18 j7a-photo-instant rc=0 13:54:18 53 passed, 0 failed, 4 screenshots → <worktree>/docs/qa/ios-device-pass-37/screens
+2026-10-06 13:54:50 j6-text-hold start
+2026-10-06 13:55:08 j6-text-hold rc=0 13:55:08 22 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-37/screens
+2026-10-06 13:55:13 j4a-install-fast start
+2026-10-06 13:56:36 j4a-install-fast rc=0 13:56:36 15 passed, 0 failed, 3 screenshots → <worktree>/docs/qa/ios-device-pass-37/screens
+2026-10-06 13:56:45 f4-nine-fast start
+2026-10-06 13:59:24 f4-nine-fast rc=0 (private: details in private/)
+2026-10-06 13:59:50 f4b-about-wait start
+2026-10-06 14:00:02 f4b-about-wait rc=0 (private: details in private/)
+2026-10-06 14:00:33 j4c-fixture-fast start
+2026-10-06 14:03:44 j4c-fixture-fast rc=0 14:03:43 41 passed, 0 failed, 4 screenshots → <worktree>/docs/qa/ios-device-pass-37/screens
+2026-10-06 14:04:04 j5-scan-fast-pack start
+2026-10-06 14:05:40 j5-scan-fast-pack rc=0 14:05:39 54 passed, 0 failed, 4 screenshots → <worktree>/docs/qa/ios-device-pass-37/screens
+2026-10-06 14:06:04 cool start
+2026-10-06 14:08:41 cool rc=0 14:08:41 3 passed, 0 failed, 0 screenshots → <worktree>/docs/qa/ios-device-pass-37/screens
+2026-10-06 14:08:52 j5b-scan-fast start
+2026-10-06 14:09:26 j5b-scan-fast rc=0 14:09:26 48 passed, 0 failed, 3 screenshots → <worktree>/docs/qa/ios-device-pass-37/screens
+2026-10-06 14:09:38 j7b-photo-fast start
+2026-10-06 14:10:14 j7b-photo-fast rc=1 14:10:13   ! step 41 (waitFor): waitFor model-advice never went away in 3000 ms
+2026-10-06 14:11:07 cool start
+2026-10-06 14:11:09 cool rc=0 14:11:08 3 passed, 0 failed, 0 screenshots → <worktree>/docs/qa/ios-device-pass-37/screens
+2026-10-06 14:11:19 cool2 start
+2026-10-06 14:12:59 cool2 rc=0 14:12:58 3 passed, 0 failed, 0 screenshots → <worktree>/docs/qa/ios-device-pass-37/screens
+2026-10-06 14:13:05 j7c-photo-fast-again start
+2026-10-06 14:13:55 j7c-photo-fast-again rc=0 14:13:54 37 passed, 0 failed, 3 screenshots → <worktree>/docs/qa/ios-device-pass-37/screens
+2026-10-06 14:14:06 j8-settings-vault-stop start
+2026-10-06 14:14:39 j8-settings-vault-stop rc=0 14:14:39 38 passed, 0 failed, 4 screenshots → <worktree>/docs/qa/ios-device-pass-37/screens
+2026-10-06 14:15:14 twin uninstalled 14:15:13 rc=0; apps: com.inbornapp.mobile 1.0.0 36;com.inbornapp.mobile.uitests.xctrunner 1.0 1;

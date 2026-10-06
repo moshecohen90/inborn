@@ -1,0 +1,30 @@
+Gates in <worktree>, corepack pnpm@10.34.5, INBORN_MODELS_DIR=MODELS_DIR on the main checkout's .models
+== install --frozen-lockfile start 13:35:54
+== install --frozen-lockfile rc=0 end 13:36:07
+== typecheck start 13:36:07
+== typecheck rc=0 end 13:36:16
+== lint start 13:36:16
+== lint rc=0 end 13:36:23
+== test start 13:36:23
+== test rc=0 end 13:36:42
+GATES-DONE
+
+== pnpm -r --no-bail test (13:36, alongside the archive):
+apps/desktop test: # tests 4
+apps/desktop test: # pass 4
+apps/desktop test: # fail 0
+packages/ui test:       Tests  23 passed (23)
+packages/i18n test:       Tests  24 passed (24)
+packages/core test:       Tests  1335 passed | 4 skipped (1339)
+apps/mobile test:       Tests  1407 passed (1407)
+
+== check:store (after the archive, in-tree archive present), rc=0:
+PASS: all fields within limits.
+  apps/mobile/ios/build/Inborn.xcarchive (iOS archive): OK: <worktree>/apps/mobile/ios/build/Inborn.xcarchive contains no QA bridge
+PASS: 1 shipping artifact(s) carry no QA bridge.
+  apps/mobile/ios/build/Inborn.xcarchive (models): OK instant instant.gguf 532517120 B sha256 matches the catalog
+  apps/mobile/ios/build/Inborn.xcarchive (models): OK vision-qwen35 vision-qwen35.gguf 204987232 B sha256 matches the catalog
+OK: iPhone UDID is in no commit patch
+OK: OnePlus 6T serial is in no commit patch
+OK: ASC key id is in no commit patch
+PASS: no personal identifier in the history of HEAD

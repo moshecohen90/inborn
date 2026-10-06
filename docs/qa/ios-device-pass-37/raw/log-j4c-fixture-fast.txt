@@ -1,0 +1,47 @@
+14:00:33 pushing 41 steps as j4c-fixture-fast
+14:00:57 shot J4-04-attached
+14:01:00 shot J4-05-reading
+14:03:35 shot J4-05-summary
+14:03:40 shot J4-05-ledger
+14:03:43 ok     0 deeplink   /chats
+14:03:43 ok     1 waitFor    new-chat appeared
+14:03:43 ok     2 press      new-chat ← onPress
+14:03:43 ok     3 waitFor    start-chat appeared
+14:03:43 ok     4 press      start-chat ← onPress
+14:03:43 ok     5 waitFor    composer-input appeared
+14:03:43 ok     6 waitFor    Loading gone
+14:03:43 ok     7 sleep      1500 ms
+14:03:43 ok     8 value      FAST
+14:03:43 ok     9 assertText "FAST" present
+14:03:43 ok    10 devPrompt  attach: constitution-9pages.pdf
+14:03:43 ok    11 waitFor    attached-docs appeared
+14:03:43 ok    12 sleep      20000 ms
+14:03:43 ok    13 value      constitution-9pages.pdf
+14:03:43 ok    14 screenshot J4-04-attached
+14:03:43 ok    15 type       composer-input = 19 chars
+14:03:43 ok    16 send       send ← onPress
+14:03:43 ok    17 waitFor    reading-pages appeared
+14:03:43 ok    18 value      Reading pages 1–2 of 9…
+14:03:43 ok    19 waitFor    docs-hold gone
+14:03:43 ok    20 screenshot J4-05-reading
+14:03:43 ok    21 waitFor    reading-pages gone
+14:03:43 ok    22 waitFor    assistant-text appeared
+14:03:43 ok    23 waitFor    stop gone
+14:03:43 ok    24 sleep      2500 ms
+14:03:43 ok    25 value      This file is a summary of the provisions from the United States Constitution, specifically covering its struct
+14:03:43 ok    26 value      SOURCES constitution-9pages.pdf · p.1 constitution-9pages.pdf · p.3 constitution-9pages.pdf · p.5 constitution
+14:03:43 ok    27 assertText "Summary of all 9 pages." present
+14:03:43 ok    28 screenshot J4-05-summary
+14:03:43 ok    29 dump       J4-05-summary
+14:03:43 ok    30 assertText "The request specifies" absent
+14:03:43 ok    31 assertText "I will focus" absent
+14:03:43 ok    32 assertText "as an AI" absent
+14:03:43 ok    33 assertText "NOT_FOUND" absent
+14:03:43 ok    34 assertText "<<<" absent
+14:03:43 ok    35 assertText "The user is asking" absent
+14:03:43 ok    36 assertText "Nothing in your documents matched this question" absent
+14:03:43 ok    37 press      ledger-toggle ← onPress
+14:03:43 ok    38 sleep      1200 ms
+14:03:43 ok    39 value      MODEL FAST QUANT Q4_K CONTEXT 1268 / 4096 MS / TOKEN 107 ms More detail · PRO
+14:03:43 ok    40 screenshot J4-05-ledger
+14:03:43 41 passed, 0 failed, 4 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-37/docs/qa/ios-device-pass-37/screens
