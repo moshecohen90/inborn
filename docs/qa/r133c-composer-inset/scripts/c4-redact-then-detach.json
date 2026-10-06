@@ -1,0 +1,61 @@
+{
+  "runId": "c4-redact-then-detach",
+  "_": "A draft shows the Redact row over the attached-file row (03); then the draft is cleared and the file detached (04): the end follows the composer down, no gap left.",
+  "steps": [
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "My name is Dana and my phone is 555-0100"
+    },
+    {
+      "op": "waitFor",
+      "testID": "redact-bar",
+      "timeoutMs": 10000
+    },
+    {
+      "op": "sleep",
+      "ms": 3000
+    },
+    {
+      "op": "screenshot",
+      "name": "03-redact-row"
+    },
+    {
+      "op": "dump",
+      "name": "03-redact-row"
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": ""
+    },
+    {
+      "op": "waitFor",
+      "testID": "redact-bar",
+      "gone": true,
+      "timeoutMs": 10000
+    },
+    {
+      "op": "press",
+      "testID": "attached-chip-muwn8004-1-4dg4amiq"
+    },
+    {
+      "op": "waitFor",
+      "testID": "attached-docs",
+      "gone": true,
+      "timeoutMs": 10000
+    },
+    {
+      "op": "sleep",
+      "ms": 3000
+    },
+    {
+      "op": "screenshot",
+      "name": "04-detached"
+    },
+    {
+      "op": "dump",
+      "name": "04-detached"
+    }
+  ]
+}

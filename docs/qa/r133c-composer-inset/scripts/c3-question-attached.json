@@ -1,0 +1,60 @@
+{
+  "runId": "c3-question-attached",
+  "_": "'Who can veto a bill?' with the file still attached: the index-model card's Download (dev-vault.txt did not install it in r133A), then the answer's chips and LEDGER above the attached-file row.",
+  "steps": [
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "Who can veto a bill?"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "waitFor",
+      "testID": "docs-hold-download",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "02a-hold-card"
+    },
+    {
+      "op": "press",
+      "testID": "docs-hold-download"
+    },
+    {
+      "op": "waitFor",
+      "testID": "docs-hold",
+      "gone": true,
+      "timeoutMs": 600000
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "timeoutMs": 120000
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 600000
+    },
+    {
+      "op": "sleep",
+      "ms": 3000
+    },
+    {
+      "op": "screenshot",
+      "name": "02-question-attached"
+    },
+    {
+      "op": "dump",
+      "name": "02-question-attached"
+    }
+  ]
+}

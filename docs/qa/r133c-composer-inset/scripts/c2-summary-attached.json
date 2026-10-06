@@ -1,0 +1,62 @@
+{
+  "runId": "c2-summary-attached",
+  "_": "The 9-page fixture attached, 'Summarize it' on Instant; shot with the file still attached: the SOURCES chips and the LEDGER line above the attached-file row.",
+  "steps": [
+    {
+      "op": "deeplink",
+      "url": "/"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "devPrompt",
+      "lines": [
+        "attach: constitution-9pages.pdf"
+      ]
+    },
+    {
+      "op": "sleep",
+      "ms": 45000
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "Summarize it"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "waitFor",
+      "testID": "reading-pages",
+      "timeoutMs": 180000
+    },
+    {
+      "op": "waitFor",
+      "testID": "reading-pages",
+      "gone": true,
+      "timeoutMs": 900000
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 600000
+    },
+    {
+      "op": "sleep",
+      "ms": 3000
+    },
+    {
+      "op": "screenshot",
+      "name": "01-summary-attached"
+    },
+    {
+      "op": "dump",
+      "name": "01-summary-attached"
+    }
+  ]
+}
