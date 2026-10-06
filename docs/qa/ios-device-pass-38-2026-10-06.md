@@ -212,3 +212,31 @@ Everything that looked wrong, slow, confusing, surprising or inconsistent:
 - The phone was unlocked at every check and was never locked or unlocked by this pass. No setting was changed, no
   account touched. No simulator, no XCUITest runner, port 8787 not touched. Every driver, build, memory sampler and
   syslog capture this pass started has exited.
+
+## Finding 2 diagnosis (17:14–17:37)
+
+The twin was reinstalled twice more, on Instant and then on Fast, for the controlled experiment (details and his
+file's lines only under `private/finding2.md`). Each time it was uninstalled again afterwards (17:26:00, 17:36:41).
+
+In chat, every turn with a PDF asks twice (`bestPage` at Chat.tsx:952, then `buildPrompt` at Chat.tsx:654). Only the
+very first query embedding after the embedder loads is whole (cos 0.82–0.85, 6 KEPT). That one is bestPage's, so it is
+thrown away. Every later ask scores 0.791–0.802 and uses nothing, whether in chat (a)(c) or in the sheet (b), before
+and after a relaunch, on Instant and on Fast. Four different questions produced the same answering vector.
+
+Hypothesis: llama.rn 0.12.9 reuses the previous call's token prefix in `embedding()`, so mean pooling covers only the
+new suffix (only the final token for a repeated text). The doors embed-e5 (alone 0.82, corroborate 0.815,
+minBm25 2.0) are missed by every answering hit. The constitution still answers through bm25 alone. Not fixed.
+
+## Handover: update (17:36–17:38)
+
+- Before: store app 1.0.0 (37). Its data container held `Documents/models/vault.json` (826 B), the Fast gguf
+  (1.19 GB), one document (111 KB) and `SQLite/inborn.db` + wal (1.1 MB, the chats).
+- `devicectl device install app` of `Inborn-38.xcarchive/Products/Applications/Inborn.app` (com.inbornapp.mobile,
+  CFBundleVersion 38): 17:36:57 → 17:37:26, rc 0. `device info apps` lists com.inbornapp.mobile **1.0.0 (38)**.
+- One launch at 17:37:35, no taps.
+- After the launch, the same files are there with the same sizes: vault.json, the Fast gguf, the document, inborn.db
+  + wal 1.1 MB. The only difference in the listing is the system's splash snapshot folder.
+- The store app had no index model before the update, so none is there after it.
+- First screen: a new chat on FAST, "Nothing leaves this phone." (`screens/S01-store-first-screen-38.png`). The app
+  is left running there.
+- No setting changed, no lock/unlock, no sign-in, the xctrunner was not touched, and nothing was uploaded.
