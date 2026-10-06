@@ -26,6 +26,8 @@ export interface DocsTurnInput {
   blocked?: AttachmentBlock;
   /** The model sees a page picture of an attached file in this conversation. */
   seesPage?: boolean;
+  /** The turn is about the conversation, not the files (`isPlainChatTurn`): plain chat, nothing to search. */
+  smallTalk?: boolean;
 }
 
 /* A picture attached as a file is read for its text, and a photo of a door has none: OCR on it is a dead end, the Photo button is not. */
@@ -62,8 +64,8 @@ export function askSheetRoute({ noAnswer }: { noAnswer: boolean }): "not-found" 
   return noAnswer ? "not-found" : "answer";
 }
 
-export function saysNoneMatched({ continuing, attachedCount, usedPassages }: { continuing: boolean; attachedCount: number; usedPassages: number }): boolean {
-  return !continuing && attachedCount > 0 && usedPassages === 0;
+export function saysNoneMatched({ continuing, attachedCount, usedPassages, smallTalk = false }: { continuing: boolean; attachedCount: number; usedPassages: number; smallTalk?: boolean }): boolean {
+  return !continuing && !smallTalk && attachedCount > 0 && usedPassages === 0;
 }
 
 /* "The report states…" with no passage in the prompt can only be invented (round 130); a denial ("does not mention") is not a claim. */
@@ -92,7 +94,8 @@ export function askStatsLine(stats: string | null, detailed: boolean): string | 
   return detailed ? stats : null;
 }
 
-export function planDocsTurn({ strict, hasAttachment, hasIndex, indexing = false, blocked = null, seesPage = false }: DocsTurnInput): DocsTurn {
+export function planDocsTurn({ strict, hasAttachment, hasIndex, indexing = false, blocked = null, seesPage = false, smallTalk = false }: DocsTurnInput): DocsTurn {
+  if (smallTalk) return { kind: "model" };
   if (hasAttachment && indexing) return { kind: "wait" };
   if (hasIndex) return { kind: "retrieve" };
   /* Round 132: a scan with no text layer is answered from its page picture; the OCR refusal is for a model that cannot see it. */
@@ -111,14 +114,16 @@ export interface IndexHoldInput {
   wordsAccepted: boolean;
   /** What the turn sends already holds every attached file whole (`coversAttachments`). */
   coveredWhole?: boolean;
+  /** The turn is about the conversation, not the files (`isPlainChatTurn`). */
+  smallTalk?: boolean;
 }
 
 /**
  * Round 93: a file with no index model behind it is searched by its words only, which finds a fact the question names
  * but misses one it paraphrases. Send stops once so the user decides: fetch the index model, or go on with words.
  */
-export function planIndexHold({ attached, embedder, wordsAccepted, coveredWhole = false }: IndexHoldInput): "hold" | "send" {
-  if (attached === 0 || wordsAccepted || coveredWhole) return "send";
+export function planIndexHold({ attached, embedder, wordsAccepted, coveredWhole = false, smallTalk = false }: IndexHoldInput): "hold" | "send" {
+  if (attached === 0 || wordsAccepted || coveredWhole || smallTalk) return "send";
   return embedder === "missing" || embedder === "failed" ? "hold" : "send";
 }
 

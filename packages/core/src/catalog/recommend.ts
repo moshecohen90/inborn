@@ -4,6 +4,7 @@ import { tooSlowHere } from "./speed";
 import { ENGINE_VERSION, type CatalogModel, type LanguageTier, type UseCase, type UseTier } from "./types";
 import type { QuickActionId } from "../chat/quickActions";
 import { isRewriteAsk } from "../chat/length";
+import { isPlainChatTurn } from "../chat/smallTalk";
 
 /** §7.8 recommendation rule: by use, by language, on this device. Pure; the vault and the chat both call it. */
 export interface RecommendInput {
@@ -223,7 +224,8 @@ const ICON_USE: Record<string, UseCase> = { pen: "writing", globe: "translate", 
 
 /** What the user decided to do, from the strongest signal down: attached documents, a quick action, code or math in the text, dictation, the persona, else chat. */
 export function detectUse(s: UseSignals): UseCase {
-  if (s.hasDocuments) return "documents";
+  /* "thank you" or "And now" with a file attached is not a documents question, so it never earns the documents model advice. */
+  if (s.hasDocuments && !isPlainChatTurn(s.text)) return "documents";
   if (s.quickAction) return QUICK_USE[s.quickAction];
   if (looksLikeCode(s.text) || CODE_ASK.test(s.text)) return "code";
   if (looksLikeMath(s.text)) return "math";

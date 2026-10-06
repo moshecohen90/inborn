@@ -15,6 +15,7 @@ export * from "./chat/loop";
 export * from "./chat/join";
 export * from "./chat/continuation";
 export * from "./chat/length";
+export * from "./chat/smallTalk";
 export * from "./chat/export";
 export * from "./chat/language";
 export * from "./chat/detectLanguage";

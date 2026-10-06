@@ -88,7 +88,7 @@ describe("round 132 · the OCR refusal does not pre-empt a page the model sees",
   it("Chat decides whether the model sees the page before it asks the gate, and a page turn is not told 'none matched'", () => {
     const gen = chat.slice(chat.indexOf("const planTurn = () =>") - 400, chat.indexOf("const thinPage ="));
     expect(gen.indexOf("const seesPage =")).toBeLessThan(gen.indexOf("const planTurn = () =>"));
-    expect(gen).toContain("...library.attachmentState(attachKey), seesPage })");
+    expect(gen).toContain("...library.attachmentState(attachKey), seesPage, smallTalk })");
     expect(chat).toContain('if (turn.kind === "model" && saysNoneMatched(');
   });
 });

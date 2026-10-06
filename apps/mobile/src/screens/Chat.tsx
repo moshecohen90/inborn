@@ -10,6 +10,7 @@ import {
   DEFAULT_PERSONA_ID,
   isNotFoundReply,
   fileAsk,
+  isPlainChatTurn,
   type WholeFilePlan,
   groundedCitations,
   withoutEchoedLabels,
@@ -591,10 +592,12 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       if (!existingMessageId) setPhotoAdvice(null);
       /* The first message moves the attachments off the draft key, so the gate reads the key this chat has now, not the one this render captured. */
       const attachKey = incognito ? `${RAM_ATTACH_PREFIX}${chatIdNow}` : chatIdNow;
+      /* Round 133B: "thank you" or "And now" after an answer about a file is chat, not a question for the file. */
+      const smallTalk = !existingMessageId && isPlainChatTurn(lastUser) && !history[lastUserAt]?.images?.length && !photoDocIds.length;
       /* "Continue" resumes a partial answer with the passages it already saw, so the gate only decides fresh turns. */
       /* Round 130: a page picture of an attached PDF is in the conversation, so passages join it only when they bear on the question. */
       const seesPage = !existingMessageId && modelHasVision(model.id) && resolveVision(model.id) !== null && carriesPage(history, docs.context.docIds);
-      const planTurn = () => planDocsTurn({ strict: docs.strict, ...library.attachmentState(attachKey), seesPage });
+      const planTurn = () => planDocsTurn({ strict: docs.strict, ...library.attachmentState(attachKey), seesPage, smallTalk });
       let turn: ReturnType<typeof planDocsTurn> = !existingMessageId && lastUser ? planTurn() : { kind: "model" };
       /* A file the user attached is read before it is answered about, never after (QA F125/F126). */
       if (turn.kind === "wait") {
@@ -615,7 +618,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       /* A page of crumbs whose picture is not going to the model: it gets all of the page's text and is told it cannot see the rest. */
       const thinPage = !existingMessageId && !seesPage && isThinTurn(page) ? { docId: page.doc.id, page: page.page } : undefined;
       /* The turn answers from the model although files are attached: say the files are not in this answer (QA F161). */
-      if (turn.kind === "model" && saysNoneMatched({ continuing: !!existingMessageId, attachedCount: docs.documents.length, usedPassages: 0 })) setNoneMatched(true);
+      if (turn.kind === "model" && saysNoneMatched({ continuing: !!existingMessageId, attachedCount: docs.documents.length, usedPassages: 0, smallTalk })) setNoneMatched(true);
       /* F50: an explicitly prohibited request is refused before a token is generated, so the mode costs nothing when it fires. */
       if (!existingMessageId && screenText(lastUser, familySafe).flagged) {
         await answerWithoutModel("chat.familySafe.refused", undefined, "family-safe");
@@ -628,12 +631,13 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         text: lastUser,
         use: summary ? "summarize" : detectUse({ text: lastUser, personaId: persona.id, personaIcon: persona.icon, hasDocuments: docs.documents.length > 0, dictated: lastDictated }),
         continuing: !!existingMessageId,
+        smallTalk,
       });
       /* F443: a resumed turn keeps the stopped turn's system prompt, so the model goes on under the same instructions and the engine's cache still matches. */
       const lengthLine = continueFrom ? planAnswerLength({ text: lastUser, use: detectUse({ text: lastUser, personaId: persona.id, personaIcon: persona.icon, hasDocuments: docs.documents.length > 0, dictated: lastDictated }), continuing: false }).instruction : length.instruction;
       const sees = modelHasVision(model.id) && resolveVision(model.id) !== null;
       const picture = sees && history.some((m) => m.images?.length) ? (carriesPage(history, docs.context.docIds) ? "page" : "photo") : undefined;
-      const system = turnSystemPrompt({ familySafe, tier: modelTier, photos: history.some((m) => m.images?.length), picture, persona, chatPrompt: settings.systemPrompt, memory: facts, languageHint: languageHint(lastUser), length: lengthLine });
+      const system = turnSystemPrompt({ familySafe, tier: modelTier, photos: history.some((m) => m.images?.length), picture, persona, chatPrompt: settings.systemPrompt, memory: facts, languageHint: languageHint(lastUser), length: lengthLine, smallTalk });
       const prompt = buildPrompt({ system, summary: chat?.summary, summaryUpTo: chat?.summaryUpTo, messages: history.map((m, i) => ({ id: String(i), ...m })), nCtx, scale: tokenScale, reserve: replyReserve(length.maxTokens), imageTokens: imageMaxTokens(engine.id, model.id, nCtx) });
       let messages = prompt.messages;
       let scope: WholeFilePlan | null = null;
@@ -932,23 +936,26 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     if (!chatRef.current && chatBlockedByStorage()) return;
     photoGating.current = true;
     try {
-      const page = await planPage({
-        ownPhotos: pendingImages.length,
-        limit: limits(tier).imagesPerMessage,
-        attached: docs.documents,
-        canRender: hasPageRenderer(),
-        declined: pageDeclined.current,
-        /* A model that cannot see the page shown earlier gets it again, so Send offers the pack instead of a blind answer. */
-        sent: photoPlanHere(model.id, tier !== "free").kind === "send" ? rowsRef.current.flatMap((r) => r.images ?? []) : [],
-        chars: (id) => library.pageChars(id),
-        bestPage: (ids) => library.bestPage(text, ids),
-        ink: (d, n) => pageInkAt(resolveDocUri(d.uri!), n),
-      }).catch((e: unknown) => {
-        console.warn("[documents] page picture", errorText(e));
-        return null;
-      });
+      const smallTalk = isPlainChatTurn(text) && !pendingImages.length;
+      const page = smallTalk
+        ? null
+        : await planPage({
+          ownPhotos: pendingImages.length,
+          limit: limits(tier).imagesPerMessage,
+          attached: docs.documents,
+          canRender: hasPageRenderer(),
+          declined: pageDeclined.current,
+          /* A model that cannot see the page shown earlier gets it again, so Send offers the pack instead of a blind answer. */
+          sent: photoPlanHere(model.id, tier !== "free").kind === "send" ? rowsRef.current.flatMap((r) => r.images ?? []) : [],
+          chars: (id) => library.pageChars(id),
+          bestPage: (ids) => library.bestPage(text, ids),
+          ink: (d, n) => pageInkAt(resolveDocUri(d.uri!), n),
+        }).catch((e: unknown) => {
+          console.warn("[documents] page picture", errorText(e));
+          return null;
+        });
       /* A file with no index model behind it is never sent as if it were read in full (round 93); a turn that carries every attached file whole needs no index. */
-      if (planIndexHold({ attached: docs.documents.length, embedder: library.state().embedder.kind, wordsAccepted: wordsAccepted.current, coveredWhole: coversAttachments(page, docs.documents) || fileAsk(text) === "summary" }) === "hold") {
+      if (planIndexHold({ attached: docs.documents.length, embedder: library.state().embedder.kind, wordsAccepted: wordsAccepted.current, coveredWhole: coversAttachments(page, docs.documents) || fileAsk(text) === "summary", smallTalk }) === "hold") {
         setDocsHold(true);
         return;
       }

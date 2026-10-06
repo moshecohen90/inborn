@@ -70,7 +70,13 @@ export interface TurnPromptParts extends SystemPromptParts {
   photos: boolean;
   /** What the pictures the model will see are: a photo, or the picture of an attached file's page. */
   picture?: "photo" | "page" | undefined;
+  /** The user's turn is small talk or a short follow-up about the conversation (`isPlainChatTurn`). */
+  smallTalk?: boolean | undefined;
 }
+
+/* Round 133B: told nothing, Instant answered "thank you" with "I will try to answer your question again soon". */
+export const SMALL_TALK_LINE =
+  "The user's last message is small talk or a short follow-up about the conversation, not a question about the files: reply in one or two short, friendly sentences from the conversation and do not describe or mention the files.";
 
 /* Round 131: told nothing, Instant and Fast answered a picture they had been sent with "I cannot see images". */
 export const PICTURE_LINES: Readonly<Record<"photo" | "page", string>> = {
@@ -81,7 +87,8 @@ export const PICTURE_LINES: Readonly<Record<"photo" | "page", string>> = {
 /** Every chat turn's system prompt; the family-safe line, when there is one, is its last sentence. */
 export function turnSystemPrompt(p: TurnPromptParts): string {
   const body = composeSystemPrompt({ ...p, baseline: p.baseline ?? (p.tier === "instant" || p.photos ? PLAIN_SAFETY_BASELINE : SAFETY_BASELINE) });
-  const seen = p.photos && p.picture ? `${body}\n\n${PICTURE_LINES[p.picture]}` : body;
+  const pictured = p.photos && p.picture ? `${body}\n\n${PICTURE_LINES[p.picture]}` : body;
+  const seen = p.smallTalk ? `${pictured}\n\n${SMALL_TALK_LINE}` : pictured;
   const line = familySafeLine(p);
   return line ? `${seen}\n\n${line}` : seen;
 }
