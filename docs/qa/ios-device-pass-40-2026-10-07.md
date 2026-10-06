@@ -182,3 +182,18 @@ the constitution chat from the list ("What does it say about impeachment?" answe
 - The phone was unlocked at every check and was never locked or unlocked by this pass. No setting was changed, no
   account touched. No simulator, no XCUITest runner, port 8787 not touched. Every driver, build, memory sampler and
   syslog capture this pass started has exited.
+
+## Handover: update (01:56–01:57)
+
+- Before: store app 1.0.0 (39). Its data container held `Documents/models/vault.json` (826 B), the Fast gguf
+  (1.19 GB), one document (111 KB), `documents.json`, the prefs files and `SQLite/inborn.db` (4 KB) + wal (1.1 MB) + shm
+  (32 KB), the chats. No index model and no photo pack.
+- `devicectl device install app` of `Inborn-40.xcarchive/Products/Applications/Inborn.app` (com.inbornapp.mobile,
+  CFBundleVersion 40): 01:56:33 → 01:56:54, rc 0. `device info apps` lists com.inbornapp.mobile **1.0.0 (40)**.
+- One launch at 01:56:55, no taps.
+- After the launch, every file is there with the same size: vault.json 826 B, the Fast gguf 1.19 GB, the document
+  111 KB, inborn.db 4 KB + wal 1.1 MB + shm 32 KB. Only the modification times of vault.json, the shm, `licence.bin` and
+  `device-prefs.json` moved to 01:56 (the launch).
+- First screen: a new chat on FAST, "Nothing leaves this phone." with the three starter chips
+  (`screens/S01-store-first-screen-40.png`). The app is left running there.
+- No setting changed, no lock/unlock, no sign-in, the xctrunner was not touched, and nothing was uploaded.
