@@ -1,0 +1,413 @@
+{
+ "_": "J4 (134D): Documents → 'constitution-9pages.pdf' only (DOCID) → Ask: 'Summarize it' (whole file), 'thank you' → the thanks line, 'And now' → the one-question line, 'Who can veto a bill?' → a search with chips; then the document's details.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/documents"
+  },
+  {
+   "op": "waitFor",
+   "testID": "doc-select-DOCID",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "press",
+   "testID": "doc-select-DOCID"
+  },
+  {
+   "op": "sleep",
+   "ms": 1000
+  },
+  {
+   "op": "value",
+   "testID": "documents-ask-selected"
+  },
+  {
+   "op": "press",
+   "testID": "documents-ask-selected"
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-sheet",
+   "timeoutMs": 20000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "screenshot",
+   "name": "J4-01-sheet"
+  },
+  {
+   "op": "type",
+   "testID": "ask-input",
+   "text": "Summarize it"
+  },
+  {
+   "op": "press",
+   "testID": "ask-send"
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-reading-pages",
+   "timeoutMs": 120000
+  },
+  {
+   "op": "value",
+   "testID": "ask-reading-pages"
+  },
+  {
+   "op": "screenshot",
+   "name": "J4-02-reading"
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "ask-answer"
+  },
+  {
+   "op": "assertText",
+   "testID": "ask-answer",
+   "text": "Summary of all 9 pages."
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-none-matched",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-not-found",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "sleep",
+   "ms": 0
+  },
+  {
+   "op": "screenshot",
+   "name": "J4-03-summary"
+  },
+  {
+   "op": "dump",
+   "name": "J4-03-summary"
+  },
+  {
+   "op": "type",
+   "testID": "ask-input",
+   "text": "thank you"
+  },
+  {
+   "op": "press",
+   "testID": "ask-send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "ask-plain"
+  },
+  {
+   "op": "value",
+   "testID": "ask-answer"
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "assertText",
+   "text": "You're welcome. Ask another question about these documents.",
+   "testID": "ask-plain"
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-none-matched",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-not-found",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "sleep",
+   "ms": 0
+  },
+  {
+   "op": "screenshot",
+   "name": "J4-04-thank-you"
+  },
+  {
+   "op": "dump",
+   "name": "J4-04-thank-you"
+  },
+  {
+   "op": "type",
+   "testID": "ask-input",
+   "text": "And now"
+  },
+  {
+   "op": "press",
+   "testID": "ask-send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "ask-plain"
+  },
+  {
+   "op": "value",
+   "testID": "ask-answer"
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "assertText",
+   "text": "This sheet answers one question at a time",
+   "testID": "ask-plain"
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-none-matched",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-not-found",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "sleep",
+   "ms": 0
+  },
+  {
+   "op": "screenshot",
+   "name": "J4-05-and-now"
+  },
+  {
+   "op": "dump",
+   "name": "J4-05-and-now"
+  },
+  {
+   "op": "type",
+   "testID": "ask-input",
+   "text": "Who can veto a bill?"
+  },
+  {
+   "op": "press",
+   "testID": "ask-send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "ask-plain"
+  },
+  {
+   "op": "value",
+   "testID": "ask-answer"
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "assertText",
+   "testID": "ask-answer",
+   "text": "Summary of all",
+   "absent": true
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-none-matched",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-not-found",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "sleep",
+   "ms": 0
+  },
+  {
+   "op": "screenshot",
+   "name": "J4-06-veto"
+  },
+  {
+   "op": "dump",
+   "name": "J4-06-veto"
+  },
+  {
+   "op": "type",
+   "testID": "ask-input",
+   "text": "Who can veto a bill?"
+  },
+  {
+   "op": "press",
+   "testID": "ask-send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "ask-plain"
+  },
+  {
+   "op": "value",
+   "testID": "ask-answer"
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "sleep",
+   "ms": 0
+  },
+  {
+   "op": "screenshot",
+   "name": "J4-07-veto-again"
+  },
+  {
+   "op": "dump",
+   "name": "J4-07-veto-again"
+  },
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "deeplink",
+   "url": "/documents"
+  },
+  {
+   "op": "waitFor",
+   "testID": "doc-row-DOCID",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "press",
+   "testID": "doc-row-DOCID"
+  },
+  {
+   "op": "waitFor",
+   "testID": "doc-details",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "doc-details"
+  },
+  {
+   "op": "assertText",
+   "text": "embed-e5",
+   "testID": "doc-details"
+  },
+  {
+   "op": "assertText",
+   "text": "@2",
+   "testID": "doc-details",
+   "absent": true
+  },
+  {
+   "op": "sleep",
+   "ms": 0
+  },
+  {
+   "op": "screenshot",
+   "name": "J4-08-details"
+  },
+  {
+   "op": "dump",
+   "name": "J4-08-details"
+  }
+ ]
+}

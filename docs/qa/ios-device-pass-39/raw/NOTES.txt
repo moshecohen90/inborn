@@ -1,0 +1,71 @@
+2026-10-06 18:41:45 start ios-build-39; worktree at f353c5b1, commit 89dc36ce (89dc36ce8409) buildNumber 38->39 + guard + ignore line; gates rc 0 first run; archive 18:30:59->18:35:42 ok
+2026-10-06 18:41:47 phone before twin: passcodeRequired: false; apps: com.inbornapp.mobile 1.0.0 38;com.inbornapp.mobile.uitests.xctrunner 1.0 1;
+2026-10-06 18:42:08 twin installed 18:41:47 -> 18:42:08 rc=0
+2026-10-06 18:42:24 j1-onboard start
+2026-10-06 18:42:26 j1-onboard rc=1 
+2026-10-06 18:42:33 j1-onboard-r2 start
+2026-10-06 18:52:36 j1-onboard-r2 rc=1 18:52:35 NO RESULT after 602 s; last progress: null
+2026-10-06 18:52:55 j1-onboard-r3 start
+2026-10-06 19:02:12 j1-onboard-r3 rc=1 19:02:12 NO RESULT after 542 s; last progress: null
+2026-10-06 19:03:10 j1 r1-r3 NO RESULT: the first push (before any launch) made Documents/qa/in through devicectl; at launch the bridge could not create qa/out (Err513 'no permission to save', no boot.json), so it never watched. Reinstalling the twin fresh; the first run launches before any push
+2026-10-06 19:03:11 twin uninstalled rc=0
+2026-10-06 19:03:38 twin reinstalled fresh 19:03:11 -> 19:03:38 rc=0
+2026-10-06 19:03:39 launched (no script) rc=0
+2026-10-06 19:03:58 j1-onboard-r4 start
+2026-10-06 19:05:52 j1-onboard-r4 rc=0 19:05:51 52 passed, 0 failed, 7 screenshots → <worktree>/docs/qa/ios-device-pass-39/screens
+2026-10-06 19:06:10 j2-install-fast start
+2026-10-06 19:06:10 push 5 fixtures (the founder's file under a neutral name)
+2026-10-06 19:07:39 j2-install-fast rc=0 19:07:38 38 passed, 0 failed, 6 screenshots → <worktree>/docs/qa/ios-device-pass-39/screens
+2026-10-06 19:07:51 j3-constitution start
+2026-10-06 19:07:52 j3-constitution preflight push failed (try 1)
+2026-10-06 19:13:15 j3-constitution rc=1 19:13:14   ! step 14 (press): press model-sheet-close: not mounted
+2026-10-06 19:14:05 mark p3 start
+2026-10-06 19:14:05 p3-founder preflight push failed (try 1)
+2026-10-06 19:14:05 p3-founder start
+2026-10-06 19:20:48 mark p3 end
+2026-10-06 19:20:48 p3-founder rc=1 (private: details in private/)
+2026-10-06 19:21:27 p0-lists start
+2026-10-06 19:21:44 p0-lists rc=0 (private: details in private/)
+2026-10-06 19:21:53 mark p4 start
+2026-10-06 19:21:53 p4-sheet start
+2026-10-06 19:22:39 mark p4 end
+2026-10-06 19:22:39 p4-sheet rc=1 (private: details in private/)
+2026-10-06 19:22:48 j3b-veto start
+2026-10-06 19:22:48 mark j3b start
+2026-10-06 19:24:18 j3b-veto rc=0 19:24:17 44 passed, 0 failed, 4 screenshots → <worktree>/docs/qa/ios-device-pass-39/screens
+2026-10-06 19:24:28 j4-sheet start
+2026-10-06 19:24:28 mark j4 start
+2026-10-06 19:28:44 j4-sheet rc=1 19:28:43   ! step 71 (value): value ask-plain: no node with that testID is mounted
+2026-10-06 19:28:55 j3c-shorter-direct start
+2026-10-06 19:34:37 j3c-shorter-direct rc=1 19:34:36   ! step 12 (press): press model-sheet-use-fast: not mounted
+2026-10-06 19:36:52 j5a-scan-instant start
+2026-10-06 19:36:52 mark j5a-scan-instant start
+2026-10-06 19:37:55 j5a-scan-instant rc=1 19:37:54   ! step 14 (press): press model-sheet-close: not mounted
+2026-10-06 19:37:55 j5b-cafe-instant start
+2026-10-06 19:37:55 mark j5a-scan-instant end
+2026-10-06 19:37:55 mark j5b-cafe-instant start
+2026-10-06 19:38:50 j5b-cafe-instant rc=1 19:38:49   ! step 12 (press): press model-sheet-use-instant: not mounted
+2026-10-06 19:38:50 mark j5b-cafe-instant end
+2026-10-06 19:38:59 j5c-cafe-fast start
+2026-10-06 19:38:59 mark j5c-cafe-fast start
+2026-10-06 23:15:29 RESUME after the outage (19:41-23:14): j5c finished on the phone, its result copied from the container; J5-09-colours screenshot lost (driver gone). Restarting syslog and memory captures
+2026-10-06 23:15:42 j6-story start
+2026-10-06 23:15:42 mark j6 start
+2026-10-06 23:24:25 j6-story rc=1 23:24:24   ! step 129 (value): value banners: no node with that testID is mounted
+2026-10-06 23:24:25 mark j6 end
+2026-10-06 23:24:57 j7-settings-stop start
+2026-10-06 23:24:57 mark j7-settings-stop start
+2026-10-06 23:26:26 j7-settings-stop rc=1 23:26:26   ! step 39 (assertText): assertText "Paris" is not on screen under assistant-text
+2026-10-06 23:26:26 j9-explore start
+2026-10-06 23:26:26 mark j7-settings-stop end
+2026-10-06 23:26:26 mark j9-explore start
+2026-10-06 23:29:59 j9-explore rc=1 23:29:58   ! step 122 (press): press documents-close: not mounted
+2026-10-06 23:29:59 mark j9-explore end
+2026-10-06 23:30:16 p0-lists-r2 start
+2026-10-06 23:30:33 p0-lists-r2 rc=0 (private: details in private/)
+2026-10-06 23:30:42 j9b-explore start
+2026-10-06 23:30:42 mark j9b start
+2026-10-06 23:32:20 j9b-explore rc=1 23:32:19   ! step 16 (value): value citations: no node with that testID is mounted
+2026-10-06 23:32:20 mark j9b end
+2026-10-06 23:33:16 twin uninstalled 23:33:13 rc=0; apps: com.inbornapp.mobile 1.0.0 38;com.inbornapp.mobile.uitests.xctrunner 1.0 1;
+2026-10-06 23:38:46 handover: update — install 23:37:41->23:38:03 rc=0, com.inbornapp.mobile 1.0.0 (39), one launch 23:38:07 no taps, container sizes identical before/after

@@ -1,0 +1,1184 @@
+{
+  "runId": "j3c-shorter-direct",
+  "startedAt": "2026-10-06T16:28:57.064Z",
+  "finishedAt": "2026-10-06T16:34:34.073Z",
+  "ok": false,
+  "passed": 81,
+  "failed": 1,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 155,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 175,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1515,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 9,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "model-chip ← onPress"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "model-sheet appeared"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1507,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 12,
+      "op": "press",
+      "ok": false,
+      "ms": 2,
+      "detail": "press model-sheet-use-fast: not mounted"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3015,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 14,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "model-sheet-close ← onPress"
+    },
+    {
+      "i": 15,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 17,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 18,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"FAST\" present"
+    },
+    {
+      "i": 19,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 165,
+      "detail": "attach: constitution-9pages.pdf"
+    },
+    {
+      "i": 20,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1067,
+      "detail": "attached-docs appeared"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 10001,
+      "detail": "10000 ms"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "constitution-9pages.pdf",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "constitution-9pages.pdf"
+    },
+    {
+      "i": 23,
+      "op": "type",
+      "ok": true,
+      "ms": 166,
+      "detail": "composer-input = 12 chars"
+    },
+    {
+      "i": 24,
+      "op": "send",
+      "ok": true,
+      "ms": 245,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 25,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-pages appeared"
+    },
+    {
+      "i": 26,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Reading pages 1–2 of 9…",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Reading pages 1–2 of 9…"
+    },
+    {
+      "i": 27,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 28,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 7294,
+      "detail": "J3c-01-reading"
+    },
+    {
+      "i": 29,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 152005,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 30,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 12810,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 31,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 46029,
+      "detail": "stop gone"
+    },
+    {
+      "i": 32,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2500,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 33,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "The provided document is a summary of the United States Constitution . Its main points are: • [1] The Constitution creates a bicameral Congress with the House elected every two years and Senators appointed for six-year terms; the House holds sole impeachment trial power, while the Senate handles impeachments requiring a two-thirds majority. • [2] Bills must originate in the House before reaching the Senate, which can propose or concur with amendments. The President signs bills to make them law (or they take effect automatically unless Congress adjourns); if the President returns an objection within ten days, it requires a two-thirds vote in both houses to pass again. • [3] The President is elected for four years and serves as Commander in Chief; federal officers can be impeached only for high crimes and misdemeanors, and their salary remains fixed during their term. • [4] Treason is limited to levying war or aiding foreign enemies and requires two witnesses for conviction. The document mandates full faith and credit among states and protects each state's right to a republican form of government against invasion and domestic violence. • [5] The Constitution outlines the process for amending it via Congress (two-thirds proposal) or a convention called by two-thirds of state legislatures, requiring ratification from three-fourths of the states. It declares federal laws and treaties as supreme law over state judges and requires oaths from national leaders to support the Constitution. Summary of all 9 pages.",
+        "props": {
+          "source": "The provided document is a summary of the **United States Constitution**. Its main points are:\n\n*   [1] The Constitution creates a bicameral Congress with the House elected every two years and Senators appointed for six-year terms; the House holds sole impeachment trial power, while the Senate handles impeachments requiring a two-thirds majority.\n*   [2] Bills must originate in the House before reaching the Senate, which can propose or concur with amendments. The President signs bills to make them law (or they take effect automatically unless Congress adjourns); if the President returns an objection within ten days, it requires a two-thirds vote in both houses to pass again.\n*   [3] The President is elected for four years and serves as Commander in Chief; federal officers can be impeached only for high crimes and misdemeanors, and their salary remains fixed during their term.\n*   [4] Treason is limited to levying war or aiding foreign enemies and requires two witnesses for conviction. The document mandates full faith and credit among states and protects each state's right to a republican form of government against invasion and domestic violence.\n*   [5] The Constitution outlines the process for amending it via Congress (two-thirds proposal) or a convention called by two-thirds of state legislatures, requiring ratification from three-fourths of the states. It declares federal laws and treaties as supreme law over state judges and requires oaths from national leaders to support the Constitution.\n\n*Summary of all 9 pages.*",
+          "disabled": false
+        }
+      },
+      "detail": "The provided document is a summary of the United States Constitution . Its main points are: • [1] The Constitution creates a bicameral Congress with the House elected every two years and Senators appo"
+    },
+    {
+      "i": 34,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+    },
+    {
+      "i": 35,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "constitution-9pages.pdf",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "constitution-9pages.pdf"
+    },
+    {
+      "i": 36,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Summary of all 9 pages.\" present"
+    },
+    {
+      "i": 37,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"p.1–\" present"
+    },
+    {
+      "i": 38,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3483,
+      "detail": "J3c-01-summary"
+    },
+    {
+      "i": 39,
+      "op": "dump",
+      "ok": true,
+      "ms": 3,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The provided document is a summary of the United States Constitution . Its main points are: • [1] The Constitution creates a bicameral Congress with the House elected every two years and Senators appointed for six-year terms; the House holds sole impeachment trial power, while the Senate handles impeachments requiring a two-thirds majority. • [2] Bills must originate in the House before reaching the Senate, which can propose or concur with amendments. The President signs bills to make them law (or they take effect automatically unless Congress adjourns); if the President returns an objection within ten days, it requires a two-thirds vote in both houses to pass again. • [3] The President is elected for four years and serves as Commander in Chief; federal officers can be impeached only for high crimes and misdemeanors, and their salary remains fixed during their term. • [4] Treason is limited to levying war or aiding foreign enemies and requires two witnesses for conviction. The document mandates full faith and credit among states and protects each state's right to a republican form of government against invasion and domestic violence. • [5] The Constitution outlines the process for amending it via Congress (two-thirds proposal) or a convention called by two-thirds of state legislatures, requiring ratification from three-fourths of the states. It declares federal laws and treaties as supreme law over state judges and requires oaths from national leaders to support the Constitution. Summary of all 9 pages. [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The provided document is a summary of the United States Constitution . Its main points are: • [1] The Constitution creates a bicameral Congress with the House elected every two years and Senators appointed for six-year terms; the House holds sole impeachment trial power, while the Senate handles impeachments requiring a two-thirds majority. • [2] Bills must originate in the House before reaching the Senate, which can propose or concur with amendments. The President signs bills to make them law (or they take effect automatically unless Congress adjourns); if the President returns an objection within ten days, it requires a two-thirds vote in both houses to pass again. • [3] The President is elected for four years and serves as Commander in Chief; federal officers can be impeached only for high crimes and misdemeanors, and their salary remains fixed during their term. • [4] Treason is limited to levying war or aiding foreign enemies and requires two witnesses for conviction. The document mandates full faith and credit among states and protects each state's right to a republican form of government against invasion and domestic violence. • [5] The Constitution outlines the process for amending it via Congress (two-thirds proposal) or a convention called by two-thirds of state legislatures, requiring ratification from three-fourths of the states. It declares federal laws and treaties as supreme law over state judges and requires oaths from national leaders to support the Constitution. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muwvhmt8-1-b4v9vv5s",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J3c-01-summary"
+    },
+    {
+      "i": 40,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"The request specifies\" absent"
+    },
+    {
+      "i": 41,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"I will focus\" absent"
+    },
+    {
+      "i": 42,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"as an AI\" absent"
+    },
+    {
+      "i": 43,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"NOT_FOUND\" absent"
+    },
+    {
+      "i": 44,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"<<<\" absent"
+    },
+    {
+      "i": 45,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"The user is asking\" absent"
+    },
+    {
+      "i": 46,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "ledger-toggle ← onPress"
+    },
+    {
+      "i": 47,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1201,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 48,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "MODEL FAST QUANT Q4_K CONTEXT 1214 / 4096 MS / TOKEN 153 ms More detail · PRO",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "MODEL FAST QUANT Q4_K CONTEXT 1214 / 4096 MS / TOKEN 153 ms More detail · PRO"
+    },
+    {
+      "i": 49,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2854,
+      "detail": "J3c-01-ledger"
+    },
+    {
+      "i": 50,
+      "op": "press",
+      "ok": true,
+      "ms": 160,
+      "detail": "ledger-toggle ← onPress"
+    },
+    {
+      "i": 51,
+      "op": "sleep",
+      "ok": true,
+      "ms": 817,
+      "detail": "800 ms"
+    },
+    {
+      "i": 52,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 7 chars"
+    },
+    {
+      "i": 53,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 54,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 55,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 56,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 57,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 46792,
+      "detail": "stop gone"
+    },
+    {
+      "i": 58,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2500,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 59,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "The provided document is a summary of the United States Constitution . Its main points are: • [1] The Constitution creates a bicameral Congress with the House elected every two years and Senators appointed for six-year terms; the House holds sole impeachment trial power, while the Senate handles impeachments requiring a two-thirds majority. • [2] Bills must originate in the House before reaching the Senate, which can propose or concur with amendments. The President signs bills to make them law (or they take effect automatically unless Congress adjourns); if the President returns an objection within ten days, it requires a two-thirds vote in both houses to pass again. • [3] The President is elected for four years and serves as Commander in Chief; federal officers can be impeached only for high crimes and misdemeanors, and their salary remains fixed during their term. • [4] Treason is limited to levying war or aiding foreign enemies and requires two witnesses for conviction. The document mandates full faith and credit among states and protects each state's right to a republican form of government against invasion and domestic violence. • [5] The Constitution outlines the process for amending it via Congress (two-thirds proposal) or a convention called by two-thirds of state legislatures, requiring ratification from three-fourths of the states. It declares federal laws and treaties as supreme law over state judges and requires oaths from national leaders to support the Constitution. Summary of all 9 pages.",
+        "props": {
+          "source": "The provided document is a summary of the **United States Constitution**. Its main points are:\n\n*   [1] The Constitution creates a bicameral Congress with the House elected every two years and Senators appointed for six-year terms; the House holds sole impeachment trial power, while the Senate handles impeachments requiring a two-thirds majority.\n*   [2] Bills must originate in the House before reaching the Senate, which can propose or concur with amendments. The President signs bills to make them law (or they take effect automatically unless Congress adjourns); if the President returns an objection within ten days, it requires a two-thirds vote in both houses to pass again.\n*   [3] The President is elected for four years and serves as Commander in Chief; federal officers can be impeached only for high crimes and misdemeanors, and their salary remains fixed during their term.\n*   [4] Treason is limited to levying war or aiding foreign enemies and requires two witnesses for conviction. The document mandates full faith and credit among states and protects each state's right to a republican form of government against invasion and domestic violence.\n*   [5] The Constitution outlines the process for amending it via Congress (two-thirds proposal) or a convention called by two-thirds of state legislatures, requiring ratification from three-fourths of the states. It declares federal laws and treaties as supreme law over state judges and requires oaths from national leaders to support the Constitution.\n\n*Summary of all 9 pages.*",
+          "disabled": false
+        }
+      },
+      "detail": "The provided document is a summary of the United States Constitution . Its main points are: • [1] The Constitution creates a bicameral Congress with the House elected every two years and Senators appo"
+    },
+    {
+      "i": 60,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 61,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "none-matched gone"
+    },
+    {
+      "i": 62,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"468 MB\" absent"
+    },
+    {
+      "i": 63,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"Nothing in your documents matched this question\" absent"
+    },
+    {
+      "i": 64,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"welcome\" absent"
+    },
+    {
+      "i": 65,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Welcome\" absent"
+    },
+    {
+      "i": 66,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 4440,
+      "detail": "J3c-02-shorter"
+    },
+    {
+      "i": 67,
+      "op": "dump",
+      "ok": true,
+      "ms": 4,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The provided document is a summary of the United States Constitution . Its main points are: • [1] The Constitution creates a bicameral Congress with the House elected every two years and Senators appointed for six-year terms; the House holds sole impeachment trial power, while the Senate handles impeachments requiring a two-thirds majority. • [2] Bills must originate in the House before reaching the Senate, which can propose or concur with amendments. The President signs bills to make them law (or they take effect automatically unless Congress adjourns); if the President returns an objection within ten days, it requires a two-thirds vote in both houses to pass again. • [3] The President is elected for four years and serves as Commander in Chief; federal officers can be impeached only for high crimes and misdemeanors, and their salary remains fixed during their term. • [4] Treason is limited to levying war or aiding foreign enemies and requires two witnesses for conviction. The document mandates full faith and credit among states and protects each state's right to a republican form of government against invasion and domestic violence. • [5] The Constitution outlines the process for amending it via Congress (two-thirds proposal) or a convention called by two-thirds of state legislatures, requiring ratification from three-fourths of the states. It declares federal laws and treaties as supreme law over state judges and requires oaths from national leaders to support the Constitution. Summary of all 9 pages. [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The provided document is a summary of the United States Constitution . Its main points are: • [1] The Constitution creates a bicameral Congress with the House elected every two years and Senators appointed for six-year terms; the House holds sole impeachment trial power, while the Senate handles impeachments requiring a two-thirds majority. • [2] Bills must originate in the House before reaching the Senate, which can propose or concur with amendments. The President signs bills to make them law (or they take effect automatically unless Congress adjourns); if the President returns an objection within ten days, it requires a two-thirds vote in both houses to pass again. • [3] The President is elected for four years and serves as Commander in Chief; federal officers can be impeached only for high crimes and misdemeanors, and their salary remains fixed during their term. • [4] Treason is limited to levying war or aiding foreign enemies and requires two witnesses for conviction. The document mandates full faith and credit among states and protects each state's right to a republican form of government against invasion and domestic violence. • [5] The Constitution outlines the process for amending it via Congress (two-thirds proposal) or a convention called by two-thirds of state legislatures, requiring ratification from three-fourths of the states. It declares federal laws and treaties as supreme law over state judges and requires oaths from national leaders to support the Constitution. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muwvhmt8-1-b4v9vv5s",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J3c-02-shorter"
+    },
+    {
+      "i": 68,
+      "op": "type",
+      "ok": true,
+      "ms": 158,
+      "detail": "composer-input = 23 chars"
+    },
+    {
+      "i": 69,
+      "op": "send",
+      "ok": true,
+      "ms": 208,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 70,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 71,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 72,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 73,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 23442,
+      "detail": "stop gone"
+    },
+    {
+      "i": 74,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2515,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 75,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "The provided document is a summary of the United States Constitution . Its main points are: • [1] The Constitution creates a bicameral Congress with the House elected every two years and Senators appointed for six-year terms; the House holds sole impeachment trial power, while the Senate handles impeachments requiring a two-thirds majority. • [2] Bills must originate in the House before reaching the Senate, which can propose or concur with amendments. The President signs bills to make them law (or they take effect automatically unless Congress adjourns); if the President returns an objection within ten days, it requires a two-thirds vote in both houses to pass again. • [3] The President is elected for four years and serves as Commander in Chief; federal officers can be impeached only for high crimes and misdemeanors, and their salary remains fixed during their term. • [4] Treason is limited to levying war or aiding foreign enemies and requires two witnesses for conviction. The document mandates full faith and credit among states and protects each state's right to a republican form of government against invasion and domestic violence. • [5] The Constitution outlines the process for amending it via Congress (two-thirds proposal) or a convention called by two-thirds of state legislatures, requiring ratification from three-fourths of the states. It declares federal laws and treaties as supreme law over state judges and requires oaths from national leaders to support the Constitution. Summary of all 9 pages.",
+        "props": {
+          "source": "The provided document is a summary of the **United States Constitution**. Its main points are:\n\n*   [1] The Constitution creates a bicameral Congress with the House elected every two years and Senators appointed for six-year terms; the House holds sole impeachment trial power, while the Senate handles impeachments requiring a two-thirds majority.\n*   [2] Bills must originate in the House before reaching the Senate, which can propose or concur with amendments. The President signs bills to make them law (or they take effect automatically unless Congress adjourns); if the President returns an objection within ten days, it requires a two-thirds vote in both houses to pass again.\n*   [3] The President is elected for four years and serves as Commander in Chief; federal officers can be impeached only for high crimes and misdemeanors, and their salary remains fixed during their term.\n*   [4] Treason is limited to levying war or aiding foreign enemies and requires two witnesses for conviction. The document mandates full faith and credit among states and protects each state's right to a republican form of government against invasion and domestic violence.\n*   [5] The Constitution outlines the process for amending it via Congress (two-thirds proposal) or a convention called by two-thirds of state legislatures, requiring ratification from three-fourths of the states. It declares federal laws and treaties as supreme law over state judges and requires oaths from national leaders to support the Constitution.\n\n*Summary of all 9 pages.*",
+          "disabled": false
+        }
+      },
+      "detail": "The provided document is a summary of the United States Constitution . Its main points are: • [1] The Constitution creates a bicameral Congress with the House elected every two years and Senators appo"
+    },
+    {
+      "i": 76,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 77,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "none-matched gone"
+    },
+    {
+      "i": 78,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"468 MB\" absent"
+    },
+    {
+      "i": 79,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"Nothing in your documents matched this question\" absent"
+    },
+    {
+      "i": 80,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2217,
+      "detail": "J3c-03-three-bullets"
+    },
+    {
+      "i": 81,
+      "op": "dump",
+      "ok": true,
+      "ms": 4,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The provided document is a summary of the United States Constitution . Its main points are: • [1] The Constitution creates a bicameral Congress with the House elected every two years and Senators appointed for six-year terms; the House holds sole impeachment trial power, while the Senate handles impeachments requiring a two-thirds majority. • [2] Bills must originate in the House before reaching the Senate, which can propose or concur with amendments. The President signs bills to make them law (or they take effect automatically unless Congress adjourns); if the President returns an objection within ten days, it requires a two-thirds vote in both houses to pass again. • [3] The President is elected for four years and serves as Commander in Chief; federal officers can be impeached only for high crimes and misdemeanors, and their salary remains fixed during their term. • [4] Treason is limited to levying war or aiding foreign enemies and requires two witnesses for conviction. The document mandates full faith and credit among states and protects each state's right to a republican form of government against invasion and domestic violence. • [5] The Constitution outlines the process for amending it via Congress (two-thirds proposal) or a convention called by two-thirds of state legislatures, requiring ratification from three-fourths of the states. It declares federal laws and treaties as supreme law over state judges and requires oaths from national leaders to support the Constitution. Summary of all 9 pages. [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The provided document is a summary of the United States Constitution . Its main points are: • [1] The Constitution creates a bicameral Congress with the House elected every two years and Senators appointed for six-year terms; the House holds sole impeachment trial power, while the Senate handles impeachments requiring a two-thirds majority. • [2] Bills must originate in the House before reaching the Senate, which can propose or concur with amendments. The President signs bills to make them law (or they take effect automatically unless Congress adjourns); if the President returns an objection within ten days, it requires a two-thirds vote in both houses to pass again. • [3] The President is elected for four years and serves as Commander in Chief; federal officers can be impeached only for high crimes and misdemeanors, and their salary remains fixed during their term. • [4] Treason is limited to levying war or aiding foreign enemies and requires two witnesses for conviction. The document mandates full faith and credit among states and protects each state's right to a republican form of government against invasion and domestic violence. • [5] The Constitution outlines the process for amending it via Congress (two-thirds proposal) or a convention called by two-thirds of state legislatures, requiring ratification from three-fourths of the states. It declares federal laws and treaties as supreme law over state judges and requires oaths from national leaders to support the Constitution. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muwvhmt8-1-b4v9vv5s",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "J3c-03-three-bullets"
+    }
+  ],
+  "errors": [
+    "step 12 (press): press model-sheet-use-fast: not mounted"
+  ]
+}

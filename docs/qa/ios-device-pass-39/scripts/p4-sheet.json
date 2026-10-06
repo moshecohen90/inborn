@@ -1,0 +1,227 @@
+{
+ "_": "J3 PRIVATE: Documents → the founder's file only (HISID) → Ask: 'What does it say about deleting my information?' (all KEPT, the same cosines as the chat), 'thank you', then its details: 'Index model embed-e5'.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/documents"
+  },
+  {
+   "op": "waitFor",
+   "testID": "doc-select-HISID",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "press",
+   "testID": "doc-select-HISID"
+  },
+  {
+   "op": "sleep",
+   "ms": 1000
+  },
+  {
+   "op": "value",
+   "testID": "documents-ask-selected"
+  },
+  {
+   "op": "press",
+   "testID": "documents-ask-selected"
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-sheet",
+   "timeoutMs": 20000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "type",
+   "testID": "ask-input",
+   "text": "What does it say about deleting my information?"
+  },
+  {
+   "op": "press",
+   "testID": "ask-send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "ask-plain"
+  },
+  {
+   "op": "value",
+   "testID": "ask-answer"
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-none-matched",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "assertText",
+   "text": "Your documents don't mention this",
+   "testID": "ask-answer",
+   "absent": true
+  },
+  {
+   "op": "sleep",
+   "ms": 0
+  },
+  {
+   "op": "screenshot",
+   "name": "P4-01-sheet-deleting"
+  },
+  {
+   "op": "dump",
+   "name": "P4-01-sheet-deleting"
+  },
+  {
+   "op": "type",
+   "testID": "ask-input",
+   "text": "thank you"
+  },
+  {
+   "op": "press",
+   "testID": "ask-send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "ask-plain"
+  },
+  {
+   "op": "value",
+   "testID": "ask-answer"
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "assertText",
+   "text": "Ask another question about these documents",
+   "testID": "ask-plain"
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-none-matched",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-not-found",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "sleep",
+   "ms": 0
+  },
+  {
+   "op": "screenshot",
+   "name": "P4-02-sheet-thank-you"
+  },
+  {
+   "op": "dump",
+   "name": "P4-02-sheet-thank-you"
+  },
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "deeplink",
+   "url": "/documents"
+  },
+  {
+   "op": "waitFor",
+   "testID": "doc-row-HISID",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "press",
+   "testID": "doc-row-HISID"
+  },
+  {
+   "op": "waitFor",
+   "testID": "doc-details",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "doc-details"
+  },
+  {
+   "op": "assertText",
+   "text": "embed-e5",
+   "testID": "doc-details"
+  },
+  {
+   "op": "assertText",
+   "text": "@2",
+   "testID": "doc-details",
+   "absent": true
+  },
+  {
+   "op": "sleep",
+   "ms": 0
+  },
+  {
+   "op": "screenshot",
+   "name": "P4-03-details"
+  },
+  {
+   "op": "dump",
+   "name": "P4-03-details"
+  }
+ ]
+}

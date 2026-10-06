@@ -1,0 +1,1347 @@
+{
+ "runId": "j9b-explore",
+ "startedAt": "2026-10-06T20:30:44.861Z",
+ "finishedAt": "2026-10-06T20:32:17.328Z",
+ "ok": false,
+ "passed": 68,
+ "failed": 2,
+ "steps": [
+  {
+   "i": 0,
+   "op": "deeplink",
+   "ok": true,
+   "ms": 151,
+   "detail": "/documents"
+  },
+  {
+   "i": 1,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "doc-select-mux4qwgy-9-mqma2wsm appeared"
+  },
+  {
+   "i": 2,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2001,
+   "detail": "2000 ms"
+  },
+  {
+   "i": 3,
+   "op": "press",
+   "ok": true,
+   "ms": 157,
+   "detail": "doc-select-mux4qwgy-9-mqma2wsm ← onPress"
+  },
+  {
+   "i": 4,
+   "op": "sleep",
+   "ok": true,
+   "ms": 1000,
+   "detail": "1000 ms"
+  },
+  {
+   "i": 5,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "Ask about 1 document",
+    "props": {
+     "accessibilityRole": "button",
+     "disabled": false,
+     "accessibilityState": {
+      "disabled": false
+     }
+    }
+   },
+   "detail": "Ask about 1 document"
+  },
+  {
+   "i": 6,
+   "op": "press",
+   "ok": true,
+   "ms": 166,
+   "detail": "documents-ask-selected ← onPress"
+  },
+  {
+   "i": 7,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "ask-sheet appeared"
+  },
+  {
+   "i": 8,
+   "op": "sleep",
+   "ok": true,
+   "ms": 1507,
+   "detail": "1500 ms"
+  },
+  {
+   "i": 9,
+   "op": "type",
+   "ok": true,
+   "ms": 168,
+   "detail": "ask-input = 22 chars"
+  },
+  {
+   "i": 10,
+   "op": "press",
+   "ok": true,
+   "ms": 165,
+   "detail": "ask-send ← onPress"
+  },
+  {
+   "i": 11,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2502,
+   "detail": "2500 ms"
+  },
+  {
+   "i": 12,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1585,
+   "detail": "ask-stop gone"
+  },
+  {
+   "i": 13,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2000,
+   "detail": "2000 ms"
+  },
+  {
+   "i": 14,
+   "op": "value",
+   "ok": false,
+   "ms": 1,
+   "detail": "value ask-plain: no node with that testID is mounted"
+  },
+  {
+   "i": 15,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "Your documents don't mention this. If you do not know the answer for sure, stop after that sentence.",
+    "props": {
+     "source": "Your documents don't mention this. If you do not know the answer for sure, stop after that sentence.",
+     "disabled": false
+    }
+   },
+   "detail": "Your documents don't mention this. If you do not know the answer for sure, stop after that sentence."
+  },
+  {
+   "i": 16,
+   "op": "value",
+   "ok": false,
+   "ms": 1,
+   "detail": "value citations: no node with that testID is mounted"
+  },
+  {
+   "i": 17,
+   "op": "sleep",
+   "ok": true,
+   "ms": 3,
+   "detail": "0 ms"
+  },
+  {
+   "i": 18,
+   "op": "screenshot",
+   "ok": true,
+   "ms": 3815,
+   "detail": "J9-20-sheet-who"
+  },
+  {
+   "i": 19,
+   "op": "dump",
+   "ok": true,
+   "ms": 2,
+   "nodes": [
+    {
+     "testID": "documents-close",
+     "text": "Close",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "documents-add",
+     "text": "Add file · PRO",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "banner-inset",
+     "text": ""
+    },
+    {
+     "testID": "documents-free-limit",
+     "text": "Free: 1 document of up to 20 pages · Pro: no limit"
+    },
+    {
+     "testID": "pro-tag",
+     "text": "PRO",
+     "role": "button",
+     "label": "See Pro",
+     "pressable": true
+    },
+    {
+     "testID": "documents-strict",
+     "text": "",
+     "value": "false",
+     "pressable": true
+    },
+    {
+     "testID": "doc-row-mux4qwgy-9-mqma2wsm",
+     "text": "turbine-report-3pages.pdf PDF · 3 pages · 1.73 KB Indexed · 3 passages",
+     "pressable": true
+    },
+    {
+     "testID": "doc-select-mux4qwgy-9-mqma2wsm",
+     "text": "",
+     "role": "checkbox",
+     "state": {
+      "checked": true,
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "doc-state-mux4qwgy-9-mqma2wsm",
+     "text": "Indexed · 3 passages"
+    },
+    {
+     "testID": "doc-row-muwwk6gt-5-taud3my3",
+     "text": "בית קפה הגינה תפריט.jpg IMAGE · 1 page · 332 KB Scanned. Run OCR on this phone? Run OCR · PRO",
+     "pressable": true
+    },
+    {
+     "testID": "doc-select-muwwk6gt-5-taud3my3",
+     "text": "",
+     "role": "checkbox",
+     "state": {
+      "checked": false,
+      "disabled": true
+     },
+     "disabled": true
+    },
+    {
+     "testID": "doc-state-muwwk6gt-5-taud3my3",
+     "text": "Scanned. Run OCR on this phone?"
+    },
+    {
+     "testID": "doc-ocr-muwwk6gt-5-taud3my3",
+     "text": "Run OCR · PRO",
+     "pressable": true
+    },
+    {
+     "testID": "doc-row-muwwitoi-4-eb70psyu",
+     "text": "sign-scan.pdf PDF · 1 page · 195 KB Scanned. Run OCR on this phone? Run OCR · PRO",
+     "pressable": true
+    },
+    {
+     "testID": "doc-select-muwwitoi-4-eb70psyu",
+     "text": "",
+     "role": "checkbox",
+     "state": {
+      "checked": false,
+      "disabled": true
+     },
+     "disabled": true
+    },
+    {
+     "testID": "doc-state-muwwitoi-4-eb70psyu",
+     "text": "Scanned. Run OCR on this phone?"
+    },
+    {
+     "testID": "doc-ocr-muwwitoi-4-eb70psyu",
+     "text": "Run OCR · PRO",
+     "pressable": true
+    },
+    {
+     "testID": "doc-row-muwvhmt8-1-b4v9vv5s",
+     "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+     "pressable": true
+    },
+    {
+     "testID": "doc-select-muwvhmt8-1-b4v9vv5s",
+     "text": "",
+     "role": "checkbox",
+     "state": {
+      "checked": false,
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "doc-state-muwvhmt8-1-b4v9vv5s",
+     "text": "Indexed · 45 passages"
+    },
+    {
+     "testID": "documents-ask-selected",
+     "text": "Ask about 1 document",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "ask-sheet",
+     "text": "Close ASK YOUR DOCUMENTS Searching 1 document: turbine-report-3pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO FAST · ON-DEVICE AI Your documents don't mention this. If you do not know the answer for sure, stop after that sentence. Nothing in your documents matched this question. Answered without them. ↑"
+    },
+    {
+     "testID": "ask-strict",
+     "text": "",
+     "value": "false",
+     "pressable": true
+    },
+    {
+     "testID": "ask-answer",
+     "text": "Your documents don't mention this. If you do not know the answer for sure, stop after that sentence."
+    },
+    {
+     "testID": "ask-none-matched",
+     "text": "Nothing in your documents matched this question. Answered without them."
+    },
+    {
+     "testID": "ask-input",
+     "text": "",
+     "value": "Who wrote this report?",
+     "pressable": true
+    },
+    {
+     "testID": "ask-send",
+     "text": "↑",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "device-explain-sheet",
+     "text": ""
+    },
+    {
+     "testID": "qa-bridge",
+     "text": ""
+    }
+   ],
+   "detail": "J9-20-sheet-who"
+  },
+  {
+   "i": 20,
+   "op": "deeplink",
+   "ok": true,
+   "ms": 158,
+   "detail": "/chats"
+  },
+  {
+   "i": 21,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "chat-row-fd61229d-a510-42d9-8805-3e7e27ca7b01 appeared"
+  },
+  {
+   "i": 22,
+   "op": "press",
+   "ok": true,
+   "ms": 172,
+   "detail": "chat-row-fd61229d-a510-42d9-8805-3e7e27ca7b01 ← onPress"
+  },
+  {
+   "i": 23,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "composer-input appeared"
+  },
+  {
+   "i": 24,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 0,
+   "detail": "Loading gone"
+  },
+  {
+   "i": 25,
+   "op": "sleep",
+   "ok": true,
+   "ms": 3010,
+   "detail": "3000 ms"
+  },
+  {
+   "i": 26,
+   "op": "value",
+   "ok": true,
+   "ms": 2,
+   "value": {
+    "text": "FAST",
+    "props": {
+     "accessibilityLabel": "Model",
+     "accessibilityRole": "button",
+     "accessibilityState": {},
+     "disabled": false
+    }
+   },
+   "detail": "FAST"
+  },
+  {
+   "i": 27,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "constitution-9pages.pdf",
+    "props": {
+     "disabled": false
+    }
+   },
+   "detail": "constitution-9pages.pdf"
+  },
+  {
+   "i": 28,
+   "op": "sleep",
+   "ok": true,
+   "ms": 1013,
+   "detail": "1000 ms"
+  },
+  {
+   "i": 29,
+   "op": "screenshot",
+   "ok": true,
+   "ms": 3174,
+   "detail": "J9-21-old-chat"
+  },
+  {
+   "i": 30,
+   "op": "dump",
+   "ok": true,
+   "ms": 4,
+   "nodes": [
+    {
+     "testID": "user-message",
+     "text": "Summarize it",
+     "role": "text"
+    },
+    {
+     "testID": "assistant-message",
+     "text": "FAST · ON-DEVICE AI The file is a summary of the Constitution of the United States, outlining its structure and key powers. Main Points: • [1] The document establishes the U.S. Constitution, which forms a federal government with two houses: the House of Representatives (members chosen every two years based on state population) and the Senate (elected by legislatures for six-year terms). Both houses must meet annually at least once in December unless designated otherwise. • [2] Bills requiring passage from both houses must be presented to the President; if signed, they become law. If not signed within ten days (excluding Sundays), they take effect automatically unless Congress adjourns. Resolutions needing concurrence from both houses require presidential approval or a two-thirds vote in each chamber before taking effect. • [3] The Constitution creates a three-branch system: the President holds executive power, the Supreme Court holds judicial power, and Congress is responsible for approving treaties and federal laws (which are supreme over state laws). It also mandates that all taxes be paid into the federal Treasury under congressional supervision. • [4] Federal law and treaties take precedence over state laws. The Constitution requires a three-fourths majority of states to approve any amendments, ensuring their authority remains supreme. Summary of all 9 pages. [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger"
+    },
+    {
+     "testID": "assistant-text",
+     "text": "The file is a summary of the Constitution of the United States, outlining its structure and key powers. Main Points: • [1] The document establishes the U.S. Constitution, which forms a federal government with two houses: the House of Representatives (members chosen every two years based on state population) and the Senate (elected by legislatures for six-year terms). Both houses must meet annually at least once in December unless designated otherwise. • [2] Bills requiring passage from both houses must be presented to the President; if signed, they become law. If not signed within ten days (excluding Sundays), they take effect automatically unless Congress adjourns. Resolutions needing concurrence from both houses require presidential approval or a two-thirds vote in each chamber before taking effect. • [3] The Constitution creates a three-branch system: the President holds executive power, the Supreme Court holds judicial power, and Congress is responsible for approving treaties and federal laws (which are supreme over state laws). It also mandates that all taxes be paid into the federal Treasury under congressional supervision. • [4] Federal law and treaties take precedence over state laws. The Constitution requires a three-fourths majority of states to approve any amendments, ensuring their authority remains supreme. Summary of all 9 pages."
+    },
+    {
+     "testID": "citations",
+     "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+    },
+    {
+     "testID": "citation-1",
+     "text": "[1] constitution-9pages.pdf · p.1–2",
+     "role": "button",
+     "label": "Open constitution-9pages.pdf · p.1–2",
+     "pressable": true
+    },
+    {
+     "testID": "citation-2",
+     "text": "[2] constitution-9pages.pdf · p.3–4",
+     "role": "button",
+     "label": "Open constitution-9pages.pdf · p.3–4",
+     "pressable": true
+    },
+    {
+     "testID": "citation-3",
+     "text": "[3] constitution-9pages.pdf · p.5–6",
+     "role": "button",
+     "label": "Open constitution-9pages.pdf · p.5–6",
+     "pressable": true
+    },
+    {
+     "testID": "citation-4",
+     "text": "[4] constitution-9pages.pdf · p.7–9",
+     "role": "button",
+     "label": "Open constitution-9pages.pdf · p.7–9",
+     "pressable": true
+    },
+    {
+     "testID": "ledger-toggle",
+     "text": "Ledger",
+     "role": "button",
+     "state": {
+      "expanded": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "open-chats",
+     "text": "Chats",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "seal",
+     "text": "",
+     "role": "image",
+     "label": "SEALED"
+    },
+    {
+     "testID": "seal-label",
+     "text": "SEALED"
+    },
+    {
+     "testID": "model-chip",
+     "text": "FAST",
+     "role": "button",
+     "label": "Model",
+     "pressable": true
+    },
+    {
+     "testID": "banner-inset",
+     "text": ""
+    },
+    {
+     "testID": "notice",
+     "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+    },
+    {
+     "testID": "attached-docs",
+     "text": "constitution-9pages.pdf"
+    },
+    {
+     "testID": "attached-chip-muwvhmt8-1-b4v9vv5s",
+     "text": "constitution-9pages.pdf",
+     "role": "button",
+     "label": "Remove constitution-9pages.pdf from this chat",
+     "pressable": true
+    },
+    {
+     "testID": "context-meter",
+     "text": "",
+     "role": "progressbar"
+    },
+    {
+     "testID": "context-level-ok",
+     "text": ""
+    },
+    {
+     "testID": "attach",
+     "text": "1",
+     "role": "button",
+     "label": "Attach documents",
+     "state": {
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "composer-input",
+     "text": "",
+     "value": "",
+     "pressable": true
+    },
+    {
+     "testID": "mic",
+     "text": "",
+     "role": "button",
+     "label": "Dictate",
+     "state": {
+      "disabled": false,
+      "busy": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "send",
+     "text": "",
+     "role": "button",
+     "label": "Send",
+     "state": {
+      "disabled": true
+     },
+     "disabled": true
+    },
+    {
+     "testID": "message-actions",
+     "text": ""
+    },
+    {
+     "testID": "report-sheet",
+     "text": ""
+    },
+    {
+     "testID": "mic-sheet",
+     "text": ""
+    },
+    {
+     "testID": "mic-problem",
+     "text": ""
+    },
+    {
+     "testID": "device-explain-sheet",
+     "text": ""
+    },
+    {
+     "testID": "qa-bridge",
+     "text": ""
+    }
+   ],
+   "detail": "J9-21-old-chat"
+  },
+  {
+   "i": 31,
+   "op": "type",
+   "ok": true,
+   "ms": 157,
+   "detail": "composer-input = 35 chars"
+  },
+  {
+   "i": 32,
+   "op": "send",
+   "ok": true,
+   "ms": 291,
+   "detail": "send ← onPress"
+  },
+  {
+   "i": 33,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2509,
+   "detail": "2500 ms"
+  },
+  {
+   "i": 34,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 4,
+   "detail": "reading-pages gone"
+  },
+  {
+   "i": 35,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 3,
+   "detail": "reading-docs gone"
+  },
+  {
+   "i": 36,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 34599,
+   "detail": "stop gone"
+  },
+  {
+   "i": 37,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2513,
+   "detail": "2500 ms"
+  },
+  {
+   "i": 38,
+   "op": "value",
+   "ok": true,
+   "ms": 2,
+   "value": {
+    "text": "The file is a summary of the Constitution of the United States, outlining its structure and key powers. Main Points: • [1] The document establishes the U.S. Constitution, which forms a federal government with two houses: the House of Representatives (members chosen every two years based on state population) and the Senate (elected by legislatures for six-year terms). Both houses must meet annually at least once in December unless designated otherwise. • [2] Bills requiring passage from both houses must be presented to the President; if signed, they become law. If not signed within ten days (excluding Sundays), they take effect automatically unless Congress adjourns. Resolutions needing concurrence from both houses require presidential approval or a two-thirds vote in each chamber before taking effect. • [3] The Constitution creates a three-branch system: the President holds executive power, the Supreme Court holds judicial power, and Congress is responsible for approving treaties and federal laws (which are supreme over state laws). It also mandates that all taxes be paid into the federal Treasury under congressional supervision. • [4] Federal law and treaties take precedence over state laws. The Constitution requires a three-fourths majority of states to approve any amendments, ensuring their authority remains supreme. Summary of all 9 pages.",
+    "props": {
+     "source": "The file is a summary of the Constitution of the United States, outlining its structure and key powers.\n\n**Main Points:**\n*   [1] The document establishes the U.S. Constitution, which forms a federal government with two houses: the House of Representatives (members chosen every two years based on state population) and the Senate (elected by legislatures for six-year terms). Both houses must meet annually at least once in December unless designated otherwise.\n*   [2] Bills requiring passage from both houses must be presented to the President; if signed, they become law. If not signed within ten days (excluding Sundays), they take effect automatically unless Congress adjourns. Resolutions needing concurrence from both houses require presidential approval or a two-thirds vote in each chamber before taking effect.\n*   [3] The Constitution creates a three-branch system: the President holds executive power, the Supreme Court holds judicial power, and Congress is responsible for approving treaties and federal laws (which are supreme over state laws). It also mandates that all taxes be paid into the federal Treasury under congressional supervision.\n*   [4] Federal law and treaties take precedence over state laws. The Constitution requires a three-fourths majority of states to approve any amendments, ensuring their authority remains supreme.\n\n*Summary of all 9 pages.*",
+     "disabled": false
+    }
+   },
+   "detail": "The file is a summary of the Constitution of the United States, outlining its structure and key powers. Main Points: • [1] The document establishes the U.S. Constitution, which forms a federal governm"
+  },
+  {
+   "i": 39,
+   "op": "screenshot",
+   "ok": true,
+   "ms": 3172,
+   "detail": "J9-22-impeachment"
+  },
+  {
+   "i": 40,
+   "op": "dump",
+   "ok": true,
+   "ms": 7,
+   "nodes": [
+    {
+     "testID": "user-message",
+     "text": "Summarize it",
+     "role": "text"
+    },
+    {
+     "testID": "assistant-message",
+     "text": "FAST · ON-DEVICE AI The file is a summary of the Constitution of the United States, outlining its structure and key powers. Main Points: • [1] The document establishes the U.S. Constitution, which forms a federal government with two houses: the House of Representatives (members chosen every two years based on state population) and the Senate (elected by legislatures for six-year terms). Both houses must meet annually at least once in December unless designated otherwise. • [2] Bills requiring passage from both houses must be presented to the President; if signed, they become law. If not signed within ten days (excluding Sundays), they take effect automatically unless Congress adjourns. Resolutions needing concurrence from both houses require presidential approval or a two-thirds vote in each chamber before taking effect. • [3] The Constitution creates a three-branch system: the President holds executive power, the Supreme Court holds judicial power, and Congress is responsible for approving treaties and federal laws (which are supreme over state laws). It also mandates that all taxes be paid into the federal Treasury under congressional supervision. • [4] Federal law and treaties take precedence over state laws. The Constitution requires a three-fourths majority of states to approve any amendments, ensuring their authority remains supreme. Summary of all 9 pages. [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger"
+    },
+    {
+     "testID": "assistant-text",
+     "text": "The file is a summary of the Constitution of the United States, outlining its structure and key powers. Main Points: • [1] The document establishes the U.S. Constitution, which forms a federal government with two houses: the House of Representatives (members chosen every two years based on state population) and the Senate (elected by legislatures for six-year terms). Both houses must meet annually at least once in December unless designated otherwise. • [2] Bills requiring passage from both houses must be presented to the President; if signed, they become law. If not signed within ten days (excluding Sundays), they take effect automatically unless Congress adjourns. Resolutions needing concurrence from both houses require presidential approval or a two-thirds vote in each chamber before taking effect. • [3] The Constitution creates a three-branch system: the President holds executive power, the Supreme Court holds judicial power, and Congress is responsible for approving treaties and federal laws (which are supreme over state laws). It also mandates that all taxes be paid into the federal Treasury under congressional supervision. • [4] Federal law and treaties take precedence over state laws. The Constitution requires a three-fourths majority of states to approve any amendments, ensuring their authority remains supreme. Summary of all 9 pages."
+    },
+    {
+     "testID": "citations",
+     "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+    },
+    {
+     "testID": "citation-1",
+     "text": "[1] constitution-9pages.pdf · p.1–2",
+     "role": "button",
+     "label": "Open constitution-9pages.pdf · p.1–2",
+     "pressable": true
+    },
+    {
+     "testID": "citation-2",
+     "text": "[2] constitution-9pages.pdf · p.3–4",
+     "role": "button",
+     "label": "Open constitution-9pages.pdf · p.3–4",
+     "pressable": true
+    },
+    {
+     "testID": "citation-3",
+     "text": "[3] constitution-9pages.pdf · p.5–6",
+     "role": "button",
+     "label": "Open constitution-9pages.pdf · p.5–6",
+     "pressable": true
+    },
+    {
+     "testID": "citation-4",
+     "text": "[4] constitution-9pages.pdf · p.7–9",
+     "role": "button",
+     "label": "Open constitution-9pages.pdf · p.7–9",
+     "pressable": true
+    },
+    {
+     "testID": "ledger-toggle",
+     "text": "Ledger",
+     "role": "button",
+     "state": {
+      "expanded": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "citation-5",
+     "text": "[5] constitution-9pages.pdf · p.6",
+     "role": "button",
+     "label": "Open constitution-9pages.pdf · p.6",
+     "pressable": true
+    },
+    {
+     "testID": "citation-6",
+     "text": "[6] constitution-9pages.pdf · p.1",
+     "role": "button",
+     "label": "Open constitution-9pages.pdf · p.1",
+     "pressable": true
+    },
+    {
+     "testID": "open-chats",
+     "text": "Chats",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "seal",
+     "text": "",
+     "role": "image",
+     "label": "SEALED"
+    },
+    {
+     "testID": "seal-label",
+     "text": "SEALED"
+    },
+    {
+     "testID": "model-chip",
+     "text": "FAST",
+     "role": "button",
+     "label": "Model",
+     "pressable": true
+    },
+    {
+     "testID": "banner-inset",
+     "text": ""
+    },
+    {
+     "testID": "notice",
+     "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+    },
+    {
+     "testID": "attached-docs",
+     "text": "constitution-9pages.pdf"
+    },
+    {
+     "testID": "attached-chip-muwvhmt8-1-b4v9vv5s",
+     "text": "constitution-9pages.pdf",
+     "role": "button",
+     "label": "Remove constitution-9pages.pdf from this chat",
+     "pressable": true
+    },
+    {
+     "testID": "context-meter",
+     "text": "",
+     "role": "progressbar"
+    },
+    {
+     "testID": "context-level-ok",
+     "text": ""
+    },
+    {
+     "testID": "attach",
+     "text": "1",
+     "role": "button",
+     "label": "Attach documents",
+     "state": {
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "composer-input",
+     "text": "",
+     "value": "",
+     "pressable": true
+    },
+    {
+     "testID": "mic",
+     "text": "",
+     "role": "button",
+     "label": "Dictate",
+     "state": {
+      "disabled": false,
+      "busy": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "send",
+     "text": "",
+     "role": "button",
+     "label": "Send",
+     "state": {
+      "disabled": true
+     },
+     "disabled": true
+    },
+    {
+     "testID": "message-actions",
+     "text": ""
+    },
+    {
+     "testID": "report-sheet",
+     "text": ""
+    },
+    {
+     "testID": "mic-sheet",
+     "text": ""
+    },
+    {
+     "testID": "mic-problem",
+     "text": ""
+    },
+    {
+     "testID": "device-explain-sheet",
+     "text": ""
+    },
+    {
+     "testID": "qa-bridge",
+     "text": ""
+    }
+   ],
+   "detail": "J9-22-impeachment"
+  },
+  {
+   "i": 41,
+   "op": "deeplink",
+   "ok": true,
+   "ms": 152,
+   "detail": "/chats"
+  },
+  {
+   "i": 42,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "new-chat appeared"
+  },
+  {
+   "i": 43,
+   "op": "press",
+   "ok": true,
+   "ms": 166,
+   "detail": "new-chat ← onPress"
+  },
+  {
+   "i": 44,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "start-chat appeared"
+  },
+  {
+   "i": 45,
+   "op": "press",
+   "ok": true,
+   "ms": 172,
+   "detail": "start-chat ← onPress"
+  },
+  {
+   "i": 46,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "composer-input appeared"
+  },
+  {
+   "i": 47,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 0,
+   "detail": "Loading gone"
+  },
+  {
+   "i": 48,
+   "op": "sleep",
+   "ok": true,
+   "ms": 1509,
+   "detail": "1500 ms"
+  },
+  {
+   "i": 49,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "FAST",
+    "props": {
+     "accessibilityLabel": "Model",
+     "accessibilityRole": "button",
+     "accessibilityState": {},
+     "disabled": false
+    }
+   },
+   "detail": "FAST"
+  },
+  {
+   "i": 50,
+   "op": "type",
+   "ok": true,
+   "ms": 167,
+   "detail": "composer-input = 40 chars"
+  },
+  {
+   "i": 51,
+   "op": "send",
+   "ok": true,
+   "ms": 174,
+   "detail": "send ← onPress"
+  },
+  {
+   "i": 52,
+   "op": "sleep",
+   "ok": true,
+   "ms": 3684,
+   "detail": "2500 ms"
+  },
+  {
+   "i": 53,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 4,
+   "detail": "reading-pages gone"
+  },
+  {
+   "i": 54,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "reading-docs gone"
+  },
+  {
+   "i": 55,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 2754,
+   "detail": "stop gone"
+  },
+  {
+   "i": 56,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2516,
+   "detail": "2500 ms"
+  },
+  {
+   "i": 57,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "השעה בטוקיו כשהשעה בישראל שתיים וחצי בצהריים היא בערך 12:45.",
+    "props": {
+     "source": "השעה בטוקיו כשהשעה בישראל שתיים וחצי בצהריים היא בערך 12:45.",
+     "disabled": false
+    }
+   },
+   "detail": "השעה בטוקיו כשהשעה בישראל שתיים וחצי בצהריים היא בערך 12:45."
+  },
+  {
+   "i": 58,
+   "op": "screenshot",
+   "ok": true,
+   "ms": 3807,
+   "detail": "J9-23-hebrew"
+  },
+  {
+   "i": 59,
+   "op": "dump",
+   "ok": true,
+   "ms": 2,
+   "nodes": [
+    {
+     "testID": "user-message",
+     "text": "מה השעה בטוקיו כשבירושלים שתיים בצהריים?",
+     "role": "text"
+    },
+    {
+     "testID": "assistant-message",
+     "text": "FAST · ON-DEVICE AI השעה בטוקיו כשהשעה בישראל שתיים וחצי בצהריים היא בערך 12:45. Ledger"
+    },
+    {
+     "testID": "assistant-text",
+     "text": "השעה בטוקיו כשהשעה בישראל שתיים וחצי בצהריים היא בערך 12:45."
+    },
+    {
+     "testID": "ledger-toggle",
+     "text": "Ledger",
+     "role": "button",
+     "state": {
+      "expanded": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "open-chats",
+     "text": "Chats",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "seal",
+     "text": "",
+     "role": "image",
+     "label": "SEALED"
+    },
+    {
+     "testID": "seal-label",
+     "text": "SEALED"
+    },
+    {
+     "testID": "model-chip",
+     "text": "FAST",
+     "role": "button",
+     "label": "Model",
+     "pressable": true
+    },
+    {
+     "testID": "banner-inset",
+     "text": ""
+    },
+    {
+     "testID": "model-weak",
+     "text": "FAST is weak in Hebrew"
+    },
+    {
+     "testID": "model-weak-line",
+     "text": "FAST is weak in Hebrew"
+    },
+    {
+     "testID": "notice",
+     "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+    },
+    {
+     "testID": "context-meter",
+     "text": "",
+     "role": "progressbar"
+    },
+    {
+     "testID": "context-level-ok",
+     "text": ""
+    },
+    {
+     "testID": "attach",
+     "text": "",
+     "role": "button",
+     "label": "Attach documents",
+     "state": {
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "composer-input",
+     "text": "",
+     "value": "",
+     "pressable": true
+    },
+    {
+     "testID": "mic",
+     "text": "",
+     "role": "button",
+     "label": "Dictate",
+     "state": {
+      "disabled": false,
+      "busy": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "send",
+     "text": "",
+     "role": "button",
+     "label": "Send",
+     "state": {
+      "disabled": true
+     },
+     "disabled": true
+    },
+    {
+     "testID": "message-actions",
+     "text": ""
+    },
+    {
+     "testID": "report-sheet",
+     "text": ""
+    },
+    {
+     "testID": "mic-sheet",
+     "text": ""
+    },
+    {
+     "testID": "mic-problem",
+     "text": ""
+    },
+    {
+     "testID": "device-explain-sheet",
+     "text": ""
+    },
+    {
+     "testID": "qa-bridge",
+     "text": ""
+    }
+   ],
+   "detail": "J9-23-hebrew"
+  },
+  {
+   "i": 60,
+   "op": "type",
+   "ok": true,
+   "ms": 157,
+   "detail": "composer-input = 4 chars"
+  },
+  {
+   "i": 61,
+   "op": "send",
+   "ok": true,
+   "ms": 167,
+   "detail": "send ← onPress"
+  },
+  {
+   "i": 62,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2514,
+   "detail": "2500 ms"
+  },
+  {
+   "i": 63,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 0,
+   "detail": "reading-pages gone"
+  },
+  {
+   "i": 64,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "reading-docs gone"
+  },
+  {
+   "i": 65,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 3136,
+   "detail": "stop gone"
+  },
+  {
+   "i": 66,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2501,
+   "detail": "2500 ms"
+  },
+  {
+   "i": 67,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "השעה בטוקיו כשהשעה בישראל שתיים וחצי בצהריים היא בערך 12:45.",
+    "props": {
+     "source": "השעה בטוקיו כשהשעה בישראל שתיים וחצי בצהריים היא בערך 12:45.",
+     "disabled": false
+    }
+   },
+   "detail": "השעה בטוקיו כשהשעה בישראל שתיים וחצי בצהריים היא בערך 12:45."
+  },
+  {
+   "i": 68,
+   "op": "screenshot",
+   "ok": true,
+   "ms": 2854,
+   "detail": "J9-24-hebrew-thanks"
+  },
+  {
+   "i": 69,
+   "op": "dump",
+   "ok": true,
+   "ms": 2,
+   "nodes": [
+    {
+     "testID": "user-message",
+     "text": "מה השעה בטוקיו כשבירושלים שתיים בצהריים?",
+     "role": "text"
+    },
+    {
+     "testID": "assistant-message",
+     "text": "FAST · ON-DEVICE AI השעה בטוקיו כשהשעה בישראל שתיים וחצי בצהריים היא בערך 12:45. Ledger"
+    },
+    {
+     "testID": "assistant-text",
+     "text": "השעה בטוקיו כשהשעה בישראל שתיים וחצי בצהריים היא בערך 12:45."
+    },
+    {
+     "testID": "ledger-toggle",
+     "text": "Ledger",
+     "role": "button",
+     "state": {
+      "expanded": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "open-chats",
+     "text": "Chats",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "seal",
+     "text": "",
+     "role": "image",
+     "label": "SEALED"
+    },
+    {
+     "testID": "seal-label",
+     "text": "SEALED"
+    },
+    {
+     "testID": "model-chip",
+     "text": "FAST",
+     "role": "button",
+     "label": "Model",
+     "pressable": true
+    },
+    {
+     "testID": "banner-inset",
+     "text": ""
+    },
+    {
+     "testID": "model-weak",
+     "text": "FAST is weak in Hebrew"
+    },
+    {
+     "testID": "model-weak-line",
+     "text": "FAST is weak in Hebrew"
+    },
+    {
+     "testID": "notice",
+     "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+    },
+    {
+     "testID": "context-meter",
+     "text": "",
+     "role": "progressbar"
+    },
+    {
+     "testID": "context-level-ok",
+     "text": ""
+    },
+    {
+     "testID": "attach",
+     "text": "",
+     "role": "button",
+     "label": "Attach documents",
+     "state": {
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "composer-input",
+     "text": "",
+     "value": "",
+     "pressable": true
+    },
+    {
+     "testID": "mic",
+     "text": "",
+     "role": "button",
+     "label": "Dictate",
+     "state": {
+      "disabled": false,
+      "busy": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "send",
+     "text": "",
+     "role": "button",
+     "label": "Send",
+     "state": {
+      "disabled": true
+     },
+     "disabled": true
+    },
+    {
+     "testID": "message-actions",
+     "text": ""
+    },
+    {
+     "testID": "report-sheet",
+     "text": ""
+    },
+    {
+     "testID": "mic-sheet",
+     "text": ""
+    },
+    {
+     "testID": "mic-problem",
+     "text": ""
+    },
+    {
+     "testID": "device-explain-sheet",
+     "text": ""
+    },
+    {
+     "testID": "qa-bridge",
+     "text": ""
+    }
+   ],
+   "detail": "J9-24-hebrew-thanks"
+  }
+ ],
+ "errors": [
+  "step 14 (value): value ask-plain: no node with that testID is mounted",
+  "step 16 (value): value citations: no node with that testID is mounted"
+ ]
+}

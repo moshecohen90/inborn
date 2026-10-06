@@ -1,0 +1,1380 @@
+{
+ "runId": "j4-sheet",
+ "startedAt": "2026-10-06T16:24:30.043Z",
+ "finishedAt": "2026-10-06T16:28:41.796Z",
+ "ok": false,
+ "passed": 85,
+ "failed": 6,
+ "steps": [
+  {
+   "i": 0,
+   "op": "deeplink",
+   "ok": true,
+   "ms": 156,
+   "detail": "/documents"
+  },
+  {
+   "i": 1,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 0,
+   "detail": "doc-select-muwvhmt8-1-b4v9vv5s appeared"
+  },
+  {
+   "i": 2,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2001,
+   "detail": "2000 ms"
+  },
+  {
+   "i": 3,
+   "op": "press",
+   "ok": true,
+   "ms": 157,
+   "detail": "doc-select-muwvhmt8-1-b4v9vv5s ← onPress"
+  },
+  {
+   "i": 4,
+   "op": "sleep",
+   "ok": true,
+   "ms": 1017,
+   "detail": "1000 ms"
+  },
+  {
+   "i": 5,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "Ask about 1 document",
+    "props": {
+     "accessibilityRole": "button",
+     "disabled": false,
+     "accessibilityState": {
+      "disabled": false
+     }
+    }
+   },
+   "detail": "Ask about 1 document"
+  },
+  {
+   "i": 6,
+   "op": "press",
+   "ok": true,
+   "ms": 166,
+   "detail": "documents-ask-selected ← onPress"
+  },
+  {
+   "i": 7,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "ask-sheet appeared"
+  },
+  {
+   "i": 8,
+   "op": "sleep",
+   "ok": true,
+   "ms": 1516,
+   "detail": "1500 ms"
+  },
+  {
+   "i": 9,
+   "op": "screenshot",
+   "ok": true,
+   "ms": 3492,
+   "detail": "J4-01-sheet"
+  },
+  {
+   "i": 10,
+   "op": "type",
+   "ok": true,
+   "ms": 159,
+   "detail": "ask-input = 12 chars"
+  },
+  {
+   "i": 11,
+   "op": "press",
+   "ok": true,
+   "ms": 165,
+   "detail": "ask-send ← onPress"
+  },
+  {
+   "i": 12,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "ask-reading-pages appeared"
+  },
+  {
+   "i": 13,
+   "op": "value",
+   "ok": true,
+   "ms": 0,
+   "value": {
+    "text": "Reading pages 1–2 of 9…",
+    "props": {
+     "disabled": false
+    }
+   },
+   "detail": "Reading pages 1–2 of 9…"
+  },
+  {
+   "i": 14,
+   "op": "screenshot",
+   "ok": true,
+   "ms": 6973,
+   "detail": "J4-02-reading"
+  },
+  {
+   "i": 15,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 166024,
+   "detail": "ask-stop gone"
+  },
+  {
+   "i": 16,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2001,
+   "detail": "2000 ms"
+  },
+  {
+   "i": 17,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "Based on the provided text, here is a summary of US Constitution (1870) , covering pages 1–9: • [1] Bicameral Legislature: The document establishes a bicameral legislature with a House of Representatives (members chosen every two years) and a Senate (six-year terms with staggered vacancies). • [2] Legislative Powers & President's Role: All legislative powers are vested in Congress, which must present bills to the President for approval before becoming law; if not signed within ten days, they take effect unless Congress adjourns. Joint consent orders require presidential approval and a two-thirds supermajority override. • [3] Executive Powers & Judicial Structure: Executive power rests with an elected four-year President (Commander-in-Chief) appointed by the Senate; compensation cannot be altered during the term, and removal requires impeachment. The judicial power is vested in a supreme court established by Congress to handle cases involving ambassadors, maritime disputes, and state/citizen controversies. • [4] Legal Supremacy & Ratification: The Constitution is the supreme law of the land, overriding state laws and treaties; all pre-adoption debts remain valid under this framework; ratification requires unanimous consent from nine states. Summary of all 9 pages.",
+    "props": {
+     "source": "Based on the provided text, here is a summary of **US Constitution (1870)**, covering pages 1–9:\n\n*   **[1] Bicameral Legislature:** The document establishes a bicameral legislature with a House of Representatives (members chosen every two years) and a Senate (six-year terms with staggered vacancies).\n*   **[2] Legislative Powers & President's Role:** All legislative powers are vested in Congress, which must present bills to the President for approval before becoming law; if not signed within ten days, they take effect unless Congress adjourns. Joint consent orders require presidential approval and a two-thirds supermajority override.\n*   **[3] Executive Powers & Judicial Structure:** Executive power rests with an elected four-year President (Commander-in-Chief) appointed by the Senate; compensation cannot be altered during the term, and removal requires impeachment. The judicial power is vested in a supreme court established by Congress to handle cases involving ambassadors, maritime disputes, and state/citizen controversies.\n*   **[4] Legal Supremacy & Ratification:** The Constitution is the supreme law of the land, overriding state laws and treaties; all pre-adoption debts remain valid under this framework; ratification requires unanimous consent from nine states.\n\n*Summary of all 9 pages.*",
+     "disabled": false
+    }
+   },
+   "detail": "Based on the provided text, here is a summary of US Constitution (1870) , covering pages 1–9: • [1] Bicameral Legislature: The document establishes a bicameral legislature with a House of Representati"
+  },
+  {
+   "i": 18,
+   "op": "assertText",
+   "ok": true,
+   "ms": 1,
+   "detail": "\"Summary of all 9 pages.\" present"
+  },
+  {
+   "i": 19,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 0,
+   "detail": "ask-none-matched gone"
+  },
+  {
+   "i": 20,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "ask-not-found gone"
+  },
+  {
+   "i": 21,
+   "op": "sleep",
+   "ok": true,
+   "ms": 3,
+   "detail": "0 ms"
+  },
+  {
+   "i": 22,
+   "op": "screenshot",
+   "ok": true,
+   "ms": 3485,
+   "detail": "J4-03-summary"
+  },
+  {
+   "i": 23,
+   "op": "dump",
+   "ok": true,
+   "ms": 3,
+   "nodes": [
+    {
+     "testID": "documents-close",
+     "text": "Close",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "documents-add",
+     "text": "Add file · PRO",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "banner-inset",
+     "text": ""
+    },
+    {
+     "testID": "documents-free-limit",
+     "text": "Free: 1 document of up to 20 pages · Pro: no limit"
+    },
+    {
+     "testID": "pro-tag",
+     "text": "PRO",
+     "role": "button",
+     "label": "See Pro",
+     "pressable": true
+    },
+    {
+     "testID": "documents-strict",
+     "text": "",
+     "value": "false",
+     "pressable": true
+    },
+    {
+     "testID": "doc-row-muwvhmt8-1-b4v9vv5s",
+     "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+     "pressable": true
+    },
+    {
+     "testID": "doc-select-muwvhmt8-1-b4v9vv5s",
+     "text": "",
+     "role": "checkbox",
+     "state": {
+      "checked": true,
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "doc-state-muwvhmt8-1-b4v9vv5s",
+     "text": "Indexed · 45 passages"
+    },
+    {
+     "testID": "documents-ask-selected",
+     "text": "Ask about 1 document",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "ask-sheet",
+     "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO FAST · ON-DEVICE AI Based on the provided text, here is a summary of US Constitution (1870) , covering pages 1–9: • [1] Bicameral Legislature: The document establishes a bicameral legislature with a House of Representatives (members chosen every two years) and a Senate (six-year terms with staggered vacancies). • [2] Legislative Powers & President's Role: All legislative powers are vested in Congress, which must present bills to the President for approval before becoming law; if not signed within ten days, they take effect unless Congress adjourns. Joint consent orders require presidential approval and a two-thirds supermajority override. • [3] Executive Powers & Judicial Structure: Executive power rests with an elected four-year President (Commander-in-Chief) appointed by the Senate; compensation cannot be altered during the term, and removal requires impeachment. The judicial power is vested in a supreme court established by Congress to handle cases involving ambassadors, maritime disputes, and state/citizen controversies. • [4] Legal Supremacy & Ratification: The Constitution is the supreme law of the land, overriding state laws and treaties; all pre-adoption debts remain valid under this framework; ratification requires unanimous consent from nine states. Summary of all 9 pages. [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 ↑"
+    },
+    {
+     "testID": "ask-strict",
+     "text": "",
+     "value": "false",
+     "pressable": true
+    },
+    {
+     "testID": "ask-answer",
+     "text": "Based on the provided text, here is a summary of US Constitution (1870) , covering pages 1–9: • [1] Bicameral Legislature: The document establishes a bicameral legislature with a House of Representatives (members chosen every two years) and a Senate (six-year terms with staggered vacancies). • [2] Legislative Powers & President's Role: All legislative powers are vested in Congress, which must present bills to the President for approval before becoming law; if not signed within ten days, they take effect unless Congress adjourns. Joint consent orders require presidential approval and a two-thirds supermajority override. • [3] Executive Powers & Judicial Structure: Executive power rests with an elected four-year President (Commander-in-Chief) appointed by the Senate; compensation cannot be altered during the term, and removal requires impeachment. The judicial power is vested in a supreme court established by Congress to handle cases involving ambassadors, maritime disputes, and state/citizen controversies. • [4] Legal Supremacy & Ratification: The Constitution is the supreme law of the land, overriding state laws and treaties; all pre-adoption debts remain valid under this framework; ratification requires unanimous consent from nine states. Summary of all 9 pages."
+    },
+    {
+     "testID": "citations",
+     "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+    },
+    {
+     "testID": "citation-1",
+     "text": "[1] constitution-9pages.pdf · p.1–2",
+     "role": "button",
+     "label": "Open constitution-9pages.pdf · p.1–2",
+     "pressable": true
+    },
+    {
+     "testID": "citation-2",
+     "text": "[2] constitution-9pages.pdf · p.3–4",
+     "role": "button",
+     "label": "Open constitution-9pages.pdf · p.3–4",
+     "pressable": true
+    },
+    {
+     "testID": "citation-3",
+     "text": "[3] constitution-9pages.pdf · p.5–6",
+     "role": "button",
+     "label": "Open constitution-9pages.pdf · p.5–6",
+     "pressable": true
+    },
+    {
+     "testID": "citation-4",
+     "text": "[4] constitution-9pages.pdf · p.7–9",
+     "role": "button",
+     "label": "Open constitution-9pages.pdf · p.7–9",
+     "pressable": true
+    },
+    {
+     "testID": "ask-input",
+     "text": "",
+     "value": "Summarize it",
+     "pressable": true
+    },
+    {
+     "testID": "ask-send",
+     "text": "↑",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "banners",
+     "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+     "testID": "banner-thermal",
+     "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+     "testID": "device-explain-sheet",
+     "text": ""
+    },
+    {
+     "testID": "qa-bridge",
+     "text": ""
+    }
+   ],
+   "detail": "J4-03-summary"
+  },
+  {
+   "i": 24,
+   "op": "type",
+   "ok": true,
+   "ms": 155,
+   "detail": "ask-input = 9 chars"
+  },
+  {
+   "i": 25,
+   "op": "press",
+   "ok": true,
+   "ms": 166,
+   "detail": "ask-send ← onPress"
+  },
+  {
+   "i": 26,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2500,
+   "detail": "2500 ms"
+  },
+  {
+   "i": 27,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "ask-stop gone"
+  },
+  {
+   "i": 28,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2001,
+   "detail": "2000 ms"
+  },
+  {
+   "i": 29,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "You're welcome. Ask another question about these documents.",
+    "props": {
+     "disabled": false
+    }
+   },
+   "detail": "You're welcome. Ask another question about these documents."
+  },
+  {
+   "i": 30,
+   "op": "value",
+   "ok": false,
+   "ms": 0,
+   "detail": "value ask-answer: no node with that testID is mounted"
+  },
+  {
+   "i": 31,
+   "op": "value",
+   "ok": false,
+   "ms": 0,
+   "detail": "value citations: no node with that testID is mounted"
+  },
+  {
+   "i": 32,
+   "op": "assertText",
+   "ok": true,
+   "ms": 1,
+   "detail": "\"You're welcome. Ask another question about these documents.\" present"
+  },
+  {
+   "i": 33,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 0,
+   "detail": "ask-none-matched gone"
+  },
+  {
+   "i": 34,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "ask-not-found gone"
+  },
+  {
+   "i": 35,
+   "op": "sleep",
+   "ok": true,
+   "ms": 0,
+   "detail": "0 ms"
+  },
+  {
+   "i": 36,
+   "op": "screenshot",
+   "ok": true,
+   "ms": 2219,
+   "detail": "J4-04-thank-you"
+  },
+  {
+   "i": 37,
+   "op": "dump",
+   "ok": true,
+   "ms": 1,
+   "nodes": [
+    {
+     "testID": "documents-close",
+     "text": "Close",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "documents-add",
+     "text": "Add file · PRO",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "banner-inset",
+     "text": ""
+    },
+    {
+     "testID": "documents-free-limit",
+     "text": "Free: 1 document of up to 20 pages · Pro: no limit"
+    },
+    {
+     "testID": "pro-tag",
+     "text": "PRO",
+     "role": "button",
+     "label": "See Pro",
+     "pressable": true
+    },
+    {
+     "testID": "documents-strict",
+     "text": "",
+     "value": "false",
+     "pressable": true
+    },
+    {
+     "testID": "doc-row-muwvhmt8-1-b4v9vv5s",
+     "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+     "pressable": true
+    },
+    {
+     "testID": "doc-select-muwvhmt8-1-b4v9vv5s",
+     "text": "",
+     "role": "checkbox",
+     "state": {
+      "checked": true,
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "doc-state-muwvhmt8-1-b4v9vv5s",
+     "text": "Indexed · 45 passages"
+    },
+    {
+     "testID": "documents-ask-selected",
+     "text": "Ask about 1 document",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "ask-sheet",
+     "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO You're welcome. Ask another question about these documents. ↑"
+    },
+    {
+     "testID": "ask-strict",
+     "text": "",
+     "value": "false",
+     "pressable": true
+    },
+    {
+     "testID": "ask-plain",
+     "text": "You're welcome. Ask another question about these documents."
+    },
+    {
+     "testID": "ask-input",
+     "text": "",
+     "value": "thank you",
+     "pressable": true
+    },
+    {
+     "testID": "ask-send",
+     "text": "↑",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "banners",
+     "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+     "testID": "banner-thermal",
+     "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+     "testID": "device-explain-sheet",
+     "text": ""
+    },
+    {
+     "testID": "qa-bridge",
+     "text": ""
+    }
+   ],
+   "detail": "J4-04-thank-you"
+  },
+  {
+   "i": 38,
+   "op": "type",
+   "ok": true,
+   "ms": 160,
+   "detail": "ask-input = 7 chars"
+  },
+  {
+   "i": 39,
+   "op": "press",
+   "ok": true,
+   "ms": 166,
+   "detail": "ask-send ← onPress"
+  },
+  {
+   "i": 40,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2500,
+   "detail": "2500 ms"
+  },
+  {
+   "i": 41,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "ask-stop gone"
+  },
+  {
+   "i": 42,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2001,
+   "detail": "2000 ms"
+  },
+  {
+   "i": 43,
+   "op": "value",
+   "ok": true,
+   "ms": 0,
+   "value": {
+    "text": "This sheet answers one question at a time: ask the full question (for example, \"Summarize it in three lines\").",
+    "props": {
+     "disabled": false
+    }
+   },
+   "detail": "This sheet answers one question at a time: ask the full question (for example, \"Summarize it in three lines\")."
+  },
+  {
+   "i": 44,
+   "op": "value",
+   "ok": false,
+   "ms": 1,
+   "detail": "value ask-answer: no node with that testID is mounted"
+  },
+  {
+   "i": 45,
+   "op": "value",
+   "ok": false,
+   "ms": 0,
+   "detail": "value citations: no node with that testID is mounted"
+  },
+  {
+   "i": 46,
+   "op": "assertText",
+   "ok": true,
+   "ms": 1,
+   "detail": "\"This sheet answers one question at a time\" present"
+  },
+  {
+   "i": 47,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 0,
+   "detail": "ask-none-matched gone"
+  },
+  {
+   "i": 48,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 0,
+   "detail": "ask-not-found gone"
+  },
+  {
+   "i": 49,
+   "op": "sleep",
+   "ok": true,
+   "ms": 1,
+   "detail": "0 ms"
+  },
+  {
+   "i": 50,
+   "op": "screenshot",
+   "ok": true,
+   "ms": 2219,
+   "detail": "J4-05-and-now"
+  },
+  {
+   "i": 51,
+   "op": "dump",
+   "ok": true,
+   "ms": 2,
+   "nodes": [
+    {
+     "testID": "documents-close",
+     "text": "Close",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "documents-add",
+     "text": "Add file · PRO",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "banner-inset",
+     "text": ""
+    },
+    {
+     "testID": "documents-free-limit",
+     "text": "Free: 1 document of up to 20 pages · Pro: no limit"
+    },
+    {
+     "testID": "pro-tag",
+     "text": "PRO",
+     "role": "button",
+     "label": "See Pro",
+     "pressable": true
+    },
+    {
+     "testID": "documents-strict",
+     "text": "",
+     "value": "false",
+     "pressable": true
+    },
+    {
+     "testID": "doc-row-muwvhmt8-1-b4v9vv5s",
+     "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+     "pressable": true
+    },
+    {
+     "testID": "doc-select-muwvhmt8-1-b4v9vv5s",
+     "text": "",
+     "role": "checkbox",
+     "state": {
+      "checked": true,
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "doc-state-muwvhmt8-1-b4v9vv5s",
+     "text": "Indexed · 45 passages"
+    },
+    {
+     "testID": "documents-ask-selected",
+     "text": "Ask about 1 document",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "ask-sheet",
+     "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO This sheet answers one question at a time: ask the full question (for example, \"Summarize it in three lines\"). ↑"
+    },
+    {
+     "testID": "ask-strict",
+     "text": "",
+     "value": "false",
+     "pressable": true
+    },
+    {
+     "testID": "ask-plain",
+     "text": "This sheet answers one question at a time: ask the full question (for example, \"Summarize it in three lines\")."
+    },
+    {
+     "testID": "ask-input",
+     "text": "",
+     "value": "And now",
+     "pressable": true
+    },
+    {
+     "testID": "ask-send",
+     "text": "↑",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "banners",
+     "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+     "testID": "banner-thermal",
+     "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+     "testID": "device-explain-sheet",
+     "text": ""
+    },
+    {
+     "testID": "qa-bridge",
+     "text": ""
+    }
+   ],
+   "detail": "J4-05-and-now"
+  },
+  {
+   "i": 52,
+   "op": "type",
+   "ok": true,
+   "ms": 158,
+   "detail": "ask-input = 20 chars"
+  },
+  {
+   "i": 53,
+   "op": "press",
+   "ok": true,
+   "ms": 166,
+   "detail": "ask-send ← onPress"
+  },
+  {
+   "i": 54,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2501,
+   "detail": "2500 ms"
+  },
+  {
+   "i": 55,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 14385,
+   "detail": "ask-stop gone"
+  },
+  {
+   "i": 56,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2001,
+   "detail": "2000 ms"
+  },
+  {
+   "i": 57,
+   "op": "value",
+   "ok": false,
+   "ms": 0,
+   "detail": "value ask-plain: no node with that testID is mounted"
+  },
+  {
+   "i": 58,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "The President can veto a bill [1], but if he does not approve it, the House may reconsider the Bill to see if two-thirds of its members agree to pass it [1]. If the House also agrees, then the Senate must vote on whether to reject or accept the legislation.",
+    "props": {
+     "source": "The President can veto a bill [1], but if he does not approve it, the House may reconsider the Bill to see if two-thirds of its members agree to pass it [1]. If the House also agrees, then the Senate must vote on whether to reject or accept the legislation.",
+     "disabled": false
+    }
+   },
+   "detail": "The President can veto a bill [1], but if he does not approve it, the House may reconsider the Bill to see if two-thirds of its members agree to pass it [1]. If the House also agrees, then the Senate "
+  },
+  {
+   "i": 59,
+   "op": "value",
+   "ok": true,
+   "ms": 0,
+   "value": {
+    "text": "[1] constitution-9pages.pdf · p.3",
+    "props": {
+     "disabled": false
+    }
+   },
+   "detail": "[1] constitution-9pages.pdf · p.3"
+  },
+  {
+   "i": 60,
+   "op": "assertText",
+   "ok": true,
+   "ms": 1,
+   "detail": "\"Summary of all\" absent"
+  },
+  {
+   "i": 61,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 0,
+   "detail": "ask-none-matched gone"
+  },
+  {
+   "i": 62,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "ask-not-found gone"
+  },
+  {
+   "i": 63,
+   "op": "sleep",
+   "ok": true,
+   "ms": 3,
+   "detail": "0 ms"
+  },
+  {
+   "i": 64,
+   "op": "screenshot",
+   "ok": true,
+   "ms": 2532,
+   "detail": "J4-06-veto"
+  },
+  {
+   "i": 65,
+   "op": "dump",
+   "ok": true,
+   "ms": 3,
+   "nodes": [
+    {
+     "testID": "documents-close",
+     "text": "Close",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "documents-add",
+     "text": "Add file · PRO",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "banner-inset",
+     "text": ""
+    },
+    {
+     "testID": "documents-free-limit",
+     "text": "Free: 1 document of up to 20 pages · Pro: no limit"
+    },
+    {
+     "testID": "pro-tag",
+     "text": "PRO",
+     "role": "button",
+     "label": "See Pro",
+     "pressable": true
+    },
+    {
+     "testID": "documents-strict",
+     "text": "",
+     "value": "false",
+     "pressable": true
+    },
+    {
+     "testID": "doc-row-muwvhmt8-1-b4v9vv5s",
+     "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+     "pressable": true
+    },
+    {
+     "testID": "doc-select-muwvhmt8-1-b4v9vv5s",
+     "text": "",
+     "role": "checkbox",
+     "state": {
+      "checked": true,
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "doc-state-muwvhmt8-1-b4v9vv5s",
+     "text": "Indexed · 45 passages"
+    },
+    {
+     "testID": "documents-ask-selected",
+     "text": "Ask about 1 document",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "ask-sheet",
+     "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO FAST · ON-DEVICE AI The President can veto a bill [1], but if he does not approve it, the House may reconsider the Bill to see if two-thirds of its members agree to pass it [1]. If the House also agrees, then the Senate must vote on whether to reject or accept the legislation. [1] constitution-9pages.pdf · p.3 ↑"
+    },
+    {
+     "testID": "ask-strict",
+     "text": "",
+     "value": "false",
+     "pressable": true
+    },
+    {
+     "testID": "ask-answer",
+     "text": "The President can veto a bill [1], but if he does not approve it, the House may reconsider the Bill to see if two-thirds of its members agree to pass it [1]. If the House also agrees, then the Senate must vote on whether to reject or accept the legislation."
+    },
+    {
+     "testID": "citations",
+     "text": "[1] constitution-9pages.pdf · p.3"
+    },
+    {
+     "testID": "citation-1",
+     "text": "[1] constitution-9pages.pdf · p.3",
+     "role": "button",
+     "label": "Open constitution-9pages.pdf · p.3",
+     "pressable": true
+    },
+    {
+     "testID": "ask-input",
+     "text": "",
+     "value": "Who can veto a bill?",
+     "pressable": true
+    },
+    {
+     "testID": "ask-send",
+     "text": "↑",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "banners",
+     "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+     "testID": "banner-thermal",
+     "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+     "testID": "device-explain-sheet",
+     "text": ""
+    },
+    {
+     "testID": "qa-bridge",
+     "text": ""
+    }
+   ],
+   "detail": "J4-06-veto"
+  },
+  {
+   "i": 66,
+   "op": "type",
+   "ok": true,
+   "ms": 158,
+   "detail": "ask-input = 20 chars"
+  },
+  {
+   "i": 67,
+   "op": "press",
+   "ok": true,
+   "ms": 165,
+   "detail": "ask-send ← onPress"
+  },
+  {
+   "i": 68,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2501,
+   "detail": "2500 ms"
+  },
+  {
+   "i": 69,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 11718,
+   "detail": "ask-stop gone"
+  },
+  {
+   "i": 70,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2016,
+   "detail": "2000 ms"
+  },
+  {
+   "i": 71,
+   "op": "value",
+   "ok": false,
+   "ms": 1,
+   "detail": "value ask-plain: no node with that testID is mounted"
+  },
+  {
+   "i": 72,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "[1] A President can veto a bill if he does not approve it and returns the legislation with his objections to that House, unless Congress fails to pass it within ten days after it is presented.",
+    "props": {
+     "source": "[1] A President can veto a bill if he does not approve it and returns the legislation with his objections to that House, unless Congress fails to pass it within ten days after it is presented.",
+     "disabled": false
+    }
+   },
+   "detail": "[1] A President can veto a bill if he does not approve it and returns the legislation with his objections to that House, unless Congress fails to pass it within ten days after it is presented."
+  },
+  {
+   "i": 73,
+   "op": "value",
+   "ok": true,
+   "ms": 0,
+   "value": {
+    "text": "[1] constitution-9pages.pdf · p.3",
+    "props": {
+     "disabled": false
+    }
+   },
+   "detail": "[1] constitution-9pages.pdf · p.3"
+  },
+  {
+   "i": 74,
+   "op": "sleep",
+   "ok": true,
+   "ms": 15,
+   "detail": "0 ms"
+  },
+  {
+   "i": 75,
+   "op": "screenshot",
+   "ok": true,
+   "ms": 3174,
+   "detail": "J4-07-veto-again"
+  },
+  {
+   "i": 76,
+   "op": "dump",
+   "ok": true,
+   "ms": 2,
+   "nodes": [
+    {
+     "testID": "documents-close",
+     "text": "Close",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "documents-add",
+     "text": "Add file · PRO",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "banner-inset",
+     "text": ""
+    },
+    {
+     "testID": "documents-free-limit",
+     "text": "Free: 1 document of up to 20 pages · Pro: no limit"
+    },
+    {
+     "testID": "pro-tag",
+     "text": "PRO",
+     "role": "button",
+     "label": "See Pro",
+     "pressable": true
+    },
+    {
+     "testID": "documents-strict",
+     "text": "",
+     "value": "false",
+     "pressable": true
+    },
+    {
+     "testID": "doc-row-muwvhmt8-1-b4v9vv5s",
+     "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+     "pressable": true
+    },
+    {
+     "testID": "doc-select-muwvhmt8-1-b4v9vv5s",
+     "text": "",
+     "role": "checkbox",
+     "state": {
+      "checked": true,
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "doc-state-muwvhmt8-1-b4v9vv5s",
+     "text": "Indexed · 45 passages"
+    },
+    {
+     "testID": "documents-ask-selected",
+     "text": "Ask about 1 document",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "ask-sheet",
+     "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO FAST · ON-DEVICE AI [1] A President can veto a bill if he does not approve it and returns the legislation with his objections to that House, unless Congress fails to pass it within ten days after it is presented. [1] constitution-9pages.pdf · p.3 ↑"
+    },
+    {
+     "testID": "ask-strict",
+     "text": "",
+     "value": "false",
+     "pressable": true
+    },
+    {
+     "testID": "ask-answer",
+     "text": "[1] A President can veto a bill if he does not approve it and returns the legislation with his objections to that House, unless Congress fails to pass it within ten days after it is presented."
+    },
+    {
+     "testID": "citations",
+     "text": "[1] constitution-9pages.pdf · p.3"
+    },
+    {
+     "testID": "citation-1",
+     "text": "[1] constitution-9pages.pdf · p.3",
+     "role": "button",
+     "label": "Open constitution-9pages.pdf · p.3",
+     "pressable": true
+    },
+    {
+     "testID": "ask-input",
+     "text": "",
+     "value": "Who can veto a bill?",
+     "pressable": true
+    },
+    {
+     "testID": "ask-send",
+     "text": "↑",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "banners",
+     "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+     "testID": "banner-thermal",
+     "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+     "testID": "device-explain-sheet",
+     "text": ""
+    },
+    {
+     "testID": "qa-bridge",
+     "text": ""
+    }
+   ],
+   "detail": "J4-07-veto-again"
+  },
+  {
+   "i": 77,
+   "op": "deeplink",
+   "ok": true,
+   "ms": 158,
+   "detail": "/chats"
+  },
+  {
+   "i": 78,
+   "op": "sleep",
+   "ok": true,
+   "ms": 1516,
+   "detail": "1500 ms"
+  },
+  {
+   "i": 79,
+   "op": "deeplink",
+   "ok": true,
+   "ms": 167,
+   "detail": "/documents"
+  },
+  {
+   "i": 80,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "doc-row-muwvhmt8-1-b4v9vv5s appeared"
+  },
+  {
+   "i": 81,
+   "op": "sleep",
+   "ok": true,
+   "ms": 1501,
+   "detail": "1500 ms"
+  },
+  {
+   "i": 82,
+   "op": "press",
+   "ok": true,
+   "ms": 156,
+   "detail": "doc-row-muwvhmt8-1-b4v9vv5s ← onPress"
+  },
+  {
+   "i": 83,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "doc-details appeared"
+  },
+  {
+   "i": 84,
+   "op": "sleep",
+   "ok": true,
+   "ms": 1501,
+   "detail": "1500 ms"
+  },
+  {
+   "i": 85,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "DOCUMENT constitution-9pages.pdf Type PDF Pages 9 Size 55.6 KB Passages 45 Language English / Latin Index model embed-e5 OCR pages 0 Instruction-like lines 0 Added 06/10/2026, 9:08:08 Ask this document Delete document Close",
+    "props": {
+     "accessibilityState": {},
+     "disabled": false
+    }
+   },
+   "detail": "DOCUMENT constitution-9pages.pdf Type PDF Pages 9 Size 55.6 KB Passages 45 Language English / Latin Index model embed-e5 OCR pages 0 Instruction-like lines 0 Added 06/10/2026, 9:08:08 Ask this documen"
+  },
+  {
+   "i": 86,
+   "op": "assertText",
+   "ok": true,
+   "ms": 1,
+   "detail": "\"embed-e5\" present"
+  },
+  {
+   "i": 87,
+   "op": "assertText",
+   "ok": true,
+   "ms": 0,
+   "detail": "\"@2\" absent"
+  },
+  {
+   "i": 88,
+   "op": "sleep",
+   "ok": true,
+   "ms": 13,
+   "detail": "0 ms"
+  },
+  {
+   "i": 89,
+   "op": "screenshot",
+   "ok": true,
+   "ms": 3808,
+   "detail": "J4-08-details"
+  },
+  {
+   "i": 90,
+   "op": "dump",
+   "ok": true,
+   "ms": 4,
+   "nodes": [
+    {
+     "testID": "documents-close",
+     "text": "Close",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "documents-add",
+     "text": "Add file · PRO",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "banner-inset",
+     "text": ""
+    },
+    {
+     "testID": "documents-free-limit",
+     "text": "Free: 1 document of up to 20 pages · Pro: no limit"
+    },
+    {
+     "testID": "pro-tag",
+     "text": "PRO",
+     "role": "button",
+     "label": "See Pro",
+     "pressable": true
+    },
+    {
+     "testID": "documents-strict",
+     "text": "",
+     "value": "false",
+     "pressable": true
+    },
+    {
+     "testID": "doc-row-muwvhmt8-1-b4v9vv5s",
+     "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+     "pressable": true
+    },
+    {
+     "testID": "doc-select-muwvhmt8-1-b4v9vv5s",
+     "text": "",
+     "role": "checkbox",
+     "state": {
+      "checked": false,
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "doc-state-muwvhmt8-1-b4v9vv5s",
+     "text": "Indexed · 45 passages"
+    },
+    {
+     "testID": "documents-ask-selected",
+     "text": "Select documents to ask",
+     "role": "button",
+     "disabled": true
+    },
+    {
+     "testID": "doc-details",
+     "text": "DOCUMENT constitution-9pages.pdf Type PDF Pages 9 Size 55.6 KB Passages 45 Language English / Latin Index model embed-e5 OCR pages 0 Instruction-like lines 0 Added 06/10/2026, 9:08:08 Ask this document Delete document Close",
+     "pressable": true
+    },
+    {
+     "testID": "doc-ask",
+     "text": "Ask this document",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "doc-delete",
+     "text": "Delete document",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "banners",
+     "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+     "testID": "banner-thermal",
+     "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+     "testID": "device-explain-sheet",
+     "text": ""
+    },
+    {
+     "testID": "qa-bridge",
+     "text": ""
+    }
+   ],
+   "detail": "J4-08-details"
+  }
+ ],
+ "errors": [
+  "step 30 (value): value ask-answer: no node with that testID is mounted",
+  "step 31 (value): value citations: no node with that testID is mounted",
+  "step 44 (value): value ask-answer: no node with that testID is mounted",
+  "step 45 (value): value citations: no node with that testID is mounted",
+  "step 57 (value): value ask-plain: no node with that testID is mounted",
+  "step 71 (value): value ask-plain: no node with that testID is mounted"
+ ]
+}

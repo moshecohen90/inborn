@@ -1,0 +1,79 @@
+19:36:53 pushing 71 steps as j5a-scan-instant
+19:37:27 shot J5-01-sent-bubble
+19:37:32 shot J5-01-answer
+19:37:36 shot J5-01-ledger
+19:37:41 shot J5-02-not-now
+19:37:50 shot J5-03-colours
+19:37:54 ok     0 deeplink   /chats
+19:37:54 ok     1 waitFor    new-chat appeared
+19:37:54 ok     2 press      new-chat ← onPress
+19:37:54 ok     3 waitFor    start-chat appeared
+19:37:54 ok     4 press      start-chat ← onPress
+19:37:54 ok     5 waitFor    composer-input appeared
+19:37:54 ok     6 waitFor    Loading gone
+19:37:54 ok     7 sleep      1500 ms
+19:37:54 ok     8 value      FAST
+19:37:54 ok     9 press      model-chip ← onPress
+19:37:54 ok    10 waitFor    model-sheet appeared
+19:37:54 ok    11 sleep      1500 ms
+19:37:54 ok    12 press      model-sheet-use-instant ← onPress
+19:37:54 ok    13 sleep      3000 ms
+19:37:54 FAIL  14 press      press model-sheet-close: not mounted
+19:37:54 ok    15 waitFor    Loading gone
+19:37:54 ok    16 sleep      1500 ms
+19:37:54 ok    17 value      INSTANT
+19:37:54 ok    18 assertText "INSTANT" present
+19:37:54 ok    19 devPrompt  attach: sign-scan.pdf
+19:37:54 ok    20 waitFor    attached-docs appeared
+19:37:54 ok    21 sleep      10000 ms
+19:37:54 ok    22 value      sign-scan.pdf
+19:37:54 ok    23 type       composer-input = 16 chars
+19:37:54 ok    24 send       send ← onPress
+19:37:54 ok    25 waitFor    assistant-text appeared
+19:37:54 ok    26 value      
+19:37:54 ok    27 screenshot J5-01-sent-bubble
+19:37:54 ok    28 waitFor    stop gone
+19:37:54 ok    29 sleep      3000 ms
+19:37:54 ok    30 value      A sign on a yellow wall reads "КАРАСАЕВ" (Karasiev) in white letters and "КӨЧЕСУ" (Kochesu) in blue, with some
+19:37:54 ok    31 assertText "cannot see" absent
+19:37:54 ok    32 assertText "can't see" absent
+19:37:54 ok    33 assertText "cannot physically see" absent
+19:37:54 ok    34 assertText "see images" absent
+19:37:54 ok    35 assertText "text-based" absent
+19:37:54 ok    36 assertText "unable to see" absent
+19:37:54 ok    37 assertText "not able to see" absent
+19:37:54 ok    38 assertText "don't have eyes" absent
+19:37:54 ok    39 assertText "The request specifies" absent
+19:37:54 ok    40 assertText "I will focus" absent
+19:37:54 ok    41 assertText "as an AI" absent
+19:37:54 ok    42 assertText "NOT_FOUND" absent
+19:37:54 ok    43 assertText "<<<" absent
+19:37:54 ok    44 assertText "The user is asking" absent
+19:37:54 ok    45 assertText "Your documents don't mention this" absent
+19:37:54 ok    46 assertText "is a scan. Run OCR" absent
+19:37:54 ok    47 sleep      0 ms
+19:37:54 ok    48 screenshot J5-01-answer
+19:37:54 ok    49 dump       J5-01-answer
+19:37:54 ok    50 press      ledger-toggle ← onPress
+19:37:54 ok    51 sleep      1200 ms
+19:37:54 ok    52 value      MODEL INSTANT QUANT Q4_K CONTEXT 246 / 4096 MS / TOKEN 134 ms More detail · PRO
+19:37:54 ok    53 screenshot J5-01-ledger
+19:37:54 ok    54 press      ledger-toggle ← onPress
+19:37:54 ok    55 sleep      800 ms
+19:37:54 ok    56 value      FAST sees pictures better than INSTANT.
+19:37:54 ok    57 press      model-advice-not-now ← onPress
+19:37:54 ok    58 sleep      1500 ms
+19:37:54 ok    59 screenshot J5-02-not-now
+19:37:54 ok    60 dump       J5-02-not-now
+19:37:54 ok    61 type       composer-input = 16 chars
+19:37:54 ok    62 send       send ← onPress
+19:37:54 ok    63 sleep      2500 ms
+19:37:54 ok    64 waitFor    reading-pages gone
+19:37:54 ok    65 waitFor    reading-docs gone
+19:37:54 ok    66 waitFor    stop gone
+19:37:54 ok    67 sleep      2500 ms
+19:37:54 ok    68 value      A sign on a yellow wall reads "КАРАСАЕВ" (Karasiev) in white letters and "КӨЧЕСУ" (Kochesu) in blue, with some
+19:37:54 ok    69 screenshot J5-03-colours
+19:37:54 ok    70 dump       J5-03-colours
+19:37:54 70 passed, 1 failed, 5 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-39/docs/qa/ios-device-pass-39/screens
+19:37:54   ! step 14 (press): press model-sheet-close: not mounted

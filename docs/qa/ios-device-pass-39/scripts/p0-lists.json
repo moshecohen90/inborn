@@ -1,0 +1,47 @@
+{
+ "_": "PRIVATE harness: the Chats list and the Documents screen, dumped so the shell can find the chat and document ids (they list the founder's file).",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "new-chat",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "P0-chats"
+  },
+  {
+   "op": "dump",
+   "name": "P0-chats"
+  },
+  {
+   "op": "deeplink",
+   "url": "/documents"
+  },
+  {
+   "op": "waitFor",
+   "testID": "documents-screen",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "screenshot",
+   "name": "P0-documents"
+  },
+  {
+   "op": "dump",
+   "name": "P0-documents"
+  }
+ ]
+}

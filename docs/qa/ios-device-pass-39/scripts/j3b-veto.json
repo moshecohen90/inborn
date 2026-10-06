@@ -1,0 +1,207 @@
+{
+ "_": "J3 (tracked): back in the constitution chat (CHATID), 'Who can veto a bill?' with the index model now in, then the same question a second time; Chats and back.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "chat-row-CHATID",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "press",
+   "testID": "chat-row-CHATID"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "value",
+   "testID": "attached-docs"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "Who can veto a bill?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-pages",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "waitFor",
+   "testID": "none-matched",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "assertText",
+   "text": "Your documents don't mention this",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "screenshot",
+   "name": "J3-07-veto"
+  },
+  {
+   "op": "dump",
+   "name": "J3-07-veto"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "Who can veto a bill?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-pages",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "waitFor",
+   "testID": "none-matched",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "assertText",
+   "text": "Your documents don't mention this",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "screenshot",
+   "name": "J3-08-veto-again"
+  },
+  {
+   "op": "dump",
+   "name": "J3-08-veto-again"
+  },
+  {
+   "op": "press",
+   "testID": "open-chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "close-chats",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "screenshot",
+   "name": "J3-09-chats"
+  },
+  {
+   "op": "dump",
+   "name": "J3-09-chats"
+  },
+  {
+   "op": "press",
+   "testID": "close-chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "screenshot",
+   "name": "J3-09-back"
+  },
+  {
+   "op": "dump",
+   "name": "J3-09-back"
+  }
+ ]
+}

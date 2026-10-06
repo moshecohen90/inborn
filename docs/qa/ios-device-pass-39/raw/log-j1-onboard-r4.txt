@@ -1,0 +1,62 @@
+19:03:59 pushing 52 steps as j1-onboard-r4
+19:03:59 inbox missing — launching once to create it
+19:04:16 shot J1-00-welcome
+19:04:21 shot J1-01-model-step
+19:05:19 shot J1-02-chat-instant
+19:05:28 shot J1-03-hi
+19:05:33 shot J1-04-chats
+19:05:38 shot J1-04-back
+19:05:47 shot J1-05-what-can-you-do
+19:05:51 ok     0 waitFor    onboarding-continue appeared
+19:05:51 ok     1 sleep      1200 ms
+19:05:51 ok     2 screenshot J1-00-welcome
+19:05:51 ok     3 dump       J1-00-welcome
+19:05:51 ok     4 press      onboarding-continue ← onPress
+19:05:51 ok     5 waitFor    onboarding-model appeared
+19:05:51 ok     6 sleep      2500 ms
+19:05:51 ok     7 value      1.28 GB · one download from models.inbornapp.com
+19:05:51 ok     8 assertText "models.inbornapp.com" present
+19:05:51 ok     9 screenshot J1-01-model-step
+19:05:51 ok    10 press      start-now-with ← onPress
+19:05:51 ok    11 waitFor    sealed-start appeared
+19:05:51 ok    12 sleep      5000 ms
+19:05:51 ok    13 press      sealed-start ← onPress
+19:05:51 ok    14 waitFor    lock-start appeared
+19:05:51 ok    15 press      lock-start ← onPress
+19:05:51 ok    16 waitFor    composer-input appeared
+19:05:51 ok    17 waitFor    Loading gone
+19:05:51 ok    18 sleep      2000 ms
+19:05:51 ok    19 value      INSTANT
+19:05:51 ok    20 assertText "INSTANT" present
+19:05:51 ok    21 screenshot J1-02-chat-instant
+19:05:51 ok    22 type       composer-input = 2 chars
+19:05:51 ok    23 send       send ← onPress
+19:05:51 ok    24 sleep      2500 ms
+19:05:51 ok    25 waitFor    reading-pages gone
+19:05:51 ok    26 waitFor    reading-docs gone
+19:05:51 ok    27 waitFor    stop gone
+19:05:51 ok    28 sleep      2500 ms
+19:05:51 ok    29 value      Hello! How can I help you today?
+19:05:51 ok    30 screenshot J1-03-hi
+19:05:51 ok    31 dump       J1-03-hi
+19:05:51 ok    32 press      open-chats ← onPress
+19:05:51 ok    33 waitFor    close-chats appeared
+19:05:51 ok    34 sleep      1500 ms
+19:05:51 ok    35 screenshot J1-04-chats
+19:05:51 ok    36 dump       J1-04-chats
+19:05:51 ok    37 press      close-chats ← onPress
+19:05:51 ok    38 waitFor    composer-input appeared
+19:05:51 ok    39 sleep      2500 ms
+19:05:51 ok    40 screenshot J1-04-back
+19:05:51 ok    41 dump       J1-04-back
+19:05:51 ok    42 type       composer-input = 16 chars
+19:05:51 ok    43 send       send ← onPress
+19:05:51 ok    44 sleep      2500 ms
+19:05:51 ok    45 waitFor    reading-pages gone
+19:05:51 ok    46 waitFor    reading-docs gone
+19:05:51 ok    47 waitFor    stop gone
+19:05:51 ok    48 sleep      2500 ms
+19:05:51 ok    49 value      Hello! How can I help you today?
+19:05:51 ok    50 screenshot J1-05-what-can-you-do
+19:05:51 ok    51 dump       J1-05-what-can-you-do
+19:05:51 52 passed, 0 failed, 7 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-39/docs/qa/ios-device-pass-39/screens

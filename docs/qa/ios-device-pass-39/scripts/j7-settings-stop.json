@@ -1,0 +1,278 @@
+{
+ "_": "J7: Settings opens, the vault opens, a long answer stopped mid-way leaves the text so far and Continue; the next question is answered; Chats and back.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/settings"
+  },
+  {
+   "op": "waitFor",
+   "testID": "row-wipe",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "screenshot",
+   "name": "J7-01-settings"
+  },
+  {
+   "op": "dump",
+   "name": "J7-01-settings"
+  },
+  {
+   "op": "deeplink",
+   "url": "/vault"
+  },
+  {
+   "op": "waitFor",
+   "testID": "best-for",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "value",
+   "testID": "best-for-use"
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "screenshot",
+   "name": "J7-02-vault"
+  },
+  {
+   "op": "dump",
+   "name": "J7-02-vault"
+  },
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "new-chat",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "press",
+   "testID": "new-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "start-chat",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "press",
+   "testID": "start-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "Write a long story of about 600 words about a lighthouse keeper."
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "waitFor",
+   "testID": "assistant-text",
+   "timeoutMs": 120000
+  },
+  {
+   "op": "sleep",
+   "ms": 4000
+  },
+  {
+   "op": "press",
+   "testID": "stop"
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 10000
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "sleep",
+   "ms": 0
+  },
+  {
+   "op": "screenshot",
+   "name": "J7-03-stopped"
+  },
+  {
+   "op": "dump",
+   "name": "J7-03-stopped"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "What is the capital of France?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-pages",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "assertText",
+   "text": "Paris",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "screenshot",
+   "name": "J7-04-after-stop"
+  },
+  {
+   "op": "dump",
+   "name": "J7-04-after-stop"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "Why is it the capital?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-pages",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "screenshot",
+   "name": "J7-05-why"
+  },
+  {
+   "op": "dump",
+   "name": "J7-05-why"
+  },
+  {
+   "op": "press",
+   "testID": "open-chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "close-chats",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "screenshot",
+   "name": "J7-06-chats"
+  },
+  {
+   "op": "dump",
+   "name": "J7-06-chats"
+  },
+  {
+   "op": "press",
+   "testID": "close-chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "screenshot",
+   "name": "J7-06-back"
+  },
+  {
+   "op": "dump",
+   "name": "J7-06-back"
+  }
+ ]
+}
