@@ -61,7 +61,7 @@ describe("round 131 · picture answers in Chat", () => {
   });
 
   it("the photos card respects its snooze, and a fresh turn clears it", () => {
-    expect(chat).toContain("const cardAdvice = (photoAdvice && !adviceSnoozed.includes(photoAdvice.key) && status.kind === \"ready\" ? photoAdvice : null) ?? adviceShown;");
+    expect(chat).toContain("const cardAdvice = (photoAdvice && !adviceSnoozed.includes(photoAdvice.key) && status.kind === \"ready\" && !memorySwitched ? photoAdvice : null) ?? adviceShown;");
     expect(chat).toContain("onNotNow={() => snoozeAdvice(cardAdvice.key)}");
     expect(chat).toContain("if (!existingMessageId) setPhotoAdvice(null);");
   });
