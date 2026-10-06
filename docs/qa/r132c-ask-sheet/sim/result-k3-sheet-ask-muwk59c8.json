@@ -1,0 +1,860 @@
+{
+  "runId": "k3-sheet-ask-muwk59c8",
+  "startedAt": "2026-10-06T10:50:35.810Z",
+  "finishedAt": "2026-10-06T10:54:07.900Z",
+  "ok": false,
+  "passed": 47,
+  "failed": 1,
+  "steps": [
+    {
+      "i": 0,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "doc-select-muwk3zyh-1-1ibxdom3 appeared"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 60009,
+      "detail": "60000 ms"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "doc-select-muwk3zyh-1-1ibxdom3 ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "press",
+      "ok": true,
+      "ms": 152,
+      "detail": "documents-ask-selected ← onPress"
+    },
+    {
+      "i": 4,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "ask-sheet appeared"
+    },
+    {
+      "i": 5,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1273,
+      "detail": "03a-sheet"
+    },
+    {
+      "i": 6,
+      "op": "type",
+      "ok": true,
+      "ms": 159,
+      "detail": "ask-input = 12 chars"
+    },
+    {
+      "i": 7,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "ask-send ← onPress"
+    },
+    {
+      "i": 8,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "ask-reading-pages appeared"
+    },
+    {
+      "i": 9,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1569,
+      "detail": "03b-reading"
+    },
+    {
+      "i": 10,
+      "op": "dump",
+      "ok": true,
+      "ms": 0,
+      "nodes": [
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file 1 document · 55.6 KB on this device Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages Ask about 1 document Indexed on this device Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. Reading pages 1–2 of 9… Stop"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muwk3zyh-1-1ibxdom3",
+          "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muwk3zyh-1-1ibxdom3",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": true,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muwk3zyh-1-1ibxdom3",
+          "text": "Indexed · 45 passages"
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Ask about 1 document",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "ask-sheet",
+          "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. Reading pages 1–2 of 9… Stop"
+        },
+        {
+          "testID": "ask-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "ask-reading-pages",
+          "text": "Reading pages 1–2 of 9…"
+        },
+        {
+          "testID": "ask-input",
+          "text": "",
+          "value": "Summarize it",
+          "pressable": true
+        },
+        {
+          "testID": "ask-stop",
+          "text": "Stop",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "03b-reading"
+    },
+    {
+      "i": 11,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 98900,
+      "detail": "ask-stop gone"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2001,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 13,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1903,
+      "detail": "03c-summary"
+    },
+    {
+      "i": 14,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file 1 document · 55.6 KB on this device Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages Ask about 1 document Indexed on this device Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. INSTANT · ON-DEVICE AI The file is a compilation of provisions from the United States Constitution (1787) in its seven Articles and four Sections. Its main points are: Representatives are elected every second Year, Senators serve six Years each with one vote per Senator; Officers are chosen by the Senate for the absence of the Vice-President or when exercising their office, and have sole power to try Impeachments; The President must approve all bills presented by Congress; a bill passes only after two-thirds agreement on its merits in both Houses (after being sent for reconsideration); if the President objects to a bill within ten days, it becomes law unless prevented from return. No new States may be formed or erected without consent of their Legislatures. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better. SOURCES constitution-9pages.pdf · p.1 constitution-9pages.pdf · p.3 constitution-9pages.pdf · p.5 constitution-9pages.pdf · p.7 read 87584 ms · 9 of 9 pages · answer 12893 ms · 42.3 tok/s · prompt 886 tokens ↑"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muwk3zyh-1-1ibxdom3",
+          "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muwk3zyh-1-1ibxdom3",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": true,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muwk3zyh-1-1ibxdom3",
+          "text": "Indexed · 45 passages"
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Ask about 1 document",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "ask-sheet",
+          "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. INSTANT · ON-DEVICE AI The file is a compilation of provisions from the United States Constitution (1787) in its seven Articles and four Sections. Its main points are: Representatives are elected every second Year, Senators serve six Years each with one vote per Senator; Officers are chosen by the Senate for the absence of the Vice-President or when exercising their office, and have sole power to try Impeachments; The President must approve all bills presented by Congress; a bill passes only after two-thirds agreement on its merits in both Houses (after being sent for reconsideration); if the President objects to a bill within ten days, it becomes law unless prevented from return. No new States may be formed or erected without consent of their Legislatures. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better. SOURCES constitution-9pages.pdf · p.1 constitution-9pages.pdf · p.3 constitution-9pages.pdf · p.5 constitution-9pages.pdf · p.7 read 87584 ms · 9 of 9 pages · answer 12893 ms · 42.3 tok/s · prompt 886 tokens ↑"
+        },
+        {
+          "testID": "ask-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "ask-answer",
+          "text": "The file is a compilation of provisions from the United States Constitution (1787) in its seven Articles and four Sections. Its main points are: Representatives are elected every second Year, Senators serve six Years each with one vote per Senator; Officers are chosen by the Senate for the absence of the Vice-President or when exercising their office, and have sole power to try Impeachments; The President must approve all bills presented by Congress; a bill passes only after two-thirds agreement on its merits in both Houses (after being sent for reconsideration); if the President objects to a bill within ten days, it becomes law unless prevented from return. No new States may be formed or erected without consent of their Legislatures. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES constitution-9pages.pdf · p.1 constitution-9pages.pdf · p.3 constitution-9pages.pdf · p.5 constitution-9pages.pdf · p.7"
+        },
+        {
+          "testID": "citation-1",
+          "text": "constitution-9pages.pdf · p.1",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "constitution-9pages.pdf · p.3",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "constitution-9pages.pdf · p.5",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "constitution-9pages.pdf · p.7",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7",
+          "pressable": true
+        },
+        {
+          "testID": "ask-stats",
+          "text": "read 87584 ms · 9 of 9 pages · answer 12893 ms · 42.3 tok/s · prompt 886 tokens"
+        },
+        {
+          "testID": "ask-input",
+          "text": "",
+          "value": "Summarize it",
+          "pressable": true
+        },
+        {
+          "testID": "ask-send",
+          "text": "↑",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "03c-summary"
+    },
+    {
+      "i": 15,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Summary of all 9 pages.\" present"
+    },
+    {
+      "i": 16,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"can miss or mix up details of a long file\" present"
+    },
+    {
+      "i": 17,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"9 of 9 pages\" present"
+    },
+    {
+      "i": 18,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "ask-none-matched gone"
+    },
+    {
+      "i": 19,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "ask-not-found gone"
+    },
+    {
+      "i": 20,
+      "op": "scrollTo",
+      "ok": false,
+      "ms": 0,
+      "detail": "scrollTo ask-stats: not mounted"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1011,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 22,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 957,
+      "detail": "03d-summary-end"
+    },
+    {
+      "i": 23,
+      "op": "type",
+      "ok": true,
+      "ms": 160,
+      "detail": "ask-input = 12 chars"
+    },
+    {
+      "i": 24,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "ask-send ← onPress"
+    },
+    {
+      "i": 25,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "ask-reading-pages appeared"
+    },
+    {
+      "i": 26,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "ask-stop ← onPress"
+    },
+    {
+      "i": 27,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1285,
+      "detail": "ask-send appeared"
+    },
+    {
+      "i": 28,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3002,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 29,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "ask-answer gone"
+    },
+    {
+      "i": 30,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "ask-stats gone"
+    },
+    {
+      "i": 31,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 957,
+      "detail": "04-stopped"
+    },
+    {
+      "i": 32,
+      "op": "dump",
+      "ok": true,
+      "ms": 0,
+      "nodes": [
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file 1 document · 55.6 KB on this device Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages Ask about 1 document Indexed on this device Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. ↑"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muwk3zyh-1-1ibxdom3",
+          "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muwk3zyh-1-1ibxdom3",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": true,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muwk3zyh-1-1ibxdom3",
+          "text": "Indexed · 45 passages"
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Ask about 1 document",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "ask-sheet",
+          "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. ↑"
+        },
+        {
+          "testID": "ask-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "ask-input",
+          "text": "",
+          "value": "Summarize it",
+          "pressable": true
+        },
+        {
+          "testID": "ask-send",
+          "text": "↑",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "04-stopped"
+    },
+    {
+      "i": 33,
+      "op": "type",
+      "ok": true,
+      "ms": 155,
+      "detail": "ask-input = 20 chars"
+    },
+    {
+      "i": 34,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "ask-send ← onPress"
+    },
+    {
+      "i": 35,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 11283,
+      "detail": "ask-stop gone"
+    },
+    {
+      "i": 36,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2001,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 37,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 643,
+      "detail": "05-question"
+    },
+    {
+      "i": 38,
+      "op": "dump",
+      "ok": true,
+      "ms": 0,
+      "nodes": [
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file 1 document · 55.6 KB on this device Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages Ask about 1 document Indexed on this device Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. INSTANT · ON-DEVICE AI A bill can be vetoed by the President, who may return it with objections or send it back to both Houses for reconsideration until two-thirds of each house agrees; however, Congress does not have the power to veto bills that have already been sent to the President. SOURCES constitution-9pages.pdf · p.3 constitution-9pages.pdf · p.4 search 271 ms · 4 passages · answer 11119 ms · 46.9 tok/s · prompt 875 tokens ↑"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muwk3zyh-1-1ibxdom3",
+          "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muwk3zyh-1-1ibxdom3",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": true,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muwk3zyh-1-1ibxdom3",
+          "text": "Indexed · 45 passages"
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Ask about 1 document",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "ask-sheet",
+          "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. INSTANT · ON-DEVICE AI A bill can be vetoed by the President, who may return it with objections or send it back to both Houses for reconsideration until two-thirds of each house agrees; however, Congress does not have the power to veto bills that have already been sent to the President. SOURCES constitution-9pages.pdf · p.3 constitution-9pages.pdf · p.4 search 271 ms · 4 passages · answer 11119 ms · 46.9 tok/s · prompt 875 tokens ↑"
+        },
+        {
+          "testID": "ask-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "ask-answer",
+          "text": "A bill can be vetoed by the President, who may return it with objections or send it back to both Houses for reconsideration until two-thirds of each house agrees; however, Congress does not have the power to veto bills that have already been sent to the President."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES constitution-9pages.pdf · p.3 constitution-9pages.pdf · p.4"
+        },
+        {
+          "testID": "citation-1",
+          "text": "constitution-9pages.pdf · p.3",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "constitution-9pages.pdf · p.4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.4",
+          "pressable": true
+        },
+        {
+          "testID": "ask-stats",
+          "text": "search 271 ms · 4 passages · answer 11119 ms · 46.9 tok/s · prompt 875 tokens"
+        },
+        {
+          "testID": "ask-input",
+          "text": "",
+          "value": "Who can veto a bill?",
+          "pressable": true
+        },
+        {
+          "testID": "ask-send",
+          "text": "↑",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "05-question"
+    },
+    {
+      "i": 39,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"passages\" present"
+    },
+    {
+      "i": 40,
+      "op": "type",
+      "ok": true,
+      "ms": 157,
+      "detail": "ask-input = 24 chars"
+    },
+    {
+      "i": 41,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "ask-send ← onPress"
+    },
+    {
+      "i": 42,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 20550,
+      "detail": "ask-stop gone"
+    },
+    {
+      "i": 43,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2001,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 44,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 957,
+      "detail": "06-about"
+    },
+    {
+      "i": 45,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file 1 document · 55.6 KB on this device Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages Ask about 1 document Indexed on this device Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. INSTANT · ON-DEVICE AI The document is the United States Constitution of 1787, which was adopted by the Continental Congress and signed on April 19, 1787. It defines the political structure with an explicit two-thirds majority requirement in Article I for elections to Senators and Representatives, a bicameral legislature consisting of a Senate and House of Representatives, and a federal executive branch comprising the President (Vice-President) and the Chief Justice. SOURCES constitution-9pages.pdf · p.1 constitution-9pages.pdf · p.2 search 5 ms · 8 passages · answer 20652 ms · 46.3 tok/s · prompt 1814 tokens ↑"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muwk3zyh-1-1ibxdom3",
+          "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muwk3zyh-1-1ibxdom3",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": true,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muwk3zyh-1-1ibxdom3",
+          "text": "Indexed · 45 passages"
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Ask about 1 document",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "ask-sheet",
+          "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. INSTANT · ON-DEVICE AI The document is the United States Constitution of 1787, which was adopted by the Continental Congress and signed on April 19, 1787. It defines the political structure with an explicit two-thirds majority requirement in Article I for elections to Senators and Representatives, a bicameral legislature consisting of a Senate and House of Representatives, and a federal executive branch comprising the President (Vice-President) and the Chief Justice. SOURCES constitution-9pages.pdf · p.1 constitution-9pages.pdf · p.2 search 5 ms · 8 passages · answer 20652 ms · 46.3 tok/s · prompt 1814 tokens ↑"
+        },
+        {
+          "testID": "ask-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "ask-answer",
+          "text": "The document is the United States Constitution of 1787, which was adopted by the Continental Congress and signed on April 19, 1787. It defines the political structure with an explicit two-thirds majority requirement in Article I for elections to Senators and Representatives, a bicameral legislature consisting of a Senate and House of Representatives, and a federal executive branch comprising the President (Vice-President) and the Chief Justice."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES constitution-9pages.pdf · p.1 constitution-9pages.pdf · p.2"
+        },
+        {
+          "testID": "citation-1",
+          "text": "constitution-9pages.pdf · p.1",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1",
+          "pressable": true
+        },
+        {
+          "testID": "citation-7",
+          "text": "constitution-9pages.pdf · p.2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.2",
+          "pressable": true
+        },
+        {
+          "testID": "ask-stats",
+          "text": "search 5 ms · 8 passages · answer 20652 ms · 46.3 tok/s · prompt 1814 tokens"
+        },
+        {
+          "testID": "ask-input",
+          "text": "",
+          "value": "What is this file about?",
+          "pressable": true
+        },
+        {
+          "testID": "ask-send",
+          "text": "↑",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "06-about"
+    },
+    {
+      "i": 46,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"passages\" present"
+    },
+    {
+      "i": 47,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Summary of all\" absent"
+    }
+  ],
+  "errors": [
+    "step 20 (scrollTo): scrollTo ask-stats: not mounted"
+  ]
+}
