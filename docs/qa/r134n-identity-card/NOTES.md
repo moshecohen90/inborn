@@ -123,3 +123,45 @@ the app was terminated (`simctl terminate`) and cold-launched, the chat opened f
 card row is there word for word (`assertText` passed; `n2/p2-reopened.png`).
 
 Gates: typecheck 0, lint 0, tests core 1516 (5 skipped), mobile 1481, i18n 28, ui 23.
+
+## Round 134O: the live-data card (7.10, sim 16:45–17:06)
+
+Instant would not learn the offline rule from a prompt line (134N2: 1/3), so the app answers a live-data question the
+way it answers a self-question.
+
+- `packages/core/src/chat/liveDataQuestion.ts`: `liveDataQuestion(text, locale)` → weather | news | scores | prices | null,
+  and `liveDataQuestionMatch` with the asker's language. Narrow: a domain word AND a live anchor (today, tomorrow,
+  tonight, now, currently, latest, live, last night, yesterday, this week/weekend, forecast), at most 80 characters, no
+  year, not a "how does / why / explain / usually / on Mars" question; 8 UI locales and Hebrew, with Unicode word edges
+  (`\b` is ASCII-only, and "últimas", "câmbio", "aujourd'hui" need one).
+- `offlineAnswer(kind, lang, { device })` with `offline.answer.<kind>` in every locale and `answers/he.json`: two plain
+  sentences, out of reach offline and what the assistant can do instead.
+- `Chat.tsx`: on the identity card's turns (fresh text, no file, photo, page or Continue), after the self-question
+  check; saved as an assistant row; `[chat] offline kind=… lang=… model=…`. NO_INTERNET stays in both prompts.
+
+Sim: one iPhone 17 Pro, Release QA app from 9c928c7a (raw/shown net log in the measurement bundle only). Per model:
+nine live-data questions × 3 (`o/scripts/m3-probe-lf.json`), the six negatives × 1 (`m3-probe-nf.json`), the 134M
+probe × 3. Files in `o/`.
+
+| | Fast | Instant | Acceptance |
+|---|---|---|---|
+| Live-data questions answered by the card | **27/27** | **27/27** | 27/27 |
+| Negatives that went to the model (no card line, model text) | **6/6** | **6/6** | 6/6 |
+| 134M probe: weather from the card, self-questions from the card | 3/3, 9/9 | 3/3, 9/9 | |
+| Rule sentences, 134M probe × 3 | **0/27** | **2/27** | ≤ 1 |
+| Base-model name | 0 | 0 | 0 |
+| Sentences the net removed | 0 | 0 | no legit cut |
+
+**Not met: Instant 2/27 on the 134M probe**, both on the sleep-tips question:
+- pi-06: "I can offer some general sleep tips for a 4-year-old, but please remember that I am an offline AI and cannot see
+  their actual environment or provide real-time weather data." (the offline line Instant has had since 134N2)
+- pi3-06: "As an Inborn, I am here to help you with your child's sleep needs." (the identity; the net's identity pattern
+  matches "as Inborn", not "As an Inborn"). Not changed in this round.
+
+The offline line also shows on negatives: Fast nf-02 "As an offline AI, I cannot access real-time weather data or current
+conditions on Mars." and Instant ni-01 "…While you cannot access real-time weather from a…" (on how forecasts work).
+Instant's negatives are answered, with its usual errors (ni-03 "The United States won World War II", ni-06 Tokyo
+"frequent snowstorms").
+
+Gates: typecheck 0, lint 0, tests core 1536 (5 skipped), mobile 1485, i18n 31, ui 23. Sabotage: the about/anchor checks
+removed → 10 of 20 core and 1 of 4 mobile tests fail; restored → all pass.
