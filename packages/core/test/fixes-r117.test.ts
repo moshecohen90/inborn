@@ -100,3 +100,20 @@ describe("F437 · the catalog and the registry agree on who sees", () => {
     expect(findExtension("vision-qwen35")!.bundledOn).toEqual(["ios", "android"]);
   });
 });
+
+/* Round 134Q (F463): on Android Fast's 668 MB pack has no Play asset pack, so its Download could never arrive. */
+describe("F463 · the selected model's own pack is offered only when this host can deliver it", () => {
+  const notFastPack = (id: string) => id !== "vision-qwen35-2b";
+  it("own pack undeliverable, Instant ready: switch to Instant at no cost", () => {
+    const p = photoPlan({ selected: "fast", models: chat, installed: (id) => ["fast", "instant", "vision-qwen35"].includes(id), available: notFastPack });
+    expect(p).toEqual({ kind: "switch", alt: { model: "instant", pack: "vision-qwen35", missing: [], bytes: 0 } });
+  });
+  it("own pack undeliverable and no other way that this host can deliver: none", () => {
+    expect(photoPlan({ selected: "fast", models: chat, installed: (id) => id === "fast", available: () => false }).kind).toBe("none");
+  });
+  it("own pack deliverable: the 668 MB pack as before", () => {
+    const p = photoPlan({ selected: "fast", models: chat, installed: (id) => ["fast", "instant", "vision-qwen35"].includes(id), available: () => true });
+    expect(p.kind === "pack" && p.path.bytes).toBe(FAST_PACK);
+    expect(p.kind === "pack" && p.alt).toMatchObject({ model: "instant", bytes: 0 });
+  });
+});

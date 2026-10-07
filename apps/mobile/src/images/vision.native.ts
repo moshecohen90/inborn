@@ -44,6 +44,6 @@ export function photoPlanHere(selected: string, pro: boolean): PhotoPlan {
     selected,
     models: offeredChatModels(pro),
     installed: (id) => (isPack(id) ? packPath(id) !== null : getVault().state(id).kind === "ready"),
-    available: (id) => chatModelState(id).kind !== "unavailable",
+    available: (id) => (isPack(id) ? getVault().canDeliver(id) : chatModelState(id).kind !== "unavailable"),
   });
 }

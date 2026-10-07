@@ -385,6 +385,12 @@ export class VaultStore {
     return this.manifest.models.find((m) => m.id === id) ?? this.record.hf[id] ?? (this.record.imports[id] ? importedAsModel(this.record.imports[id]!) : undefined);
   }
 
+  /** Whether this build can bring the file here at all: on Android only a Play asset pack, elsewhere HTTPS. */
+  canDeliver(id: string): boolean {
+    const model = this.model(id);
+    return !!model && this.manifestStatus.ok && this.delivery.plan(model) !== null;
+  }
+
   /** A file picked in the Hugging Face search joins the vault as a not-installed model; Install then runs the usual HTTPS + hash path. */
   addHfModel(model: CatalogModel): VaultEntry {
     if (!this.record.hf[model.id]) {
