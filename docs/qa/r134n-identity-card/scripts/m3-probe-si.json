@@ -1,0 +1,440 @@
+{
+  "runId": "m3-probe-si",
+  "_": "Round 134N: six self-question variants, one per chat.",
+  "steps": [
+    {
+      "op": "deeplink",
+      "url": "/vault"
+    },
+    {
+      "op": "sleep",
+      "ms": 10000
+    },
+    {
+      "op": "deeplink",
+      "url": "/chats"
+    },
+    {
+      "op": "waitFor",
+      "testID": "new-chat",
+      "timeoutMs": 15000
+    },
+    {
+      "op": "press",
+      "testID": "new-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "start-chat",
+      "timeoutMs": 10000
+    },
+    {
+      "op": "press",
+      "testID": "start-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "waitFor",
+      "text": "Loading",
+      "gone": true,
+      "timeoutMs": 180000
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "value",
+      "testID": "model-chip"
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "who are you?"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "sleep",
+      "ms": 2500
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 600000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "si-01"
+    },
+    {
+      "op": "dump",
+      "name": "si-01"
+    },
+    {
+      "op": "deeplink",
+      "url": "/chats"
+    },
+    {
+      "op": "waitFor",
+      "testID": "new-chat",
+      "timeoutMs": 15000
+    },
+    {
+      "op": "press",
+      "testID": "new-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "start-chat",
+      "timeoutMs": 10000
+    },
+    {
+      "op": "press",
+      "testID": "start-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "waitFor",
+      "text": "Loading",
+      "gone": true,
+      "timeoutMs": 180000
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "value",
+      "testID": "model-chip"
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "introduce yourself"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "sleep",
+      "ms": 2500
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 600000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "si-02"
+    },
+    {
+      "op": "dump",
+      "name": "si-02"
+    },
+    {
+      "op": "deeplink",
+      "url": "/chats"
+    },
+    {
+      "op": "waitFor",
+      "testID": "new-chat",
+      "timeoutMs": 15000
+    },
+    {
+      "op": "press",
+      "testID": "new-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "start-chat",
+      "timeoutMs": 10000
+    },
+    {
+      "op": "press",
+      "testID": "start-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "waitFor",
+      "text": "Loading",
+      "gone": true,
+      "timeoutMs": 180000
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "value",
+      "testID": "model-chip"
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "are you ChatGPT?"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "sleep",
+      "ms": 2500
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 600000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "si-03"
+    },
+    {
+      "op": "dump",
+      "name": "si-03"
+    },
+    {
+      "op": "deeplink",
+      "url": "/chats"
+    },
+    {
+      "op": "waitFor",
+      "testID": "new-chat",
+      "timeoutMs": 15000
+    },
+    {
+      "op": "press",
+      "testID": "new-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "start-chat",
+      "timeoutMs": 10000
+    },
+    {
+      "op": "press",
+      "testID": "start-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "waitFor",
+      "text": "Loading",
+      "gone": true,
+      "timeoutMs": 180000
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "value",
+      "testID": "model-chip"
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "what model are you?"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "sleep",
+      "ms": 2500
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 600000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "si-04"
+    },
+    {
+      "op": "dump",
+      "name": "si-04"
+    },
+    {
+      "op": "deeplink",
+      "url": "/chats"
+    },
+    {
+      "op": "waitFor",
+      "testID": "new-chat",
+      "timeoutMs": 15000
+    },
+    {
+      "op": "press",
+      "testID": "new-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "start-chat",
+      "timeoutMs": 10000
+    },
+    {
+      "op": "press",
+      "testID": "start-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "waitFor",
+      "text": "Loading",
+      "gone": true,
+      "timeoutMs": 180000
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "value",
+      "testID": "model-chip"
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "who made you?"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "sleep",
+      "ms": 2500
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 600000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "si-05"
+    },
+    {
+      "op": "dump",
+      "name": "si-05"
+    },
+    {
+      "op": "deeplink",
+      "url": "/chats"
+    },
+    {
+      "op": "waitFor",
+      "testID": "new-chat",
+      "timeoutMs": 15000
+    },
+    {
+      "op": "press",
+      "testID": "new-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "start-chat",
+      "timeoutMs": 10000
+    },
+    {
+      "op": "press",
+      "testID": "start-chat"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "waitFor",
+      "text": "Loading",
+      "gone": true,
+      "timeoutMs": 180000
+    },
+    {
+      "op": "sleep",
+      "ms": 1500
+    },
+    {
+      "op": "value",
+      "testID": "model-chip"
+    },
+    {
+      "op": "type",
+      "testID": "composer-input",
+      "text": "\u05de\u05d9 \u05d0\u05ea\u05d4?"
+    },
+    {
+      "op": "send"
+    },
+    {
+      "op": "sleep",
+      "ms": 2500
+    },
+    {
+      "op": "waitFor",
+      "testID": "stop",
+      "gone": true,
+      "timeoutMs": 600000
+    },
+    {
+      "op": "sleep",
+      "ms": 2000
+    },
+    {
+      "op": "screenshot",
+      "name": "si-06"
+    },
+    {
+      "op": "dump",
+      "name": "si-06"
+    }
+  ]
+}

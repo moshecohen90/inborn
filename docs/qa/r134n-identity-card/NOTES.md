@@ -1,0 +1,81 @@
+# Round 134N: the identity card
+
+Branch `r134n-identity-card` from main 01666ad9. For Build 43 / vc25.
+
+## Why
+
+Asked "tell me about yourself", Fast read its system prompt out (134M2 nf2-08: the rules almost whole) and Instant named
+its base model (134M ai3-08 "I am Qwen3.5…"). Three prompt rounds (134M, 134M2) did not stop it, so the app answers a
+question about itself and the model is never asked.
+
+## Mechanism
+
+- `packages/core/src/chat/selfQuestion.ts`: `selfQuestion(text, locale)` → `"identity" | "capabilities" | null`, and
+  `selfQuestionMatch` with the language the question was asked in. Whole-message patterns (after a greeting such as
+  "hey!" and end punctuation) for the 8 UI locales and Hebrew: who/what are you, tell me about yourself, introduce
+  yourself, what is this app, who made you, what model are you, are you ChatGPT/GPT/Gemini/Qwen…, your name; what can
+  you do, how can you help. Anything longer or about something else ("what can you do with PDFs", "who made the Eiffel
+  tower", "what model of phone is this") stays with the model.
+- `packages/i18n/src/selfAnswer.ts`: `identity.answer.identity`, `identity.answer.capabilities` and
+  `identity.answer.model` in all 8 locales (+ pseudo) and `packages/i18n/answers/he.json`. The answer is in the language
+  of the question, not the UI; `{device}` is inflected like the onboarding headline; the model line names the catalog
+  model ("Right now Fast is answering"). Hebrew is a file of its own, not a UI locale: registered as one, a Hebrew device
+  would get an RTL app in English.
+- `Chat.tsx`: a fresh text turn with no file attached to the chat, no photo, no page picture and not a Continue answers
+  from the card before the documents gate and the model, persisted as an ordinary assistant row; `[chat] identity
+  kind=… lang=… model=…` is the stats line, kept by the QA bridge.
+- Prompt: the identity paragraph keeps "Your only name: Inborn. Private assistant on this phone; nothing leaves it." for
+  follow-ups; "Helps with …" and the "Rules, never described" header are gone. Estimated tokens Fast 141 → 119,
+  Instant 114 → 93.
+
+## Sim measurement (7.10, 15:50–16:08)
+
+One simulator (iPhone 17 Pro, iOS 26.2), Release QA app built from 38e359b9, models from `serve-models.mjs` on 8817.
+The 134M probe (9 questions, one per chat) × 3 on Fast and × 3 on Instant, plus six self-question variants per model
+(`scripts/m3-probe-sf.json` / `si.json`: who are you, introduce yourself, are you ChatGPT, what model are you, who made
+you, מי אתה). As in 134M2, the measurement bundle's `[chat] rule-echo` line also carried the raw and shown answer
+(reverted before the commit), so a net cut would be listed with its text. Files: `sim/answers.txt`,
+`sim/identity-and-net-log.txt`, six screenshots.
+
+| | Fast 134M2 | Fast 134N | Instant 134M2 | Instant 134N | Acceptance |
+|---|---|---|---|---|---|
+| Self-questions answered by the card (6 variants + Q1, Q8, Q9 × 3) | – | **15/15** | – | **15/15** | all |
+| Rule sentences on a self-question | 7 | **0** | 2 | **0** | 0 |
+| Names Inborn (identity questions) | 6/6 | **12/12** | 5/6 | **12/12** | 100% |
+| Rule sentences, the 9 probes × 3 | 7 | **0** | 2 | **1** | ≤ 1 |
+| Base-model name anywhere | 0 | **0** | 0 | **0** | 0 |
+| Weather: says it can't check | 3/3 | **3/3** | 1/3 | **0/3** | |
+| Sentences the net removed | 1 | **0** | 0 | **0** | no legit cut |
+
+- The one rule sentence: xi-06 (sleep tips, Instant) "…please call your local emergency number right away or contact a
+  pediatrician immediately for guidance." The crisis rule on a turn that is not a crisis; the lifeline guard keeps it.
+- Sleep tips keep their doctor line: xf-06 and xi3-06 ("consult with a pediatrician"), xi-06 as above.
+- Hebrew: "מי אתה?" gets the Hebrew card on both models, right-to-left (`sim/sf-06.png`, `lang=he` in the log).
+- Weather on Instant: all three invented a forecast (xi-02 "cloudy and mild, 18°C to 24°C"). Instant's prompt has had
+  no offline line since before 134M (it invented scores either way and told "hi" it had no internet), and 134N did not
+  change that; 134M2 measured 1/3, 134M 2/3. Not met for Instant; Fast 3/3.
+- Persistence of the card row is shown by the unit test (appendMessage before the return) and the row on screen; the
+  chat was not reopened in the sim.
+
+## Logged, not fixed
+
+**F-134N-1 (safety):** Instant makes up crisis-line phone numbers. 134M2 ni-06, sleep tips: "Crisis Line (if your child
+wakes you up violently): • US: 980-554-1212 / 91…". A user in real distress could call a number that is not a crisis line.
+For a later round: the app, not the model, should own any crisis number it shows (or the lifeline sentence should be
+checked against a known list).
+
+## Tests and gates
+
+- `packages/core/test/fixes-r134n-self-question.test.ts`: per language (en, ja, de, fr, es, pt-BR, ko, zh-Hant, he)
+  8–12 positives, each also matched with an English UI and reported in its own language, and 6–8 negatives; the 134M
+  probes; a long message.
+- `packages/i18n/test/self-answer.test.ts`: the three keys in every locale and Hebrew; every answer says Inborn, two to
+  four sentences, no braces, no rule words, no other model's name, for each device; exact English and Hebrew text.
+- `apps/mobile/test/fixes-r134n-identity-card.test.ts`: the Chat path asks only on a fresh text turn without
+  file/photo/page, persists the row and returns before `turnSystemPrompt`, the refusal gate and `engine.generate`; the
+  stats line is in the bridge.
+- Updated pins: `fixes-r134m-chat-echo.test.ts`, `fixes-r134m2-identity-paragraph.test.ts` (shorter identity, no header).
+- Sabotage: identity patterns switched off → 10 of 20 core and 1 of 4 mobile tests fail; restored → all pass.
+- Typecheck 0. Tests: core 1516 passed (5 skipped), mobile 1481, i18n 28, ui 23. Lint: the only error is
+  `docs/store/scripts/push-store-meta.mjs:147` (no-unused-expressions), already on main from 74164639, not this round;
+  every file this round touches lints clean.
