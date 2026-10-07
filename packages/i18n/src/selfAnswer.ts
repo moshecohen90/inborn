@@ -10,17 +10,26 @@ import zhHant from "../locales/zh-Hant.json";
 /* Hebrew is a language users ask in, not a UI locale: registered as one, a Hebrew device would get an RTL app in English. */
 import he from "../answers/he.json";
 
-type AnswerKey = "identity.answer.identity" | "identity.answer.capabilities" | "identity.answer.model";
+type AnswerKey = "identity.answer.identity" | "identity.answer.capabilities" | "identity.answer.model" | `offline.answer.${"weather" | "news" | "scores" | "prices"}`;
 const TABLES: Record<string, Record<AnswerKey, string>> = { en, ja, de, fr, es, "pt-BR": ptBR, ko, "zh-Hant": zhHant, he };
+
+const formatter = (lang: string) => {
+  const base = lang.split("-")[0];
+  const table = TABLES[lang] ?? TABLES[Object.keys(TABLES).find((k) => k.split("-")[0] === base) ?? "en"]!;
+  return (key: AnswerKey, values: Record<string, string>) => String(new IntlMessageFormat(table[key], lang).format(values));
+};
 
 /**
  * Round 134N: the app's own answer to a question about the assistant, in the language the question was asked in
  * (`selfQuestionMatch` in @inborn/core). `model` is the catalog name of the model in use; without one the line is left out.
  */
 export function selfAnswer(kind: "identity" | "capabilities", lang: string, { device, model }: { device: string; model?: string }): string {
-  const base = lang.split("-")[0];
-  const table = TABLES[lang] ?? TABLES[Object.keys(TABLES).find((k) => k.split("-")[0] === base) ?? "en"]!;
-  const format = (key: AnswerKey, values: Record<string, string>) => String(new IntlMessageFormat(table[key], lang).format(values));
+  const format = formatter(lang);
   const body = format(`identity.answer.${kind}`, { device });
   return kind === "identity" && model ? `${body} ${format("identity.answer.model", { model })}` : body;
+}
+
+/** Round 134O: the app's answer to a question only live data answers (`liveDataQuestionMatch` in @inborn/core), in the asker's language. */
+export function offlineAnswer(kind: "weather" | "news" | "scores" | "prices", lang: string, { device }: { device: string }): string {
+  return formatter(lang)(`offline.answer.${kind}`, { device });
 }
