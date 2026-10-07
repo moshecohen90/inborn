@@ -35,7 +35,11 @@ export function installVision(modelId: string): Promise<unknown> {
   return id ? getVault().install(id) : Promise.reject(new Error("vision-unavailable"));
 }
 
-export const modelHasVision = (modelId: string): boolean => getVault().model(modelId)?.vision === true && !!visionPackFor(modelId);
+/** Whether the model can see on this phone: its pack is here, or this build can bring it (Android only through Play, F463). */
+export function modelHasVision(modelId: string): boolean {
+  const pack = getVault().model(modelId)?.vision === true ? visionPackFor(modelId) : undefined;
+  return !!pack && (packPath(pack.id) !== null || getVault().canDeliver(pack.id));
+}
 
 const isPack = (id: string): boolean => extensions().some((e) => e.kind === "vision" && e.id === id);
 
