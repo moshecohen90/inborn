@@ -95,6 +95,26 @@ kept short for thumbnail readability. Feed them to the existing screenshot engin
 (`uniformHeadline` and `padTop`), which renders 6.9-inch and 6.5-inch iOS, phone plus 7-inch
 and 10-inch Android, and the feature graphic.
 
+## Pushing the text
+
+```
+node docs/store/scripts/check-store-copy.mjs                 # must pass first
+node docs/store/scripts/push-store-meta.mjs                  # dry run: every write it would make, with lengths
+node docs/store/scripts/push-store-meta.mjs --apply          # [--asc-only | --play-only] [--locale ko] [--listings <dir>]
+```
+
+It writes only what differs from the live value, so a second `--apply` is a no-op. App Store Connect:
+description, keywords, promotional text, support and marketing URL per version localization; name, subtitle and
+privacy-policy URL per app-info localization; categories PRODUCTIVITY / UTILITIES; the App Review notes from
+`reviewer_notes`, with the contact copied at run time from a live app of the same team so it never enters this
+repo. Apple refuses What's New on a first version (409 STATE_ERROR); the script logs one line and moves on. Google
+Play, in one edit committed at the end: title, short and full description per language, contact email (read from
+the support page), contact website, default language en-US. It never touches screenshots, builds, purchases,
+pricing, availability or submission.
+
+Console only, no API: Play privacy-policy URL, app category, data safety and content rating; ASC App Privacy and
+attaching the in-app purchases to the version.
+
 ## The three placeholders for docs/build.py (spec 13.2)
 
 The lead pastes these; do not edit `build.py` here. Values are the English ones, taken from
