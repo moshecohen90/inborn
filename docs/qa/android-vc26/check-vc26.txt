@@ -1,0 +1,38 @@
+=== AAB
+5326583474
+=== sha256
+dd6d1a8f61ea525a52221c3b46cd855cac5ccb7d72eaaa05d90b7b72bafeab19
+=== signer
+Owner: CN=Inborn Upload Key, O=Inborn, C=IL
+	 SHA256: E7:02:C9:A9:19:C8:85:BC:E7:6C:C6:A0:D7:94:70:F0:AD:91:75:AF:49:3B:21:B7:32:02:57:4D:D2:CC:ED:CD
+=== jarsigner
+jar verified.
+=== manifest
+minSdkVersion="26"
+package="com.inbornapp.mobile"
+targetSdkVersion="36"
+versionCode="26"
+versionName="1.0.0"
+=== EXPO_PUBLIC_LAUNCH_AT in index.android.bundle (count of 2026-10-09T00:00:00Z)
+       1
+=== commit in bundle
+       1
+buildInfo: {"commit":"5854a6a4440a","builtAt":"2026-10-07"}
+=== bundletool validate
+rc=0
+=== check-android-bundle.sh
+OK: base/assets/tessdata/eng.traineddata (4113088 B)
+OK: base/assets/tessdata/heb.traineddata (961404 B)
+OK: asset pack inborn_model (3 entries, 532518071 B)
+OK: asset pack inborn_model_fast (3 entries, 1280836794 B)
+OK: asset pack inborn_model_embed (3 entries, 467959867 B)
+OK: asset pack inborn_model_speech (3 entries, 147952421 B)
+OK: asset pack inborn_model_vision (3 entries, 204988190 B)
+OK: asset pack inborn_model_sharp (3 entries, 1401059131 B)
+OK: asset pack inborn_model_sharp_2 (3 entries, 1339880861 B)
+OK: no base/assets/ios entries.
+OK: bundle carries both OCR language files, every asset pack of ALL_PACKS and no iOS assets.
+rc=0
+=== check-qa-bridge.sh
+OK: /Users/moshecohen/dev/inborn-wt/android-vc25/apps/mobile/android/app/build/outputs/bundle/release/app-release.aab contains no QA bridge
+rc=0
