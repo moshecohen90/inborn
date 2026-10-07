@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { BUNDLED_MANIFEST } from "@inborn/core";
 import type { VaultRecord } from "../vault/record";
@@ -10,6 +12,7 @@ const sizes = new Map<string, number>();
 const fetched: string[] = [];
 /* Instant, its projector and Fast are on the phone; Fast's 668 MB projector is not. */
 const ON_PHONE = ["instant", "vision-qwen35", "fast"];
+let onPhone: string[] = ON_PHONE;
 const fileOf = (id: string) => `file:///app/${BUNDLED_MANIFEST.models.find((m) => m.id === id)!.file}`;
 
 class FakeFile {
@@ -38,7 +41,7 @@ vi.mock("../../modules/asset-packs", () => ({
 }));
 vi.mock("../vault/record", () => ({ readRecord: () => record, writeRecord: (r: VaultRecord) => void (record = r) }));
 vi.mock("../vault/paths", () => ({
-  bundledModelFile: (id: string) => (ON_PHONE.includes(id) ? new FakeFile(fileOf(id)) : null),
+  bundledModelFile: (id: string) => (onPhone.includes(id) ? new FakeFile(fileOf(id)) : null),
   devFallbackFile: () => new FakeFile("file:///doc/instant.gguf"),
   fileSize: (f: FakeFile) => (f.exists ? f.size : 0),
   modelFile: (name: string) => new FakeFile(`file:///vault/${name}`),
@@ -71,6 +74,7 @@ beforeEach(() => {
   record = { version: 1, installs: {}, imports: {}, hf: {}, downloads: {} };
   sizes.clear();
   fetched.length = 0;
+  onPhone = ON_PHONE;
   for (const id of ON_PHONE) sizes.set(fileOf(id), BUNDLED_MANIFEST.models.find((m) => m.id === id)!.bytes);
 });
 
@@ -92,5 +96,39 @@ describe("F463 · the photo card offers only a pack this phone can receive", () 
     const v = await phone("ios");
     const plan = v.photoPlanHere("fast", false);
     expect(plan.kind === "pack" && plan.path).toMatchObject({ pack: "vision-qwen35-2b", bytes: 668_227_264 });
+  });
+});
+
+describe("F463 · a model sees on this phone only through a pack that is here or can come here", () => {
+  it("Android: Fast's pack is neither on the phone nor in Play, so Fast does not see and the attach sheet offers Instant", async () => {
+    const v = await phone("android");
+    expect(v.modelHasVision("fast")).toBe(false);
+    expect(v.modelHasVision("instant")).toBe(true);
+    const { seerOf } = await import("../extensions/photoCard");
+    /* Chat.tsx: `seer = modelSees ? null : seerOf(photoPlanNow)`, the offer that replaces the own-pack install. */
+    expect(seerOf(v.photoPlanHere("fast", false))).toBe("instant");
+  });
+
+  it("Android: Fast sees once its pack is on the phone", async () => {
+    onPhone = [...ON_PHONE, "vision-qwen35-2b"];
+    sizes.set(fileOf("vision-qwen35-2b"), BUNDLED_MANIFEST.models.find((m) => m.id === "vision-qwen35-2b")!.bytes);
+    const v = await phone("android");
+    expect(v.modelHasVision("fast")).toBe(true);
+  });
+
+  it("iOS: Fast sees while its pack is still to download, because HTTPS can bring it", async () => {
+    const v = await phone("ios");
+    expect(v.resolveVision("fast")).toBeNull();
+    expect(v.modelHasVision("fast")).toBe(true);
+  });
+
+  it("a model without vision never sees", async () => {
+    const v = await phone("ios");
+    expect(v.modelHasVision("sharp-phi")).toBe(false);
+  });
+
+  it("the Model sheet's Good at line names photos only for a model that sees here", () => {
+    const sheet = readFileSync(join(__dirname, "../components/chat/ModelSheet.tsx"), "utf8");
+    expect(sheet).toContain('goodAtUses(model, Platform.OS === "web" ? WEB_HERE : { photos: modelHasVision(model.id), voice: true })');
   });
 });
