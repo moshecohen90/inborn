@@ -1,0 +1,715 @@
+{
+  "runId": "jf-stop",
+  "startedAt": "2026-10-07T15:35:35.673Z",
+  "finishedAt": "2026-10-07T15:36:48.759Z",
+  "ok": false,
+  "passed": 38,
+  "failed": 3,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 156,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1515,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 9,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 64 chars"
+    },
+    {
+      "i": 10,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 11,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 6134,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5029,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 13,
+      "op": "press",
+      "ok": true,
+      "ms": 155,
+      "detail": "stop ← onPress"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2016,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 15,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "stop gone"
+    },
+    {
+      "i": 16,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The wind howled like a dying beast against the iron ribs of the tower, rattling the brass fittings until they groaned in protest. Elias stared out at the churning grey sea, his face illuminated only by the flickering blue light that pierced the dark water. He had been here for four years, guarding this very lighthouse with a single eye and a heart too big for the world outside it. For weeks, the weather had been a relentless gauntlet. The gale force ten storms battered the structure, sending splinters of wood",
+        "props": {
+          "source": "The wind howled like a dying beast against the iron ribs of the tower, rattling the brass fittings until they groaned in protest. Elias stared out at the churning grey sea, his face illuminated only by the flickering blue light that pierced the dark water. He had been here for four years, guarding this very lighthouse with a single eye and a heart too big for the world outside it.\n\nFor weeks, the weather had been a relentless gauntlet. The gale force ten storms battered the structure, sending splinters of wood",
+          "disabled": false
+        }
+      },
+      "detail": "The wind howled like a dying beast against the iron ribs of the tower, rattling the brass fittings until they groaned in protest. Elias stared out at the churning grey sea, his face illuminated only b"
+    },
+    {
+      "i": 17,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Continue\" present"
+    },
+    {
+      "i": 18,
+      "op": "sleep",
+      "ok": true,
+      "ms": 12,
+      "detail": "0 ms"
+    },
+    {
+      "i": 19,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 957,
+      "detail": "sim-jf-01"
+    },
+    {
+      "i": 20,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Write a long story of about 600 words about a lighthouse keeper.",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The wind howled like a dying beast against the iron ribs of the tower, rattling the brass fittings until they groaned in protest. Elias stared out at the churning grey sea, his face illuminated only by the flickering blue light that pierced the dark water. He had been here for four years, guarding this very lighthouse with a single eye and a heart too big for the world outside it. For weeks, the weather had been a relentless gauntlet. The gale force ten storms battered the structure, sending splinters of wood Stopped Continue Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The wind howled like a dying beast against the iron ribs of the tower, rattling the brass fittings until they groaned in protest. Elias stared out at the churning grey sea, his face illuminated only by the flickering blue light that pierced the dark water. He had been here for four years, guarding this very lighthouse with a single eye and a heart too big for the world outside it. For weeks, the weather had been a relentless gauntlet. The gale force ten storms battered the structure, sending splinters of wood"
+        },
+        {
+          "testID": "continue",
+          "text": "Continue",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jf-01"
+    },
+    {
+      "i": 21,
+      "op": "press",
+      "ok": true,
+      "ms": 158,
+      "detail": "continue ← onPress"
+    },
+    {
+      "i": 22,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 23,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 22284,
+      "detail": "stop gone"
+    },
+    {
+      "i": 24,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2016,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 25,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1275,
+      "detail": "sim-jf-02"
+    },
+    {
+      "i": 26,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Write a long story of about 600 words about a lighthouse keeper.",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The wind howled like a dying beast against the iron ribs of the tower, rattling the brass fittings until they groaned in protest. Elias stared out at the churning grey sea, his face illuminated only by the flickering blue light that pierced the dark water. He had been here for four years, guarding this very lighthouse with a single eye and a heart too big for the world outside it. For weeks, the weather had been a relentless gauntlet. The gale force ten storms battered the structure, sending splinters of wood flying and threatening to topple the lantern room. Yet, Elias remained. He was a keeper of light in an age that had forgotten what it meant to look upward with hope. The ship's crew had been gone for months after the storm. The captain was presumed dead, leaving only this solitary figure against the encroaching darkness. There were no other voices on the tower; not even the faint sound of a dog barking or the chirping of birds. It was an eerie silence that pressed against his ears, but Elias did not complain. His duty was to maintain the beam until dawn broke and the world returned to normalcy. He took a deep breath, filling his lungs with the salty air. The oil lamp on his desk had been burning steadily for hours now, casting a warm pool of light onto the worn wooden floorboards. Shadows danced across the walls as he moved slowly toward the main window, checking the glass for cracks or damage that might affect the beam's strength. He knew the routine better than anyone else in the world; it was the only thread connecting him to the community and to the trust placed on his shoulders. He adjusted the crank of the Fresnel lens with a steady hand, ensuring there were no gaps where darkness could slip through. This was not just maintenance; it was an act of defiance against the chaos outside. While other people might have sought shelter from the storm in their cars or homes, Elias chose to stand as a beacon of stability, a silent promise that help would come if they needed it most. The sun began to crest over the horizon, painting the sky in hues of gold and orange before fading back into twilight blue. The gale had passed, but the air still carried the smell of salt and ozone from hours ago. Elias extinguished the lamp slowly, letting the darkness swallow him whole once more. He walked down the stairs, leaving his gear on the table, ready to wait for the next ship that might arrive to fill the void left by the departed crew. The tower stood tall, a silent sentinel watching over the ocean, its purpose clear and unchanging even when the world around it seemed broken. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The wind howled like a dying beast against the iron ribs of the tower, rattling the brass fittings until they groaned in protest. Elias stared out at the churning grey sea, his face illuminated only by the flickering blue light that pierced the dark water. He had been here for four years, guarding this very lighthouse with a single eye and a heart too big for the world outside it. For weeks, the weather had been a relentless gauntlet. The gale force ten storms battered the structure, sending splinters of wood flying and threatening to topple the lantern room. Yet, Elias remained. He was a keeper of light in an age that had forgotten what it meant to look upward with hope. The ship's crew had been gone for months after the storm. The captain was presumed dead, leaving only this solitary figure against the encroaching darkness. There were no other voices on the tower; not even the faint sound of a dog barking or the chirping of birds. It was an eerie silence that pressed against his ears, but Elias did not complain. His duty was to maintain the beam until dawn broke and the world returned to normalcy. He took a deep breath, filling his lungs with the salty air. The oil lamp on his desk had been burning steadily for hours now, casting a warm pool of light onto the worn wooden floorboards. Shadows danced across the walls as he moved slowly toward the main window, checking the glass for cracks or damage that might affect the beam's strength. He knew the routine better than anyone else in the world; it was the only thread connecting him to the community and to the trust placed on his shoulders. He adjusted the crank of the Fresnel lens with a steady hand, ensuring there were no gaps where darkness could slip through. This was not just maintenance; it was an act of defiance against the chaos outside. While other people might have sought shelter from the storm in their cars or homes, Elias chose to stand as a beacon of stability, a silent promise that help would come if they needed it most. The sun began to crest over the horizon, painting the sky in hues of gold and orange before fading back into twilight blue. The gale had passed, but the air still carried the smell of salt and ozone from hours ago. Elias extinguished the lamp slowly, letting the darkness swallow him whole once more. He walked down the stairs, leaving his gear on the table, ready to wait for the next ship that might arrive to fill the void left by the departed crew. The tower stood tall, a silent sentinel watching over the ocean, its purpose clear and unchanging even when the world around it seemed broken."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jf-02"
+    },
+    {
+      "i": 27,
+      "op": "type",
+      "ok": true,
+      "ms": 158,
+      "detail": "composer-input = 16 chars"
+    },
+    {
+      "i": 28,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 30,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 31,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 32,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 20951,
+      "detail": "stop gone"
+    },
+    {
+      "i": 33,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2515,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 34,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "The wind howled like a dying beast against the iron ribs of the tower, rattling the brass fittings until they groaned in protest. Elias stared out at the churning grey sea, his face illuminated only by the flickering blue light that pierced the dark water. He had been here for four years, guarding this very lighthouse with a single eye and a heart too big for the world outside it. For weeks, the weather had been a relentless gauntlet. The gale force ten storms battered the structure, sending splinters of wood flying and threatening to topple the lantern room. Yet, Elias remained. He was a keeper of light in an age that had forgotten what it meant to look upward with hope. The ship's crew had been gone for months after the storm. The captain was presumed dead, leaving only this solitary figure against the encroaching darkness. There were no other voices on the tower; not even the faint sound of a dog barking or the chirping of birds. It was an eerie silence that pressed against his ears, but Elias did not complain. His duty was to maintain the beam until dawn broke and the world returned to normalcy. He took a deep breath, filling his lungs with the salty air. The oil lamp on his desk had been burning steadily for hours now, casting a warm pool of light onto the worn wooden floorboards. Shadows danced across the walls as he moved slowly toward the main window, checking the glass for cracks or damage that might affect the beam's strength. He knew the routine better than anyone else in the world; it was the only thread connecting him to the community and to the trust placed on his shoulders. He adjusted the crank of the Fresnel lens with a steady hand, ensuring there were no gaps where darkness could slip through. This was not just maintenance; it was an act of defiance against the chaos outside. While other people might have sought shelter from the storm in their cars or homes, Elias chose to stand as a beacon of stability, a silent promise that help would come if they needed it most. The sun began to crest over the horizon, painting the sky in hues of gold and orange before fading back into twilight blue. The gale had passed, but the air still carried the smell of salt and ozone from hours ago. Elias extinguished the lamp slowly, letting the darkness swallow him whole once more. He walked down the stairs, leaving his gear on the table, ready to wait for the next ship that might arrive to fill the void left by the departed crew. The tower stood tall, a silent sentinel watching over the ocean, its purpose clear and unchanging even when the world around it seemed broken.",
+        "props": {
+          "source": "The wind howled like a dying beast against the iron ribs of the tower, rattling the brass fittings until they groaned in protest. Elias stared out at the churning grey sea, his face illuminated only by the flickering blue light that pierced the dark water. He had been here for four years, guarding this very lighthouse with a single eye and a heart too big for the world outside it.\n\nFor weeks, the weather had been a relentless gauntlet. The gale force ten storms battered the structure, sending splinters of wood flying and threatening to topple the lantern room. Yet, Elias remained. He was a keeper of light in an age that had forgotten what it meant to look upward with hope.\n\nThe ship's crew had been gone for months after the storm. The captain was presumed dead, leaving only this solitary figure against the encroaching darkness. There were no other voices on the tower; not even the faint sound of a dog barking or the chirping of birds. It was an eerie silence that pressed against his ears, but Elias did not complain. His duty was to maintain the beam until dawn broke and the world returned to normalcy.\n\nHe took a deep breath, filling his lungs with the salty air. The oil lamp on his desk had been burning steadily for hours now, casting a warm pool of light onto the worn wooden floorboards. Shadows danced across the walls as he moved slowly toward the main window, checking the glass for cracks or damage that might affect the beam's strength. He knew the routine better than anyone else in the world; it was the only thread connecting him to the community and to the trust placed on his shoulders.\n\nHe adjusted the crank of the Fresnel lens with a steady hand, ensuring there were no gaps where darkness could slip through. This was not just maintenance; it was an act of defiance against the chaos outside. While other people might have sought shelter from the storm in their cars or homes, Elias chose to stand as a beacon of stability, a silent promise that help would come if they needed it most.\n\nThe sun began to crest over the horizon, painting the sky in hues of gold and orange before fading back into twilight blue. The gale had passed, but the air still carried the smell of salt and ozone from hours ago. Elias extinguished the lamp slowly, letting the darkness swallow him whole once more. He walked down the stairs, leaving his gear on the table, ready to wait for the next ship that might arrive to fill the void left by the departed crew. The tower stood tall, a silent sentinel watching over the ocean, its purpose clear and unchanging even when the world around it seemed broken.",
+          "disabled": false
+        }
+      },
+      "detail": "The wind howled like a dying beast against the iron ribs of the tower, rattling the brass fittings until they groaned in protest. Elias stared out at the churning grey sea, his face illuminated only b"
+    },
+    {
+      "i": 35,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 36,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 37,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 38,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 39,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1906,
+      "detail": "sim-jf-03"
+    },
+    {
+      "i": 40,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Write a long story of about 600 words about a lighthouse keeper.",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The wind howled like a dying beast against the iron ribs of the tower, rattling the brass fittings until they groaned in protest. Elias stared out at the churning grey sea, his face illuminated only by the flickering blue light that pierced the dark water. He had been here for four years, guarding this very lighthouse with a single eye and a heart too big for the world outside it. For weeks, the weather had been a relentless gauntlet. The gale force ten storms battered the structure, sending splinters of wood flying and threatening to topple the lantern room. Yet, Elias remained. He was a keeper of light in an age that had forgotten what it meant to look upward with hope. The ship's crew had been gone for months after the storm. The captain was presumed dead, leaving only this solitary figure against the encroaching darkness. There were no other voices on the tower; not even the faint sound of a dog barking or the chirping of birds. It was an eerie silence that pressed against his ears, but Elias did not complain. His duty was to maintain the beam until dawn broke and the world returned to normalcy. He took a deep breath, filling his lungs with the salty air. The oil lamp on his desk had been burning steadily for hours now, casting a warm pool of light onto the worn wooden floorboards. Shadows danced across the walls as he moved slowly toward the main window, checking the glass for cracks or damage that might affect the beam's strength. He knew the routine better than anyone else in the world; it was the only thread connecting him to the community and to the trust placed on his shoulders. He adjusted the crank of the Fresnel lens with a steady hand, ensuring there were no gaps where darkness could slip through. This was not just maintenance; it was an act of defiance against the chaos outside. While other people might have sought shelter from the storm in their cars or homes, Elias chose to stand as a beacon of stability, a silent promise that help would come if they needed it most. The sun began to crest over the horizon, painting the sky in hues of gold and orange before fading back into twilight blue. The gale had passed, but the air still carried the smell of salt and ozone from hours ago. Elias extinguished the lamp slowly, letting the darkness swallow him whole once more. He walked down the stairs, leaving his gear on the table, ready to wait for the next ship that might arrive to fill the void left by the departed crew. The tower stood tall, a silent sentinel watching over the ocean, its purpose clear and unchanging even when the world around it seemed broken. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The wind howled like a dying beast against the iron ribs of the tower, rattling the brass fittings until they groaned in protest. Elias stared out at the churning grey sea, his face illuminated only by the flickering blue light that pierced the dark water. He had been here for four years, guarding this very lighthouse with a single eye and a heart too big for the world outside it. For weeks, the weather had been a relentless gauntlet. The gale force ten storms battered the structure, sending splinters of wood flying and threatening to topple the lantern room. Yet, Elias remained. He was a keeper of light in an age that had forgotten what it meant to look upward with hope. The ship's crew had been gone for months after the storm. The captain was presumed dead, leaving only this solitary figure against the encroaching darkness. There were no other voices on the tower; not even the faint sound of a dog barking or the chirping of birds. It was an eerie silence that pressed against his ears, but Elias did not complain. His duty was to maintain the beam until dawn broke and the world returned to normalcy. He took a deep breath, filling his lungs with the salty air. The oil lamp on his desk had been burning steadily for hours now, casting a warm pool of light onto the worn wooden floorboards. Shadows danced across the walls as he moved slowly toward the main window, checking the glass for cracks or damage that might affect the beam's strength. He knew the routine better than anyone else in the world; it was the only thread connecting him to the community and to the trust placed on his shoulders. He adjusted the crank of the Fresnel lens with a steady hand, ensuring there were no gaps where darkness could slip through. This was not just maintenance; it was an act of defiance against the chaos outside. While other people might have sought shelter from the storm in their cars or homes, Elias chose to stand as a beacon of stability, a silent promise that help would come if they needed it most. The sun began to crest over the horizon, painting the sky in hues of gold and orange before fading back into twilight blue. The gale had passed, but the air still carried the smell of salt and ozone from hours ago. Elias extinguished the lamp slowly, letting the darkness swallow him whole once more. He walked down the stairs, leaving his gear on the table, ready to wait for the next ship that might arrive to fill the void left by the departed crew. The tower stood tall, a silent sentinel watching over the ocean, its purpose clear and unchanging even when the world around it seemed broken."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jf-03"
+    }
+  ],
+  "errors": [
+    "step 35 (value): value citations: no node with that testID is mounted",
+    "step 36 (value): value none-matched: no node with that testID is mounted",
+    "step 37 (value): value banners: no node with that testID is mounted"
+  ]
+}

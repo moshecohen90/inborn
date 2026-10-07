@@ -1,0 +1,2448 @@
+{
+  "runId": "jc-rework-fast",
+  "startedAt": "2026-10-07T15:24:22.839Z",
+  "finishedAt": "2026-10-07T15:34:02.021Z",
+  "ok": false,
+  "passed": 133,
+  "failed": 16,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 152,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "INSTANT",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT"
+    },
+    {
+      "i": 9,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "model-chip ← onPress"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "model-sheet appeared"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1515,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 12,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "model-sheet-use-fast ← onPress"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3001,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 14,
+      "op": "press",
+      "ok": false,
+      "ms": 1,
+      "detail": "press model-sheet-close: not mounted"
+    },
+    {
+      "i": 15,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1514,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 17,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 18,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"FAST\" present"
+    },
+    {
+      "i": 19,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 165,
+      "detail": "attach: constitution-9pages.pdf"
+    },
+    {
+      "i": 20,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1068,
+      "detail": "attached-docs appeared"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 20016,
+      "detail": "20000 ms"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "constitution-9pages.pdf",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "constitution-9pages.pdf"
+    },
+    {
+      "i": 23,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 952,
+      "detail": "sim-jc-01"
+    },
+    {
+      "i": 24,
+      "op": "type",
+      "ok": true,
+      "ms": 165,
+      "detail": "composer-input = 12 chars"
+    },
+    {
+      "i": 25,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 26,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-pages appeared"
+    },
+    {
+      "i": 27,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Reading pages 1–2 of 9…",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Reading pages 1–2 of 9…"
+    },
+    {
+      "i": 28,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1902,
+      "detail": "sim-jc-02"
+    },
+    {
+      "i": 29,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 238294,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 30,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 30668,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 31,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 24317,
+      "detail": "stop gone"
+    },
+    {
+      "i": 32,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2517,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 33,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "The provided document is a summary of the first nine pages of the United States Constitution. Its main points are: • [1] The Constitution establishes a bicameral legislature with two houses (Senate and House) that must maintain a quorum to conduct business, though they may adjourn for up to three days without consent from the other body. • The House holds exclusive power over impeachment and originates all revenue bills; the Senate has sole authority to try impeachments with a two-thirds vote. Members of Congress receive federal compensation and are protected during their service from arrest or free speech within their chambers. • [2] A bill must be presented to the President for approval, but if signed it becomes law unless reconsidered by Congress; otherwise, the President can veto it (or disapprove a two-thirds override vote). If the President fails to return a bill within ten days (excluding Sundays), it automatically becomes law unless Congress adjourns during this period. • [3] The Constitution establishes a presidential system with the President serving as Commander-in-Chief and holding power over appointments, including judges and ambassadors, subject to Senate confirmation. • The executive branch is vested in the President for four years; he must be a natural-born citizen at least thirty-five years old and a resident of the United States for fourteen years. • The judicial system operates under Article III through a Supreme Court with appellate jurisdiction over treaties, ambassadors, admiralty cases, or controversies between states. Criminal trials generally occur in the state where the crime was committed unless Congress directs otherwise. No state may levy taxes on imports or exports without Congressional consent; such revenue must be dedicated to the federal Treasury. • [4] The Constitution defines treason as levying war against the United States or aiding its enemies, requiring conviction only upon testimony of two witnesses or a confession in open court. It grants Congress the power to declare punishments for treason but limits attainder from causing corruption of blood or forfeiture except during the life of the person attainted. • Full faith and credit is guaranteed between states regarding public acts and records, while citizens are entitled to all privileges and immunities across state lines unless they flee justice or escape labor obligations. • Congress may admit new states only through consent of their legislatures and the federal Congress; new states cannot be formed without such consent. Summary of all 9 pages.",
+        "props": {
+          "source": "The provided document is a summary of the first nine pages of the United States Constitution. Its main points are:\n\n*   [1] The Constitution establishes a bicameral legislature with two houses (Senate and House) that must maintain a quorum to conduct business, though they may adjourn for up to three days without consent from the other body.\n    *   The House holds exclusive power over impeachment and originates all revenue bills; the Senate has sole authority to try impeachments with a two-thirds vote. Members of Congress receive federal compensation and are protected during their service from arrest or free speech within their chambers.\n*   [2] A bill must be presented to the President for approval, but if signed it becomes law unless reconsidered by Congress; otherwise, the President can veto it (or disapprove a two-thirds override vote). If the President fails to return a bill within ten days (excluding Sundays), it automatically becomes law unless Congress adjourns during this period.\n*   [3] The Constitution establishes a presidential system with the President serving as Commander-in-Chief and holding power over appointments, including judges and ambassadors, subject to Senate confirmation.\n    *   The executive branch is vested in the President for four years; he must be a natural-born citizen at least thirty-five years old and a resident of the United States for fourteen years.\n    *   The judicial system operates under Article III through a Supreme Court with appellate jurisdiction over treaties, ambassadors, admiralty cases, or controversies between states. Criminal trials generally occur in the state where the crime was committed unless Congress directs otherwise. No state may levy taxes on imports or exports without Congressional consent; such revenue must be dedicated to the federal Treasury.\n*   [4] The Constitution defines treason as levying war against the United States or aiding its enemies, requiring conviction only upon testimony of two witnesses or a confession in open court. It grants Congress the power to declare punishments for treason but limits attainder from causing corruption of blood or forfeiture except during the life of the person attainted.\n    *   Full faith and credit is guaranteed between states regarding public acts and records, while citizens are entitled to all privileges and immunities across state lines unless they flee justice or escape labor obligations.\n    *   Congress may admit new states only through consent of their legislatures and the federal Congress; new states cannot be formed without such consent.\n\n*Summary of all 9 pages.*",
+          "disabled": false
+        }
+      },
+      "detail": "The provided document is a summary of the first nine pages of the United States Constitution. Its main points are: • [1] The Constitution establishes a bicameral legislature with two houses (Senate an"
+    },
+    {
+      "i": 34,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+    },
+    {
+      "i": 35,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "constitution-9pages.pdf",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "constitution-9pages.pdf"
+    },
+    {
+      "i": 36,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Summary of all 9 pages.\" present"
+    },
+    {
+      "i": 37,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1583,
+      "detail": "sim-jc-03"
+    },
+    {
+      "i": 38,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The provided document is a summary of the first nine pages of the United States Constitution. Its main points are: • [1] The Constitution establishes a bicameral legislature with two houses (Senate and House) that must maintain a quorum to conduct business, though they may adjourn for up to three days without consent from the other body. • The House holds exclusive power over impeachment and originates all revenue bills; the Senate has sole authority to try impeachments with a two-thirds vote. Members of Congress receive federal compensation and are protected during their service from arrest or free speech within their chambers. • [2] A bill must be presented to the President for approval, but if signed it becomes law unless reconsidered by Congress; otherwise, the President can veto it (or disapprove a two-thirds override vote). If the President fails to return a bill within ten days (excluding Sundays), it automatically becomes law unless Congress adjourns during this period. • [3] The Constitution establishes a presidential system with the President serving as Commander-in-Chief and holding power over appointments, including judges and ambassadors, subject to Senate confirmation. • The executive branch is vested in the President for four years; he must be a natural-born citizen at least thirty-five years old and a resident of the United States for fourteen years. • The judicial system operates under Article III through a Supreme Court with appellate jurisdiction over treaties, ambassadors, admiralty cases, or controversies between states. Criminal trials generally occur in the state where the crime was committed unless Congress directs otherwise. No state may levy taxes on imports or exports without Congressional consent; such revenue must be dedicated to the federal Treasury. • [4] The Constitution defines treason as levying war against the United States or aiding its enemies, requiring conviction only upon testimony of two witnesses or a confession in open court. It grants Congress the power to declare punishments for treason but limits attainder from causing corruption of blood or forfeiture except during the life of the person attainted. • Full faith and credit is guaranteed between states regarding public acts and records, while citizens are entitled to all privileges and immunities across state lines unless they flee justice or escape labor obligations. • Congress may admit new states only through consent of their legislatures and the federal Congress; new states cannot be formed without such consent. Summary of all 9 pages. [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The provided document is a summary of the first nine pages of the United States Constitution. Its main points are: • [1] The Constitution establishes a bicameral legislature with two houses (Senate and House) that must maintain a quorum to conduct business, though they may adjourn for up to three days without consent from the other body. • The House holds exclusive power over impeachment and originates all revenue bills; the Senate has sole authority to try impeachments with a two-thirds vote. Members of Congress receive federal compensation and are protected during their service from arrest or free speech within their chambers. • [2] A bill must be presented to the President for approval, but if signed it becomes law unless reconsidered by Congress; otherwise, the President can veto it (or disapprove a two-thirds override vote). If the President fails to return a bill within ten days (excluding Sundays), it automatically becomes law unless Congress adjourns during this period. • [3] The Constitution establishes a presidential system with the President serving as Commander-in-Chief and holding power over appointments, including judges and ambassadors, subject to Senate confirmation. • The executive branch is vested in the President for four years; he must be a natural-born citizen at least thirty-five years old and a resident of the United States for fourteen years. • The judicial system operates under Article III through a Supreme Court with appellate jurisdiction over treaties, ambassadors, admiralty cases, or controversies between states. Criminal trials generally occur in the state where the crime was committed unless Congress directs otherwise. No state may levy taxes on imports or exports without Congressional consent; such revenue must be dedicated to the federal Treasury. • [4] The Constitution defines treason as levying war against the United States or aiding its enemies, requiring conviction only upon testimony of two witnesses or a confession in open court. It grants Congress the power to declare punishments for treason but limits attainder from causing corruption of blood or forfeiture except during the life of the person attainted. • Full faith and credit is guaranteed between states regarding public acts and records, while citizens are entitled to all privileges and immunities across state lines unless they flee justice or escape labor obligations. • Congress may admit new states only through consent of their legislatures and the federal Congress; new states cannot be formed without such consent. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muy8o5oi-1-opi89wti",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jc-03"
+    },
+    {
+      "i": 39,
+      "op": "type",
+      "ok": true,
+      "ms": 160,
+      "detail": "composer-input = 6 chars"
+    },
+    {
+      "i": 40,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 41,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 42,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 43,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 44,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 20916,
+      "detail": "stop gone"
+    },
+    {
+      "i": 45,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 46,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "The provided document is a summary of the first nine pages of the United States Constitution. Its main points are: • [1] The Constitution establishes a bicameral legislature with two houses (Senate and House) that must maintain a quorum to conduct business, though they may adjourn for up to three days without consent from the other body. • The House holds exclusive power over impeachment and originates all revenue bills; the Senate has sole authority to try impeachments with a two-thirds vote. Members of Congress receive federal compensation and are protected during their service from arrest or free speech within their chambers. • [2] A bill must be presented to the President for approval, but if signed it becomes law unless reconsidered by Congress; otherwise, the President can veto it (or disapprove a two-thirds override vote). If the President fails to return a bill within ten days (excluding Sundays), it automatically becomes law unless Congress adjourns during this period. • [3] The Constitution establishes a presidential system with the President serving as Commander-in-Chief and holding power over appointments, including judges and ambassadors, subject to Senate confirmation. • The executive branch is vested in the President for four years; he must be a natural-born citizen at least thirty-five years old and a resident of the United States for fourteen years. • The judicial system operates under Article III through a Supreme Court with appellate jurisdiction over treaties, ambassadors, admiralty cases, or controversies between states. Criminal trials generally occur in the state where the crime was committed unless Congress directs otherwise. No state may levy taxes on imports or exports without Congressional consent; such revenue must be dedicated to the federal Treasury. • [4] The Constitution defines treason as levying war against the United States or aiding its enemies, requiring conviction only upon testimony of two witnesses or a confession in open court. It grants Congress the power to declare punishments for treason but limits attainder from causing corruption of blood or forfeiture except during the life of the person attainted. • Full faith and credit is guaranteed between states regarding public acts and records, while citizens are entitled to all privileges and immunities across state lines unless they flee justice or escape labor obligations. • Congress may admit new states only through consent of their legislatures and the federal Congress; new states cannot be formed without such consent. Summary of all 9 pages.",
+        "props": {
+          "source": "The provided document is a summary of the first nine pages of the United States Constitution. Its main points are:\n\n*   [1] The Constitution establishes a bicameral legislature with two houses (Senate and House) that must maintain a quorum to conduct business, though they may adjourn for up to three days without consent from the other body.\n    *   The House holds exclusive power over impeachment and originates all revenue bills; the Senate has sole authority to try impeachments with a two-thirds vote. Members of Congress receive federal compensation and are protected during their service from arrest or free speech within their chambers.\n*   [2] A bill must be presented to the President for approval, but if signed it becomes law unless reconsidered by Congress; otherwise, the President can veto it (or disapprove a two-thirds override vote). If the President fails to return a bill within ten days (excluding Sundays), it automatically becomes law unless Congress adjourns during this period.\n*   [3] The Constitution establishes a presidential system with the President serving as Commander-in-Chief and holding power over appointments, including judges and ambassadors, subject to Senate confirmation.\n    *   The executive branch is vested in the President for four years; he must be a natural-born citizen at least thirty-five years old and a resident of the United States for fourteen years.\n    *   The judicial system operates under Article III through a Supreme Court with appellate jurisdiction over treaties, ambassadors, admiralty cases, or controversies between states. Criminal trials generally occur in the state where the crime was committed unless Congress directs otherwise. No state may levy taxes on imports or exports without Congressional consent; such revenue must be dedicated to the federal Treasury.\n*   [4] The Constitution defines treason as levying war against the United States or aiding its enemies, requiring conviction only upon testimony of two witnesses or a confession in open court. It grants Congress the power to declare punishments for treason but limits attainder from causing corruption of blood or forfeiture except during the life of the person attainted.\n    *   Full faith and credit is guaranteed between states regarding public acts and records, while citizens are entitled to all privileges and immunities across state lines unless they flee justice or escape labor obligations.\n    *   Congress may admit new states only through consent of their legislatures and the federal Congress; new states cannot be formed without such consent.\n\n*Summary of all 9 pages.*",
+          "disabled": false
+        }
+      },
+      "detail": "The provided document is a summary of the first nine pages of the United States Constitution. Its main points are: • [1] The Constitution establishes a bicameral legislature with two houses (Senate an"
+    },
+    {
+      "i": 47,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+    },
+    {
+      "i": 48,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 49,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 50,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 51,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1902,
+      "detail": "sim-jc-04"
+    },
+    {
+      "i": 52,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The provided document is a summary of the first nine pages of the United States Constitution. Its main points are: • [1] The Constitution establishes a bicameral legislature with two houses (Senate and House) that must maintain a quorum to conduct business, though they may adjourn for up to three days without consent from the other body. • The House holds exclusive power over impeachment and originates all revenue bills; the Senate has sole authority to try impeachments with a two-thirds vote. Members of Congress receive federal compensation and are protected during their service from arrest or free speech within their chambers. • [2] A bill must be presented to the President for approval, but if signed it becomes law unless reconsidered by Congress; otherwise, the President can veto it (or disapprove a two-thirds override vote). If the President fails to return a bill within ten days (excluding Sundays), it automatically becomes law unless Congress adjourns during this period. • [3] The Constitution establishes a presidential system with the President serving as Commander-in-Chief and holding power over appointments, including judges and ambassadors, subject to Senate confirmation. • The executive branch is vested in the President for four years; he must be a natural-born citizen at least thirty-five years old and a resident of the United States for fourteen years. • The judicial system operates under Article III through a Supreme Court with appellate jurisdiction over treaties, ambassadors, admiralty cases, or controversies between states. Criminal trials generally occur in the state where the crime was committed unless Congress directs otherwise. No state may levy taxes on imports or exports without Congressional consent; such revenue must be dedicated to the federal Treasury. • [4] The Constitution defines treason as levying war against the United States or aiding its enemies, requiring conviction only upon testimony of two witnesses or a confession in open court. It grants Congress the power to declare punishments for treason but limits attainder from causing corruption of blood or forfeiture except during the life of the person attainted. • Full faith and credit is guaranteed between states regarding public acts and records, while citizens are entitled to all privileges and immunities across state lines unless they flee justice or escape labor obligations. • Congress may admit new states only through consent of their legislatures and the federal Congress; new states cannot be formed without such consent. Summary of all 9 pages. [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The provided document is a summary of the first nine pages of the United States Constitution. Its main points are: • [1] The Constitution establishes a bicameral legislature with two houses (Senate and House) that must maintain a quorum to conduct business, though they may adjourn for up to three days without consent from the other body. • The House holds exclusive power over impeachment and originates all revenue bills; the Senate has sole authority to try impeachments with a two-thirds vote. Members of Congress receive federal compensation and are protected during their service from arrest or free speech within their chambers. • [2] A bill must be presented to the President for approval, but if signed it becomes law unless reconsidered by Congress; otherwise, the President can veto it (or disapprove a two-thirds override vote). If the President fails to return a bill within ten days (excluding Sundays), it automatically becomes law unless Congress adjourns during this period. • [3] The Constitution establishes a presidential system with the President serving as Commander-in-Chief and holding power over appointments, including judges and ambassadors, subject to Senate confirmation. • The executive branch is vested in the President for four years; he must be a natural-born citizen at least thirty-five years old and a resident of the United States for fourteen years. • The judicial system operates under Article III through a Supreme Court with appellate jurisdiction over treaties, ambassadors, admiralty cases, or controversies between states. Criminal trials generally occur in the state where the crime was committed unless Congress directs otherwise. No state may levy taxes on imports or exports without Congressional consent; such revenue must be dedicated to the federal Treasury. • [4] The Constitution defines treason as levying war against the United States or aiding its enemies, requiring conviction only upon testimony of two witnesses or a confession in open court. It grants Congress the power to declare punishments for treason but limits attainder from causing corruption of blood or forfeiture except during the life of the person attainted. • Full faith and credit is guaranteed between states regarding public acts and records, while citizens are entitled to all privileges and immunities across state lines unless they flee justice or escape labor obligations. • Congress may admit new states only through consent of their legislatures and the federal Congress; new states cannot be formed without such consent. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muy8o5oi-1-opi89wti",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jc-04"
+    },
+    {
+      "i": 53,
+      "op": "type",
+      "ok": true,
+      "ms": 162,
+      "detail": "composer-input = 7 chars"
+    },
+    {
+      "i": 54,
+      "op": "send",
+      "ok": true,
+      "ms": 163,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 55,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2502,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 56,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 57,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 58,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 32500,
+      "detail": "stop gone"
+    },
+    {
+      "i": 59,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2516,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 60,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "The provided document is a summary of the first nine pages of the United States Constitution. Its main points are: • [1] The Constitution establishes a bicameral legislature with two houses (Senate and House) that must maintain a quorum to conduct business, though they may adjourn for up to three days without consent from the other body. • The House holds exclusive power over impeachment and originates all revenue bills; the Senate has sole authority to try impeachments with a two-thirds vote. Members of Congress receive federal compensation and are protected during their service from arrest or free speech within their chambers. • [2] A bill must be presented to the President for approval, but if signed it becomes law unless reconsidered by Congress; otherwise, the President can veto it (or disapprove a two-thirds override vote). If the President fails to return a bill within ten days (excluding Sundays), it automatically becomes law unless Congress adjourns during this period. • [3] The Constitution establishes a presidential system with the President serving as Commander-in-Chief and holding power over appointments, including judges and ambassadors, subject to Senate confirmation. • The executive branch is vested in the President for four years; he must be a natural-born citizen at least thirty-five years old and a resident of the United States for fourteen years. • The judicial system operates under Article III through a Supreme Court with appellate jurisdiction over treaties, ambassadors, admiralty cases, or controversies between states. Criminal trials generally occur in the state where the crime was committed unless Congress directs otherwise. No state may levy taxes on imports or exports without Congressional consent; such revenue must be dedicated to the federal Treasury. • [4] The Constitution defines treason as levying war against the United States or aiding its enemies, requiring conviction only upon testimony of two witnesses or a confession in open court. It grants Congress the power to declare punishments for treason but limits attainder from causing corruption of blood or forfeiture except during the life of the person attainted. • Full faith and credit is guaranteed between states regarding public acts and records, while citizens are entitled to all privileges and immunities across state lines unless they flee justice or escape labor obligations. • Congress may admit new states only through consent of their legislatures and the federal Congress; new states cannot be formed without such consent. Summary of all 9 pages.",
+        "props": {
+          "source": "The provided document is a summary of the first nine pages of the United States Constitution. Its main points are:\n\n*   [1] The Constitution establishes a bicameral legislature with two houses (Senate and House) that must maintain a quorum to conduct business, though they may adjourn for up to three days without consent from the other body.\n    *   The House holds exclusive power over impeachment and originates all revenue bills; the Senate has sole authority to try impeachments with a two-thirds vote. Members of Congress receive federal compensation and are protected during their service from arrest or free speech within their chambers.\n*   [2] A bill must be presented to the President for approval, but if signed it becomes law unless reconsidered by Congress; otherwise, the President can veto it (or disapprove a two-thirds override vote). If the President fails to return a bill within ten days (excluding Sundays), it automatically becomes law unless Congress adjourns during this period.\n*   [3] The Constitution establishes a presidential system with the President serving as Commander-in-Chief and holding power over appointments, including judges and ambassadors, subject to Senate confirmation.\n    *   The executive branch is vested in the President for four years; he must be a natural-born citizen at least thirty-five years old and a resident of the United States for fourteen years.\n    *   The judicial system operates under Article III through a Supreme Court with appellate jurisdiction over treaties, ambassadors, admiralty cases, or controversies between states. Criminal trials generally occur in the state where the crime was committed unless Congress directs otherwise. No state may levy taxes on imports or exports without Congressional consent; such revenue must be dedicated to the federal Treasury.\n*   [4] The Constitution defines treason as levying war against the United States or aiding its enemies, requiring conviction only upon testimony of two witnesses or a confession in open court. It grants Congress the power to declare punishments for treason but limits attainder from causing corruption of blood or forfeiture except during the life of the person attainted.\n    *   Full faith and credit is guaranteed between states regarding public acts and records, while citizens are entitled to all privileges and immunities across state lines unless they flee justice or escape labor obligations.\n    *   Congress may admit new states only through consent of their legislatures and the federal Congress; new states cannot be formed without such consent.\n\n*Summary of all 9 pages.*",
+          "disabled": false
+        }
+      },
+      "detail": "The provided document is a summary of the first nine pages of the United States Constitution. Its main points are: • [1] The Constitution establishes a bicameral legislature with two houses (Senate an"
+    },
+    {
+      "i": 61,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+    },
+    {
+      "i": 62,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 63,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 64,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 65,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 66,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "none-matched gone"
+    },
+    {
+      "i": 67,
+      "op": "assertText",
+      "ok": true,
+      "ms": 5,
+      "detail": "\"Your documents don't mention this\" absent"
+    },
+    {
+      "i": 68,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"You're welcome\" absent"
+    },
+    {
+      "i": 69,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "citations appeared"
+    },
+    {
+      "i": 70,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2226,
+      "detail": "sim-jc-05"
+    },
+    {
+      "i": 71,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The provided document is a summary of the first nine pages of the United States Constitution. Its main points are: • [1] The Constitution establishes a bicameral legislature with two houses (Senate and House) that must maintain a quorum to conduct business, though they may adjourn for up to three days without consent from the other body. • The House holds exclusive power over impeachment and originates all revenue bills; the Senate has sole authority to try impeachments with a two-thirds vote. Members of Congress receive federal compensation and are protected during their service from arrest or free speech within their chambers. • [2] A bill must be presented to the President for approval, but if signed it becomes law unless reconsidered by Congress; otherwise, the President can veto it (or disapprove a two-thirds override vote). If the President fails to return a bill within ten days (excluding Sundays), it automatically becomes law unless Congress adjourns during this period. • [3] The Constitution establishes a presidential system with the President serving as Commander-in-Chief and holding power over appointments, including judges and ambassadors, subject to Senate confirmation. • The executive branch is vested in the President for four years; he must be a natural-born citizen at least thirty-five years old and a resident of the United States for fourteen years. • The judicial system operates under Article III through a Supreme Court with appellate jurisdiction over treaties, ambassadors, admiralty cases, or controversies between states. Criminal trials generally occur in the state where the crime was committed unless Congress directs otherwise. No state may levy taxes on imports or exports without Congressional consent; such revenue must be dedicated to the federal Treasury. • [4] The Constitution defines treason as levying war against the United States or aiding its enemies, requiring conviction only upon testimony of two witnesses or a confession in open court. It grants Congress the power to declare punishments for treason but limits attainder from causing corruption of blood or forfeiture except during the life of the person attainted. • Full faith and credit is guaranteed between states regarding public acts and records, while citizens are entitled to all privileges and immunities across state lines unless they flee justice or escape labor obligations. • Congress may admit new states only through consent of their legislatures and the federal Congress; new states cannot be formed without such consent. Summary of all 9 pages. [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The provided document is a summary of the first nine pages of the United States Constitution. Its main points are: • [1] The Constitution establishes a bicameral legislature with two houses (Senate and House) that must maintain a quorum to conduct business, though they may adjourn for up to three days without consent from the other body. • The House holds exclusive power over impeachment and originates all revenue bills; the Senate has sole authority to try impeachments with a two-thirds vote. Members of Congress receive federal compensation and are protected during their service from arrest or free speech within their chambers. • [2] A bill must be presented to the President for approval, but if signed it becomes law unless reconsidered by Congress; otherwise, the President can veto it (or disapprove a two-thirds override vote). If the President fails to return a bill within ten days (excluding Sundays), it automatically becomes law unless Congress adjourns during this period. • [3] The Constitution establishes a presidential system with the President serving as Commander-in-Chief and holding power over appointments, including judges and ambassadors, subject to Senate confirmation. • The executive branch is vested in the President for four years; he must be a natural-born citizen at least thirty-five years old and a resident of the United States for fourteen years. • The judicial system operates under Article III through a Supreme Court with appellate jurisdiction over treaties, ambassadors, admiralty cases, or controversies between states. Criminal trials generally occur in the state where the crime was committed unless Congress directs otherwise. No state may levy taxes on imports or exports without Congressional consent; such revenue must be dedicated to the federal Treasury. • [4] The Constitution defines treason as levying war against the United States or aiding its enemies, requiring conviction only upon testimony of two witnesses or a confession in open court. It grants Congress the power to declare punishments for treason but limits attainder from causing corruption of blood or forfeiture except during the life of the person attainted. • Full faith and credit is guaranteed between states regarding public acts and records, while citizens are entitled to all privileges and immunities across state lines unless they flee justice or escape labor obligations. • Congress may admit new states only through consent of their legislatures and the federal Congress; new states cannot be formed without such consent. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muy8o5oi-1-opi89wti",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jc-05"
+    },
+    {
+      "i": 72,
+      "op": "type",
+      "ok": true,
+      "ms": 162,
+      "detail": "composer-input = 23 chars"
+    },
+    {
+      "i": 73,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 74,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2502,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 75,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 76,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 77,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 13790,
+      "detail": "stop gone"
+    },
+    {
+      "i": 78,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2509,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 79,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "The provided document is a summary of the first nine pages of the United States Constitution. Its main points are: • [1] The Constitution establishes a bicameral legislature with two houses (Senate and House) that must maintain a quorum to conduct business, though they may adjourn for up to three days without consent from the other body. • The House holds exclusive power over impeachment and originates all revenue bills; the Senate has sole authority to try impeachments with a two-thirds vote. Members of Congress receive federal compensation and are protected during their service from arrest or free speech within their chambers. • [2] A bill must be presented to the President for approval, but if signed it becomes law unless reconsidered by Congress; otherwise, the President can veto it (or disapprove a two-thirds override vote). If the President fails to return a bill within ten days (excluding Sundays), it automatically becomes law unless Congress adjourns during this period. • [3] The Constitution establishes a presidential system with the President serving as Commander-in-Chief and holding power over appointments, including judges and ambassadors, subject to Senate confirmation. • The executive branch is vested in the President for four years; he must be a natural-born citizen at least thirty-five years old and a resident of the United States for fourteen years. • The judicial system operates under Article III through a Supreme Court with appellate jurisdiction over treaties, ambassadors, admiralty cases, or controversies between states. Criminal trials generally occur in the state where the crime was committed unless Congress directs otherwise. No state may levy taxes on imports or exports without Congressional consent; such revenue must be dedicated to the federal Treasury. • [4] The Constitution defines treason as levying war against the United States or aiding its enemies, requiring conviction only upon testimony of two witnesses or a confession in open court. It grants Congress the power to declare punishments for treason but limits attainder from causing corruption of blood or forfeiture except during the life of the person attainted. • Full faith and credit is guaranteed between states regarding public acts and records, while citizens are entitled to all privileges and immunities across state lines unless they flee justice or escape labor obligations. • Congress may admit new states only through consent of their legislatures and the federal Congress; new states cannot be formed without such consent. Summary of all 9 pages.",
+        "props": {
+          "source": "The provided document is a summary of the first nine pages of the United States Constitution. Its main points are:\n\n*   [1] The Constitution establishes a bicameral legislature with two houses (Senate and House) that must maintain a quorum to conduct business, though they may adjourn for up to three days without consent from the other body.\n    *   The House holds exclusive power over impeachment and originates all revenue bills; the Senate has sole authority to try impeachments with a two-thirds vote. Members of Congress receive federal compensation and are protected during their service from arrest or free speech within their chambers.\n*   [2] A bill must be presented to the President for approval, but if signed it becomes law unless reconsidered by Congress; otherwise, the President can veto it (or disapprove a two-thirds override vote). If the President fails to return a bill within ten days (excluding Sundays), it automatically becomes law unless Congress adjourns during this period.\n*   [3] The Constitution establishes a presidential system with the President serving as Commander-in-Chief and holding power over appointments, including judges and ambassadors, subject to Senate confirmation.\n    *   The executive branch is vested in the President for four years; he must be a natural-born citizen at least thirty-five years old and a resident of the United States for fourteen years.\n    *   The judicial system operates under Article III through a Supreme Court with appellate jurisdiction over treaties, ambassadors, admiralty cases, or controversies between states. Criminal trials generally occur in the state where the crime was committed unless Congress directs otherwise. No state may levy taxes on imports or exports without Congressional consent; such revenue must be dedicated to the federal Treasury.\n*   [4] The Constitution defines treason as levying war against the United States or aiding its enemies, requiring conviction only upon testimony of two witnesses or a confession in open court. It grants Congress the power to declare punishments for treason but limits attainder from causing corruption of blood or forfeiture except during the life of the person attainted.\n    *   Full faith and credit is guaranteed between states regarding public acts and records, while citizens are entitled to all privileges and immunities across state lines unless they flee justice or escape labor obligations.\n    *   Congress may admit new states only through consent of their legislatures and the federal Congress; new states cannot be formed without such consent.\n\n*Summary of all 9 pages.*",
+          "disabled": false
+        }
+      },
+      "detail": "The provided document is a summary of the first nine pages of the United States Constitution. Its main points are: • [1] The Constitution establishes a bicameral legislature with two houses (Senate an"
+    },
+    {
+      "i": 80,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+    },
+    {
+      "i": 81,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 82,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 83,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 84,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 85,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "none-matched gone"
+    },
+    {
+      "i": 86,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"Your documents don't mention this\" absent"
+    },
+    {
+      "i": 87,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"You're welcome\" absent"
+    },
+    {
+      "i": 88,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "citations appeared"
+    },
+    {
+      "i": 89,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 945,
+      "detail": "sim-jc-06"
+    },
+    {
+      "i": 90,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The provided document is a summary of the first nine pages of the United States Constitution. Its main points are: • [1] The Constitution establishes a bicameral legislature with two houses (Senate and House) that must maintain a quorum to conduct business, though they may adjourn for up to three days without consent from the other body. • The House holds exclusive power over impeachment and originates all revenue bills; the Senate has sole authority to try impeachments with a two-thirds vote. Members of Congress receive federal compensation and are protected during their service from arrest or free speech within their chambers. • [2] A bill must be presented to the President for approval, but if signed it becomes law unless reconsidered by Congress; otherwise, the President can veto it (or disapprove a two-thirds override vote). If the President fails to return a bill within ten days (excluding Sundays), it automatically becomes law unless Congress adjourns during this period. • [3] The Constitution establishes a presidential system with the President serving as Commander-in-Chief and holding power over appointments, including judges and ambassadors, subject to Senate confirmation. • The executive branch is vested in the President for four years; he must be a natural-born citizen at least thirty-five years old and a resident of the United States for fourteen years. • The judicial system operates under Article III through a Supreme Court with appellate jurisdiction over treaties, ambassadors, admiralty cases, or controversies between states. Criminal trials generally occur in the state where the crime was committed unless Congress directs otherwise. No state may levy taxes on imports or exports without Congressional consent; such revenue must be dedicated to the federal Treasury. • [4] The Constitution defines treason as levying war against the United States or aiding its enemies, requiring conviction only upon testimony of two witnesses or a confession in open court. It grants Congress the power to declare punishments for treason but limits attainder from causing corruption of blood or forfeiture except during the life of the person attainted. • Full faith and credit is guaranteed between states regarding public acts and records, while citizens are entitled to all privileges and immunities across state lines unless they flee justice or escape labor obligations. • Congress may admit new states only through consent of their legislatures and the federal Congress; new states cannot be formed without such consent. Summary of all 9 pages. [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The provided document is a summary of the first nine pages of the United States Constitution. Its main points are: • [1] The Constitution establishes a bicameral legislature with two houses (Senate and House) that must maintain a quorum to conduct business, though they may adjourn for up to three days without consent from the other body. • The House holds exclusive power over impeachment and originates all revenue bills; the Senate has sole authority to try impeachments with a two-thirds vote. Members of Congress receive federal compensation and are protected during their service from arrest or free speech within their chambers. • [2] A bill must be presented to the President for approval, but if signed it becomes law unless reconsidered by Congress; otherwise, the President can veto it (or disapprove a two-thirds override vote). If the President fails to return a bill within ten days (excluding Sundays), it automatically becomes law unless Congress adjourns during this period. • [3] The Constitution establishes a presidential system with the President serving as Commander-in-Chief and holding power over appointments, including judges and ambassadors, subject to Senate confirmation. • The executive branch is vested in the President for four years; he must be a natural-born citizen at least thirty-five years old and a resident of the United States for fourteen years. • The judicial system operates under Article III through a Supreme Court with appellate jurisdiction over treaties, ambassadors, admiralty cases, or controversies between states. Criminal trials generally occur in the state where the crime was committed unless Congress directs otherwise. No state may levy taxes on imports or exports without Congressional consent; such revenue must be dedicated to the federal Treasury. • [4] The Constitution defines treason as levying war against the United States or aiding its enemies, requiring conviction only upon testimony of two witnesses or a confession in open court. It grants Congress the power to declare punishments for treason but limits attainder from causing corruption of blood or forfeiture except during the life of the person attainted. • Full faith and credit is guaranteed between states regarding public acts and records, while citizens are entitled to all privileges and immunities across state lines unless they flee justice or escape labor obligations. • Congress may admit new states only through consent of their legislatures and the federal Congress; new states cannot be formed without such consent. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muy8o5oi-1-opi89wti",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jc-06"
+    },
+    {
+      "i": 91,
+      "op": "type",
+      "ok": true,
+      "ms": 162,
+      "detail": "composer-input = 22 chars"
+    },
+    {
+      "i": 92,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 93,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 94,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 95,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 96,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 21800,
+      "detail": "stop gone"
+    },
+    {
+      "i": 97,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2502,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 98,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "The provided document is a summary of the first nine pages of the United States Constitution. Its main points are: • [1] The Constitution establishes a bicameral legislature with two houses (Senate and House) that must maintain a quorum to conduct business, though they may adjourn for up to three days without consent from the other body. • The House holds exclusive power over impeachment and originates all revenue bills; the Senate has sole authority to try impeachments with a two-thirds vote. Members of Congress receive federal compensation and are protected during their service from arrest or free speech within their chambers. • [2] A bill must be presented to the President for approval, but if signed it becomes law unless reconsidered by Congress; otherwise, the President can veto it (or disapprove a two-thirds override vote). If the President fails to return a bill within ten days (excluding Sundays), it automatically becomes law unless Congress adjourns during this period. • [3] The Constitution establishes a presidential system with the President serving as Commander-in-Chief and holding power over appointments, including judges and ambassadors, subject to Senate confirmation. • The executive branch is vested in the President for four years; he must be a natural-born citizen at least thirty-five years old and a resident of the United States for fourteen years. • The judicial system operates under Article III through a Supreme Court with appellate jurisdiction over treaties, ambassadors, admiralty cases, or controversies between states. Criminal trials generally occur in the state where the crime was committed unless Congress directs otherwise. No state may levy taxes on imports or exports without Congressional consent; such revenue must be dedicated to the federal Treasury. • [4] The Constitution defines treason as levying war against the United States or aiding its enemies, requiring conviction only upon testimony of two witnesses or a confession in open court. It grants Congress the power to declare punishments for treason but limits attainder from causing corruption of blood or forfeiture except during the life of the person attainted. • Full faith and credit is guaranteed between states regarding public acts and records, while citizens are entitled to all privileges and immunities across state lines unless they flee justice or escape labor obligations. • Congress may admit new states only through consent of their legislatures and the federal Congress; new states cannot be formed without such consent. Summary of all 9 pages.",
+        "props": {
+          "source": "The provided document is a summary of the first nine pages of the United States Constitution. Its main points are:\n\n*   [1] The Constitution establishes a bicameral legislature with two houses (Senate and House) that must maintain a quorum to conduct business, though they may adjourn for up to three days without consent from the other body.\n    *   The House holds exclusive power over impeachment and originates all revenue bills; the Senate has sole authority to try impeachments with a two-thirds vote. Members of Congress receive federal compensation and are protected during their service from arrest or free speech within their chambers.\n*   [2] A bill must be presented to the President for approval, but if signed it becomes law unless reconsidered by Congress; otherwise, the President can veto it (or disapprove a two-thirds override vote). If the President fails to return a bill within ten days (excluding Sundays), it automatically becomes law unless Congress adjourns during this period.\n*   [3] The Constitution establishes a presidential system with the President serving as Commander-in-Chief and holding power over appointments, including judges and ambassadors, subject to Senate confirmation.\n    *   The executive branch is vested in the President for four years; he must be a natural-born citizen at least thirty-five years old and a resident of the United States for fourteen years.\n    *   The judicial system operates under Article III through a Supreme Court with appellate jurisdiction over treaties, ambassadors, admiralty cases, or controversies between states. Criminal trials generally occur in the state where the crime was committed unless Congress directs otherwise. No state may levy taxes on imports or exports without Congressional consent; such revenue must be dedicated to the federal Treasury.\n*   [4] The Constitution defines treason as levying war against the United States or aiding its enemies, requiring conviction only upon testimony of two witnesses or a confession in open court. It grants Congress the power to declare punishments for treason but limits attainder from causing corruption of blood or forfeiture except during the life of the person attainted.\n    *   Full faith and credit is guaranteed between states regarding public acts and records, while citizens are entitled to all privileges and immunities across state lines unless they flee justice or escape labor obligations.\n    *   Congress may admit new states only through consent of their legislatures and the federal Congress; new states cannot be formed without such consent.\n\n*Summary of all 9 pages.*",
+          "disabled": false
+        }
+      },
+      "detail": "The provided document is a summary of the first nine pages of the United States Constitution. Its main points are: • [1] The Constitution establishes a bicameral legislature with two houses (Senate an"
+    },
+    {
+      "i": 99,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+    },
+    {
+      "i": 100,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 101,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 102,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 103,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 104,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "none-matched gone"
+    },
+    {
+      "i": 105,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Your documents don't mention this\" absent"
+    },
+    {
+      "i": 106,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"You're welcome\" absent"
+    },
+    {
+      "i": 107,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "citations appeared"
+    },
+    {
+      "i": 108,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1278,
+      "detail": "sim-jc-07"
+    },
+    {
+      "i": 109,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The provided document is a summary of the first nine pages of the United States Constitution. Its main points are: • [1] The Constitution establishes a bicameral legislature with two houses (Senate and House) that must maintain a quorum to conduct business, though they may adjourn for up to three days without consent from the other body. • The House holds exclusive power over impeachment and originates all revenue bills; the Senate has sole authority to try impeachments with a two-thirds vote. Members of Congress receive federal compensation and are protected during their service from arrest or free speech within their chambers. • [2] A bill must be presented to the President for approval, but if signed it becomes law unless reconsidered by Congress; otherwise, the President can veto it (or disapprove a two-thirds override vote). If the President fails to return a bill within ten days (excluding Sundays), it automatically becomes law unless Congress adjourns during this period. • [3] The Constitution establishes a presidential system with the President serving as Commander-in-Chief and holding power over appointments, including judges and ambassadors, subject to Senate confirmation. • The executive branch is vested in the President for four years; he must be a natural-born citizen at least thirty-five years old and a resident of the United States for fourteen years. • The judicial system operates under Article III through a Supreme Court with appellate jurisdiction over treaties, ambassadors, admiralty cases, or controversies between states. Criminal trials generally occur in the state where the crime was committed unless Congress directs otherwise. No state may levy taxes on imports or exports without Congressional consent; such revenue must be dedicated to the federal Treasury. • [4] The Constitution defines treason as levying war against the United States or aiding its enemies, requiring conviction only upon testimony of two witnesses or a confession in open court. It grants Congress the power to declare punishments for treason but limits attainder from causing corruption of blood or forfeiture except during the life of the person attainted. • Full faith and credit is guaranteed between states regarding public acts and records, while citizens are entitled to all privileges and immunities across state lines unless they flee justice or escape labor obligations. • Congress may admit new states only through consent of their legislatures and the federal Congress; new states cannot be formed without such consent. Summary of all 9 pages. [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The provided document is a summary of the first nine pages of the United States Constitution. Its main points are: • [1] The Constitution establishes a bicameral legislature with two houses (Senate and House) that must maintain a quorum to conduct business, though they may adjourn for up to three days without consent from the other body. • The House holds exclusive power over impeachment and originates all revenue bills; the Senate has sole authority to try impeachments with a two-thirds vote. Members of Congress receive federal compensation and are protected during their service from arrest or free speech within their chambers. • [2] A bill must be presented to the President for approval, but if signed it becomes law unless reconsidered by Congress; otherwise, the President can veto it (or disapprove a two-thirds override vote). If the President fails to return a bill within ten days (excluding Sundays), it automatically becomes law unless Congress adjourns during this period. • [3] The Constitution establishes a presidential system with the President serving as Commander-in-Chief and holding power over appointments, including judges and ambassadors, subject to Senate confirmation. • The executive branch is vested in the President for four years; he must be a natural-born citizen at least thirty-five years old and a resident of the United States for fourteen years. • The judicial system operates under Article III through a Supreme Court with appellate jurisdiction over treaties, ambassadors, admiralty cases, or controversies between states. Criminal trials generally occur in the state where the crime was committed unless Congress directs otherwise. No state may levy taxes on imports or exports without Congressional consent; such revenue must be dedicated to the federal Treasury. • [4] The Constitution defines treason as levying war against the United States or aiding its enemies, requiring conviction only upon testimony of two witnesses or a confession in open court. It grants Congress the power to declare punishments for treason but limits attainder from causing corruption of blood or forfeiture except during the life of the person attainted. • Full faith and credit is guaranteed between states regarding public acts and records, while citizens are entitled to all privileges and immunities across state lines unless they flee justice or escape labor obligations. • Congress may admit new states only through consent of their legislatures and the federal Congress; new states cannot be formed without such consent. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muy8o5oi-1-opi89wti",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jc-07"
+    },
+    {
+      "i": 110,
+      "op": "type",
+      "ok": true,
+      "ms": 157,
+      "detail": "composer-input = 24 chars"
+    },
+    {
+      "i": 111,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 112,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2500,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 113,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 114,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 115,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 48251,
+      "detail": "stop gone"
+    },
+    {
+      "i": 116,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 117,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The provided document is a summary of the first nine pages of the United States Constitution. Its main points are: • [1] The Constitution establishes a bicameral legislature with two houses (Senate and House) that must maintain a quorum to conduct business, though they may adjourn for up to three days without consent from the other body. • The House holds exclusive power over impeachment and originates all revenue bills; the Senate has sole authority to try impeachments with a two-thirds vote. Members of Congress receive federal compensation and are protected during their service from arrest or free speech within their chambers. • [2] A bill must be presented to the President for approval, but if signed it becomes law unless reconsidered by Congress; otherwise, the President can veto it (or disapprove a two-thirds override vote). If the President fails to return a bill within ten days (excluding Sundays), it automatically becomes law unless Congress adjourns during this period. • [3] The Constitution establishes a presidential system with the President serving as Commander-in-Chief and holding power over appointments, including judges and ambassadors, subject to Senate confirmation. • The executive branch is vested in the President for four years; he must be a natural-born citizen at least thirty-five years old and a resident of the United States for fourteen years. • The judicial system operates under Article III through a Supreme Court with appellate jurisdiction over treaties, ambassadors, admiralty cases, or controversies between states. Criminal trials generally occur in the state where the crime was committed unless Congress directs otherwise. No state may levy taxes on imports or exports without Congressional consent; such revenue must be dedicated to the federal Treasury. • [4] The Constitution defines treason as levying war against the United States or aiding its enemies, requiring conviction only upon testimony of two witnesses or a confession in open court. It grants Congress the power to declare punishments for treason but limits attainder from causing corruption of blood or forfeiture except during the life of the person attainted. • Full faith and credit is guaranteed between states regarding public acts and records, while citizens are entitled to all privileges and immunities across state lines unless they flee justice or escape labor obligations. • Congress may admit new states only through consent of their legislatures and the federal Congress; new states cannot be formed without such consent. Summary of all 9 pages.",
+        "props": {
+          "source": "The provided document is a summary of the first nine pages of the United States Constitution. Its main points are:\n\n*   [1] The Constitution establishes a bicameral legislature with two houses (Senate and House) that must maintain a quorum to conduct business, though they may adjourn for up to three days without consent from the other body.\n    *   The House holds exclusive power over impeachment and originates all revenue bills; the Senate has sole authority to try impeachments with a two-thirds vote. Members of Congress receive federal compensation and are protected during their service from arrest or free speech within their chambers.\n*   [2] A bill must be presented to the President for approval, but if signed it becomes law unless reconsidered by Congress; otherwise, the President can veto it (or disapprove a two-thirds override vote). If the President fails to return a bill within ten days (excluding Sundays), it automatically becomes law unless Congress adjourns during this period.\n*   [3] The Constitution establishes a presidential system with the President serving as Commander-in-Chief and holding power over appointments, including judges and ambassadors, subject to Senate confirmation.\n    *   The executive branch is vested in the President for four years; he must be a natural-born citizen at least thirty-five years old and a resident of the United States for fourteen years.\n    *   The judicial system operates under Article III through a Supreme Court with appellate jurisdiction over treaties, ambassadors, admiralty cases, or controversies between states. Criminal trials generally occur in the state where the crime was committed unless Congress directs otherwise. No state may levy taxes on imports or exports without Congressional consent; such revenue must be dedicated to the federal Treasury.\n*   [4] The Constitution defines treason as levying war against the United States or aiding its enemies, requiring conviction only upon testimony of two witnesses or a confession in open court. It grants Congress the power to declare punishments for treason but limits attainder from causing corruption of blood or forfeiture except during the life of the person attainted.\n    *   Full faith and credit is guaranteed between states regarding public acts and records, while citizens are entitled to all privileges and immunities across state lines unless they flee justice or escape labor obligations.\n    *   Congress may admit new states only through consent of their legislatures and the federal Congress; new states cannot be formed without such consent.\n\n*Summary of all 9 pages.*",
+          "disabled": false
+        }
+      },
+      "detail": "The provided document is a summary of the first nine pages of the United States Constitution. Its main points are: • [1] The Constitution establishes a bicameral legislature with two houses (Senate an"
+    },
+    {
+      "i": 118,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+    },
+    {
+      "i": 119,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Nothing in your documents matched this question. Answered without them.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Nothing in your documents matched this question. Answered without them."
+    },
+    {
+      "i": 120,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 121,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 122,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 1061,
+      "detail": "waitFor citations never went away in 1000 ms"
+    },
+    {
+      "i": 123,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1274,
+      "detail": "sim-jc-08"
+    },
+    {
+      "i": 124,
+      "op": "dump",
+      "ok": true,
+      "ms": 4,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The provided document is a summary of the first nine pages of the United States Constitution. Its main points are: • [1] The Constitution establishes a bicameral legislature with two houses (Senate and House) that must maintain a quorum to conduct business, though they may adjourn for up to three days without consent from the other body. • The House holds exclusive power over impeachment and originates all revenue bills; the Senate has sole authority to try impeachments with a two-thirds vote. Members of Congress receive federal compensation and are protected during their service from arrest or free speech within their chambers. • [2] A bill must be presented to the President for approval, but if signed it becomes law unless reconsidered by Congress; otherwise, the President can veto it (or disapprove a two-thirds override vote). If the President fails to return a bill within ten days (excluding Sundays), it automatically becomes law unless Congress adjourns during this period. • [3] The Constitution establishes a presidential system with the President serving as Commander-in-Chief and holding power over appointments, including judges and ambassadors, subject to Senate confirmation. • The executive branch is vested in the President for four years; he must be a natural-born citizen at least thirty-five years old and a resident of the United States for fourteen years. • The judicial system operates under Article III through a Supreme Court with appellate jurisdiction over treaties, ambassadors, admiralty cases, or controversies between states. Criminal trials generally occur in the state where the crime was committed unless Congress directs otherwise. No state may levy taxes on imports or exports without Congressional consent; such revenue must be dedicated to the federal Treasury. • [4] The Constitution defines treason as levying war against the United States or aiding its enemies, requiring conviction only upon testimony of two witnesses or a confession in open court. It grants Congress the power to declare punishments for treason but limits attainder from causing corruption of blood or forfeiture except during the life of the person attainted. • Full faith and credit is guaranteed between states regarding public acts and records, while citizens are entitled to all privileges and immunities across state lines unless they flee justice or escape labor obligations. • Congress may admit new states only through consent of their legislatures and the federal Congress; new states cannot be formed without such consent. Summary of all 9 pages. [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The provided document is a summary of the first nine pages of the United States Constitution. Its main points are: • [1] The Constitution establishes a bicameral legislature with two houses (Senate and House) that must maintain a quorum to conduct business, though they may adjourn for up to three days without consent from the other body. • The House holds exclusive power over impeachment and originates all revenue bills; the Senate has sole authority to try impeachments with a two-thirds vote. Members of Congress receive federal compensation and are protected during their service from arrest or free speech within their chambers. • [2] A bill must be presented to the President for approval, but if signed it becomes law unless reconsidered by Congress; otherwise, the President can veto it (or disapprove a two-thirds override vote). If the President fails to return a bill within ten days (excluding Sundays), it automatically becomes law unless Congress adjourns during this period. • [3] The Constitution establishes a presidential system with the President serving as Commander-in-Chief and holding power over appointments, including judges and ambassadors, subject to Senate confirmation. • The executive branch is vested in the President for four years; he must be a natural-born citizen at least thirty-five years old and a resident of the United States for fourteen years. • The judicial system operates under Article III through a Supreme Court with appellate jurisdiction over treaties, ambassadors, admiralty cases, or controversies between states. Criminal trials generally occur in the state where the crime was committed unless Congress directs otherwise. No state may levy taxes on imports or exports without Congressional consent; such revenue must be dedicated to the federal Treasury. • [4] The Constitution defines treason as levying war against the United States or aiding its enemies, requiring conviction only upon testimony of two witnesses or a confession in open court. It grants Congress the power to declare punishments for treason but limits attainder from causing corruption of blood or forfeiture except during the life of the person attainted. • Full faith and credit is guaranteed between states regarding public acts and records, while citizens are entitled to all privileges and immunities across state lines unless they flee justice or escape labor obligations. • Congress may admit new states only through consent of their legislatures and the federal Congress; new states cannot be formed without such consent. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "none-matched",
+          "text": "Nothing in your documents matched this question. Answered without them."
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muy8o5oi-1-opi89wti",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jc-08"
+    },
+    {
+      "i": 125,
+      "op": "type",
+      "ok": true,
+      "ms": 152,
+      "detail": "composer-input = 31 chars"
+    },
+    {
+      "i": 126,
+      "op": "send",
+      "ok": true,
+      "ms": 168,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 127,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2500,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 128,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 15084,
+      "detail": "waitFor docs-hold never appeared in 15000 ms"
+    },
+    {
+      "i": 129,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value docs-hold: no node with that testID is mounted"
+    },
+    {
+      "i": 130,
+      "op": "press",
+      "ok": false,
+      "ms": 1,
+      "detail": "press docs-hold-download: not mounted"
+    },
+    {
+      "i": 131,
+      "op": "idleTimer",
+      "ok": true,
+      "ms": 0,
+      "detail": "idle timer disabled: false",
+      "value": {
+        "text": "false",
+        "props": {
+          "idleTimerDisabled": false
+        }
+      }
+    },
+    {
+      "i": 132,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 133,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 134,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "stop appeared"
+    },
+    {
+      "i": 135,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 136,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 137,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 53680,
+      "detail": "stop gone"
+    },
+    {
+      "i": 138,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 139,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "The provided document is a summary of the first nine pages of the United States Constitution. Its main points are: • [1] The Constitution establishes a bicameral legislature with two houses (Senate and House) that must maintain a quorum to conduct business, though they may adjourn for up to three days without consent from the other body. • The House holds exclusive power over impeachment and originates all revenue bills; the Senate has sole authority to try impeachments with a two-thirds vote. Members of Congress receive federal compensation and are protected during their service from arrest or free speech within their chambers. • [2] A bill must be presented to the President for approval, but if signed it becomes law unless reconsidered by Congress; otherwise, the President can veto it (or disapprove a two-thirds override vote). If the President fails to return a bill within ten days (excluding Sundays), it automatically becomes law unless Congress adjourns during this period. • [3] The Constitution establishes a presidential system with the President serving as Commander-in-Chief and holding power over appointments, including judges and ambassadors, subject to Senate confirmation. • The executive branch is vested in the President for four years; he must be a natural-born citizen at least thirty-five years old and a resident of the United States for fourteen years. • The judicial system operates under Article III through a Supreme Court with appellate jurisdiction over treaties, ambassadors, admiralty cases, or controversies between states. Criminal trials generally occur in the state where the crime was committed unless Congress directs otherwise. No state may levy taxes on imports or exports without Congressional consent; such revenue must be dedicated to the federal Treasury. • [4] The Constitution defines treason as levying war against the United States or aiding its enemies, requiring conviction only upon testimony of two witnesses or a confession in open court. It grants Congress the power to declare punishments for treason but limits attainder from causing corruption of blood or forfeiture except during the life of the person attainted. • Full faith and credit is guaranteed between states regarding public acts and records, while citizens are entitled to all privileges and immunities across state lines unless they flee justice or escape labor obligations. • Congress may admit new states only through consent of their legislatures and the federal Congress; new states cannot be formed without such consent. Summary of all 9 pages.",
+        "props": {
+          "source": "The provided document is a summary of the first nine pages of the United States Constitution. Its main points are:\n\n*   [1] The Constitution establishes a bicameral legislature with two houses (Senate and House) that must maintain a quorum to conduct business, though they may adjourn for up to three days without consent from the other body.\n    *   The House holds exclusive power over impeachment and originates all revenue bills; the Senate has sole authority to try impeachments with a two-thirds vote. Members of Congress receive federal compensation and are protected during their service from arrest or free speech within their chambers.\n*   [2] A bill must be presented to the President for approval, but if signed it becomes law unless reconsidered by Congress; otherwise, the President can veto it (or disapprove a two-thirds override vote). If the President fails to return a bill within ten days (excluding Sundays), it automatically becomes law unless Congress adjourns during this period.\n*   [3] The Constitution establishes a presidential system with the President serving as Commander-in-Chief and holding power over appointments, including judges and ambassadors, subject to Senate confirmation.\n    *   The executive branch is vested in the President for four years; he must be a natural-born citizen at least thirty-five years old and a resident of the United States for fourteen years.\n    *   The judicial system operates under Article III through a Supreme Court with appellate jurisdiction over treaties, ambassadors, admiralty cases, or controversies between states. Criminal trials generally occur in the state where the crime was committed unless Congress directs otherwise. No state may levy taxes on imports or exports without Congressional consent; such revenue must be dedicated to the federal Treasury.\n*   [4] The Constitution defines treason as levying war against the United States or aiding its enemies, requiring conviction only upon testimony of two witnesses or a confession in open court. It grants Congress the power to declare punishments for treason but limits attainder from causing corruption of blood or forfeiture except during the life of the person attainted.\n    *   Full faith and credit is guaranteed between states regarding public acts and records, while citizens are entitled to all privileges and immunities across state lines unless they flee justice or escape labor obligations.\n    *   Congress may admit new states only through consent of their legislatures and the federal Congress; new states cannot be formed without such consent.\n\n*Summary of all 9 pages.*",
+          "disabled": false
+        }
+      },
+      "detail": "The provided document is a summary of the first nine pages of the United States Constitution. Its main points are: • [1] The Constitution establishes a bicameral legislature with two houses (Senate an"
+    },
+    {
+      "i": 140,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+    },
+    {
+      "i": 141,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 142,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 143,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 144,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "none-matched gone"
+    },
+    {
+      "i": 145,
+      "op": "assertText",
+      "ok": true,
+      "ms": 4,
+      "detail": "\"Your documents don't mention this\" absent"
+    },
+    {
+      "i": 146,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "citations appeared"
+    },
+    {
+      "i": 147,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2225,
+      "detail": "sim-jc-09"
+    },
+    {
+      "i": 148,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The provided document is a summary of the first nine pages of the United States Constitution. Its main points are: • [1] The Constitution establishes a bicameral legislature with two houses (Senate and House) that must maintain a quorum to conduct business, though they may adjourn for up to three days without consent from the other body. • The House holds exclusive power over impeachment and originates all revenue bills; the Senate has sole authority to try impeachments with a two-thirds vote. Members of Congress receive federal compensation and are protected during their service from arrest or free speech within their chambers. • [2] A bill must be presented to the President for approval, but if signed it becomes law unless reconsidered by Congress; otherwise, the President can veto it (or disapprove a two-thirds override vote). If the President fails to return a bill within ten days (excluding Sundays), it automatically becomes law unless Congress adjourns during this period. • [3] The Constitution establishes a presidential system with the President serving as Commander-in-Chief and holding power over appointments, including judges and ambassadors, subject to Senate confirmation. • The executive branch is vested in the President for four years; he must be a natural-born citizen at least thirty-five years old and a resident of the United States for fourteen years. • The judicial system operates under Article III through a Supreme Court with appellate jurisdiction over treaties, ambassadors, admiralty cases, or controversies between states. Criminal trials generally occur in the state where the crime was committed unless Congress directs otherwise. No state may levy taxes on imports or exports without Congressional consent; such revenue must be dedicated to the federal Treasury. • [4] The Constitution defines treason as levying war against the United States or aiding its enemies, requiring conviction only upon testimony of two witnesses or a confession in open court. It grants Congress the power to declare punishments for treason but limits attainder from causing corruption of blood or forfeiture except during the life of the person attainted. • Full faith and credit is guaranteed between states regarding public acts and records, while citizens are entitled to all privileges and immunities across state lines unless they flee justice or escape labor obligations. • Congress may admit new states only through consent of their legislatures and the federal Congress; new states cannot be formed without such consent. Summary of all 9 pages. [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The provided document is a summary of the first nine pages of the United States Constitution. Its main points are: • [1] The Constitution establishes a bicameral legislature with two houses (Senate and House) that must maintain a quorum to conduct business, though they may adjourn for up to three days without consent from the other body. • The House holds exclusive power over impeachment and originates all revenue bills; the Senate has sole authority to try impeachments with a two-thirds vote. Members of Congress receive federal compensation and are protected during their service from arrest or free speech within their chambers. • [2] A bill must be presented to the President for approval, but if signed it becomes law unless reconsidered by Congress; otherwise, the President can veto it (or disapprove a two-thirds override vote). If the President fails to return a bill within ten days (excluding Sundays), it automatically becomes law unless Congress adjourns during this period. • [3] The Constitution establishes a presidential system with the President serving as Commander-in-Chief and holding power over appointments, including judges and ambassadors, subject to Senate confirmation. • The executive branch is vested in the President for four years; he must be a natural-born citizen at least thirty-five years old and a resident of the United States for fourteen years. • The judicial system operates under Article III through a Supreme Court with appellate jurisdiction over treaties, ambassadors, admiralty cases, or controversies between states. Criminal trials generally occur in the state where the crime was committed unless Congress directs otherwise. No state may levy taxes on imports or exports without Congressional consent; such revenue must be dedicated to the federal Treasury. • [4] The Constitution defines treason as levying war against the United States or aiding its enemies, requiring conviction only upon testimony of two witnesses or a confession in open court. It grants Congress the power to declare punishments for treason but limits attainder from causing corruption of blood or forfeiture except during the life of the person attainted. • Full faith and credit is guaranteed between states regarding public acts and records, while citizens are entitled to all privileges and immunities across state lines unless they flee justice or escape labor obligations. • Congress may admit new states only through consent of their legislatures and the federal Congress; new states cannot be formed without such consent. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muy8o5oi-1-opi89wti",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jc-09"
+    }
+  ],
+  "errors": [
+    "step 14 (press): press model-sheet-close: not mounted",
+    "step 48 (value): value none-matched: no node with that testID is mounted",
+    "step 49 (value): value banners: no node with that testID is mounted",
+    "step 62 (value): value none-matched: no node with that testID is mounted",
+    "step 63 (value): value banners: no node with that testID is mounted",
+    "step 81 (value): value none-matched: no node with that testID is mounted",
+    "step 82 (value): value banners: no node with that testID is mounted",
+    "step 100 (value): value none-matched: no node with that testID is mounted",
+    "step 101 (value): value banners: no node with that testID is mounted",
+    "step 120 (value): value banners: no node with that testID is mounted",
+    "step 122 (waitFor): waitFor citations never went away in 1000 ms",
+    "step 128 (waitFor): waitFor docs-hold never appeared in 15000 ms",
+    "step 129 (value): value docs-hold: no node with that testID is mounted",
+    "step 130 (press): press docs-hold-download: not mounted",
+    "step 141 (value): value none-matched: no node with that testID is mounted",
+    "step 142 (value): value banners: no node with that testID is mounted",
+    "console.log: [chat] plain=acknowledgement window=3/3 maxTokens=224",
+    "console.log: [chat] plain=follow-up window=3/5 maxTokens=1024",
+    "console.log: [chat] plain=follow-up window=7/7 maxTokens=1024",
+    "console.log: [chat] plain=follow-up window=9/9 maxTokens=1024"
+  ]
+}

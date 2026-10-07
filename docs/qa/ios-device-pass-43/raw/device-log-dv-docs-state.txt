@@ -1,0 +1,12 @@
+19:17:23 pushing 8 steps as dv-docs-state
+19:17:27 shot docs-state
+19:17:32 shot vault-state
+19:17:37 ok     0 deeplink   /documents
+19:17:37 ok     1 waitFor    documents-screen appeared
+19:17:37 ok     2 sleep      1500 ms
+19:17:37 ok     3 dump       tree
+19:17:37 ok     4 screenshot docs-state
+19:17:37 ok     5 deeplink   /vault
+19:17:37 ok     6 sleep      2500 ms
+19:17:37 ok     7 screenshot vault-state
+19:17:37 8 passed, 0 failed, 2 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-43/docs/qa/ios-device-pass-43/screens

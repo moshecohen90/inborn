@@ -1,0 +1,32 @@
+19:16:55 pushing 27 steps as dv-l2-reask
+19:17:14 ok     0 type       composer-input = 20 chars
+19:17:14 ok     1 send       send ← onPress
+19:17:14 ok     2 sleep      2500 ms
+19:17:14 ok     3 waitFor    reading-docs gone
+19:17:14 ok     4 waitFor    stop gone
+19:17:14 ok     5 sleep      2500 ms
+19:17:14 ok     6 value      Inborn has not finished reading the file attached to this chat. Open Documents to see where it stopped.
+19:17:14 FAIL   7 value      value citations: no node with that testID is mounted
+19:17:14 ok     8 screenshot l2-veto
+19:17:14 ok     9 type       composer-input = 24 chars
+19:17:14 ok    10 send       send ← onPress
+19:17:14 ok    11 sleep      2500 ms
+19:17:14 ok    12 waitFor    reading-docs gone
+19:17:14 ok    13 waitFor    stop gone
+19:17:14 ok    14 sleep      2500 ms
+19:17:14 ok    15 value      Inborn has not finished reading the file attached to this chat. Open Documents to see where it stopped.
+19:17:14 FAIL  16 value      value citations: no node with that testID is mounted
+19:17:14 ok    17 screenshot l2-pancake
+19:17:14 ok    18 type       composer-input = 19 chars
+19:17:14 ok    19 send       send ← onPress
+19:17:14 ok    20 sleep      2500 ms
+19:17:14 ok    21 waitFor    reading-docs gone
+19:17:14 ok    22 waitFor    stop gone
+19:17:14 ok    23 sleep      2500 ms
+19:17:14 ok    24 value      Inborn has not finished reading the file attached to this chat. Open Documents to see where it stopped.
+19:17:14 FAIL  25 value      value citations: no node with that testID is mounted
+19:17:14 ok    26 screenshot l2-waffle
+19:17:14 24 passed, 3 failed, 0 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-43/docs/qa/ios-device-pass-43/screens
+19:17:14   ! step 7 (value): value citations: no node with that testID is mounted
+19:17:14   ! step 16 (value): value citations: no node with that testID is mounted
+19:17:14   ! step 25 (value): value citations: no node with that testID is mounted

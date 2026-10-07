@@ -1,0 +1,124 @@
+{
+ "steps": [
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "Who can veto a bill?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 600000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 600000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "screenshot",
+   "name": "l2-veto"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "give me a pancake recipe"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 600000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 600000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "screenshot",
+   "name": "l2-pancake"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "and a waffle recipe"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 600000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 600000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "screenshot",
+   "name": "l2-waffle"
+  }
+ ]
+}

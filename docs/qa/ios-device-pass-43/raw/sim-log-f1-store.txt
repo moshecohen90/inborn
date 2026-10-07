@@ -1,0 +1,55 @@
+18:03:04 pushing 41 steps as f1-store
+18:03:07 shot sim-f1-01
+18:03:10 shot sim-f1-02
+18:03:22 shot sim-f1-03
+18:03:25 shot sim-f1-04
+18:03:29 shot sim-f1-05
+18:03:33 ok     0 deeplink   /settings
+18:03:33 ok     1 waitFor    row-about appeared
+18:03:33 ok     2 sleep      1500 ms
+18:03:33 ok     3 screenshot sim-f1-01
+18:03:33 ok     4 dump       sim-f1-01
+18:03:33 ok     5 scrollTo   row-about
+18:03:33 ok     6 press      row-about ← onPress
+18:03:33 ok     7 waitFor    about appeared
+18:03:33 ok     8 sleep      1500 ms
+18:03:33 ok     9 value      VERSION 1.0.0 (43) 000e74da2c57 LICENSES Model licenses Open-source licenses PRIVACY We collect nothing. There
+18:03:33 ok    10 assertText "1.0.0 (43)" present
+18:03:33 ok    11 sleep      500 ms
+18:03:33 ok    12 screenshot sim-f1-02
+18:03:33 ok    13 dump       sim-f1-02
+18:03:33 ok    14 deeplink   /settings
+18:03:33 ok    15 waitFor    row-pro appeared
+18:03:33 ok    16 press      row-pro ← onPress
+18:03:33 ok    17 waitFor    close-paywall appeared
+18:03:33 ok    18 sleep      8000 ms
+18:03:33 FAIL  19 value      value paywall-status: no node with that testID is mounted
+18:03:33 FAIL  20 value      value owned: no node with that testID is mounted
+18:03:33 ok    21 value      $19.99 · one-time purchase
+18:03:33 FAIL  22 value      value price-inborn.pro.launch: no node with that testID is mounted
+18:03:33 ok    23 value      $69.99 · one-time purchase
+18:03:33 FAIL  24 value      value price-inborn.work.upgrade: no node with that testID is mounted
+18:03:33 ok    25 value      PRO $19.99 · one-time purchase Prices are US list prices. Your store shows the price where you are. Unlimited 
+18:03:33 FAIL  26 value      value tier-inborn.pro.launch: no node with that testID is mounted
+18:03:33 ok    27 value      FOR PROFESSIONALS PRO FOR WORK $69.99 · one-time purchase Prices are US list prices. Your store shows the pric
+18:03:33 FAIL  28 value      value tier-inborn.work.upgrade: no node with that testID is mounted
+18:03:33 FAIL  29 value      value web-price-note: no node with that testID is mounted
+18:03:33 ok    30 sleep      0 ms
+18:03:33 ok    31 screenshot sim-f1-03
+18:03:33 ok    32 dump       sim-f1-03
+18:03:33 ok    33 scrollTo   restore
+18:03:33 ok    34 sleep      1000 ms
+18:03:33 ok    35 screenshot sim-f1-04
+18:03:33 ok    36 dump       sim-f1-04
+18:03:33 ok    37 press      close-paywall ← onPress
+18:03:33 ok    38 sleep      1500 ms
+18:03:33 ok    39 screenshot sim-f1-05
+18:03:33 ok    40 dump       sim-f1-05
+18:03:33 34 passed, 7 failed, 5 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-43/docs/qa/ios-device-pass-43/screens
+18:03:33   ! step 19 (value): value paywall-status: no node with that testID is mounted
+18:03:33   ! step 20 (value): value owned: no node with that testID is mounted
+18:03:33   ! step 22 (value): value price-inborn.pro.launch: no node with that testID is mounted
+18:03:33   ! step 24 (value): value price-inborn.work.upgrade: no node with that testID is mounted
+18:03:33   ! step 26 (value): value tier-inborn.pro.launch: no node with that testID is mounted
+18:03:33   ! step 28 (value): value tier-inborn.work.upgrade: no node with that testID is mounted
+18:03:33   ! step 29 (value): value web-price-note: no node with that testID is mounted

@@ -1,0 +1,2483 @@
+{
+  "runId": "jg-explore-1",
+  "startedAt": "2026-10-07T15:39:08.046Z",
+  "finishedAt": "2026-10-07T15:41:12.077Z",
+  "ok": false,
+  "passed": 120,
+  "failed": 27,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 154,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 9,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2016,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 10,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1593,
+      "detail": "sim-jg-01"
+    },
+    {
+      "i": 11,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "empty-headline",
+          "text": "Nothing leaves this phone."
+        },
+        {
+          "testID": "suggestion-summarize",
+          "text": "Summarize text",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-translate",
+          "text": "Translate",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-draft",
+          "text": "Draft a message",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jg-01"
+    },
+    {
+      "i": 12,
+      "op": "type",
+      "ok": true,
+      "ms": 157,
+      "detail": "composer-input = 25 chars"
+    },
+    {
+      "i": 13,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 14,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 15,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 16,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 17,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 4783,
+      "detail": "stop gone"
+    },
+    {
+      "i": 18,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 19,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "While many large language models like me have similar capabilities, I do not retain memory across sessions or access real-time data outside of our current conversation context.",
+        "props": {
+          "source": "While many large language models like me have similar capabilities, I do not retain memory across sessions or access real-time data outside of our current conversation context.",
+          "disabled": false
+        }
+      },
+      "detail": "While many large language models like me have similar capabilities, I do not retain memory across sessions or access real-time data outside of our current conversation context."
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 21,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 23,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 24,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1269,
+      "detail": "sim-jg-02"
+    },
+    {
+      "i": 25,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "hi, is this like chatgpt?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI While many large language models like me have similar capabilities, I do not retain memory across sessions or access real-time data outside of our current conversation context. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "While many large language models like me have similar capabilities, I do not retain memory across sessions or access real-time data outside of our current conversation context."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jg-02"
+    },
+    {
+      "i": 26,
+      "op": "type",
+      "ok": true,
+      "ms": 160,
+      "detail": "composer-input = 23 chars"
+    },
+    {
+      "i": 27,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 28,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2517,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 29,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 30,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 31,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1851,
+      "detail": "stop gone"
+    },
+    {
+      "i": 32,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2516,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 33,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "While many large language models like me have similar capabilities, I do not retain memory across sessions or access real-time data outside of our current conversation context.",
+        "props": {
+          "source": "While many large language models like me have similar capabilities, I do not retain memory across sessions or access real-time data outside of our current conversation context.",
+          "disabled": false
+        }
+      },
+      "detail": "While many large language models like me have similar capabilities, I do not retain memory across sessions or access real-time data outside of our current conversation context."
+    },
+    {
+      "i": 34,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 35,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 36,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 37,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 38,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1903,
+      "detail": "sim-jg-03"
+    },
+    {
+      "i": 39,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "hi, is this like chatgpt?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI While many large language models like me have similar capabilities, I do not retain memory across sessions or access real-time data outside of our current conversation context. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "While many large language models like me have similar capabilities, I do not retain memory across sessions or access real-time data outside of our current conversation context."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jg-03"
+    },
+    {
+      "i": 40,
+      "op": "type",
+      "ok": true,
+      "ms": 160,
+      "detail": "composer-input = 60 chars"
+    },
+    {
+      "i": 41,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 42,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2517,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 43,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 44,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 45,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 12167,
+      "detail": "stop gone"
+    },
+    {
+      "i": 46,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 47,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "While many large language models like me have similar capabilities, I do not retain memory across sessions or access real-time data outside of our current conversation context.",
+        "props": {
+          "source": "While many large language models like me have similar capabilities, I do not retain memory across sessions or access real-time data outside of our current conversation context.",
+          "disabled": false
+        }
+      },
+      "detail": "While many large language models like me have similar capabilities, I do not retain memory across sessions or access real-time data outside of our current conversation context."
+    },
+    {
+      "i": 48,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 49,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 50,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 51,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 52,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 956,
+      "detail": "sim-jg-04"
+    },
+    {
+      "i": 53,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "hi, is this like chatgpt?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI While many large language models like me have similar capabilities, I do not retain memory across sessions or access real-time data outside of our current conversation context. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "While many large language models like me have similar capabilities, I do not retain memory across sessions or access real-time data outside of our current conversation context."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jg-04"
+    },
+    {
+      "i": 54,
+      "op": "type",
+      "ok": true,
+      "ms": 157,
+      "detail": "composer-input = 19 chars"
+    },
+    {
+      "i": 55,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 56,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 57,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 58,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 59,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 19699,
+      "detail": "stop gone"
+    },
+    {
+      "i": 60,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2517,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 61,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "While many large language models like me have similar capabilities, I do not retain memory across sessions or access real-time data outside of our current conversation context.",
+        "props": {
+          "source": "While many large language models like me have similar capabilities, I do not retain memory across sessions or access real-time data outside of our current conversation context.",
+          "disabled": false
+        }
+      },
+      "detail": "While many large language models like me have similar capabilities, I do not retain memory across sessions or access real-time data outside of our current conversation context."
+    },
+    {
+      "i": 62,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 63,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 64,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 65,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 66,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1904,
+      "detail": "sim-jg-05"
+    },
+    {
+      "i": 67,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "hi, is this like chatgpt?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI While many large language models like me have similar capabilities, I do not retain memory across sessions or access real-time data outside of our current conversation context. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "While many large language models like me have similar capabilities, I do not retain memory across sessions or access real-time data outside of our current conversation context."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jg-05"
+    },
+    {
+      "i": 68,
+      "op": "type",
+      "ok": true,
+      "ms": 158,
+      "detail": "composer-input = 23 chars"
+    },
+    {
+      "i": 69,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 70,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2517,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 71,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 72,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 73,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 8717,
+      "detail": "stop gone"
+    },
+    {
+      "i": 74,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 75,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "While many large language models like me have similar capabilities, I do not retain memory across sessions or access real-time data outside of our current conversation context.",
+        "props": {
+          "source": "While many large language models like me have similar capabilities, I do not retain memory across sessions or access real-time data outside of our current conversation context.",
+          "disabled": false
+        }
+      },
+      "detail": "While many large language models like me have similar capabilities, I do not retain memory across sessions or access real-time data outside of our current conversation context."
+    },
+    {
+      "i": 76,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 77,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 78,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 79,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 80,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1602,
+      "detail": "sim-jg-06"
+    },
+    {
+      "i": 81,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "hi, is this like chatgpt?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI While many large language models like me have similar capabilities, I do not retain memory across sessions or access real-time data outside of our current conversation context. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "While many large language models like me have similar capabilities, I do not retain memory across sessions or access real-time data outside of our current conversation context."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jg-06"
+    },
+    {
+      "i": 82,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 157,
+      "detail": "/chats"
+    },
+    {
+      "i": 83,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 84,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 85,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 86,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 87,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 88,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 89,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 90,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 91,
+      "op": "type",
+      "ok": true,
+      "ms": 168,
+      "detail": "composer-input = 14 chars"
+    },
+    {
+      "i": 92,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 93,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 94,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 95,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 96,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3149,
+      "detail": "stop gone"
+    },
+    {
+      "i": 97,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 98,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Why don't eggs tell jokes? Because they're afraid of cracking up.",
+        "props": {
+          "source": "Why don't eggs tell jokes? Because they're afraid of cracking up.",
+          "disabled": false
+        }
+      },
+      "detail": "Why don't eggs tell jokes? Because they're afraid of cracking up."
+    },
+    {
+      "i": 99,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 100,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 101,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 102,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 103,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1268,
+      "detail": "sim-jg-07"
+    },
+    {
+      "i": 104,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "tell me a joke",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI Why don't eggs tell jokes? Because they're afraid of cracking up. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "Why don't eggs tell jokes? Because they're afraid of cracking up."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jg-07"
+    },
+    {
+      "i": 105,
+      "op": "type",
+      "ok": true,
+      "ms": 158,
+      "detail": "composer-input = 11 chars"
+    },
+    {
+      "i": 106,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 107,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2518,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 108,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 109,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 110,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "stop gone"
+    },
+    {
+      "i": 111,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2513,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 112,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Why don't eggs tell jokes? Because they're afraid of cracking up.",
+        "props": {
+          "source": "Why don't eggs tell jokes? Because they're afraid of cracking up.",
+          "disabled": false
+        }
+      },
+      "detail": "Why don't eggs tell jokes? Because they're afraid of cracking up."
+    },
+    {
+      "i": 113,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 114,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 115,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 116,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 117,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2220,
+      "detail": "sim-jg-08"
+    },
+    {
+      "i": 118,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "tell me a joke",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI Why don't eggs tell jokes? Because they're afraid of cracking up. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "Why don't eggs tell jokes? Because they're afraid of cracking up."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jg-08"
+    },
+    {
+      "i": 119,
+      "op": "type",
+      "ok": true,
+      "ms": 157,
+      "detail": "composer-input = 22 chars"
+    },
+    {
+      "i": 120,
+      "op": "send",
+      "ok": true,
+      "ms": 151,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 121,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2516,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 122,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 123,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 124,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1041,
+      "detail": "stop gone"
+    },
+    {
+      "i": 125,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2509,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 126,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Why don't eggs tell jokes? Because they're afraid of cracking up.",
+        "props": {
+          "source": "Why don't eggs tell jokes? Because they're afraid of cracking up.",
+          "disabled": false
+        }
+      },
+      "detail": "Why don't eggs tell jokes? Because they're afraid of cracking up."
+    },
+    {
+      "i": 127,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 128,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 129,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 130,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 131,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 955,
+      "detail": "sim-jg-09"
+    },
+    {
+      "i": 132,
+      "op": "dump",
+      "ok": true,
+      "ms": 0,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "tell me a joke",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI Why don't eggs tell jokes? Because they're afraid of cracking up. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "Why don't eggs tell jokes? Because they're afraid of cracking up."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jg-09"
+    },
+    {
+      "i": 133,
+      "op": "type",
+      "ok": true,
+      "ms": 162,
+      "detail": "composer-input = 21 chars"
+    },
+    {
+      "i": 134,
+      "op": "send",
+      "ok": true,
+      "ms": 161,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 135,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 136,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 137,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 138,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2917,
+      "detail": "stop gone"
+    },
+    {
+      "i": 139,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 140,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Why don't eggs tell jokes? Because they're afraid of cracking up.",
+        "props": {
+          "source": "Why don't eggs tell jokes? Because they're afraid of cracking up.",
+          "disabled": false
+        }
+      },
+      "detail": "Why don't eggs tell jokes? Because they're afraid of cracking up."
+    },
+    {
+      "i": 141,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 142,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 143,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 144,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 145,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1901,
+      "detail": "sim-jg-10"
+    },
+    {
+      "i": 146,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "tell me a joke",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI Why don't eggs tell jokes? Because they're afraid of cracking up. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "Why don't eggs tell jokes? Because they're afraid of cracking up."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jg-10"
+    }
+  ],
+  "errors": [
+    "step 20 (value): value citations: no node with that testID is mounted",
+    "step 21 (value): value none-matched: no node with that testID is mounted",
+    "step 22 (value): value banners: no node with that testID is mounted",
+    "step 34 (value): value citations: no node with that testID is mounted",
+    "step 35 (value): value none-matched: no node with that testID is mounted",
+    "step 36 (value): value banners: no node with that testID is mounted",
+    "step 48 (value): value citations: no node with that testID is mounted",
+    "step 49 (value): value none-matched: no node with that testID is mounted",
+    "step 50 (value): value banners: no node with that testID is mounted",
+    "step 62 (value): value citations: no node with that testID is mounted",
+    "step 63 (value): value none-matched: no node with that testID is mounted",
+    "step 64 (value): value banners: no node with that testID is mounted",
+    "step 76 (value): value citations: no node with that testID is mounted",
+    "step 77 (value): value none-matched: no node with that testID is mounted",
+    "step 78 (value): value banners: no node with that testID is mounted",
+    "step 99 (value): value citations: no node with that testID is mounted",
+    "step 100 (value): value none-matched: no node with that testID is mounted",
+    "step 101 (value): value banners: no node with that testID is mounted",
+    "step 113 (value): value citations: no node with that testID is mounted",
+    "step 114 (value): value none-matched: no node with that testID is mounted",
+    "step 115 (value): value banners: no node with that testID is mounted",
+    "step 127 (value): value citations: no node with that testID is mounted",
+    "step 128 (value): value none-matched: no node with that testID is mounted",
+    "step 129 (value): value banners: no node with that testID is mounted",
+    "step 141 (value): value citations: no node with that testID is mounted",
+    "step 142 (value): value none-matched: no node with that testID is mounted",
+    "step 143 (value): value banners: no node with that testID is mounted",
+    "console.log: [chat] rule-echo kept 176/281 chars",
+    "console.log: [chat] plain=follow-up window=7/7 maxTokens=1024",
+    "console.log: [chat] plain=follow-up window=9/9 maxTokens=1024"
+  ]
+}

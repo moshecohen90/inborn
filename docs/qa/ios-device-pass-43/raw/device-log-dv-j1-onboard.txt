@@ -1,0 +1,81 @@
+18:56:37 pushing 62 steps as dv-j1-onboard
+18:56:41 shot device-j1-01
+18:56:46 shot device-j1-02
+18:56:54 shot device-j1-03
+18:56:57 shot device-j1-04
+18:57:14 shot device-j1-05
+18:57:22 shot device-j1-06
+18:57:27 shot device-j1-07
+18:57:33 shot device-j1-08
+18:57:40 shot device-j1-09
+18:57:45 ok     0 waitFor    onboarding-continue appeared
+18:57:45 ok     1 sleep      1200 ms
+18:57:45 ok     2 screenshot device-j1-01
+18:57:45 ok     3 dump       device-j1-01
+18:57:45 ok     4 press      onboarding-continue ← onPress
+18:57:45 ok     5 waitFor    onboarding-model appeared
+18:57:45 ok     6 sleep      2500 ms
+18:57:45 ok     7 value      1.28 GB · one download from models.inbornapp.com
+18:57:45 ok     8 assertText "models.inbornapp.com" present
+18:57:45 ok     9 screenshot device-j1-02
+18:57:45 ok    10 press      start-now-with ← onPress
+18:57:45 ok    11 waitFor    sealed-start appeared
+18:57:45 ok    12 sleep      5000 ms
+18:57:45 ok    13 screenshot device-j1-03
+18:57:45 ok    14 press      sealed-start ← onPress
+18:57:45 ok    15 waitFor    lock-start appeared
+18:57:45 ok    16 screenshot device-j1-04
+18:57:45 ok    17 press      lock-start ← onPress
+18:57:45 ok    18 waitFor    composer-input appeared
+18:57:45 ok    19 waitFor    Loading gone
+18:57:45 ok    20 sleep      2000 ms
+18:57:45 ok    21 value      INSTANT
+18:57:45 ok    22 assertText "INSTANT" present
+18:57:45 ok    23 screenshot device-j1-05
+18:57:45 ok    24 type       composer-input = 2 chars
+18:57:45 ok    25 send       send ← onPress
+18:57:45 ok    26 sleep      2500 ms
+18:57:45 ok    27 waitFor    reading-pages gone
+18:57:45 ok    28 waitFor    reading-docs gone
+18:57:45 ok    29 waitFor    stop gone
+18:57:45 ok    30 sleep      2500 ms
+18:57:45 ok    31 value      Hello! How can I help you today?
+18:57:45 FAIL  32 value      value citations: no node with that testID is mounted
+18:57:45 FAIL  33 value      value none-matched: no node with that testID is mounted
+18:57:45 FAIL  34 value      value banners: no node with that testID is mounted
+18:57:45 ok    35 value      INSTANT
+18:57:45 ok    36 screenshot device-j1-06
+18:57:45 ok    37 dump       device-j1-06
+18:57:45 ok    38 press      open-chats ← onPress
+18:57:45 ok    39 waitFor    close-chats appeared
+18:57:45 ok    40 sleep      1500 ms
+18:57:45 ok    41 screenshot device-j1-07
+18:57:45 ok    42 dump       device-j1-07
+18:57:45 ok    43 press      close-chats ← onPress
+18:57:45 ok    44 waitFor    composer-input appeared
+18:57:45 ok    45 sleep      2500 ms
+18:57:45 ok    46 screenshot device-j1-08
+18:57:45 ok    47 dump       device-j1-08
+18:57:45 ok    48 type       composer-input = 16 chars
+18:57:45 ok    49 send       send ← onPress
+18:57:45 ok    50 sleep      2500 ms
+18:57:45 ok    51 waitFor    reading-pages gone
+18:57:45 ok    52 waitFor    reading-docs gone
+18:57:45 ok    53 waitFor    stop gone
+18:57:45 ok    54 sleep      2500 ms
+18:57:45 ok    55 value      Hello! How can I help you today?
+18:57:45 FAIL  56 value      value citations: no node with that testID is mounted
+18:57:45 FAIL  57 value      value none-matched: no node with that testID is mounted
+18:57:45 FAIL  58 value      value banners: no node with that testID is mounted
+18:57:45 ok    59 value      INSTANT
+18:57:45 ok    60 screenshot device-j1-09
+18:57:45 ok    61 dump       device-j1-09
+18:57:45 56 passed, 6 failed, 9 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-43/docs/qa/ios-device-pass-43/screens
+18:57:45   ! step 32 (value): value citations: no node with that testID is mounted
+18:57:45   ! step 33 (value): value none-matched: no node with that testID is mounted
+18:57:45   ! step 34 (value): value banners: no node with that testID is mounted
+18:57:45   ! step 56 (value): value citations: no node with that testID is mounted
+18:57:45   ! step 57 (value): value none-matched: no node with that testID is mounted
+18:57:45   ! step 58 (value): value banners: no node with that testID is mounted
+18:57:45   ! console.log: [chat] plain=acknowledgement window=1/1 maxTokens=224
+18:57:45   ! console.log: [chat] identity kind=capabilities lang=en model=instant

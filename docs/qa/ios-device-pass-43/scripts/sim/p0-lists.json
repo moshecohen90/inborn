@@ -1,0 +1,47 @@
+{
+ "_": "PRIVATE harness: Chats and Documents dumped so the shell can read the chat and document ids.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "new-chat",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "sim-p0-chats"
+  },
+  {
+   "op": "dump",
+   "name": "sim-p0-chats"
+  },
+  {
+   "op": "deeplink",
+   "url": "/documents"
+  },
+  {
+   "op": "waitFor",
+   "testID": "documents-screen",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "screenshot",
+   "name": "sim-p0-documents"
+  },
+  {
+   "op": "dump",
+   "name": "sim-p0-documents"
+  }
+ ]
+}

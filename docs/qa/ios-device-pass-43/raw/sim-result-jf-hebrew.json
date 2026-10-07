@@ -1,0 +1,1542 @@
+{
+  "runId": "jf-hebrew",
+  "startedAt": "2026-10-07T15:36:50.791Z",
+  "finishedAt": "2026-10-07T15:37:38.850Z",
+  "ok": false,
+  "passed": 59,
+  "failed": 9,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 157,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 9,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 13 chars"
+    },
+    {
+      "i": 10,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 12,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 13,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 14,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3699,
+      "detail": "stop gone"
+    },
+    {
+      "i": 15,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2500,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 16,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "בירת צרפת היא פריז.",
+        "props": {
+          "source": "בירת צרפת היא פריז.",
+          "disabled": false
+        }
+      },
+      "detail": "בירת צרפת היא פריז."
+    },
+    {
+      "i": 17,
+      "op": "value",
+      "ok": false,
+      "ms": 2,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 18,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 19,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 21,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "SHARP handles Hebrew better than FAST, but not fluently. Install SHARP · 2.74 GB Not now",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "SHARP handles Hebrew better than FAST, but not fluently. Install SHARP · 2.74 GB Not now"
+    },
+    {
+      "i": 22,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 954,
+      "detail": "sim-jf-04"
+    },
+    {
+      "i": 23,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "מה בירת צרפת?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI בירת צרפת היא פריז. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "בירת צרפת היא פריז."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "model-advice",
+          "text": "SHARP handles Hebrew better than FAST, but not fluently. Install SHARP · 2.74 GB Not now"
+        },
+        {
+          "testID": "model-advice-reason",
+          "text": "SHARP handles Hebrew better than FAST, but not fluently."
+        },
+        {
+          "testID": "model-advice-install",
+          "text": "Install SHARP · 2.74 GB",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-not-now",
+          "text": "Not now",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jf-04"
+    },
+    {
+      "i": 24,
+      "op": "type",
+      "ok": true,
+      "ms": 160,
+      "detail": "composer-input = 29 chars"
+    },
+    {
+      "i": 25,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 26,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 27,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 28,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 29,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 5050,
+      "detail": "stop gone"
+    },
+    {
+      "i": 30,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2500,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 31,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "בירת צרפת היא פריז.",
+        "props": {
+          "source": "בירת צרפת היא פריז.",
+          "disabled": false
+        }
+      },
+      "detail": "בירת צרפת היא פריז."
+    },
+    {
+      "i": 32,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 33,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 34,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 35,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 36,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1269,
+      "detail": "sim-jf-05"
+    },
+    {
+      "i": 37,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "מה בירת צרפת?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI בירת צרפת היא פריז. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "בירת צרפת היא פריז."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jf-05"
+    },
+    {
+      "i": 38,
+      "op": "type",
+      "ok": true,
+      "ms": 160,
+      "detail": "composer-input = 8 chars"
+    },
+    {
+      "i": 39,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 40,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2517,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 41,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 42,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 43,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 8243,
+      "detail": "stop gone"
+    },
+    {
+      "i": 44,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2507,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 45,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "בירת צרפת היא פריז.",
+        "props": {
+          "source": "בירת צרפת היא פריז.",
+          "disabled": false
+        }
+      },
+      "detail": "בירת צרפת היא פריז."
+    },
+    {
+      "i": 46,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 47,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 48,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 49,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 50,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1266,
+      "detail": "sim-jf-06"
+    },
+    {
+      "i": 51,
+      "op": "dump",
+      "ok": true,
+      "ms": 0,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "מה בירת צרפת?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI בירת צרפת היא פריז. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "בירת צרפת היא פריז."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "model-weak",
+          "text": "FAST is weak in Hebrew. SHARP handles it better. Install SHARP · 2.74 GB"
+        },
+        {
+          "testID": "model-weak-line",
+          "text": "FAST is weak in Hebrew. SHARP handles it better."
+        },
+        {
+          "testID": "model-weak-action",
+          "text": "Install SHARP · 2.74 GB",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jf-06"
+    },
+    {
+      "i": 52,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "model-chip ← onPress"
+    },
+    {
+      "i": 53,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "model-sheet appeared"
+    },
+    {
+      "i": 54,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 55,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1590,
+      "detail": "sim-jf-07"
+    },
+    {
+      "i": 56,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "מה בירת צרפת?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI בירת צרפת היא פריז. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "בירת צרפת היא פריז."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "model-weak",
+          "text": "FAST is weak in Hebrew. SHARP handles it better. Install SHARP · 2.74 GB"
+        },
+        {
+          "testID": "model-weak-line",
+          "text": "FAST is weak in Hebrew. SHARP handles it better."
+        },
+        {
+          "testID": "model-weak-action",
+          "text": "Install SHARP · 2.74 GB",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "model-sheet",
+          "text": "Model PRO See what's in Pro Nothing on this phone is good at CHAT in HEBREW. Closest: SHARP On this device FAST Good at: Chat, Writing, Summaries, Translation, Documents, Voice notes, Photos Hebrew · No 1.28 GB In use INSTANT Good at: Chat, Voice notes, Photos Hebrew · No 533 MB Use this model Fits your phone SHARP Good at: Chat, Writing, Summaries, Translation, Code, Documents, Voice notes, Math & reasoning, Photos Hebrew · Basic 2.74 GB Install · 2.74 GB from localhost SHARP (PHI) Good at: Chat, Writing, Summaries, Code, Documents, Voice notes, Math & reasoning Hebrew · Basic 2.49 GB Install · 2.49 GB from localhost Model vault Chat settings Close"
+        },
+        {
+          "testID": "model-sheet-close",
+          "text": "",
+          "role": "button",
+          "label": "Close",
+          "pressable": true
+        },
+        {
+          "testID": "tier-chip",
+          "text": "PRO"
+        },
+        {
+          "testID": "see-whats-in-pro",
+          "text": "See what's in Pro",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-sheet-recommended",
+          "text": "Nothing on this phone is good at CHAT in HEBREW. Closest: SHARP"
+        },
+        {
+          "testID": "model-sheet-row-fast",
+          "text": "FAST Good at: Chat, Writing, Summaries, Translation, Documents, Voice notes, Photos Hebrew · No 1.28 GB In use"
+        },
+        {
+          "testID": "model-sheet-goodat-fast",
+          "text": "Good at: Chat, Writing, Summaries, Translation, Documents, Voice notes, Photos"
+        },
+        {
+          "testID": "model-sheet-language-fast",
+          "text": "Hebrew · No"
+        },
+        {
+          "testID": "model-sheet-inuse-fast",
+          "text": "In use"
+        },
+        {
+          "testID": "model-sheet-row-instant",
+          "text": "INSTANT Good at: Chat, Voice notes, Photos Hebrew · No 533 MB Use this model"
+        },
+        {
+          "testID": "model-sheet-goodat-instant",
+          "text": "Good at: Chat, Voice notes, Photos"
+        },
+        {
+          "testID": "model-sheet-language-instant",
+          "text": "Hebrew · No"
+        },
+        {
+          "testID": "model-sheet-use-instant",
+          "text": "Use this model",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-sheet-row-sharp",
+          "text": "SHARP Good at: Chat, Writing, Summaries, Translation, Code, Documents, Voice notes, Math & reasoning, Photos Hebrew · Basic 2.74 GB Install · 2.74 GB from localhost"
+        },
+        {
+          "testID": "model-sheet-goodat-sharp",
+          "text": "Good at: Chat, Writing, Summaries, Translation, Code, Documents, Voice notes, Math & reasoning, Photos"
+        },
+        {
+          "testID": "model-sheet-language-sharp",
+          "text": "Hebrew · Basic"
+        },
+        {
+          "testID": "model-sheet-download-sharp",
+          "text": "Install · 2.74 GB from localhost",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-sheet-row-sharp-phi",
+          "text": "SHARP (PHI) Good at: Chat, Writing, Summaries, Code, Documents, Voice notes, Math & reasoning Hebrew · Basic 2.49 GB Install · 2.49 GB from localhost"
+        },
+        {
+          "testID": "model-sheet-goodat-sharp-phi",
+          "text": "Good at: Chat, Writing, Summaries, Code, Documents, Voice notes, Math & reasoning"
+        },
+        {
+          "testID": "model-sheet-language-sharp-phi",
+          "text": "Hebrew · Basic"
+        },
+        {
+          "testID": "model-sheet-download-sharp-phi",
+          "text": "Install · 2.49 GB from localhost",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-sheet-manage",
+          "text": "Model vault",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-sheet-chat-settings",
+          "text": "Chat settings",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jf-07"
+    },
+    {
+      "i": 57,
+      "op": "press",
+      "ok": true,
+      "ms": 159,
+      "detail": "model-sheet-close ← onPress"
+    },
+    {
+      "i": 58,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 166,
+      "detail": "/vault"
+    },
+    {
+      "i": 59,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "best-for appeared"
+    },
+    {
+      "i": 60,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Loaded",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Loaded"
+    },
+    {
+      "i": 61,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Included with the app",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Included with the app"
+    },
+    {
+      "i": 62,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Chat",
+        "props": {
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "Chat"
+    },
+    {
+      "i": 63,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3014,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 64,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1273,
+      "detail": "sim-jf-08"
+    },
+    {
+      "i": 65,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "close-vault",
+          "text": "",
+          "role": "button",
+          "label": "Close",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "vault-storage",
+          "text": "1.75 GB in the vault · 711 GB free · RUNS ON: IOS-FLAGSHIP · 64 GB"
+        },
+        {
+          "testID": "best-for",
+          "text": "BEST FOR Chat in English"
+        },
+        {
+          "testID": "best-for-use",
+          "text": "Chat",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "best-for-language",
+          "text": "in English",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-fast",
+          "text": "● FAST · Qwen3.5 2B RECOMMENDED ON THIS phone · CHAT IN ENGLISH Everyday assistant: writing, questions, translation. Best balance on this device. GOOD AT Best · Chat, Voice notes Good · Writing, Summaries, Translation, Documents Weak · Code, Math & reasoning LANGUAGES Native · English, Chinese Good · Spanish, French, Portuguese, Italian, Russian, Arabic Basic · German, Japanese, Korean No · Hebrew Weak at: Code, math; German prose and Korean translation; questions across many long documents. 1.28 GB · Q4_K_M · Battery: Medium ~30-40 tok/s on your phone Loaded In use Details",
+          "state": {
+            "selected": false
+          }
+        },
+        {
+          "testID": "recommended-fast",
+          "text": "RECOMMENDED ON THIS phone · CHAT IN ENGLISH"
+        },
+        {
+          "testID": "model-goodfor-fast",
+          "text": "Everyday assistant: writing, questions, translation. Best balance on this device."
+        },
+        {
+          "testID": "fit-fast",
+          "text": "GOOD AT Best · Chat, Voice notes Good · Writing, Summaries, Translation, Documents Weak · Code, Math & reasoning LANGUAGES Native · English, Chinese Good · Spanish, French, Portuguese, Italian, Russian, Arabic Basic · German, Japanese, Korean No · Hebrew Weak at: Code, math; German prose and Korean translation; questions across many long documents."
+        },
+        {
+          "testID": "model-spec-fast",
+          "text": "1.28 GB · Q4_K_M · Battery: Medium"
+        },
+        {
+          "testID": "model-status-fast",
+          "text": "Loaded"
+        },
+        {
+          "testID": "details-fast",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-instant",
+          "text": "◉ INSTANT · Qwen3.5 0.8B Quick answers and voice notes. Lightest on battery. GOOD AT Good · Chat, Voice notes Weak · Writing, Summaries, Translation, Code, Documents, Math & reasoning LANGUAGES Native · English Good · Chinese Basic · Chinese (Traditional), Spanish, French, German, Portuguese, Italian, Russian, Arabic No · Japanese, Korean, Hebrew Weak at: Non-Latin scripts; German, French and Spanish past a short turn; code, math, long documents. 533 MB · Q4_K_M · Battery: Low ~40-58 tok/s on your phone Included with the app Use this model Details",
+          "state": {
+            "selected": false
+          }
+        },
+        {
+          "testID": "model-goodfor-instant",
+          "text": "Quick answers and voice notes. Lightest on battery."
+        },
+        {
+          "testID": "fit-instant",
+          "text": "GOOD AT Good · Chat, Voice notes Weak · Writing, Summaries, Translation, Code, Documents, Math & reasoning LANGUAGES Native · English Good · Chinese Basic · Chinese (Traditional), Spanish, French, German, Portuguese, Italian, Russian, Arabic No · Japanese, Korean, Hebrew Weak at: Non-Latin scripts; German, French and Spanish past a short turn; code, math, long documents."
+        },
+        {
+          "testID": "model-spec-instant",
+          "text": "533 MB · Q4_K_M · Battery: Low"
+        },
+        {
+          "testID": "model-status-instant",
+          "text": "Included with the app"
+        },
+        {
+          "testID": "use-instant",
+          "text": "Use this model",
+          "pressable": true
+        },
+        {
+          "testID": "details-instant",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-sharp",
+          "text": "○ SHARP · Qwen3.5 4B Complex tasks: analysis, code, long documents. Slower, runs warmer. GOOD AT Best · Chat, Writing, Summaries, Translation, Documents, Voice notes Good · Code, Math & reasoning LANGUAGES Native · English, Chinese, Russian Good · Spanish, French, German, Portuguese, Italian, Japanese, Korean, Arabic Basic · Hebrew Weak at: Slower and warmer than Fast; hard math needs thinking mode. 2.74 GB · Q4_K_M · Battery: High ~15-20 tok/s on your phone Install · 2.74 GB from localhost Details",
+          "state": {
+            "selected": false
+          }
+        },
+        {
+          "testID": "model-goodfor-sharp",
+          "text": "Complex tasks: analysis, code, long documents. Slower, runs warmer."
+        },
+        {
+          "testID": "fit-sharp",
+          "text": "GOOD AT Best · Chat, Writing, Summaries, Translation, Documents, Voice notes Good · Code, Math & reasoning LANGUAGES Native · English, Chinese, Russian Good · Spanish, French, German, Portuguese, Italian, Japanese, Korean, Arabic Basic · Hebrew Weak at: Slower and warmer than Fast; hard math needs thinking mode."
+        },
+        {
+          "testID": "model-spec-sharp",
+          "text": "2.74 GB · Q4_K_M · Battery: High"
+        },
+        {
+          "testID": "install-sharp",
+          "text": "Install · 2.74 GB from localhost",
+          "pressable": true
+        },
+        {
+          "testID": "details-sharp",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-sharp-phi",
+          "text": "○ SHARP · Phi-4-mini 3.8B Reasoning, math and code. No photos. GOOD AT Best · Code, Math & reasoning Good · Chat, Writing, Summaries, Documents, Voice notes Weak · Translation LANGUAGES Native · English Good · Spanish, French, German, Portuguese, Italian Basic · Chinese, Japanese, Korean, Russian, Arabic, Hebrew Weak at: No photos; most languages other than English; translation. 2.49 GB · Q4_K_M · Battery: High ~15-20 tok/s on your phone Install · 2.49 GB from localhost Details",
+          "state": {
+            "selected": false
+          }
+        },
+        {
+          "testID": "model-goodfor-sharp-phi",
+          "text": "Reasoning, math and code. No photos."
+        },
+        {
+          "testID": "fit-sharp-phi",
+          "text": "GOOD AT Best · Code, Math & reasoning Good · Chat, Writing, Summaries, Documents, Voice notes Weak · Translation LANGUAGES Native · English Good · Spanish, French, German, Portuguese, Italian Basic · Chinese, Japanese, Korean, Russian, Arabic, Hebrew Weak at: No photos; most languages other than English; translation."
+        },
+        {
+          "testID": "model-spec-sharp-phi",
+          "text": "2.49 GB · Q4_K_M · Battery: High"
+        },
+        {
+          "testID": "install-sharp-phi",
+          "text": "Install · 2.49 GB from localhost",
+          "pressable": true
+        },
+        {
+          "testID": "details-sharp-phi",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-embed-e5",
+          "text": "◉ DOCUMENT INDEX Lets Inborn search your documents on this device. multilingual-e5-large-instruct 560M · 468 MB · Q6_K · Battery: Low Installed Details",
+          "state": {
+            "selected": false
+          }
+        },
+        {
+          "testID": "model-goodfor-embed-e5",
+          "text": "Lets Inborn search your documents on this device."
+        },
+        {
+          "testID": "model-spec-embed-e5",
+          "text": "multilingual-e5-large-instruct 560M · 468 MB · Q6_K · Battery: Low"
+        },
+        {
+          "testID": "model-status-embed-e5",
+          "text": "Installed"
+        },
+        {
+          "testID": "details-embed-e5",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-vision-qwen35",
+          "text": "◉ PHOTO PACK FOR INSTANT Lets Instant look at your photos on this device. Qwen3.5 mmproj 0.1B · 205 MB · F16 · Battery: Medium Included with the app Details",
+          "state": {
+            "selected": false
+          }
+        },
+        {
+          "testID": "model-goodfor-vision-qwen35",
+          "text": "Lets Instant look at your photos on this device."
+        },
+        {
+          "testID": "model-spec-vision-qwen35",
+          "text": "Qwen3.5 mmproj 0.1B · 205 MB · F16 · Battery: Medium"
+        },
+        {
+          "testID": "model-status-vision-qwen35",
+          "text": "Included with the app"
+        },
+        {
+          "testID": "details-vision-qwen35",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-vision-qwen35-2b",
+          "text": "○ PHOTO PACK FOR FAST Lets Fast look at your photos on this device. Qwen3.5 mmproj 0.3B · 668 MB · F16 · Battery: Medium Install · 668 MB from localhost Details",
+          "state": {
+            "selected": false
+          }
+        },
+        {
+          "testID": "model-goodfor-vision-qwen35-2b",
+          "text": "Lets Fast look at your photos on this device."
+        },
+        {
+          "testID": "model-spec-vision-qwen35-2b",
+          "text": "Qwen3.5 mmproj 0.3B · 668 MB · F16 · Battery: Medium"
+        },
+        {
+          "testID": "install-vision-qwen35-2b",
+          "text": "Install · 668 MB from localhost",
+          "pressable": true
+        },
+        {
+          "testID": "details-vision-qwen35-2b",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-vision-qwen35-4b",
+          "text": "○ PHOTO PACK FOR SHARP Lets Sharp look at your photos on this device. Qwen3.5 mmproj 0.3B · 672 MB · F16 · Battery: Medium Install Sharp first Details",
+          "state": {
+            "selected": false
+          }
+        },
+        {
+          "testID": "model-goodfor-vision-qwen35-4b",
+          "text": "Lets Sharp look at your photos on this device."
+        },
+        {
+          "testID": "model-spec-vision-qwen35-4b",
+          "text": "Qwen3.5 mmproj 0.3B · 672 MB · F16 · Battery: Medium"
+        },
+        {
+          "testID": "model-status-vision-qwen35-4b",
+          "text": "Install Sharp first"
+        },
+        {
+          "testID": "details-vision-qwen35-4b",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "model-card-speech-whisper-base",
+          "text": "○ VOICE INPUT Turns your voice into text on this device, in any language. whisper.cpp base 74M · 148 MB · F16 · Battery: Low Install · 148 MB from localhost Details",
+          "state": {
+            "selected": false
+          }
+        },
+        {
+          "testID": "model-goodfor-speech-whisper-base",
+          "text": "Turns your voice into text on this device, in any language."
+        },
+        {
+          "testID": "model-spec-speech-whisper-base",
+          "text": "whisper.cpp base 74M · 148 MB · F16 · Battery: Low"
+        },
+        {
+          "testID": "install-speech-whisper-base",
+          "text": "Install · 148 MB from localhost",
+          "pressable": true
+        },
+        {
+          "testID": "details-speech-whisper-base",
+          "text": "Details",
+          "pressable": true
+        },
+        {
+          "testID": "import-gguf",
+          "text": "Import GGUF",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "search-hf",
+          "text": "Search Hugging Face",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "best-for-use-sheet",
+          "text": ""
+        },
+        {
+          "testID": "best-for-language-sheet",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jf-08"
+    },
+    {
+      "i": 66,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 158,
+      "detail": "/chats"
+    },
+    {
+      "i": 67,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    }
+  ],
+  "errors": [
+    "step 17 (value): value citations: no node with that testID is mounted",
+    "step 18 (value): value none-matched: no node with that testID is mounted",
+    "step 19 (value): value banners: no node with that testID is mounted",
+    "step 32 (value): value citations: no node with that testID is mounted",
+    "step 33 (value): value none-matched: no node with that testID is mounted",
+    "step 34 (value): value banners: no node with that testID is mounted",
+    "step 46 (value): value citations: no node with that testID is mounted",
+    "step 47 (value): value none-matched: no node with that testID is mounted",
+    "step 48 (value): value banners: no node with that testID is mounted",
+    "console.log: [chat] plain=acknowledgement window=5/5 maxTokens=224"
+  ]
+}

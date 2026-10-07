@@ -1,0 +1,58 @@
+19:25:44 pushing 46 steps as dv-model
+19:25:53 shot device-model-01
+19:26:04 shot device-model-02
+19:26:17 ok     0 deeplink   /chats
+19:26:17 ok     1 waitFor    new-chat appeared
+19:26:17 ok     2 press      new-chat ← onPress
+19:26:17 ok     3 waitFor    start-chat appeared
+19:26:17 ok     4 press      start-chat ← onPress
+19:26:17 ok     5 waitFor    composer-input appeared
+19:26:17 ok     6 waitFor    Loading gone
+19:26:17 ok     7 sleep      1500 ms
+19:26:17 ok     8 value      FAST
+19:26:17 ok     9 type       composer-input = 19 chars
+19:26:17 ok    10 send       send ← onPress
+19:26:17 ok    11 sleep      2500 ms
+19:26:17 ok    12 waitFor    reading-pages gone
+19:26:17 ok    13 waitFor    reading-docs gone
+19:26:17 ok    14 waitFor    stop gone
+19:26:17 ok    15 sleep      2500 ms
+19:26:17 ok    16 value      I'm Inborn, a private assistant that runs on this phone. Nothing you write or attach leaves it. I help with qu
+19:26:17 FAIL  17 value      value citations: no node with that testID is mounted
+19:26:17 FAIL  18 value      value none-matched: no node with that testID is mounted
+19:26:17 FAIL  19 value      value banners: no node with that testID is mounted
+19:26:17 ok    20 value      FAST
+19:26:17 ok    21 screenshot device-model-01
+19:26:17 ok    22 dump       device-model-01
+19:26:17 ok    23 deeplink   /chats
+19:26:17 ok    24 waitFor    new-chat appeared
+19:26:17 ok    25 press      new-chat ← onPress
+19:26:17 ok    26 waitFor    start-chat appeared
+19:26:17 ok    27 press      start-chat ← onPress
+19:26:17 ok    28 waitFor    composer-input appeared
+19:26:17 ok    29 waitFor    Loading gone
+19:26:17 ok    30 sleep      1500 ms
+19:26:17 ok    31 value      FAST
+19:26:17 ok    32 type       composer-input = 14 chars
+19:26:17 ok    33 send       send ← onPress
+19:26:17 ok    34 sleep      2500 ms
+19:26:17 ok    35 waitFor    reading-pages gone
+19:26:17 ok    36 waitFor    reading-docs gone
+19:26:17 ok    37 waitFor    stop gone
+19:26:17 ok    38 sleep      2500 ms
+19:26:17 ok    39 value      אני Inborn, עוזר פרטי שפועל בטלפון הזה. שום דבר שתכתבו או תצרפו לא יוצא ממנו. אני עוזר בשאלות, בכתיבה, בתרגום,
+19:26:17 FAIL  40 value      value citations: no node with that testID is mounted
+19:26:17 FAIL  41 value      value none-matched: no node with that testID is mounted
+19:26:17 FAIL  42 value      value banners: no node with that testID is mounted
+19:26:17 ok    43 value      FAST
+19:26:17 ok    44 screenshot device-model-02
+19:26:17 ok    45 dump       device-model-02
+19:26:17 40 passed, 6 failed, 2 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-43/docs/qa/ios-device-pass-43/screens
+19:26:17   ! step 17 (value): value citations: no node with that testID is mounted
+19:26:17   ! step 18 (value): value none-matched: no node with that testID is mounted
+19:26:17   ! step 19 (value): value banners: no node with that testID is mounted
+19:26:17   ! step 40 (value): value citations: no node with that testID is mounted
+19:26:17   ! step 41 (value): value none-matched: no node with that testID is mounted
+19:26:17   ! step 42 (value): value banners: no node with that testID is mounted
+19:26:17   ! console.log: [chat] identity kind=identity lang=en model=fast
+19:26:17   ! console.log: [chat] identity kind=identity lang=he model=fast

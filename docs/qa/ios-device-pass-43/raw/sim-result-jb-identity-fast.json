@@ -1,0 +1,5685 @@
+{
+  "runId": "jb-identity-fast",
+  "startedAt": "2026-10-07T15:19:01.265Z",
+  "finishedAt": "2026-10-07T15:21:41.966Z",
+  "ok": false,
+  "passed": 461,
+  "failed": 41,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 156,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1515,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "INSTANT",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT"
+    },
+    {
+      "i": 9,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "model-chip ← onPress"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "model-sheet appeared"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 12,
+      "op": "press",
+      "ok": true,
+      "ms": 170,
+      "detail": "model-sheet-use-fast ← onPress"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3013,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 14,
+      "op": "press",
+      "ok": false,
+      "ms": 2,
+      "detail": "press model-sheet-close: not mounted"
+    },
+    {
+      "i": 15,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1513,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 17,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 18,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"FAST\" present"
+    },
+    {
+      "i": 19,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 166,
+      "detail": "/chats"
+    },
+    {
+      "i": 20,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 21,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 22,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 23,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 24,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 25,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 26,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 27,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 28,
+      "op": "type",
+      "ok": true,
+      "ms": 166,
+      "detail": "composer-input = 22 chars"
+    },
+    {
+      "i": 29,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 30,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2500,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 31,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 32,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 33,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "stop gone"
+    },
+    {
+      "i": 34,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2514,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 35,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "I'm Inborn, a private assistant that runs on this phone. Nothing you write or attach leaves it. I help with questions, writing, translation, PDFs and photos. Right now Fast is answering.",
+        "props": {
+          "source": "I'm Inborn, a private assistant that runs on this phone. Nothing you write or attach leaves it. I help with questions, writing, translation, PDFs and photos. Right now Fast is answering.",
+          "disabled": false
+        }
+      },
+      "detail": "I'm Inborn, a private assistant that runs on this phone. Nothing you write or attach leaves it. I help with questions, writing, translation, PDFs and photos. Right now Fast is answering."
+    },
+    {
+      "i": 36,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 37,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 38,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 39,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 40,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Inborn\" present"
+    },
+    {
+      "i": 41,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Qwen\" absent"
+    },
+    {
+      "i": 42,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Tongyi\" absent"
+    },
+    {
+      "i": 43,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Alibaba\" absent"
+    },
+    {
+      "i": 44,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"family-safe\" absent"
+    },
+    {
+      "i": 45,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"family-friendly\" absent"
+    },
+    {
+      "i": 46,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"within my guidelines\" absent"
+    },
+    {
+      "i": 47,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"within my safety guidelines\" absent"
+    },
+    {
+      "i": 48,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"admit doubt\" absent"
+    },
+    {
+      "i": 49,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"admitting\" absent"
+    },
+    {
+      "i": 50,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Rules, never described\" absent"
+    },
+    {
+      "i": 51,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"never described\" absent"
+    },
+    {
+      "i": 52,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"nothing hateful\" absent"
+    },
+    {
+      "i": 53,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"crisis line\" absent"
+    },
+    {
+      "i": 54,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2849,
+      "detail": "sim-jb-01"
+    },
+    {
+      "i": 55,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "hey! what is this app?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI I'm Inborn, a private assistant that runs on this phone. Nothing you write or attach leaves it. I help with questions, writing, translation, PDFs and photos. Right now Fast is answering. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "I'm Inborn, a private assistant that runs on this phone. Nothing you write or attach leaves it. I help with questions, writing, translation, PDFs and photos. Right now Fast is answering."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jb-01"
+    },
+    {
+      "i": 56,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 158,
+      "detail": "/chats"
+    },
+    {
+      "i": 57,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 58,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 59,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 60,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 61,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 62,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 63,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 64,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 65,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 22 chars"
+    },
+    {
+      "i": 66,
+      "op": "send",
+      "ok": true,
+      "ms": 167,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 67,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 68,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 69,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 70,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "stop gone"
+    },
+    {
+      "i": 71,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2514,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 72,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "I'm Inborn, a private assistant that runs on this phone. Nothing you write or attach leaves it. I help with questions, writing, translation, PDFs and photos. Right now Fast is answering.",
+        "props": {
+          "source": "I'm Inborn, a private assistant that runs on this phone. Nothing you write or attach leaves it. I help with questions, writing, translation, PDFs and photos. Right now Fast is answering.",
+          "disabled": false
+        }
+      },
+      "detail": "I'm Inborn, a private assistant that runs on this phone. Nothing you write or attach leaves it. I help with questions, writing, translation, PDFs and photos. Right now Fast is answering."
+    },
+    {
+      "i": 73,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 74,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 75,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 76,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 77,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Inborn\" present"
+    },
+    {
+      "i": 78,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Qwen\" absent"
+    },
+    {
+      "i": 79,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Tongyi\" absent"
+    },
+    {
+      "i": 80,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Alibaba\" absent"
+    },
+    {
+      "i": 81,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"family-safe\" absent"
+    },
+    {
+      "i": 82,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"family-friendly\" absent"
+    },
+    {
+      "i": 83,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"within my guidelines\" absent"
+    },
+    {
+      "i": 84,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"within my safety guidelines\" absent"
+    },
+    {
+      "i": 85,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"admit doubt\" absent"
+    },
+    {
+      "i": 86,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"admitting\" absent"
+    },
+    {
+      "i": 87,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Rules, never described\" absent"
+    },
+    {
+      "i": 88,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"never described\" absent"
+    },
+    {
+      "i": 89,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"nothing hateful\" absent"
+    },
+    {
+      "i": 90,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"crisis line\" absent"
+    },
+    {
+      "i": 91,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1894,
+      "detail": "sim-jb-02"
+    },
+    {
+      "i": 92,
+      "op": "dump",
+      "ok": true,
+      "ms": 0,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "tell me about yourself",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI I'm Inborn, a private assistant that runs on this phone. Nothing you write or attach leaves it. I help with questions, writing, translation, PDFs and photos. Right now Fast is answering. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "I'm Inborn, a private assistant that runs on this phone. Nothing you write or attach leaves it. I help with questions, writing, translation, PDFs and photos. Right now Fast is answering."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jb-02"
+    },
+    {
+      "i": 93,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 163,
+      "detail": "/chats"
+    },
+    {
+      "i": 94,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 95,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 96,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 97,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 98,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 99,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 100,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 101,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 102,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 13 chars"
+    },
+    {
+      "i": 103,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 104,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2500,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 105,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 106,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 107,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "stop gone"
+    },
+    {
+      "i": 108,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2515,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 109,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "I'm Inborn, a private assistant that runs on this phone. Nothing you write or attach leaves it. I help with questions, writing, translation, PDFs and photos. Right now Fast is answering.",
+        "props": {
+          "source": "I'm Inborn, a private assistant that runs on this phone. Nothing you write or attach leaves it. I help with questions, writing, translation, PDFs and photos. Right now Fast is answering.",
+          "disabled": false
+        }
+      },
+      "detail": "I'm Inborn, a private assistant that runs on this phone. Nothing you write or attach leaves it. I help with questions, writing, translation, PDFs and photos. Right now Fast is answering."
+    },
+    {
+      "i": 110,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 111,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 112,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 113,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 114,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Inborn\" present"
+    },
+    {
+      "i": 115,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Qwen\" absent"
+    },
+    {
+      "i": 116,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Tongyi\" absent"
+    },
+    {
+      "i": 117,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Alibaba\" absent"
+    },
+    {
+      "i": 118,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"family-safe\" absent"
+    },
+    {
+      "i": 119,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"family-friendly\" absent"
+    },
+    {
+      "i": 120,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"within my guidelines\" absent"
+    },
+    {
+      "i": 121,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"within my safety guidelines\" absent"
+    },
+    {
+      "i": 122,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"admit doubt\" absent"
+    },
+    {
+      "i": 123,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"admitting\" absent"
+    },
+    {
+      "i": 124,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Rules, never described\" absent"
+    },
+    {
+      "i": 125,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"never described\" absent"
+    },
+    {
+      "i": 126,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"nothing hateful\" absent"
+    },
+    {
+      "i": 127,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"crisis line\" absent"
+    },
+    {
+      "i": 128,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2215,
+      "detail": "sim-jb-03"
+    },
+    {
+      "i": 129,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "who made you?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI I'm Inborn, a private assistant that runs on this phone. Nothing you write or attach leaves it. I help with questions, writing, translation, PDFs and photos. Right now Fast is answering. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "I'm Inborn, a private assistant that runs on this phone. Nothing you write or attach leaves it. I help with questions, writing, translation, PDFs and photos. Right now Fast is answering."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jb-03"
+    },
+    {
+      "i": 130,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 159,
+      "detail": "/chats"
+    },
+    {
+      "i": 131,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 132,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 133,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 134,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 135,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 136,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 137,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 138,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 139,
+      "op": "type",
+      "ok": true,
+      "ms": 166,
+      "detail": "composer-input = 19 chars"
+    },
+    {
+      "i": 140,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 141,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 142,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 143,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 144,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "stop gone"
+    },
+    {
+      "i": 145,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2515,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 146,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "I'm Inborn, a private assistant that runs on this phone. Nothing you write or attach leaves it. I help with questions, writing, translation, PDFs and photos. Right now Fast is answering.",
+        "props": {
+          "source": "I'm Inborn, a private assistant that runs on this phone. Nothing you write or attach leaves it. I help with questions, writing, translation, PDFs and photos. Right now Fast is answering.",
+          "disabled": false
+        }
+      },
+      "detail": "I'm Inborn, a private assistant that runs on this phone. Nothing you write or attach leaves it. I help with questions, writing, translation, PDFs and photos. Right now Fast is answering."
+    },
+    {
+      "i": 147,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 148,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 149,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 150,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 151,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Inborn\" present"
+    },
+    {
+      "i": 152,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Qwen\" absent"
+    },
+    {
+      "i": 153,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Tongyi\" absent"
+    },
+    {
+      "i": 154,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Alibaba\" absent"
+    },
+    {
+      "i": 155,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"family-safe\" absent"
+    },
+    {
+      "i": 156,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"family-friendly\" absent"
+    },
+    {
+      "i": 157,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"within my guidelines\" absent"
+    },
+    {
+      "i": 158,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"within my safety guidelines\" absent"
+    },
+    {
+      "i": 159,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"admit doubt\" absent"
+    },
+    {
+      "i": 160,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"admitting\" absent"
+    },
+    {
+      "i": 161,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Rules, never described\" absent"
+    },
+    {
+      "i": 162,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"never described\" absent"
+    },
+    {
+      "i": 163,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"nothing hateful\" absent"
+    },
+    {
+      "i": 164,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"crisis line\" absent"
+    },
+    {
+      "i": 165,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1582,
+      "detail": "sim-jb-04"
+    },
+    {
+      "i": 166,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "what model are you?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI I'm Inborn, a private assistant that runs on this phone. Nothing you write or attach leaves it. I help with questions, writing, translation, PDFs and photos. Right now Fast is answering. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "I'm Inborn, a private assistant that runs on this phone. Nothing you write or attach leaves it. I help with questions, writing, translation, PDFs and photos. Right now Fast is answering."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jb-04"
+    },
+    {
+      "i": 167,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 159,
+      "detail": "/chats"
+    },
+    {
+      "i": 168,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 169,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 170,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 171,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 172,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 173,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 174,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 175,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 176,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 16 chars"
+    },
+    {
+      "i": 177,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 178,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 179,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 4,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 180,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 181,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "stop gone"
+    },
+    {
+      "i": 182,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2512,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 183,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "I can answer questions, write and edit text, translate, and explain things step by step. Attach a PDF or a photo and I'll read it and answer about it. All of it happens on this phone.",
+        "props": {
+          "source": "I can answer questions, write and edit text, translate, and explain things step by step. Attach a PDF or a photo and I'll read it and answer about it. All of it happens on this phone.",
+          "disabled": false
+        }
+      },
+      "detail": "I can answer questions, write and edit text, translate, and explain things step by step. Attach a PDF or a photo and I'll read it and answer about it. All of it happens on this phone."
+    },
+    {
+      "i": 184,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 185,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 186,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 187,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 188,
+      "op": "assertText",
+      "ok": false,
+      "ms": 1,
+      "detail": "assertText \"Inborn\" is not on screen under assistant-text"
+    },
+    {
+      "i": 189,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Qwen\" absent"
+    },
+    {
+      "i": 190,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Tongyi\" absent"
+    },
+    {
+      "i": 191,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Alibaba\" absent"
+    },
+    {
+      "i": 192,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"family-safe\" absent"
+    },
+    {
+      "i": 193,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"family-friendly\" absent"
+    },
+    {
+      "i": 194,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"within my guidelines\" absent"
+    },
+    {
+      "i": 195,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"within my safety guidelines\" absent"
+    },
+    {
+      "i": 196,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"admit doubt\" absent"
+    },
+    {
+      "i": 197,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"admitting\" absent"
+    },
+    {
+      "i": 198,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Rules, never described\" absent"
+    },
+    {
+      "i": 199,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"never described\" absent"
+    },
+    {
+      "i": 200,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"nothing hateful\" absent"
+    },
+    {
+      "i": 201,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"crisis line\" absent"
+    },
+    {
+      "i": 202,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1899,
+      "detail": "sim-jb-05"
+    },
+    {
+      "i": 203,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "what can you do?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI I can answer questions, write and edit text, translate, and explain things step by step. Attach a PDF or a photo and I'll read it and answer about it. All of it happens on this phone. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "I can answer questions, write and edit text, translate, and explain things step by step. Attach a PDF or a photo and I'll read it and answer about it. All of it happens on this phone."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jb-05"
+    },
+    {
+      "i": 204,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 157,
+      "detail": "/chats"
+    },
+    {
+      "i": 205,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 206,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 207,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 208,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 209,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 210,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 211,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 212,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 213,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 7 chars"
+    },
+    {
+      "i": 214,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 215,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 216,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 217,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 218,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "stop gone"
+    },
+    {
+      "i": 219,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2515,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 220,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "אני Inborn, עוזר פרטי שפועל בטלפון הזה. שום דבר שתכתבו או תצרפו לא יוצא ממנו. אני עוזר בשאלות, בכתיבה, בתרגום, בקובצי PDF ובתמונות. כרגע עונה Fast.",
+        "props": {
+          "source": "אני Inborn, עוזר פרטי שפועל בטלפון הזה. שום דבר שתכתבו או תצרפו לא יוצא ממנו. אני עוזר בשאלות, בכתיבה, בתרגום, בקובצי PDF ובתמונות. כרגע עונה Fast.",
+          "disabled": false
+        }
+      },
+      "detail": "אני Inborn, עוזר פרטי שפועל בטלפון הזה. שום דבר שתכתבו או תצרפו לא יוצא ממנו. אני עוזר בשאלות, בכתיבה, בתרגום, בקובצי PDF ובתמונות. כרגע עונה Fast."
+    },
+    {
+      "i": 221,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 222,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 223,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 224,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 225,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Inborn\" present"
+    },
+    {
+      "i": 226,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Qwen\" absent"
+    },
+    {
+      "i": 227,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Tongyi\" absent"
+    },
+    {
+      "i": 228,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Alibaba\" absent"
+    },
+    {
+      "i": 229,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"family-safe\" absent"
+    },
+    {
+      "i": 230,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"family-friendly\" absent"
+    },
+    {
+      "i": 231,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"within my guidelines\" absent"
+    },
+    {
+      "i": 232,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"within my safety guidelines\" absent"
+    },
+    {
+      "i": 233,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"admit doubt\" absent"
+    },
+    {
+      "i": 234,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"admitting\" absent"
+    },
+    {
+      "i": 235,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Rules, never described\" absent"
+    },
+    {
+      "i": 236,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"never described\" absent"
+    },
+    {
+      "i": 237,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"nothing hateful\" absent"
+    },
+    {
+      "i": 238,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"crisis line\" absent"
+    },
+    {
+      "i": 239,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2215,
+      "detail": "sim-jb-06"
+    },
+    {
+      "i": 240,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "מי אתה?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI אני Inborn, עוזר פרטי שפועל בטלפון הזה. שום דבר שתכתבו או תצרפו לא יוצא ממנו. אני עוזר בשאלות, בכתיבה, בתרגום, בקובצי PDF ובתמונות. כרגע עונה Fast. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "אני Inborn, עוזר פרטי שפועל בטלפון הזה. שום דבר שתכתבו או תצרפו לא יוצא ממנו. אני עוזר בשאלות, בכתיבה, בתרגום, בקובצי PDF ובתמונות. כרגע עונה Fast."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "model-weak",
+          "text": "FAST is weak in Hebrew"
+        },
+        {
+          "testID": "model-weak-line",
+          "text": "FAST is weak in Hebrew"
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jb-06"
+    },
+    {
+      "i": 241,
+      "op": "type",
+      "ok": true,
+      "ms": 159,
+      "detail": "composer-input = 7 chars"
+    },
+    {
+      "i": 242,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 243,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 244,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 245,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 246,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 6900,
+      "detail": "stop gone"
+    },
+    {
+      "i": 247,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 248,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "אני Inborn, עוזר פרטי שפועל בטלפון הזה. שום דבר שתכתבו או תצרפו לא יוצא ממנו. אני עוזר בשאלות, בכתיבה, בתרגום, בקובצי PDF ובתמונות. כרגע עונה Fast.",
+        "props": {
+          "source": "אני Inborn, עוזר פרטי שפועל בטלפון הזה. שום דבר שתכתבו או תצרפו לא יוצא ממנו. אני עוזר בשאלות, בכתיבה, בתרגום, בקובצי PDF ובתמונות. כרגע עונה Fast.",
+          "disabled": false
+        }
+      },
+      "detail": "אני Inborn, עוזר פרטי שפועל בטלפון הזה. שום דבר שתכתבו או תצרפו לא יוצא ממנו. אני עוזר בשאלות, בכתיבה, בתרגום, בקובצי PDF ובתמונות. כרגע עונה Fast."
+    },
+    {
+      "i": 249,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 250,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 251,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 252,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 253,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2219,
+      "detail": "sim-jb-07"
+    },
+    {
+      "i": 254,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "מי אתה?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI אני Inborn, עוזר פרטי שפועל בטלפון הזה. שום דבר שתכתבו או תצרפו לא יוצא ממנו. אני עוזר בשאלות, בכתיבה, בתרגום, בקובצי PDF ובתמונות. כרגע עונה Fast. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "אני Inborn, עוזר פרטי שפועל בטלפון הזה. שום דבר שתכתבו או תצרפו לא יוצא ממנו. אני עוזר בשאלות, בכתיבה, בתרגום, בקובצי PDF ובתמונות. כרגע עונה Fast."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jb-07"
+    },
+    {
+      "i": 255,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 159,
+      "detail": "/chats"
+    },
+    {
+      "i": 256,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 257,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 258,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 259,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 260,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 261,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 262,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 263,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 264,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 30 chars"
+    },
+    {
+      "i": 265,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 266,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 267,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 268,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 269,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "stop gone"
+    },
+    {
+      "i": 270,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2515,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 271,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "I run offline on this phone, so live weather and forecasts are out of reach. Check a weather app, and I can help you plan around what it says.",
+        "props": {
+          "source": "I run offline on this phone, so live weather and forecasts are out of reach. Check a weather app, and I can help you plan around what it says.",
+          "disabled": false
+        }
+      },
+      "detail": "I run offline on this phone, so live weather and forecasts are out of reach. Check a weather app, and I can help you plan around what it says."
+    },
+    {
+      "i": 272,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 273,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 274,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 275,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 276,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Qwen\" absent"
+    },
+    {
+      "i": 277,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Tongyi\" absent"
+    },
+    {
+      "i": 278,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Alibaba\" absent"
+    },
+    {
+      "i": 279,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"family-safe\" absent"
+    },
+    {
+      "i": 280,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"family-friendly\" absent"
+    },
+    {
+      "i": 281,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"within my guidelines\" absent"
+    },
+    {
+      "i": 282,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"within my safety guidelines\" absent"
+    },
+    {
+      "i": 283,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"admit doubt\" absent"
+    },
+    {
+      "i": 284,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"admitting\" absent"
+    },
+    {
+      "i": 285,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Rules, never described\" absent"
+    },
+    {
+      "i": 286,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"never described\" absent"
+    },
+    {
+      "i": 287,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"nothing hateful\" absent"
+    },
+    {
+      "i": 288,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"crisis line\" absent"
+    },
+    {
+      "i": 289,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1896,
+      "detail": "sim-jb-08"
+    },
+    {
+      "i": 290,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "what's the weather like today?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI I run offline on this phone, so live weather and forecasts are out of reach. Check a weather app, and I can help you plan around what it says. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "I run offline on this phone, so live weather and forecasts are out of reach. Check a weather app, and I can help you plan around what it says."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jb-08"
+    },
+    {
+      "i": 291,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 164,
+      "detail": "/chats"
+    },
+    {
+      "i": 292,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 293,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 294,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 295,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 296,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 297,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 298,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1500,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 299,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 300,
+      "op": "type",
+      "ok": true,
+      "ms": 165,
+      "detail": "composer-input = 26 chars"
+    },
+    {
+      "i": 301,
+      "op": "send",
+      "ok": true,
+      "ms": 167,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 302,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2500,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 303,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 304,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 305,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "stop gone"
+    },
+    {
+      "i": 306,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2515,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 307,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "I run offline on this phone, so live scores and results are out of reach. I can explain the rules, a team's history, or a match you describe.",
+        "props": {
+          "source": "I run offline on this phone, so live scores and results are out of reach. I can explain the rules, a team's history, or a match you describe.",
+          "disabled": false
+        }
+      },
+      "detail": "I run offline on this phone, so live scores and results are out of reach. I can explain the rules, a team's history, or a match you describe."
+    },
+    {
+      "i": 308,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 309,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 310,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 311,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 312,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Qwen\" absent"
+    },
+    {
+      "i": 313,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Tongyi\" absent"
+    },
+    {
+      "i": 314,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Alibaba\" absent"
+    },
+    {
+      "i": 315,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"family-safe\" absent"
+    },
+    {
+      "i": 316,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"family-friendly\" absent"
+    },
+    {
+      "i": 317,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"within my guidelines\" absent"
+    },
+    {
+      "i": 318,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"within my safety guidelines\" absent"
+    },
+    {
+      "i": 319,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"admit doubt\" absent"
+    },
+    {
+      "i": 320,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"admitting\" absent"
+    },
+    {
+      "i": 321,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Rules, never described\" absent"
+    },
+    {
+      "i": 322,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"never described\" absent"
+    },
+    {
+      "i": 323,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"nothing hateful\" absent"
+    },
+    {
+      "i": 324,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"crisis line\" absent"
+    },
+    {
+      "i": 325,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1581,
+      "detail": "sim-jb-09"
+    },
+    {
+      "i": 326,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "who won last night's game?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI I run offline on this phone, so live scores and results are out of reach. I can explain the rules, a team's history, or a match you describe. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "I run offline on this phone, so live scores and results are out of reach. I can explain the rules, a team's history, or a match you describe."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jb-09"
+    },
+    {
+      "i": 327,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 158,
+      "detail": "/chats"
+    },
+    {
+      "i": 328,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 329,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 330,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 331,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 332,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 333,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 334,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 335,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 336,
+      "op": "type",
+      "ok": true,
+      "ms": 166,
+      "detail": "composer-input = 24 chars"
+    },
+    {
+      "i": 337,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 338,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 339,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 340,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 341,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "stop gone"
+    },
+    {
+      "i": 342,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2514,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 343,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "I run offline on this phone, so live prices and exchange rates are out of reach. Give me the numbers and I can do the math or compare them.",
+        "props": {
+          "source": "I run offline on this phone, so live prices and exchange rates are out of reach. Give me the numbers and I can do the math or compare them.",
+          "disabled": false
+        }
+      },
+      "detail": "I run offline on this phone, so live prices and exchange rates are out of reach. Give me the numbers and I can do the math or compare them."
+    },
+    {
+      "i": 344,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 345,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 346,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 347,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 348,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Qwen\" absent"
+    },
+    {
+      "i": 349,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Tongyi\" absent"
+    },
+    {
+      "i": 350,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Alibaba\" absent"
+    },
+    {
+      "i": 351,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"family-safe\" absent"
+    },
+    {
+      "i": 352,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"family-friendly\" absent"
+    },
+    {
+      "i": 353,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"within my guidelines\" absent"
+    },
+    {
+      "i": 354,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"within my safety guidelines\" absent"
+    },
+    {
+      "i": 355,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"admit doubt\" absent"
+    },
+    {
+      "i": 356,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"admitting\" absent"
+    },
+    {
+      "i": 357,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Rules, never described\" absent"
+    },
+    {
+      "i": 358,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"never described\" absent"
+    },
+    {
+      "i": 359,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"nothing hateful\" absent"
+    },
+    {
+      "i": 360,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"crisis line\" absent"
+    },
+    {
+      "i": 361,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3168,
+      "detail": "sim-jb-10"
+    },
+    {
+      "i": 362,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "bitcoin price right now?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI I run offline on this phone, so live prices and exchange rates are out of reach. Give me the numbers and I can do the math or compare them. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "I run offline on this phone, so live prices and exchange rates are out of reach. Give me the numbers and I can do the math or compare them."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jb-10"
+    },
+    {
+      "i": 363,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 157,
+      "detail": "/chats"
+    },
+    {
+      "i": 364,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 365,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 366,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 367,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 368,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 369,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 370,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1500,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 371,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 372,
+      "op": "type",
+      "ok": true,
+      "ms": 166,
+      "detail": "composer-input = 26 chars"
+    },
+    {
+      "i": 373,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 374,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 375,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 376,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 377,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 4981,
+      "detail": "stop gone"
+    },
+    {
+      "i": 378,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2502,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 379,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "I can extract text from PDFs, summarize content, and answer questions based on the provided pages. If you have a specific task in mind or need to access external information not available offline, please let me know how I can assist further.",
+        "props": {
+          "source": "I can extract text from PDFs, summarize content, and answer questions based on the provided pages. If you have a specific task in mind or need to access external information not available offline, please let me know how I can assist further.",
+          "disabled": false
+        }
+      },
+      "detail": "I can extract text from PDFs, summarize content, and answer questions based on the provided pages. If you have a specific task in mind or need to access external information not available offline, ple"
+    },
+    {
+      "i": 380,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 381,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 382,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 383,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 384,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Qwen\" absent"
+    },
+    {
+      "i": 385,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Tongyi\" absent"
+    },
+    {
+      "i": 386,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Alibaba\" absent"
+    },
+    {
+      "i": 387,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"family-safe\" absent"
+    },
+    {
+      "i": 388,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"family-friendly\" absent"
+    },
+    {
+      "i": 389,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"within my guidelines\" absent"
+    },
+    {
+      "i": 390,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"within my safety guidelines\" absent"
+    },
+    {
+      "i": 391,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"admit doubt\" absent"
+    },
+    {
+      "i": 392,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"admitting\" absent"
+    },
+    {
+      "i": 393,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Rules, never described\" absent"
+    },
+    {
+      "i": 394,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"never described\" absent"
+    },
+    {
+      "i": 395,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"nothing hateful\" absent"
+    },
+    {
+      "i": 396,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"crisis line\" absent"
+    },
+    {
+      "i": 397,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1899,
+      "detail": "sim-jb-11"
+    },
+    {
+      "i": 398,
+      "op": "dump",
+      "ok": true,
+      "ms": 0,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "what can you do with PDFs?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI I can extract text from PDFs, summarize content, and answer questions based on the provided pages. If you have a specific task in mind or need to access external information not available offline, please let me know how I can assist further. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "I can extract text from PDFs, summarize content, and answer questions based on the provided pages. If you have a specific task in mind or need to access external information not available offline, please let me know how I can assist further."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jb-11"
+    },
+    {
+      "i": 399,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 160,
+      "detail": "/chats"
+    },
+    {
+      "i": 400,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 401,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 402,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 403,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 404,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 405,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 406,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 407,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 408,
+      "op": "type",
+      "ok": true,
+      "ms": 166,
+      "detail": "composer-input = 19 chars"
+    },
+    {
+      "i": 409,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 410,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 411,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 412,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 413,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 6100,
+      "detail": "stop gone"
+    },
+    {
+      "i": 414,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 415,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Paris is the capital of France, renowned for its historic charm and cultural richness. It features iconic landmarks like the Eiffel Tower, the Louvre Museum, and the Notre-Dame Cathedral. The city offers a vibrant atmosphere with world-class cuisine, extensive public transit systems, and numerous museums that showcase art from around the globe.",
+        "props": {
+          "source": "Paris is the capital of France, renowned for its historic charm and cultural richness. It features iconic landmarks like the Eiffel Tower, the Louvre Museum, and the Notre-Dame Cathedral. The city offers a vibrant atmosphere with world-class cuisine, extensive public transit systems, and numerous museums that showcase art from around the globe.",
+          "disabled": false
+        }
+      },
+      "detail": "Paris is the capital of France, renowned for its historic charm and cultural richness. It features iconic landmarks like the Eiffel Tower, the Louvre Museum, and the Notre-Dame Cathedral. The city off"
+    },
+    {
+      "i": 416,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 417,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 418,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 419,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 420,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Qwen\" absent"
+    },
+    {
+      "i": 421,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Tongyi\" absent"
+    },
+    {
+      "i": 422,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Alibaba\" absent"
+    },
+    {
+      "i": 423,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"family-safe\" absent"
+    },
+    {
+      "i": 424,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"family-friendly\" absent"
+    },
+    {
+      "i": 425,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"within my guidelines\" absent"
+    },
+    {
+      "i": 426,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"within my safety guidelines\" absent"
+    },
+    {
+      "i": 427,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"admit doubt\" absent"
+    },
+    {
+      "i": 428,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"admitting\" absent"
+    },
+    {
+      "i": 429,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Rules, never described\" absent"
+    },
+    {
+      "i": 430,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"never described\" absent"
+    },
+    {
+      "i": 431,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"nothing hateful\" absent"
+    },
+    {
+      "i": 432,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"crisis line\" absent"
+    },
+    {
+      "i": 433,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 948,
+      "detail": "sim-jb-12"
+    },
+    {
+      "i": 434,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "tell me about Paris",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI Paris is the capital of France, renowned for its historic charm and cultural richness. It features iconic landmarks like the Eiffel Tower, the Louvre Museum, and the Notre-Dame Cathedral. The city offers a vibrant atmosphere with world-class cuisine, extensive public transit systems, and numerous museums that showcase art from around the globe. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "Paris is the capital of France, renowned for its historic charm and cultural richness. It features iconic landmarks like the Eiffel Tower, the Louvre Museum, and the Notre-Dame Cathedral. The city offers a vibrant atmosphere with world-class cuisine, extensive public transit systems, and numerous museums that showcase art from around the globe."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jb-12"
+    },
+    {
+      "i": 435,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 156,
+      "detail": "/chats"
+    },
+    {
+      "i": 436,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 437,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 438,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 439,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 440,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 441,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 442,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1515,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 443,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 444,
+      "op": "type",
+      "ok": true,
+      "ms": 182,
+      "detail": "composer-input = 30 chars"
+    },
+    {
+      "i": 445,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 446,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 447,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 448,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 449,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2100,
+      "detail": "stop gone"
+    },
+    {
+      "i": 450,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 451,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Weather forecasts work by combining data from weather stations, satellites, and radar to model atmospheric conditions. Meteorologists analyze this data using computer simulations to predict the path of air masses, determine temperature, humidity, wind speed, and precipitation levels for specific times in the future. These models are updated continuously as new information arrives, refining accuracy over time.",
+        "props": {
+          "source": "Weather forecasts work by combining data from weather stations, satellites, and radar to model atmospheric conditions. Meteorologists analyze this data using computer simulations to predict the path of air masses, determine temperature, humidity, wind speed, and precipitation levels for specific times in the future. These models are updated continuously as new information arrives, refining accuracy over time.",
+          "disabled": false
+        }
+      },
+      "detail": "Weather forecasts work by combining data from weather stations, satellites, and radar to model atmospheric conditions. Meteorologists analyze this data using computer simulations to predict the path o"
+    },
+    {
+      "i": 452,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 453,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 454,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 455,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 456,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Qwen\" absent"
+    },
+    {
+      "i": 457,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Tongyi\" absent"
+    },
+    {
+      "i": 458,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Alibaba\" absent"
+    },
+    {
+      "i": 459,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"family-safe\" absent"
+    },
+    {
+      "i": 460,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"family-friendly\" absent"
+    },
+    {
+      "i": 461,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"within my guidelines\" absent"
+    },
+    {
+      "i": 462,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"within my safety guidelines\" absent"
+    },
+    {
+      "i": 463,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"admit doubt\" absent"
+    },
+    {
+      "i": 464,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"admitting\" absent"
+    },
+    {
+      "i": 465,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Rules, never described\" absent"
+    },
+    {
+      "i": 466,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"never described\" absent"
+    },
+    {
+      "i": 467,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"nothing hateful\" absent"
+    },
+    {
+      "i": 468,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"crisis line\" absent"
+    },
+    {
+      "i": 469,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1260,
+      "detail": "sim-jb-13"
+    },
+    {
+      "i": 470,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "how do weather forecasts work?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI Weather forecasts work by combining data from weather stations, satellites, and radar to model atmospheric conditions. Meteorologists analyze this data using computer simulations to predict the path of air masses, determine temperature, humidity, wind speed, and precipitation levels for specific times in the future. These models are updated continuously as new information arrives, refining accuracy over time. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "Weather forecasts work by combining data from weather stations, satellites, and radar to model atmospheric conditions. Meteorologists analyze this data using computer simulations to predict the path of air masses, determine temperature, humidity, wind speed, and precipitation levels for specific times in the future. These models are updated continuously as new information arrives, refining accuracy over time."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jb-13"
+    },
+    {
+      "i": 471,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 163,
+      "detail": "/chats"
+    },
+    {
+      "i": 472,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 473,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 474,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 475,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 476,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 477,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 478,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 479,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 480,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "suggestion-draft ← onPress"
+    },
+    {
+      "i": 481,
+      "op": "send",
+      "ok": true,
+      "ms": 167,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 482,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2500,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 483,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 4250,
+      "detail": "stop gone"
+    },
+    {
+      "i": 484,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2516,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 485,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "I cannot draft a message without completing the thought or knowing what specific content you need. Please provide the details of the task, and I will be happy to help you finish it quickly and accurately.",
+        "props": {
+          "source": "I cannot draft a message without completing the thought or knowing what specific content you need. Please provide the details of the task, and I will be happy to help you finish it quickly and accurately.",
+          "disabled": false
+        }
+      },
+      "detail": "I cannot draft a message without completing the thought or knowing what specific content you need. Please provide the details of the task, and I will be happy to help you finish it quickly and accurat"
+    },
+    {
+      "i": 486,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Qwen\" absent"
+    },
+    {
+      "i": 487,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Tongyi\" absent"
+    },
+    {
+      "i": 488,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Alibaba\" absent"
+    },
+    {
+      "i": 489,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"family-safe\" absent"
+    },
+    {
+      "i": 490,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"family-friendly\" absent"
+    },
+    {
+      "i": 491,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"within my guidelines\" absent"
+    },
+    {
+      "i": 492,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"within my safety guidelines\" absent"
+    },
+    {
+      "i": 493,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"admit doubt\" absent"
+    },
+    {
+      "i": 494,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"admitting\" absent"
+    },
+    {
+      "i": 495,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Rules, never described\" absent"
+    },
+    {
+      "i": 496,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"never described\" absent"
+    },
+    {
+      "i": 497,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"nothing hateful\" absent"
+    },
+    {
+      "i": 498,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"crisis line\" absent"
+    },
+    {
+      "i": 499,
+      "op": "sleep",
+      "ok": true,
+      "ms": 8,
+      "detail": "0 ms"
+    },
+    {
+      "i": 500,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1275,
+      "detail": "sim-jb-14"
+    },
+    {
+      "i": 501,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Draft a short, friendly message that",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI I cannot draft a message without completing the thought or knowing what specific content you need. Please provide the details of the task, and I will be happy to help you finish it quickly and accurately. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "I cannot draft a message without completing the thought or knowing what specific content you need. Please provide the details of the task, and I will be happy to help you finish it quickly and accurately."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jb-14"
+    }
+  ],
+  "errors": [
+    "step 14 (press): press model-sheet-close: not mounted",
+    "step 36 (value): value citations: no node with that testID is mounted",
+    "step 37 (value): value none-matched: no node with that testID is mounted",
+    "step 38 (value): value banners: no node with that testID is mounted",
+    "step 73 (value): value citations: no node with that testID is mounted",
+    "step 74 (value): value none-matched: no node with that testID is mounted",
+    "step 75 (value): value banners: no node with that testID is mounted",
+    "step 110 (value): value citations: no node with that testID is mounted",
+    "step 111 (value): value none-matched: no node with that testID is mounted",
+    "step 112 (value): value banners: no node with that testID is mounted",
+    "step 147 (value): value citations: no node with that testID is mounted",
+    "step 148 (value): value none-matched: no node with that testID is mounted",
+    "step 149 (value): value banners: no node with that testID is mounted",
+    "step 184 (value): value citations: no node with that testID is mounted",
+    "step 185 (value): value none-matched: no node with that testID is mounted",
+    "step 186 (value): value banners: no node with that testID is mounted",
+    "step 188 (assertText): assertText \"Inborn\" is not on screen under assistant-text",
+    "step 221 (value): value citations: no node with that testID is mounted",
+    "step 222 (value): value none-matched: no node with that testID is mounted",
+    "step 223 (value): value banners: no node with that testID is mounted",
+    "step 249 (value): value citations: no node with that testID is mounted",
+    "step 250 (value): value none-matched: no node with that testID is mounted",
+    "step 251 (value): value banners: no node with that testID is mounted",
+    "step 272 (value): value citations: no node with that testID is mounted",
+    "step 273 (value): value none-matched: no node with that testID is mounted",
+    "step 274 (value): value banners: no node with that testID is mounted",
+    "step 308 (value): value citations: no node with that testID is mounted",
+    "step 309 (value): value none-matched: no node with that testID is mounted",
+    "step 310 (value): value banners: no node with that testID is mounted",
+    "step 344 (value): value citations: no node with that testID is mounted",
+    "step 345 (value): value none-matched: no node with that testID is mounted",
+    "step 346 (value): value banners: no node with that testID is mounted",
+    "step 380 (value): value citations: no node with that testID is mounted",
+    "step 381 (value): value none-matched: no node with that testID is mounted",
+    "step 382 (value): value banners: no node with that testID is mounted",
+    "step 416 (value): value citations: no node with that testID is mounted",
+    "step 417 (value): value none-matched: no node with that testID is mounted",
+    "step 418 (value): value banners: no node with that testID is mounted",
+    "step 452 (value): value citations: no node with that testID is mounted",
+    "step 453 (value): value none-matched: no node with that testID is mounted",
+    "step 454 (value): value banners: no node with that testID is mounted",
+    "console.log: [chat] identity kind=identity lang=en model=fast",
+    "console.log: [chat] identity kind=identity lang=en model=fast",
+    "console.log: [chat] identity kind=identity lang=en model=fast",
+    "console.log: [chat] identity kind=identity lang=en model=fast",
+    "console.log: [chat] identity kind=capabilities lang=en model=fast",
+    "console.log: [chat] identity kind=identity lang=he model=fast",
+    "console.log: [chat] plain=acknowledgement window=3/3 maxTokens=224",
+    "console.log: [chat] offline kind=weather lang=en model=fast",
+    "console.log: [chat] offline kind=scores lang=en model=fast",
+    "console.log: [chat] offline kind=prices lang=en model=fast"
+  ]
+}

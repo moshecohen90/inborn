@@ -1,0 +1,129 @@
+== install --frozen-lockfile start 17:46:00
+== install --frozen-lockfile rc=0 end 17:46:01
+== typecheck start 17:46:01
+== typecheck rc=0 end 17:46:09
+== lint start 17:46:09
+== lint rc=0 end 17:46:16
+== test start 17:46:16
+== test rc=0 end 17:46:31
+
+== test summary
+packages/ui test:  Test Files  3 passed (3)
+packages/ui test:       Tests  23 passed (23)
+packages/i18n test:  Test Files  7 passed (7)
+packages/i18n test:       Tests  31 passed (31)
+packages/core test:  Test Files  117 passed | 4 skipped (121)
+packages/core test:       Tests  1540 passed | 5 skipped (1545)
+apps/mobile test:  Test Files  170 passed (170)
+apps/mobile test:       Tests  1485 passed (1485)
+== typecheck
+
+> inborn@ typecheck <worktree>
+> pnpm -r --if-present typecheck
+
+Scope: 7 of 8 workspace projects
+packages/core typecheck$ tsc --noEmit -p tsconfig.json
+packages/i18n typecheck$ tsc --noEmit -p tsconfig.json
+packages/ui typecheck$ tsc --noEmit -p tsconfig.json
+packages/i18n typecheck: Done
+packages/ui typecheck: Done
+packages/core typecheck: Done
+apps/mobile typecheck$ node scripts/build-info.cjs && tsc --noEmit -p tsconfig.json
+apps/mobile typecheck: build info: 000e74da2c57 2026-10-07
+apps/mobile typecheck: Done
+== lint
+
+> inborn@ lint <worktree>
+> eslint .
+
+
+== check:store (after the archive, in-tree archive present)
+
+> inborn@ check:store <worktree>
+> node docs/store/scripts/check-store-copy.mjs && node scripts/check-shipping-bundles.mjs && bash scripts/check-history-ids.sh
+
+FIELD LENGTHS
+  de     apple.name                    23/30  ok
+  de     apple.subtitle                29/30  ok
+  de     apple.promotional_text      152/170  ok
+  de     apple.description         2305/4000  ok
+  de     apple.whats_new            469/4000  ok
+  de     google.title                  24/30  ok
+  de     google.short_description      79/80  ok
+  de     google.full_description   2329/4000  ok
+  de     apple.keywords              99/100B  ok
+  en     apple.name                    29/30  ok
+  en     apple.subtitle                29/30  ok
+  en     apple.promotional_text      152/170  ok
+  en     apple.description         2021/4000  ok
+  en     apple.whats_new            397/4000  ok
+  en     google.title                  30/30  ok
+  en     google.short_description      76/80  ok
+  en     google.full_description   2049/4000  ok
+  en     apple.keywords              99/100B  ok
+  es     apple.name                    29/30  ok
+  es     apple.subtitle                24/30  ok
+  es     apple.promotional_text      150/170  ok
+  es     apple.description         2296/4000  ok
+  es     apple.whats_new            472/4000  ok
+  es     google.title                  29/30  ok
+  es     google.short_description      76/80  ok
+  es     google.full_description   2325/4000  ok
+  es     apple.keywords              94/100B  ok
+  fr     apple.name                    30/30  ok
+  fr     apple.subtitle                22/30  ok
+  fr     apple.promotional_text      157/170  ok
+  fr     apple.description         2474/4000  ok
+  fr     apple.whats_new            516/4000  ok
+  fr     google.title                  27/30  ok
+  fr     google.short_description      80/80  ok
+  fr     google.full_description   2460/4000  ok
+  fr     apple.keywords              94/100B  ok
+  ja     apple.name                    25/30  ok
+  ja     apple.subtitle                18/30  ok
+  ja     apple.promotional_text       78/170  ok
+  ja     apple.description         1092/4000  ok
+  ja     apple.whats_new            216/4000  ok
+  ja     google.title                  28/30  ok
+  ja     google.short_description      49/80  ok
+  ja     google.full_description   1128/4000  ok
+  ja     apple.keywords              97/100B  ok
+  ko     apple.name                    21/30  ok
+  ko     apple.subtitle                20/30  ok
+  ko     apple.promotional_text       95/170  ok
+  ko     apple.description         1181/4000  ok
+  ko     apple.whats_new            225/4000  ok
+  ko     google.title                  29/30  ok
+  ko     google.short_description      58/80  ok
+  ko     google.full_description   1240/4000  ok
+  ko     apple.keywords              99/100B  ok
+  pt-BR  apple.name                    29/30  ok
+  pt-BR  apple.subtitle                24/30  ok
+  pt-BR  apple.promotional_text      152/170  ok
+  pt-BR  apple.description         2236/4000  ok
+  pt-BR  apple.whats_new            460/4000  ok
+  pt-BR  google.title                  27/30  ok
+  pt-BR  google.short_description      78/80  ok
+  pt-BR  google.full_description   2220/4000  ok
+  pt-BR  apple.keywords              94/100B  ok
+  zh-Hant apple.name                    17/30  ok
+  zh-Hant apple.subtitle                19/30  ok
+  zh-Hant apple.promotional_text       66/170  ok
+  zh-Hant apple.description          856/4000  ok
+  zh-Hant apple.whats_new            166/4000  ok
+  zh-Hant google.title                  27/30  ok
+  zh-Hant google.short_description      41/80  ok
+  zh-Hant google.full_description    869/4000  ok
+  zh-Hant apple.keywords              97/100B  ok
+
+PASS: all fields within limits.
+  apps/mobile/ios/build/Inborn.xcarchive (iOS archive): OK: <worktree>/apps/mobile/ios/build/Inborn.xcarchive contains no QA bridge
+
+PASS: 1 shipping artifact(s) carry no QA bridge.
+  apps/mobile/ios/build/Inborn.xcarchive (models): OK instant instant.gguf 532517120 B sha256 matches the catalog
+  apps/mobile/ios/build/Inborn.xcarchive (models): OK vision-qwen35 vision-qwen35.gguf 204987232 B sha256 matches the catalog
+OK: iPhone UDID is in no commit patch
+OK: OnePlus 6T serial is in no commit patch
+OK: ASC key id is in no commit patch
+
+PASS: no personal identifier in the history of HEAD

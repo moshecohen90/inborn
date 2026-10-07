@@ -1,0 +1,662 @@
+[
+ {
+  "script": "j1-onboard",
+  "name": "sim-j1-01",
+  "desc": "Welcome on a fresh install (English)"
+ },
+ {
+  "script": "j1-onboard",
+  "name": "sim-j1-02",
+  "desc": "the model step, the source line names models.inbornapp.com"
+ },
+ {
+  "script": "j1-onboard",
+  "name": "sim-j1-03",
+  "desc": "the sealed step"
+ },
+ {
+  "script": "j1-onboard",
+  "name": "sim-j1-04",
+  "desc": "the lock step"
+ },
+ {
+  "script": "j1-onboard",
+  "name": "sim-j1-05",
+  "desc": "the first chat, chip INSTANT"
+ },
+ {
+  "script": "j1-onboard",
+  "name": "sim-j1-06",
+  "desc": "'Hi' answered"
+ },
+ {
+  "script": "j1-onboard",
+  "name": "sim-j1-07",
+  "desc": "past the goal: the Chats list"
+ },
+ {
+  "script": "j1-onboard",
+  "name": "sim-j1-08",
+  "desc": "back in the chat"
+ },
+ {
+  "script": "j1-onboard",
+  "name": "sim-j1-09",
+  "desc": "past the goal: 'What can you do?' answered"
+ },
+ {
+  "script": "f1-store",
+  "name": "sim-f1-01",
+  "desc": "Settings on the fresh twin"
+ },
+ {
+  "script": "f1-store",
+  "name": "sim-f1-02",
+  "desc": "About: 1.0.0 (43) and the commit"
+ },
+ {
+  "script": "f1-store",
+  "name": "sim-f1-03",
+  "desc": "the paywall: the prices as loaded"
+ },
+ {
+  "script": "f1-store",
+  "name": "sim-f1-04",
+  "desc": "the paywall lower: Restore, Have a code"
+ },
+ {
+  "script": "f1-store",
+  "name": "sim-f1-05",
+  "desc": "after closing the paywall"
+ },
+ {
+  "script": "j2-install-fast",
+  "name": "sim-j2-01",
+  "desc": "the vault: Instant built in, Fast not installed"
+ },
+ {
+  "script": "j2-install-fast",
+  "name": "sim-j2-02",
+  "desc": "the vault, Fast's Install button"
+ },
+ {
+  "script": "j2-install-fast",
+  "name": "sim-j2-03",
+  "desc": "Fast downloading"
+ },
+ {
+  "script": "j2-install-fast",
+  "name": "sim-j2-04",
+  "desc": "Fast installed"
+ },
+ {
+  "script": "j2-install-fast",
+  "name": "sim-j2-05",
+  "desc": "past the goal: a new chat, which model it opens on"
+ },
+ {
+  "script": "j2-install-fast",
+  "name": "sim-j2-06",
+  "desc": "the model sheet"
+ },
+ {
+  "script": "j2-install-fast",
+  "name": "sim-j2-07",
+  "desc": "the vault after the install"
+ },
+ {
+  "script": "ja-lexical-fast",
+  "name": "sim-ja-01",
+  "desc": "FAST: the constitution attached"
+ },
+ {
+  "script": "ja-lexical-fast",
+  "name": "sim-ja-02",
+  "desc": "FAST: reading the pages"
+ },
+ {
+  "script": "ja-lexical-fast",
+  "name": "sim-ja-03",
+  "desc": "FAST: 'Summarize it' → the summary with chips"
+ },
+ {
+  "script": "ja-lexical-fast",
+  "name": "sim-ja-04",
+  "desc": "FAST: 'give me a pancake recipe' → a recipe, no SOURCES chip, no 'Your documents don't mention this'"
+ },
+ {
+  "script": "ja-lexical-fast",
+  "name": "sim-ja-05",
+  "desc": "FAST: past the goal: 'thanks'"
+ },
+ {
+  "script": "ja-lexical-fast",
+  "name": "sim-ja-06",
+  "desc": "FAST: past the goal: 'and a waffle recipe' → a recipe, no chip"
+ },
+ {
+  "script": "ja-lexical-fast",
+  "name": "sim-ja-07",
+  "desc": "FAST: past the goal: 'Who can veto a bill?' → chips"
+ },
+ {
+  "script": "ja-lexical-instant",
+  "name": "sim-ja-08",
+  "desc": "INSTANT: the constitution attached"
+ },
+ {
+  "script": "ja-lexical-instant",
+  "name": "sim-ja-09",
+  "desc": "INSTANT: reading the pages"
+ },
+ {
+  "script": "ja-lexical-instant",
+  "name": "sim-ja-10",
+  "desc": "INSTANT: 'Summarize it' → the summary with chips"
+ },
+ {
+  "script": "ja-lexical-instant",
+  "name": "sim-ja-11",
+  "desc": "INSTANT: 'give me a pancake recipe' → a recipe, no SOURCES chip, no 'Your documents don't mention this'"
+ },
+ {
+  "script": "ja-lexical-instant",
+  "name": "sim-ja-12",
+  "desc": "INSTANT: past the goal: 'thanks'"
+ },
+ {
+  "script": "ja-lexical-instant",
+  "name": "sim-ja-13",
+  "desc": "INSTANT: past the goal: 'and a waffle recipe' → a recipe, no chip"
+ },
+ {
+  "script": "ja-lexical-instant",
+  "name": "sim-ja-14",
+  "desc": "INSTANT: past the goal: 'Who can veto a bill?' → chips"
+ },
+ {
+  "script": "jb-identity-fast",
+  "name": "sim-jb-01",
+  "desc": "FAST: 'hey! what is this app?' → the identity card, Inborn named, in the asker's language"
+ },
+ {
+  "script": "jb-identity-fast",
+  "name": "sim-jb-02",
+  "desc": "FAST: 'tell me about yourself' → the identity card, Inborn named, in the asker's language"
+ },
+ {
+  "script": "jb-identity-fast",
+  "name": "sim-jb-03",
+  "desc": "FAST: 'who made you?' → the identity card, Inborn named, in the asker's language"
+ },
+ {
+  "script": "jb-identity-fast",
+  "name": "sim-jb-04",
+  "desc": "FAST: 'what model are you?' → the identity card, Inborn named, in the asker's language"
+ },
+ {
+  "script": "jb-identity-fast",
+  "name": "sim-jb-05",
+  "desc": "FAST: 'what can you do?' → the identity card, Inborn named, in the asker's language"
+ },
+ {
+  "script": "jb-identity-fast",
+  "name": "sim-jb-06",
+  "desc": "FAST: 'מי אתה?' → the identity card, Inborn named, in the asker's language"
+ },
+ {
+  "script": "jb-identity-fast",
+  "name": "sim-jb-07",
+  "desc": "FAST: past the goal: 'thanks!' after the card"
+ },
+ {
+  "script": "jb-identity-fast",
+  "name": "sim-jb-08",
+  "desc": "FAST: 'what's the weather like today?' → the offline card, no invented number"
+ },
+ {
+  "script": "jb-identity-fast",
+  "name": "sim-jb-09",
+  "desc": "FAST: 'who won last night's game?' → the offline card, no invented number"
+ },
+ {
+  "script": "jb-identity-fast",
+  "name": "sim-jb-10",
+  "desc": "FAST: 'bitcoin price right now?' → the offline card, no invented number"
+ },
+ {
+  "script": "jb-identity-fast",
+  "name": "sim-jb-11",
+  "desc": "FAST: 'what can you do with PDFs?' → answered by the model"
+ },
+ {
+  "script": "jb-identity-fast",
+  "name": "sim-jb-12",
+  "desc": "FAST: 'tell me about Paris' → answered by the model"
+ },
+ {
+  "script": "jb-identity-fast",
+  "name": "sim-jb-13",
+  "desc": "FAST: 'how do weather forecasts work?' → answered by the model"
+ },
+ {
+  "script": "jb-identity-fast",
+  "name": "sim-jb-14",
+  "desc": "FAST: the 'Draft a message' chip's answer → no rule sentences"
+ },
+ {
+  "script": "jb-identity-instant",
+  "name": "sim-jb-15",
+  "desc": "INSTANT: 'hey! what is this app?' → the identity card, Inborn named, in the asker's language"
+ },
+ {
+  "script": "jb-identity-instant",
+  "name": "sim-jb-16",
+  "desc": "INSTANT: 'tell me about yourself' → the identity card, Inborn named, in the asker's language"
+ },
+ {
+  "script": "jb-identity-instant",
+  "name": "sim-jb-17",
+  "desc": "INSTANT: 'who made you?' → the identity card, Inborn named, in the asker's language"
+ },
+ {
+  "script": "jb-identity-instant",
+  "name": "sim-jb-18",
+  "desc": "INSTANT: 'what model are you?' → the identity card, Inborn named, in the asker's language"
+ },
+ {
+  "script": "jb-identity-instant",
+  "name": "sim-jb-19",
+  "desc": "INSTANT: 'what can you do?' → the identity card, Inborn named, in the asker's language"
+ },
+ {
+  "script": "jb-identity-instant",
+  "name": "sim-jb-20",
+  "desc": "INSTANT: 'מי אתה?' → the identity card, Inborn named, in the asker's language"
+ },
+ {
+  "script": "jb-identity-instant",
+  "name": "sim-jb-21",
+  "desc": "INSTANT: past the goal: 'thanks!' after the card"
+ },
+ {
+  "script": "jb-identity-instant",
+  "name": "sim-jb-22",
+  "desc": "INSTANT: 'what's the weather like today?' → the offline card, no invented number"
+ },
+ {
+  "script": "jb-identity-instant",
+  "name": "sim-jb-23",
+  "desc": "INSTANT: 'who won last night's game?' → the offline card, no invented number"
+ },
+ {
+  "script": "jb-identity-instant",
+  "name": "sim-jb-24",
+  "desc": "INSTANT: 'bitcoin price right now?' → the offline card, no invented number"
+ },
+ {
+  "script": "jb-identity-instant",
+  "name": "sim-jb-25",
+  "desc": "INSTANT: 'what can you do with PDFs?' → answered by the model"
+ },
+ {
+  "script": "jb-identity-instant",
+  "name": "sim-jb-26",
+  "desc": "INSTANT: 'tell me about Paris' → answered by the model"
+ },
+ {
+  "script": "jb-identity-instant",
+  "name": "sim-jb-27",
+  "desc": "INSTANT: 'how do weather forecasts work?' → answered by the model"
+ },
+ {
+  "script": "jb-identity-instant",
+  "name": "sim-jb-28",
+  "desc": "INSTANT: the 'Draft a message' chip's answer → no rule sentences"
+ },
+ {
+  "script": "jc-rework-fast",
+  "name": "sim-jc-01",
+  "desc": "FAST: the constitution attached (the founder's file is not on the simulator)"
+ },
+ {
+  "script": "jc-rework-fast",
+  "name": "sim-jc-02",
+  "desc": "FAST: reading the pages"
+ },
+ {
+  "script": "jc-rework-fast",
+  "name": "sim-jc-03",
+  "desc": "FAST: 'Summarize it' → the summary with chips"
+ },
+ {
+  "script": "jc-rework-fast",
+  "name": "sim-jc-04",
+  "desc": "FAST: 'Thanks'"
+ },
+ {
+  "script": "jc-rework-fast",
+  "name": "sim-jc-05",
+  "desc": "FAST: 'shorter' → chips kept"
+ },
+ {
+  "script": "jc-rework-fast",
+  "name": "sim-jc-06",
+  "desc": "FAST: 'make it 3 bullet points' → chips kept"
+ },
+ {
+  "script": "jc-rework-fast",
+  "name": "sim-jc-07",
+  "desc": "FAST: 'translate it to French' → chips kept"
+ },
+ {
+  "script": "jc-rework-fast",
+  "name": "sim-jc-08",
+  "desc": "FAST: 'give me a pancake recipe' → no chip"
+ },
+ {
+  "script": "jc-rework-fast",
+  "name": "sim-jc-09",
+  "desc": "FAST: past the goal: 'What does it say about treason?' → chips"
+ },
+ {
+  "script": "jd-sheet-fast",
+  "name": "sim-jd-01",
+  "desc": "FAST: the Ask sheet on the constitution (Pro, so the stats line shows)"
+ },
+ {
+  "script": "jd-sheet-fast",
+  "name": "sim-jd-02",
+  "desc": "FAST: 'Who won the 1998 World Cup?' → one line at once, `0 passages`"
+ },
+ {
+  "script": "jd-sheet-fast",
+  "name": "sim-jd-03",
+  "desc": "FAST: past the goal: 'What does it say about the moon?' → the same"
+ },
+ {
+  "script": "jd-sheet-fast",
+  "name": "sim-jd-04",
+  "desc": "FAST: 'Who can veto a bill?' → an answer with passages and chips"
+ },
+ {
+  "script": "jd-sheet-fast",
+  "name": "sim-jd-05",
+  "desc": "FAST: past the goal: 'thank you' → the plain line"
+ },
+ {
+  "script": "jf-stop",
+  "name": "sim-jf-01",
+  "desc": "Stop mid-answer: the text so far + 'Stopped · Continue'"
+ },
+ {
+  "script": "jf-stop",
+  "name": "sim-jf-02",
+  "desc": "past the goal: Continue → the story goes on"
+ },
+ {
+  "script": "jf-stop",
+  "name": "sim-jf-03",
+  "desc": "past the goal: 'Give it a title.'"
+ },
+ {
+  "script": "jf-hebrew",
+  "name": "sim-jf-04",
+  "desc": "'מה בירת צרפת?' → the bubble right-aligned, the answer RTL"
+ },
+ {
+  "script": "jf-hebrew",
+  "name": "sim-jf-05",
+  "desc": "past the goal: 'What is the capital of Italy?'"
+ },
+ {
+  "script": "jf-hebrew",
+  "name": "sim-jf-06",
+  "desc": "past the goal: 'תודה רבה'"
+ },
+ {
+  "script": "jf-hebrew",
+  "name": "sim-jf-07",
+  "desc": "the model sheet"
+ },
+ {
+  "script": "jf-hebrew",
+  "name": "sim-jf-08",
+  "desc": "the vault: Instant built in, Fast downloaded and In use"
+ },
+ {
+  "script": "jf-reopen",
+  "name": "sim-jf-09",
+  "desc": "reopened the INSTANT constitution chat: which chip?"
+ },
+ {
+  "script": "jf-reopen",
+  "name": "sim-jf-10",
+  "desc": "reopened the FAST constitution chat: which chip?"
+ },
+ {
+  "script": "jf-reopen",
+  "name": "sim-jf-11",
+  "desc": "past the goal: 'what does it say about treason?' in the reopened chat"
+ },
+ {
+  "script": "jg-explore-1",
+  "name": "sim-jg-01",
+  "desc": "a new chat: which model, the starter chips"
+ },
+ {
+  "script": "jg-explore-1",
+  "name": "sim-jg-02",
+  "desc": "'hi, is this like chatgpt?'"
+ },
+ {
+  "script": "jg-explore-1",
+  "name": "sim-jg-03",
+  "desc": "'can you read my emails?'"
+ },
+ {
+  "script": "jg-explore-1",
+  "name": "sim-jg-04",
+  "desc": "'write a short email to my landlord that the heater is broken'"
+ },
+ {
+  "script": "jg-explore-1",
+  "name": "sim-jg-05",
+  "desc": "'make it more polite'"
+ },
+ {
+  "script": "jg-explore-1",
+  "name": "sim-jg-06",
+  "desc": "'translate it to Spanish'"
+ },
+ {
+  "script": "jg-explore-1",
+  "name": "sim-jg-07",
+  "desc": "'tell me a joke'"
+ },
+ {
+  "script": "jg-explore-1",
+  "name": "sim-jg-08",
+  "desc": "'another one'"
+ },
+ {
+  "script": "jg-explore-1",
+  "name": "sim-jg-09",
+  "desc": "'what's 15% tip on $86?'"
+ },
+ {
+  "script": "jg-explore-1",
+  "name": "sim-jg-10",
+  "desc": "'what day is it today?'"
+ },
+ {
+  "script": "jg-explore-2",
+  "name": "sim-jg-11",
+  "desc": "the turbine report: 'what is this?'"
+ },
+ {
+  "script": "jg-explore-2",
+  "name": "sim-jg-12",
+  "desc": "'is anything wrong with it?'"
+ },
+ {
+  "script": "jg-explore-2",
+  "name": "sim-jg-13",
+  "desc": "'ok thanks'"
+ },
+ {
+  "script": "jg-explore-2",
+  "name": "sim-jg-14",
+  "desc": "the 'Summarize text' chip fills the composer"
+ },
+ {
+  "script": "jg-explore-2",
+  "name": "sim-jg-15",
+  "desc": "the Chats list (footer)"
+ },
+ {
+  "script": "jg-explore-2",
+  "name": "sim-jg-16",
+  "desc": "Settings, lower"
+ },
+ {
+  "script": "jg-explore-2",
+  "name": "sim-jg-17",
+  "desc": "the privacy policy from About"
+ },
+ {
+  "script": "jg-explore-3",
+  "name": "sim-jg-18",
+  "desc": "a receipt photo: 'how much did I spend?'"
+ },
+ {
+  "script": "jg-explore-3",
+  "name": "sim-jg-19",
+  "desc": "'and what was the most expensive item?'"
+ },
+ {
+  "script": "jg-explore-3",
+  "name": "sim-jg-20",
+  "desc": "'I'm planning 3 days in Rome with two kids, max 300 euro on tickets, what should each day look like?'"
+ },
+ {
+  "script": "jg-explore-3",
+  "name": "sim-jg-21",
+  "desc": "'who are you anyway?' mid-chat"
+ },
+ {
+  "script": "jg-explore-3",
+  "name": "sim-jg-22",
+  "desc": "'is it going to rain in Rome next week?'"
+ },
+ {
+  "script": "jg-explore-3",
+  "name": "sim-jg-23",
+  "desc": "the incognito sheet"
+ },
+ {
+  "script": "jg-explore-3",
+  "name": "sim-jg-24",
+  "desc": "incognito on Instant: 'write a haiku about coffee'"
+ },
+ {
+  "script": "jg-explore-3",
+  "name": "sim-jg-25",
+  "desc": "'מה אתה יודע לעשות?'"
+ },
+ {
+  "script": "jg-explore-3",
+  "name": "sim-jg-26",
+  "desc": "back on Fast"
+ },
+ {
+  "script": "jg-explore-4",
+  "name": "sim-jg-27",
+  "desc": "what are you?"
+ },
+ {
+  "script": "jg-explore-4",
+  "name": "sim-jg-28",
+  "desc": "are you chatgpt?"
+ },
+ {
+  "script": "jg-explore-4",
+  "name": "sim-jg-29",
+  "desc": "what's the news today?"
+ },
+ {
+  "script": "jg-explore-4",
+  "name": "sim-jg-30",
+  "desc": "explain how a mortgage works like I'm 12"
+ },
+ {
+  "script": "jg-explore-4",
+  "name": "sim-jg-31",
+  "desc": "give me 3 dinner ideas with chicken and rice"
+ },
+ {
+  "script": "jg-explore-4",
+  "name": "sim-jg-32",
+  "desc": "which one is fastest?"
+ },
+ {
+  "script": "jg-explore-4",
+  "name": "sim-jg-33",
+  "desc": "help me write a birthday message for my mom, she's turning 70"
+ },
+ {
+  "script": "jg-explore-4",
+  "name": "sim-jg-34",
+  "desc": "shorter and funnier"
+ },
+ {
+  "script": "jg-explore-4",
+  "name": "sim-jg-35",
+  "desc": "in Hebrew please"
+ },
+ {
+  "script": "jg-explore-4",
+  "name": "sim-jg-36",
+  "desc": "my head hurts and I feel dizzy, what should I do?"
+ },
+ {
+  "script": "jg-explore-4",
+  "name": "sim-jg-37",
+  "desc": "what's the euro to dollar rate?"
+ },
+ {
+  "script": "jg-explore-4",
+  "name": "sim-jg-38",
+  "desc": "convert 50 euros to dollars at 1.08"
+ },
+ {
+  "script": "jg-explore-4",
+  "name": "sim-jg-39",
+  "desc": "fix the grammar: me and him goes to the store yesterday"
+ },
+ {
+  "script": "jg-explore-4",
+  "name": "sim-jg-40",
+  "desc": "what's the difference between affect and effect?"
+ },
+ {
+  "script": "jg-explore-4",
+  "name": "sim-jg-41",
+  "desc": "quiz me on it"
+ },
+ {
+  "script": "jg-explore-4",
+  "name": "sim-jg-42",
+  "desc": "does anything I type here go to the internet?"
+ },
+ {
+  "script": "jg-explore-4",
+  "name": "sim-jg-43",
+  "desc": "how do I delete everything?"
+ },
+ {
+  "script": "jg-explore-4",
+  "name": "sim-jg-44",
+  "desc": "Settings: where to delete everything"
+ }
+]

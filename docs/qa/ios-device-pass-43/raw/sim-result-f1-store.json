@@ -1,0 +1,1789 @@
+{
+  "runId": "f1-store",
+  "startedAt": "2026-10-07T15:03:04.592Z",
+  "finishedAt": "2026-10-07T15:03:32.142Z",
+  "ok": false,
+  "passed": 34,
+  "failed": 7,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 158,
+      "detail": "/settings"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "row-about appeared"
+    },
+    {
+      "i": 2,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 3,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1907,
+      "detail": "sim-f1-01"
+    },
+    {
+      "i": 4,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "settings",
+          "text": "Inborn Pro See what's in Pro See what Pro adds to the free app. FREE APPEARANCE Theme Auto Dark Light Dark at night, 18:00-06:00, and whenever the system is dark. Text size 90% Default 115% 130% 150% 175% 200% SECURITY Require a passcode Your passcode opens Inborn. Also hides chats in the app switcher. Set a passcode Hide in app switcher Chats are blurred while Inborn is in the background. Screenshot protection iOS cannot block screenshots. Inborn hides chats while the screen is recorded or mirrored. Auto-delete chats Off 1 day 7 days 30 days Chats stay until you delete them. Clipboard expiry Off 60 s Delete everything Chats, key, documents. No recovery. CHAT Model INSTANT Family-safe mode Keeps sexually explicit, graphic and self-harm content out of answers. It reduces that content; it cannot catch all of it. Haptics Sounds Off. There are none. PERFORMANCE Eco Balanced Max Auto power management Smaller model on low battery or heat. On for phones, off on desktop. Never switch my model automatically LANGUAGE App language English Answer language hint Follows the app language DOWNLOADS Wi-Fi only Storage location Internal ACCESSIBILITY Reduce motion Follows the system setting. Off PRIVACY & STORAGE Privacy & storage Reports Answers you reported, kept on this device Proof Pro for Work Audit log Per-vault, hash-chained, never message content Verify a signed record Check a .json record's hash and signature Architecture statement Dated, printable, for a compliance file ABOUT About Model licenses We collect nothing. There is nothing to opt out of. Settings"
+        },
+        {
+          "testID": "row-pro",
+          "text": "See what's in Pro See what Pro adds to the free app. FREE",
+          "value": "FREE",
+          "pressable": true
+        },
+        {
+          "testID": "theme-mode",
+          "text": "Auto Dark Light",
+          "value": "auto",
+          "pressable": true
+        },
+        {
+          "testID": "theme-mode-sub",
+          "text": "Dark at night, 18:00-06:00, and whenever the system is dark."
+        },
+        {
+          "testID": "text-scale",
+          "text": "90% Default 115% 130% 150% 175% 200%",
+          "value": "1",
+          "pressable": true
+        },
+        {
+          "testID": "row-lock",
+          "text": "Require a passcode Your passcode opens Inborn. Also hides chats in the app switcher.",
+          "pressable": true
+        },
+        {
+          "testID": "row-hide",
+          "text": "Hide in app switcher Chats are blurred while Inborn is in the background.",
+          "pressable": true
+        },
+        {
+          "testID": "row-screenshots",
+          "text": "Screenshot protection iOS cannot block screenshots. Inborn hides chats while the screen is recorded or mirrored.",
+          "pressable": true
+        },
+        {
+          "testID": "auto-delete",
+          "text": "Off 1 day 7 days 30 days",
+          "value": "0",
+          "pressable": true
+        },
+        {
+          "testID": "auto-delete-sub",
+          "text": "Chats stay until you delete them."
+        },
+        {
+          "testID": "row-wipe",
+          "text": "Delete everything Chats, key, documents. No recovery.",
+          "pressable": true
+        },
+        {
+          "testID": "row-family-safe",
+          "text": "Family-safe mode Keeps sexually explicit, graphic and self-harm content out of answers. It reduces that content; it cannot catch all of it.",
+          "pressable": true
+        },
+        {
+          "testID": "row-language",
+          "text": "App language English",
+          "value": "English",
+          "pressable": true
+        },
+        {
+          "testID": "row-wifi-only",
+          "text": "Wi-Fi only",
+          "pressable": true
+        },
+        {
+          "testID": "row-storage",
+          "text": "Privacy & storage",
+          "pressable": true
+        },
+        {
+          "testID": "row-reports",
+          "text": "Reports Answers you reported, kept on this device",
+          "pressable": true
+        },
+        {
+          "testID": "row-proof",
+          "text": "Proof",
+          "pressable": true
+        },
+        {
+          "testID": "row-audit",
+          "text": "Audit log Per-vault, hash-chained, never message content",
+          "pressable": true
+        },
+        {
+          "testID": "row-verify",
+          "text": "Verify a signed record Check a .json record's hash and signature",
+          "pressable": true
+        },
+        {
+          "testID": "row-statement",
+          "text": "Architecture statement Dated, printable, for a compliance file",
+          "pressable": true
+        },
+        {
+          "testID": "row-about",
+          "text": "About",
+          "pressable": true
+        },
+        {
+          "testID": "back",
+          "text": "",
+          "role": "button",
+          "label": "Back",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-f1-01"
+    },
+    {
+      "i": 5,
+      "op": "scrollTo",
+      "ok": true,
+      "ms": 0,
+      "detail": "row-about"
+    },
+    {
+      "i": 6,
+      "op": "press",
+      "ok": true,
+      "ms": 157,
+      "detail": "row-about ← onPress"
+    },
+    {
+      "i": 7,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "about appeared"
+    },
+    {
+      "i": 8,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 9,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "VERSION 1.0.0 (43) 000e74da2c57 LICENSES Model licenses Open-source licenses PRIVACY We collect nothing. There is nothing to opt out of. Privacy policy Terms of use Accessibility HELP Report a problem Creates an email with device and engine details. No chat content. What's missing? Made without a server. About",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "VERSION 1.0.0 (43) 000e74da2c57 LICENSES Model licenses Open-source licenses PRIVACY We collect nothing. There is nothing to opt out of. Privacy policy Terms of use Accessibility HELP Report a problem"
+    },
+    {
+      "i": 10,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"1.0.0 (43)\" present"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 511,
+      "detail": "500 ms"
+    },
+    {
+      "i": 12,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2853,
+      "detail": "sim-f1-02"
+    },
+    {
+      "i": 13,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "settings",
+          "text": "Inborn Pro See what's in Pro See what Pro adds to the free app. FREE APPEARANCE Theme Auto Dark Light Dark at night, 18:00-06:00, and whenever the system is dark. Text size 90% Default 115% 130% 150% 175% 200% SECURITY Require a passcode Your passcode opens Inborn. Also hides chats in the app switcher. Set a passcode Hide in app switcher Chats are blurred while Inborn is in the background. Screenshot protection iOS cannot block screenshots. Inborn hides chats while the screen is recorded or mirrored. Auto-delete chats Off 1 day 7 days 30 days Chats stay until you delete them. Clipboard expiry Off 60 s Delete everything Chats, key, documents. No recovery. CHAT Model INSTANT Family-safe mode Keeps sexually explicit, graphic and self-harm content out of answers. It reduces that content; it cannot catch all of it. Haptics Sounds Off. There are none. PERFORMANCE Eco Balanced Max Auto power management Smaller model on low battery or heat. On for phones, off on desktop. Never switch my model automatically LANGUAGE App language English Answer language hint Follows the app language DOWNLOADS Wi-Fi only Storage location Internal ACCESSIBILITY Reduce motion Follows the system setting. Off PRIVACY & STORAGE Privacy & storage Reports Answers you reported, kept on this device Proof Pro for Work Audit log Per-vault, hash-chained, never message content Verify a signed record Check a .json record's hash and signature Architecture statement Dated, printable, for a compliance file ABOUT About Model licenses We collect nothing. There is nothing to opt out of. Settings"
+        },
+        {
+          "testID": "row-pro",
+          "text": "See what's in Pro See what Pro adds to the free app. FREE",
+          "value": "FREE",
+          "pressable": true
+        },
+        {
+          "testID": "theme-mode",
+          "text": "Auto Dark Light",
+          "value": "auto",
+          "pressable": true
+        },
+        {
+          "testID": "theme-mode-sub",
+          "text": "Dark at night, 18:00-06:00, and whenever the system is dark."
+        },
+        {
+          "testID": "text-scale",
+          "text": "90% Default 115% 130% 150% 175% 200%",
+          "value": "1",
+          "pressable": true
+        },
+        {
+          "testID": "row-lock",
+          "text": "Require a passcode Your passcode opens Inborn. Also hides chats in the app switcher.",
+          "pressable": true
+        },
+        {
+          "testID": "row-hide",
+          "text": "Hide in app switcher Chats are blurred while Inborn is in the background.",
+          "pressable": true
+        },
+        {
+          "testID": "row-screenshots",
+          "text": "Screenshot protection iOS cannot block screenshots. Inborn hides chats while the screen is recorded or mirrored.",
+          "pressable": true
+        },
+        {
+          "testID": "auto-delete",
+          "text": "Off 1 day 7 days 30 days",
+          "value": "0",
+          "pressable": true
+        },
+        {
+          "testID": "auto-delete-sub",
+          "text": "Chats stay until you delete them."
+        },
+        {
+          "testID": "row-wipe",
+          "text": "Delete everything Chats, key, documents. No recovery.",
+          "pressable": true
+        },
+        {
+          "testID": "row-family-safe",
+          "text": "Family-safe mode Keeps sexually explicit, graphic and self-harm content out of answers. It reduces that content; it cannot catch all of it.",
+          "pressable": true
+        },
+        {
+          "testID": "row-language",
+          "text": "App language English",
+          "value": "English",
+          "pressable": true
+        },
+        {
+          "testID": "row-wifi-only",
+          "text": "Wi-Fi only",
+          "pressable": true
+        },
+        {
+          "testID": "row-storage",
+          "text": "Privacy & storage",
+          "pressable": true
+        },
+        {
+          "testID": "row-reports",
+          "text": "Reports Answers you reported, kept on this device",
+          "pressable": true
+        },
+        {
+          "testID": "row-proof",
+          "text": "Proof",
+          "pressable": true
+        },
+        {
+          "testID": "row-audit",
+          "text": "Audit log Per-vault, hash-chained, never message content",
+          "pressable": true
+        },
+        {
+          "testID": "row-verify",
+          "text": "Verify a signed record Check a .json record's hash and signature",
+          "pressable": true
+        },
+        {
+          "testID": "row-statement",
+          "text": "Architecture statement Dated, printable, for a compliance file",
+          "pressable": true
+        },
+        {
+          "testID": "row-about",
+          "text": "About",
+          "pressable": true
+        },
+        {
+          "testID": "back",
+          "text": "",
+          "role": "button",
+          "label": "Back",
+          "pressable": true
+        },
+        {
+          "testID": "about",
+          "text": "VERSION 1.0.0 (43) 000e74da2c57 LICENSES Model licenses Open-source licenses PRIVACY We collect nothing. There is nothing to opt out of. Privacy policy Terms of use Accessibility HELP Report a problem Creates an email with device and engine details. No chat content. What's missing? Made without a server. About"
+        },
+        {
+          "testID": "row-privacy",
+          "text": "Privacy policy",
+          "pressable": true
+        },
+        {
+          "testID": "row-terms",
+          "text": "Terms of use",
+          "pressable": true
+        },
+        {
+          "testID": "row-accessibility",
+          "text": "Accessibility",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-f1-02"
+    },
+    {
+      "i": 14,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 162,
+      "detail": "/settings"
+    },
+    {
+      "i": 15,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "row-pro appeared"
+    },
+    {
+      "i": 16,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "row-pro ← onPress"
+    },
+    {
+      "i": 17,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "close-paywall appeared"
+    },
+    {
+      "i": 18,
+      "op": "sleep",
+      "ok": true,
+      "ms": 8001,
+      "detail": "8000 ms"
+    },
+    {
+      "i": 19,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value paywall-status: no node with that testID is mounted"
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value owned: no node with that testID is mounted"
+    },
+    {
+      "i": 21,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "$19.99 · one-time purchase",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "$19.99 · one-time purchase"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value price-inborn.pro.launch: no node with that testID is mounted"
+    },
+    {
+      "i": 23,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "$69.99 · one-time purchase",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "$69.99 · one-time purchase"
+    },
+    {
+      "i": 24,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value price-inborn.work.upgrade: no node with that testID is mounted"
+    },
+    {
+      "i": 25,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "PRO $19.99 · one-time purchase Prices are US list prices. Your store shows the price where you are. Unlimited documents + OCR, with citations Unlimited personas + on-device memory Folders + export all chats Larger models, Sharp and Sharp (Phi) Hands-free voice and dictation Unlock Pro · $19.99",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "PRO $19.99 · one-time purchase Prices are US list prices. Your store shows the price where you are. Unlimited documents + OCR, with citations Unlimited personas + on-device memory Folders + export all"
+    },
+    {
+      "i": 26,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value tier-inborn.pro.launch: no node with that testID is mounted"
+    },
+    {
+      "i": 27,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FOR PROFESSIONALS PRO FOR WORK $69.99 · one-time purchase Prices are US list prices. Your store shows the price where you are. Client vaults with their own passcode Per-vault audit log, hash-chained Signed, verifiable records Profession packs: legal, therapy, medical, accounting Printable architecture statement Unlock Work · $69.99",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "FOR PROFESSIONALS PRO FOR WORK $69.99 · one-time purchase Prices are US list prices. Your store shows the price where you are. Client vaults with their own passcode Per-vault audit log, hash-chained S"
+    },
+    {
+      "i": 28,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value tier-inborn.work.upgrade: no node with that testID is mounted"
+    },
+    {
+      "i": 29,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value web-price-note: no node with that testID is mounted"
+    },
+    {
+      "i": 30,
+      "op": "sleep",
+      "ok": true,
+      "ms": 8,
+      "detail": "0 ms"
+    },
+    {
+      "i": 31,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2542,
+      "detail": "sim-f1-03"
+    },
+    {
+      "i": 32,
+      "op": "dump",
+      "ok": true,
+      "ms": 3,
+      "nodes": [
+        {
+          "testID": "settings",
+          "text": "Inborn Pro See what's in Pro See what Pro adds to the free app. FREE APPEARANCE Theme Auto Dark Light Dark at night, 18:00-06:00, and whenever the system is dark. Text size 90% Default 115% 130% 150% 175% 200% SECURITY Require a passcode Your passcode opens Inborn. Also hides chats in the app switcher. Set a passcode Hide in app switcher Chats are blurred while Inborn is in the background. Screenshot protection iOS cannot block screenshots. Inborn hides chats while the screen is recorded or mirrored. Auto-delete chats Off 1 day 7 days 30 days Chats stay until you delete them. Clipboard expiry Off 60 s Delete everything Chats, key, documents. No recovery. CHAT Model INSTANT Family-safe mode Keeps sexually explicit, graphic and self-harm content out of answers. It reduces that content; it cannot catch all of it. Haptics Sounds Off. There are none. PERFORMANCE Eco Balanced Max Auto power management Smaller model on low battery or heat. On for phones, off on desktop. Never switch my model automatically LANGUAGE App language English Answer language hint Follows the app language DOWNLOADS Wi-Fi only Storage location Internal ACCESSIBILITY Reduce motion Follows the system setting. Off PRIVACY & STORAGE Privacy & storage Reports Answers you reported, kept on this device Proof Pro for Work Audit log Per-vault, hash-chained, never message content Verify a signed record Check a .json record's hash and signature Architecture statement Dated, printable, for a compliance file ABOUT About Model licenses We collect nothing. There is nothing to opt out of. Settings"
+        },
+        {
+          "testID": "row-pro",
+          "text": "See what's in Pro See what Pro adds to the free app. FREE",
+          "value": "FREE",
+          "pressable": true
+        },
+        {
+          "testID": "theme-mode",
+          "text": "Auto Dark Light",
+          "value": "auto",
+          "pressable": true
+        },
+        {
+          "testID": "theme-mode-sub",
+          "text": "Dark at night, 18:00-06:00, and whenever the system is dark."
+        },
+        {
+          "testID": "text-scale",
+          "text": "90% Default 115% 130% 150% 175% 200%",
+          "value": "1",
+          "pressable": true
+        },
+        {
+          "testID": "row-lock",
+          "text": "Require a passcode Your passcode opens Inborn. Also hides chats in the app switcher.",
+          "pressable": true
+        },
+        {
+          "testID": "row-hide",
+          "text": "Hide in app switcher Chats are blurred while Inborn is in the background.",
+          "pressable": true
+        },
+        {
+          "testID": "row-screenshots",
+          "text": "Screenshot protection iOS cannot block screenshots. Inborn hides chats while the screen is recorded or mirrored.",
+          "pressable": true
+        },
+        {
+          "testID": "auto-delete",
+          "text": "Off 1 day 7 days 30 days",
+          "value": "0",
+          "pressable": true
+        },
+        {
+          "testID": "auto-delete-sub",
+          "text": "Chats stay until you delete them."
+        },
+        {
+          "testID": "row-wipe",
+          "text": "Delete everything Chats, key, documents. No recovery.",
+          "pressable": true
+        },
+        {
+          "testID": "row-family-safe",
+          "text": "Family-safe mode Keeps sexually explicit, graphic and self-harm content out of answers. It reduces that content; it cannot catch all of it.",
+          "pressable": true
+        },
+        {
+          "testID": "row-language",
+          "text": "App language English",
+          "value": "English",
+          "pressable": true
+        },
+        {
+          "testID": "row-wifi-only",
+          "text": "Wi-Fi only",
+          "pressable": true
+        },
+        {
+          "testID": "row-storage",
+          "text": "Privacy & storage",
+          "pressable": true
+        },
+        {
+          "testID": "row-reports",
+          "text": "Reports Answers you reported, kept on this device",
+          "pressable": true
+        },
+        {
+          "testID": "row-proof",
+          "text": "Proof",
+          "pressable": true
+        },
+        {
+          "testID": "row-audit",
+          "text": "Audit log Per-vault, hash-chained, never message content",
+          "pressable": true
+        },
+        {
+          "testID": "row-verify",
+          "text": "Verify a signed record Check a .json record's hash and signature",
+          "pressable": true
+        },
+        {
+          "testID": "row-statement",
+          "text": "Architecture statement Dated, printable, for a compliance file",
+          "pressable": true
+        },
+        {
+          "testID": "row-about",
+          "text": "About",
+          "pressable": true
+        },
+        {
+          "testID": "back",
+          "text": "",
+          "role": "button",
+          "label": "Back",
+          "pressable": true
+        },
+        {
+          "testID": "close-paywall",
+          "text": "",
+          "role": "button",
+          "label": "Close",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "paywall-title",
+          "text": "Pay once. Own it."
+        },
+        {
+          "testID": "tier-inborn.pro",
+          "text": "PRO $19.99 · one-time purchase Prices are US list prices. Your store shows the price where you are. Unlimited documents + OCR, with citations Unlimited personas + on-device memory Folders + export all chats Larger models, Sharp and Sharp (Phi) Hands-free voice and dictation Unlock Pro · $19.99"
+        },
+        {
+          "testID": "price-inborn.pro",
+          "text": "$19.99 · one-time purchase"
+        },
+        {
+          "testID": "buy-inborn.pro",
+          "text": "Unlock Pro · $19.99",
+          "role": "button",
+          "label": "Unlock Pro · $19.99",
+          "pressable": true
+        },
+        {
+          "testID": "tier-inborn.work",
+          "text": "FOR PROFESSIONALS PRO FOR WORK $69.99 · one-time purchase Prices are US list prices. Your store shows the price where you are. Client vaults with their own passcode Per-vault audit log, hash-chained Signed, verifiable records Profession packs: legal, therapy, medical, accounting Printable architecture statement Unlock Work · $69.99"
+        },
+        {
+          "testID": "price-inborn.work",
+          "text": "$69.99 · one-time purchase"
+        },
+        {
+          "testID": "buy-inborn.work",
+          "text": "Unlock Work · $69.99",
+          "role": "button",
+          "label": "Unlock Work · $69.99",
+          "pressable": true
+        },
+        {
+          "testID": "restore",
+          "text": "Restore purchases",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "redeem-code",
+          "text": "Have a code?",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "compare-table",
+          "text": "What each tier includes Free Pro Work Unlimited private chat On-device privacy Offline use Files per chat 1 ∞ ∞ Text from scans and photos — Answers only from your documents — Custom personas 3 ∞ ∞ Photos per message 1 ∞ ∞ Memory across chats — Folders and full export — Larger, sharper models — Voice conversation and dictation — Detailed speed and token stats — Client vaults with passcodes — — Redaction before sending — — Excel and HTML import — — Per-vault audit log — — Signed, verifiable records — —"
+        },
+        {
+          "testID": "compare-head",
+          "text": "Free Pro Work"
+        },
+        {
+          "testID": "compare-chat",
+          "text": "Unlimited private chat"
+        },
+        {
+          "testID": "compare-chat-free",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-chat-pro",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-chat-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-privacy",
+          "text": "On-device privacy"
+        },
+        {
+          "testID": "compare-privacy-free",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-privacy-pro",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-privacy-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-offline",
+          "text": "Offline use"
+        },
+        {
+          "testID": "compare-offline-free",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-offline-pro",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-offline-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-files",
+          "text": "Files per chat 1 ∞ ∞"
+        },
+        {
+          "testID": "compare-files-free",
+          "text": "1",
+          "label": "1"
+        },
+        {
+          "testID": "compare-files-pro",
+          "text": "∞",
+          "label": "Unlimited"
+        },
+        {
+          "testID": "compare-files-work",
+          "text": "∞",
+          "label": "Unlimited"
+        },
+        {
+          "testID": "compare-ocr",
+          "text": "Text from scans and photos —"
+        },
+        {
+          "testID": "compare-ocr-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-ocr-pro",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-ocr-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-strict",
+          "text": "Answers only from your documents —"
+        },
+        {
+          "testID": "compare-strict-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-strict-pro",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-strict-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-personas",
+          "text": "Custom personas 3 ∞ ∞"
+        },
+        {
+          "testID": "compare-personas-free",
+          "text": "3",
+          "label": "3"
+        },
+        {
+          "testID": "compare-personas-pro",
+          "text": "∞",
+          "label": "Unlimited"
+        },
+        {
+          "testID": "compare-personas-work",
+          "text": "∞",
+          "label": "Unlimited"
+        },
+        {
+          "testID": "compare-photos",
+          "text": "Photos per message 1 ∞ ∞"
+        },
+        {
+          "testID": "compare-photos-free",
+          "text": "1",
+          "label": "1"
+        },
+        {
+          "testID": "compare-photos-pro",
+          "text": "∞",
+          "label": "Unlimited"
+        },
+        {
+          "testID": "compare-photos-work",
+          "text": "∞",
+          "label": "Unlimited"
+        },
+        {
+          "testID": "compare-memory",
+          "text": "Memory across chats —"
+        },
+        {
+          "testID": "compare-memory-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-memory-pro",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-memory-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-folders",
+          "text": "Folders and full export —"
+        },
+        {
+          "testID": "compare-folders-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-folders-pro",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-folders-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-models",
+          "text": "Larger, sharper models —"
+        },
+        {
+          "testID": "compare-models-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-models-pro",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-models-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-voice",
+          "text": "Voice conversation and dictation —"
+        },
+        {
+          "testID": "compare-voice-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-voice-pro",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-voice-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-stats",
+          "text": "Detailed speed and token stats —"
+        },
+        {
+          "testID": "compare-stats-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-stats-pro",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-stats-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-vaults",
+          "text": "Client vaults with passcodes — —"
+        },
+        {
+          "testID": "compare-vaults-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-vaults-pro",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-vaults-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-redaction",
+          "text": "Redaction before sending — —"
+        },
+        {
+          "testID": "compare-redaction-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-redaction-pro",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-redaction-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-office",
+          "text": "Excel and HTML import — —"
+        },
+        {
+          "testID": "compare-office-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-office-pro",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-office-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-audit",
+          "text": "Per-vault audit log — —"
+        },
+        {
+          "testID": "compare-audit-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-audit-pro",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-audit-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-signed",
+          "text": "Signed, verifiable records — —"
+        },
+        {
+          "testID": "compare-signed-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-signed-pro",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-signed-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-f1-03"
+    },
+    {
+      "i": 33,
+      "op": "scrollTo",
+      "ok": true,
+      "ms": 2,
+      "detail": "restore"
+    },
+    {
+      "i": 34,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1003,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 35,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1587,
+      "detail": "sim-f1-04"
+    },
+    {
+      "i": 36,
+      "op": "dump",
+      "ok": true,
+      "ms": 4,
+      "nodes": [
+        {
+          "testID": "settings",
+          "text": "Inborn Pro See what's in Pro See what Pro adds to the free app. FREE APPEARANCE Theme Auto Dark Light Dark at night, 18:00-06:00, and whenever the system is dark. Text size 90% Default 115% 130% 150% 175% 200% SECURITY Require a passcode Your passcode opens Inborn. Also hides chats in the app switcher. Set a passcode Hide in app switcher Chats are blurred while Inborn is in the background. Screenshot protection iOS cannot block screenshots. Inborn hides chats while the screen is recorded or mirrored. Auto-delete chats Off 1 day 7 days 30 days Chats stay until you delete them. Clipboard expiry Off 60 s Delete everything Chats, key, documents. No recovery. CHAT Model INSTANT Family-safe mode Keeps sexually explicit, graphic and self-harm content out of answers. It reduces that content; it cannot catch all of it. Haptics Sounds Off. There are none. PERFORMANCE Eco Balanced Max Auto power management Smaller model on low battery or heat. On for phones, off on desktop. Never switch my model automatically LANGUAGE App language English Answer language hint Follows the app language DOWNLOADS Wi-Fi only Storage location Internal ACCESSIBILITY Reduce motion Follows the system setting. Off PRIVACY & STORAGE Privacy & storage Reports Answers you reported, kept on this device Proof Pro for Work Audit log Per-vault, hash-chained, never message content Verify a signed record Check a .json record's hash and signature Architecture statement Dated, printable, for a compliance file ABOUT About Model licenses We collect nothing. There is nothing to opt out of. Settings"
+        },
+        {
+          "testID": "row-pro",
+          "text": "See what's in Pro See what Pro adds to the free app. FREE",
+          "value": "FREE",
+          "pressable": true
+        },
+        {
+          "testID": "theme-mode",
+          "text": "Auto Dark Light",
+          "value": "auto",
+          "pressable": true
+        },
+        {
+          "testID": "theme-mode-sub",
+          "text": "Dark at night, 18:00-06:00, and whenever the system is dark."
+        },
+        {
+          "testID": "text-scale",
+          "text": "90% Default 115% 130% 150% 175% 200%",
+          "value": "1",
+          "pressable": true
+        },
+        {
+          "testID": "row-lock",
+          "text": "Require a passcode Your passcode opens Inborn. Also hides chats in the app switcher.",
+          "pressable": true
+        },
+        {
+          "testID": "row-hide",
+          "text": "Hide in app switcher Chats are blurred while Inborn is in the background.",
+          "pressable": true
+        },
+        {
+          "testID": "row-screenshots",
+          "text": "Screenshot protection iOS cannot block screenshots. Inborn hides chats while the screen is recorded or mirrored.",
+          "pressable": true
+        },
+        {
+          "testID": "auto-delete",
+          "text": "Off 1 day 7 days 30 days",
+          "value": "0",
+          "pressable": true
+        },
+        {
+          "testID": "auto-delete-sub",
+          "text": "Chats stay until you delete them."
+        },
+        {
+          "testID": "row-wipe",
+          "text": "Delete everything Chats, key, documents. No recovery.",
+          "pressable": true
+        },
+        {
+          "testID": "row-family-safe",
+          "text": "Family-safe mode Keeps sexually explicit, graphic and self-harm content out of answers. It reduces that content; it cannot catch all of it.",
+          "pressable": true
+        },
+        {
+          "testID": "row-language",
+          "text": "App language English",
+          "value": "English",
+          "pressable": true
+        },
+        {
+          "testID": "row-wifi-only",
+          "text": "Wi-Fi only",
+          "pressable": true
+        },
+        {
+          "testID": "row-storage",
+          "text": "Privacy & storage",
+          "pressable": true
+        },
+        {
+          "testID": "row-reports",
+          "text": "Reports Answers you reported, kept on this device",
+          "pressable": true
+        },
+        {
+          "testID": "row-proof",
+          "text": "Proof",
+          "pressable": true
+        },
+        {
+          "testID": "row-audit",
+          "text": "Audit log Per-vault, hash-chained, never message content",
+          "pressable": true
+        },
+        {
+          "testID": "row-verify",
+          "text": "Verify a signed record Check a .json record's hash and signature",
+          "pressable": true
+        },
+        {
+          "testID": "row-statement",
+          "text": "Architecture statement Dated, printable, for a compliance file",
+          "pressable": true
+        },
+        {
+          "testID": "row-about",
+          "text": "About",
+          "pressable": true
+        },
+        {
+          "testID": "back",
+          "text": "",
+          "role": "button",
+          "label": "Back",
+          "pressable": true
+        },
+        {
+          "testID": "close-paywall",
+          "text": "",
+          "role": "button",
+          "label": "Close",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "paywall-title",
+          "text": "Pay once. Own it."
+        },
+        {
+          "testID": "tier-inborn.pro",
+          "text": "PRO $19.99 · one-time purchase Prices are US list prices. Your store shows the price where you are. Unlimited documents + OCR, with citations Unlimited personas + on-device memory Folders + export all chats Larger models, Sharp and Sharp (Phi) Hands-free voice and dictation Unlock Pro · $19.99"
+        },
+        {
+          "testID": "price-inborn.pro",
+          "text": "$19.99 · one-time purchase"
+        },
+        {
+          "testID": "buy-inborn.pro",
+          "text": "Unlock Pro · $19.99",
+          "role": "button",
+          "label": "Unlock Pro · $19.99",
+          "pressable": true
+        },
+        {
+          "testID": "tier-inborn.work",
+          "text": "FOR PROFESSIONALS PRO FOR WORK $69.99 · one-time purchase Prices are US list prices. Your store shows the price where you are. Client vaults with their own passcode Per-vault audit log, hash-chained Signed, verifiable records Profession packs: legal, therapy, medical, accounting Printable architecture statement Unlock Work · $69.99"
+        },
+        {
+          "testID": "price-inborn.work",
+          "text": "$69.99 · one-time purchase"
+        },
+        {
+          "testID": "buy-inborn.work",
+          "text": "Unlock Work · $69.99",
+          "role": "button",
+          "label": "Unlock Work · $69.99",
+          "pressable": true
+        },
+        {
+          "testID": "restore",
+          "text": "Restore purchases",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "redeem-code",
+          "text": "Have a code?",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "compare-table",
+          "text": "What each tier includes Free Pro Work Unlimited private chat On-device privacy Offline use Files per chat 1 ∞ ∞ Text from scans and photos — Answers only from your documents — Custom personas 3 ∞ ∞ Photos per message 1 ∞ ∞ Memory across chats — Folders and full export — Larger, sharper models — Voice conversation and dictation — Detailed speed and token stats — Client vaults with passcodes — — Redaction before sending — — Excel and HTML import — — Per-vault audit log — — Signed, verifiable records — —"
+        },
+        {
+          "testID": "compare-head",
+          "text": "Free Pro Work"
+        },
+        {
+          "testID": "compare-chat",
+          "text": "Unlimited private chat"
+        },
+        {
+          "testID": "compare-chat-free",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-chat-pro",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-chat-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-privacy",
+          "text": "On-device privacy"
+        },
+        {
+          "testID": "compare-privacy-free",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-privacy-pro",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-privacy-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-offline",
+          "text": "Offline use"
+        },
+        {
+          "testID": "compare-offline-free",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-offline-pro",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-offline-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-files",
+          "text": "Files per chat 1 ∞ ∞"
+        },
+        {
+          "testID": "compare-files-free",
+          "text": "1",
+          "label": "1"
+        },
+        {
+          "testID": "compare-files-pro",
+          "text": "∞",
+          "label": "Unlimited"
+        },
+        {
+          "testID": "compare-files-work",
+          "text": "∞",
+          "label": "Unlimited"
+        },
+        {
+          "testID": "compare-ocr",
+          "text": "Text from scans and photos —"
+        },
+        {
+          "testID": "compare-ocr-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-ocr-pro",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-ocr-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-strict",
+          "text": "Answers only from your documents —"
+        },
+        {
+          "testID": "compare-strict-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-strict-pro",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-strict-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-personas",
+          "text": "Custom personas 3 ∞ ∞"
+        },
+        {
+          "testID": "compare-personas-free",
+          "text": "3",
+          "label": "3"
+        },
+        {
+          "testID": "compare-personas-pro",
+          "text": "∞",
+          "label": "Unlimited"
+        },
+        {
+          "testID": "compare-personas-work",
+          "text": "∞",
+          "label": "Unlimited"
+        },
+        {
+          "testID": "compare-photos",
+          "text": "Photos per message 1 ∞ ∞"
+        },
+        {
+          "testID": "compare-photos-free",
+          "text": "1",
+          "label": "1"
+        },
+        {
+          "testID": "compare-photos-pro",
+          "text": "∞",
+          "label": "Unlimited"
+        },
+        {
+          "testID": "compare-photos-work",
+          "text": "∞",
+          "label": "Unlimited"
+        },
+        {
+          "testID": "compare-memory",
+          "text": "Memory across chats —"
+        },
+        {
+          "testID": "compare-memory-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-memory-pro",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-memory-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-folders",
+          "text": "Folders and full export —"
+        },
+        {
+          "testID": "compare-folders-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-folders-pro",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-folders-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-models",
+          "text": "Larger, sharper models —"
+        },
+        {
+          "testID": "compare-models-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-models-pro",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-models-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-voice",
+          "text": "Voice conversation and dictation —"
+        },
+        {
+          "testID": "compare-voice-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-voice-pro",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-voice-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-stats",
+          "text": "Detailed speed and token stats —"
+        },
+        {
+          "testID": "compare-stats-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-stats-pro",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-stats-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-vaults",
+          "text": "Client vaults with passcodes — —"
+        },
+        {
+          "testID": "compare-vaults-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-vaults-pro",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-vaults-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-redaction",
+          "text": "Redaction before sending — —"
+        },
+        {
+          "testID": "compare-redaction-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-redaction-pro",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-redaction-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-office",
+          "text": "Excel and HTML import — —"
+        },
+        {
+          "testID": "compare-office-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-office-pro",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-office-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-audit",
+          "text": "Per-vault audit log — —"
+        },
+        {
+          "testID": "compare-audit-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-audit-pro",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-audit-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "compare-signed",
+          "text": "Signed, verifiable records — —"
+        },
+        {
+          "testID": "compare-signed-free",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-signed-pro",
+          "text": "—",
+          "label": "Not included"
+        },
+        {
+          "testID": "compare-signed-work",
+          "text": "",
+          "label": "Included"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-f1-04"
+    },
+    {
+      "i": 37,
+      "op": "press",
+      "ok": true,
+      "ms": 159,
+      "detail": "close-paywall ← onPress"
+    },
+    {
+      "i": 38,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 39,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3806,
+      "detail": "sim-f1-05"
+    },
+    {
+      "i": 40,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "settings",
+          "text": "Inborn Pro See what's in Pro See what Pro adds to the free app. FREE APPEARANCE Theme Auto Dark Light Dark at night, 18:00-06:00, and whenever the system is dark. Text size 90% Default 115% 130% 150% 175% 200% SECURITY Require a passcode Your passcode opens Inborn. Also hides chats in the app switcher. Set a passcode Hide in app switcher Chats are blurred while Inborn is in the background. Screenshot protection iOS cannot block screenshots. Inborn hides chats while the screen is recorded or mirrored. Auto-delete chats Off 1 day 7 days 30 days Chats stay until you delete them. Clipboard expiry Off 60 s Delete everything Chats, key, documents. No recovery. CHAT Model INSTANT Family-safe mode Keeps sexually explicit, graphic and self-harm content out of answers. It reduces that content; it cannot catch all of it. Haptics Sounds Off. There are none. PERFORMANCE Eco Balanced Max Auto power management Smaller model on low battery or heat. On for phones, off on desktop. Never switch my model automatically LANGUAGE App language English Answer language hint Follows the app language DOWNLOADS Wi-Fi only Storage location Internal ACCESSIBILITY Reduce motion Follows the system setting. Off PRIVACY & STORAGE Privacy & storage Reports Answers you reported, kept on this device Proof Pro for Work Audit log Per-vault, hash-chained, never message content Verify a signed record Check a .json record's hash and signature Architecture statement Dated, printable, for a compliance file ABOUT About Model licenses We collect nothing. There is nothing to opt out of. Settings"
+        },
+        {
+          "testID": "row-pro",
+          "text": "See what's in Pro See what Pro adds to the free app. FREE",
+          "value": "FREE",
+          "pressable": true
+        },
+        {
+          "testID": "theme-mode",
+          "text": "Auto Dark Light",
+          "value": "auto",
+          "pressable": true
+        },
+        {
+          "testID": "theme-mode-sub",
+          "text": "Dark at night, 18:00-06:00, and whenever the system is dark."
+        },
+        {
+          "testID": "text-scale",
+          "text": "90% Default 115% 130% 150% 175% 200%",
+          "value": "1",
+          "pressable": true
+        },
+        {
+          "testID": "row-lock",
+          "text": "Require a passcode Your passcode opens Inborn. Also hides chats in the app switcher.",
+          "pressable": true
+        },
+        {
+          "testID": "row-hide",
+          "text": "Hide in app switcher Chats are blurred while Inborn is in the background.",
+          "pressable": true
+        },
+        {
+          "testID": "row-screenshots",
+          "text": "Screenshot protection iOS cannot block screenshots. Inborn hides chats while the screen is recorded or mirrored.",
+          "pressable": true
+        },
+        {
+          "testID": "auto-delete",
+          "text": "Off 1 day 7 days 30 days",
+          "value": "0",
+          "pressable": true
+        },
+        {
+          "testID": "auto-delete-sub",
+          "text": "Chats stay until you delete them."
+        },
+        {
+          "testID": "row-wipe",
+          "text": "Delete everything Chats, key, documents. No recovery.",
+          "pressable": true
+        },
+        {
+          "testID": "row-family-safe",
+          "text": "Family-safe mode Keeps sexually explicit, graphic and self-harm content out of answers. It reduces that content; it cannot catch all of it.",
+          "pressable": true
+        },
+        {
+          "testID": "row-language",
+          "text": "App language English",
+          "value": "English",
+          "pressable": true
+        },
+        {
+          "testID": "row-wifi-only",
+          "text": "Wi-Fi only",
+          "pressable": true
+        },
+        {
+          "testID": "row-storage",
+          "text": "Privacy & storage",
+          "pressable": true
+        },
+        {
+          "testID": "row-reports",
+          "text": "Reports Answers you reported, kept on this device",
+          "pressable": true
+        },
+        {
+          "testID": "row-proof",
+          "text": "Proof",
+          "pressable": true
+        },
+        {
+          "testID": "row-audit",
+          "text": "Audit log Per-vault, hash-chained, never message content",
+          "pressable": true
+        },
+        {
+          "testID": "row-verify",
+          "text": "Verify a signed record Check a .json record's hash and signature",
+          "pressable": true
+        },
+        {
+          "testID": "row-statement",
+          "text": "Architecture statement Dated, printable, for a compliance file",
+          "pressable": true
+        },
+        {
+          "testID": "row-about",
+          "text": "About",
+          "pressable": true
+        },
+        {
+          "testID": "back",
+          "text": "",
+          "role": "button",
+          "label": "Back",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-f1-05"
+    }
+  ],
+  "errors": [
+    "step 19 (value): value paywall-status: no node with that testID is mounted",
+    "step 20 (value): value owned: no node with that testID is mounted",
+    "step 22 (value): value price-inborn.pro.launch: no node with that testID is mounted",
+    "step 24 (value): value price-inborn.work.upgrade: no node with that testID is mounted",
+    "step 26 (value): value tier-inborn.pro.launch: no node with that testID is mounted",
+    "step 28 (value): value tier-inborn.work.upgrade: no node with that testID is mounted",
+    "step 29 (value): value web-price-note: no node with that testID is mounted"
+  ]
+}

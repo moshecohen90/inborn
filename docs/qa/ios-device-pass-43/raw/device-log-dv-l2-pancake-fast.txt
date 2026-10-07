@@ -1,0 +1,90 @@
+19:21:04 pushing 73 steps as dv-l2-pancake-fast
+19:23:26 shot device-l2-01
+19:23:36 shot device-l2-02
+19:23:47 shot device-l2-03
+19:23:52 ok     0 deeplink   /chats
+19:23:52 ok     1 waitFor    new-chat appeared
+19:23:52 ok     2 press      new-chat ← onPress
+19:23:52 ok     3 waitFor    start-chat appeared
+19:23:52 ok     4 press      start-chat ← onPress
+19:23:52 ok     5 waitFor    composer-input appeared
+19:23:52 ok     6 waitFor    Loading gone
+19:23:52 ok     7 sleep      1500 ms
+19:23:52 ok     8 value      FAST
+19:23:52 ok     9 press      model-chip ← onPress
+19:23:52 ok    10 waitFor    model-sheet appeared
+19:23:52 ok    11 sleep      1500 ms
+19:23:52 FAIL  12 press      press model-sheet-use-fast: not mounted
+19:23:52 ok    13 sleep      3000 ms
+19:23:52 ok    14 press      model-sheet-close ← onPress
+19:23:52 ok    15 waitFor    Loading gone
+19:23:52 ok    16 sleep      1500 ms
+19:23:52 ok    17 value      FAST
+19:23:52 ok    18 assertText "FAST" present
+19:23:52 ok    19 devPrompt  attach: constitution-9pages.pdf
+19:23:52 ok    20 waitFor    attached-docs appeared
+19:23:52 ok    21 sleep      20000 ms
+19:23:52 ok    22 value      constitution-9pages.pdf
+19:23:52 ok    23 type       composer-input = 24 chars
+19:23:52 ok    24 send       send ← onPress
+19:23:52 ok    25 sleep      2500 ms
+19:23:52 FAIL  26 waitFor    waitFor docs-hold never appeared in 15000 ms
+19:23:52 FAIL  27 value      value docs-hold: no node with that testID is mounted
+19:23:52 FAIL  28 press      press docs-hold-download: not mounted
+19:23:52 ok    29 idleTimer  idle timer disabled: false
+19:23:52 ok    30 waitFor    docs-hold gone
+19:23:52 ok    31 waitFor    reading-docs gone
+19:23:52 FAIL  32 waitFor    waitFor stop never appeared in 90000 ms
+19:23:52 ok    33 waitFor    reading-pages gone
+19:23:52 ok    34 waitFor    reading-docs gone
+19:23:52 ok    35 waitFor    stop gone
+19:23:52 ok    36 sleep      2500 ms
+19:23:52 ok    37 value      Your documents don't mention this. You can make a classic pancake with one cup of all-purpose flour, two eggs,
+19:23:52 FAIL  38 value      value citations: no node with that testID is mounted
+19:23:52 ok    39 value      Nothing in your documents matched this question. Answered without them.
+19:23:52 FAIL  40 value      value banners: no node with that testID is mounted
+19:23:52 ok    41 value      FAST
+19:23:52 FAIL  42 assertText assertText "Your documents don't mention this" is on screen and should not be under assistant-text
+19:23:52 ok    43 screenshot device-l2-01
+19:23:52 ok    44 dump       device-l2-01
+19:23:52 ok    45 type       composer-input = 19 chars
+19:23:52 ok    46 send       send ← onPress
+19:23:52 ok    47 sleep      2500 ms
+19:23:52 ok    48 waitFor    reading-pages gone
+19:23:52 ok    49 waitFor    reading-docs gone
+19:23:52 ok    50 waitFor    stop gone
+19:23:52 ok    51 sleep      2500 ms
+19:23:52 ok    52 value      Your documents don't mention this. You can make a classic pancake with one cup of all-purpose flour, two eggs,
+19:23:52 FAIL  53 value      value citations: no node with that testID is mounted
+19:23:52 ok    54 value      Nothing in your documents matched this question. Answered without them.
+19:23:52 FAIL  55 value      value banners: no node with that testID is mounted
+19:23:52 ok    56 value      FAST
+19:23:52 ok    57 screenshot device-l2-02
+19:23:52 ok    58 dump       device-l2-02
+19:23:52 ok    59 type       composer-input = 20 chars
+19:23:52 ok    60 send       send ← onPress
+19:23:52 ok    61 sleep      2500 ms
+19:23:52 ok    62 waitFor    reading-pages gone
+19:23:52 ok    63 waitFor    reading-docs gone
+19:23:52 ok    64 waitFor    stop gone
+19:23:52 ok    65 sleep      2500 ms
+19:23:52 ok    66 value      Your documents don't mention this. You can make a classic pancake with one cup of all-purpose flour, two eggs,
+19:23:52 ok    67 value      SOURCES constitution-9pages.pdf · p.3 constitution-9pages.pdf · p.4
+19:23:52 FAIL  68 value      value none-matched: no node with that testID is mounted
+19:23:52 FAIL  69 value      value banners: no node with that testID is mounted
+19:23:52 ok    70 value      FAST
+19:23:52 ok    71 screenshot device-l2-03
+19:23:52 ok    72 dump       device-l2-03
+19:23:52 61 passed, 12 failed, 3 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-43/docs/qa/ios-device-pass-43/screens
+19:23:52   ! step 12 (press): press model-sheet-use-fast: not mounted
+19:23:52   ! step 26 (waitFor): waitFor docs-hold never appeared in 15000 ms
+19:23:52   ! step 27 (value): value docs-hold: no node with that testID is mounted
+19:23:52   ! step 28 (press): press docs-hold-download: not mounted
+19:23:52   ! step 32 (waitFor): waitFor stop never appeared in 90000 ms
+19:23:52   ! step 38 (value): value citations: no node with that testID is mounted
+19:23:52   ! step 40 (value): value banners: no node with that testID is mounted
+19:23:52   ! step 42 (assertText): assertText "Your documents don't mention this" is on screen and should not be under assistant-text
+19:23:52   ! step 53 (value): value citations: no node with that testID is mounted
+19:23:52   ! step 55 (value): value banners: no node with that testID is mounted
+19:23:52   ! step 68 (value): value none-matched: no node with that testID is mounted
+19:23:52   ! step 69 (value): value banners: no node with that testID is mounted

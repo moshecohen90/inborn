@@ -1,0 +1,138 @@
+18:04:44 pushing 116 steps as ja-lexical-fast
+18:05:15 shot sim-ja-01
+18:05:17 shot sim-ja-02
+18:09:55 shot sim-ja-03
+18:11:31 shot sim-ja-04
+18:11:58 shot sim-ja-05
+18:12:31 shot sim-ja-06
+18:13:30 shot sim-ja-07
+18:13:32 ok     0 deeplink   /chats
+18:13:32 ok     1 waitFor    new-chat appeared
+18:13:32 ok     2 press      new-chat ← onPress
+18:13:32 ok     3 waitFor    start-chat appeared
+18:13:32 ok     4 press      start-chat ← onPress
+18:13:32 ok     5 waitFor    composer-input appeared
+18:13:32 ok     6 waitFor    Loading gone
+18:13:32 ok     7 sleep      1500 ms
+18:13:32 ok     8 value      INSTANT
+18:13:32 ok     9 press      model-chip ← onPress
+18:13:32 ok    10 waitFor    model-sheet appeared
+18:13:32 ok    11 sleep      1500 ms
+18:13:32 ok    12 press      model-sheet-use-fast ← onPress
+18:13:32 ok    13 sleep      3000 ms
+18:13:32 FAIL  14 press      press model-sheet-close: not mounted
+18:13:32 ok    15 waitFor    Loading gone
+18:13:32 ok    16 sleep      1500 ms
+18:13:32 ok    17 value      FAST
+18:13:32 ok    18 assertText "FAST" present
+18:13:32 ok    19 devPrompt  attach: constitution-9pages.pdf
+18:13:32 ok    20 waitFor    attached-docs appeared
+18:13:32 ok    21 sleep      20000 ms
+18:13:32 ok    22 value      constitution-9pages.pdf
+18:13:32 ok    23 screenshot sim-ja-01
+18:13:32 ok    24 type       composer-input = 12 chars
+18:13:32 ok    25 send       send ← onPress
+18:13:32 ok    26 waitFor    reading-pages appeared
+18:13:32 ok    27 value      Reading pages 1–2 of 9…
+18:13:32 ok    28 screenshot sim-ja-02
+18:13:32 ok    29 waitFor    reading-pages gone
+18:13:32 ok    30 waitFor    assistant-text appeared
+18:13:32 ok    31 waitFor    stop gone
+18:13:32 ok    32 sleep      2500 ms
+18:13:32 ok    33 value      This file is a 9-page excerpt from the United States Constitution covering its first nine articles. Its main p
+18:13:32 ok    34 value      [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4
+18:13:32 ok    35 value      constitution-9pages.pdf
+18:13:32 ok    36 assertText "Summary of all 9 pages." present
+18:13:32 ok    37 screenshot sim-ja-03
+18:13:32 ok    38 dump       sim-ja-03
+18:13:32 ok    39 type       composer-input = 24 chars
+18:13:32 ok    40 send       send ← onPress
+18:13:32 ok    41 sleep      2500 ms
+18:13:32 ok    42 waitFor    docs-hold appeared
+18:13:32 ok    43 value      The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact wo
+18:13:32 ok    44 press      docs-hold-download ← onPress
+18:13:32 ok    45 idleTimer  idle timer disabled: true
+18:13:32 ok    46 waitFor    docs-hold gone
+18:13:32 ok    47 waitFor    reading-docs gone
+18:13:32 ok    48 waitFor    stop appeared
+18:13:32 ok    49 waitFor    reading-pages gone
+18:13:32 ok    50 waitFor    reading-docs gone
+18:13:32 ok    51 waitFor    stop gone
+18:13:32 ok    52 sleep      2500 ms
+18:13:32 ok    53 value      This file is a 9-page excerpt from the United States Constitution covering its first nine articles. Its main p
+18:13:32 ok    54 value      [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4
+18:13:32 ok    55 value      Nothing in your documents matched this question. Answered without them.
+18:13:32 FAIL  56 value      value banners: no node with that testID is mounted
+18:13:32 ok    57 value      FAST
+18:13:32 FAIL  58 waitFor    waitFor citations never went away in 1000 ms
+18:13:32 ok    59 assertText "Your documents don't mention this" absent
+18:13:32 FAIL  60 assertText assertText "flour" is not on screen under assistant-text
+18:13:32 ok    61 screenshot sim-ja-04
+18:13:32 ok    62 dump       sim-ja-04
+18:13:32 ok    63 type       composer-input = 6 chars
+18:13:32 ok    64 send       send ← onPress
+18:13:32 ok    65 sleep      2500 ms
+18:13:32 ok    66 waitFor    reading-pages gone
+18:13:32 ok    67 waitFor    reading-docs gone
+18:13:32 ok    68 waitFor    stop gone
+18:13:32 ok    69 sleep      2500 ms
+18:13:32 ok    70 value      This file is a 9-page excerpt from the United States Constitution covering its first nine articles. Its main p
+18:13:32 ok    71 value      [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4
+18:13:32 FAIL  72 value      value none-matched: no node with that testID is mounted
+18:13:32 FAIL  73 value      value banners: no node with that testID is mounted
+18:13:32 ok    74 value      FAST
+18:13:32 ok    75 screenshot sim-ja-05
+18:13:32 ok    76 dump       sim-ja-05
+18:13:32 ok    77 type       composer-input = 19 chars
+18:13:32 ok    78 send       send ← onPress
+18:13:32 ok    79 sleep      2500 ms
+18:13:32 ok    80 waitFor    reading-pages gone
+18:13:32 ok    81 waitFor    reading-docs gone
+18:13:32 ok    82 waitFor    stop gone
+18:13:32 ok    83 sleep      2500 ms
+18:13:32 ok    84 value      This file is a 9-page excerpt from the United States Constitution covering its first nine articles. Its main p
+18:13:32 ok    85 value      [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4
+18:13:32 ok    86 value      Nothing in your documents matched this question. Answered without them.
+18:13:32 FAIL  87 value      value banners: no node with that testID is mounted
+18:13:32 ok    88 value      FAST
+18:13:32 ok    89 assertText "Your documents don't mention this" absent
+18:13:32 ok    90 screenshot sim-ja-06
+18:13:32 ok    91 dump       sim-ja-06
+18:13:32 ok    92 type       composer-input = 20 chars
+18:13:32 ok    93 send       send ← onPress
+18:13:32 ok    94 sleep      2500 ms
+18:13:32 FAIL  95 waitFor    waitFor docs-hold never appeared in 15000 ms
+18:13:32 FAIL  96 value      value docs-hold: no node with that testID is mounted
+18:13:32 FAIL  97 press      press docs-hold-download: not mounted
+18:13:32 ok    98 idleTimer  idle timer disabled: false
+18:13:32 ok    99 waitFor    docs-hold gone
+18:13:32 ok   100 waitFor    reading-docs gone
+18:13:32 ok   101 waitFor    stop appeared
+18:13:32 ok   102 waitFor    reading-pages gone
+18:13:32 ok   103 waitFor    reading-docs gone
+18:13:32 ok   104 waitFor    stop gone
+18:13:32 ok   105 sleep      2500 ms
+18:13:32 ok   106 value      This file is a 9-page excerpt from the United States Constitution covering its first nine articles. Its main p
+18:13:32 ok   107 value      [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4
+18:13:32 FAIL 108 value      value none-matched: no node with that testID is mounted
+18:13:32 FAIL 109 value      value banners: no node with that testID is mounted
+18:13:32 ok   110 value      FAST
+18:13:32 ok   111 waitFor    none-matched gone
+18:13:32 ok   112 assertText "Your documents don't mention this" absent
+18:13:32 ok   113 waitFor    citations appeared
+18:13:32 ok   114 screenshot sim-ja-07
+18:13:32 ok   115 dump       sim-ja-07
+18:13:32 104 passed, 12 failed, 7 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-43/docs/qa/ios-device-pass-43/screens
+18:13:32   ! step 14 (press): press model-sheet-close: not mounted
+18:13:32   ! step 56 (value): value banners: no node with that testID is mounted
+18:13:32   ! step 58 (waitFor): waitFor citations never went away in 1000 ms
+18:13:32   ! step 60 (assertText): assertText "flour" is not on screen under assistant-text
+18:13:32   ! step 72 (value): value none-matched: no node with that testID is mounted
+18:13:32   ! step 73 (value): value banners: no node with that testID is mounted
+18:13:32   ! step 87 (value): value banners: no node with that testID is mounted
+18:13:32   ! step 95 (waitFor): waitFor docs-hold never appeared in 15000 ms
+18:13:32   ! step 96 (value): value docs-hold: no node with that testID is mounted
+18:13:32   ! step 97 (press): press docs-hold-download: not mounted
+18:13:32   ! step 108 (value): value none-matched: no node with that testID is mounted
+18:13:32   ! step 109 (value): value banners: no node with that testID is mounted
+18:13:32   ! console.log: [chat] plain=acknowledgement window=5/5 maxTokens=224

@@ -1,0 +1,14 @@
+18:34:03 pushing 10 steps as p0-lists
+18:34:06 shot sim-p0-chats
+18:34:11 shot sim-p0-documents
+18:34:13 ok     0 deeplink   /chats
+18:34:13 ok     1 waitFor    new-chat appeared
+18:34:13 ok     2 sleep      2000 ms
+18:34:13 ok     3 screenshot sim-p0-chats
+18:34:13 ok     4 dump       sim-p0-chats
+18:34:13 ok     5 deeplink   /documents
+18:34:13 ok     6 waitFor    documents-screen appeared
+18:34:13 ok     7 sleep      3000 ms
+18:34:13 ok     8 screenshot sim-p0-documents
+18:34:13 ok     9 dump       sim-p0-documents
+18:34:13 10 passed, 0 failed, 2 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-43/docs/qa/ios-device-pass-43/screens

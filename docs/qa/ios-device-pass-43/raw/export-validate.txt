@@ -1,0 +1,30 @@
+== xcodebuild -exportArchive (ExportOptions: method app-store-connect, signingStyle automatic, teamID NGCHN95667, manageAppVersionAndBuildNumber false)
+Exported Inborn to: ~/dev/inborn-docs/builds/export-43
+** EXPORT SUCCEEDED **
+
+total 1402784
+drwxr-xr-x@ 6 moshecohen  staff        192 Oct  7 17:52 .
+drwxr-xr-x@ 7 moshecohen  staff        224 Oct  7 17:51 ..
+-rw-r--r--@ 1 moshecohen  staff       7707 Oct  7 17:52 DistributionSummary.plist
+-rw-r--r--@ 1 moshecohen  staff        622 Oct  7 17:52 ExportOptions.plist
+-rw-r--r--@ 1 moshecohen  staff  717784623 Oct  7 17:52 Inborn.ipa
+-rw-r--r--@ 1 moshecohen  staff     425511 Oct  7 17:52 Packaging.log
+
+== Inborn.ipa sha256 c370c08fcc88c85072d0f6b92d2781bf92ef24dd495b61a22d0258b299f3fcd9
+== IPA: CFBundleVersion 43, 1.0.0, appex 43; embedded.mobileprovision 'iOS Team Store Provisioning Profile: com.inbornapp.mobile', get-task-allow false; DistributionSummary: Cloud Managed Apple Distribution
+532517120  10-07-2026 17:50   Payload/Inborn.app/instant.gguf
+  7153169  10-07-2026 17:50   Payload/Inborn.app/main.jsbundle
+204987232  10-07-2026 17:50   Payload/Inborn.app/vision-qwen35.gguf
+  4113088  10-07-2026 17:50   Payload/Inborn.app/DocExtractOcr.bundle/tessdata/eng.traineddata
+   961404  10-07-2026 17:50   Payload/Inborn.app/DocExtractOcr.bundle/tessdata/heb.traineddata
+
+== xcrun altool --validate-app -f <builds>/export-43/Inborn.ipa -t ios --apiKey <admin key> --apiIssuer <issuer>  (rc 0)
+Running altool at path '/Applications/Xcode.app/Contents/SharedFrameworks/ContentDelivery.framework/Resources/altool'...
+
+2026-10-07 17:53:13.142  INFO: [ContentDelivery.Uploader.101083030] 
+==========================================
+VERIFY SUCCEEDED with no errors
+==========================================
+No errors validating archive at '~/dev/inborn-docs/builds/export-43/Inborn.ipa'.
+
+== scripts/asc-key-env.sh --cleanup: ~/.appstoreconnect/private_keys holds 0 files

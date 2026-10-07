@@ -1,0 +1,144 @@
+{
+  "runId": "dv-docs-state",
+  "startedAt": "2026-10-07T16:17:24.853Z",
+  "finishedAt": "2026-10-07T16:17:34.928Z",
+  "ok": true,
+  "passed": 8,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 158,
+      "detail": "/documents"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "documents-screen appeared"
+    },
+    {
+      "i": 2,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1502,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 3,
+      "op": "dump",
+      "ok": true,
+      "ms": 4,
+      "nodes": [
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file · PRO 1 document · 0 B on this device Free: 1 document of up to 20 pages · Pro: no limit Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO constitution-9pages.pdf ? · 0 B Inborn could not find that file where it was saved. Resume Select documents to ask Indexed on this device"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file · PRO",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "documents-free-limit",
+          "text": "Free: 1 document of up to 20 pages · Pro: no limit"
+        },
+        {
+          "testID": "pro-tag",
+          "text": "PRO",
+          "role": "button",
+          "label": "See Pro",
+          "pressable": true
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muyas6ew-1-nbcc20pd",
+          "text": "constitution-9pages.pdf ? · 0 B Inborn could not find that file where it was saved. Resume",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muyas6ew-1-nbcc20pd",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "doc-state-muyas6ew-1-nbcc20pd",
+          "text": "Inborn could not find that file where it was saved."
+        },
+        {
+          "testID": "doc-resume-muyas6ew-1-nbcc20pd",
+          "text": "Resume",
+          "pressable": true
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Select documents to ask",
+          "role": "button",
+          "disabled": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "tree"
+    },
+    {
+      "i": 4,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2552,
+      "detail": "docs-state"
+    },
+    {
+      "i": 5,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 159,
+      "detail": "/vault"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 7,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3199,
+      "detail": "vault-state"
+    }
+  ],
+  "errors": []
+}

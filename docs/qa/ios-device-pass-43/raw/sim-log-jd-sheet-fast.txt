@@ -1,0 +1,108 @@
+18:34:27 pushing 92 steps as jd-sheet-fast
+18:34:43 shot sim-jd-01
+18:34:48 shot sim-jd-02
+18:34:52 shot sim-jd-03
+18:35:25 shot sim-jd-04
+18:35:31 shot sim-jd-05
+18:35:34 ok     0 deeplink   /chats
+18:35:34 ok     1 waitFor    new-chat appeared
+18:35:34 ok     2 press      new-chat ← onPress
+18:35:34 ok     3 waitFor    start-chat appeared
+18:35:34 ok     4 press      start-chat ← onPress
+18:35:34 ok     5 waitFor    composer-input appeared
+18:35:34 ok     6 waitFor    Loading gone
+18:35:34 ok     7 sleep      1500 ms
+18:35:34 ok     8 value      FAST
+18:35:34 ok     9 press      model-chip ← onPress
+18:35:34 ok    10 waitFor    model-sheet appeared
+18:35:34 ok    11 sleep      1500 ms
+18:35:34 FAIL  12 press      press model-sheet-use-fast: not mounted
+18:35:34 ok    13 sleep      3000 ms
+18:35:34 ok    14 press      model-sheet-close ← onPress
+18:35:34 ok    15 waitFor    Loading gone
+18:35:34 ok    16 sleep      1500 ms
+18:35:34 ok    17 value      FAST
+18:35:34 ok    18 assertText "FAST" present
+18:35:34 ok    19 setTier    pro
+18:35:34 ok    20 deeplink   /documents
+18:35:34 ok    21 waitFor    doc-select-muy8o5oi-1-opi89wti appeared
+18:35:34 ok    22 sleep      2000 ms
+18:35:34 ok    23 press      doc-select-muy8o5oi-1-opi89wti ← onPress
+18:35:34 ok    24 sleep      1000 ms
+18:35:34 ok    25 value      Ask about 1 document
+18:35:34 ok    26 press      documents-ask-selected ← onPress
+18:35:34 ok    27 waitFor    ask-sheet appeared
+18:35:34 ok    28 sleep      1500 ms
+18:35:34 ok    29 sleep      500 ms
+18:35:34 ok    30 screenshot sim-jd-01
+18:35:34 ok    31 dump       sim-jd-01
+18:35:34 ok    32 type       ask-input = 27 chars
+18:35:34 ok    33 press      ask-send ← onPress
+18:35:34 ok    34 sleep      1500 ms
+18:35:34 ok    35 waitFor    ask-not-found appeared
+18:35:34 ok    36 sleep      1500 ms
+18:35:34 ok    37 value      Your documents don't mention this.
+18:35:34 ok    38 value      search 297 ms · 0 passages
+18:35:34 FAIL  39 value      value ask-answer: no node with that testID is mounted
+18:35:34 FAIL  40 value      value citations: no node with that testID is mounted
+18:35:34 ok    41 assertText "Your documents don't mention this" present
+18:35:34 ok    42 assertText "0 passages" present
+18:35:34 ok    43 assertText "tok/s" absent
+18:35:34 ok    44 waitFor    ask-answer gone
+18:35:34 ok    45 waitFor    ask-none-matched gone
+18:35:34 ok    46 screenshot sim-jd-02
+18:35:34 ok    47 dump       sim-jd-02
+18:35:34 ok    48 type       ask-input = 32 chars
+18:35:34 ok    49 press      ask-send ← onPress
+18:35:34 ok    50 sleep      1500 ms
+18:35:34 ok    51 waitFor    ask-not-found appeared
+18:35:34 ok    52 sleep      1500 ms
+18:35:34 ok    53 value      Your documents don't mention this.
+18:35:34 ok    54 value      search 380 ms · 0 passages
+18:35:34 FAIL  55 value      value ask-answer: no node with that testID is mounted
+18:35:34 FAIL  56 value      value citations: no node with that testID is mounted
+18:35:34 ok    57 assertText "Your documents don't mention this" present
+18:35:34 ok    58 assertText "0 passages" present
+18:35:34 ok    59 assertText "tok/s" absent
+18:35:34 ok    60 waitFor    ask-answer gone
+18:35:34 ok    61 waitFor    ask-none-matched gone
+18:35:34 ok    62 screenshot sim-jd-03
+18:35:34 ok    63 dump       sim-jd-03
+18:35:34 ok    64 type       ask-input = 20 chars
+18:35:34 ok    65 press      ask-send ← onPress
+18:35:34 ok    66 sleep      2500 ms
+18:35:34 ok    67 waitFor    ask-stop gone
+18:35:34 ok    68 sleep      2000 ms
+18:35:34 ok    69 value      The President of the United States can veto a bill if he approves it or returns it with objections, as per [1]
+18:35:34 ok    70 value      search 253 ms · 4 passages · answer 28903 ms · 21.2 tok/s · prompt 889 tokens
+18:35:34 ok    71 value      [1] constitution-9pages.pdf · p.3 [3] constitution-9pages.pdf · p.3
+18:35:34 FAIL  72 value      value ask-not-found: no node with that testID is mounted
+18:35:34 ok    73 waitFor    ask-not-found gone
+18:35:34 ok    74 waitFor    citations appeared
+18:35:34 ok    75 screenshot sim-jd-04
+18:35:34 ok    76 dump       sim-jd-04
+18:35:34 ok    77 type       ask-input = 9 chars
+18:35:34 ok    78 press      ask-send ← onPress
+18:35:34 ok    79 sleep      2500 ms
+18:35:34 ok    80 waitFor    ask-stop gone
+18:35:34 ok    81 sleep      1500 ms
+18:35:34 ok    82 value      You're welcome. Ask another question about these documents.
+18:35:34 FAIL  83 value      value ask-not-found: no node with that testID is mounted
+18:35:34 FAIL  84 value      value ask-answer: no node with that testID is mounted
+18:35:34 FAIL  85 value      value ask-stats: no node with that testID is mounted
+18:35:34 ok    86 assertText "Ask another question about these documents" present
+18:35:34 ok    87 screenshot sim-jd-05
+18:35:34 ok    88 dump       sim-jd-05
+18:35:34 ok    89 deeplink   /chats
+18:35:34 ok    90 sleep      1500 ms
+18:35:34 ok    91 setTier    free
+18:35:34 83 passed, 9 failed, 5 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-43/docs/qa/ios-device-pass-43/screens
+18:35:34   ! step 12 (press): press model-sheet-use-fast: not mounted
+18:35:34   ! step 39 (value): value ask-answer: no node with that testID is mounted
+18:35:34   ! step 40 (value): value citations: no node with that testID is mounted
+18:35:34   ! step 55 (value): value ask-answer: no node with that testID is mounted
+18:35:34   ! step 56 (value): value citations: no node with that testID is mounted
+18:35:34   ! step 72 (value): value ask-not-found: no node with that testID is mounted
+18:35:34   ! step 83 (value): value ask-not-found: no node with that testID is mounted
+18:35:34   ! step 84 (value): value ask-answer: no node with that testID is mounted
+18:35:34   ! step 85 (value): value ask-stats: no node with that testID is mounted

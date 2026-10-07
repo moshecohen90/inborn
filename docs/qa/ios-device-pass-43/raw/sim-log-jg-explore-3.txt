@@ -1,0 +1,189 @@
+18:42:53 pushing 152 steps as jg-explore-3
+18:43:06 shot sim-jg-18
+18:43:14 shot sim-jg-19
+18:43:42 shot sim-jg-20
+18:44:05 shot sim-jg-21
+18:44:13 shot sim-jg-22
+18:44:18 shot sim-jg-23
+18:44:31 shot sim-jg-24
+18:44:37 shot sim-jg-25
+18:44:48 shot sim-jg-26
+18:44:50 ok     0 deeplink   /chats
+18:44:50 ok     1 waitFor    new-chat appeared
+18:44:50 ok     2 press      new-chat ← onPress
+18:44:50 ok     3 waitFor    start-chat appeared
+18:44:50 ok     4 press      start-chat ← onPress
+18:44:50 ok     5 waitFor    composer-input appeared
+18:44:50 ok     6 waitFor    Loading gone
+18:44:50 ok     7 sleep      1500 ms
+18:44:50 ok     8 value      FAST
+18:44:50 ok     9 devPrompt  attach: receipt.jpg
+18:44:50 ok    10 waitFor    pending-images appeared
+18:44:50 ok    11 sleep      3000 ms
+18:44:50 ok    12 value      
+18:44:50 ok    13 type       composer-input = 21 chars
+18:44:50 ok    14 send       send ← onPress
+18:44:50 ok    15 sleep      2500 ms
+18:44:50 ok    16 waitFor    reading-pages gone
+18:44:50 ok    17 waitFor    reading-docs gone
+18:44:50 ok    18 waitFor    stop gone
+18:44:50 ok    19 sleep      2500 ms
+18:44:50 FAIL  20 value      value assistant-text: no node with that testID is mounted
+18:44:50 FAIL  21 value      value citations: no node with that testID is mounted
+18:44:50 FAIL  22 value      value none-matched: no node with that testID is mounted
+18:44:50 FAIL  23 value      value banners: no node with that testID is mounted
+18:44:50 ok    24 value      FAST
+18:44:50 ok    25 screenshot sim-jg-18
+18:44:50 ok    26 dump       sim-jg-18
+18:44:50 ok    27 type       composer-input = 37 chars
+18:44:50 ok    28 send       send ← onPress
+18:44:50 ok    29 sleep      2500 ms
+18:44:50 ok    30 waitFor    reading-pages gone
+18:44:50 ok    31 waitFor    reading-docs gone
+18:44:50 ok    32 waitFor    stop gone
+18:44:50 ok    33 sleep      2500 ms
+18:44:50 FAIL  34 value      value assistant-text: no node with that testID is mounted
+18:44:50 FAIL  35 value      value citations: no node with that testID is mounted
+18:44:50 FAIL  36 value      value none-matched: no node with that testID is mounted
+18:44:50 FAIL  37 value      value banners: no node with that testID is mounted
+18:44:50 ok    38 value      FAST
+18:44:50 ok    39 screenshot sim-jg-19
+18:44:50 ok    40 dump       sim-jg-19
+18:44:50 ok    41 deeplink   /chats
+18:44:50 ok    42 waitFor    new-chat appeared
+18:44:50 ok    43 press      new-chat ← onPress
+18:44:50 ok    44 waitFor    start-chat appeared
+18:44:50 ok    45 press      start-chat ← onPress
+18:44:50 ok    46 waitFor    composer-input appeared
+18:44:50 ok    47 waitFor    Loading gone
+18:44:50 ok    48 sleep      1500 ms
+18:44:50 ok    49 value      FAST
+18:44:50 ok    50 type       composer-input = 99 chars
+18:44:50 ok    51 send       send ← onPress
+18:44:50 ok    52 sleep      2500 ms
+18:44:50 ok    53 waitFor    reading-pages gone
+18:44:50 ok    54 waitFor    reading-docs gone
+18:44:50 ok    55 waitFor    stop gone
+18:44:50 ok    56 sleep      2500 ms
+18:44:50 ok    57 value      Here is a 3-day itinerary in Rome for two kids with a budget of €300, split evenly between the two of you. Day
+18:44:50 FAIL  58 value      value citations: no node with that testID is mounted
+18:44:50 FAIL  59 value      value none-matched: no node with that testID is mounted
+18:44:50 FAIL  60 value      value banners: no node with that testID is mounted
+18:44:50 ok    61 value      FAST
+18:44:50 ok    62 screenshot sim-jg-20
+18:44:50 ok    63 dump       sim-jg-20
+18:44:50 ok    64 type       composer-input = 19 chars
+18:44:50 ok    65 send       send ← onPress
+18:44:50 ok    66 sleep      2500 ms
+18:44:50 ok    67 waitFor    reading-pages gone
+18:44:50 ok    68 waitFor    reading-docs gone
+18:44:50 ok    69 waitFor    stop gone
+18:44:50 ok    70 sleep      2500 ms
+18:44:50 ok    71 value      Here is a 3-day itinerary in Rome for two kids with a budget of €300, split evenly between the two of you. Day
+18:44:50 FAIL  72 value      value citations: no node with that testID is mounted
+18:44:50 FAIL  73 value      value none-matched: no node with that testID is mounted
+18:44:50 FAIL  74 value      value banners: no node with that testID is mounted
+18:44:50 ok    75 value      FAST
+18:44:50 ok    76 screenshot sim-jg-21
+18:44:50 ok    77 dump       sim-jg-21
+18:44:50 ok    78 type       composer-input = 38 chars
+18:44:50 ok    79 send       send ← onPress
+18:44:50 ok    80 sleep      2500 ms
+18:44:50 ok    81 waitFor    reading-pages gone
+18:44:50 ok    82 waitFor    reading-docs gone
+18:44:50 ok    83 waitFor    stop gone
+18:44:50 ok    84 sleep      2500 ms
+18:44:50 ok    85 value      Here is a 3-day itinerary in Rome for two kids with a budget of €300, split evenly between the two of you. Day
+18:44:50 FAIL  86 value      value citations: no node with that testID is mounted
+18:44:50 FAIL  87 value      value none-matched: no node with that testID is mounted
+18:44:50 FAIL  88 value      value banners: no node with that testID is mounted
+18:44:50 ok    89 value      FAST
+18:44:50 ok    90 screenshot sim-jg-22
+18:44:50 ok    91 dump       sim-jg-22
+18:44:50 ok    92 deeplink   /chats
+18:44:50 ok    93 sleep      1500 ms
+18:44:50 ok    94 press      new-incognito ← onPress
+18:44:50 ok    95 waitFor    start-chat appeared
+18:44:50 ok    96 sleep      1000 ms
+18:44:50 ok    97 screenshot sim-jg-23
+18:44:50 ok    98 dump       sim-jg-23
+18:44:50 ok    99 press      start-chat ← onPress
+18:44:50 ok   100 waitFor    composer-input appeared
+18:44:50 ok   101 press      model-chip ← onPress
+18:44:50 ok   102 waitFor    model-sheet appeared
+18:44:50 ok   103 sleep      1500 ms
+18:44:50 ok   104 press      model-sheet-use-instant ← onPress
+18:44:50 ok   105 sleep      3000 ms
+18:44:50 FAIL 106 press      press model-sheet-close: not mounted
+18:44:50 ok   107 waitFor    Loading gone
+18:44:50 ok   108 sleep      1500 ms
+18:44:50 ok   109 value      INSTANT
+18:44:50 ok   110 assertText "INSTANT" present
+18:44:50 ok   111 type       composer-input = 26 chars
+18:44:50 ok   112 send       send ← onPress
+18:44:50 ok   113 sleep      2500 ms
+18:44:50 ok   114 waitFor    reading-pages gone
+18:44:50 ok   115 waitFor    reading-docs gone
+18:44:50 ok   116 waitFor    stop gone
+18:44:50 ok   117 sleep      2500 ms
+18:44:50 ok   118 value      Roasted beans brew hot tea, The steam rises up and leaves the air. A cup of coffee waits for you to sip it all
+18:44:50 FAIL 119 value      value citations: no node with that testID is mounted
+18:44:50 FAIL 120 value      value none-matched: no node with that testID is mounted
+18:44:50 FAIL 121 value      value banners: no node with that testID is mounted
+18:44:50 ok   122 value      INSTANT
+18:44:50 ok   123 screenshot sim-jg-24
+18:44:50 ok   124 dump       sim-jg-24
+18:44:50 ok   125 type       composer-input = 18 chars
+18:44:50 ok   126 send       send ← onPress
+18:44:50 ok   127 sleep      2500 ms
+18:44:50 ok   128 waitFor    reading-pages gone
+18:44:50 ok   129 waitFor    reading-docs gone
+18:44:50 ok   130 waitFor    stop gone
+18:44:50 ok   131 sleep      2500 ms
+18:44:50 ok   132 value      Roasted beans brew hot tea, The steam rises up and leaves the air. A cup of coffee waits for you to sip it all
+18:44:50 FAIL 133 value      value citations: no node with that testID is mounted
+18:44:50 FAIL 134 value      value none-matched: no node with that testID is mounted
+18:44:50 FAIL 135 value      value banners: no node with that testID is mounted
+18:44:50 ok   136 value      INSTANT
+18:44:50 ok   137 screenshot sim-jg-25
+18:44:50 ok   138 dump       sim-jg-25
+18:44:50 ok   139 press      model-chip ← onPress
+18:44:50 ok   140 waitFor    model-sheet appeared
+18:44:50 ok   141 sleep      1500 ms
+18:44:50 ok   142 press      model-sheet-use-fast ← onPress
+18:44:50 ok   143 sleep      3000 ms
+18:44:50 FAIL 144 press      press model-sheet-close: not mounted
+18:44:50 ok   145 waitFor    Loading gone
+18:44:50 ok   146 sleep      1500 ms
+18:44:50 ok   147 value      FAST
+18:44:50 ok   148 assertText "FAST" present
+18:44:50 ok   149 sleep      2000 ms
+18:44:50 ok   150 screenshot sim-jg-26
+18:44:50 ok   151 dump       sim-jg-26
+18:44:50 127 passed, 25 failed, 9 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-43/docs/qa/ios-device-pass-43/screens
+18:44:50   ! step 20 (value): value assistant-text: no node with that testID is mounted
+18:44:50   ! step 21 (value): value citations: no node with that testID is mounted
+18:44:50   ! step 22 (value): value none-matched: no node with that testID is mounted
+18:44:50   ! step 23 (value): value banners: no node with that testID is mounted
+18:44:50   ! step 34 (value): value assistant-text: no node with that testID is mounted
+18:44:50   ! step 35 (value): value citations: no node with that testID is mounted
+18:44:50   ! step 36 (value): value none-matched: no node with that testID is mounted
+18:44:50   ! step 37 (value): value banners: no node with that testID is mounted
+18:44:50   ! step 58 (value): value citations: no node with that testID is mounted
+18:44:50   ! step 59 (value): value none-matched: no node with that testID is mounted
+18:44:50   ! step 60 (value): value banners: no node with that testID is mounted
+18:44:50   ! step 72 (value): value citations: no node with that testID is mounted
+18:44:50   ! step 73 (value): value none-matched: no node with that testID is mounted
+18:44:50   ! step 74 (value): value banners: no node with that testID is mounted
+18:44:50   ! step 86 (value): value citations: no node with that testID is mounted
+18:44:50   ! step 87 (value): value none-matched: no node with that testID is mounted
+18:44:50   ! step 88 (value): value banners: no node with that testID is mounted
+18:44:50   ! step 106 (press): press model-sheet-close: not mounted
+18:44:50   ! step 119 (value): value citations: no node with that testID is mounted
+18:44:50   ! step 120 (value): value none-matched: no node with that testID is mounted
+18:44:50   ! step 121 (value): value banners: no node with that testID is mounted
+18:44:50   ! step 133 (value): value citations: no node with that testID is mounted
+18:44:50   ! step 134 (value): value none-matched: no node with that testID is mounted
+18:44:50   ! step 135 (value): value banners: no node with that testID is mounted
+18:44:50   ! step 144 (press): press model-sheet-close: not mounted
+18:44:50   ! console.log: [chat] identity kind=capabilities lang=he model=instant

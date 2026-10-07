@@ -1,0 +1,1 @@
+{"steps":[{"op":"deeplink","url":"/documents"},{"op":"waitFor","testID":"documents-screen","timeoutMs":15000},{"op":"sleep","ms":1500},{"op":"dump","testID":"documents-screen"},{"op":"screenshot","name":"docs-state"},{"op":"deeplink","url":"/vault"},{"op":"sleep","ms":2500},{"op":"screenshot","name":"vault-state"}]}

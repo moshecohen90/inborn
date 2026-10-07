@@ -1,0 +1,103 @@
+18:41:13 pushing 88 steps as jg-explore-2
+18:41:48 shot sim-jg-11
+18:42:06 shot sim-jg-12
+18:42:24 shot sim-jg-13
+18:42:29 shot sim-jg-14
+18:42:32 shot sim-jg-15
+18:42:35 shot sim-jg-16
+18:42:40 shot sim-jg-17
+18:42:43 ok     0 deeplink   /chats
+18:42:43 ok     1 waitFor    new-chat appeared
+18:42:43 ok     2 press      new-chat ← onPress
+18:42:43 ok     3 waitFor    start-chat appeared
+18:42:43 ok     4 press      start-chat ← onPress
+18:42:43 ok     5 waitFor    composer-input appeared
+18:42:43 ok     6 waitFor    Loading gone
+18:42:43 ok     7 sleep      1500 ms
+18:42:43 ok     8 value      FAST
+18:42:43 ok     9 devPrompt  attach: turbine-report-3pages.pdf
+18:42:43 ok    10 waitFor    attached-docs appeared
+18:42:43 ok    11 sleep      10000 ms
+18:42:43 ok    12 value      turbine-report-3pages.pdf
+18:42:43 ok    13 type       composer-input = 13 chars
+18:42:43 ok    14 send       send ← onPress
+18:42:43 ok    15 sleep      2500 ms
+18:42:43 ok    16 waitFor    reading-pages gone
+18:42:43 ok    17 waitFor    reading-docs gone
+18:42:43 ok    18 waitFor    stop gone
+18:42:43 ok    19 sleep      2500 ms
+18:42:43 ok    20 value      This is an acceptance test document for a Rakovsky turbine with serial number RK-4417, which has the annual ma
+18:42:43 ok    21 value      SOURCES turbine-report-3pages.pdf · p.1 turbine-report-3pages.pdf · p.2 turbine-report-3pages.pdf · p.3
+18:42:43 FAIL  22 value      value none-matched: no node with that testID is mounted
+18:42:43 FAIL  23 value      value banners: no node with that testID is mounted
+18:42:43 ok    24 value      FAST
+18:42:43 ok    25 screenshot sim-jg-11
+18:42:43 ok    26 dump       sim-jg-11
+18:42:43 ok    27 type       composer-input = 26 chars
+18:42:43 ok    28 send       send ← onPress
+18:42:43 ok    29 sleep      2500 ms
+18:42:43 ok    30 waitFor    reading-pages gone
+18:42:43 ok    31 waitFor    reading-docs gone
+18:42:43 ok    32 waitFor    stop gone
+18:42:43 ok    33 sleep      2500 ms
+18:42:43 ok    34 value      This is an acceptance test document for a Rakovsky turbine with serial number RK-4417, which has the annual ma
+18:42:43 ok    35 value      SOURCES turbine-report-3pages.pdf · p.1 turbine-report-3pages.pdf · p.2 turbine-report-3pages.pdf · p.3
+18:42:43 ok    36 value      Nothing in your documents matched this question. Answered without them.
+18:42:43 FAIL  37 value      value banners: no node with that testID is mounted
+18:42:43 ok    38 value      FAST
+18:42:43 ok    39 screenshot sim-jg-12
+18:42:43 ok    40 dump       sim-jg-12
+18:42:43 ok    41 type       composer-input = 9 chars
+18:42:43 ok    42 send       send ← onPress
+18:42:43 ok    43 sleep      2500 ms
+18:42:43 ok    44 waitFor    reading-pages gone
+18:42:43 ok    45 waitFor    reading-docs gone
+18:42:43 ok    46 waitFor    stop gone
+18:42:43 ok    47 sleep      2500 ms
+18:42:43 ok    48 value      This is an acceptance test document for a Rakovsky turbine with serial number RK-4417, which has the annual ma
+18:42:43 ok    49 value      SOURCES turbine-report-3pages.pdf · p.1 turbine-report-3pages.pdf · p.2 turbine-report-3pages.pdf · p.3
+18:42:43 FAIL  50 value      value none-matched: no node with that testID is mounted
+18:42:43 FAIL  51 value      value banners: no node with that testID is mounted
+18:42:43 ok    52 value      FAST
+18:42:43 ok    53 screenshot sim-jg-13
+18:42:43 ok    54 dump       sim-jg-13
+18:42:43 ok    55 deeplink   /chats
+18:42:43 ok    56 waitFor    new-chat appeared
+18:42:43 ok    57 press      new-chat ← onPress
+18:42:43 ok    58 waitFor    start-chat appeared
+18:42:43 ok    59 press      start-chat ← onPress
+18:42:43 ok    60 waitFor    composer-input appeared
+18:42:43 ok    61 waitFor    Loading gone
+18:42:43 ok    62 sleep      1500 ms
+18:42:43 ok    63 value      FAST
+18:42:43 ok    64 press      suggestion-summarize ← onPress
+18:42:43 ok    65 sleep      1500 ms
+18:42:43 ok    66 screenshot sim-jg-14
+18:42:43 ok    67 dump       sim-jg-14
+18:42:43 ok    68 press      open-chats ← onPress
+18:42:43 ok    69 waitFor    close-chats appeared
+18:42:43 ok    70 sleep      2000 ms
+18:42:43 ok    71 screenshot sim-jg-15
+18:42:43 ok    72 dump       sim-jg-15
+18:42:43 ok    73 press      close-chats ← onPress
+18:42:43 ok    74 deeplink   /settings
+18:42:43 ok    75 waitFor    row-about appeared
+18:42:43 ok    76 scrollTo   row-about
+18:42:43 ok    77 sleep      2000 ms
+18:42:43 ok    78 screenshot sim-jg-16
+18:42:43 ok    79 dump       sim-jg-16
+18:42:43 ok    80 press      row-about ← onPress
+18:42:43 ok    81 waitFor    row-privacy appeared
+18:42:43 ok    82 press      row-privacy ← onPress
+18:42:43 ok    83 sleep      2500 ms
+18:42:43 ok    84 screenshot sim-jg-17
+18:42:43 ok    85 dump       sim-jg-17
+18:42:43 ok    86 deeplink   /chats
+18:42:43 ok    87 sleep      1500 ms
+18:42:43 83 passed, 5 failed, 7 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-43/docs/qa/ios-device-pass-43/screens
+18:42:43   ! step 22 (value): value none-matched: no node with that testID is mounted
+18:42:43   ! step 23 (value): value banners: no node with that testID is mounted
+18:42:43   ! step 37 (value): value banners: no node with that testID is mounted
+18:42:43   ! step 50 (value): value none-matched: no node with that testID is mounted
+18:42:43   ! step 51 (value): value banners: no node with that testID is mounted
+18:42:43   ! console.log: [chat] plain=acknowledgement window=5/5 maxTokens=224

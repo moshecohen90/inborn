@@ -1,0 +1,414 @@
+{
+ "_": "D (134K) on Fast: Documents → Ask on the constitution (DOCID): an unanswerable question, then an answerable one.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "new-chat",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "press",
+   "testID": "new-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "start-chat",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "press",
+   "testID": "start-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "press",
+   "testID": "model-chip"
+  },
+  {
+   "op": "waitFor",
+   "testID": "model-sheet",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "press",
+   "testID": "model-sheet-use-fast"
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "press",
+   "testID": "model-sheet-close"
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 240000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "assertText",
+   "text": "FAST",
+   "testID": "model-chip"
+  },
+  {
+   "op": "setTier",
+   "tier": "pro"
+  },
+  {
+   "op": "deeplink",
+   "url": "/documents"
+  },
+  {
+   "op": "waitFor",
+   "testID": "doc-select-DOCID",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "press",
+   "testID": "doc-select-DOCID"
+  },
+  {
+   "op": "sleep",
+   "ms": 1000
+  },
+  {
+   "op": "value",
+   "testID": "documents-ask-selected"
+  },
+  {
+   "op": "press",
+   "testID": "documents-ask-selected"
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-sheet",
+   "timeoutMs": 20000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "sleep",
+   "ms": 500
+  },
+  {
+   "op": "screenshot",
+   "name": "jd-01"
+  },
+  {
+   "op": "dump",
+   "name": "jd-01"
+  },
+  {
+   "op": "type",
+   "testID": "ask-input",
+   "text": "Who won the 1998 World Cup?"
+  },
+  {
+   "op": "press",
+   "testID": "ask-send"
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-not-found",
+   "timeoutMs": 120000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "ask-not-found"
+  },
+  {
+   "op": "value",
+   "testID": "ask-stats"
+  },
+  {
+   "op": "value",
+   "testID": "ask-answer"
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "assertText",
+   "text": "Your documents don't mention this",
+   "testID": "ask-not-found"
+  },
+  {
+   "op": "assertText",
+   "text": "0 passages",
+   "testID": "ask-stats"
+  },
+  {
+   "op": "assertText",
+   "text": "tok/s",
+   "testID": "ask-stats",
+   "absent": true
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-answer",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-none-matched",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "screenshot",
+   "name": "jd-02"
+  },
+  {
+   "op": "dump",
+   "name": "jd-02"
+  },
+  {
+   "op": "type",
+   "testID": "ask-input",
+   "text": "What does it say about the moon?"
+  },
+  {
+   "op": "press",
+   "testID": "ask-send"
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-not-found",
+   "timeoutMs": 120000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "ask-not-found"
+  },
+  {
+   "op": "value",
+   "testID": "ask-stats"
+  },
+  {
+   "op": "value",
+   "testID": "ask-answer"
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "assertText",
+   "text": "Your documents don't mention this",
+   "testID": "ask-not-found"
+  },
+  {
+   "op": "assertText",
+   "text": "0 passages",
+   "testID": "ask-stats"
+  },
+  {
+   "op": "assertText",
+   "text": "tok/s",
+   "testID": "ask-stats",
+   "absent": true
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-answer",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-none-matched",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "screenshot",
+   "name": "jd-03"
+  },
+  {
+   "op": "dump",
+   "name": "jd-03"
+  },
+  {
+   "op": "type",
+   "testID": "ask-input",
+   "text": "Who can veto a bill?"
+  },
+  {
+   "op": "press",
+   "testID": "ask-send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "ask-answer"
+  },
+  {
+   "op": "value",
+   "testID": "ask-stats"
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "value",
+   "testID": "ask-not-found"
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-not-found",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "waitFor",
+   "testID": "citations",
+   "timeoutMs": 1000
+  },
+  {
+   "op": "screenshot",
+   "name": "jd-04"
+  },
+  {
+   "op": "dump",
+   "name": "jd-04"
+  },
+  {
+   "op": "type",
+   "testID": "ask-input",
+   "text": "thank you"
+  },
+  {
+   "op": "press",
+   "testID": "ask-send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "ask-stop",
+   "gone": true,
+   "timeoutMs": 300000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "ask-plain"
+  },
+  {
+   "op": "value",
+   "testID": "ask-not-found"
+  },
+  {
+   "op": "value",
+   "testID": "ask-answer"
+  },
+  {
+   "op": "value",
+   "testID": "ask-stats"
+  },
+  {
+   "op": "assertText",
+   "text": "Ask another question about these documents",
+   "testID": "ask-plain"
+  },
+  {
+   "op": "screenshot",
+   "name": "jd-05"
+  },
+  {
+   "op": "dump",
+   "name": "jd-05"
+  },
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "setTier",
+   "tier": "free"
+  }
+ ]
+}

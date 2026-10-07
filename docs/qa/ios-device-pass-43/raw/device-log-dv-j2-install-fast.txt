@@ -1,0 +1,53 @@
+19:00:52 pushing 43 steps as dv-j2-install-fast
+19:00:57 shot device-j2-01
+19:01:02 shot device-j2-02
+19:01:21 shot device-j2-03
+19:03:08 shot device-j2-04
+19:03:15 shot device-j2-05
+19:03:19 shot device-j2-06
+19:03:25 shot device-j2-07
+19:03:30 ok     0 deeplink   /vault
+19:03:30 ok     1 waitFor    best-for appeared
+19:03:30 ok     2 sleep      3000 ms
+19:03:30 ok     3 value      Included with the app
+19:03:30 FAIL   4 value      value model-status-fast: no node with that testID is mounted
+19:03:30 ok     5 screenshot device-j2-01
+19:03:30 ok     6 scrollTo   install-fast
+19:03:30 ok     7 screenshot device-j2-02
+19:03:30 ok     8 press      install-fast ← onPress
+19:03:30 ok     9 sleep      1500 ms
+19:03:30 ok    10 press      confirm-download ← onPress
+19:03:30 ok    11 sleep      15000 ms
+19:03:30 ok    12 value      7% · 92 MB of 1.28 GB
+19:03:30 ok    13 screenshot device-j2-03
+19:03:30 ok    14 idleTimer  idle timer disabled: true
+19:03:30 ok    15 waitFor    use-fast appeared
+19:03:30 ok    16 value      Installed
+19:03:30 ok    17 screenshot device-j2-04
+19:03:30 ok    18 deeplink   /chats
+19:03:30 ok    19 waitFor    new-chat appeared
+19:03:30 ok    20 press      new-chat ← onPress
+19:03:30 ok    21 waitFor    start-chat appeared
+19:03:30 ok    22 press      start-chat ← onPress
+19:03:30 ok    23 waitFor    composer-input appeared
+19:03:30 ok    24 waitFor    Loading gone
+19:03:30 ok    25 sleep      1500 ms
+19:03:30 ok    26 value      INSTANT
+19:03:30 ok    27 sleep      2000 ms
+19:03:30 ok    28 screenshot device-j2-05
+19:03:30 ok    29 dump       device-j2-05
+19:03:30 ok    30 press      model-chip ← onPress
+19:03:30 ok    31 waitFor    model-sheet appeared
+19:03:30 ok    32 sleep      1500 ms
+19:03:30 ok    33 screenshot device-j2-06
+19:03:30 ok    34 dump       device-j2-06
+19:03:30 ok    35 press      model-sheet-close ← onPress
+19:03:30 ok    36 deeplink   /vault
+19:03:30 ok    37 waitFor    best-for appeared
+19:03:30 ok    38 value      Installed
+19:03:30 ok    39 value      Included with the app
+19:03:30 ok    40 sleep      3000 ms
+19:03:30 ok    41 screenshot device-j2-07
+19:03:30 ok    42 dump       device-j2-07
+19:03:30 42 passed, 1 failed, 7 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-43/docs/qa/ios-device-pass-43/screens
+19:03:30   ! step 4 (value): value model-status-fast: no node with that testID is mounted

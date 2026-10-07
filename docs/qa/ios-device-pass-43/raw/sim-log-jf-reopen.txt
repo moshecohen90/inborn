@@ -1,0 +1,43 @@
+18:37:40 pushing 36 steps as jf-reopen
+18:37:47 shot sim-jf-09
+18:37:55 shot sim-jf-10
+18:39:04 shot sim-jf-11
+18:39:06 ok     0 deeplink   /chats
+18:39:06 ok     1 waitFor    chat-row-2200eaed-a11b-46bc-bc03-c99daec571b0 appeared
+18:39:06 ok     2 press      chat-row-2200eaed-a11b-46bc-bc03-c99daec571b0 ← onPress
+18:39:06 ok     3 waitFor    composer-input appeared
+18:39:06 ok     4 waitFor    Loading gone
+18:39:06 ok     5 sleep      3000 ms
+18:39:06 ok     6 value      FAST
+18:39:06 ok     7 value      constitution-9pages.pdf
+18:39:06 ok     8 sleep      2000 ms
+18:39:06 ok     9 screenshot sim-jf-09
+18:39:06 ok    10 dump       sim-jf-09
+18:39:06 ok    11 deeplink   /chats
+18:39:06 ok    12 waitFor    chat-row-91195661-15df-4211-8715-241a971a76e6 appeared
+18:39:06 ok    13 press      chat-row-91195661-15df-4211-8715-241a971a76e6 ← onPress
+18:39:06 ok    14 waitFor    composer-input appeared
+18:39:06 ok    15 waitFor    Loading gone
+18:39:06 ok    16 sleep      3000 ms
+18:39:06 ok    17 value      FAST
+18:39:06 ok    18 value      constitution-9pages.pdf
+18:39:06 ok    19 sleep      2000 ms
+18:39:06 ok    20 screenshot sim-jf-10
+18:39:06 ok    21 dump       sim-jf-10
+18:39:06 ok    22 type       composer-input = 31 chars
+18:39:06 ok    23 send       send ← onPress
+18:39:06 ok    24 sleep      2500 ms
+18:39:06 ok    25 waitFor    reading-pages gone
+18:39:06 ok    26 waitFor    reading-docs gone
+18:39:06 ok    27 waitFor    stop gone
+18:39:06 ok    28 sleep      2500 ms
+18:39:06 ok    29 value      This file is a 9-page excerpt from the United States Constitution covering its first nine articles. Its main p
+18:39:06 ok    30 value      [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4
+18:39:06 FAIL  31 value      value none-matched: no node with that testID is mounted
+18:39:06 FAIL  32 value      value banners: no node with that testID is mounted
+18:39:06 ok    33 value      FAST
+18:39:06 ok    34 screenshot sim-jf-11
+18:39:06 ok    35 dump       sim-jf-11
+18:39:06 34 passed, 2 failed, 3 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-43/docs/qa/ios-device-pass-43/screens
+18:39:06   ! step 31 (value): value none-matched: no node with that testID is mounted
+18:39:06   ! step 32 (value): value banners: no node with that testID is mounted

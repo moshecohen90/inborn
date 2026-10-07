@@ -1,0 +1,1203 @@
+{
+  "runId": "jd-sheet-fast",
+  "startedAt": "2026-10-07T15:34:28.505Z",
+  "finishedAt": "2026-10-07T15:35:33.629Z",
+  "ok": false,
+  "passed": 83,
+  "failed": 9,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 157,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 9,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "model-chip ← onPress"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "model-sheet appeared"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 12,
+      "op": "press",
+      "ok": false,
+      "ms": 1,
+      "detail": "press model-sheet-use-fast: not mounted"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3016,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 14,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "model-sheet-close ← onPress"
+    },
+    {
+      "i": 15,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 17,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 18,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"FAST\" present"
+    },
+    {
+      "i": 19,
+      "op": "setTier",
+      "ok": true,
+      "ms": 167,
+      "detail": "pro"
+    },
+    {
+      "i": 20,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 166,
+      "detail": "/documents"
+    },
+    {
+      "i": 21,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "doc-select-muy8o5oi-1-opi89wti appeared"
+    },
+    {
+      "i": 22,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2000,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 23,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "doc-select-muy8o5oi-1-opi89wti ← onPress"
+    },
+    {
+      "i": 24,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1017,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 25,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Ask about 1 document",
+        "props": {
+          "accessibilityRole": "button",
+          "disabled": false,
+          "accessibilityState": {
+            "disabled": false
+          }
+        }
+      },
+      "detail": "Ask about 1 document"
+    },
+    {
+      "i": 26,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "documents-ask-selected ← onPress"
+    },
+    {
+      "i": 27,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "ask-sheet appeared"
+    },
+    {
+      "i": 28,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 517,
+      "detail": "500 ms"
+    },
+    {
+      "i": 30,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1276,
+      "detail": "sim-jd-01"
+    },
+    {
+      "i": 31,
+      "op": "dump",
+      "ok": true,
+      "ms": 0,
+      "nodes": [
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file 1 document · 55.6 KB on this device Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages Ask about 1 document Indexed on this device Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. ↑"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muy8o5oi-1-opi89wti",
+          "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muy8o5oi-1-opi89wti",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": true,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muy8o5oi-1-opi89wti",
+          "text": "Indexed · 45 passages"
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Ask about 1 document",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "ask-sheet",
+          "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. ↑"
+        },
+        {
+          "testID": "ask-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "ask-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "ask-send",
+          "text": "↑",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jd-01"
+    },
+    {
+      "i": 32,
+      "op": "type",
+      "ok": true,
+      "ms": 157,
+      "detail": "ask-input = 27 chars"
+    },
+    {
+      "i": 33,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "ask-send ← onPress"
+    },
+    {
+      "i": 34,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 35,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "ask-not-found appeared"
+    },
+    {
+      "i": 36,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 37,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Your documents don't mention this.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Your documents don't mention this."
+    },
+    {
+      "i": 38,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "search 297 ms · 0 passages",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "search 297 ms · 0 passages"
+    },
+    {
+      "i": 39,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value ask-answer: no node with that testID is mounted"
+    },
+    {
+      "i": 40,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 41,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Your documents don't mention this\" present"
+    },
+    {
+      "i": 42,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"0 passages\" present"
+    },
+    {
+      "i": 43,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"tok/s\" absent"
+    },
+    {
+      "i": 44,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "ask-answer gone"
+    },
+    {
+      "i": 45,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "ask-none-matched gone"
+    },
+    {
+      "i": 46,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1590,
+      "detail": "sim-jd-02"
+    },
+    {
+      "i": 47,
+      "op": "dump",
+      "ok": true,
+      "ms": 0,
+      "nodes": [
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file 1 document · 55.6 KB on this device Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages Ask about 1 document Indexed on this device Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. Your documents don't mention this. search 297 ms · 0 passages ↑"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muy8o5oi-1-opi89wti",
+          "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muy8o5oi-1-opi89wti",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": true,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muy8o5oi-1-opi89wti",
+          "text": "Indexed · 45 passages"
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Ask about 1 document",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "ask-sheet",
+          "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. Your documents don't mention this. search 297 ms · 0 passages ↑"
+        },
+        {
+          "testID": "ask-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "ask-not-found",
+          "text": "Your documents don't mention this."
+        },
+        {
+          "testID": "ask-stats",
+          "text": "search 297 ms · 0 passages"
+        },
+        {
+          "testID": "ask-input",
+          "text": "",
+          "value": "Who won the 1998 World Cup?",
+          "pressable": true
+        },
+        {
+          "testID": "ask-send",
+          "text": "↑",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jd-02"
+    },
+    {
+      "i": 48,
+      "op": "type",
+      "ok": true,
+      "ms": 158,
+      "detail": "ask-input = 32 chars"
+    },
+    {
+      "i": 49,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "ask-send ← onPress"
+    },
+    {
+      "i": 50,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1500,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 51,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "ask-not-found appeared"
+    },
+    {
+      "i": 52,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1515,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 53,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Your documents don't mention this.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Your documents don't mention this."
+    },
+    {
+      "i": 54,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "search 380 ms · 0 passages",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "search 380 ms · 0 passages"
+    },
+    {
+      "i": 55,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value ask-answer: no node with that testID is mounted"
+    },
+    {
+      "i": 56,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 57,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Your documents don't mention this\" present"
+    },
+    {
+      "i": 58,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"0 passages\" present"
+    },
+    {
+      "i": 59,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"tok/s\" absent"
+    },
+    {
+      "i": 60,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "ask-answer gone"
+    },
+    {
+      "i": 61,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "ask-none-matched gone"
+    },
+    {
+      "i": 62,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1274,
+      "detail": "sim-jd-03"
+    },
+    {
+      "i": 63,
+      "op": "dump",
+      "ok": true,
+      "ms": 0,
+      "nodes": [
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file 1 document · 55.6 KB on this device Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages Ask about 1 document Indexed on this device Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. Your documents don't mention this. search 380 ms · 0 passages ↑"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muy8o5oi-1-opi89wti",
+          "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muy8o5oi-1-opi89wti",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": true,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muy8o5oi-1-opi89wti",
+          "text": "Indexed · 45 passages"
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Ask about 1 document",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "ask-sheet",
+          "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. Your documents don't mention this. search 380 ms · 0 passages ↑"
+        },
+        {
+          "testID": "ask-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "ask-not-found",
+          "text": "Your documents don't mention this."
+        },
+        {
+          "testID": "ask-stats",
+          "text": "search 380 ms · 0 passages"
+        },
+        {
+          "testID": "ask-input",
+          "text": "",
+          "value": "What does it say about the moon?",
+          "pressable": true
+        },
+        {
+          "testID": "ask-send",
+          "text": "↑",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jd-03"
+    },
+    {
+      "i": 64,
+      "op": "type",
+      "ok": true,
+      "ms": 158,
+      "detail": "ask-input = 20 chars"
+    },
+    {
+      "i": 65,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "ask-send ← onPress"
+    },
+    {
+      "i": 66,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 67,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 26633,
+      "detail": "ask-stop gone"
+    },
+    {
+      "i": 68,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2001,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 69,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "The President of the United States can veto a bill if he approves it or returns it with objections, as per [1] and [3].",
+        "props": {
+          "source": "The President of the United States can veto a bill if he approves it or returns it with objections, as per [1] and [3].",
+          "disabled": false
+        }
+      },
+      "detail": "The President of the United States can veto a bill if he approves it or returns it with objections, as per [1] and [3]."
+    },
+    {
+      "i": 70,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "search 253 ms · 4 passages · answer 28903 ms · 21.2 tok/s · prompt 889 tokens",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "search 253 ms · 4 passages · answer 28903 ms · 21.2 tok/s · prompt 889 tokens"
+    },
+    {
+      "i": 71,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "[1] constitution-9pages.pdf · p.3 [3] constitution-9pages.pdf · p.3",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "[1] constitution-9pages.pdf · p.3 [3] constitution-9pages.pdf · p.3"
+    },
+    {
+      "i": 72,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value ask-not-found: no node with that testID is mounted"
+    },
+    {
+      "i": 73,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "ask-not-found gone"
+    },
+    {
+      "i": 74,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "citations appeared"
+    },
+    {
+      "i": 75,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 956,
+      "detail": "sim-jd-04"
+    },
+    {
+      "i": 76,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file 1 document · 55.6 KB on this device Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages Ask about 1 document Indexed on this device Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. FAST · ON-DEVICE AI The President of the United States can veto a bill if he approves it or returns it with objections, as per [1] and [3]. [1] constitution-9pages.pdf · p.3 [3] constitution-9pages.pdf · p.3 search 253 ms · 4 passages · answer 28903 ms · 21.2 tok/s · prompt 889 tokens ↑"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muy8o5oi-1-opi89wti",
+          "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muy8o5oi-1-opi89wti",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": true,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muy8o5oi-1-opi89wti",
+          "text": "Indexed · 45 passages"
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Ask about 1 document",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "ask-sheet",
+          "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. FAST · ON-DEVICE AI The President of the United States can veto a bill if he approves it or returns it with objections, as per [1] and [3]. [1] constitution-9pages.pdf · p.3 [3] constitution-9pages.pdf · p.3 search 253 ms · 4 passages · answer 28903 ms · 21.2 tok/s · prompt 889 tokens ↑"
+        },
+        {
+          "testID": "ask-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "ask-answer",
+          "text": "The President of the United States can veto a bill if he approves it or returns it with objections, as per [1] and [3]."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.3 [3] constitution-9pages.pdf · p.3"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.3",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.3",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3",
+          "pressable": true
+        },
+        {
+          "testID": "ask-stats",
+          "text": "search 253 ms · 4 passages · answer 28903 ms · 21.2 tok/s · prompt 889 tokens"
+        },
+        {
+          "testID": "ask-input",
+          "text": "",
+          "value": "Who can veto a bill?",
+          "pressable": true
+        },
+        {
+          "testID": "ask-send",
+          "text": "↑",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jd-04"
+    },
+    {
+      "i": 77,
+      "op": "type",
+      "ok": true,
+      "ms": 157,
+      "detail": "ask-input = 9 chars"
+    },
+    {
+      "i": 78,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "ask-send ← onPress"
+    },
+    {
+      "i": 79,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 80,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "ask-stop gone"
+    },
+    {
+      "i": 81,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 82,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "You're welcome. Ask another question about these documents.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "You're welcome. Ask another question about these documents."
+    },
+    {
+      "i": 83,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value ask-not-found: no node with that testID is mounted"
+    },
+    {
+      "i": 84,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value ask-answer: no node with that testID is mounted"
+    },
+    {
+      "i": 85,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value ask-stats: no node with that testID is mounted"
+    },
+    {
+      "i": 86,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"Ask another question about these documents\" present"
+    },
+    {
+      "i": 87,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1591,
+      "detail": "sim-jd-05"
+    },
+    {
+      "i": 88,
+      "op": "dump",
+      "ok": true,
+      "ms": 0,
+      "nodes": [
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file 1 document · 55.6 KB on this device Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages Ask about 1 document Indexed on this device Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. You're welcome. Ask another question about these documents. ↑"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muy8o5oi-1-opi89wti",
+          "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muy8o5oi-1-opi89wti",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": true,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muy8o5oi-1-opi89wti",
+          "text": "Indexed · 45 passages"
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Ask about 1 document",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "ask-sheet",
+          "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. You're welcome. Ask another question about these documents. ↑"
+        },
+        {
+          "testID": "ask-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "ask-plain",
+          "text": "You're welcome. Ask another question about these documents."
+        },
+        {
+          "testID": "ask-input",
+          "text": "",
+          "value": "thank you",
+          "pressable": true
+        },
+        {
+          "testID": "ask-send",
+          "text": "↑",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jd-05"
+    },
+    {
+      "i": 89,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 155,
+      "detail": "/chats"
+    },
+    {
+      "i": 90,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1502,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 91,
+      "op": "setTier",
+      "ok": true,
+      "ms": 198,
+      "detail": "free"
+    }
+  ],
+  "errors": [
+    "step 12 (press): press model-sheet-use-fast: not mounted",
+    "step 39 (value): value ask-answer: no node with that testID is mounted",
+    "step 40 (value): value citations: no node with that testID is mounted",
+    "step 55 (value): value ask-answer: no node with that testID is mounted",
+    "step 56 (value): value citations: no node with that testID is mounted",
+    "step 72 (value): value ask-not-found: no node with that testID is mounted",
+    "step 83 (value): value ask-not-found: no node with that testID is mounted",
+    "step 84 (value): value ask-answer: no node with that testID is mounted",
+    "step 85 (value): value ask-stats: no node with that testID is mounted"
+  ]
+}

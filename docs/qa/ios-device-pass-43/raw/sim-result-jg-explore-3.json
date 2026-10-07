@@ -1,0 +1,3422 @@
+{
+  "runId": "jg-explore-3",
+  "startedAt": "2026-10-07T15:42:54.043Z",
+  "finishedAt": "2026-10-07T15:44:49.061Z",
+  "ok": false,
+  "passed": 127,
+  "failed": 25,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 156,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 9,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 166,
+      "detail": "attach: receipt.jpg"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1583,
+      "detail": "pending-images appeared"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3016,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 12,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 13,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 21 chars"
+    },
+    {
+      "i": 14,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 15,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2517,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 16,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 17,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 18,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "stop gone"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value assistant-text: no node with that testID is mounted"
+    },
+    {
+      "i": 21,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 23,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 24,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 25,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1266,
+      "detail": "sim-jg-18"
+    },
+    {
+      "i": 26,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "empty-headline",
+          "text": "Nothing leaves this phone."
+        },
+        {
+          "testID": "suggestion-summarize",
+          "text": "Summarize text",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-translate",
+          "text": "Translate",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-draft",
+          "text": "Draft a message",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "vision-hold",
+          "text": "FAST needs its photo pack to see photos One 668 MB download, then this photo sends by itself. Download 668 MB Switch to INSTANT · installed Remove the photo Smaller, but less accurate with photos."
+        },
+        {
+          "testID": "vision-hold-title",
+          "text": "FAST needs its photo pack to see photos"
+        },
+        {
+          "testID": "vision-hold-body",
+          "text": "One 668 MB download, then this photo sends by itself."
+        },
+        {
+          "testID": "vision-hold-download",
+          "text": "Download 668 MB",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "vision-hold-switch",
+          "text": "Switch to INSTANT · installed",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "vision-hold-remove",
+          "text": "Remove the photo",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "vision-hold-caption",
+          "text": "Smaller, but less accurate with photos."
+        },
+        {
+          "testID": "pending-images",
+          "text": ""
+        },
+        {
+          "testID": "pending-image-0",
+          "text": "",
+          "role": "button",
+          "label": "Remove photo 1",
+          "pressable": true
+        },
+        {
+          "testID": "redact-bar",
+          "text": "Redact"
+        },
+        {
+          "testID": "redact-open",
+          "text": "Redact",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "how much did I spend?",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jg-18"
+    },
+    {
+      "i": 27,
+      "op": "type",
+      "ok": true,
+      "ms": 162,
+      "detail": "composer-input = 37 chars"
+    },
+    {
+      "i": 28,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2517,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 30,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 31,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 32,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "stop gone"
+    },
+    {
+      "i": 33,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2514,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 34,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value assistant-text: no node with that testID is mounted"
+    },
+    {
+      "i": 35,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 36,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 37,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 38,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 39,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1906,
+      "detail": "sim-jg-19"
+    },
+    {
+      "i": 40,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "empty-headline",
+          "text": "Nothing leaves this phone."
+        },
+        {
+          "testID": "suggestion-summarize",
+          "text": "Summarize text",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-translate",
+          "text": "Translate",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-draft",
+          "text": "Draft a message",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "vision-hold",
+          "text": "FAST needs its photo pack to see photos One 668 MB download, then this photo sends by itself. Download 668 MB Switch to INSTANT · installed Remove the photo Smaller, but less accurate with photos."
+        },
+        {
+          "testID": "vision-hold-title",
+          "text": "FAST needs its photo pack to see photos"
+        },
+        {
+          "testID": "vision-hold-body",
+          "text": "One 668 MB download, then this photo sends by itself."
+        },
+        {
+          "testID": "vision-hold-download",
+          "text": "Download 668 MB",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "vision-hold-switch",
+          "text": "Switch to INSTANT · installed",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "vision-hold-remove",
+          "text": "Remove the photo",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "vision-hold-caption",
+          "text": "Smaller, but less accurate with photos."
+        },
+        {
+          "testID": "pending-images",
+          "text": ""
+        },
+        {
+          "testID": "pending-image-0",
+          "text": "",
+          "role": "button",
+          "label": "Remove photo 1",
+          "pressable": true
+        },
+        {
+          "testID": "redact-bar",
+          "text": "Redact"
+        },
+        {
+          "testID": "redact-open",
+          "text": "Redact",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "and what was the most expensive item?",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jg-19"
+    },
+    {
+      "i": 41,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 157,
+      "detail": "/chats"
+    },
+    {
+      "i": 42,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 43,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 44,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 45,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 46,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 47,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 48,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1500,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 49,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 50,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 99 chars"
+    },
+    {
+      "i": 51,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 52,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 53,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 54,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 55,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 19099,
+      "detail": "stop gone"
+    },
+    {
+      "i": 56,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 57,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Here is a 3-day itinerary in Rome for two kids with a budget of €300, split evenly between the two of you. Day 1: The Colosseum & Roman Forum (€125) Start early to beat crowds and heat at the Colosseum entrance; buy tickets via the official site to save time. Spend the afternoon exploring the adjacent Roman Forum for a relaxed stroll, then end your day with an evening walk along the Palatine Hill. Day 2: Vatican City & St. Peter's Square (€105) Visit the Vatican Museums and St. Peter's Basilica first thing in the morning; reserve tickets online well in advance as they sell out quickly. Afterward, take a short train ride to St. Peter's Square for lunch. Conclude with an evening stroll through the Piazza Navona to see Michelangelo's fountains. Day 3: Archaeological & Shopping Spots (€105) Begin your third day at the Palatine Hill or Villa Giulia for history buffs, then head to the Tiber Island for a refreshing walk and lunch overlooking the river. Finish the trip with a relaxed evening in Trastevere for dinner and a chance to visit the famous shops and narrow streets that end the historic tour. Total: €315 (Note: This estimate assumes standard single tickets, which is slightly over your budget by €15; you may need to combine some attractions or purchase regional passes to stay within €300).",
+        "props": {
+          "source": "Here is a 3-day itinerary in Rome for two kids with a budget of €300, split evenly between the two of you.\n\n**Day 1: The Colosseum & Roman Forum (€125)**\nStart early to beat crowds and heat at the Colosseum entrance; buy tickets via the official site to save time. Spend the afternoon exploring the adjacent Roman Forum for a relaxed stroll, then end your day with an evening walk along the Palatine Hill.\n\n**Day 2: Vatican City & St. Peter's Square (€105)**\nVisit the Vatican Museums and St. Peter's Basilica first thing in the morning; reserve tickets online well in advance as they sell out quickly. Afterward, take a short train ride to St. Peter's Square for lunch. Conclude with an evening stroll through the Piazza Navona to see Michelangelo's fountains.\n\n**Day 3: Archaeological & Shopping Spots (€105)**\nBegin your third day at the Palatine Hill or Villa Giulia for history buffs, then head to the Tiber Island for a refreshing walk and lunch overlooking the river. Finish the trip with a relaxed evening in Trastevere for dinner and a chance to visit the famous shops and narrow streets that end the historic tour.\n\n**Total:** €315 (Note: This estimate assumes standard single tickets, which is slightly over your budget by €15; you may need to combine some attractions or purchase regional passes to stay within €300).",
+          "disabled": false
+        }
+      },
+      "detail": "Here is a 3-day itinerary in Rome for two kids with a budget of €300, split evenly between the two of you. Day 1: The Colosseum & Roman Forum (€125) Start early to beat crowds and heat at the Colosseu"
+    },
+    {
+      "i": 58,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 59,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 60,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 61,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 62,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1906,
+      "detail": "sim-jg-20"
+    },
+    {
+      "i": 63,
+      "op": "dump",
+      "ok": true,
+      "ms": 0,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "I'm planning 3 days in Rome with two kids, max 300 euro on tickets, what should each day look like?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI Here is a 3-day itinerary in Rome for two kids with a budget of €300, split evenly between the two of you. Day 1: The Colosseum & Roman Forum (€125) Start early to beat crowds and heat at the Colosseum entrance; buy tickets via the official site to save time. Spend the afternoon exploring the adjacent Roman Forum for a relaxed stroll, then end your day with an evening walk along the Palatine Hill. Day 2: Vatican City & St. Peter's Square (€105) Visit the Vatican Museums and St. Peter's Basilica first thing in the morning; reserve tickets online well in advance as they sell out quickly. Afterward, take a short train ride to St. Peter's Square for lunch. Conclude with an evening stroll through the Piazza Navona to see Michelangelo's fountains. Day 3: Archaeological & Shopping Spots (€105) Begin your third day at the Palatine Hill or Villa Giulia for history buffs, then head to the Tiber Island for a refreshing walk and lunch overlooking the river. Finish the trip with a relaxed evening in Trastevere for dinner and a chance to visit the famous shops and narrow streets that end the historic tour. Total: €315 (Note: This estimate assumes standard single tickets, which is slightly over your budget by €15; you may need to combine some attractions or purchase regional passes to stay within €300). Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "Here is a 3-day itinerary in Rome for two kids with a budget of €300, split evenly between the two of you. Day 1: The Colosseum & Roman Forum (€125) Start early to beat crowds and heat at the Colosseum entrance; buy tickets via the official site to save time. Spend the afternoon exploring the adjacent Roman Forum for a relaxed stroll, then end your day with an evening walk along the Palatine Hill. Day 2: Vatican City & St. Peter's Square (€105) Visit the Vatican Museums and St. Peter's Basilica first thing in the morning; reserve tickets online well in advance as they sell out quickly. Afterward, take a short train ride to St. Peter's Square for lunch. Conclude with an evening stroll through the Piazza Navona to see Michelangelo's fountains. Day 3: Archaeological & Shopping Spots (€105) Begin your third day at the Palatine Hill or Villa Giulia for history buffs, then head to the Tiber Island for a refreshing walk and lunch overlooking the river. Finish the trip with a relaxed evening in Trastevere for dinner and a chance to visit the famous shops and narrow streets that end the historic tour. Total: €315 (Note: This estimate assumes standard single tickets, which is slightly over your budget by €15; you may need to combine some attractions or purchase regional passes to stay within €300)."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jg-20"
+    },
+    {
+      "i": 64,
+      "op": "type",
+      "ok": true,
+      "ms": 158,
+      "detail": "composer-input = 19 chars"
+    },
+    {
+      "i": 65,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 66,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 67,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 68,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 69,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 15583,
+      "detail": "stop gone"
+    },
+    {
+      "i": 70,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2502,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 71,
+      "op": "value",
+      "ok": true,
+      "ms": 7,
+      "value": {
+        "text": "Here is a 3-day itinerary in Rome for two kids with a budget of €300, split evenly between the two of you. Day 1: The Colosseum & Roman Forum (€125) Start early to beat crowds and heat at the Colosseum entrance; buy tickets via the official site to save time. Spend the afternoon exploring the adjacent Roman Forum for a relaxed stroll, then end your day with an evening walk along the Palatine Hill. Day 2: Vatican City & St. Peter's Square (€105) Visit the Vatican Museums and St. Peter's Basilica first thing in the morning; reserve tickets online well in advance as they sell out quickly. Afterward, take a short train ride to St. Peter's Square for lunch. Conclude with an evening stroll through the Piazza Navona to see Michelangelo's fountains. Day 3: Archaeological & Shopping Spots (€105) Begin your third day at the Palatine Hill or Villa Giulia for history buffs, then head to the Tiber Island for a refreshing walk and lunch overlooking the river. Finish the trip with a relaxed evening in Trastevere for dinner and a chance to visit the famous shops and narrow streets that end the historic tour. Total: €315 (Note: This estimate assumes standard single tickets, which is slightly over your budget by €15; you may need to combine some attractions or purchase regional passes to stay within €300).",
+        "props": {
+          "source": "Here is a 3-day itinerary in Rome for two kids with a budget of €300, split evenly between the two of you.\n\n**Day 1: The Colosseum & Roman Forum (€125)**\nStart early to beat crowds and heat at the Colosseum entrance; buy tickets via the official site to save time. Spend the afternoon exploring the adjacent Roman Forum for a relaxed stroll, then end your day with an evening walk along the Palatine Hill.\n\n**Day 2: Vatican City & St. Peter's Square (€105)**\nVisit the Vatican Museums and St. Peter's Basilica first thing in the morning; reserve tickets online well in advance as they sell out quickly. Afterward, take a short train ride to St. Peter's Square for lunch. Conclude with an evening stroll through the Piazza Navona to see Michelangelo's fountains.\n\n**Day 3: Archaeological & Shopping Spots (€105)**\nBegin your third day at the Palatine Hill or Villa Giulia for history buffs, then head to the Tiber Island for a refreshing walk and lunch overlooking the river. Finish the trip with a relaxed evening in Trastevere for dinner and a chance to visit the famous shops and narrow streets that end the historic tour.\n\n**Total:** €315 (Note: This estimate assumes standard single tickets, which is slightly over your budget by €15; you may need to combine some attractions or purchase regional passes to stay within €300).",
+          "disabled": false
+        }
+      },
+      "detail": "Here is a 3-day itinerary in Rome for two kids with a budget of €300, split evenly between the two of you. Day 1: The Colosseum & Roman Forum (€125) Start early to beat crowds and heat at the Colosseu"
+    },
+    {
+      "i": 72,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 73,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 74,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 75,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 76,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1914,
+      "detail": "sim-jg-21"
+    },
+    {
+      "i": 77,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "I'm planning 3 days in Rome with two kids, max 300 euro on tickets, what should each day look like?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI Here is a 3-day itinerary in Rome for two kids with a budget of €300, split evenly between the two of you. Day 1: The Colosseum & Roman Forum (€125) Start early to beat crowds and heat at the Colosseum entrance; buy tickets via the official site to save time. Spend the afternoon exploring the adjacent Roman Forum for a relaxed stroll, then end your day with an evening walk along the Palatine Hill. Day 2: Vatican City & St. Peter's Square (€105) Visit the Vatican Museums and St. Peter's Basilica first thing in the morning; reserve tickets online well in advance as they sell out quickly. Afterward, take a short train ride to St. Peter's Square for lunch. Conclude with an evening stroll through the Piazza Navona to see Michelangelo's fountains. Day 3: Archaeological & Shopping Spots (€105) Begin your third day at the Palatine Hill or Villa Giulia for history buffs, then head to the Tiber Island for a refreshing walk and lunch overlooking the river. Finish the trip with a relaxed evening in Trastevere for dinner and a chance to visit the famous shops and narrow streets that end the historic tour. Total: €315 (Note: This estimate assumes standard single tickets, which is slightly over your budget by €15; you may need to combine some attractions or purchase regional passes to stay within €300). Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "Here is a 3-day itinerary in Rome for two kids with a budget of €300, split evenly between the two of you. Day 1: The Colosseum & Roman Forum (€125) Start early to beat crowds and heat at the Colosseum entrance; buy tickets via the official site to save time. Spend the afternoon exploring the adjacent Roman Forum for a relaxed stroll, then end your day with an evening walk along the Palatine Hill. Day 2: Vatican City & St. Peter's Square (€105) Visit the Vatican Museums and St. Peter's Basilica first thing in the morning; reserve tickets online well in advance as they sell out quickly. Afterward, take a short train ride to St. Peter's Square for lunch. Conclude with an evening stroll through the Piazza Navona to see Michelangelo's fountains. Day 3: Archaeological & Shopping Spots (€105) Begin your third day at the Palatine Hill or Villa Giulia for history buffs, then head to the Tiber Island for a refreshing walk and lunch overlooking the river. Finish the trip with a relaxed evening in Trastevere for dinner and a chance to visit the famous shops and narrow streets that end the historic tour. Total: €315 (Note: This estimate assumes standard single tickets, which is slightly over your budget by €15; you may need to combine some attractions or purchase regional passes to stay within €300)."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jg-21"
+    },
+    {
+      "i": 78,
+      "op": "type",
+      "ok": true,
+      "ms": 158,
+      "detail": "composer-input = 38 chars"
+    },
+    {
+      "i": 79,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 80,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2502,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 81,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 82,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 83,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2100,
+      "detail": "stop gone"
+    },
+    {
+      "i": 84,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2516,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 85,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Here is a 3-day itinerary in Rome for two kids with a budget of €300, split evenly between the two of you. Day 1: The Colosseum & Roman Forum (€125) Start early to beat crowds and heat at the Colosseum entrance; buy tickets via the official site to save time. Spend the afternoon exploring the adjacent Roman Forum for a relaxed stroll, then end your day with an evening walk along the Palatine Hill. Day 2: Vatican City & St. Peter's Square (€105) Visit the Vatican Museums and St. Peter's Basilica first thing in the morning; reserve tickets online well in advance as they sell out quickly. Afterward, take a short train ride to St. Peter's Square for lunch. Conclude with an evening stroll through the Piazza Navona to see Michelangelo's fountains. Day 3: Archaeological & Shopping Spots (€105) Begin your third day at the Palatine Hill or Villa Giulia for history buffs, then head to the Tiber Island for a refreshing walk and lunch overlooking the river. Finish the trip with a relaxed evening in Trastevere for dinner and a chance to visit the famous shops and narrow streets that end the historic tour. Total: €315 (Note: This estimate assumes standard single tickets, which is slightly over your budget by €15; you may need to combine some attractions or purchase regional passes to stay within €300).",
+        "props": {
+          "source": "Here is a 3-day itinerary in Rome for two kids with a budget of €300, split evenly between the two of you.\n\n**Day 1: The Colosseum & Roman Forum (€125)**\nStart early to beat crowds and heat at the Colosseum entrance; buy tickets via the official site to save time. Spend the afternoon exploring the adjacent Roman Forum for a relaxed stroll, then end your day with an evening walk along the Palatine Hill.\n\n**Day 2: Vatican City & St. Peter's Square (€105)**\nVisit the Vatican Museums and St. Peter's Basilica first thing in the morning; reserve tickets online well in advance as they sell out quickly. Afterward, take a short train ride to St. Peter's Square for lunch. Conclude with an evening stroll through the Piazza Navona to see Michelangelo's fountains.\n\n**Day 3: Archaeological & Shopping Spots (€105)**\nBegin your third day at the Palatine Hill or Villa Giulia for history buffs, then head to the Tiber Island for a refreshing walk and lunch overlooking the river. Finish the trip with a relaxed evening in Trastevere for dinner and a chance to visit the famous shops and narrow streets that end the historic tour.\n\n**Total:** €315 (Note: This estimate assumes standard single tickets, which is slightly over your budget by €15; you may need to combine some attractions or purchase regional passes to stay within €300).",
+          "disabled": false
+        }
+      },
+      "detail": "Here is a 3-day itinerary in Rome for two kids with a budget of €300, split evenly between the two of you. Day 1: The Colosseum & Roman Forum (€125) Start early to beat crowds and heat at the Colosseu"
+    },
+    {
+      "i": 86,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 87,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 88,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 89,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 90,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1589,
+      "detail": "sim-jg-22"
+    },
+    {
+      "i": 91,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "I'm planning 3 days in Rome with two kids, max 300 euro on tickets, what should each day look like?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI Here is a 3-day itinerary in Rome for two kids with a budget of €300, split evenly between the two of you. Day 1: The Colosseum & Roman Forum (€125) Start early to beat crowds and heat at the Colosseum entrance; buy tickets via the official site to save time. Spend the afternoon exploring the adjacent Roman Forum for a relaxed stroll, then end your day with an evening walk along the Palatine Hill. Day 2: Vatican City & St. Peter's Square (€105) Visit the Vatican Museums and St. Peter's Basilica first thing in the morning; reserve tickets online well in advance as they sell out quickly. Afterward, take a short train ride to St. Peter's Square for lunch. Conclude with an evening stroll through the Piazza Navona to see Michelangelo's fountains. Day 3: Archaeological & Shopping Spots (€105) Begin your third day at the Palatine Hill or Villa Giulia for history buffs, then head to the Tiber Island for a refreshing walk and lunch overlooking the river. Finish the trip with a relaxed evening in Trastevere for dinner and a chance to visit the famous shops and narrow streets that end the historic tour. Total: €315 (Note: This estimate assumes standard single tickets, which is slightly over your budget by €15; you may need to combine some attractions or purchase regional passes to stay within €300). Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "Here is a 3-day itinerary in Rome for two kids with a budget of €300, split evenly between the two of you. Day 1: The Colosseum & Roman Forum (€125) Start early to beat crowds and heat at the Colosseum entrance; buy tickets via the official site to save time. Spend the afternoon exploring the adjacent Roman Forum for a relaxed stroll, then end your day with an evening walk along the Palatine Hill. Day 2: Vatican City & St. Peter's Square (€105) Visit the Vatican Museums and St. Peter's Basilica first thing in the morning; reserve tickets online well in advance as they sell out quickly. Afterward, take a short train ride to St. Peter's Square for lunch. Conclude with an evening stroll through the Piazza Navona to see Michelangelo's fountains. Day 3: Archaeological & Shopping Spots (€105) Begin your third day at the Palatine Hill or Villa Giulia for history buffs, then head to the Tiber Island for a refreshing walk and lunch overlooking the river. Finish the trip with a relaxed evening in Trastevere for dinner and a chance to visit the famous shops and narrow streets that end the historic tour. Total: €315 (Note: This estimate assumes standard single tickets, which is slightly over your budget by €15; you may need to combine some attractions or purchase regional passes to stay within €300)."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jg-22"
+    },
+    {
+      "i": 92,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 155,
+      "detail": "/chats"
+    },
+    {
+      "i": 93,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1500,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 94,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "new-incognito ← onPress"
+    },
+    {
+      "i": 95,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 96,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1016,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 97,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1908,
+      "detail": "sim-jg-23"
+    },
+    {
+      "i": 98,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "close-chats",
+          "text": "",
+          "role": "button",
+          "label": "Close",
+          "pressable": true
+        },
+        {
+          "testID": "select-toggle",
+          "text": "Select",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "chats-search",
+          "text": "",
+          "label": "Search",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "new-chat",
+          "text": "New chat",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "new-incognito",
+          "text": "Incognito",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-78217b2b-9f46-46cf-8df0-e885178845b9",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-78217b2b-9f46-46cf-8df0-e885178845b9",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-78217b2b-9f46-46cf-8df0-e885178845b9",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-78217b2b-9f46-46cf-8df0-e885178845b9",
+          "text": "I'm planning 3 days in Rome 6:44 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-9f2b103a-90b8-4bd5-b16f-5316ad9687b0",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-9f2b103a-90b8-4bd5-b16f-5316ad9687b0",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-9f2b103a-90b8-4bd5-b16f-5316ad9687b0",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-9f2b103a-90b8-4bd5-b16f-5316ad9687b0",
+          "text": "what is this? 6:42 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-55302e86-911f-4825-89b1-b526e2f10cb8",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-55302e86-911f-4825-89b1-b526e2f10cb8",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-55302e86-911f-4825-89b1-b526e2f10cb8",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-55302e86-911f-4825-89b1-b526e2f10cb8",
+          "text": "tell me a joke 6:41 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-806dd866-8772-43cf-9264-64f75f1cf169",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-806dd866-8772-43cf-9264-64f75f1cf169",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-806dd866-8772-43cf-9264-64f75f1cf169",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-806dd866-8772-43cf-9264-64f75f1cf169",
+          "text": "hi, is this like chatgpt? 6:40 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-91195661-15df-4211-8715-241a971a76e6",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-91195661-15df-4211-8715-241a971a76e6",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-91195661-15df-4211-8715-241a971a76e6",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-91195661-15df-4211-8715-241a971a76e6",
+          "text": "Summarize it 6:38 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-792c5364-928f-48ff-8240-1892db71fe21",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-792c5364-928f-48ff-8240-1892db71fe21",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-792c5364-928f-48ff-8240-1892db71fe21",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-792c5364-928f-48ff-8240-1892db71fe21",
+          "text": "מה בירת צרפת? 6:37 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-2fa7b088-0ceb-4277-8feb-51af8f077499",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-2fa7b088-0ceb-4277-8feb-51af8f077499",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-2fa7b088-0ceb-4277-8feb-51af8f077499",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-2fa7b088-0ceb-4277-8feb-51af8f077499",
+          "text": "Write a long story of about 6:36 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-ddf1e00f-dcad-4b09-9d48-4e4eba1b19b6",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-ddf1e00f-dcad-4b09-9d48-4e4eba1b19b6",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-ddf1e00f-dcad-4b09-9d48-4e4eba1b19b6",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-ddf1e00f-dcad-4b09-9d48-4e4eba1b19b6",
+          "text": "Summarize it 6:33 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-ee45a4ff-8fa1-4113-9edc-370c7760b08a",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-ee45a4ff-8fa1-4113-9edc-370c7760b08a",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-ee45a4ff-8fa1-4113-9edc-370c7760b08a",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-ee45a4ff-8fa1-4113-9edc-370c7760b08a",
+          "text": "Draft a short, friendly message that 6:24 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-fdfe7828-357d-4f8d-b00a-8964a824d8cc",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-fdfe7828-357d-4f8d-b00a-8964a824d8cc",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-fdfe7828-357d-4f8d-b00a-8964a824d8cc",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-fdfe7828-357d-4f8d-b00a-8964a824d8cc",
+          "text": "how do weather forecasts work? 6:23 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-198bcd15-3920-495c-bc11-f5cc2b2e9abf",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-198bcd15-3920-495c-bc11-f5cc2b2e9abf",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-198bcd15-3920-495c-bc11-f5cc2b2e9abf",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-198bcd15-3920-495c-bc11-f5cc2b2e9abf",
+          "text": "tell me about Paris 6:23 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-b3b3b969-79ab-487d-af4c-1dbb5f8ad9a3",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-b3b3b969-79ab-487d-af4c-1dbb5f8ad9a3",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-b3b3b969-79ab-487d-af4c-1dbb5f8ad9a3",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-b3b3b969-79ab-487d-af4c-1dbb5f8ad9a3",
+          "text": "what can you do with PDFs? 6:23 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-c563d84f-8b58-4f41-b059-c024296d81e0",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-c563d84f-8b58-4f41-b059-c024296d81e0",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-c563d84f-8b58-4f41-b059-c024296d81e0",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-c563d84f-8b58-4f41-b059-c024296d81e0",
+          "text": "bitcoin price right now? 6:23 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-4b0651f1-85d9-410e-a88c-2739dd0d8848",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-4b0651f1-85d9-410e-a88c-2739dd0d8848",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-4b0651f1-85d9-410e-a88c-2739dd0d8848",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-4b0651f1-85d9-410e-a88c-2739dd0d8848",
+          "text": "who won last night's game? 6:23 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-2f7c21b2-b922-4b2a-85ae-39c52ac72fdb",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-2f7c21b2-b922-4b2a-85ae-39c52ac72fdb",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-2f7c21b2-b922-4b2a-85ae-39c52ac72fdb",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-2f7c21b2-b922-4b2a-85ae-39c52ac72fdb",
+          "text": "what's the weather like today? 6:23 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-ac43ecca-6f99-46d6-8341-4ab57410309d",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-ac43ecca-6f99-46d6-8341-4ab57410309d",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-ac43ecca-6f99-46d6-8341-4ab57410309d",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-ac43ecca-6f99-46d6-8341-4ab57410309d",
+          "text": "מי אתה? 6:22 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-c7c29019-84a7-486f-bb09-8273723377bb",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-c7c29019-84a7-486f-bb09-8273723377bb",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-c7c29019-84a7-486f-bb09-8273723377bb",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-c7c29019-84a7-486f-bb09-8273723377bb",
+          "text": "what can you do? 6:22 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-4a052f5f-29d5-4771-9a33-a2cbce35deec",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-4a052f5f-29d5-4771-9a33-a2cbce35deec",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-4a052f5f-29d5-4771-9a33-a2cbce35deec",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-4a052f5f-29d5-4771-9a33-a2cbce35deec",
+          "text": "what model are you? 6:22 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-1ddd7abf-38a5-4216-ae8b-51444de4ef50",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-1ddd7abf-38a5-4216-ae8b-51444de4ef50",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-1ddd7abf-38a5-4216-ae8b-51444de4ef50",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-1ddd7abf-38a5-4216-ae8b-51444de4ef50",
+          "text": "who made you? 6:22 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-5a2578e0-be86-4664-ae97-17f4ef646296",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-5a2578e0-be86-4664-ae97-17f4ef646296",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-5a2578e0-be86-4664-ae97-17f4ef646296",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-5a2578e0-be86-4664-ae97-17f4ef646296",
+          "text": "tell me about yourself 6:22 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-8a41e3fa-9a1a-4ec9-a65f-594870af79f7",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-8a41e3fa-9a1a-4ec9-a65f-594870af79f7",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-8a41e3fa-9a1a-4ec9-a65f-594870af79f7",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-8a41e3fa-9a1a-4ec9-a65f-594870af79f7",
+          "text": "hey! what is this app? 6:21 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-1fa247b3-c399-484a-84c5-0e6923677f5b",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-1fa247b3-c399-484a-84c5-0e6923677f5b",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-1fa247b3-c399-484a-84c5-0e6923677f5b",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-1fa247b3-c399-484a-84c5-0e6923677f5b",
+          "text": "Draft a short, friendly message that 6:21 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-40e2a0c9-db9d-4425-904a-fa72a517eb21",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-40e2a0c9-db9d-4425-904a-fa72a517eb21",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-40e2a0c9-db9d-4425-904a-fa72a517eb21",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-40e2a0c9-db9d-4425-904a-fa72a517eb21",
+          "text": "how do weather forecasts work? 6:21 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-232b3046-383f-44ce-858a-d472465f2ef6",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-232b3046-383f-44ce-858a-d472465f2ef6",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-232b3046-383f-44ce-858a-d472465f2ef6",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-232b3046-383f-44ce-858a-d472465f2ef6",
+          "text": "tell me about Paris 6:21 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-c052c083-63e6-4d38-99fc-d96bcb44570f",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-c052c083-63e6-4d38-99fc-d96bcb44570f",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-c052c083-63e6-4d38-99fc-d96bcb44570f",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-c052c083-63e6-4d38-99fc-d96bcb44570f",
+          "text": "what can you do with PDFs? 6:20 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-b395ec11-e11f-4570-952a-4c80e290fdaa",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-b395ec11-e11f-4570-952a-4c80e290fdaa",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-b395ec11-e11f-4570-952a-4c80e290fdaa",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-b395ec11-e11f-4570-952a-4c80e290fdaa",
+          "text": "bitcoin price right now? 6:20 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-ee86ecc5-7c1e-46c3-8f66-b81d605e83e6",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-ee86ecc5-7c1e-46c3-8f66-b81d605e83e6",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-ee86ecc5-7c1e-46c3-8f66-b81d605e83e6",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-ee86ecc5-7c1e-46c3-8f66-b81d605e83e6",
+          "text": "who won last night's game? 6:20 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-d183e3ec-2310-4dcd-b4c8-3b65b0017036",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-d183e3ec-2310-4dcd-b4c8-3b65b0017036",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-d183e3ec-2310-4dcd-b4c8-3b65b0017036",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-d183e3ec-2310-4dcd-b4c8-3b65b0017036",
+          "text": "what's the weather like today? 6:20 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-fece366b-19b5-4d0d-baa4-b2d599a1615e",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-fece366b-19b5-4d0d-baa4-b2d599a1615e",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-fece366b-19b5-4d0d-baa4-b2d599a1615e",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-fece366b-19b5-4d0d-baa4-b2d599a1615e",
+          "text": "מי אתה? 6:20 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-7ac0ba93-3f07-451a-908e-cccc4a7592ff",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-7ac0ba93-3f07-451a-908e-cccc4a7592ff",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-7ac0ba93-3f07-451a-908e-cccc4a7592ff",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-7ac0ba93-3f07-451a-908e-cccc4a7592ff",
+          "text": "what can you do? 6:19 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-80e5890e-dd86-43ff-8fbf-810965223b74",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-80e5890e-dd86-43ff-8fbf-810965223b74",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-80e5890e-dd86-43ff-8fbf-810965223b74",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-80e5890e-dd86-43ff-8fbf-810965223b74",
+          "text": "what model are you? 6:19 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-7ce76236-3c42-4f07-8e0d-03b288a1220b",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-7ce76236-3c42-4f07-8e0d-03b288a1220b",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-7ce76236-3c42-4f07-8e0d-03b288a1220b",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-7ce76236-3c42-4f07-8e0d-03b288a1220b",
+          "text": "who made you? 6:19 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-dbb96835-49c1-4bd6-9aa5-71a432d09fd3",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-dbb96835-49c1-4bd6-9aa5-71a432d09fd3",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-dbb96835-49c1-4bd6-9aa5-71a432d09fd3",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-dbb96835-49c1-4bd6-9aa5-71a432d09fd3",
+          "text": "tell me about yourself 6:19 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-0452a658-112c-4305-9916-0273e3d06c1f",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-0452a658-112c-4305-9916-0273e3d06c1f",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-0452a658-112c-4305-9916-0273e3d06c1f",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-0452a658-112c-4305-9916-0273e3d06c1f",
+          "text": "hey! what is this app? 6:19 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-2200eaed-a11b-46bc-bc03-c99daec571b0",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-2200eaed-a11b-46bc-bc03-c99daec571b0",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-2200eaed-a11b-46bc-bc03-c99daec571b0",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-2200eaed-a11b-46bc-bc03-c99daec571b0",
+          "text": "Summarize it 6:18 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-52d600f9-9720-4060-b04a-9adb950d2a10",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-52d600f9-9720-4060-b04a-9adb950d2a10",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-52d600f9-9720-4060-b04a-9adb950d2a10",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-52d600f9-9720-4060-b04a-9adb950d2a10",
+          "text": "Hi 6:02 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chats-footer",
+          "text": ""
+        },
+        {
+          "testID": "open-personas",
+          "text": "",
+          "pressable": true
+        },
+        {
+          "testID": "open-memory",
+          "text": "",
+          "pressable": true
+        },
+        {
+          "testID": "open-folders",
+          "text": "",
+          "pressable": true
+        },
+        {
+          "testID": "new-chat-sheet",
+          "text": "Incognito PERSONA ✦ Assistant ✎ Writer ▤ Tutor ◎ Translator MODEL FAST · FITS THIS DEVICE Incognito Not saved, no memory. Gone when you close it. Cancel Start"
+        },
+        {
+          "testID": "new-chat-sheet-close",
+          "text": "",
+          "role": "button",
+          "label": "Close",
+          "pressable": true
+        },
+        {
+          "testID": "persona-chip-builtin:assistant",
+          "text": "✦ Assistant",
+          "role": "radio",
+          "state": {
+            "selected": true
+          },
+          "pressable": true
+        },
+        {
+          "testID": "persona-chip-builtin:writer",
+          "text": "✎ Writer",
+          "role": "radio",
+          "state": {
+            "selected": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "persona-chip-builtin:tutor",
+          "text": "▤ Tutor",
+          "role": "radio",
+          "state": {
+            "selected": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "persona-chip-builtin:translator",
+          "text": "◎ Translator",
+          "role": "radio",
+          "state": {
+            "selected": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "incognito-switch",
+          "text": "",
+          "value": "true",
+          "pressable": true
+        },
+        {
+          "testID": "start-chat",
+          "text": "Start",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "folder-sheet",
+          "text": ""
+        },
+        {
+          "testID": "vault-code-sheet",
+          "text": ""
+        },
+        {
+          "testID": "export-sheet",
+          "text": ""
+        },
+        {
+          "testID": "drawer-footer",
+          "text": "FAST · OUT 850 B Settings ◯ Proof"
+        },
+        {
+          "testID": "drawer-meter",
+          "text": "FAST · OUT 850 B"
+        },
+        {
+          "testID": "drawer-settings",
+          "text": "Settings",
+          "pressable": true
+        },
+        {
+          "testID": "drawer-proof",
+          "text": "◯ Proof",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jg-23"
+    },
+    {
+      "i": 99,
+      "op": "press",
+      "ok": true,
+      "ms": 157,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 100,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 101,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "model-chip ← onPress"
+    },
+    {
+      "i": 102,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "model-sheet appeared"
+    },
+    {
+      "i": 103,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1515,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 104,
+      "op": "press",
+      "ok": true,
+      "ms": 169,
+      "detail": "model-sheet-use-instant ← onPress"
+    },
+    {
+      "i": 105,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3015,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 106,
+      "op": "press",
+      "ok": false,
+      "ms": 1,
+      "detail": "press model-sheet-close: not mounted"
+    },
+    {
+      "i": 107,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 108,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1514,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 109,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "INSTANT",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT"
+    },
+    {
+      "i": 110,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"INSTANT\" present"
+    },
+    {
+      "i": 111,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 26 chars"
+    },
+    {
+      "i": 112,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 113,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2500,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 114,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 115,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 116,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "stop gone"
+    },
+    {
+      "i": 117,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2500,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 118,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Roasted beans brew hot tea, The steam rises up and leaves the air. A cup of coffee waits for you to sip it all.",
+        "props": {
+          "source": "Roasted beans brew hot tea,\nThe steam rises up and leaves the air.\nA cup of coffee waits for you to sip it all.",
+          "disabled": false
+        }
+      },
+      "detail": "Roasted beans brew hot tea, The steam rises up and leaves the air. A cup of coffee waits for you to sip it all."
+    },
+    {
+      "i": 119,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 120,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 121,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 122,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "INSTANT",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT"
+    },
+    {
+      "i": 123,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 950,
+      "detail": "sim-jg-24"
+    },
+    {
+      "i": 124,
+      "op": "dump",
+      "ok": true,
+      "ms": 0,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "write a haiku about coffee",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI Roasted beans brew hot tea, The steam rises up and leaves the air. A cup of coffee waits for you to sip it all. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "Roasted beans brew hot tea, The steam rises up and leaves the air. A cup of coffee waits for you to sip it all."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "incognito-badge",
+          "text": "INCOGNITO · NOT SAVED"
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jg-24"
+    },
+    {
+      "i": 125,
+      "op": "type",
+      "ok": true,
+      "ms": 165,
+      "detail": "composer-input = 18 chars"
+    },
+    {
+      "i": 126,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 127,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 128,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 129,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 130,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "stop gone"
+    },
+    {
+      "i": 131,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2513,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 132,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Roasted beans brew hot tea, The steam rises up and leaves the air. A cup of coffee waits for you to sip it all.",
+        "props": {
+          "source": "Roasted beans brew hot tea,\nThe steam rises up and leaves the air.\nA cup of coffee waits for you to sip it all.",
+          "disabled": false
+        }
+      },
+      "detail": "Roasted beans brew hot tea, The steam rises up and leaves the air. A cup of coffee waits for you to sip it all."
+    },
+    {
+      "i": 133,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 134,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 135,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 136,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "INSTANT",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT"
+    },
+    {
+      "i": 137,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 641,
+      "detail": "sim-jg-25"
+    },
+    {
+      "i": 138,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "write a haiku about coffee",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI Roasted beans brew hot tea, The steam rises up and leaves the air. A cup of coffee waits for you to sip it all. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "Roasted beans brew hot tea, The steam rises up and leaves the air. A cup of coffee waits for you to sip it all."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "incognito-badge",
+          "text": "INCOGNITO · NOT SAVED"
+        },
+        {
+          "testID": "model-advice",
+          "text": "SHARP handles Hebrew better than INSTANT, but not fluently. Install SHARP · 2.74 GB Not now"
+        },
+        {
+          "testID": "model-advice-reason",
+          "text": "SHARP handles Hebrew better than INSTANT, but not fluently."
+        },
+        {
+          "testID": "model-advice-install",
+          "text": "Install SHARP · 2.74 GB",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-not-now",
+          "text": "Not now",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jg-25"
+    },
+    {
+      "i": 139,
+      "op": "press",
+      "ok": true,
+      "ms": 157,
+      "detail": "model-chip ← onPress"
+    },
+    {
+      "i": 140,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "model-sheet appeared"
+    },
+    {
+      "i": 141,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 142,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "model-sheet-use-fast ← onPress"
+    },
+    {
+      "i": 143,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3017,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 144,
+      "op": "press",
+      "ok": false,
+      "ms": 1,
+      "detail": "press model-sheet-close: not mounted"
+    },
+    {
+      "i": 145,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 146,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1514,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 147,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 148,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"FAST\" present"
+    },
+    {
+      "i": 149,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2001,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 150,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2223,
+      "detail": "sim-jg-26"
+    },
+    {
+      "i": 151,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "write a haiku about coffee",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI Roasted beans brew hot tea, The steam rises up and leaves the air. A cup of coffee waits for you to sip it all. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "Roasted beans brew hot tea, The steam rises up and leaves the air. A cup of coffee waits for you to sip it all."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "incognito-badge",
+          "text": "INCOGNITO · NOT SAVED"
+        },
+        {
+          "testID": "model-advice",
+          "text": "SHARP handles Hebrew better than FAST, but not fluently. Install SHARP · 2.74 GB Not now"
+        },
+        {
+          "testID": "model-advice-reason",
+          "text": "SHARP handles Hebrew better than FAST, but not fluently."
+        },
+        {
+          "testID": "model-advice-install",
+          "text": "Install SHARP · 2.74 GB",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-not-now",
+          "text": "Not now",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jg-26"
+    }
+  ],
+  "errors": [
+    "step 20 (value): value assistant-text: no node with that testID is mounted",
+    "step 21 (value): value citations: no node with that testID is mounted",
+    "step 22 (value): value none-matched: no node with that testID is mounted",
+    "step 23 (value): value banners: no node with that testID is mounted",
+    "step 34 (value): value assistant-text: no node with that testID is mounted",
+    "step 35 (value): value citations: no node with that testID is mounted",
+    "step 36 (value): value none-matched: no node with that testID is mounted",
+    "step 37 (value): value banners: no node with that testID is mounted",
+    "step 58 (value): value citations: no node with that testID is mounted",
+    "step 59 (value): value none-matched: no node with that testID is mounted",
+    "step 60 (value): value banners: no node with that testID is mounted",
+    "step 72 (value): value citations: no node with that testID is mounted",
+    "step 73 (value): value none-matched: no node with that testID is mounted",
+    "step 74 (value): value banners: no node with that testID is mounted",
+    "step 86 (value): value citations: no node with that testID is mounted",
+    "step 87 (value): value none-matched: no node with that testID is mounted",
+    "step 88 (value): value banners: no node with that testID is mounted",
+    "step 106 (press): press model-sheet-close: not mounted",
+    "step 119 (value): value citations: no node with that testID is mounted",
+    "step 120 (value): value none-matched: no node with that testID is mounted",
+    "step 121 (value): value banners: no node with that testID is mounted",
+    "step 133 (value): value citations: no node with that testID is mounted",
+    "step 134 (value): value none-matched: no node with that testID is mounted",
+    "step 135 (value): value banners: no node with that testID is mounted",
+    "step 144 (press): press model-sheet-close: not mounted",
+    "console.log: [chat] identity kind=capabilities lang=he model=instant"
+  ]
+}

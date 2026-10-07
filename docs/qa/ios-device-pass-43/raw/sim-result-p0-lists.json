@@ -1,0 +1,976 @@
+{
+  "runId": "p0-lists",
+  "startedAt": "2026-10-07T15:34:04.055Z",
+  "finishedAt": "2026-10-07T15:34:12.238Z",
+  "ok": true,
+  "passed": 10,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 157,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2001,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 3,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1273,
+      "detail": "sim-p0-chats"
+    },
+    {
+      "i": 4,
+      "op": "dump",
+      "ok": true,
+      "ms": 3,
+      "nodes": [
+        {
+          "testID": "close-chats",
+          "text": "",
+          "role": "button",
+          "label": "Close",
+          "pressable": true
+        },
+        {
+          "testID": "select-toggle",
+          "text": "Select",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "chats-search",
+          "text": "",
+          "label": "Search",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "new-chat",
+          "text": "New chat",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "new-incognito",
+          "text": "Incognito",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-ddf1e00f-dcad-4b09-9d48-4e4eba1b19b6",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-ddf1e00f-dcad-4b09-9d48-4e4eba1b19b6",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-ddf1e00f-dcad-4b09-9d48-4e4eba1b19b6",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-ddf1e00f-dcad-4b09-9d48-4e4eba1b19b6",
+          "text": "Summarize it 6:33 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-ee45a4ff-8fa1-4113-9edc-370c7760b08a",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-ee45a4ff-8fa1-4113-9edc-370c7760b08a",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-ee45a4ff-8fa1-4113-9edc-370c7760b08a",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-ee45a4ff-8fa1-4113-9edc-370c7760b08a",
+          "text": "Draft a short, friendly message that 6:24 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-fdfe7828-357d-4f8d-b00a-8964a824d8cc",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-fdfe7828-357d-4f8d-b00a-8964a824d8cc",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-fdfe7828-357d-4f8d-b00a-8964a824d8cc",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-fdfe7828-357d-4f8d-b00a-8964a824d8cc",
+          "text": "how do weather forecasts work? 6:23 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-198bcd15-3920-495c-bc11-f5cc2b2e9abf",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-198bcd15-3920-495c-bc11-f5cc2b2e9abf",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-198bcd15-3920-495c-bc11-f5cc2b2e9abf",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-198bcd15-3920-495c-bc11-f5cc2b2e9abf",
+          "text": "tell me about Paris 6:23 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-b3b3b969-79ab-487d-af4c-1dbb5f8ad9a3",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-b3b3b969-79ab-487d-af4c-1dbb5f8ad9a3",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-b3b3b969-79ab-487d-af4c-1dbb5f8ad9a3",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-b3b3b969-79ab-487d-af4c-1dbb5f8ad9a3",
+          "text": "what can you do with PDFs? 6:23 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-c563d84f-8b58-4f41-b059-c024296d81e0",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-c563d84f-8b58-4f41-b059-c024296d81e0",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-c563d84f-8b58-4f41-b059-c024296d81e0",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-c563d84f-8b58-4f41-b059-c024296d81e0",
+          "text": "bitcoin price right now? 6:23 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-4b0651f1-85d9-410e-a88c-2739dd0d8848",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-4b0651f1-85d9-410e-a88c-2739dd0d8848",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-4b0651f1-85d9-410e-a88c-2739dd0d8848",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-4b0651f1-85d9-410e-a88c-2739dd0d8848",
+          "text": "who won last night's game? 6:23 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-2f7c21b2-b922-4b2a-85ae-39c52ac72fdb",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-2f7c21b2-b922-4b2a-85ae-39c52ac72fdb",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-2f7c21b2-b922-4b2a-85ae-39c52ac72fdb",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-2f7c21b2-b922-4b2a-85ae-39c52ac72fdb",
+          "text": "what's the weather like today? 6:23 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-ac43ecca-6f99-46d6-8341-4ab57410309d",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-ac43ecca-6f99-46d6-8341-4ab57410309d",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-ac43ecca-6f99-46d6-8341-4ab57410309d",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-ac43ecca-6f99-46d6-8341-4ab57410309d",
+          "text": "מי אתה? 6:22 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-c7c29019-84a7-486f-bb09-8273723377bb",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-c7c29019-84a7-486f-bb09-8273723377bb",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-c7c29019-84a7-486f-bb09-8273723377bb",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-c7c29019-84a7-486f-bb09-8273723377bb",
+          "text": "what can you do? 6:22 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-4a052f5f-29d5-4771-9a33-a2cbce35deec",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-4a052f5f-29d5-4771-9a33-a2cbce35deec",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-4a052f5f-29d5-4771-9a33-a2cbce35deec",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-4a052f5f-29d5-4771-9a33-a2cbce35deec",
+          "text": "what model are you? 6:22 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-1ddd7abf-38a5-4216-ae8b-51444de4ef50",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-1ddd7abf-38a5-4216-ae8b-51444de4ef50",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-1ddd7abf-38a5-4216-ae8b-51444de4ef50",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-1ddd7abf-38a5-4216-ae8b-51444de4ef50",
+          "text": "who made you? 6:22 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-5a2578e0-be86-4664-ae97-17f4ef646296",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-5a2578e0-be86-4664-ae97-17f4ef646296",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-5a2578e0-be86-4664-ae97-17f4ef646296",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-5a2578e0-be86-4664-ae97-17f4ef646296",
+          "text": "tell me about yourself 6:22 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-8a41e3fa-9a1a-4ec9-a65f-594870af79f7",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-8a41e3fa-9a1a-4ec9-a65f-594870af79f7",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-8a41e3fa-9a1a-4ec9-a65f-594870af79f7",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-8a41e3fa-9a1a-4ec9-a65f-594870af79f7",
+          "text": "hey! what is this app? 6:21 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-1fa247b3-c399-484a-84c5-0e6923677f5b",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-1fa247b3-c399-484a-84c5-0e6923677f5b",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-1fa247b3-c399-484a-84c5-0e6923677f5b",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-1fa247b3-c399-484a-84c5-0e6923677f5b",
+          "text": "Draft a short, friendly message that 6:21 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-40e2a0c9-db9d-4425-904a-fa72a517eb21",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-40e2a0c9-db9d-4425-904a-fa72a517eb21",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-40e2a0c9-db9d-4425-904a-fa72a517eb21",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-40e2a0c9-db9d-4425-904a-fa72a517eb21",
+          "text": "how do weather forecasts work? 6:21 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-232b3046-383f-44ce-858a-d472465f2ef6",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-232b3046-383f-44ce-858a-d472465f2ef6",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-232b3046-383f-44ce-858a-d472465f2ef6",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-232b3046-383f-44ce-858a-d472465f2ef6",
+          "text": "tell me about Paris 6:21 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-c052c083-63e6-4d38-99fc-d96bcb44570f",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-c052c083-63e6-4d38-99fc-d96bcb44570f",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-c052c083-63e6-4d38-99fc-d96bcb44570f",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-c052c083-63e6-4d38-99fc-d96bcb44570f",
+          "text": "what can you do with PDFs? 6:20 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-b395ec11-e11f-4570-952a-4c80e290fdaa",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-b395ec11-e11f-4570-952a-4c80e290fdaa",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-b395ec11-e11f-4570-952a-4c80e290fdaa",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-b395ec11-e11f-4570-952a-4c80e290fdaa",
+          "text": "bitcoin price right now? 6:20 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-ee86ecc5-7c1e-46c3-8f66-b81d605e83e6",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-ee86ecc5-7c1e-46c3-8f66-b81d605e83e6",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-ee86ecc5-7c1e-46c3-8f66-b81d605e83e6",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-ee86ecc5-7c1e-46c3-8f66-b81d605e83e6",
+          "text": "who won last night's game? 6:20 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-d183e3ec-2310-4dcd-b4c8-3b65b0017036",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-d183e3ec-2310-4dcd-b4c8-3b65b0017036",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-d183e3ec-2310-4dcd-b4c8-3b65b0017036",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-d183e3ec-2310-4dcd-b4c8-3b65b0017036",
+          "text": "what's the weather like today? 6:20 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-fece366b-19b5-4d0d-baa4-b2d599a1615e",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-fece366b-19b5-4d0d-baa4-b2d599a1615e",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-fece366b-19b5-4d0d-baa4-b2d599a1615e",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-fece366b-19b5-4d0d-baa4-b2d599a1615e",
+          "text": "מי אתה? 6:20 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-7ac0ba93-3f07-451a-908e-cccc4a7592ff",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-7ac0ba93-3f07-451a-908e-cccc4a7592ff",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-7ac0ba93-3f07-451a-908e-cccc4a7592ff",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-7ac0ba93-3f07-451a-908e-cccc4a7592ff",
+          "text": "what can you do? 6:19 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-80e5890e-dd86-43ff-8fbf-810965223b74",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-80e5890e-dd86-43ff-8fbf-810965223b74",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-80e5890e-dd86-43ff-8fbf-810965223b74",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-80e5890e-dd86-43ff-8fbf-810965223b74",
+          "text": "what model are you? 6:19 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-7ce76236-3c42-4f07-8e0d-03b288a1220b",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-7ce76236-3c42-4f07-8e0d-03b288a1220b",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-7ce76236-3c42-4f07-8e0d-03b288a1220b",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-7ce76236-3c42-4f07-8e0d-03b288a1220b",
+          "text": "who made you? 6:19 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-dbb96835-49c1-4bd6-9aa5-71a432d09fd3",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-dbb96835-49c1-4bd6-9aa5-71a432d09fd3",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-dbb96835-49c1-4bd6-9aa5-71a432d09fd3",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-dbb96835-49c1-4bd6-9aa5-71a432d09fd3",
+          "text": "tell me about yourself 6:19 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-0452a658-112c-4305-9916-0273e3d06c1f",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-0452a658-112c-4305-9916-0273e3d06c1f",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-0452a658-112c-4305-9916-0273e3d06c1f",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-0452a658-112c-4305-9916-0273e3d06c1f",
+          "text": "hey! what is this app? 6:19 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-2200eaed-a11b-46bc-bc03-c99daec571b0",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-2200eaed-a11b-46bc-bc03-c99daec571b0",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-2200eaed-a11b-46bc-bc03-c99daec571b0",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-2200eaed-a11b-46bc-bc03-c99daec571b0",
+          "text": "Summarize it 6:18 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-91195661-15df-4211-8715-241a971a76e6",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-91195661-15df-4211-8715-241a971a76e6",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-91195661-15df-4211-8715-241a971a76e6",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-91195661-15df-4211-8715-241a971a76e6",
+          "text": "Summarize it 6:13 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-52d600f9-9720-4060-b04a-9adb950d2a10",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-52d600f9-9720-4060-b04a-9adb950d2a10",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-52d600f9-9720-4060-b04a-9adb950d2a10",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-52d600f9-9720-4060-b04a-9adb950d2a10",
+          "text": "Hi 6:02 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chats-footer",
+          "text": "PRO"
+        },
+        {
+          "testID": "open-personas",
+          "text": "",
+          "pressable": true
+        },
+        {
+          "testID": "open-memory",
+          "text": "",
+          "pressable": true
+        },
+        {
+          "testID": "open-folders",
+          "text": "PRO",
+          "pressable": true
+        },
+        {
+          "testID": "pro-tag",
+          "text": "PRO"
+        },
+        {
+          "testID": "new-chat-sheet",
+          "text": ""
+        },
+        {
+          "testID": "folder-sheet",
+          "text": ""
+        },
+        {
+          "testID": "vault-code-sheet",
+          "text": ""
+        },
+        {
+          "testID": "export-sheet",
+          "text": ""
+        },
+        {
+          "testID": "drawer-footer",
+          "text": "FAST · OUT 850 B Settings ◯ Proof"
+        },
+        {
+          "testID": "drawer-meter",
+          "text": "FAST · OUT 850 B"
+        },
+        {
+          "testID": "drawer-settings",
+          "text": "Settings",
+          "pressable": true
+        },
+        {
+          "testID": "drawer-proof",
+          "text": "◯ Proof",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-p0-chats"
+    },
+    {
+      "i": 5,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 156,
+      "detail": "/documents"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "documents-screen appeared"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3001,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 8,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1590,
+      "detail": "sim-p0-documents"
+    },
+    {
+      "i": 9,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "documents-screen",
+          "text": "Documents Close Add file · PRO 1 document · 55.6 KB on this device Free: 1 document of up to 20 pages · Pro: no limit Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. PRO constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages Select documents to ask Indexed on this device"
+        },
+        {
+          "testID": "documents-close",
+          "text": "Close",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "documents-add",
+          "text": "Add file · PRO",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "documents-free-limit",
+          "text": "Free: 1 document of up to 20 pages · Pro: no limit"
+        },
+        {
+          "testID": "pro-tag",
+          "text": "PRO",
+          "role": "button",
+          "label": "See Pro",
+          "pressable": true
+        },
+        {
+          "testID": "documents-strict",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "doc-row-muy8o5oi-1-opi89wti",
+          "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+          "pressable": true
+        },
+        {
+          "testID": "doc-select-muy8o5oi-1-opi89wti",
+          "text": "",
+          "role": "checkbox",
+          "state": {
+            "checked": false,
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "doc-state-muy8o5oi-1-opi89wti",
+          "text": "Indexed · 45 passages"
+        },
+        {
+          "testID": "documents-ask-selected",
+          "text": "Select documents to ask",
+          "role": "button",
+          "disabled": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-p0-documents"
+    }
+  ],
+  "errors": []
+}

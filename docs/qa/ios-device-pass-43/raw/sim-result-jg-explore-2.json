@@ -1,0 +1,2704 @@
+{
+  "runId": "jg-explore-2",
+  "startedAt": "2026-10-07T15:41:14.111Z",
+  "finishedAt": "2026-10-07T15:42:42.850Z",
+  "ok": false,
+  "passed": 83,
+  "failed": 5,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 158,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 9,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 166,
+      "detail": "attach: turbine-report-3pages.pdf"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1334,
+      "detail": "attached-docs appeared"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 10016,
+      "detail": "10000 ms"
+    },
+    {
+      "i": 12,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "turbine-report-3pages.pdf",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "turbine-report-3pages.pdf"
+    },
+    {
+      "i": 13,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 13 chars"
+    },
+    {
+      "i": 14,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 15,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 16,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 17,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 18,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 14851,
+      "detail": "stop gone"
+    },
+    {
+      "i": 19,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2515,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 20,
+      "op": "value",
+      "ok": true,
+      "ms": 4,
+      "value": {
+        "text": "This is an acceptance test document for a Rakovsky turbine with serial number RK-4417, which has the annual maintenance budget of 284,000 euro at the Halden plant. The documents also note that the Belmont warehouse roof was replaced in March 2019 and serve to contain multiple sentences on the page.",
+        "props": {
+          "source": "This is an acceptance test document for a Rakovsky turbine with serial number RK-4417, which has the annual maintenance budget of 284,000 euro at the Halden plant. The documents also note that the Belmont warehouse roof was replaced in March 2019 and serve to contain multiple sentences on the page.",
+          "disabled": false
+        }
+      },
+      "detail": "This is an acceptance test document for a Rakovsky turbine with serial number RK-4417, which has the annual maintenance budget of 284,000 euro at the Halden plant. The documents also note that the Bel"
+    },
+    {
+      "i": 21,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "SOURCES turbine-report-3pages.pdf · p.1 turbine-report-3pages.pdf · p.2 turbine-report-3pages.pdf · p.3",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "SOURCES turbine-report-3pages.pdf · p.1 turbine-report-3pages.pdf · p.2 turbine-report-3pages.pdf · p.3"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 23,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 24,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 25,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1905,
+      "detail": "sim-jg-11"
+    },
+    {
+      "i": 26,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "what is this?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI This is an acceptance test document for a Rakovsky turbine with serial number RK-4417, which has the annual maintenance budget of 284,000 euro at the Halden plant. The documents also note that the Belmont warehouse roof was replaced in March 2019 and serve to contain multiple sentences on the page. SOURCES turbine-report-3pages.pdf · p.1 turbine-report-3pages.pdf · p.2 turbine-report-3pages.pdf · p.3 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This is an acceptance test document for a Rakovsky turbine with serial number RK-4417, which has the annual maintenance budget of 284,000 euro at the Halden plant. The documents also note that the Belmont warehouse roof was replaced in March 2019 and serve to contain multiple sentences on the page."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES turbine-report-3pages.pdf · p.1 turbine-report-3pages.pdf · p.2 turbine-report-3pages.pdf · p.3"
+        },
+        {
+          "testID": "citation-1",
+          "text": "turbine-report-3pages.pdf · p.1",
+          "role": "button",
+          "label": "Open turbine-report-3pages.pdf · p.1",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "turbine-report-3pages.pdf · p.2",
+          "role": "button",
+          "label": "Open turbine-report-3pages.pdf · p.2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "turbine-report-3pages.pdf · p.3",
+          "role": "button",
+          "label": "Open turbine-report-3pages.pdf · p.3",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "turbine-report-3pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muy9yyc8-4-nbtuwcmr",
+          "text": "turbine-report-3pages.pdf",
+          "role": "button",
+          "label": "Remove turbine-report-3pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jg-11"
+    },
+    {
+      "i": 27,
+      "op": "type",
+      "ok": true,
+      "ms": 155,
+      "detail": "composer-input = 26 chars"
+    },
+    {
+      "i": 28,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 29,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2516,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 30,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 31,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 32,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 10933,
+      "detail": "stop gone"
+    },
+    {
+      "i": 33,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2500,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 34,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "This is an acceptance test document for a Rakovsky turbine with serial number RK-4417, which has the annual maintenance budget of 284,000 euro at the Halden plant. The documents also note that the Belmont warehouse roof was replaced in March 2019 and serve to contain multiple sentences on the page.",
+        "props": {
+          "source": "This is an acceptance test document for a Rakovsky turbine with serial number RK-4417, which has the annual maintenance budget of 284,000 euro at the Halden plant. The documents also note that the Belmont warehouse roof was replaced in March 2019 and serve to contain multiple sentences on the page.",
+          "disabled": false
+        }
+      },
+      "detail": "This is an acceptance test document for a Rakovsky turbine with serial number RK-4417, which has the annual maintenance budget of 284,000 euro at the Halden plant. The documents also note that the Bel"
+    },
+    {
+      "i": 35,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "SOURCES turbine-report-3pages.pdf · p.1 turbine-report-3pages.pdf · p.2 turbine-report-3pages.pdf · p.3",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "SOURCES turbine-report-3pages.pdf · p.1 turbine-report-3pages.pdf · p.2 turbine-report-3pages.pdf · p.3"
+    },
+    {
+      "i": 36,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Nothing in your documents matched this question. Answered without them.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Nothing in your documents matched this question. Answered without them."
+    },
+    {
+      "i": 37,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 38,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 39,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 951,
+      "detail": "sim-jg-12"
+    },
+    {
+      "i": 40,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "what is this?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI This is an acceptance test document for a Rakovsky turbine with serial number RK-4417, which has the annual maintenance budget of 284,000 euro at the Halden plant. The documents also note that the Belmont warehouse roof was replaced in March 2019 and serve to contain multiple sentences on the page. SOURCES turbine-report-3pages.pdf · p.1 turbine-report-3pages.pdf · p.2 turbine-report-3pages.pdf · p.3 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This is an acceptance test document for a Rakovsky turbine with serial number RK-4417, which has the annual maintenance budget of 284,000 euro at the Halden plant. The documents also note that the Belmont warehouse roof was replaced in March 2019 and serve to contain multiple sentences on the page."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES turbine-report-3pages.pdf · p.1 turbine-report-3pages.pdf · p.2 turbine-report-3pages.pdf · p.3"
+        },
+        {
+          "testID": "citation-1",
+          "text": "turbine-report-3pages.pdf · p.1",
+          "role": "button",
+          "label": "Open turbine-report-3pages.pdf · p.1",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "turbine-report-3pages.pdf · p.2",
+          "role": "button",
+          "label": "Open turbine-report-3pages.pdf · p.2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "turbine-report-3pages.pdf · p.3",
+          "role": "button",
+          "label": "Open turbine-report-3pages.pdf · p.3",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "none-matched",
+          "text": "Nothing in your documents matched this question. Answered without them."
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "turbine-report-3pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muy9yyc8-4-nbtuwcmr",
+          "text": "turbine-report-3pages.pdf",
+          "role": "button",
+          "label": "Remove turbine-report-3pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jg-12"
+    },
+    {
+      "i": 41,
+      "op": "type",
+      "ok": true,
+      "ms": 161,
+      "detail": "composer-input = 9 chars"
+    },
+    {
+      "i": 42,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 43,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2500,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 44,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 45,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 46,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 11180,
+      "detail": "stop gone"
+    },
+    {
+      "i": 47,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2500,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 48,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "This is an acceptance test document for a Rakovsky turbine with serial number RK-4417, which has the annual maintenance budget of 284,000 euro at the Halden plant. The documents also note that the Belmont warehouse roof was replaced in March 2019 and serve to contain multiple sentences on the page.",
+        "props": {
+          "source": "This is an acceptance test document for a Rakovsky turbine with serial number RK-4417, which has the annual maintenance budget of 284,000 euro at the Halden plant. The documents also note that the Belmont warehouse roof was replaced in March 2019 and serve to contain multiple sentences on the page.",
+          "disabled": false
+        }
+      },
+      "detail": "This is an acceptance test document for a Rakovsky turbine with serial number RK-4417, which has the annual maintenance budget of 284,000 euro at the Halden plant. The documents also note that the Bel"
+    },
+    {
+      "i": 49,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "SOURCES turbine-report-3pages.pdf · p.1 turbine-report-3pages.pdf · p.2 turbine-report-3pages.pdf · p.3",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "SOURCES turbine-report-3pages.pdf · p.1 turbine-report-3pages.pdf · p.2 turbine-report-3pages.pdf · p.3"
+    },
+    {
+      "i": 50,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 51,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value banners: no node with that testID is mounted"
+    },
+    {
+      "i": 52,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 53,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1902,
+      "detail": "sim-jg-13"
+    },
+    {
+      "i": 54,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "what is this?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI This is an acceptance test document for a Rakovsky turbine with serial number RK-4417, which has the annual maintenance budget of 284,000 euro at the Halden plant. The documents also note that the Belmont warehouse roof was replaced in March 2019 and serve to contain multiple sentences on the page. SOURCES turbine-report-3pages.pdf · p.1 turbine-report-3pages.pdf · p.2 turbine-report-3pages.pdf · p.3 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This is an acceptance test document for a Rakovsky turbine with serial number RK-4417, which has the annual maintenance budget of 284,000 euro at the Halden plant. The documents also note that the Belmont warehouse roof was replaced in March 2019 and serve to contain multiple sentences on the page."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES turbine-report-3pages.pdf · p.1 turbine-report-3pages.pdf · p.2 turbine-report-3pages.pdf · p.3"
+        },
+        {
+          "testID": "citation-1",
+          "text": "turbine-report-3pages.pdf · p.1",
+          "role": "button",
+          "label": "Open turbine-report-3pages.pdf · p.1",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "turbine-report-3pages.pdf · p.2",
+          "role": "button",
+          "label": "Open turbine-report-3pages.pdf · p.2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "turbine-report-3pages.pdf · p.3",
+          "role": "button",
+          "label": "Open turbine-report-3pages.pdf · p.3",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "turbine-report-3pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muy9yyc8-4-nbtuwcmr",
+          "text": "turbine-report-3pages.pdf",
+          "role": "button",
+          "label": "Remove turbine-report-3pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jg-13"
+    },
+    {
+      "i": 55,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 158,
+      "detail": "/chats"
+    },
+    {
+      "i": 56,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 57,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 58,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 59,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 60,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 61,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 62,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 63,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 64,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "suggestion-summarize ← onPress"
+    },
+    {
+      "i": 65,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 66,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 956,
+      "detail": "sim-jg-14"
+    },
+    {
+      "i": 67,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "empty-headline",
+          "text": "Nothing leaves this phone."
+        },
+        {
+          "testID": "suggestion-summarize",
+          "text": "Summarize text",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-translate",
+          "text": "Translate",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-draft",
+          "text": "Draft a message",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "redact-bar",
+          "text": "Redact"
+        },
+        {
+          "testID": "redact-open",
+          "text": "Redact",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "Summarize the following text in three bullet points:\n\n",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jg-14"
+    },
+    {
+      "i": 68,
+      "op": "press",
+      "ok": true,
+      "ms": 157,
+      "detail": "open-chats ← onPress"
+    },
+    {
+      "i": 69,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "close-chats appeared"
+    },
+    {
+      "i": 70,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2000,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 71,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1277,
+      "detail": "sim-jg-15"
+    },
+    {
+      "i": 72,
+      "op": "dump",
+      "ok": true,
+      "ms": 4,
+      "nodes": [
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "empty-headline",
+          "text": "Nothing leaves this phone."
+        },
+        {
+          "testID": "suggestion-summarize",
+          "text": "Summarize text",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-translate",
+          "text": "Translate",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-draft",
+          "text": "Draft a message",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "redact-bar",
+          "text": "Redact"
+        },
+        {
+          "testID": "redact-open",
+          "text": "Redact",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "Summarize the following text in three bullet points:\n\n",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "close-chats",
+          "text": "",
+          "role": "button",
+          "label": "Close",
+          "pressable": true
+        },
+        {
+          "testID": "select-toggle",
+          "text": "Select",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chats-search",
+          "text": "",
+          "label": "Search",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "new-chat",
+          "text": "New chat",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "new-incognito",
+          "text": "Incognito",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-9f2b103a-90b8-4bd5-b16f-5316ad9687b0",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-9f2b103a-90b8-4bd5-b16f-5316ad9687b0",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-9f2b103a-90b8-4bd5-b16f-5316ad9687b0",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-9f2b103a-90b8-4bd5-b16f-5316ad9687b0",
+          "text": "what is this? 6:42 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-55302e86-911f-4825-89b1-b526e2f10cb8",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-55302e86-911f-4825-89b1-b526e2f10cb8",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-55302e86-911f-4825-89b1-b526e2f10cb8",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-55302e86-911f-4825-89b1-b526e2f10cb8",
+          "text": "tell me a joke 6:41 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-806dd866-8772-43cf-9264-64f75f1cf169",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-806dd866-8772-43cf-9264-64f75f1cf169",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-806dd866-8772-43cf-9264-64f75f1cf169",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-806dd866-8772-43cf-9264-64f75f1cf169",
+          "text": "hi, is this like chatgpt? 6:40 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-91195661-15df-4211-8715-241a971a76e6",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-91195661-15df-4211-8715-241a971a76e6",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-91195661-15df-4211-8715-241a971a76e6",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-91195661-15df-4211-8715-241a971a76e6",
+          "text": "Summarize it 6:38 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-792c5364-928f-48ff-8240-1892db71fe21",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-792c5364-928f-48ff-8240-1892db71fe21",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-792c5364-928f-48ff-8240-1892db71fe21",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-792c5364-928f-48ff-8240-1892db71fe21",
+          "text": "מה בירת צרפת? 6:37 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-2fa7b088-0ceb-4277-8feb-51af8f077499",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-2fa7b088-0ceb-4277-8feb-51af8f077499",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-2fa7b088-0ceb-4277-8feb-51af8f077499",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-2fa7b088-0ceb-4277-8feb-51af8f077499",
+          "text": "Write a long story of about 6:36 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-ddf1e00f-dcad-4b09-9d48-4e4eba1b19b6",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-ddf1e00f-dcad-4b09-9d48-4e4eba1b19b6",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-ddf1e00f-dcad-4b09-9d48-4e4eba1b19b6",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-ddf1e00f-dcad-4b09-9d48-4e4eba1b19b6",
+          "text": "Summarize it 6:33 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-ee45a4ff-8fa1-4113-9edc-370c7760b08a",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-ee45a4ff-8fa1-4113-9edc-370c7760b08a",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-ee45a4ff-8fa1-4113-9edc-370c7760b08a",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-ee45a4ff-8fa1-4113-9edc-370c7760b08a",
+          "text": "Draft a short, friendly message that 6:24 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-fdfe7828-357d-4f8d-b00a-8964a824d8cc",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-fdfe7828-357d-4f8d-b00a-8964a824d8cc",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-fdfe7828-357d-4f8d-b00a-8964a824d8cc",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-fdfe7828-357d-4f8d-b00a-8964a824d8cc",
+          "text": "how do weather forecasts work? 6:23 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-198bcd15-3920-495c-bc11-f5cc2b2e9abf",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-198bcd15-3920-495c-bc11-f5cc2b2e9abf",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-198bcd15-3920-495c-bc11-f5cc2b2e9abf",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-198bcd15-3920-495c-bc11-f5cc2b2e9abf",
+          "text": "tell me about Paris 6:23 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-b3b3b969-79ab-487d-af4c-1dbb5f8ad9a3",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-b3b3b969-79ab-487d-af4c-1dbb5f8ad9a3",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-b3b3b969-79ab-487d-af4c-1dbb5f8ad9a3",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-b3b3b969-79ab-487d-af4c-1dbb5f8ad9a3",
+          "text": "what can you do with PDFs? 6:23 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-c563d84f-8b58-4f41-b059-c024296d81e0",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-c563d84f-8b58-4f41-b059-c024296d81e0",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-c563d84f-8b58-4f41-b059-c024296d81e0",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-c563d84f-8b58-4f41-b059-c024296d81e0",
+          "text": "bitcoin price right now? 6:23 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-4b0651f1-85d9-410e-a88c-2739dd0d8848",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-4b0651f1-85d9-410e-a88c-2739dd0d8848",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-4b0651f1-85d9-410e-a88c-2739dd0d8848",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-4b0651f1-85d9-410e-a88c-2739dd0d8848",
+          "text": "who won last night's game? 6:23 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-2f7c21b2-b922-4b2a-85ae-39c52ac72fdb",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-2f7c21b2-b922-4b2a-85ae-39c52ac72fdb",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-2f7c21b2-b922-4b2a-85ae-39c52ac72fdb",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-2f7c21b2-b922-4b2a-85ae-39c52ac72fdb",
+          "text": "what's the weather like today? 6:23 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-ac43ecca-6f99-46d6-8341-4ab57410309d",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-ac43ecca-6f99-46d6-8341-4ab57410309d",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-ac43ecca-6f99-46d6-8341-4ab57410309d",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-ac43ecca-6f99-46d6-8341-4ab57410309d",
+          "text": "מי אתה? 6:22 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-c7c29019-84a7-486f-bb09-8273723377bb",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-c7c29019-84a7-486f-bb09-8273723377bb",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-c7c29019-84a7-486f-bb09-8273723377bb",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-c7c29019-84a7-486f-bb09-8273723377bb",
+          "text": "what can you do? 6:22 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-4a052f5f-29d5-4771-9a33-a2cbce35deec",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-4a052f5f-29d5-4771-9a33-a2cbce35deec",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-4a052f5f-29d5-4771-9a33-a2cbce35deec",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-4a052f5f-29d5-4771-9a33-a2cbce35deec",
+          "text": "what model are you? 6:22 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-1ddd7abf-38a5-4216-ae8b-51444de4ef50",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-1ddd7abf-38a5-4216-ae8b-51444de4ef50",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-1ddd7abf-38a5-4216-ae8b-51444de4ef50",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-1ddd7abf-38a5-4216-ae8b-51444de4ef50",
+          "text": "who made you? 6:22 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-5a2578e0-be86-4664-ae97-17f4ef646296",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-5a2578e0-be86-4664-ae97-17f4ef646296",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-5a2578e0-be86-4664-ae97-17f4ef646296",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-5a2578e0-be86-4664-ae97-17f4ef646296",
+          "text": "tell me about yourself 6:22 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-8a41e3fa-9a1a-4ec9-a65f-594870af79f7",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-8a41e3fa-9a1a-4ec9-a65f-594870af79f7",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-8a41e3fa-9a1a-4ec9-a65f-594870af79f7",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-8a41e3fa-9a1a-4ec9-a65f-594870af79f7",
+          "text": "hey! what is this app? 6:21 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-1fa247b3-c399-484a-84c5-0e6923677f5b",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-1fa247b3-c399-484a-84c5-0e6923677f5b",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-1fa247b3-c399-484a-84c5-0e6923677f5b",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-1fa247b3-c399-484a-84c5-0e6923677f5b",
+          "text": "Draft a short, friendly message that 6:21 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-40e2a0c9-db9d-4425-904a-fa72a517eb21",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-40e2a0c9-db9d-4425-904a-fa72a517eb21",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-40e2a0c9-db9d-4425-904a-fa72a517eb21",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-40e2a0c9-db9d-4425-904a-fa72a517eb21",
+          "text": "how do weather forecasts work? 6:21 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-232b3046-383f-44ce-858a-d472465f2ef6",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-232b3046-383f-44ce-858a-d472465f2ef6",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-232b3046-383f-44ce-858a-d472465f2ef6",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-232b3046-383f-44ce-858a-d472465f2ef6",
+          "text": "tell me about Paris 6:21 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-c052c083-63e6-4d38-99fc-d96bcb44570f",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-c052c083-63e6-4d38-99fc-d96bcb44570f",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-c052c083-63e6-4d38-99fc-d96bcb44570f",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-c052c083-63e6-4d38-99fc-d96bcb44570f",
+          "text": "what can you do with PDFs? 6:20 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-b395ec11-e11f-4570-952a-4c80e290fdaa",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-b395ec11-e11f-4570-952a-4c80e290fdaa",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-b395ec11-e11f-4570-952a-4c80e290fdaa",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-b395ec11-e11f-4570-952a-4c80e290fdaa",
+          "text": "bitcoin price right now? 6:20 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-ee86ecc5-7c1e-46c3-8f66-b81d605e83e6",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-ee86ecc5-7c1e-46c3-8f66-b81d605e83e6",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-ee86ecc5-7c1e-46c3-8f66-b81d605e83e6",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-ee86ecc5-7c1e-46c3-8f66-b81d605e83e6",
+          "text": "who won last night's game? 6:20 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-d183e3ec-2310-4dcd-b4c8-3b65b0017036",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-d183e3ec-2310-4dcd-b4c8-3b65b0017036",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-d183e3ec-2310-4dcd-b4c8-3b65b0017036",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-d183e3ec-2310-4dcd-b4c8-3b65b0017036",
+          "text": "what's the weather like today? 6:20 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-fece366b-19b5-4d0d-baa4-b2d599a1615e",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-fece366b-19b5-4d0d-baa4-b2d599a1615e",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-fece366b-19b5-4d0d-baa4-b2d599a1615e",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-fece366b-19b5-4d0d-baa4-b2d599a1615e",
+          "text": "מי אתה? 6:20 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-7ac0ba93-3f07-451a-908e-cccc4a7592ff",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-7ac0ba93-3f07-451a-908e-cccc4a7592ff",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-7ac0ba93-3f07-451a-908e-cccc4a7592ff",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-7ac0ba93-3f07-451a-908e-cccc4a7592ff",
+          "text": "what can you do? 6:19 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-80e5890e-dd86-43ff-8fbf-810965223b74",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-80e5890e-dd86-43ff-8fbf-810965223b74",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-80e5890e-dd86-43ff-8fbf-810965223b74",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-80e5890e-dd86-43ff-8fbf-810965223b74",
+          "text": "what model are you? 6:19 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-7ce76236-3c42-4f07-8e0d-03b288a1220b",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-7ce76236-3c42-4f07-8e0d-03b288a1220b",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-7ce76236-3c42-4f07-8e0d-03b288a1220b",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-7ce76236-3c42-4f07-8e0d-03b288a1220b",
+          "text": "who made you? 6:19 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-dbb96835-49c1-4bd6-9aa5-71a432d09fd3",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-dbb96835-49c1-4bd6-9aa5-71a432d09fd3",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-dbb96835-49c1-4bd6-9aa5-71a432d09fd3",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-dbb96835-49c1-4bd6-9aa5-71a432d09fd3",
+          "text": "tell me about yourself 6:19 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-0452a658-112c-4305-9916-0273e3d06c1f",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-0452a658-112c-4305-9916-0273e3d06c1f",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-0452a658-112c-4305-9916-0273e3d06c1f",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-0452a658-112c-4305-9916-0273e3d06c1f",
+          "text": "hey! what is this app? 6:19 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-2200eaed-a11b-46bc-bc03-c99daec571b0",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-2200eaed-a11b-46bc-bc03-c99daec571b0",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-2200eaed-a11b-46bc-bc03-c99daec571b0",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-2200eaed-a11b-46bc-bc03-c99daec571b0",
+          "text": "Summarize it 6:18 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-52d600f9-9720-4060-b04a-9adb950d2a10",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-52d600f9-9720-4060-b04a-9adb950d2a10",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-52d600f9-9720-4060-b04a-9adb950d2a10",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-52d600f9-9720-4060-b04a-9adb950d2a10",
+          "text": "Hi 6:02 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chats-footer",
+          "text": ""
+        },
+        {
+          "testID": "open-personas",
+          "text": "",
+          "pressable": true
+        },
+        {
+          "testID": "open-memory",
+          "text": "",
+          "pressable": true
+        },
+        {
+          "testID": "open-folders",
+          "text": "",
+          "pressable": true
+        },
+        {
+          "testID": "new-chat-sheet",
+          "text": ""
+        },
+        {
+          "testID": "folder-sheet",
+          "text": ""
+        },
+        {
+          "testID": "vault-code-sheet",
+          "text": ""
+        },
+        {
+          "testID": "export-sheet",
+          "text": ""
+        },
+        {
+          "testID": "drawer-footer",
+          "text": "FAST · OUT 850 B Settings ◯ Proof"
+        },
+        {
+          "testID": "drawer-meter",
+          "text": "FAST · OUT 850 B"
+        },
+        {
+          "testID": "drawer-settings",
+          "text": "Settings",
+          "pressable": true
+        },
+        {
+          "testID": "drawer-proof",
+          "text": "◯ Proof",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jg-15"
+    },
+    {
+      "i": 73,
+      "op": "press",
+      "ok": true,
+      "ms": 152,
+      "detail": "close-chats ← onPress"
+    },
+    {
+      "i": 74,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 167,
+      "detail": "/settings"
+    },
+    {
+      "i": 75,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "row-about appeared"
+    },
+    {
+      "i": 76,
+      "op": "scrollTo",
+      "ok": true,
+      "ms": 1,
+      "detail": "row-about"
+    },
+    {
+      "i": 77,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2001,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 78,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 640,
+      "detail": "sim-jg-16"
+    },
+    {
+      "i": 79,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "settings",
+          "text": "Inborn Pro See what's in Pro You own Pro. Pro for Work adds the client tools. PRO APPEARANCE Theme Auto Dark Light Dark at night, 18:00-06:00, and whenever the system is dark. Text size 90% Default 115% 130% 150% 175% 200% SECURITY Require a passcode Your passcode opens Inborn. Also hides chats in the app switcher. Set a passcode Hide in app switcher Chats are blurred while Inborn is in the background. Screenshot protection iOS cannot block screenshots. Inborn hides chats while the screen is recorded or mirrored. Auto-delete chats Off 1 day 7 days 30 days Chats stay until you delete them. Clipboard expiry Off 60 s Delete everything Chats, key, documents. No recovery. CHAT Model FAST Family-safe mode Keeps sexually explicit, graphic and self-harm content out of answers. It reduces that content; it cannot catch all of it. Haptics Sounds Off. There are none. PERFORMANCE Eco Balanced Max Auto power management Smaller model on low battery or heat. On for phones, off on desktop. Never switch my model automatically LANGUAGE App language English Answer language hint Follows the app language DOWNLOADS Wi-Fi only Storage location Internal ACCESSIBILITY Reduce motion Follows the system setting. Off PRIVACY & STORAGE Privacy & storage Reports Answers you reported, kept on this device Proof Pro for Work Audit log Per-vault, hash-chained, never message content Verify a signed record Check a .json record's hash and signature Architecture statement Dated, printable, for a compliance file ABOUT About Model licenses We collect nothing. There is nothing to opt out of. Settings"
+        },
+        {
+          "testID": "row-pro",
+          "text": "See what's in Pro You own Pro. Pro for Work adds the client tools. PRO",
+          "value": "PRO",
+          "pressable": true
+        },
+        {
+          "testID": "theme-mode",
+          "text": "Auto Dark Light",
+          "value": "auto",
+          "pressable": true
+        },
+        {
+          "testID": "theme-mode-sub",
+          "text": "Dark at night, 18:00-06:00, and whenever the system is dark."
+        },
+        {
+          "testID": "text-scale",
+          "text": "90% Default 115% 130% 150% 175% 200%",
+          "value": "1",
+          "pressable": true
+        },
+        {
+          "testID": "row-lock",
+          "text": "Require a passcode Your passcode opens Inborn. Also hides chats in the app switcher.",
+          "pressable": true
+        },
+        {
+          "testID": "row-hide",
+          "text": "Hide in app switcher Chats are blurred while Inborn is in the background.",
+          "pressable": true
+        },
+        {
+          "testID": "row-screenshots",
+          "text": "Screenshot protection iOS cannot block screenshots. Inborn hides chats while the screen is recorded or mirrored.",
+          "pressable": true
+        },
+        {
+          "testID": "auto-delete",
+          "text": "Off 1 day 7 days 30 days",
+          "value": "0",
+          "pressable": true
+        },
+        {
+          "testID": "auto-delete-sub",
+          "text": "Chats stay until you delete them."
+        },
+        {
+          "testID": "row-wipe",
+          "text": "Delete everything Chats, key, documents. No recovery.",
+          "pressable": true
+        },
+        {
+          "testID": "row-family-safe",
+          "text": "Family-safe mode Keeps sexually explicit, graphic and self-harm content out of answers. It reduces that content; it cannot catch all of it.",
+          "pressable": true
+        },
+        {
+          "testID": "row-language",
+          "text": "App language English",
+          "value": "English",
+          "pressable": true
+        },
+        {
+          "testID": "row-wifi-only",
+          "text": "Wi-Fi only",
+          "pressable": true
+        },
+        {
+          "testID": "row-storage",
+          "text": "Privacy & storage",
+          "pressable": true
+        },
+        {
+          "testID": "row-reports",
+          "text": "Reports Answers you reported, kept on this device",
+          "pressable": true
+        },
+        {
+          "testID": "row-proof",
+          "text": "Proof",
+          "pressable": true
+        },
+        {
+          "testID": "row-audit",
+          "text": "Audit log Per-vault, hash-chained, never message content",
+          "pressable": true
+        },
+        {
+          "testID": "row-verify",
+          "text": "Verify a signed record Check a .json record's hash and signature",
+          "pressable": true
+        },
+        {
+          "testID": "row-statement",
+          "text": "Architecture statement Dated, printable, for a compliance file",
+          "pressable": true
+        },
+        {
+          "testID": "row-about",
+          "text": "About",
+          "pressable": true
+        },
+        {
+          "testID": "back",
+          "text": "",
+          "role": "button",
+          "label": "Back",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jg-16"
+    },
+    {
+      "i": 80,
+      "op": "press",
+      "ok": true,
+      "ms": 155,
+      "detail": "row-about ← onPress"
+    },
+    {
+      "i": 81,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "row-privacy appeared"
+    },
+    {
+      "i": 82,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "row-privacy ← onPress"
+    },
+    {
+      "i": 83,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 84,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1911,
+      "detail": "sim-jg-17"
+    },
+    {
+      "i": 85,
+      "op": "dump",
+      "ok": true,
+      "ms": 5,
+      "nodes": [
+        {
+          "testID": "settings",
+          "text": "Inborn Pro See what's in Pro You own Pro. Pro for Work adds the client tools. PRO APPEARANCE Theme Auto Dark Light Dark at night, 18:00-06:00, and whenever the system is dark. Text size 90% Default 115% 130% 150% 175% 200% SECURITY Require a passcode Your passcode opens Inborn. Also hides chats in the app switcher. Set a passcode Hide in app switcher Chats are blurred while Inborn is in the background. Screenshot protection iOS cannot block screenshots. Inborn hides chats while the screen is recorded or mirrored. Auto-delete chats Off 1 day 7 days 30 days Chats stay until you delete them. Clipboard expiry Off 60 s Delete everything Chats, key, documents. No recovery. CHAT Model FAST Family-safe mode Keeps sexually explicit, graphic and self-harm content out of answers. It reduces that content; it cannot catch all of it. Haptics Sounds Off. There are none. PERFORMANCE Eco Balanced Max Auto power management Smaller model on low battery or heat. On for phones, off on desktop. Never switch my model automatically LANGUAGE App language English Answer language hint Follows the app language DOWNLOADS Wi-Fi only Storage location Internal ACCESSIBILITY Reduce motion Follows the system setting. Off PRIVACY & STORAGE Privacy & storage Reports Answers you reported, kept on this device Proof Pro for Work Audit log Per-vault, hash-chained, never message content Verify a signed record Check a .json record's hash and signature Architecture statement Dated, printable, for a compliance file ABOUT About Model licenses We collect nothing. There is nothing to opt out of. Settings"
+        },
+        {
+          "testID": "row-pro",
+          "text": "See what's in Pro You own Pro. Pro for Work adds the client tools. PRO",
+          "value": "PRO",
+          "pressable": true
+        },
+        {
+          "testID": "theme-mode",
+          "text": "Auto Dark Light",
+          "value": "auto",
+          "pressable": true
+        },
+        {
+          "testID": "theme-mode-sub",
+          "text": "Dark at night, 18:00-06:00, and whenever the system is dark."
+        },
+        {
+          "testID": "text-scale",
+          "text": "90% Default 115% 130% 150% 175% 200%",
+          "value": "1",
+          "pressable": true
+        },
+        {
+          "testID": "row-lock",
+          "text": "Require a passcode Your passcode opens Inborn. Also hides chats in the app switcher.",
+          "pressable": true
+        },
+        {
+          "testID": "row-hide",
+          "text": "Hide in app switcher Chats are blurred while Inborn is in the background.",
+          "pressable": true
+        },
+        {
+          "testID": "row-screenshots",
+          "text": "Screenshot protection iOS cannot block screenshots. Inborn hides chats while the screen is recorded or mirrored.",
+          "pressable": true
+        },
+        {
+          "testID": "auto-delete",
+          "text": "Off 1 day 7 days 30 days",
+          "value": "0",
+          "pressable": true
+        },
+        {
+          "testID": "auto-delete-sub",
+          "text": "Chats stay until you delete them."
+        },
+        {
+          "testID": "row-wipe",
+          "text": "Delete everything Chats, key, documents. No recovery.",
+          "pressable": true
+        },
+        {
+          "testID": "row-family-safe",
+          "text": "Family-safe mode Keeps sexually explicit, graphic and self-harm content out of answers. It reduces that content; it cannot catch all of it.",
+          "pressable": true
+        },
+        {
+          "testID": "row-language",
+          "text": "App language English",
+          "value": "English",
+          "pressable": true
+        },
+        {
+          "testID": "row-wifi-only",
+          "text": "Wi-Fi only",
+          "pressable": true
+        },
+        {
+          "testID": "row-storage",
+          "text": "Privacy & storage",
+          "pressable": true
+        },
+        {
+          "testID": "row-reports",
+          "text": "Reports Answers you reported, kept on this device",
+          "pressable": true
+        },
+        {
+          "testID": "row-proof",
+          "text": "Proof",
+          "pressable": true
+        },
+        {
+          "testID": "row-audit",
+          "text": "Audit log Per-vault, hash-chained, never message content",
+          "pressable": true
+        },
+        {
+          "testID": "row-verify",
+          "text": "Verify a signed record Check a .json record's hash and signature",
+          "pressable": true
+        },
+        {
+          "testID": "row-statement",
+          "text": "Architecture statement Dated, printable, for a compliance file",
+          "pressable": true
+        },
+        {
+          "testID": "row-about",
+          "text": "About",
+          "pressable": true
+        },
+        {
+          "testID": "back",
+          "text": "",
+          "role": "button",
+          "label": "Back",
+          "pressable": true
+        },
+        {
+          "testID": "about",
+          "text": "VERSION 1.0.0 (43) 000e74da2c57 LICENSES Model licenses Open-source licenses PRIVACY We collect nothing. There is nothing to opt out of. Privacy policy Terms of use Accessibility HELP Report a problem Creates an email with device and engine details. No chat content. What's missing? Made without a server. About"
+        },
+        {
+          "testID": "row-privacy",
+          "text": "Privacy policy",
+          "pressable": true
+        },
+        {
+          "testID": "row-terms",
+          "text": "Terms of use",
+          "pressable": true
+        },
+        {
+          "testID": "row-accessibility",
+          "text": "Accessibility",
+          "pressable": true
+        },
+        {
+          "testID": "legal-privacy",
+          "text": "OFFLINE COPY · EFFECTIVE 22 September 2026 Read the current version at inbornapp.com/privacy This text was bundled when the app was built. The version on the website is the one that applies, and it opens in your browser. LAST EDITED 22 September 2026 Effective date: 22 September 2026 Publisher: Cohen Apps Contact: support@inbornapp.com 1. The short version Inborn is an AI chat app that runs entirely on your device. Your conversations, documents, settings and the AI model itself live on your phone or computer. We do not collect, receive, store, sell or share any personal data. There are no accounts, no analytics, no crash reporting, no advertising, no remote configuration and no push notifications. On Android the app does not even hold the INTERNET permission, so it cannot open a network connection. The only situations in which anything at all leaves your device are listed in section 3. Each one is either performed by the app store (not by Inborn), or started by you with an explicit tap, and each one is described there in full. 2. What Inborn does not do • It does not create or require an account. No email, phone number, or sign-in of any kind. • It does not send your messages, prompts, documents, images, voice, or model outputs anywhere. • It does not include any analytics, crash-reporting, attribution, advertising, A/B testing, or remote-configuration software, from us or from anyone else. • It does not assign you a device identifier or send a \"ping\" of any kind. • It does not read your contacts, location, photos, calendar or microphone unless you use a feature that needs them (for example, tapping the microphone to dictate), and even then the data is processed on the device and never transmitted. • It does not sell or share personal information. Because nothing is collected, there is nothing to sell or share. 3. The complete list of network activity, by platform Android None from the app. The release build does not declare the INTERNET permission (you can confirm this on the app's Google Play permissions page, which does not list \"full network access\"; the one entry Android's app info may show that Inborn did not declare, \"Google Play license check\", is added by Google Play itself when it builds the installed APKs from our app bundle and gives the app no network access). Two things happen through Google Play, not through Inborn: • Model delivery. The built-in \"Instant\" model and any larger model you choose in the Vault are delivered by Google Play as asset packs (Play Asset Delivery). Google performs the download exactly as it performs an app install or update, under Google's own privacy policy. • Purchases. Pro and Work are sold through Google Play Billing. Google processes the payment and holds the purchase record; Inborn only reads the locally cached entitlement. We never see your name, email or payment details. iOS and iPadOS The app itself opens no connection by default. • Model delivery, every supported iOS version (iOS 17 and later). The \"Instant\" model ships inside the app, so the first chat needs no download. If you tap \"Install\" on a larger model in the Vault, the app fetches that one file over HTTPS from models.inbornapp.com , hosted on Cloudflare R2. The Vault names the host and the size on the button and again in the confirmation sheet before anything is fetched. What is transmitted: the request for the file (its path and byte range), and the technical information any HTTPS request carries (your IP address and a generic user-agent string). What is not transmitted: no identifiers, no cookies, no query parameters, no information about you, your device, or your usage. Cloudflare processes the IP address to serve the file and may keep short-lived edge logs under Cloudflare's privacy policy. We do not receive or keep per-request logs. Your iOS App Privacy Report will show models.inbornapp.com while that download runs , and nothing at any other time. We do not use Apple-hosted asset packs (Background Assets) in this release; if we ever adopt them, this section will say so before the change ships. • Hugging Face (optional, explicit). If you choose to search or import a model from Hugging Face, the app tells you first, and huggingface.co will then appear in your App Privacy Report. Hugging Face's privacy policy applies to that download. • Purchases. Pro and Work are sold through the App Store (StoreKit). Apple processes the payment and holds the purchase record; Inborn verifies the signed receipt on the device. We never see your name, email or payment details. Windows and macOS • Model delivery. A model download you start fetches one file from models.inbornapp.com , exactly as described for iOS above. You may also import model files by drag-and-drop with no network at all. • Purchases. Through the Microsoft Store (Windows) or the Mac App Store, under their policies; or directly through Paddle, our reseller, which processes payment and issues a licence key. Paddle is an independent merchant of record and its privacy policy governs the purchase. Activating a licence key sends the key and a device-bound identifier to Paddle's licensing endpoint once, so the licence can be checked offline afterwards. Web version The browser version downloads the model from the page's own origin (the same host that served the page) into the browser's own storage and runs it locally; the Proof page shows the origin, size and hash of what was downloaded. If we later serve models from a separate host such as models.inbornapp.com , the page will only fetch from that host and this paragraph will name it. Nothing you type is sent to us. Your browser and operating system may make their own connections, which the page does not control. The web demo sets no cookies and loads no third-party scripts. Marketing website inbornapp.com uses Cloudflare Web Analytics, which is cookie-free and does not identify visitors, and Cloudflare's server logs. No advertising or tracking scripts. 4. Data that Apple, Google, Microsoft and Paddle process on their own behalf When you install, update, rate or buy something, the store operator processes data (device information, purchase records, and, if you opted in at the operating-system level, crash and usage diagnostics). They do so as independent controllers under their own policies: • Apple: https://www.apple.com/legal/privacy/ • Google: https://policies.google.com/privacy • Microsoft: https://privacy.microsoft.com/privacystatement • Paddle: https://www.paddle.com/legal/privacy We receive only aggregate, non-identifying reports from the stores (for example, download counts by country). If you opted in to share diagnostics with Apple or Google, the operating system may pass anonymised crash reports to us; these contain stack traces, never the content of your chats. The app itself never writes user content into logs. 5. Support email If you write to support@inbornapp.com, we process your email address and whatever you choose to write, only to answer you. This is the single place where we hold personal data. Legal basis (where GDPR applies): our legitimate interest in answering you (Art. 6(1)(f) GDPR). Retention: the thread is deleted within 90 days after the issue is closed, unless you ask us to keep it. If you attach a \"Report a problem\" file from the app, note that you choose what it contains; it is generated on the device and sent by you from your own mail app. 6. Your data on the device, and how to export or delete it • Conversations, personas, settings and imported documents are stored in an encrypted database on your device (SQLCipher). Its 256-bit key is generated on the device and held by the platform's own secret store: the iOS Keychain, with the WhenUnlockedThisDeviceOnly attribute, so it never leaves this device and is in no backup; the Android Keystore; the macOS Keychain or the Windows Credential Manager on desktop. On iOS the files also use Data Protection. • Web version exception: in the browser, conversations are stored in the browser's own storage (IndexedDB) without the app's encryption, protected only by your browser profile. The app says so on screen. Clearing the site's data removes them. • Model files are stored unencrypted (they are public files) and are excluded from device backups because of their size. Conversations are not restored to a new device. On Android the app sets allowBackup=\"false\" , so nothing it stores reaches Google's device backup at all. On iOS the database key is bound to this device and never leaves it, so a restored backup cannot open the old conversations. Use Settings → Export before you move devices if you want to keep them. • Access and portability: Settings → Export lets you export any conversation, or everything, to a file you control. • Deletion: delete any conversation, delete all data from Settings → Storage, or use Emergency Wipe. Deleting the app deletes everything it stored. Because we hold no copy, there is nothing for us to delete on our side. • Incognito chats are held in memory only: no message, index or vector of an incognito chat is written to the database. A file you attach inside one is held in a temporary location for the length of the session, is never added to your document library, and is deleted when the session ends; if the app is killed first, the next launch deletes it before anything else. 7. GDPR and UK GDPR Inborn processes your data only on your own device, for your own use. We never receive it, so we are neither a controller nor a processor of your conversations or documents; your own use falls within the personal or household activity exemption (Art. 2(2)(c) GDPR). The only personal data we control is the support correspondence described in section 5. You have the right to ask us to access, correct or erase that correspondence, to object to its processing, and to complain to your supervisory authority. We do not transfer personal data internationally, other than the email you send us, which is handled by our email provider. 8. California (CCPA/CPRA) and other US state laws We do not collect personal information as defined by the CCPA, and we do not sell or share personal information. This statement serves as our \"Do Not Sell or Share My Personal Information\" notice: there is nothing to opt out of. If you contact support, the only personal information involved is your email address, used to respond to you. 9. Children Inborn is rated 13+ on the App Store and Teen on Google Play. It is not directed to children under 13 and we do not knowingly collect information from anyone; as described above, we collect no information from any user. The default Family-safe mode filters the AI's output on the device. 10. Security No server means no server to breach. On the device: an encrypted database whose key the operating system holds, optional biometric app lock, optional screenshot blocking, incognito mode and emergency wipe. Inborn's source code is public at github.com/moshecohen90/inborn, but nothing in this policy asks you to read it; the claims in section 3 are the kind you can check from outside the app, without our cooperation. The Android build's manifest can be checked with aapt2 dump permissions ; the iOS App Privacy Report and any firewall (Little Snitch, NetGuard) will show the behaviour described in section 3. 11. Changes We will post changes here with a new effective date, and describe them in the app's release notes. We will never add data collection without changing this policy first and making the change visible in the app. 12. Contact Cohen Apps Reach us by email at support@inbornapp.com or by phone on +1-440-847-8502. We have no physical reception and offer no in-person service. Privacy policy"
+        },
+        {
+          "testID": "legal-source",
+          "text": "OFFLINE COPY · EFFECTIVE 22 September 2026 Read the current version at inbornapp.com/privacy This text was bundled when the app was built. The version on the website is the one that applies, and it opens in your browser."
+        },
+        {
+          "testID": "legal-source-offline",
+          "text": "OFFLINE COPY · EFFECTIVE 22 September 2026"
+        },
+        {
+          "testID": "legal-source-open",
+          "text": "Read the current version at inbornapp.com/privacy",
+          "pressable": true
+        },
+        {
+          "testID": "legal-meta",
+          "text": "Effective date: 22 September 2026 Publisher: Cohen Apps Contact: support@inbornapp.com"
+        },
+        {
+          "testID": "legal-body",
+          "text": "1. The short version Inborn is an AI chat app that runs entirely on your device. Your conversations, documents, settings and the AI model itself live on your phone or computer. We do not collect, receive, store, sell or share any personal data. There are no accounts, no analytics, no crash reporting, no advertising, no remote configuration and no push notifications. On Android the app does not even hold the INTERNET permission, so it cannot open a network connection. The only situations in which anything at all leaves your device are listed in section 3. Each one is either performed by the app store (not by Inborn), or started by you with an explicit tap, and each one is described there in full. 2. What Inborn does not do • It does not create or require an account. No email, phone number, or sign-in of any kind. • It does not send your messages, prompts, documents, images, voice, or model outputs anywhere. • It does not include any analytics, crash-reporting, attribution, advertising, A/B testing, or remote-configuration software, from us or from anyone else. • It does not assign you a device identifier or send a \"ping\" of any kind. • It does not read your contacts, location, photos, calendar or microphone unless you use a feature that needs them (for example, tapping the microphone to dictate), and even then the data is processed on the device and never transmitted. • It does not sell or share personal information. Because nothing is collected, there is nothing to sell or share. 3. The complete list of network activity, by platform Android None from the app. The release build does not declare the INTERNET permission (you can confirm this on the app's Google Play permissions page, which does not list \"full network access\"; the one entry Android's app info may show that Inborn did not declare, \"Google Play license check\", is added by Google Play itself when it builds the installed APKs from our app bundle and gives the app no network access). Two things happen through Google Play, not through Inborn: • Model delivery. The built-in \"Instant\" model and any larger model you choose in the Vault are delivered by Google Play as asset packs (Play Asset Delivery). Google performs the download exactly as it performs an app install or update, under Google's own privacy policy. • Purchases. Pro and Work are sold through Google Play Billing. Google processes the payment and holds the purchase record; Inborn only reads the locally cached entitlement. We never see your name, email or payment details. iOS and iPadOS The app itself opens no connection by default. • Model delivery, every supported iOS version (iOS 17 and later). The \"Instant\" model ships inside the app, so the first chat needs no download. If you tap \"Install\" on a larger model in the Vault, the app fetches that one file over HTTPS from models.inbornapp.com , hosted on Cloudflare R2. The Vault names the host and the size on the button and again in the confirmation sheet before anything is fetched. What is transmitted: the request for the file (its path and byte range), and the technical information any HTTPS request carries (your IP address and a generic user-agent string). What is not transmitted: no identifiers, no cookies, no query parameters, no information about you, your device, or your usage. Cloudflare processes the IP address to serve the file and may keep short-lived edge logs under Cloudflare's privacy policy. We do not receive or keep per-request logs. Your iOS App Privacy Report will show models.inbornapp.com while that download runs , and nothing at any other time. We do not use Apple-hosted asset packs (Background Assets) in this release; if we ever adopt them, this section will say so before the change ships. • Hugging Face (optional, explicit). If you choose to search or import a model from Hugging Face, the app tells you first, and huggingface.co will then appear in your App Privacy Report. Hugging Face's privacy policy applies to that download. • Purchases. Pro and Work are sold through the App Store (StoreKit). Apple processes the payment and holds the purchase record; Inborn verifies the signed receipt on the device. We never see your name, email or payment details. Windows and macOS • Model delivery. A model download you start fetches one file from models.inbornapp.com , exactly as described for iOS above. You may also import model files by drag-and-drop with no network at all. • Purchases. Through the Microsoft Store (Windows) or the Mac App Store, under their policies; or directly through Paddle, our reseller, which processes payment and issues a licence key. Paddle is an independent merchant of record and its privacy policy governs the purchase. Activating a licence key sends the key and a device-bound identifier to Paddle's licensing endpoint once, so the licence can be checked offline afterwards. Web version The browser version downloads the model from the page's own origin (the same host that served the page) into the browser's own storage and runs it locally; the Proof page shows the origin, size and hash of what was downloaded. If we later serve models from a separate host such as models.inbornapp.com , the page will only fetch from that host and this paragraph will name it. Nothing you type is sent to us. Your browser and operating system may make their own connections, which the page does not control. The web demo sets no cookies and loads no third-party scripts. Marketing website inbornapp.com uses Cloudflare Web Analytics, which is cookie-free and does not identify visitors, and Cloudflare's server logs. No advertising or tracking scripts. 4. Data that Apple, Google, Microsoft and Paddle process on their own behalf When you install, update, rate or buy something, the store operator processes data (device information, purchase records, and, if you opted in at the operating-system level, crash and usage diagnostics). They do so as independent controllers under their own policies: • Apple: https://www.apple.com/legal/privacy/ • Google: https://policies.google.com/privacy • Microsoft: https://privacy.microsoft.com/privacystatement • Paddle: https://www.paddle.com/legal/privacy We receive only aggregate, non-identifying reports from the stores (for example, download counts by country). If you opted in to share diagnostics with Apple or Google, the operating system may pass anonymised crash reports to us; these contain stack traces, never the content of your chats. The app itself never writes user content into logs. 5. Support email If you write to support@inbornapp.com, we process your email address and whatever you choose to write, only to answer you. This is the single place where we hold personal data. Legal basis (where GDPR applies): our legitimate interest in answering you (Art. 6(1)(f) GDPR). Retention: the thread is deleted within 90 days after the issue is closed, unless you ask us to keep it. If you attach a \"Report a problem\" file from the app, note that you choose what it contains; it is generated on the device and sent by you from your own mail app. 6. Your data on the device, and how to export or delete it • Conversations, personas, settings and imported documents are stored in an encrypted database on your device (SQLCipher). Its 256-bit key is generated on the device and held by the platform's own secret store: the iOS Keychain, with the WhenUnlockedThisDeviceOnly attribute, so it never leaves this device and is in no backup; the Android Keystore; the macOS Keychain or the Windows Credential Manager on desktop. On iOS the files also use Data Protection. • Web version exception: in the browser, conversations are stored in the browser's own storage (IndexedDB) without the app's encryption, protected only by your browser profile. The app says so on screen. Clearing the site's data removes them. • Model files are stored unencrypted (they are public files) and are excluded from device backups because of their size. Conversations are not restored to a new device. On Android the app sets allowBackup=\"false\" , so nothing it stores reaches Google's device backup at all. On iOS the database key is bound to this device and never leaves it, so a restored backup cannot open the old conversations. Use Settings → Export before you move devices if you want to keep them. • Access and portability: Settings → Export lets you export any conversation, or everything, to a file you control. • Deletion: delete any conversation, delete all data from Settings → Storage, or use Emergency Wipe. Deleting the app deletes everything it stored. Because we hold no copy, there is nothing for us to delete on our side. • Incognito chats are held in memory only: no message, index or vector of an incognito chat is written to the database. A file you attach inside one is held in a temporary location for the length of the session, is never added to your document library, and is deleted when the session ends; if the app is killed first, the next launch deletes it before anything else. 7. GDPR and UK GDPR Inborn processes your data only on your own device, for your own use. We never receive it, so we are neither a controller nor a processor of your conversations or documents; your own use falls within the personal or household activity exemption (Art. 2(2)(c) GDPR). The only personal data we control is the support correspondence described in section 5. You have the right to ask us to access, correct or erase that correspondence, to object to its processing, and to complain to your supervisory authority. We do not transfer personal data internationally, other than the email you send us, which is handled by our email provider. 8. California (CCPA/CPRA) and other US state laws We do not collect personal information as defined by the CCPA, and we do not sell or share personal information. This statement serves as our \"Do Not Sell or Share My Personal Information\" notice: there is nothing to opt out of. If you contact support, the only personal information involved is your email address, used to respond to you. 9. Children Inborn is rated 13+ on the App Store and Teen on Google Play. It is not directed to children under 13 and we do not knowingly collect information from anyone; as described above, we collect no information from any user. The default Family-safe mode filters the AI's output on the device. 10. Security No server means no server to breach. On the device: an encrypted database whose key the operating system holds, optional biometric app lock, optional screenshot blocking, incognito mode and emergency wipe. Inborn's source code is public at github.com/moshecohen90/inborn, but nothing in this policy asks you to read it; the claims in section 3 are the kind you can check from outside the app, without our cooperation. The Android build's manifest can be checked with aapt2 dump permissions ; the iOS App Privacy Report and any firewall (Little Snitch, NetGuard) will show the behaviour described in section 3. 11. Changes We will post changes here with a new effective date, and describe them in the app's release notes. We will never add data collection without changing this policy first and making the change visible in the app. 12. Contact Cohen Apps Reach us by email at support@inbornapp.com or by phone on +1-440-847-8502. We have no physical reception and offer no in-person service."
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "sim-jg-17"
+    },
+    {
+      "i": 86,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 150,
+      "detail": "/chats"
+    },
+    {
+      "i": 87,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    }
+  ],
+  "errors": [
+    "step 22 (value): value none-matched: no node with that testID is mounted",
+    "step 23 (value): value banners: no node with that testID is mounted",
+    "step 37 (value): value banners: no node with that testID is mounted",
+    "step 50 (value): value none-matched: no node with that testID is mounted",
+    "step 51 (value): value banners: no node with that testID is mounted",
+    "console.log: [chat] plain=acknowledgement window=5/5 maxTokens=224"
+  ]
+}

@@ -1,0 +1,534 @@
+{
+ "_": "A (134L) on Fast: the constitution in a new chat; summary; pancakes (the index card on first search); thanks; waffles; past the goal: the veto question.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "new-chat",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "press",
+   "testID": "new-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "start-chat",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "press",
+   "testID": "start-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "press",
+   "testID": "model-chip"
+  },
+  {
+   "op": "waitFor",
+   "testID": "model-sheet",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "press",
+   "testID": "model-sheet-use-fast"
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "press",
+   "testID": "model-sheet-close"
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 240000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "assertText",
+   "text": "FAST",
+   "testID": "model-chip"
+  },
+  {
+   "op": "devPrompt",
+   "lines": [
+    "attach: constitution-9pages.pdf"
+   ]
+  },
+  {
+   "op": "waitFor",
+   "testID": "attached-docs",
+   "timeoutMs": 60000
+  },
+  {
+   "op": "sleep",
+   "ms": 20000
+  },
+  {
+   "op": "value",
+   "testID": "attached-docs"
+  },
+  {
+   "op": "screenshot",
+   "name": "sim-ja-01"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "Summarize it"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-pages",
+   "timeoutMs": 120000
+  },
+  {
+   "op": "value",
+   "testID": "reading-pages"
+  },
+  {
+   "op": "screenshot",
+   "name": "sim-ja-02"
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-pages",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "assistant-text",
+   "timeoutMs": 240000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 600000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "value",
+   "testID": "attached-docs"
+  },
+  {
+   "op": "assertText",
+   "text": "Summary of all 9 pages.",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "screenshot",
+   "name": "sim-ja-03"
+  },
+  {
+   "op": "dump",
+   "name": "sim-ja-03"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "give me a pancake recipe"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "docs-hold",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "value",
+   "testID": "docs-hold"
+  },
+  {
+   "op": "press",
+   "testID": "docs-hold-download"
+  },
+  {
+   "op": "idleTimer"
+  },
+  {
+   "op": "waitFor",
+   "testID": "docs-hold",
+   "gone": true,
+   "timeoutMs": 1800000
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "timeoutMs": 90000
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-pages",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "value",
+   "testID": "none-matched"
+  },
+  {
+   "op": "value",
+   "testID": "banners"
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "waitFor",
+   "testID": "citations",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "assertText",
+   "text": "Your documents don't mention this",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "flour",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "screenshot",
+   "name": "sim-ja-04"
+  },
+  {
+   "op": "dump",
+   "name": "sim-ja-04"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "thanks"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-pages",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "value",
+   "testID": "none-matched"
+  },
+  {
+   "op": "value",
+   "testID": "banners"
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "screenshot",
+   "name": "sim-ja-05"
+  },
+  {
+   "op": "dump",
+   "name": "sim-ja-05"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "and a waffle recipe"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-pages",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "value",
+   "testID": "none-matched"
+  },
+  {
+   "op": "value",
+   "testID": "banners"
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "assertText",
+   "text": "Your documents don't mention this",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "screenshot",
+   "name": "sim-ja-06"
+  },
+  {
+   "op": "dump",
+   "name": "sim-ja-06"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "Who can veto a bill?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "docs-hold",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "value",
+   "testID": "docs-hold"
+  },
+  {
+   "op": "press",
+   "testID": "docs-hold-download"
+  },
+  {
+   "op": "idleTimer"
+  },
+  {
+   "op": "waitFor",
+   "testID": "docs-hold",
+   "gone": true,
+   "timeoutMs": 1800000
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "timeoutMs": 90000
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-pages",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "reading-docs",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "value",
+   "testID": "citations"
+  },
+  {
+   "op": "value",
+   "testID": "none-matched"
+  },
+  {
+   "op": "value",
+   "testID": "banners"
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "waitFor",
+   "testID": "none-matched",
+   "gone": true,
+   "timeoutMs": 1000
+  },
+  {
+   "op": "assertText",
+   "text": "Your documents don't mention this",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "waitFor",
+   "testID": "citations",
+   "timeoutMs": 1000
+  },
+  {
+   "op": "screenshot",
+   "name": "sim-ja-07"
+  },
+  {
+   "op": "dump",
+   "name": "sim-ja-07"
+  }
+ ]
+}

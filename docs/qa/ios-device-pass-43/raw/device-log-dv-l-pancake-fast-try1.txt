@@ -1,0 +1,89 @@
+19:03:50 pushing 73 steps as dv-l-pancake-fast
+19:06:43 shot device-l-01
+19:06:51 shot device-l-02
+19:06:58 shot device-l-03
+19:07:03 ok     0 deeplink   /chats
+19:07:03 ok     1 waitFor    new-chat appeared
+19:07:03 ok     2 press      new-chat ← onPress
+19:07:03 ok     3 waitFor    start-chat appeared
+19:07:03 ok     4 press      start-chat ← onPress
+19:07:03 ok     5 waitFor    composer-input appeared
+19:07:03 ok     6 waitFor    Loading gone
+19:07:03 ok     7 sleep      1500 ms
+19:07:03 ok     8 value      INSTANT
+19:07:03 ok     9 press      model-chip ← onPress
+19:07:03 ok    10 waitFor    model-sheet appeared
+19:07:03 ok    11 sleep      1500 ms
+19:07:03 ok    12 press      model-sheet-use-fast ← onPress
+19:07:03 ok    13 sleep      3000 ms
+19:07:03 FAIL  14 press      press model-sheet-close: not mounted
+19:07:03 ok    15 waitFor    Loading gone
+19:07:03 ok    16 sleep      1500 ms
+19:07:03 ok    17 value      FAST
+19:07:03 ok    18 assertText "FAST" present
+19:07:03 ok    19 devPrompt  attach: constitution-9pages.pdf
+19:07:03 ok    20 waitFor    attached-docs appeared
+19:07:03 ok    21 sleep      20000 ms
+19:07:03 ok    22 value      constitution-9pages.pdf
+19:07:03 ok    23 type       composer-input = 24 chars
+19:07:03 ok    24 send       send ← onPress
+19:07:03 ok    25 sleep      2500 ms
+19:07:03 ok    26 waitFor    docs-hold appeared
+19:07:03 ok    27 value      The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact wo
+19:07:03 ok    28 press      docs-hold-download ← onPress
+19:07:03 ok    29 idleTimer  idle timer disabled: false
+19:07:03 ok    30 waitFor    docs-hold gone
+19:07:03 ok    31 waitFor    reading-docs gone
+19:07:03 FAIL  32 waitFor    waitFor stop never appeared in 90000 ms
+19:07:03 ok    33 waitFor    reading-pages gone
+19:07:03 ok    34 waitFor    reading-docs gone
+19:07:03 ok    35 waitFor    stop gone
+19:07:03 ok    36 sleep      2500 ms
+19:07:03 ok    37 value      Inborn has not finished reading the file attached to this chat. Open Documents to see where it stopped.
+19:07:03 FAIL  38 value      value citations: no node with that testID is mounted
+19:07:03 FAIL  39 value      value none-matched: no node with that testID is mounted
+19:07:03 FAIL  40 value      value banners: no node with that testID is mounted
+19:07:03 ok    41 value      FAST
+19:07:03 ok    42 assertText "Your documents don't mention this" absent
+19:07:03 ok    43 screenshot device-l-01
+19:07:03 ok    44 dump       device-l-01
+19:07:03 ok    45 type       composer-input = 19 chars
+19:07:03 ok    46 send       send ← onPress
+19:07:03 ok    47 sleep      2500 ms
+19:07:03 ok    48 waitFor    reading-pages gone
+19:07:03 ok    49 waitFor    reading-docs gone
+19:07:03 ok    50 waitFor    stop gone
+19:07:03 ok    51 sleep      2500 ms
+19:07:03 ok    52 value      Inborn has not finished reading the file attached to this chat. Open Documents to see where it stopped.
+19:07:03 FAIL  53 value      value citations: no node with that testID is mounted
+19:07:03 FAIL  54 value      value none-matched: no node with that testID is mounted
+19:07:03 FAIL  55 value      value banners: no node with that testID is mounted
+19:07:03 ok    56 value      FAST
+19:07:03 ok    57 screenshot device-l-02
+19:07:03 ok    58 dump       device-l-02
+19:07:03 ok    59 type       composer-input = 20 chars
+19:07:03 ok    60 send       send ← onPress
+19:07:03 ok    61 sleep      2500 ms
+19:07:03 ok    62 waitFor    reading-pages gone
+19:07:03 ok    63 waitFor    reading-docs gone
+19:07:03 ok    64 waitFor    stop gone
+19:07:03 ok    65 sleep      2500 ms
+19:07:03 ok    66 value      Inborn has not finished reading the file attached to this chat. Open Documents to see where it stopped.
+19:07:03 FAIL  67 value      value citations: no node with that testID is mounted
+19:07:03 FAIL  68 value      value none-matched: no node with that testID is mounted
+19:07:03 FAIL  69 value      value banners: no node with that testID is mounted
+19:07:03 ok    70 value      FAST
+19:07:03 ok    71 screenshot device-l-03
+19:07:03 ok    72 dump       device-l-03
+19:07:03 62 passed, 11 failed, 3 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-43/docs/qa/ios-device-pass-43/screens
+19:07:03   ! step 14 (press): press model-sheet-close: not mounted
+19:07:03   ! step 32 (waitFor): waitFor stop never appeared in 90000 ms
+19:07:03   ! step 38 (value): value citations: no node with that testID is mounted
+19:07:03   ! step 39 (value): value none-matched: no node with that testID is mounted
+19:07:03   ! step 40 (value): value banners: no node with that testID is mounted
+19:07:03   ! step 53 (value): value citations: no node with that testID is mounted
+19:07:03   ! step 54 (value): value none-matched: no node with that testID is mounted
+19:07:03   ! step 55 (value): value banners: no node with that testID is mounted
+19:07:03   ! step 67 (value): value citations: no node with that testID is mounted
+19:07:03   ! step 68 (value): value none-matched: no node with that testID is mounted
+19:07:03   ! step 69 (value): value banners: no node with that testID is mounted

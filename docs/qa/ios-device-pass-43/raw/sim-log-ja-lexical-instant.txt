@@ -1,0 +1,145 @@
+18:13:32 pushing 116 steps as ja-lexical-instant
+18:14:02 shot sim-ja-08
+18:14:04 shot sim-ja-09
+18:15:58 shot sim-ja-10
+18:17:51 shot sim-ja-11
+18:18:02 shot sim-ja-12
+18:18:18 shot sim-ja-13
+18:18:42 shot sim-ja-14
+18:18:45 ok     0 deeplink   /chats
+18:18:45 ok     1 waitFor    new-chat appeared
+18:18:45 ok     2 press      new-chat ← onPress
+18:18:45 ok     3 waitFor    start-chat appeared
+18:18:45 ok     4 press      start-chat ← onPress
+18:18:45 ok     5 waitFor    composer-input appeared
+18:18:45 ok     6 waitFor    Loading gone
+18:18:45 ok     7 sleep      1500 ms
+18:18:45 ok     8 value      FAST
+18:18:45 ok     9 press      model-chip ← onPress
+18:18:45 ok    10 waitFor    model-sheet appeared
+18:18:45 ok    11 sleep      1500 ms
+18:18:45 ok    12 press      model-sheet-use-instant ← onPress
+18:18:45 ok    13 sleep      3000 ms
+18:18:45 FAIL  14 press      press model-sheet-close: not mounted
+18:18:45 ok    15 waitFor    Loading gone
+18:18:45 ok    16 sleep      1500 ms
+18:18:45 ok    17 value      INSTANT
+18:18:45 ok    18 assertText "INSTANT" present
+18:18:45 ok    19 devPrompt  attach: constitution-9pages.pdf
+18:18:45 ok    20 waitFor    attached-docs appeared
+18:18:45 ok    21 sleep      20000 ms
+18:18:45 ok    22 value      constitution-9pages.pdf
+18:18:45 ok    23 screenshot sim-ja-08
+18:18:45 ok    24 type       composer-input = 12 chars
+18:18:45 ok    25 send       send ← onPress
+18:18:45 ok    26 waitFor    reading-pages appeared
+18:18:45 ok    27 value      Reading pages 1–2 of 9…
+18:18:45 ok    28 screenshot sim-ja-09
+18:18:45 ok    29 waitFor    reading-pages gone
+18:18:45 ok    30 waitFor    assistant-text appeared
+18:18:45 ok    31 waitFor    stop gone
+18:18:45 ok    32 sleep      2500 ms
+18:18:45 ok    33 value      <<DOCUMENTS b2a4f270b172>>> [1] [n] File: constitution-9pages.pdf (Pages 1–2) Subject: Legislative bodies and 
+18:18:45 ok    34 value      [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4
+18:18:45 ok    35 value      constitution-9pages.pdf
+18:18:45 FAIL  36 assertText assertText "Summary of all 9 pages." is not on screen under assistant-text
+18:18:45 ok    37 screenshot sim-ja-10
+18:18:45 ok    38 dump       sim-ja-10
+18:18:45 ok    39 type       composer-input = 24 chars
+18:18:45 ok    40 send       send ← onPress
+18:18:45 ok    41 sleep      2500 ms
+18:18:45 FAIL  42 waitFor    waitFor docs-hold never appeared in 15000 ms
+18:18:45 FAIL  43 value      value docs-hold: no node with that testID is mounted
+18:18:45 FAIL  44 press      press docs-hold-download: not mounted
+18:18:45 ok    45 idleTimer  idle timer disabled: false
+18:18:45 ok    46 waitFor    docs-hold gone
+18:18:45 ok    47 waitFor    reading-docs gone
+18:18:45 FAIL  48 waitFor    waitFor stop never appeared in 90000 ms
+18:18:45 ok    49 waitFor    reading-pages gone
+18:18:45 ok    50 waitFor    reading-docs gone
+18:18:45 ok    51 waitFor    stop gone
+18:18:45 ok    52 sleep      2500 ms
+18:18:45 ok    53 value      <<DOCUMENTS b2a4f270b172>>> [1] [n] File: constitution-9pages.pdf (Pages 1–2) Subject: Legislative bodies and 
+18:18:45 ok    54 value      [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4
+18:18:45 ok    55 value      Nothing in your documents matched this question. Answered without them.
+18:18:45 FAIL  56 value      value banners: no node with that testID is mounted
+18:18:45 ok    57 value      INSTANT
+18:18:45 FAIL  58 waitFor    waitFor citations never went away in 1000 ms
+18:18:45 ok    59 assertText "Your documents don't mention this" absent
+18:18:45 FAIL  60 assertText assertText "flour" is not on screen under assistant-text
+18:18:45 ok    61 screenshot sim-ja-11
+18:18:45 ok    62 dump       sim-ja-11
+18:18:45 ok    63 type       composer-input = 6 chars
+18:18:45 ok    64 send       send ← onPress
+18:18:45 ok    65 sleep      2500 ms
+18:18:45 ok    66 waitFor    reading-pages gone
+18:18:45 ok    67 waitFor    reading-docs gone
+18:18:45 ok    68 waitFor    stop gone
+18:18:45 ok    69 sleep      2500 ms
+18:18:45 ok    70 value      <<DOCUMENTS b2a4f270b172>>> [1] [n] File: constitution-9pages.pdf (Pages 1–2) Subject: Legislative bodies and 
+18:18:45 ok    71 value      [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4
+18:18:45 FAIL  72 value      value none-matched: no node with that testID is mounted
+18:18:45 FAIL  73 value      value banners: no node with that testID is mounted
+18:18:45 ok    74 value      INSTANT
+18:18:45 ok    75 screenshot sim-ja-12
+18:18:45 ok    76 dump       sim-ja-12
+18:18:45 ok    77 type       composer-input = 19 chars
+18:18:45 ok    78 send       send ← onPress
+18:18:45 ok    79 sleep      2500 ms
+18:18:45 ok    80 waitFor    reading-pages gone
+18:18:45 ok    81 waitFor    reading-docs gone
+18:18:45 ok    82 waitFor    stop gone
+18:18:45 ok    83 sleep      2500 ms
+18:18:45 ok    84 value      <<DOCUMENTS b2a4f270b172>>> [1] [n] File: constitution-9pages.pdf (Pages 1–2) Subject: Legislative bodies and 
+18:18:45 ok    85 value      [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4
+18:18:45 ok    86 value      Nothing in your documents matched this question. Answered without them.
+18:18:45 FAIL  87 value      value banners: no node with that testID is mounted
+18:18:45 ok    88 value      INSTANT
+18:18:45 ok    89 assertText "Your documents don't mention this" absent
+18:18:45 ok    90 screenshot sim-ja-13
+18:18:45 ok    91 dump       sim-ja-13
+18:18:45 ok    92 type       composer-input = 20 chars
+18:18:45 ok    93 send       send ← onPress
+18:18:45 ok    94 sleep      2500 ms
+18:18:45 FAIL  95 waitFor    waitFor docs-hold never appeared in 15000 ms
+18:18:45 FAIL  96 value      value docs-hold: no node with that testID is mounted
+18:18:45 FAIL  97 press      press docs-hold-download: not mounted
+18:18:45 ok    98 idleTimer  idle timer disabled: false
+18:18:45 ok    99 waitFor    docs-hold gone
+18:18:45 ok   100 waitFor    reading-docs gone
+18:18:45 ok   101 waitFor    stop appeared
+18:18:45 ok   102 waitFor    reading-pages gone
+18:18:45 ok   103 waitFor    reading-docs gone
+18:18:45 ok   104 waitFor    stop gone
+18:18:45 ok   105 sleep      2500 ms
+18:18:45 ok   106 value      <<DOCUMENTS b2a4f270b172>>> [1] [n] File: constitution-9pages.pdf (Pages 1–2) Subject: Legislative bodies and 
+18:18:45 ok   107 value      [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4
+18:18:45 FAIL 108 value      value none-matched: no node with that testID is mounted
+18:18:45 FAIL 109 value      value banners: no node with that testID is mounted
+18:18:45 ok   110 value      INSTANT
+18:18:45 ok   111 waitFor    none-matched gone
+18:18:45 ok   112 assertText "Your documents don't mention this" absent
+18:18:45 ok   113 waitFor    citations appeared
+18:18:45 ok   114 screenshot sim-ja-14
+18:18:45 ok   115 dump       sim-ja-14
+18:18:45 99 passed, 17 failed, 7 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-43/docs/qa/ios-device-pass-43/screens
+18:18:45   ! step 14 (press): press model-sheet-close: not mounted
+18:18:45   ! step 36 (assertText): assertText "Summary of all 9 pages." is not on screen under assistant-text
+18:18:45   ! step 42 (waitFor): waitFor docs-hold never appeared in 15000 ms
+18:18:45   ! step 43 (value): value docs-hold: no node with that testID is mounted
+18:18:45   ! step 44 (press): press docs-hold-download: not mounted
+18:18:45   ! step 48 (waitFor): waitFor stop never appeared in 90000 ms
+18:18:45   ! step 56 (value): value banners: no node with that testID is mounted
+18:18:45   ! step 58 (waitFor): waitFor citations never went away in 1000 ms
+18:18:45   ! step 60 (assertText): assertText "flour" is not on screen under assistant-text
+18:18:45   ! step 72 (value): value none-matched: no node with that testID is mounted
+18:18:45   ! step 73 (value): value banners: no node with that testID is mounted
+18:18:45   ! step 87 (value): value banners: no node with that testID is mounted
+18:18:45   ! step 95 (waitFor): waitFor docs-hold never appeared in 15000 ms
+18:18:45   ! step 96 (value): value docs-hold: no node with that testID is mounted
+18:18:45   ! step 97 (press): press docs-hold-download: not mounted
+18:18:45   ! step 108 (value): value none-matched: no node with that testID is mounted
+18:18:45   ! step 109 (value): value banners: no node with that testID is mounted
+18:18:45   ! console.log: [chat] loop retry: kept 513 chars, unit 26 cp x2
+18:18:45   ! console.log: [chat] loop cut: kept 521 of 554 chars, unit 26 cp x2
+18:18:45   ! console.log: [chat] plain=acknowledgement window=5/5 maxTokens=224
