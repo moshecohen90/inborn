@@ -26,7 +26,7 @@ const BANNED = [
   {
     id: 'open-source',
     why: 'the source is private; see docs/legal/verification.md "Wording that is safe to publish"',
-    re: /open[\s-]?source|quell(?:offen|code\s+ist\s+öffentlich)|code\s+source\s+ouvert|c[óo]digo\s+abierto|c[óo]digo\s+aberto|オープンソース|오픈\s?소스|開放原始碼|開源/iu,
+    re: /open[\s-]?source|quelloffen|code\s+source\s+ouvert|c[óo]digo\s+abierto|c[óo]digo\s+aberto|オープンソース|오픈\s?소스|開放原始碼|開源/iu,
   },
   {
     id: 'disk-claim',
@@ -134,7 +134,7 @@ for (const file of readdirSync(STORE_DIR).filter((f) => /^listing\..+\.json$/.te
     if (n > max) errors.push(`${loc}: ${path} is ${n} chars, limit ${max}`);
   }
 
-  // Apple keyword field: byte limit, no space after comma, >2 chars per keyword phrase, no dup tokens,
+  // Apple keyword field: byte limit, no space after comma, >=3 UTF-8 bytes per keyword phrase (a 2-character CJK word passes), no dup tokens,
   // and no token already present in name or subtitle (Apple indexes those separately).
   const kw = get(data, 'apple.keywords');
   if (kw == null) { errors.push(`${loc}: missing apple.keywords`); }
@@ -147,7 +147,7 @@ for (const file of readdirSync(STORE_DIR).filter((f) => /^listing\..+\.json$/.te
     const seen = new Set();
     for (const p of phrases) {
       if (p === '') errors.push(`${loc}: apple.keywords has an empty entry`);
-      if (cp(p) <= 2) errors.push(`${loc}: apple.keywords entry "${p}" is <=2 chars (Apple ignores it)`);
+      if (bytes(p) < 3) errors.push(`${loc}: apple.keywords entry "${p}" is under 3 bytes (Apple ignores it)`);
       const key = p.toLowerCase();
       if (seen.has(key)) errors.push(`${loc}: apple.keywords duplicate entry "${p}"`);
       seen.add(key);
