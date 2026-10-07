@@ -88,8 +88,9 @@ describe("F205 · no Apple field names Android, and no Play field names Apple", 
   });
 
   it("reviewer_notes may still name both platforms, because a reviewer needs them", () => {
-    const notes = (JSON.parse(readFileSync(join(STORE, "listing.en.json"), "utf8")) as Listing).reviewer_notes;
-    expect(notes).toMatch(/\bAndroid\b/);
-    expect(run(STORE).code).toBe(0);
+    const dir = sabotage((d) => {
+      d.reviewer_notes = `${d.reviewer_notes}\nOn Android the app has no Internet permission; Google Play delivers the model packs.`;
+    });
+    expect(run(dir).code).toBe(0);
   });
 });
