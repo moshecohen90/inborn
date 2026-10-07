@@ -17,7 +17,8 @@ node docs/store/scripts/check-store-copy.mjs     # or: pn test, which runs it fi
 ```
 
 It reads all eight files and fails (exit 1) on any overflow, on a space after a comma in the
-keyword field, on a keyword phrase of two characters or fewer, on a duplicate keyword, and
+keyword field, on a keyword phrase under 3 UTF-8 bytes (so `AI` fails while a two-character
+CJK word such as `要約` or `보안` passes), on a duplicate keyword, and
 warns if a keyword repeats a word already in the app name or subtitle. It counts characters
 by Unicode code point for text fields and by UTF-8 bytes for the Apple keyword field, because
 Apple's 100 limit there is bytes, not characters (a Japanese character is three bytes).
@@ -27,6 +28,7 @@ and its translations, a promise that incognito never touches disk, a published p
 hash, and the DeepSeek keyword. Those four shipped once in all eight languages (F99, round 33)
 while the legal texts already said the opposite; `docs/legal/verification.md` is the authority
 on what may be published about the source, and `privacy-policy.md` §6 on what incognito does.
+In German the rule bans `quelloffen` only, because verification.md cleared "der Quellcode ist öffentlich" on 23.9.
 Adding a locale means adding its translations of these phrases to `BANNED` in the script, or
 the rule is blind there.
 
