@@ -170,10 +170,32 @@ export function groundedCitations(answer: string, question: string, used: Retrie
 /** Below this share of an answer's own content words found in its sources, the answer was not taken from them. */
 export const MIN_SOURCE_SHARE = 1 / 3;
 
-const takenFrom = (said: readonly string[], sources: readonly string[]): boolean => {
-  const words = new Set(sources.flatMap((s) => [...evidenceTerms(s)]));
-  return said.filter((t) => words.has(t)).length >= MIN_SOURCE_SHARE * said.length;
+const SUFFIX = /(?:ing|ion|ed|es|er|e|s)$/;
+const MIN_PREFIX = 5;
+
+/* "beans"/"bean", "rotated"/"rotation", "noting"/"notes": a model rewords the passage, so an exact token misses (round 134I2). */
+const stemOf = (term: string): string => {
+  if (!/^[a-z]+$/.test(term)) return term;
+  const cut = term.replace(SUFFIX, "");
+  return cut.length >= 3 ? cut : term;
 };
+
+/** The share of `said` whose word, up to inflection, occurs in `sources`. */
+export function sourceShare(said: readonly string[], sources: readonly string[]): number {
+  if (!said.length) return 0;
+  const words = new Set(sources.flatMap((s) => [...evidenceTerms(s)]));
+  const stems = new Set([...words].map(stemOf));
+  const long = [...stems].filter((s) => s.length >= MIN_PREFIX);
+  const found = (t: string): boolean => {
+    if (words.has(t)) return true;
+    const stem = stemOf(t);
+    if (stems.has(stem)) return true;
+    return stem.length >= MIN_PREFIX && /^[a-z]+$/.test(stem) && long.some((s) => s.startsWith(stem) || stem.startsWith(s));
+  };
+  return said.filter(found).length / said.length;
+}
+
+const takenFrom = (said: readonly string[], sources: readonly string[]): boolean => sourceShare(said, sources) >= MIN_SOURCE_SHARE;
 
 /**
  * The sources a follow-up ("shorter", "make it 3 bullet points") carries: those of the answer it reworks, when it restates
