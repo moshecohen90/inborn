@@ -25,13 +25,20 @@ describe("round 134N · the app's own answer to a question about the assistant",
         }
   });
 
+  it("round 134P: the capabilities answer names Inborn in every locale, in its first sentence", () => {
+    for (const lang of LANGS) {
+      const text = selfAnswer("capabilities", lang, { device: "phone" });
+      expect(text.split(/(?<=[.。])\s*/)[0], lang).toContain("Inborn");
+    }
+  });
+
   it("in English: the identity, the model line, the device", () => {
     expect(selfAnswer("identity", "en", { device: "phone", model: "Fast" })).toBe(
       "I'm Inborn, a private assistant that runs on this phone. Nothing you write or attach leaves it. I help with questions, writing, translation, PDFs and photos. Right now Fast is answering.",
     );
     expect(selfAnswer("identity", "en", { device: "phone" })).not.toContain("answering");
     expect(selfAnswer("capabilities", "en", { device: "browser", model: "Fast" })).toBe(
-      "I can answer questions, write and edit text, translate, and explain things step by step. Attach a PDF or a photo and I'll read it and answer about it. All of it happens on this browser.",
+      "Inborn can answer questions, write and edit text, translate, and explain things step by step. Attach a PDF or a photo and I'll read it and answer about it. All of it happens on this browser.",
     );
   });
 
