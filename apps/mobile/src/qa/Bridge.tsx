@@ -20,7 +20,7 @@ function captureConsole(sink: string[]): () => void {
   /* A release build drops console.log (RCTLog threshold), so the loop guard's lines and the plain chat turn's prompt window are counted only here. */
   console.log = (...args: unknown[]) => {
     const line = args.map(String).join(" ");
-    if (line.startsWith("[chat] loop") || line.startsWith("[chat] plain") || line.startsWith("[chat] rule-echo")) sink.push(`console.log: ${line}`);
+    if (line.startsWith("[chat] loop") || line.startsWith("[chat] plain") || line.startsWith("[chat] rule-echo") || line.startsWith("[chat] identity")) sink.push(`console.log: ${line}`);
     log(...args);
   };
   console.error = (...args: unknown[]) => {
