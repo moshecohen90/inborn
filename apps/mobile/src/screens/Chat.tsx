@@ -95,7 +95,9 @@ import {
   isNoSpaceError,
   type DocumentRecord,
   IMAGE_WRAPPER_TOKENS,
+  selfQuestionMatch,
 } from "@inborn/core";
+import { selfAnswer } from "@inborn/i18n";
 import { enableVision, getEngine, isVisionEased, loadSession, noteCarriedOver, settledModelId, subscribeVisionEased, wasStoppedByGuard } from "../engine";
 import { writeDevResult } from "../adapters/devModel";
 import { imageMaxTokens } from "../adapters/imageTokens";
@@ -651,6 +653,15 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         }
         if (ac.signal.aborted) return;
         turn = planTurn();
+      }
+      /* Round 134N: a question about the assistant itself is answered by the app; asked it, a small model reads its rules out or names its base model. */
+      const self = !existingMessageId && !continueFrom && !history[lastUserAt]?.images?.length && !photoDocIds.length && !page && !docs.documents.length ? selfQuestionMatch(lastUser, i18n.language) : null;
+      if (self) {
+        console.log(`[chat] identity kind=${self.kind} lang=${self.lang} model=${model.id}`);
+        const content = selfAnswer(self.kind, self.lang, { device: deviceNoun(), model: findModel(BUNDLED_MANIFEST, model.id)?.name });
+        const saved = await store.appendMessage({ chatId: chatIdNow, role: "assistant", content, modelId: model.id });
+        setRows((all) => all.map((x) => (x.id === rowId ? saved : x)));
+        return;
       }
       /* Strict mode with nothing to search says so instead of answering from the model's weights (QA F34). */
       if (turn.kind === "refuse") {

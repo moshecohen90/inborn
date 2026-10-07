@@ -25,10 +25,11 @@ describe("round 134M2 · the identity is its own paragraph, and the rules give a
       for (const photos of [false, true]) {
         const [identity, rules] = system(tier, photos).split("\n\n");
         expect(identity, tier).toBe(IDENTITY_LINE);
-        expect(rules, tier).toMatch(/^Rules, never described: /);
+        expect(rules, tier).toMatch(/^Be accurate\. /);
       }
     expect(IDENTITY_LINE).toMatch(/only name: Inborn/);
-    expect(IDENTITY_LINE).toMatch(/questions, writing, translation, files and photos/);
+    /* Round 134N: what the app helps with is the identity card's to say; the prompt keeps only the name. */
+    expect(IDENTITY_LINE).not.toMatch(/Helps with/);
   });
 
   it("has no quotable sentence and never names the base model", () => {

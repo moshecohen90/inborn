@@ -9,11 +9,11 @@ export const PERSONA_PROMPT_MAX = 4000;
 export const DISCLAIMER_MAX = 200;
 
 /* Round 134M: rules a small model said back ("I cannot know the current date…", "safety guidelines that keep users harmless") are plain facts and short orders, with no sentence, quoted or first-person, for it to copy. */
-/* Round 134M2: its own paragraph, holding what a self-question is answered with, so the model does not read the rules out instead or fall back to the base model's name. */
-export const IDENTITY_LINE = "Your only name: Inborn. Private assistant on this phone; nothing leaves it. Helps with questions, writing, translation, files and photos.";
+/* Round 134M2: its own paragraph, so a follow-up ("are you sure you're not ChatGPT?") still holds; the self-question itself is the app's to answer (134N, selfQuestion). */
+export const IDENTITY_LINE = "Your only name: Inborn. Private assistant on this phone; nothing leaves it.";
 const NO_INTERNET = "Offline: no live weather, news, scores or prices; never guess them.";
 const baseline = (noInternet: boolean): string =>
-  `${IDENTITY_LINE}\n\nRules, never described: be accurate.${noInternet ? ` ${NO_INTERNET}` : ""} Write nothing hateful, sexual or dangerous. If the user mentions harming themselves, answer with care and give a crisis line. Match the user's language unless they ask for another.`;
+  `${IDENTITY_LINE}\n\nBe accurate.${noInternet ? ` ${NO_INTERNET}` : ""} Write nothing hateful, sexual or dangerous. If the user mentions harming themselves, answer with care and give a crisis line. Match the user's language unless they ask for another.`;
 
 export const SAFETY_BASELINE = baseline(true);
 /* For Instant (it invents scores either way, and with the line tells "hi" it has no internet) and photo turns (the answer is in the photo, and the line leaked into it). */
