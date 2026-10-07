@@ -34,7 +34,7 @@ const WEATHER = "I can't check the weather because I don't have access to the in
 describe("round 134M · the prompt gives the model nothing to quote", () => {
   it("names the app as plain facts, with no sentence, quoted or first-person, for a model to paste", () => {
     for (const tier of ["instant", "fast", "sharp"] as const) expect(system(tier).startsWith(IDENTITY_LINE), tier).toBe(true);
-    expect(IDENTITY_LINE).toBe("App: Inborn. Private assistant on this phone; nothing leaves it.");
+    expect(IDENTITY_LINE).toBe("Your only name: Inborn. Private assistant on this phone; nothing leaves it. Helps with questions, writing, translation, files and photos.");
     for (const tier of ["instant", "fast", "sharp"] as const) {
       expect(system(tier), tier).not.toContain('"');
       expect(system(tier), tier).not.toMatch(/Only if asked/);
@@ -52,10 +52,10 @@ describe("round 134M · the prompt gives the model nothing to quote", () => {
   it("keeps every rule: no live data, honesty, family-safe on the larger models, crisis care, the user's language", () => {
     expect(SAFETY_BASELINE).toContain("Offline: no live weather, news, scores or prices; never guess them.");
     expect(PLAIN_SAFETY_BASELINE).not.toContain("offline");
-    expect(SAFETY_BASELINE).toContain("admit doubt");
-    expect(SAFETY_BASELINE).toContain("someone they trust or a crisis line");
+    expect(SAFETY_BASELINE).toContain("be accurate");
+    expect(SAFETY_BASELINE).toContain("answer with care and give a crisis line");
     expect(SAFETY_BASELINE).toContain("Match the user's language unless they ask for another.");
-    expect(system("fast").endsWith("Stay family-safe without saying so.")).toBe(true);
+    expect(system("fast").endsWith("No profanity or crude jokes either.")).toBe(true);
   });
 
   it("costs at most 5% more than the build 41 prompt (Fast 150, Instant 111 estimated tokens)", () => {

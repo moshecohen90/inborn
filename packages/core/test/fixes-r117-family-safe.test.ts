@@ -3,7 +3,7 @@ import { BUILT_IN_PERSONAS, checkOutput, screenText, turnSystemPrompt, type Tier
 
 /* A 0.8B model reads an instruction in the system prompt as part of the question and narrates it back (F437). */
 const CLAUSE = ["Family-safe mode", "sexually explicit", "graphic descriptions", "violence", "gore", "self-harm", "suicide", "weapons", "explosives"];
-const LINE = "Stay family-safe without saying so.";
+const LINE = "No profanity or crude jokes either.";
 
 const prompt = (tier: Tier | undefined, photos: boolean, familySafe = true): string => {
   const parts: TurnPromptParts = { familySafe, tier, photos, persona: BUILT_IN_PERSONAS[0], languageHint: "Answer in English.", length: "Answer in two or three sentences." };

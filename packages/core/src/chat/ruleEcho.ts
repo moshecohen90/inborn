@@ -12,7 +12,23 @@ const KNOWN_ECHOES = [
   /\bI\s*(?:cannot|can(?:'|’)t|can not)\s+identify this specific app\b/i,
   /\bsafety guidelines that keep (?:users|people) (?:safe|harmless)\b/i,
   /\bsafe for family consumption\b/i,
+  /\bI(?:'m| am| stay| keep (?:it|things)| remain) family[- ](?:safe|friendly)\b/i,
 ];
+/* Round 134M2: rule words a model pins onto an answer that is otherwise fine ("a simple, family-friendly pancake recipe", "…ideas within my safety guidelines"): only the words go. */
+const RULE_WORDS = [/,?\s*family[- ](?:friendly|safe)(?=\s+(?:pancake\s+)?(?:content|recipes?|ideas?|messages?|answers?|text|stor(?:y|ies)|meals?|versions?|options?|activit(?:y|ies)|jokes?)\b)/gi, /\s+within (?:my|the|our) safety guidelines\b/gi];
+const ASKS_FAMILY = /\b(?:family|kids?|child(?:ren)?|toddlers?|safe|guidelines?)\b/i;
+/* The base model and its maker, which Instant gave as its own (sim ai3-08 "I am Qwen3.5, trained by Alibaba Cloud to assist…"): the app has one name. */
+const BASE_MAKER = /,?\s*(?:an? (?:large )?(?:language )?(?:model|AI(?: model)?)\s+)?(?:(?:developed|trained|created|made|built)\s+by|from)\s+(?:the\s+)?(?:(?:Alibaba(?: Cloud| Group)?(?:'s|’s)?\s+)?(?:Tongyi(?: Lab)?|Qwen team)|Alibaba(?: Cloud| Group)?)(?=(\s+to\b)?)/gi;
+const BASE_NAME = /\bTongyi Qianwen\b|\bQwen(?:[\w-]|\.(?=\w))*|通义千问/gi;
+const ASKS_BASE = /\b(?:qwen|alibaba|tongyi)\b/i;
+
+/** The answer with the base model's name and maker said as ours, and rule words taken off the sentences they were pinned to. */
+export function unbranded(answer: string, question: string): string {
+  let text = answer;
+  if (!ASKS_BASE.test(question)) text = text.replace(BASE_MAKER, (_, to?: string) => (to ? ", built" : "")).replace(BASE_NAME, "Inborn");
+  if (!ASKS_FAMILY.test(question)) for (const words of RULE_WORDS) text = text.replace(words, "");
+  return text;
+}
 /* Build 40's "…as I do not have access to browse the internet", on a recipe; a fair answer to "what can you do?". */
 const BROWSE_ECHO = /\bI\s*(?:cannot|can(?:'|’)t|can not|am unable to|do not have access to|don't have access to)\s+browse (?:the\s+)?(?:live\s+)?(?:internet|web)\b/i;
 /* Our own identity, pasted onto an answer about something else (sim run ai-06: sleep tips that opened with it). */
@@ -69,7 +85,9 @@ const HEAD_WORDS = 4;
  * When the rule is a trailing clause of a sentence that also answers, only the clause goes. A question that asks for
  * live data keeps "I can't check that". An answer that would be left empty is kept whole: something on screen beats nothing.
  */
-export function withoutEchoedRules(answer: string, { instructions, question, streaming = false, files = false }: { instructions: string; question: string; streaming?: boolean; files?: boolean }): string {
+export function withoutEchoedRules(given: string, { instructions, question, streaming = false, files = false }: { instructions: string; question: string; streaming?: boolean; files?: boolean }): string {
+  /* A file may well name Alibaba or a family-friendly recipe; only a general answer is unbranded. */
+  const answer = files ? given : unbranded(given, question);
   /* "Tell me about yourself" is fairly answered with "I'm offline, no live news", even in the prompt's words. */
   const live = ASKS_LIVE.test(question) || ASKS_SELF.test(question);
   /* The identity is stated to be said back when asked; off-topic it is the `identity` rule's to judge. */
