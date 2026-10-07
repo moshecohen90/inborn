@@ -137,8 +137,8 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult, str
       const whole = summary ? await readWhole(s, text, docIds, length.instruction, ac.signal) : null;
       if (ac.signal.aborted) return setPhase({ kind: "idle" });
       const scope: WholeFilePlan | null = whole?.plan ?? null;
-      const { prompt, retrieveMs, reindexing: rebuilding, lexical } = whole
-        ? { prompt: whole.prompt, retrieveMs: Date.now() - readStarted, reindexing: undefined, lexical: false }
+      const { prompt, retrieveMs, reindexing: rebuilding, lexical, overview } = whole
+        ? { prompt: whole.prompt, retrieveMs: Date.now() - readStarted, reindexing: undefined, lexical: false, overview: false }
         : await library.ask(text, { docIds, strict: strict && !strictLocked, nCtx: s.nCtx, answerLanguage: i18n.language, citeMarkers: canCiteMarkers(model.id), systemPrompt: length.instruction, openers: noPassageOpeners(t) });
       setReindexing(rebuilding ?? null);
       setWordsOnly(!!lexical);
@@ -175,7 +175,7 @@ export function AskDocuments({ docs, theme, onClose, autoQuestion, onResult, str
       /* F457: the chips judge the words on screen, so a copied passage header is neither a citation mark nor evidence. */
       reply = withoutEchoedLabels(withoutEchoedInstructions(reply, instructions));
       const isNotFound = !scope && isNotFoundReply(reply);
-      const shown = isNotFound ? { shown: [], cited: false } : library.citationsFor(reply, groundedCitations(reply, text, prompt.used, prompt.citations));
+      const shown = isNotFound ? { shown: [], cited: false } : library.citationsFor(reply, groundedCitations(reply, text, prompt.used, prompt.citations, { overview: !!overview }));
       if (scope && reply.trim()) reply = `${reply.trimEnd()}\n\n*${summaryScope(t, scope, model.id === "instant" ? { current: chipLabel(t, model.id), better: chipLabel(t, "fast") } : undefined)}*`;
       setNotFound(isNotFound ? t("documents.notFound") : null);
       setAnswer(isNotFound ? "" : reply);

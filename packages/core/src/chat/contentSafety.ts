@@ -16,7 +16,7 @@ import type { Tier } from "../catalog/types";
  * another 300 MB on a phone whose whole promise is one model. Recorded for Moshe in README "Decisions for Moshe".
  */
 
-export const FAMILY_SAFE_LINE = "Keep it family-safe.";
+export const FAMILY_SAFE_LINE = "Stay family-safe without saying so.";
 
 /** What the check caught. The UI names none of them to the user; the refusal is one sentence either way. */
 export type SafetyCategory = "sexual" | "violence" | "selfHarm";

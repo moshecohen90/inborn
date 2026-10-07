@@ -107,6 +107,8 @@ export interface AskResult {
   reindexing?: AnsweredMidReindex;
   /** No index model: the documents were searched by their words only, which the answer must say. */
   lexical?: boolean;
+  /** The question was about the attached file itself, so the passages are its opening, not matches (`groundedCitations`). */
+  overview?: boolean;
 }
 
 export interface WholeFileOptions extends AskOptions {
@@ -636,7 +638,7 @@ export class DocumentLibrary {
     const prompt = buildRagPrompt({ question, hits, docs: this.docs, strict, embedderId, nCtx: o.nCtx ?? 4096, history: o.history, systemPrompt: o.systemPrompt, answerLanguage: o.answerLanguage, citeMarkers: o.citeMarkers, overview: overview || !!thin, openers: o.openers, thinPage: !!thin, pagePicture: o.pagePicture, opening });
     /* Not behind __DEV__: F282 was a release build citing an off-topic passage, and no screen prints the two numbers that decided it. */
     console.log(`[rag] strict=${strict}${lexical ? " words-only" : ""}${overview ? " overview" : ""}${rebuilding.length ? ` reindexing=${rebuilding.length}/${docIds.length}` : ""} hits=${hits.length} used=${prompt.used.length} ${retrieveMs} ms | ${hits.map((h) => `${h.chunk.docId}#${h.chunk.ord} cos=${h.cosine.toFixed(3)} terms=${h.bm25Terms} bm25=${h.bm25.toFixed(2)} ${overview || isRelevant(h, doors) ? "KEPT" : "dropped"}`).join(" · ")}`);
-    return { prompt, retrieveMs, ...(rebuilding.length ? { reindexing: { pending: rebuilding.length, total: docIds.length, ids: rebuilding.map((d) => d.id) } } : {}), ...(lexical ? { lexical: true } : {}) };
+    return { prompt, retrieveMs, ...(rebuilding.length ? { reindexing: { pending: rebuilding.length, total: docIds.length, ids: rebuilding.map((d) => d.id) } } : {}), ...(lexical ? { lexical: true } : {}), ...(overview ? { overview: true } : {}) };
   }
 
   /**

@@ -35,7 +35,7 @@ describe("round 132 · Chat reads the whole file for a summary", () => {
   it("the whole-file prompt replaces retrieval, and Stop while reading leaves no empty answer behind", () => {
     const block = chat.slice(chat.indexOf("let scope: WholeFilePlan | null = null;"));
     expect(block).toMatch(/const whole = summary \? await readWholeFile\(s, system, lastUser, ac\.signal\) : null;\s*if \(ac\.signal\.aborted\) \{\s*setRows\(\(all\) => all\.filter\(\(x\) => x\.id !== rowId\)\);\s*return;/);
-    expect(block).toMatch(/const rag = whole \? \{ prompt: whole\.prompt, retrieveMs: 0 \} : await docs\.buildPrompt\(/);
+    expect(block).toMatch(/const rag = whole \? \{ prompt: whole\.prompt, retrieveMs: 0, overview: false \} : await docs\.buildPrompt\(/);
   });
 
   it("the progress line follows each section, and the scope line closes a finished summary only", () => {

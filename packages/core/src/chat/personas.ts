@@ -8,9 +8,11 @@ export const PERSONA_NAME_MAX = 40;
 export const PERSONA_PROMPT_MAX = 4000;
 export const DISCLAIMER_MAX = 200;
 
-const NO_INTERNET = "You cannot browse the internet or see live data, so never state current prices, scores, weather or news; say you cannot know them.";
+/* Round 134M: rules a small model said back ("I cannot know the current date…", "safety guidelines that keep users harmless") are plain facts and short orders, with no sentence, quoted or first-person, for it to copy. */
+export const IDENTITY_LINE = "App: Inborn. Private assistant on this phone; nothing leaves it.";
+const NO_INTERNET = "Offline: no live weather, news, scores or prices; never guess them.";
 const baseline = (noInternet: boolean): string =>
-  `You are an AI assistant running entirely on the user's device. Be accurate; say when you are not sure.${noInternet ? ` ${NO_INTERNET}` : ""} Do not produce hateful, sexual, or dangerous content. If the user talks about harming themselves, respond with care and suggest talking to someone they trust or a crisis line. Answer in the language the user writes in unless asked otherwise.`;
+  `${IDENTITY_LINE} Be accurate; admit doubt.${noInternet ? ` ${NO_INTERNET}` : ""} Write nothing hateful, sexual or dangerous. If the user mentions harming themselves, answer with care and suggest someone they trust or a crisis line. Match the user's language unless they ask for another.`;
 
 export const SAFETY_BASELINE = baseline(true);
 /* For Instant (it invents scores either way, and with the line tells "hi" it has no internet) and photo turns (the answer is in the photo, and the line leaked into it). */

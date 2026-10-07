@@ -159,7 +159,7 @@ describe("F457 · both screens that show a documents answer drop the copied pass
   });
   it("the chat with attached files: the row, its stored copy and Continue all read the same text", () => {
     const chat = src("screens/Chat.tsx");
-    expect(chat).toContain("return sources && !prefix ? withoutEchoedLabels(text, { streaming: live, citations: sources }) : text;");
+    expect(chat).toContain("const bare = sources && !prefix ? withoutEchoedLabels(text, { streaming: live, citations: sources }) : text;");
     expect(chat).toContain("sources = rag.prompt.citations;");
     expect(chat).not.toMatch(/role: "assistant",\n\s+content: reply,/);
   });

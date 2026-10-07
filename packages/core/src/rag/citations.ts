@@ -119,7 +119,7 @@ const onePerPage = (all: Citation[]): Citation[] => {
 const NUMERAL = /[\p{N}〇零一二三四五六七八九十百千万億兆两]/u;
 
 /* In an answer a number is the fact itself ("七名", "1962"), so it counts; a counter or particle pair ("名で") does not. */
-const evidenceTerms = (text: string): Set<string> => new Set(bm25Tokens(text).filter((t) => !isCjkFunctionTerm(t) && (!isWeakTerm(t) || (NUMERAL.test(t) && !(hasCjk(t) && [...t].length === 1)))));
+export const evidenceTerms = (text: string): Set<string> => new Set(bm25Tokens(text).filter((t) => !isCjkFunctionTerm(t) && (!isWeakTerm(t) || (NUMERAL.test(t) && !(hasCjk(t) && [...t].length === 1)))));
 
 const SCRIPTS: Array<[string, RegExp]> = [
   ["cjk", /[\u3040-\u30FF\u3400-\u4DBF\u4E00-\u9FFF]/gu],
@@ -146,14 +146,15 @@ export function mainScript(text: string): string {
  * that the question did not already contain. An answer that only echoes the question, or states a fact no passage carries
  * ("Japan won the 1998 World Cup" under a company report, QA F366), gets no SOURCES strip.
  */
-export function groundedCitations(answer: string, question: string, used: RetrievalHit[], citations: Citation[]): Citation[] {
+export function groundedCitations(answer: string, question: string, used: RetrievalHit[], citations: Citation[], opts: { overview?: boolean } = {}): Citation[] {
   /* The file's name is on the chip already: "the Constitution" said back about constitution.pdf is not taken from a passage. */
   const asked = new Set([...evidenceTerms(question), ...citations.flatMap((c) => [...evidenceTerms(c.docName)])]);
   const said = [...evidenceTerms(answer)].filter((t) => !asked.has(t));
   const script = mainScript(answer);
   /* Round 134I: a pancake recipe shared "make", "two" and "place" with a page of the constitution; a few common words are not a source. */
   const comparable = used.filter((h) => mainScript(h.chunk.text) === script);
-  if (comparable.length && !takenFrom(said, comparable.map((h) => h.chunk.text))) return [];
+  /* Round 134M: an overview ("what is this file about?") is the file's opening in the model's own words, which the share test cannot judge. */
+  if (!opts.overview && comparable.length && !takenFrom(said, comparable.map((h) => h.chunk.text))) return [];
   const grounded = new Set(
     used
       .filter((h) => {
