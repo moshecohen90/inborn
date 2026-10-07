@@ -32,9 +32,13 @@ const PANCAKES =
 const WEATHER = "I can't check the weather because I don't have access to the internet or live data. Please look at a weather app for today's forecast.";
 
 describe("round 134M · the prompt gives the model nothing to quote", () => {
-  it("names the app: Inborn, private, on this phone, as a sentence to say", () => {
+  it("names the app as plain facts, with no sentence, quoted or first-person, for a model to paste", () => {
     for (const tier of ["instant", "fast", "sharp"] as const) expect(system(tier).startsWith(IDENTITY_LINE), tier).toBe(true);
-    expect(IDENTITY_LINE).toContain(`"I'm Inborn, a private AI that runs only on this phone; nothing leaves it."`);
+    expect(IDENTITY_LINE).toBe("App: Inborn. Private assistant on this phone; nothing leaves it.");
+    for (const tier of ["instant", "fast", "sharp"] as const) {
+      expect(system(tier), tier).not.toContain('"');
+      expect(system(tier), tier).not.toMatch(/Only if asked/);
+    }
   });
 
   it("carries none of the sentences the models said back", () => {
@@ -46,7 +50,7 @@ describe("round 134M · the prompt gives the model nothing to quote", () => {
   });
 
   it("keeps every rule: no live data, honesty, family-safe on the larger models, crisis care, the user's language", () => {
-    expect(SAFETY_BASELINE).toContain("Only if asked for today's weather, news, scores or prices: you are offline, so say you can't check them.");
+    expect(SAFETY_BASELINE).toContain("Offline: no live weather, news, scores or prices; never guess them.");
     expect(PLAIN_SAFETY_BASELINE).not.toContain("offline");
     expect(SAFETY_BASELINE).toContain("admit doubt");
     expect(SAFETY_BASELINE).toContain("someone they trust or a crisis line");
@@ -62,35 +66,35 @@ describe("round 134M · the prompt gives the model nothing to quote", () => {
 
 describe("round 134M · a general answer never says its rules back", () => {
   it("drops the J7 echoes and keeps the rest", () => {
-    expect(net("hey! what is this app?", J7_02)).toBe("I cannot identify this specific app because you haven't provided a name or link. However, most apps are designed to help with tasks like messaging, entertainment, learning, or productivity.");
+    expect(net("hey! what is this app?", J7_02)).toBe("Most apps are designed to help with tasks like messaging, entertainment, learning, or productivity.");
     expect(net("Draft a short, friendly message that", J7_09)).toBe("I'm ready to help you draft a short, friendly message! Could you tell me what's happening?");
     expect(net("give me a pancake recipe", PANCAKES)).toBe("Here is a simple pancake recipe.\n\n1. Whisk flour, milk and an egg.\n2. Cook on a hot pan.");
   });
 
-  it("drops what the first simulator run of the new prompt added to unrelated answers (sim/after-v1)", () => {
-    expect(net("hey! what is this app?", "I'm Inborn, a private AI that runs only on this phone; nothing leaves it. For today's scores or news, I recommend checking live sources like Google News or the weather app you're using right now to ensure accuracy.")).toBe(
-      "I'm Inborn, a private AI that runs only on this phone; nothing leaves it.",
-    );
-    expect(net("who won the last football World Cup?", "The last FIFA World Cup was won by France in 2018. For current scores or live news, I recommend checking a sports website like ESPN or your local newspaper.")).toBe(
-      "The last FIFA World Cup was won by France in 2018.",
-    );
+  it("cuts only the known echo shapes: what the review called legitimate stays, word for word", () => {
+    const sleep = "If the problem persists after 30 minutes, please contact your pediatrician or a crisis hotline like 988 in the US if you feel overwhelmed.";
+    expect(net("my 4 year old won't sleep, any tips?", `Keep a steady bedtime routine. ${sleep}`, "instant")).toBe(`Keep a steady bedtime routine. ${sleep}`);
+    for (const lifeline of ["Call 911 if they stop breathing.", "Ask your doctor before giving melatonin.", "Call your local emergency number, or 0800 123 4567."]) {
+      expect(net("what should I do?", `${lifeline} I cannot know the current situation.`), lifeline).toBe(lifeline);
+    }
+    const advice = "Hello! If you feel overwhelmed, someone you trust can help. Would you like me to draft this message for you?";
+    expect(net("Draft a short, friendly message that", advice, "instant")).toBe(advice);
+    const pointer = "France won in 2018. For current scores or live news, check a sports website.";
+    expect(net("who won the last football World Cup?", pointer)).toBe(pointer);
+  });
+
+  it("drops our identity pasted onto an unrelated answer, and keeps it where it was asked for", () => {
+    expect(net("who won the last football World Cup?", "The last World Cup was won by Brazil in 2002. I'm Inborn, a private assistant on this phone; nothing leaves it.")).toBe("The last World Cup was won by Brazil in 2002.");
     expect(net("my 4 year old won't sleep, any tips?", "I'm Inborn, a private AI that runs only on this phone; nothing leaves it. Keep the room cool and dark, and keep the same bedtime every night.", "instant")).toBe(
       "Keep the room cool and dark, and keep the same bedtime every night.",
     );
-    expect(net("Draft a short, friendly message that", "Hello! I'm here to help, but please remember that if you feel overwhelmed or want to talk about something serious, a crisis line is available right now. Would you like me to draft this message for you?", "instant")).toBe(
-      "Hello! Would you like me to draft this message for you?",
-    );
-  });
-
-  it("drops the prompt-only run's echoes, and keeps 'I'm offline' as an answer to 'what can you do?' (sim/prompt-only)", () => {
-    expect(net("who won the last football World Cup?", "The last World Cup was won by Brazil in 2002. I'm Inborn, a private AI that runs only on this phone; nothing leaves it.")).toBe("The last World Cup was won by Brazil in 2002.");
-    expect(net("Draft a short, friendly message that", "I'm sorry, but I cannot draft a message for you. As Inborn, I am an AI assistant that only runs on this phone; nothing leaves it except the task itself.", "instant")).toBe("I'm sorry, but I cannot draft a message for you.");
-    expect(net("give me a pancake recipe", "Mix flour and milk. I can't provide recipes for harmful substances or anything dangerous.", "instant")).toBe("Mix flour and milk.");
-    expect(net("my 4 year old won't sleep, any tips?", "My 4-year-old is having trouble sleeping, and I can't check in because I'm offline. I'd suggest a calming bedtime routine with reading or a warm bath.")).toBe(
-      "I'd suggest a calming bedtime routine with reading or a warm bath.",
-    );
-    const limits = "I can't access the internet or browse live information, but I do have a knowledge base of general facts. I can help you write and plan.";
+    const asked = "I'm Inborn, a private assistant on this phone; nothing you type leaves it. I can help you write, explain and plan.";
+    expect(net("hey! what is this app?", asked)).toBe(asked);
+    const limits = "I can help you write and plan. I can't browse the internet for live news.";
+    const offline = "I'm Inborn, a private assistant on this phone. I don't have real-time access to weather, news, scores, or prices since I'm offline.";
+    expect(net("tell me about yourself", offline)).toBe(offline);
     expect(net("what can you do?", limits, "instant")).toBe(limits);
+    expect(net("give me a pancake recipe", "I can't browse the internet for live news. Mix flour, milk and eggs.")).toBe("Mix flour, milk and eggs.");
   });
 
   it("never leaves an answer empty: a lone echo stays (the prompt is what fixes it)", () => {
@@ -150,6 +154,11 @@ describe("round 134M · a file answer never says the document rules back, and ke
     const said = [...evidenceTerms(kept)].filter((t) => !evidenceTerms(OVERVIEW_Q).has(t) && !evidenceTerms(greenhouse.name).has(t));
     expect(sourceShare(said, [NOTES])).toBeGreaterThanOrEqual(MIN_SOURCE_SHARE);
     expect(groundedCitations(kept, OVERVIEW_Q, notesUsed, notesCitations).map((c) => c.docName)).toEqual(["greenhouse-notes.txt"]);
+  });
+
+  it("gates201 (words-only, Instant): an overview with an invented 'office building' at the 1/3 edge keeps its chip", () => {
+    const GATES201 = "This notes file details maintenance records for a greenhouse located in an office building.";
+    expect(groundedCitations(fileNet(GATES201), OVERVIEW_Q, notesUsed, notesCitations, { overview: true }).map((c) => c.docName)).toEqual(["greenhouse-notes.txt"]);
   });
 
   it("an overview turn skips the share test: gates200 keeps its chip even before the net, and lost it without the flag", () => {

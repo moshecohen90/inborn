@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { saysNoneMatched } from "../src/lib/docsGate";
 
 const chat = readFileSync(join(__dirname, "../src/screens/Chat.tsx"), "utf8");
 
@@ -33,5 +34,13 @@ describe("134M · the chips judge the answer after the net, and an overview skip
     expect(library).toContain("...(overview ? { overview: true } : {}) };");
     const sheet = readFileSync(join(__dirname, "../src/screens/documents/AskDocuments.tsx"), "utf8");
     expect(sheet).toContain("groundedCitations(reply, text, prompt.used, prompt.citations, { overview: !!overview })");
+  });
+});
+
+describe("134M · an overview answer that keeps its chip shows no none-matched notice", () => {
+  it("one kept passage on a fresh turn with one file attached: no notice; none kept: the notice", () => {
+    expect(saysNoneMatched({ continuing: false, attachedCount: 1, usedPassages: 1 })).toBe(false);
+    expect(saysNoneMatched({ continuing: false, attachedCount: 1, usedPassages: 0 })).toBe(true);
+    expect(chat).toContain("if (saysNoneMatched({ continuing: !!existingMessageId, attachedCount: docs.documents.length, usedPassages: kept.length })) setNoneMatched(true);");
   });
 });

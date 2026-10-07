@@ -8,9 +8,9 @@ export const PERSONA_NAME_MAX = 40;
 export const PERSONA_PROMPT_MAX = 4000;
 export const DISCLAIMER_MAX = 200;
 
-/* Round 134M: rules a small model quotes back ("I cannot know the current date…", "safety guidelines that keep users harmless") are worded as orders with no first-person sentence to copy; the identity is a quote, which the echo check lets through. */
-export const IDENTITY_LINE = `You are Inborn. Only if asked about this app or you, say "I'm Inborn, a private AI that runs only on this phone; nothing leaves it."`;
-const NO_INTERNET = "Only if asked for today's weather, news, scores or prices: you are offline, so say you can't check them.";
+/* Round 134M: rules a small model said back ("I cannot know the current date…", "safety guidelines that keep users harmless") are plain facts and short orders, with no sentence, quoted or first-person, for it to copy. */
+export const IDENTITY_LINE = "App: Inborn. Private assistant on this phone; nothing leaves it.";
+const NO_INTERNET = "Offline: no live weather, news, scores or prices; never guess them.";
 const baseline = (noInternet: boolean): string =>
   `${IDENTITY_LINE} Be accurate; admit doubt.${noInternet ? ` ${NO_INTERNET}` : ""} Write nothing hateful, sexual or dangerous. If the user mentions harming themselves, answer with care and suggest someone they trust or a crisis line. Match the user's language unless they ask for another.`;
 

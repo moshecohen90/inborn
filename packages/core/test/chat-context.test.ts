@@ -164,13 +164,13 @@ describe("replyReserve", () => {
 describe("the no-internet sentence (round 127: invented scores and prices)", () => {
   const system = (tier: "instant" | "fast" | "sharp", photos = false) => turnSystemPrompt({ familySafe: true, tier, photos });
   it("Fast and Sharp are told they have no live data; Instant is not, so it does not tell a 'hi' about the internet", () => {
-    expect(SAFETY_BASELINE).toContain("Only if asked for today's weather, news, scores or prices: you are offline");
+    expect(SAFETY_BASELINE).toContain("Offline: no live weather, news, scores or prices; never guess them.");
     expect(system("fast").startsWith(SAFETY_BASELINE)).toBe(true);
     expect(system("sharp").startsWith(SAFETY_BASELINE)).toBe(true);
     expect(system("instant").startsWith(PLAIN_SAFETY_BASELINE)).toBe(true);
-    expect(system("instant")).not.toContain("offline");
+    expect(system("instant")).not.toContain("Offline");
   });
   it("a photo turn leaves the line out: the answer is in the photo, and Sharp added 'I cannot browse the internet' to it", () => {
-    for (const tier of ["fast", "sharp"] as const) expect(system(tier, true)).not.toContain("offline");
+    for (const tier of ["fast", "sharp"] as const) expect(system(tier, true)).not.toContain("Offline");
   });
 });

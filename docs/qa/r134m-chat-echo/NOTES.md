@@ -6,6 +6,87 @@ that keep users harmless"*, the World Cup → *"I cannot know the current date o
 chip → *"I can't know the specific context"*. Build 40's pancakes ended *"safe for family consumption…"*. The app did not
 know its own name.
 
+## Current state after the lead's review of 8715b7c4 (this commit)
+
+Everything below this section is the history of 8715b7c4 and 1db9ed53. Where it says the identity is a quote, or that
+the net cuts crisis advice and safety talk, this section supersedes it.
+
+**What changed after the review**
+- **Prompt** (`personas.ts`): the identity is plain facts, `App: Inborn. Private assistant on this phone; nothing leaves
+  it.`, and the offline rule is `Offline: no live weather, news, scores or prices; never guess them.` The prompt has
+  no quote and no "Only if asked…" construction (pinned by a test). Estimated tokens: Fast 150 → 121, Instant
+  111 → 99.
+- **Net** (`ruleEcho.ts`): the broad paraphrase rules are gone: crisis advice, safety talk, the rule's noun pairs, and
+  "I can't access/check…". What is left:
+  - the five-word prompt-repeat check, run against the prompt with the identity line taken out;
+  - the exact shapes of the known echoes: "I cannot/can't know the current / today's / real-time / specific context",
+    "cannot identify this specific app", "safety guidelines that keep users harmless", "safe for family consumption",
+    and "I cannot/can't/do not have access to browse the (live) internet/web" (not on a question about the app or the
+    assistant);
+  - our identity pasted onto an unrelated answer;
+  - the document rules (item 4).
+- **Guards**:
+  - A sentence with a phone number, "hotline", "helpline", "doctor", "pediatrician", "physician", "emergency", 911,
+    988, 999, 112 or 101 is never cut, by any check.
+  - A live-data question, and a question about the app or the assistant, keep their offline sentences.
+  - An answer is never emptied.
+- **Lead's additions (a)(b)(c)** both reached me and are in 1db9ed53 (item 4 below). The gates201 answer ("This notes
+  file details maintenance records for a greenhouse located in an office building.") is now a test next to gates200:
+  as an overview it keeps the chip. A mobile test checks that one kept passage means no none-matched notice.
+
+**Simulator, final prompt + net**
+- iPhone 17 Pro sim `r134m-chat-echo-2`, created for this run and deleted afterwards. Same 9 questions × 3 runs per
+  model.
+- "Before" are the main runs from earlier (same commit `b8384ca9`, not re-run).
+- "After" was run at 06:43–06:52 on this commit's code, apart from one later tweak: a question about the app or the
+  assistant now keeps "I'm offline, no live news" even in the prompt's words. That tweak only adds kept text.
+
+| 27 answers per cell | Fast before | Fast after | Instant before | Instant after |
+|---|---|---|---|---|
+| Rule sentences on screen | 4 | **6** | 0 | **1** (`ai-09` "within my safety guidelines") |
+| "what is this app?" / "tell me about yourself" say Inborn | 0/6 | **6/6** | 0/6 | **5/6** (`ai3-08` "I am Qwen3.5…") |
+| Weather: says it cannot check | 3/3 | 3/3 | 1/3 | 2/3 (`ai2-02` invents "a calm day") |
+| Turns the net cut (`chat-log.txt`) | – | 2 (af2) | – | 0 |
+
+Fast's 6 rule sentences:
+- 5 are on "tell me about yourself" and the Draft chip. The model now describes itself from the prompt:
+  - `af-08` "…if things get hard… trust them for support";
+  - `af2-07` "…any friendly, family-safe content";
+  - `af2-08` "I stay family-safe and won't speak about anything hateful, sexual, or dangerous.";
+  - `af3-08` "admitting when I lack knowledge" and "…contact local emergency services or a crisis line".
+- The sixth is `af3-03` "Here is a simple, family-friendly pancake recipe:", the same kind as before.
+- With the broad rules gone, the net does not cut these, and the crisis sentences are protected by the lifeline guard
+  as required.
+
+**Acceptance**
+- Met: Instant ≤ 1 (1); Fast names Inborn 6/6.
+- Not met:
+  - Fast ≤ 1 (6).
+  - Instant names Inborn 5/6 (6/6 required).
+- Not re-measured: the next prompt iteration needs another 9 × 3 sim run. Per Moshe's rule that runs no heavy work on
+  his Mac from 07:00 to 23:00, that waits for tonight.
+- What I would try:
+  - Keep the identity line apart from the rules, in its own paragraph, so a self question is not answered by reading
+    the rules out.
+  - Reword `Stay family-safe without saying so.` without the word "family-safe".
+
+**Every sentence the final net removes**
+- Method: `net-offline-removed.txt` is the final net replayed offline over the 108 raw answers that saw no net: before
+  (bf*, bi*) and the prompt-only runs (pf*, pi*). It removes 8 sentences, all rule text:
+  - `bf2-03` (pancakes): "(Note: I cannot know current prices or news; this is a standard pancake recipe.)"
+  - `pf-05`, `pf2-05` (World Cup), `pf2-03`, `pf3-03`, `pi3-03` (pancakes), `pi3-07` (Draft chip): "I'm Inborn, a private
+    AI that runs only on this phone; nothing leaves it." pasted onto the answer.
+  - `pi2-07` (Draft chip): "As Inborn, I am an AI assistant that only runs on this phone; nothing leaves it except the
+    task itself."
+- 0 legit sentences are removed. The two sleep-tip sentences with "pediatrician or a crisis hotline like 988" now stay.
+- On the final sim run the net cut 2 turns, both in af2. The log keeps lengths only (126/252, 235/339), so their text
+  is not known. The answers on screen read whole and on topic.
+
+**Web smoke on this commit**
+- Commands: `pnpm web:build` rc 0, then `SMOKE_OUT_DIR=<scratchpad>/smoke2 pnpm web:smoke`.
+- Result: **rc=0, 27 PASS, 0 FAIL.** The greenhouse line again shows `SOURCES "SOURCESgreenhouse-notes.txt · part 1"`,
+  both words-only and by meaning (`sim/web-smoke-greenhouse.png`).
+
 ## What changed
 
 - `packages/core/src/chat/personas.ts`: the baseline is reworded. Every rule keeps its meaning, but none of them is a
