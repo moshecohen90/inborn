@@ -43,15 +43,16 @@ export function photoPath(model: SeeingModel, installed: (id: string) => boolean
 }
 
 export function photoPlan({ selected, models, installed, available = () => true }: PhotoPlanInput): PhotoPlan {
+  const offerable = (p: PhotoPath | null): p is PhotoPath => p !== null && p.missing.every((x) => available(x.id));
   const current = models.find((m) => m.id === selected);
   const own = current ? photoPath(current, installed) : null;
   if (own && own.missing.length === 0) return { kind: "send", path: own };
   const others = models
     .filter((m) => m.id !== selected)
     .map((m) => photoPath(m, installed))
-    .filter((p): p is PhotoPath => p !== null && p.missing.every((x) => available(x.id)))
+    .filter(offerable)
     .sort((a, b) => a.bytes - b.bytes);
   const cheapest = others[0] ?? null;
-  if (own) return { kind: "pack", path: own, alt: cheapest && (cheapest.bytes === 0 || cheapest.bytes < own.bytes) ? cheapest : null };
+  if (offerable(own)) return { kind: "pack", path: own, alt: cheapest && (cheapest.bytes === 0 || cheapest.bytes < own.bytes) ? cheapest : null };
   return cheapest ? { kind: "switch", alt: cheapest } : { kind: "none" };
 }
