@@ -32,7 +32,9 @@ export function unbranded(answer: string, question: string): string {
 /* Build 40's "…as I do not have access to browse the internet", on a recipe; a fair answer to "what can you do?". */
 const BROWSE_ECHO = /\bI\s*(?:cannot|can(?:'|’)t|can not|am unable to|do not have access to|don't have access to)\s+browse (?:the\s+)?(?:live\s+)?(?:internet|web)\b/i;
 /* Our own identity, pasted onto an answer about something else (sim run ai-06: sleep tips that opened with it). */
-const IDENTITY = /\bI(?:'m| am) Inborn\b|\bas Inborn\b|\bnothing leaves (?:it|this phone)\b/i;
+const IDENTITY = /\bI(?:'m| am) Inborn\b|\bnothing leaves (?:it|this phone)\b/i;
+/* Case-sensitive: "as an inborn talent" is the English adjective, "As an Inborn, I am here…" (134O pi3-06) is the name. */
+const AS_INBORN = /\b[Aa]s (?:an? )?Inborn\b/;
 /* Help a person may need is never cut, whatever it repeats. */
 const LIFELINE = /\+?\d[\d\s().-]{6,}\d|\b(?:hotline|helpline|doctor|pediatrician|paediatrician|physician|emergency|911|988|999|112|101)\b|רופא|חירום|מוקד/i;
 
@@ -60,7 +62,7 @@ export function echoedRule(sentence: string, question: string): "known-echo" | "
   if (echoedFileRule(sentence, question)) return "file-rule";
   const self = ASKS_SELF.test(question);
   if (!ASKS_LIVE.test(question) && (matches(KNOWN_ECHOES, sentence) || (!self && BROWSE_ECHO.test(sentence)))) return "known-echo";
-  if (!self && IDENTITY.test(sentence)) return "identity";
+  if (!self && (IDENTITY.test(sentence) || AS_INBORN.test(sentence))) return "identity";
   return null;
 }
 
@@ -70,7 +72,7 @@ const TALKS_LIVE = /\b(?:internet|online|offline|web|real-time|live|current|toda
 const saysInstructions = (sentence: string, instructions: string, streaming = false): boolean => !withoutEchoedInstructions(sentence, instructions, { streaming }).trim();
 
 /* The openings the rules came back with ("I cannot…", "However, I…", "This recipe is safe…"): such a sentence is shown whole or not at all. */
-const RULE_OPENING = /^\s*(?:(?:however|but|unfortunately|please note|note|rest assured|remember),?\s+)?(?:I\b|I'm\b|as an ai\b|as inborn\b|this\b|these\b|it\b|they\b|for\b|since\b|if\b|hello\b|hi\b|אני\b|אני\b|אינני\b|איני\b|אין לי\b|זה\b|המתכון\b)/i;
+const RULE_OPENING = /^\s*(?:(?:however|but|unfortunately|please note|note|rest assured|remember),?\s+)?(?:I\b|I'm\b|as an ai\b|as\b|this\b|these\b|it\b|they\b|for\b|since\b|if\b|hello\b|hi\b|אני\b|אני\b|אינני\b|איני\b|אין לי\b|זה\b|המתכון\b)/i;
 /* "However, here is a recipe" turned from a sentence that is gone. */
 const TURN = /^(\s*)(?:however|but|that said|still|nevertheless|אבל|עם זאת),?\s+(\S)/iu;
 const unturned = (sentence: string): string => sentence.replace(TURN, (_, space: string, first: string) => space + first.toUpperCase());
