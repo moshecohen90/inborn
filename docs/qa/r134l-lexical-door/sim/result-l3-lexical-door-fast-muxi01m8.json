@@ -1,0 +1,764 @@
+{
+  "runId": "l3-lexical-door-fast-muxi01m8",
+  "startedAt": "2026-10-07T02:38:19.677Z",
+  "finishedAt": "2026-10-07T02:45:09.670Z",
+  "ok": true,
+  "passed": 35,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 166,
+      "detail": "/vault"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 10002,
+      "detail": "10000 ms"
+    },
+    {
+      "i": 2,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 165,
+      "detail": "/"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "open-chats appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "open-chats ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 6,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 7,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 8,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 10,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5002,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 11,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 167,
+      "detail": "attach: constitution-9pages.pdf"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 60015,
+      "detail": "60000 ms"
+    },
+    {
+      "i": 13,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 957,
+      "detail": "f01-attached"
+    },
+    {
+      "i": 14,
+      "op": "type",
+      "ok": true,
+      "ms": 161,
+      "detail": "composer-input = 12 chars"
+    },
+    {
+      "i": 15,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5002,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 17,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 247886,
+      "detail": "stop gone"
+    },
+    {
+      "i": 18,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3017,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 19,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1275,
+      "detail": "f02-summary"
+    },
+    {
+      "i": 20,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The document is a summary of the United States Constitution. Its main points are: • It establishes a bicameral legislature with two houses, where the Senate is elected by state legislatures and the House by direct popular election [1]. • The President serves a four-year term and holds powers including Commander-in-Chief and appointment authority subject to Senate approval [3]. • Congress has the power to levy taxes, regulate interstate commerce, coin money, exercise exclusive authority over acquired territories, and declare war [2]. • It defines treason as levying war against or aiding enemies, requiring proof by two witnesses or an open court confession [4]. • The Constitution protects states from invasion, domestic violence, and ensures they have republican forms of government while preserving pre-constitutional debts and treaties as supreme law [4]. Summary of all 9 pages. [1] constitution-9pages.pdf · p.1–2 [3] constitution-9pages.pdf · p.5–6 [2] constitution-9pages.pdf · p.3–4 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The document is a summary of the United States Constitution. Its main points are: • It establishes a bicameral legislature with two houses, where the Senate is elected by state legislatures and the House by direct popular election [1]. • The President serves a four-year term and holds powers including Commander-in-Chief and appointment authority subject to Senate approval [3]. • Congress has the power to levy taxes, regulate interstate commerce, coin money, exercise exclusive authority over acquired territories, and declare war [2]. • It defines treason as levying war against or aiding enemies, requiring proof by two witnesses or an open court confession [4]. • The Constitution protects states from invasion, domestic violence, and ensures they have republican forms of government while preserving pre-constitutional debts and treaties as supreme law [4]. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [3] constitution-9pages.pdf · p.5–6 [2] constitution-9pages.pdf · p.3–4 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muxhlnn4-1-s5w534ov",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "f02-summary"
+    },
+    {
+      "i": 21,
+      "op": "type",
+      "ok": true,
+      "ms": 155,
+      "detail": "composer-input = 24 chars"
+    },
+    {
+      "i": 22,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5002,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 24,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 15115,
+      "detail": "stop gone"
+    },
+    {
+      "i": 25,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3002,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 26,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1909,
+      "detail": "f03-pancakes"
+    },
+    {
+      "i": 27,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The document is a summary of the United States Constitution. Its main points are: • It establishes a bicameral legislature with two houses, where the Senate is elected by state legislatures and the House by direct popular election [1]. • The President serves a four-year term and holds powers including Commander-in-Chief and appointment authority subject to Senate approval [3]. • Congress has the power to levy taxes, regulate interstate commerce, coin money, exercise exclusive authority over acquired territories, and declare war [2]. • It defines treason as levying war against or aiding enemies, requiring proof by two witnesses or an open court confession [4]. • The Constitution protects states from invasion, domestic violence, and ensures they have republican forms of government while preserving pre-constitutional debts and treaties as supreme law [4]. Summary of all 9 pages. [1] constitution-9pages.pdf · p.1–2 [3] constitution-9pages.pdf · p.5–6 [2] constitution-9pages.pdf · p.3–4 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The document is a summary of the United States Constitution. Its main points are: • It establishes a bicameral legislature with two houses, where the Senate is elected by state legislatures and the House by direct popular election [1]. • The President serves a four-year term and holds powers including Commander-in-Chief and appointment authority subject to Senate approval [3]. • Congress has the power to levy taxes, regulate interstate commerce, coin money, exercise exclusive authority over acquired territories, and declare war [2]. • It defines treason as levying war against or aiding enemies, requiring proof by two witnesses or an open court confession [4]. • The Constitution protects states from invasion, domestic violence, and ensures they have republican forms of government while preserving pre-constitutional debts and treaties as supreme law [4]. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [3] constitution-9pages.pdf · p.5–6 [2] constitution-9pages.pdf · p.3–4 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "none-matched",
+          "text": "Nothing in your documents matched this question. Answered without them."
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muxhlnn4-1-s5w534ov",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "f03-pancakes"
+    },
+    {
+      "i": 28,
+      "op": "type",
+      "ok": true,
+      "ms": 156,
+      "detail": "composer-input = 20 chars"
+    },
+    {
+      "i": 29,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 30,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5016,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 31,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 40535,
+      "detail": "stop gone"
+    },
+    {
+      "i": 32,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3016,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 33,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1271,
+      "detail": "f04-veto"
+    },
+    {
+      "i": 34,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The document is a summary of the United States Constitution. Its main points are: • It establishes a bicameral legislature with two houses, where the Senate is elected by state legislatures and the House by direct popular election [1]. • The President serves a four-year term and holds powers including Commander-in-Chief and appointment authority subject to Senate approval [3]. • Congress has the power to levy taxes, regulate interstate commerce, coin money, exercise exclusive authority over acquired territories, and declare war [2]. • It defines treason as levying war against or aiding enemies, requiring proof by two witnesses or an open court confession [4]. • The Constitution protects states from invasion, domestic violence, and ensures they have republican forms of government while preserving pre-constitutional debts and treaties as supreme law [4]. Summary of all 9 pages. [1] constitution-9pages.pdf · p.1–2 [3] constitution-9pages.pdf · p.5–6 [2] constitution-9pages.pdf · p.3–4 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The document is a summary of the United States Constitution. Its main points are: • It establishes a bicameral legislature with two houses, where the Senate is elected by state legislatures and the House by direct popular election [1]. • The President serves a four-year term and holds powers including Commander-in-Chief and appointment authority subject to Senate approval [3]. • Congress has the power to levy taxes, regulate interstate commerce, coin money, exercise exclusive authority over acquired territories, and declare war [2]. • It defines treason as levying war against or aiding enemies, requiring proof by two witnesses or an open court confession [4]. • The Constitution protects states from invasion, domestic violence, and ensures they have republican forms of government while preserving pre-constitutional debts and treaties as supreme law [4]. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [3] constitution-9pages.pdf · p.5–6 [2] constitution-9pages.pdf · p.3–4 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muxhlnn4-1-s5w534ov",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "f04-veto"
+    }
+  ],
+  "errors": []
+}

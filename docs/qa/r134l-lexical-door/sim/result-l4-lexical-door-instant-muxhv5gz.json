@@ -1,0 +1,854 @@
+{
+  "runId": "l4-lexical-door-instant-muxhv5gz",
+  "startedAt": "2026-10-07T02:34:31.649Z",
+  "finishedAt": "2026-10-07T02:38:07.472Z",
+  "ok": true,
+  "passed": 35,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 159,
+      "detail": "/vault"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 10001,
+      "detail": "10000 ms"
+    },
+    {
+      "i": 2,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 167,
+      "detail": "/"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "open-chats appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "open-chats ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 6,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 7,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 8,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 10,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5000,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 11,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 167,
+      "detail": "attach: constitution-9pages.pdf"
+    },
+    {
+      "i": 12,
+      "op": "sleep",
+      "ok": true,
+      "ms": 60017,
+      "detail": "60000 ms"
+    },
+    {
+      "i": 13,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1910,
+      "detail": "i01-attached"
+    },
+    {
+      "i": 14,
+      "op": "type",
+      "ok": true,
+      "ms": 158,
+      "detail": "composer-input = 12 chars"
+    },
+    {
+      "i": 15,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5001,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 17,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 94361,
+      "detail": "stop gone"
+    },
+    {
+      "i": 18,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3002,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 19,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 646,
+      "detail": "i02-summary"
+    },
+    {
+      "i": 20,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI This file is a compilation of provisions from the United States Constitution , specifically covering the legislative and executive branches. Its main points are: • Legislative Branch (House): Members serve two-year terms; revenue bills originate here, with Senate amendments possible on other bills. • Executive Branch: The President signs bills introduced by Congress and acts as a veto if they fail to return within ten days. Bills requiring both House approvals must pass a 2/3 majority of each house. • Elections: Senators are chosen every second year (10-year terms). • Vice Presidency: The President can appoint or choose a Vice President if two or more electors have equal votes. • Constitutional Rights & Powers: • Treason is defined under strict legal requirements involving witnesses in open court; only convicted persons can be punished for it. • Congress has the power to declare treason but cannot use \"Attainder\" to cause corruption of blood or forfeiture unless the individual remains alive. • New States may only join Congress if three-fourths of their states consent; new states cannot form through junctions without that same consent. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better. SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This file is a compilation of provisions from the United States Constitution , specifically covering the legislative and executive branches. Its main points are: • Legislative Branch (House): Members serve two-year terms; revenue bills originate here, with Senate amendments possible on other bills. • Executive Branch: The President signs bills introduced by Congress and acts as a veto if they fail to return within ten days. Bills requiring both House approvals must pass a 2/3 majority of each house. • Elections: Senators are chosen every second year (10-year terms). • Vice Presidency: The President can appoint or choose a Vice President if two or more electors have equal votes. • Constitutional Rights & Powers: • Treason is defined under strict legal requirements involving witnesses in open court; only convicted persons can be punished for it. • Congress has the power to declare treason but cannot use \"Attainder\" to cause corruption of blood or forfeiture unless the individual remains alive. • New States may only join Congress if three-fourths of their states consent; new states cannot form through junctions without that same consent. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "model-advice",
+          "text": "FAST is better at documents than INSTANT. SHARP is the best here for Documents · 2.74 GB PRO Switch to FAST Not now"
+        },
+        {
+          "testID": "model-advice-reason",
+          "text": "FAST is better at documents than INSTANT."
+        },
+        {
+          "testID": "model-advice-best",
+          "text": "SHARP is the best here for Documents · 2.74 GB PRO",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-best-pro",
+          "text": "PRO"
+        },
+        {
+          "testID": "model-advice-switch",
+          "text": "Switch to FAST",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-not-now",
+          "text": "Not now",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muxhlnn4-1-s5w534ov",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "i02-summary"
+    },
+    {
+      "i": 21,
+      "op": "type",
+      "ok": true,
+      "ms": 158,
+      "detail": "composer-input = 24 chars"
+    },
+    {
+      "i": 22,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5002,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 24,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3402,
+      "detail": "stop gone"
+    },
+    {
+      "i": 25,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3013,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 26,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1590,
+      "detail": "i03-pancakes"
+    },
+    {
+      "i": 27,
+      "op": "dump",
+      "ok": true,
+      "ms": 3,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI This file is a compilation of provisions from the United States Constitution , specifically covering the legislative and executive branches. Its main points are: • Legislative Branch (House): Members serve two-year terms; revenue bills originate here, with Senate amendments possible on other bills. • Executive Branch: The President signs bills introduced by Congress and acts as a veto if they fail to return within ten days. Bills requiring both House approvals must pass a 2/3 majority of each house. • Elections: Senators are chosen every second year (10-year terms). • Vice Presidency: The President can appoint or choose a Vice President if two or more electors have equal votes. • Constitutional Rights & Powers: • Treason is defined under strict legal requirements involving witnesses in open court; only convicted persons can be punished for it. • Congress has the power to declare treason but cannot use \"Attainder\" to cause corruption of blood or forfeiture unless the individual remains alive. • New States may only join Congress if three-fourths of their states consent; new states cannot form through junctions without that same consent. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better. SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This file is a compilation of provisions from the United States Constitution , specifically covering the legislative and executive branches. Its main points are: • Legislative Branch (House): Members serve two-year terms; revenue bills originate here, with Senate amendments possible on other bills. • Executive Branch: The President signs bills introduced by Congress and acts as a veto if they fail to return within ten days. Bills requiring both House approvals must pass a 2/3 majority of each house. • Elections: Senators are chosen every second year (10-year terms). • Vice Presidency: The President can appoint or choose a Vice President if two or more electors have equal votes. • Constitutional Rights & Powers: • Treason is defined under strict legal requirements involving witnesses in open court; only convicted persons can be punished for it. • Congress has the power to declare treason but cannot use \"Attainder\" to cause corruption of blood or forfeiture unless the individual remains alive. • New States may only join Congress if three-fourths of their states consent; new states cannot form through junctions without that same consent. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "model-advice",
+          "text": "FAST is better at documents than INSTANT. SHARP is the best here for Documents · 2.74 GB PRO Switch to FAST Not now"
+        },
+        {
+          "testID": "model-advice-reason",
+          "text": "FAST is better at documents than INSTANT."
+        },
+        {
+          "testID": "model-advice-best",
+          "text": "SHARP is the best here for Documents · 2.74 GB PRO",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-best-pro",
+          "text": "PRO"
+        },
+        {
+          "testID": "model-advice-switch",
+          "text": "Switch to FAST",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-not-now",
+          "text": "Not now",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "none-matched",
+          "text": "Nothing in your documents matched this question. Answered without them."
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muxhlnn4-1-s5w534ov",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "i03-pancakes"
+    },
+    {
+      "i": 28,
+      "op": "type",
+      "ok": true,
+      "ms": 159,
+      "detail": "composer-input = 20 chars"
+    },
+    {
+      "i": 29,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 30,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5001,
+      "detail": "5000 ms"
+    },
+    {
+      "i": 31,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 11618,
+      "detail": "stop gone"
+    },
+    {
+      "i": 32,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3016,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 33,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1275,
+      "detail": "i04-veto"
+    },
+    {
+      "i": 34,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI This file is a compilation of provisions from the United States Constitution , specifically covering the legislative and executive branches. Its main points are: • Legislative Branch (House): Members serve two-year terms; revenue bills originate here, with Senate amendments possible on other bills. • Executive Branch: The President signs bills introduced by Congress and acts as a veto if they fail to return within ten days. Bills requiring both House approvals must pass a 2/3 majority of each house. • Elections: Senators are chosen every second year (10-year terms). • Vice Presidency: The President can appoint or choose a Vice President if two or more electors have equal votes. • Constitutional Rights & Powers: • Treason is defined under strict legal requirements involving witnesses in open court; only convicted persons can be punished for it. • Congress has the power to declare treason but cannot use \"Attainder\" to cause corruption of blood or forfeiture unless the individual remains alive. • New States may only join Congress if three-fourths of their states consent; new states cannot form through junctions without that same consent. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better. SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This file is a compilation of provisions from the United States Constitution , specifically covering the legislative and executive branches. Its main points are: • Legislative Branch (House): Members serve two-year terms; revenue bills originate here, with Senate amendments possible on other bills. • Executive Branch: The President signs bills introduced by Congress and acts as a veto if they fail to return within ten days. Bills requiring both House approvals must pass a 2/3 majority of each house. • Elections: Senators are chosen every second year (10-year terms). • Vice Presidency: The President can appoint or choose a Vice President if two or more electors have equal votes. • Constitutional Rights & Powers: • Treason is defined under strict legal requirements involving witnesses in open court; only convicted persons can be punished for it. • Congress has the power to declare treason but cannot use \"Attainder\" to cause corruption of blood or forfeiture unless the individual remains alive. • New States may only join Congress if three-fourths of their states consent; new states cannot form through junctions without that same consent. Summary of all 9 pages. INSTANT can miss or mix up details of a long file; FAST summarizes files better."
+        },
+        {
+          "testID": "citations",
+          "text": "SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "model-advice",
+          "text": "FAST is better at documents than INSTANT. SHARP is the best here for Documents · 2.74 GB PRO Switch to FAST Not now"
+        },
+        {
+          "testID": "model-advice-reason",
+          "text": "FAST is better at documents than INSTANT."
+        },
+        {
+          "testID": "model-advice-best",
+          "text": "SHARP is the best here for Documents · 2.74 GB PRO",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-best-pro",
+          "text": "PRO"
+        },
+        {
+          "testID": "model-advice-switch",
+          "text": "Switch to FAST",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-not-now",
+          "text": "Not now",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muxhlnn4-1-s5w534ov",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "i04-veto"
+    }
+  ],
+  "errors": []
+}

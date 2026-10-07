@@ -1,0 +1,32 @@
+{
+  "runId": "l2-install-muxhfseg",
+  "startedAt": "2026-10-07T02:22:34.778Z",
+  "finishedAt": "2026-10-07T02:26:35.894Z",
+  "ok": true,
+  "passed": 3,
+  "failed": 0,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 156,
+      "detail": "/vault"
+    },
+    {
+      "i": 1,
+      "op": "sleep",
+      "ok": true,
+      "ms": 240002,
+      "detail": "240000 ms"
+    },
+    {
+      "i": 2,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 958,
+      "detail": "v1-vault"
+    }
+  ],
+  "errors": []
+}
