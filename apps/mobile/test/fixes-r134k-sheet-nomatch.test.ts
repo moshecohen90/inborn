@@ -53,7 +53,7 @@ describe("round 134K · with no passage the Ask sheet shows the opener without a
   it("passages kept → the model answers as before; a model not-found reply keeps its line", () => {
     expect(ask).toMatch(/for await \(const d of engine\.generate\(s, prompt\.messages, \{ reasoning: false, maxTokens: length\.maxTokens \}, ac\.signal\)\)/);
     expect(ask).toContain('setNotFound(isNotFound ? t("documents.notFound") : null);');
-    expect(ask).toContain("library.citationsFor(reply, groundedCitations(reply, text, prompt.used, prompt.citations))");
+    expect(ask).toContain("library.citationsFor(reply, groundedCitations(reply, text, prompt.used, prompt.citations, { overview: !!overview }))");
   });
 
   it("a summary still reads the file whole and never takes the no-passage route; a thanks keeps its 134D line", () => {

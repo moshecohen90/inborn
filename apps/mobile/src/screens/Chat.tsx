@@ -557,14 +557,16 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     let joint: string | null = prefix && !continueFrom ? null : "";
     let sources: Citation[] | null = null;
     let live = true;
-    /* Round 134M: a fresh general answer, with no file passage or picture behind it, never says its own rules back. */
-    let ruleNet: { instructions: string; question: string } | null = null;
+    /* Round 134M: a fresh answer with no picture never says its own rules back; over files or reworking an answer, only the document rules count. */
+    let ruleNet: { instructions: string; question: string; files: boolean } | null = null;
+    /* Round 134M: the passages are the file's opening, so the source share does not judge the answer (`groundedCitations`). */
+    let overview = false;
     const shown = (): string => {
       if (joint === null && reply) joint = continuationSeparator(prefix, reply);
       const text = prefix + (joint ?? "") + reply;
-      if (ruleNet && !prefix) return withoutEchoedRules(text, { ...ruleNet, streaming: live });
       /* F457: a fresh answer over documents drops the passage header a small model copies onto its first line. */
-      return sources && !prefix ? withoutEchoedLabels(text, { streaming: live, citations: sources }) : text;
+      const bare = sources && !prefix ? withoutEchoedLabels(text, { streaming: live, citations: sources }) : text;
+      return ruleNet && !prefix ? withoutEchoedRules(bare, { ...ruleNet, streaming: live }) : bare;
     };
     let reasoning = continueFrom?.reasoning ?? "";
     let usage: Usage | undefined;
@@ -696,7 +698,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
             return;
           }
           scope = whole?.plan ?? null;
-          const rag = whole ? { prompt: whole.prompt, retrieveMs: 0 } : await docs.buildPrompt(lastUser, history.slice(0, lastUserAt), nCtx, system, photoDocIds, thinPage);
+          const rag = whole ? { prompt: whole.prompt, retrieveMs: 0, overview: false } : await docs.buildPrompt(lastUser, history.slice(0, lastUserAt), nCtx, system, photoDocIds, thinPage);
           if (rag.reindexing) setReindexing(rag.reindexing);
           /* A thin page went in whole, so a word search lost nothing there. */
           if (rag.lexical && !thinPage) setWordsOnly(true);
@@ -710,6 +712,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           citations = rag.prompt.citations;
           sources = rag.prompt.citations;
           ragUsed = rag.prompt.used;
+          overview = !!rag.overview;
           messages = withPhotos(messages, lastUserAt >= 0 ? history[lastUserAt]!.images : undefined);
         } catch (e: unknown) {
           if (ac.signal.aborted) {
@@ -734,6 +737,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
             citations = photoText.rag.prompt.citations;
             sources = photoText.rag.prompt.citations;
             ragUsed = photoText.rag.prompt.used;
+            overview = !!photoText.rag.overview;
           }
         } catch (e: unknown) {
           console.warn("[documents] photo text", errorText(e));
@@ -788,7 +792,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       /* Round 131: a fresh answer about a picture is checked against what the app knows about its turn before it is shown. */
       const checksPicture = !existingMessageId && messages.some((m) => m.images?.length);
       if (checksPicture && persona.temperature === undefined) opts = { ...opts, ...PICTURE_SAMPLING };
-      if (!existingMessageId && !continueFrom && !sources && plainChat !== "follow-up" && !messages.some((m) => m.images?.length)) ruleNet = { instructions: systemOf(messages), question: lastUser };
+      if (!existingMessageId && !continueFrom && !messages.some((m) => m.images?.length)) ruleNet = { instructions: systemOf(messages), question: lastUser, files: !!sources || plainChat === "follow-up" };
       const turnFacts: TurnFacts = { pictureSent: true, sources: (citations ?? []).map((c) => citationLabel(c)), instructions: messages[0]?.role === "system" ? messages[0].content : "", question: lastUser };
       /* F369/F415: one guard for every engine. A second copy never reaches the screen: the guard stops that generation
          (only it, so the user's Stop still means the turn), keeps one copy, and continues once, silently, with harder sampling. */
@@ -918,7 +922,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         patch((x) => ({ ...x, content: shown() }));
       } else if (citations) {
         /* A SOURCES strip under words no passage carried is a fabricated citation (QA F366). */
-        const kept = groundedCitations(shown(), lastUser, ragUsed, citations);
+        const kept = groundedCitations(shown(), lastUser, ragUsed, citations, { overview });
         if (saysNoneMatched({ continuing: !!existingMessageId, attachedCount: docs.documents.length, usedPassages: kept.length })) setNoneMatched(true);
         citations = kept.length ? kept : undefined;
       }
