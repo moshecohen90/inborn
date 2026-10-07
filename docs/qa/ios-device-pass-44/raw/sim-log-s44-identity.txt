@@ -1,0 +1,114 @@
+20:09:43 pushing 92 steps as s44-identity
+20:09:52 shot sim-s44-01
+20:10:01 shot sim-s44-02
+20:10:10 shot sim-s44-03
+20:10:18 shot sim-s44-04
+20:10:20 ok     0 deeplink   /chats
+20:10:20 ok     1 waitFor    new-chat appeared
+20:10:20 ok     2 press      new-chat ← onPress
+20:10:20 ok     3 waitFor    start-chat appeared
+20:10:20 ok     4 press      start-chat ← onPress
+20:10:20 ok     5 waitFor    composer-input appeared
+20:10:20 ok     6 waitFor    Loading gone
+20:10:20 ok     7 sleep      1500 ms
+20:10:20 ok     8 value      FAST
+20:10:20 ok     9 type       composer-input = 19 chars
+20:10:20 ok    10 send       send ← onPress
+20:10:20 ok    11 sleep      2500 ms
+20:10:20 ok    12 waitFor    reading-pages gone
+20:10:20 ok    13 waitFor    reading-docs gone
+20:10:20 ok    14 waitFor    stop gone
+20:10:20 ok    15 sleep      2500 ms
+20:10:20 ok    16 value      I'm Inborn, a private assistant that runs on this phone. Nothing you write or attach leaves it. I help with qu
+20:10:20 FAIL  17 value      value citations: no node with that testID is mounted
+20:10:20 FAIL  18 value      value none-matched: no node with that testID is mounted
+20:10:20 FAIL  19 value      value banners: no node with that testID is mounted
+20:10:20 ok    20 value      FAST
+20:10:20 ok    21 screenshot sim-s44-01
+20:10:20 ok    22 dump       sim-s44-01
+20:10:20 ok    23 deeplink   /chats
+20:10:20 ok    24 waitFor    new-chat appeared
+20:10:20 ok    25 press      new-chat ← onPress
+20:10:20 ok    26 waitFor    start-chat appeared
+20:10:20 ok    27 press      start-chat ← onPress
+20:10:20 ok    28 waitFor    composer-input appeared
+20:10:20 ok    29 waitFor    Loading gone
+20:10:20 ok    30 sleep      1500 ms
+20:10:20 ok    31 value      FAST
+20:10:20 ok    32 type       composer-input = 27 chars
+20:10:20 ok    33 send       send ← onPress
+20:10:20 ok    34 sleep      2500 ms
+20:10:20 ok    35 waitFor    reading-pages gone
+20:10:20 ok    36 waitFor    reading-docs gone
+20:10:20 ok    37 waitFor    stop gone
+20:10:20 ok    38 sleep      2500 ms
+20:10:20 ok    39 value      I'm Inborn, a private assistant that runs on this phone. Nothing you write or attach leaves it. I help with qu
+20:10:20 FAIL  40 value      value citations: no node with that testID is mounted
+20:10:20 FAIL  41 value      value none-matched: no node with that testID is mounted
+20:10:20 FAIL  42 value      value banners: no node with that testID is mounted
+20:10:20 ok    43 value      FAST
+20:10:20 ok    44 screenshot sim-s44-02
+20:10:20 ok    45 dump       sim-s44-02
+20:10:20 ok    46 deeplink   /chats
+20:10:20 ok    47 waitFor    new-chat appeared
+20:10:20 ok    48 press      new-chat ← onPress
+20:10:20 ok    49 waitFor    start-chat appeared
+20:10:20 ok    50 press      start-chat ← onPress
+20:10:20 ok    51 waitFor    composer-input appeared
+20:10:20 ok    52 waitFor    Loading gone
+20:10:20 ok    53 sleep      1500 ms
+20:10:20 ok    54 value      FAST
+20:10:20 ok    55 type       composer-input = 16 chars
+20:10:20 ok    56 send       send ← onPress
+20:10:20 ok    57 sleep      2500 ms
+20:10:20 ok    58 waitFor    reading-pages gone
+20:10:20 ok    59 waitFor    reading-docs gone
+20:10:20 ok    60 waitFor    stop gone
+20:10:20 ok    61 sleep      2500 ms
+20:10:20 ok    62 value      Inborn can answer questions, write and edit text, translate, and explain things step by step. Attach a PDF or 
+20:10:20 FAIL  63 value      value citations: no node with that testID is mounted
+20:10:20 FAIL  64 value      value none-matched: no node with that testID is mounted
+20:10:20 FAIL  65 value      value banners: no node with that testID is mounted
+20:10:20 ok    66 value      FAST
+20:10:20 ok    67 screenshot sim-s44-03
+20:10:20 ok    68 dump       sim-s44-03
+20:10:20 ok    69 deeplink   /chats
+20:10:20 ok    70 waitFor    new-chat appeared
+20:10:20 ok    71 press      new-chat ← onPress
+20:10:20 ok    72 waitFor    start-chat appeared
+20:10:20 ok    73 press      start-chat ← onPress
+20:10:20 ok    74 waitFor    composer-input appeared
+20:10:20 ok    75 waitFor    Loading gone
+20:10:20 ok    76 sleep      1500 ms
+20:10:20 ok    77 value      FAST
+20:10:20 ok    78 type       composer-input = 23 chars
+20:10:20 ok    79 send       send ← onPress
+20:10:20 ok    80 sleep      2500 ms
+20:10:20 ok    81 waitFor    reading-pages gone
+20:10:20 ok    82 waitFor    reading-docs gone
+20:10:20 ok    83 waitFor    stop gone
+20:10:20 ok    84 sleep      2500 ms
+20:10:20 ok    85 value      Inborn can answer questions, write and edit text, translate, and explain things step by step. Attach a PDF or 
+20:10:20 FAIL  86 value      value citations: no node with that testID is mounted
+20:10:20 FAIL  87 value      value none-matched: no node with that testID is mounted
+20:10:20 FAIL  88 value      value banners: no node with that testID is mounted
+20:10:20 ok    89 value      FAST
+20:10:20 ok    90 screenshot sim-s44-04
+20:10:20 ok    91 dump       sim-s44-04
+20:10:20 80 passed, 12 failed, 4 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-44/docs/qa/ios-device-pass-44/screens
+20:10:20   ! step 17 (value): value citations: no node with that testID is mounted
+20:10:20   ! step 18 (value): value none-matched: no node with that testID is mounted
+20:10:20   ! step 19 (value): value banners: no node with that testID is mounted
+20:10:20   ! step 40 (value): value citations: no node with that testID is mounted
+20:10:20   ! step 41 (value): value none-matched: no node with that testID is mounted
+20:10:20   ! step 42 (value): value banners: no node with that testID is mounted
+20:10:20   ! step 63 (value): value citations: no node with that testID is mounted
+20:10:20   ! step 64 (value): value none-matched: no node with that testID is mounted
+20:10:20   ! step 65 (value): value banners: no node with that testID is mounted
+20:10:20   ! step 86 (value): value citations: no node with that testID is mounted
+20:10:20   ! step 87 (value): value none-matched: no node with that testID is mounted
+20:10:20   ! step 88 (value): value banners: no node with that testID is mounted
+20:10:20   ! console.log: [chat] identity kind=identity lang=en model=fast
+20:10:20   ! console.log: [chat] identity kind=identity lang=en model=fast
+20:10:20   ! console.log: [chat] identity kind=capabilities lang=en model=fast
+20:10:20   ! console.log: [chat] identity kind=capabilities lang=en model=fast

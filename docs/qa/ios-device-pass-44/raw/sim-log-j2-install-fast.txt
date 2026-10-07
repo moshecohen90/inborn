@@ -1,0 +1,53 @@
+20:00:21 pushing 43 steps as j2-install-fast
+20:00:26 shot sim-j2-01
+20:00:28 shot sim-j2-02
+20:00:46 shot sim-j2-03
+20:00:48 shot sim-j2-04
+20:00:54 shot sim-j2-05
+20:00:57 shot sim-j2-06
+20:01:02 shot sim-j2-07
+20:01:04 ok     0 deeplink   /vault
+20:01:04 ok     1 waitFor    best-for appeared
+20:01:04 ok     2 sleep      3000 ms
+20:01:04 ok     3 value      Included with the app
+20:01:04 FAIL   4 value      value model-status-fast: no node with that testID is mounted
+20:01:04 ok     5 screenshot sim-j2-01
+20:01:04 ok     6 scrollTo   install-fast
+20:01:04 ok     7 screenshot sim-j2-02
+20:01:04 ok     8 press      install-fast ← onPress
+20:01:04 ok     9 sleep      1500 ms
+20:01:04 ok    10 press      confirm-download ← onPress
+20:01:04 ok    11 sleep      15000 ms
+20:01:04 ok    12 value      Installed
+20:01:04 ok    13 screenshot sim-j2-03
+20:01:04 ok    14 idleTimer  idle timer disabled: false
+20:01:04 ok    15 waitFor    use-fast appeared
+20:01:04 ok    16 value      Installed
+20:01:04 ok    17 screenshot sim-j2-04
+20:01:04 ok    18 deeplink   /chats
+20:01:04 ok    19 waitFor    new-chat appeared
+20:01:04 ok    20 press      new-chat ← onPress
+20:01:04 ok    21 waitFor    start-chat appeared
+20:01:04 ok    22 press      start-chat ← onPress
+20:01:04 ok    23 waitFor    composer-input appeared
+20:01:04 ok    24 waitFor    Loading gone
+20:01:04 ok    25 sleep      1500 ms
+20:01:04 ok    26 value      INSTANT
+20:01:04 ok    27 sleep      2000 ms
+20:01:04 ok    28 screenshot sim-j2-05
+20:01:04 ok    29 dump       sim-j2-05
+20:01:04 ok    30 press      model-chip ← onPress
+20:01:04 ok    31 waitFor    model-sheet appeared
+20:01:04 ok    32 sleep      1500 ms
+20:01:04 ok    33 screenshot sim-j2-06
+20:01:04 ok    34 dump       sim-j2-06
+20:01:04 ok    35 press      model-sheet-close ← onPress
+20:01:04 ok    36 deeplink   /vault
+20:01:04 ok    37 waitFor    best-for appeared
+20:01:04 ok    38 value      Installed
+20:01:04 ok    39 value      Included with the app
+20:01:04 ok    40 sleep      3000 ms
+20:01:04 ok    41 screenshot sim-j2-07
+20:01:04 ok    42 dump       sim-j2-07
+20:01:04 42 passed, 1 failed, 7 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-44/docs/qa/ios-device-pass-44/screens
+20:01:04   ! step 4 (value): value model-status-fast: no node with that testID is mounted

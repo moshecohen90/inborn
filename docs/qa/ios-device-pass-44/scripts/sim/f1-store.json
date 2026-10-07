@@ -1,0 +1,174 @@
+{
+ "_": "F (store-readiness): Settings → About shows 1.0.0 (43); the paywall on the free tier shows the store prices (nothing bought, no sign-in); Restore/Have a code visible; close.",
+ "steps": [
+  {
+   "op": "deeplink",
+   "url": "/settings"
+  },
+  {
+   "op": "waitFor",
+   "testID": "row-about",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "screenshot",
+   "name": "sim-f1-01"
+  },
+  {
+   "op": "dump",
+   "name": "sim-f1-01"
+  },
+  {
+   "op": "scrollTo",
+   "testID": "row-about"
+  },
+  {
+   "op": "press",
+   "testID": "row-about"
+  },
+  {
+   "op": "waitFor",
+   "testID": "about",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "about"
+  },
+  {
+   "op": "assertText",
+   "text": "1.0.0 (43)",
+   "testID": "about"
+  },
+  {
+   "op": "sleep",
+   "ms": 500
+  },
+  {
+   "op": "screenshot",
+   "name": "sim-f1-02"
+  },
+  {
+   "op": "dump",
+   "name": "sim-f1-02"
+  },
+  {
+   "op": "deeplink",
+   "url": "/settings"
+  },
+  {
+   "op": "waitFor",
+   "testID": "row-pro",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "press",
+   "testID": "row-pro"
+  },
+  {
+   "op": "waitFor",
+   "testID": "close-paywall",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "sleep",
+   "ms": 8000
+  },
+  {
+   "op": "value",
+   "testID": "paywall-status"
+  },
+  {
+   "op": "value",
+   "testID": "owned"
+  },
+  {
+   "op": "value",
+   "testID": "price-inborn.pro"
+  },
+  {
+   "op": "value",
+   "testID": "price-inborn.pro.launch"
+  },
+  {
+   "op": "value",
+   "testID": "price-inborn.work"
+  },
+  {
+   "op": "value",
+   "testID": "price-inborn.work.upgrade"
+  },
+  {
+   "op": "value",
+   "testID": "tier-inborn.pro"
+  },
+  {
+   "op": "value",
+   "testID": "tier-inborn.pro.launch"
+  },
+  {
+   "op": "value",
+   "testID": "tier-inborn.work"
+  },
+  {
+   "op": "value",
+   "testID": "tier-inborn.work.upgrade"
+  },
+  {
+   "op": "value",
+   "testID": "web-price-note"
+  },
+  {
+   "op": "sleep",
+   "ms": 0
+  },
+  {
+   "op": "screenshot",
+   "name": "sim-f1-03"
+  },
+  {
+   "op": "dump",
+   "name": "sim-f1-03"
+  },
+  {
+   "op": "scrollTo",
+   "testID": "restore"
+  },
+  {
+   "op": "sleep",
+   "ms": 1000
+  },
+  {
+   "op": "screenshot",
+   "name": "sim-f1-04"
+  },
+  {
+   "op": "dump",
+   "name": "sim-f1-04"
+  },
+  {
+   "op": "press",
+   "testID": "close-paywall"
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "screenshot",
+   "name": "sim-f1-05"
+  },
+  {
+   "op": "dump",
+   "name": "sim-f1-05"
+  }
+ ]
+}
