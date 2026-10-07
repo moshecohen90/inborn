@@ -31,9 +31,9 @@ paths (`apps/mobile/src/lib/legalLinks.ts`) and `apps/site/build.mjs` publishes 
 | Support | `https://inbornapp.com/support` | Apple Support URL (required); Play support website |
 
 The accessibility statement (`docs/legal/accessibility-policy.md`) is a public partial-conformance statement: it names
-WCAG 2.2 AA as the bar and lists the gaps we have measured. Two of those gaps change store answers if either store
-asks about accessibility features: there is no way to send a message from a hardware keyboard, and the delete/wipe
-button's text is below 4.5:1 in the dark theme. Do not claim a feature the statement lists as a gap.
+WCAG 2.2 AA as the bar and lists the gaps we have measured. On desktop and in a browser, Enter sends a message from a
+hardware keyboard and Shift+Enter breaks the line (accessibility statement §3). One gap changes store answers if either
+store asks about accessibility features: the delete/wipe button's text is below 4.5:1 in the dark theme. Do not claim a feature the statement lists as a gap.
 
 ## 2. PrivacyInfo.xcprivacy (app-level privacy manifest)
 
