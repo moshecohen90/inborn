@@ -138,3 +138,5 @@
 - step: a long trip question on INSTANT (invented facts) → j7-29.png
 - step: "thank you!" → j7-30.png
 - step: back on FAST → j7-31.png
+## J8 Handover: the store app updated in place to 1.0.0 (41), his data kept
+- step: Inborn-41.xcarchive installed over com.inbornapp.mobile 1.0.0 (40) as an update, launched once, no taps: a new chat on FAST, "Nothing leaves this phone." with the three starter chips → j8-01.png

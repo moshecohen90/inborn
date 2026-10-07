@@ -142,9 +142,26 @@ English after Hebrew; J7 follow-ups after each answer. Findings 2, 4, 5 and 6 we
 
 ## End state
 
-- `com.inbornapp.mobile.qa` 1.0.0 (41) was installed fresh at 02:56:26, launched before any push, and is **left
-  installed** for the lead's comparison. `devicectl device info apps` lists the store app **1.0.0 (40)**, untouched,
-  and the other session's `com.inbornapp.mobile.uitests.xctrunner`, not touched.
+- `com.inbornapp.mobile.qa` 1.0.0 (41) was installed fresh at 02:56:26 and launched before any push. It stayed
+  installed through the pass for the lead's comparison and was uninstalled after the handover (below).
 - The phone was unlocked at every check and was never locked or unlocked by this pass. No setting was changed, no
   account touched. No simulator, no XCUITest runner, port 8787 not touched. Every driver, build, memory sampler and
   syslog capture this pass started has exited.
+
+## Handover: update (04:47–04:49)
+
+- Before: store app 1.0.0 (40). Its data container held `Documents/models/vault.json` (826 B), the Fast gguf
+  (1.19 GB), one document (111 KB), `documents.json` (144 B), the prefs files and `SQLite/inborn.db` (4 KB) + wal
+  (1.1 MB) + shm (32 KB), the chats. No index model and no photo pack.
+- `devicectl device install app` of `Inborn-41.xcarchive/Products/Applications/Inborn.app` (com.inbornapp.mobile,
+  CFBundleVersion 41) over the installed app, no uninstall: 04:48:00 → 04:48:21, rc 0. `device info apps` lists
+  com.inbornapp.mobile **1.0.0 (41)**.
+- One launch at 04:48:29, no taps.
+- After the launch, the same 14 entries with the same sizes: vault.json 826 B, the Fast gguf 1.19 GB, the document
+  111 KB, documents.json 144 B, inborn.db 4 KB + wal 1.1 MB + shm 32 KB. Only the modification times of the shm,
+  `device-prefs.json`, `licence.bin` and vault.json moved to 04:48 (the launch), as in build 40's handover.
+- First screen: a new chat on FAST, "Nothing leaves this phone." with the three starter chips
+  (`screens/j8-01.png`; no file name on screen). The app is left running there.
+- Then the twin `com.inbornapp.mobile.qa` was uninstalled, 04:49:05 → 04:49:06, rc 0. `device info apps` lists
+  `com.inbornapp.mobile` 1.0.0 (41) and the other session's `com.inbornapp.mobile.uitests.xctrunner` (not touched).
+- No setting changed, no lock/unlock, no sign-in, and nothing was uploaded.
