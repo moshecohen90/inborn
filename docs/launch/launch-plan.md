@@ -8,7 +8,7 @@ Fill `{{…}}` at launch. Numbers quoted in the posts (tok/s, sizes) must be re-
 
 | Day | Action | Owner | Status |
 |---|---|---|---|
-| D-14 | Word-mark filings done, domains live, privacy policy at `{{PRIVACY_URL}}`, Proof page live with the Exodus report and the release hash | Moshe / lead | not started |
+| D-14 | Word-mark filings done, domains live, privacy policy at `{{PRIVACY_URL}}`, Proof page live | Moshe / lead | not started |
 | D-7 | Creator outreach emails sent (§3), promo codes generated (§4); TestFlight/Internal-testing build to creators | Moshe sends | drafted |
 | D-1 | Product Hunt listing scheduled for 00:01 PT; Show HN text final; Reddit posts final; ASA and UAC campaigns created in **paused** state | lead prepares, Moshe approves | drafted |
 | D | Product Hunt live; Show HN posted 08:00–10:00 ET; r/LocalLLaMA post; ASA/UAC unpaused ($30/day) | Moshe | |
@@ -33,9 +33,9 @@ Fill `{{…}}` at launch. Numbers quoted in the posts (tok/s, sizes) must be re-
 >
 > How you verify it, because you shouldn't take my word for it:
 > 1. Turn on Airplane Mode and ask anything. It works the same.
-> 2. Android: open the app's permissions page on Google Play. "Full network access" isn't there; the manifest has no INTERNET permission. Exodus report: 0 trackers.
+> 2. Android: open the app's permissions page on Google Play. "Full network access" isn't there; the manifest has no INTERNET permission.
 > 3. iOS: Settings → Privacy → App Privacy Report. Inborn's row is empty.
-> 4. The engine/storage/network core is open source with a published hash per release: `{{REPO_URL}}`.
+> 4. The source is public at github.com/moshecohen90/inborn, under a source-available licence: read it, build it, publish what you find.
 >
 > Honest limits: a 2B model on a phone is not GPT-5. The app tells you the model name and speed for your device (iPhone 13 Pro: ~27 tok/s on the 0.8B model; a 2018 OnePlus 6T: ~16 tok/s), and when a bigger model would help.
 >
@@ -53,8 +53,8 @@ Assets: 5 screenshots from §13.3 (airplane mode, OUT 0 B, documents, pay once, 
 >
 > - Android release build has no INTERNET permission at all. Models come as Play Asset Delivery packs, purchases via Play Billing; the app never opens a socket. Verified with `aapt2 dump permissions` in CI, which fails the build if the permission ever appears via manifest merging.
 > - iOS: the 0.8B model ships in the bundle. App Privacy Report shows zero domains unless you explicitly download a larger model (then exactly one host, only during the download).
-> - Engine is llama.cpp via llama.rn (phones) and wllama/WASM (browser). Chats are in SQLCipher with the key in the Secure Enclave/Keystore. Incognito chats never touch disk.
-> - The core (engine adapter, storage, network allowlist, catalogue) is MIT on GitHub; the release hash is on the proof page. The UI is closed; Pro is a one-time purchase.
+> - Engine is llama.cpp via llama.rn (phones) and wllama/WASM (browser). Chats are in SQLCipher with the key in the Secure Enclave/Keystore. Incognito chats keep nothing once the session ends.
+> - The source is public at github.com/moshecohen90/inborn, under a source-available licence: read it, build it, publish what you find. Pro is a one-time purchase.
 >
 > Numbers (Qwen3.5-0.8B Q4_K_M, thinking off): iPhone 13 Pro 27 tok/s, TTFT 146 ms warm; OnePlus 6T (SD845, CPU) 16 tok/s; browser (WASM, 6 threads) 33 tok/s on an M-series Mac.
 >
@@ -80,7 +80,7 @@ Second person, numbers, no adjectives. Never "uncensored", never "military-grade
 
 > Subject: An AI chat app that literally cannot go online (Android build has no internet permission)
 >
-> Hi {{NAME}}, I make Inborn, a private AI assistant that runs on the phone. What's different is verifiability: the Android release has no INTERNET permission in its manifest, iOS shows zero domains in App Privacy Report, and the core is open source with a published hash. No account, no analytics, one-time purchase. Proof page with the Exodus report: {{DOMAIN}}/proof. Happy to send a Pro code and answer questions. — {{MOSHE}}
+> Hi {{NAME}}, I make Inborn, a private AI assistant that runs on the phone. What's different is verifiability: the Android release has no INTERNET permission in its manifest, iOS shows zero domains in App Privacy Report, and the source is public at github.com/moshecohen90/inborn, under a source-available licence: read it, build it, publish what you find. No account, no analytics, one-time purchase. Proof page: {{DOMAIN}}/proof. Happy to send a Pro code and answer questions. — {{MOSHE}}
 
 Targets: privacy newsletters and podcasts (list kept in the ASO ledger, not here). **Not sent.**
 
@@ -100,7 +100,7 @@ Rule from §13.5: 10 YouTube channels in "local AI" and "privacy" get Pro for fr
 
 > Subject: Free Pro code for Inborn (on-device AI chat), no strings
 >
-> Hi {{CREATOR}}, I watched your {{VIDEO}} and thought Inborn fits what you cover. It's an AI chat app that runs entirely on the phone; the Android build has no INTERNET permission, iOS shows zero domains in App Privacy Report, core is open source with a published hash. Here's a Pro code: {{CODE}} (App Store) / {{CODE}} (Play). No obligation to cover it, and if you do, say what's wrong with it too. Proof page: {{DOMAIN}}/proof. Questions: reply here. — {{MOSHE}}
+> Hi {{CREATOR}}, I watched your {{VIDEO}} and thought Inborn fits what you cover. It's an AI chat app that runs entirely on the phone; the Android build has no INTERNET permission, iOS shows zero domains in App Privacy Report, and the source is public at github.com/moshecohen90/inborn, under a source-available licence: read it, build it, publish what you find. Here's a Pro code: {{CODE}} (App Store) / {{CODE}} (Play). No obligation to cover it, and if you do, say what's wrong with it too. Proof page: {{DOMAIN}}/proof. Questions: reply here. — {{MOSHE}}
 
 **List template (`docs/launch/creators.csv`, not created; keep personal data out of the repo):**
 
