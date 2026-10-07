@@ -1,0 +1,68 @@
+vc26 (1.0.0 (26), main 5854a6a4) on the OnePlus 6T, Android 11, UI pt-BR. 2026-10-07.
+
+== RC pass, Instant, 22:54-23:18
+Q: who made you?
+A: I'm Inborn, a private assistant that runs on this phone. Nothing you write or attach leaves it. I help with questions, writing, translation, PDFs and photos. Right now Instant is answering.
+L: [chat] identity kind=identity lang=en model=instant
+
+Q: 17×23  (~19 s)
+A: 17×23 = 391.
+
+Q: Summarize this document.  [inborn-qa-constitution-9pages.pdf attached]  (~708 s)
+A: The provided document outlines the structure of the United States Constitution ... establishes a supreme law binding judges across all states.
+   Note under the answer: Resumo de todas as 9 páginas. O INSTANT pode omitir ou confundir detalhes de um arquivo longo; o FAST resume arquivos melhor.
+   FONTES: p. 1-2, p. 3-4, p. 5-6, p. 7-9
+L: [rag] whole-file sections=4 pages=9/9 prompt≈929 623697 ms
+
+Q: Make it shorter.  (~128 s)
+A: The document outlines the U.S. Constitution, establishing the two branches of government and their respective powers (House for elections/peers; Senate for impeachment). It details presidential authority over bills and orders requiring congressional concurrence.
+L: [chat] plain=follow-up window=7/7 maxTokens=1024
+
+Q: Now as 3 bullets.
+A: • U.S. Constitution establishes the two branches of government with distinct powers (House for elections and peers; Senate for impeachment).
+   • President holds authority over bills, orders requiring congressional concurrence, and taxation rights.
+   • Congress possesses sole authority to impeach officials and govern federal finances through banking, foreign commerce, war declaration, and army management.
+   Strip: Nada nos seus documentos corresponde a esta pergunta. A resposta foi dada sem eles.
+L: [rag] strict=false hits=6 used=0
+   No trailing "Note: Live scores..." on any of the three answers.
+
+== Brief pass, Fast for a-d, 23:22-23:41
+(b) Attach sheet, Fast, new chat:
+   attach-photo (disabled): Foto, FAST vê fotos com o próprio pacote de fotos: um único download de 668 MB.
+   attach-install-vision: Baixar o pacote de fotos · 668 MB
+   Photo added through "Adicionar um arquivo… ou uma foto" (house-exif.jpg), sent as the first message:
+   vision-hold-title: FAST não consegue ver fotos
+   vision-hold-body: INSTANT vê fotos e já está instalado. Mude, e esta foto é enviada sozinha.
+   vision-hold-switch: Mudar para INSTANT · instalado
+Q: What is in this photo?  (after the switch, ~127 s, Instant)
+A: A simple cartoon house made of blocks against a light blue sky with a yellow sun.
+   Banner after the answer: FAST enxerga imagens melhor que INSTANT. [Mudar para FAST]
+
+(c) Q: what can you do?  (Fast, ~7 s)
+A: Inborn can answer questions, write and edit text, translate, and explain things step by step. Attach a PDF or a photo and I'll read it and answer about it. All of it happens on this phone.
+L: [chat] identity kind=capabilities lang=en model=fast
+
+Q: What does the document say about how the President is elected?  [PDF attached, Fast]
+A: The President is elected by electors, who are appointed by each State's Legislature and must meet in their respective States to vote by ballot for two persons. One of the two chosen persons must not be an inhabitant of the same State as the other [2]. The final decision rests with the electors who sign a list of candidates and then cast their ballots to vote for the President.
+   Source chip: [2] inborn-qa-constitution-9pages.pdf · p. 5. No trailing Note.
+L: [rag] strict=false hits=6 used=5
+
+Q: give me a pancake recipe  [PDF attached, strict off, Fast]
+A: Seus documentos não mencionam isso. / Aqui está uma receita clássica de pancadas: Misture 2 xícaras de farinha, 1/3 de xícara de açúcar e 1 colher de sopa de sal ... coloque porções de cerca de 3 colheres de sopa de pancada em cada lado.
+   Strip: Nada nos seus documentos corresponde a esta pergunta. A resposta foi dada sem eles. No FONTES chip.
+L: [rag] strict=false hits=6 used=0
+
+(d) Q: who made you?  (Fast)
+A: I'm Inborn, a private assistant that runs on this phone. Nothing you write or attach leaves it. I help with questions, writing, translation, PDFs and photos. Right now Fast is answering.
+L: [chat] identity kind=identity lang=en model=fast
+Q: 17 × 23  (run 1, ~18 s)  A: The product of 17 and 23 is 391.
+Q: 17 × 23  (run 2, ~8 s)   A: The product of 17 and 23 is 391.
+
+(e) Q: מה בירת צרפת?  (Instant, ~22 s)
+A: צרפת היא בירת הערים המסורתית של מדינת ישראל.
+   Rendered right to left. Banner: INSTANT é fraco em hebraico.
+
+(f) Paywall: VOCÊ TEM O PRO. Restaurar compras → "Compra restaurada".
+
+(g) Stop: "Write a 600-word essay about the ocean." (Instant), stop after ~9 s → "Parado / Continuar", text frozen at 288 characters.
+    Continue: the PDF answer above was stopped by leaving the chat; Continuar finished it (~25 s).
