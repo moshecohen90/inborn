@@ -1,0 +1,5 @@
+{"runId": "m3-probe-p2", "_": "Round 134N2: after a cold relaunch, the identity-card chat reopens from the list with its answer", "steps": [
+ {"op": "sleep", "ms": 8000}, {"op": "deeplink", "url": "/chats"}, {"op": "waitFor", "testID": "chat-row-355b377d-3e46-4a97-bb87-55ce2932ef2e", "timeoutMs": 20000},
+ {"op": "press", "testID": "chat-row-355b377d-3e46-4a97-bb87-55ce2932ef2e"}, {"op": "waitFor", "testID": "assistant-text", "timeoutMs": 20000}, {"op": "sleep", "ms": 1500},
+ {"op": "assertText", "text": "I'm Inborn, a private assistant that runs on this phone.", "testID": "assistant-text"},
+ {"op": "screenshot", "name": "p2-reopened"}, {"op": "dump", "name": "p2-reopened"}]}

@@ -128,7 +128,7 @@ export const PICTURE_LINES: Readonly<Record<"photo" | "page", string>> = {
 
 /** Every chat turn's system prompt; the family-safe line, when there is one, is its last sentence. */
 export function turnSystemPrompt(p: TurnPromptParts): string {
-  const body = composeSystemPrompt({ ...p, baseline: p.baseline ?? (p.tier === "instant" || p.photos ? PLAIN_SAFETY_BASELINE : SAFETY_BASELINE) });
+  const body = composeSystemPrompt({ ...p, baseline: p.baseline ?? (p.photos ? PLAIN_SAFETY_BASELINE : SAFETY_BASELINE) });
   const pictured = p.photos && p.picture ? `${body}\n\n${PICTURE_LINES[p.picture]}` : body;
   const seen = p.plainChat ? `${pictured}\n\n${PLAIN_CHAT_LINES[p.plainChat]}` : pictured;
   const line = familySafeLine(p);

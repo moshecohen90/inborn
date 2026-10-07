@@ -144,8 +144,10 @@ async function pushAsc() {
       const r = await ascWrite(asc, `${locale} whatsNew`, "PATCH", `/v1/appStoreVersionLocalizations/${id ?? "<new>"}`, {
         data: { type: "appStoreVersionLocalizations", id, attributes: { whatsNew: j.apple.whats_new } },
       });
-      if (r.status === 409) (whatsNewRefused = true), console.log("ASC whatsNew skipped in every locale: Apple does not accept it on this version");
-      else if (r.status >= 400) failures++;
+      if (r.status === 409) {
+        whatsNewRefused = true;
+        console.log("ASC whatsNew skipped in every locale: Apple does not accept it on this version");
+      } else if (r.status >= 400) failures++;
     }
   }
 

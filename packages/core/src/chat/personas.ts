@@ -16,7 +16,7 @@ const baseline = (noInternet: boolean): string =>
   `${IDENTITY_LINE}\n\nBe accurate.${noInternet ? ` ${NO_INTERNET}` : ""} Write nothing hateful, sexual or dangerous. If the user mentions harming themselves, answer with care and give a crisis line. Match the user's language unless they ask for another.`;
 
 export const SAFETY_BASELINE = baseline(true);
-/* For Instant (it invents scores either way, and with the line tells "hi" it has no internet) and photo turns (the answer is in the photo, and the line leaked into it). */
+/* For photo turns: the answer is in the photo, and the line leaked into it. Round 134N2: Instant has the line again, since without it it made up the weather 3 runs of 3 (134N sim). */
 export const PLAIN_SAFETY_BASELINE = baseline(false);
 
 const builtIn = (id: string, name: string, icon: PersonaIcon, systemPrompt: string): Persona => ({
