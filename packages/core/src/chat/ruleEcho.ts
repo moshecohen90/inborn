@@ -51,6 +51,46 @@ export function echoedFileRule(sentence: string, question: string): boolean {
   return matches(FILE_RULES, sentence) || (!ASKS_LANGUAGE.test(question) && matches(LANGUAGE_RULES, sentence));
 }
 
+/*
+ * Round 134P: Fast's offline rule tacked onto a document rework (build 43 sim-jc-05…07: "Note: Live scores, weather,
+ * news, or prices are unavailable as this is an offline summary."). Only at the very end of the answer, so a file
+ * that discusses weather or prices keeps every sentence.
+ */
+const word = (alternatives: string) => `(?<![\\p{L}\\p{N}])(?:${alternatives})(?![\\p{L}\\p{N}])`;
+const LIVE_DOMAINS = [
+  `${word("scores?|résultats|spielstände|ergebnisse|marcadores|placares|resultados")}|スコア|試合結果`,
+  `${word("weather|météo|wetter|clima|tiempo|tempo")}|天気|気象`,
+  `${word("news|actualités|nouvelles|nachrichten|noticias|notícias")}|ニュース`,
+  `${word("prices?|prix|preise|kurse|precios|preços")}|価格|株価|相場`,
+  `${word("offline|online|internet|live data|real[- ]time|hors[- ]ligne|en direct|en temps réel|echtzeit|live-daten|sin conexión|en vivo|tiempo real|sem conexão|ao vivo|tempo real")}|オフライン|インターネット|リアルタイム`,
+].map((alternatives) => new RegExp(alternatives, "iu"));
+const UNAVAILABLE = new RegExp(
+  `${word("unavailable|not available|cannot|can(?:'|’)t|can not|unable|no access|indisponibles?|pas disponibles?|ne (?:peux|peut|pouvons|puis) pas|impossible|nicht verfügbar|nicht abrufbar|nicht möglich|kann (?:ich )?(?:keine|nicht)|no (?:están?|son) disponibles?|no puedo|no es posible|não (?:estão|está|são) disponíve(?:l|is)|indisponíve(?:l|is)|não posso|não consigo")}|できません|利用できません|ありません`,
+  "iu",
+);
+const NOTE_MAX = 300;
+const isOfflineNote = (text: string): boolean => text.length <= NOTE_MAX && UNAVAILABLE.test(text) && LIVE_DOMAINS.filter((d) => d.test(text)).length >= 2;
+/* Where a note can start inside the last line: the line's start or right after a sentence ends. */
+const NOTE_START = /(?:^|(?<=[.!?。！？]["”»)]?)\s+)(?=[(*_]*(?:note|nota|hinweis|remarques?|n\.b\.|注意?|注記)[*_\s]*[:：])/giu;
+
+/**
+ * The answer without a closing offline note: the last line when it is a note on its own, or the tail of the last line
+ * from a "Note:" opener. While streaming, an unfinished note waits until it ends and can be judged.
+ */
+export function withoutTrailingOfflineNote(answer: string, streaming = false): string {
+  const body = answer.trimEnd();
+  const lineAt = body.lastIndexOf("\n") + 1;
+  const line = body.slice(lineAt);
+  const finished = !streaming || /[.!?。！？]["”»)*_]?$/u.test(line);
+  const cut = (at: number) => (body.slice(0, at).trim() ? body.slice(0, at).trimEnd() : answer);
+  if (lineAt > 0 && !/^\s*(?:[-*•]|\d+[.)])\s/.test(line) && (finished ? isOfflineNote(line) : LIVE_DOMAINS.some((d) => d.test(line)))) return cut(lineAt);
+  const opener = [...line.matchAll(NOTE_START)].pop();
+  if (!opener) return answer;
+  const note = line.slice(opener.index!).trim();
+  if (finished ? !isOfflineNote(note) : note.length > NOTE_MAX) return answer;
+  return cut(lineAt + opener.index!);
+}
+
 /** A question that asks for something only live data has: saying the app cannot check it is the honest answer. */
 const ASKS_LIVE = /\b(?:weather|forecast|temperature outside|rain(?:ing)? (?:today|tomorrow)|news|headlines?|scores?|stock|share price|exchange rate|prices? (?:of|for|today)|today|tonight|right now|currently|this (?:week|morning|evening)|what(?:'s| is) the (?:date|time)|what time|what day)\b|מזג (?:ה)?אוויר|חדשות|תוצאות|שער (?:ה)?(?:דולר|יורו)|היום|עכשיו|מה השעה|איזה תאריך/i;
 const ASKS_SELF = /\b(?:this app|the app|app is this|yourself|who are you|what are you|your name|inborn|what can you do|about you)\b|מי אתה|מה אתה|האפליקציה/i;
@@ -88,8 +128,8 @@ const HEAD_WORDS = 4;
  * live data keeps "I can't check that". An answer that would be left empty is kept whole: something on screen beats nothing.
  */
 export function withoutEchoedRules(given: string, { instructions, question, streaming = false, files = false }: { instructions: string; question: string; streaming?: boolean; files?: boolean }): string {
-  /* A file may well name Alibaba or a family-friendly recipe; only a general answer is unbranded. */
-  const answer = files ? given : unbranded(given, question);
+  /* A file may well name Alibaba or a family-friendly recipe; only a general answer is unbranded. A file answer loses only a closing offline note. */
+  const answer = !files ? unbranded(given, question) : ASKS_LIVE.test(question) ? given : withoutTrailingOfflineNote(given, streaming);
   /* "Tell me about yourself" is fairly answered with "I'm offline, no live news", even in the prompt's words. */
   const live = ASKS_LIVE.test(question) || ASKS_SELF.test(question);
   /* The identity is stated to be said back when asked; off-topic it is the `identity` rule's to judge. */
