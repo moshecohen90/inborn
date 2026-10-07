@@ -1,0 +1,48 @@
+02:58:36 pushing 40 steps as j2-install-fast
+02:58:41 shot j2-01
+02:59:00 shot j2-02
+02:59:20 shot j2-03
+02:59:27 shot j2-04
+02:59:31 shot j2-05
+02:59:37 shot j2-06
+02:59:41 ok     0 deeplink   /vault
+02:59:41 ok     1 waitFor    best-for appeared
+02:59:41 ok     2 sleep      3000 ms
+02:59:41 ok     3 scrollTo   install-fast
+02:59:41 ok     4 screenshot j2-01
+02:59:41 ok     5 press      install-fast ← onPress
+02:59:41 ok     6 sleep      1500 ms
+02:59:41 ok     7 press      confirm-download ← onPress
+02:59:41 ok     8 sleep      15000 ms
+02:59:41 ok     9 value      35% · 449 MB of 1.28 GB
+02:59:41 ok    10 screenshot j2-02
+02:59:41 ok    11 idleTimer  idle timer disabled: true
+02:59:41 ok    12 waitFor    use-fast appeared
+02:59:41 ok    13 value      Installed
+02:59:41 ok    14 screenshot j2-03
+02:59:41 ok    15 deeplink   /chats
+02:59:41 ok    16 waitFor    new-chat appeared
+02:59:41 ok    17 press      new-chat ← onPress
+02:59:41 ok    18 waitFor    start-chat appeared
+02:59:41 ok    19 press      start-chat ← onPress
+02:59:41 ok    20 waitFor    composer-input appeared
+02:59:41 ok    21 waitFor    Loading gone
+02:59:41 ok    22 sleep      1500 ms
+02:59:41 ok    23 value      INSTANT
+02:59:41 ok    24 sleep      2000 ms
+02:59:41 ok    25 screenshot j2-04
+02:59:41 ok    26 dump       j2-04
+02:59:41 ok    27 press      model-chip ← onPress
+02:59:41 ok    28 waitFor    model-sheet appeared
+02:59:41 ok    29 sleep      1500 ms
+02:59:41 ok    30 screenshot j2-05
+02:59:41 ok    31 dump       j2-05
+02:59:41 ok    32 press      model-sheet-close ← onPress
+02:59:41 ok    33 deeplink   /vault
+02:59:41 ok    34 waitFor    best-for appeared
+02:59:41 ok    35 value      Installed
+02:59:41 ok    36 value      Included with the app
+02:59:41 ok    37 sleep      3000 ms
+02:59:41 ok    38 screenshot j2-06
+02:59:41 ok    39 dump       j2-06
+02:59:41 40 passed, 0 failed, 6 screenshots → <worktree>/docs/qa/ios-device-pass-41/screens

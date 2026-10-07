@@ -1,0 +1,197 @@
+{
+ "_": "J5 (134J): the same chat, a new photo (nutrition-label.jpg).",
+ "steps": [
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "value",
+   "testID": "vision-released"
+  },
+  {
+   "op": "value",
+   "testID": "banners"
+  },
+  {
+   "op": "devPrompt",
+   "lines": [
+    "attach: nutrition-label.jpg"
+   ]
+  },
+  {
+   "op": "waitFor",
+   "testID": "pending-images",
+   "timeoutMs": 60000
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "value",
+   "testID": "pending-images"
+  },
+  {
+   "op": "value",
+   "testID": "vision-released"
+  },
+  {
+   "op": "value",
+   "testID": "banners"
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "What do you see?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "j5-photo4-sent"
+  },
+  {
+   "op": "waitFor",
+   "testID": "vision-hold",
+   "timeoutMs": 8000
+  },
+  {
+   "op": "value",
+   "testID": "vision-hold"
+  },
+  {
+   "op": "press",
+   "testID": "vision-hold-download"
+  },
+  {
+   "op": "idleTimer"
+  },
+  {
+   "op": "waitFor",
+   "testID": "vision-hold",
+   "gone": true,
+   "timeoutMs": 1800000
+  },
+  {
+   "op": "waitFor",
+   "testID": "assistant-text",
+   "timeoutMs": 240000
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 600000
+  },
+  {
+   "op": "sleep",
+   "ms": 3000
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "value",
+   "testID": "user-images"
+  },
+  {
+   "op": "value",
+   "testID": "vision-released"
+  },
+  {
+   "op": "value",
+   "testID": "banners"
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "value",
+   "testID": "model-advice"
+  },
+  {
+   "op": "value",
+   "testID": "model-advice-reason"
+  },
+  {
+   "op": "assertText",
+   "text": "cannot see",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "can't see",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "cannot physically see",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "see images",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "text-based",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "unable to see",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "not able to see",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "don't have eyes",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "Your documents don't mention this",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "assertText",
+   "text": "is a scan. Run OCR",
+   "testID": "assistant-text",
+   "absent": true
+  },
+  {
+   "op": "screenshot",
+   "name": "j5-photo4-answer"
+  },
+  {
+   "op": "dump",
+   "name": "j5-photo4-answer"
+  }
+ ]
+}

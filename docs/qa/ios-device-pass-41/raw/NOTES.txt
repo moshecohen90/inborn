@@ -1,0 +1,108 @@
+2026-10-07 02:44:25 start ios-build-41; worktree at 70eebff8, commit d827b216 (d827b2169a23) buildNumber 40->41 + guard + ignore line
+2026-10-07 02:51:39 gates: typecheck 0, lint 0, test rc=1 (mobile 1 failed: fixes-r131-picture.test.ts:64 stale source-string guard vs 44049c67; core 1453/4 skipped, i18n 24, ui 23); archive 02:45:23->02:49:04 ok, verified, check:store rc 0
+2026-10-07 02:56:02 twin built 02:52:11->02:55:39, verified (qa-verify.txt); phone before twin: com.inbornapp.mobile 1.0.0 40;com.inbornapp.mobile.uitests.xctrunner 1.0 1;
+2026-10-07 02:56:26 twin installed 02:56:04 -> 02:56:26 rc=0
+2026-10-07 02:56:26 launched (no script, before any push) rc=0
+2026-10-07 02:56:49 j1-onboard start
+2026-10-07 02:58:12 j1-onboard rc=1 02:58:11   ! console.log: [chat] plain=acknowledgement window=1/1 maxTokens=224
+2026-10-07 02:58:28 j1-onboard rc=1: 54 passed, 6 'value' reads of absent nodes (citations/none-matched/banners, informational); screens j1-01..07
+2026-10-07 02:58:35 pushed 10 fixtures + the founder's file under a neutral name
+2026-10-07 02:58:35 j2-install-fast start
+2026-10-07 02:59:41 j2-install-fast rc=0 02:59:41 40 passed, 0 failed, 6 screenshots → <worktree>/docs/qa/ios-device-pass-41/screens
+2026-10-07 02:59:47 j2-install-fast rc=0 40/40; new chat opens on INSTANT; vault Fast Installed, Instant In use
+2026-10-07 02:59:47 j6a-card start
+2026-10-07 03:00:40 j6a-card rc=1 03:00:40   ! console.log: [chat] plain=acknowledgement window=1/1 maxTokens=224
+2026-10-07 03:00:55 j6a-card rc=1 (only value reads of absent nodes): card 468 MB, Cancel puts the question back in the composer, chat+file kept; 'thanks' on Instant -> 'I'm glad you said goodnight! How about we try another game tonight?' (finding)
+2026-10-07 03:00:55 p3-founder-fast start
+2026-10-07 03:06:24 p3-founder-fast rc=1 (private: details in private/)
+2026-10-07 03:07:19 p3-founder-fast (private): summary 4 chips; thanks; shorter WITH 4 chips (134I pass); bullets 4 chips, bullet 1 text clipped at the right edge (render finding); French 4 chips; pancakes (index card downloaded on that turn) -> no chip + none-matched, answer a refusal-ish meta; real question -> chip p.3; harness race: the second ask was typed during the held answer and not sent (fixed in make-scripts: wait for stop after the card)
+2026-10-07 03:07:19 j3-constitution-fast start
+2026-10-07 03:16:40 j3-constitution-fast rc=1 03:16:39   ! console.log: [chat] plain=follow-up window=9/9 maxTokens=1024
+2026-10-07 03:17:20 j3-constitution-fast r1: 'Inborn has not finished reading the file…' - constitution-9pages.pdf was NOT in Documents (the first file of push.sh's loop never landed although devicectl rc=0; same as build 40 finding 4); the attach made a dead record. Re-pushed, re-running
+2026-10-07 03:17:25 j3-constitution-fast-r2 start
+2026-10-07 03:28:02 j3-constitution-fast-r2 rc=1 03:28:01   ! console.log: [chat] plain=follow-up window=9/9 maxTokens=1024
+2026-10-07 03:29:02 j3-constitution-fast-r2: summary (whole-file 173.9 s); thanks; shorter chips [2][3][4]; bullets chips [1]-[4]; French chips [2][3][4]; PANCAKES -> [rag] used=2 (bm25 terms=1, cos 0) -> a Constitution answer with chips p.5, p.6, no none-matched (FAIL vs brief); veto x2 -> chips p.3 + p.3 (duplicate labels)
+2026-10-07 03:29:02 p3-founder-instant start
+2026-10-07 03:31:43 p3-founder-instant rc=1 (private: details in private/)
+2026-10-07 03:31:43 j3-constitution-instant start
+2026-10-07 03:36:35 j3-constitution-instant rc=1 03:36:34   ! console.log: [chat] plain=follow-up window=5/5 maxTokens=1024
+2026-10-07 03:37:11 p3-founder-instant (private): summary chips 4; shorter + bullets chips 4; pancakes [rag] used=3 yet no chip + none-matched (pass). j3-constitution-instant: same, pancakes used=2, no chip + none-matched, recipe answered (pass)
+2026-10-07 03:37:11 p0-lists start
+2026-10-07 03:37:29 p0-lists rc=0 (private: details in private/)
+2026-10-07 03:37:38 ids: HISCHAT (founder Fast chat), CHATF (constitution Fast r2 chat), DOCID (the indexed constitution) filled in by the shell; Documents lists the dead constitution row '? · 0 B · could not find that file… Resume' from r1
+2026-10-07 03:37:38 p3b-founder-again start
+2026-10-07 03:39:41 p3b-founder-again rc=1 (private: details in private/)
+2026-10-07 03:39:41 j3x-pancake-probe start
+2026-10-07 03:40:09 j3x-pancake-probe rc=0 03:40:08 22 passed, 0 failed, 1 screenshots → <worktree>/docs/qa/ios-device-pass-41/screens
+2026-10-07 03:40:25 p3b-founder-again (private): reopening the Fast chat from Chats shows chip INSTANT (the chat opens on the engine's current model); the second ask ran on Instant -> chip [2] p.3 (chips both times, but not both on Fast). j3x probe (constitution chat, reopened on INSTANT): pancakes -> none-matched + 'I cannot provide a pancake recipe as the document does not contain information on food preparation…' (no chip)
+2026-10-07 03:40:25 j4-sheet-instant start
+2026-10-07 03:41:42 j4-sheet-instant rc=1 03:41:41   ! step 135 (value): value ask-stats: no node with that testID is mounted
+2026-10-07 03:41:42 j4-sheet-fast start
+2026-10-07 03:43:12 j4-sheet-fast rc=1 03:43:11   ! step 135 (value): value ask-stats: no node with that testID is mounted
+2026-10-07 03:43:32 j4 Instant + Fast (Pro via setTier): 3 no-match -> opener only, 'search 92-115 ms · 0 passages', no tok/s, no ask-answer; veto -> answer + chip p.3 (Instant 5.7 s, Fast 19.0 s); strict on (switch checked) -> same opener 0 passages; thank you / And now -> plain lines. PASS. Tier back to free
+2026-10-07 03:43:32 j6b-stop start
+2026-10-07 03:44:18 j6b-stop rc=1 03:44:17   ! console.log: [chat] plain=acknowledgement window=5/5 maxTokens=224
+2026-10-07 03:44:18 j6c-pictures-instant start
+2026-10-07 03:45:58 j6c-pictures-instant rc=1 03:45:58   ! step 116 (value): value none-matched: no node with that testID is mounted
+2026-10-07 03:45:58 j6d-pictures-fast start
+2026-10-07 03:49:00 j6d-pictures-fast rc=1 03:49:00   ! step 116 (value): value none-matched: no node with that testID is mounted
+2026-10-07 03:49:01 j6e-hebrew start
+2026-10-07 03:50:08 j6e-hebrew rc=1 03:50:07   ! step 33 (value): value none-matched: no node with that testID is mounted
+2026-10-07 03:51:04 j6f-scan-fast start
+2026-10-07 03:52:45 j6f-scan-fast rc=1 03:52:44   ! step 56 (value): value none-matched: no node with that testID is mounted
+2026-10-07 03:52:45 j6f-scan-fast done
+2026-10-07 03:52:45 j5 loop start: UIKit warnings so far 0, eases 0, switches 0
+2026-10-07 03:52:45 j5a-photo-fast start
+2026-10-07 03:53:59 j5a-photo-fast rc=1 03:53:58   ! step 44 (value): value model-advice-reason: no node with that testID is mounted
+2026-10-07 03:53:59 j5a done: warnings 0 eases 0 switches 0
+2026-10-07 03:53:59 j5b-heat-1 start
+2026-10-07 03:57:09 j5b-heat-1 rc=1 03:57:08   ! step 30 (value): value vision-released: no node with that testID is mounted
+2026-10-07 03:57:09 j5b round 1 done: warnings 0 eases 0 switches 0
+2026-10-07 03:57:09 j5c-photo-0-1 start
+2026-10-07 03:58:57 j5c-photo-0-1 rc=1 03:58:56   ! step 28 (value): value model-advice-reason: no node with that testID is mounted
+2026-10-07 03:58:57 j5c photo 0 round 1 done: warnings 0 eases 0 switches 0
+2026-10-07 03:58:57 j5b-heat-2 start
+2026-10-07 04:03:09 j5b-heat-2 rc=1 04:03:08   ! step 30 (value): value vision-released: no node with that testID is mounted
+2026-10-07 04:03:09 j5b round 2 done: warnings 0 eases 0 switches 0
+2026-10-07 04:03:09 j5c-photo-1-2 start
+2026-10-07 04:04:56 j5c-photo-1-2 rc=1 04:04:56   ! step 28 (value): value model-advice-reason: no node with that testID is mounted
+2026-10-07 04:04:57 j5c photo 1 round 2 done: warnings 0 eases 0 switches 0
+2026-10-07 04:04:57 j5b-heat-3 start
+2026-10-07 04:09:30 j5b-heat-3 rc=1 04:09:29   ! step 30 (value): value vision-released: no node with that testID is mounted
+2026-10-07 04:09:30 j5b round 3 done: warnings 0 eases 0 switches 0
+2026-10-07 04:09:30 j5c-photo-2-3 start
+2026-10-07 04:11:14 j5c-photo-2-3 rc=1 04:11:13   ! step 28 (value): value model-advice-reason: no node with that testID is mounted
+2026-10-07 04:11:14 j5c photo 2 round 3 done: warnings 0 eases 0 switches 0
+2026-10-07 04:11:14 j5b-heat-4 start
+2026-10-07 04:15:37 j5b-heat-4 rc=1 04:15:36   ! step 30 (value): value vision-released: no node with that testID is mounted
+2026-10-07 04:15:37 j5b round 4 done: warnings 0 eases 0 switches 0
+2026-10-07 04:15:37 j5c-photo-3-4 start
+2026-10-07 04:17:37 j5c-photo-3-4 rc=1 04:17:36 NO RESULT after 118 s; last progress: {"state":"done","ok":false,"failed":8,"at":"2026-10-07T01:17:34.298Z"}
+2026-10-07 04:17:37 j5c photo 3 round 4 done: warnings 0 eases 0 switches 0
+2026-10-07 04:17:38 j5b-heat-5 start
+2026-10-07 04:22:02 j5b-heat-5 rc=1 04:22:01   ! step 30 (value): value vision-released: no node with that testID is mounted
+2026-10-07 04:22:02 j5b round 5 done: warnings 0 eases 0 switches 0
+2026-10-07 04:22:02 j5c-photo-4-5 start
+2026-10-07 04:24:16 j5c-photo-4-5 rc=1 04:24:15   ! step 28 (value): value model-advice-reason: no node with that testID is mounted
+2026-10-07 04:24:16 j5c photo 4 round 5 done: warnings 0 eases 0 switches 0
+2026-10-07 04:24:16 j5 loop end after 5 rounds, 1817 s: warnings 0 eases 0 switches 0
+2026-10-07 04:25:11 J5: no memory warning in 5 rounds / 30 min (story+title+new photo on Fast with its pack): UIKit warnings 0, [device] ease 0, switches 0; footprint 1292-1389 MB, no drop >300 MB (mem-j5.txt). Not reproduced on the phone tonight. j5c-photo-3-4 result pulled by hand (driver: NO RESULT after 118 s). j5d not run (no switch)
+2026-10-07 04:25:11 j7a-explore start
+2026-10-07 04:27:46 j7a-explore rc=1 04:27:46   ! step 91 (value): value none-matched: no node with that testID is mounted
+2026-10-07 04:27:46 j7b-explore start
+2026-10-07 04:30:04 j7b-explore rc=1 04:30:04   ! console.log: [chat] plain=follow-up window=5/7 maxTokens=1024
+2026-10-07 04:31:40 j7a/j7b done (see screens j7-01..21); Settings + paywall say 'You own Pro' after J4's setTier free (harness: LicenceManager.pretendTier(null) keeps the pretended tier in _state, manager.ts:350); Documents still not in the Chats drawer (footer = Personas, Memory, Folders)
+2026-10-07 04:31:40 j7c-explore start
+2026-10-07 04:33:38 j7c-explore rc=1 04:33:37   ! console.log: [chat] plain=acknowledgement window=5/5 maxTokens=224
+2026-10-07 04:34:03 p7-documents start
+2026-10-07 04:34:21 p7-documents rc=0 (private: details in private/)
+2026-10-07 04:34:35 p7-documents (private): Documents lists the dead constitution row (? · 0 B · could not find… Resume) and every photo/scan sent through attach: as a library row 'Scanned. Run OCR on this phone?'. Samplers stopped.
+2026-10-07 04:35:33 p0-chats2 start
+2026-10-07 04:35:39 p0-chats2 rc=0 (private: details in private/)
+2026-10-07 04:35:53 found in the full log: ONE real memory warning at 04:26:44 (J7a, Fast, the sleep-tips turn, no picture in that chat): UIKit 'Received memory warning' + '[device] memory warning: releasing the picture projector, keeping the model'; footprint 1395 -> 734 MB; Fast kept, answer complete, no switch. J5 chat id (CHAT5) from a private Chats dump; running j5e
+2026-10-07 04:35:53 j5e-after-warning start
+2026-10-07 04:37:23 j5e-after-warning rc=1 04:37:22   ! step 73 (value): value vision-released: no node with that testID is mounted
+2026-10-07 04:38:23 j5e: J5 chat reopened on FAST, no quiet line (eased state cleared after 30 s of healthy memory), 'This chat is getting long' card; the new photo -> 'The system stopped generation · Continue' under the thermal banner 'Stopped to protect the phone · Continue when cool' (critical heat, not memory); 'what colour is the table?' also stopped. Retrying once after ~8 min (j5f)
+2026-10-07 04:38:23 j5f-retry start
+2026-10-07 04:42:41 j5f-retry rc=1 04:42:40   ! step 73 (value): value vision-released: no node with that testID is mounted
+2026-10-07 04:42:50 j5f retry: still 'Stopped to protect the phone'; the photo turn's dev-run: model fast, imageMaxTokens 1024, prompt_n 2551 (the picture in the prompt: pack attached again), predicted_n 0 (stopped by heat). J5 ends here.

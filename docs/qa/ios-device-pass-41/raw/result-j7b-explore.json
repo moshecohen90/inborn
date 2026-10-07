@@ -1,0 +1,3812 @@
+{
+ "runId": "j7b-explore",
+ "startedAt": "2026-10-07T01:27:49.285Z",
+ "finishedAt": "2026-10-07T01:30:01.487Z",
+ "ok": false,
+ "passed": 111,
+ "failed": 6,
+ "steps": [
+  {
+   "i": 0,
+   "op": "deeplink",
+   "ok": true,
+   "ms": 164,
+   "detail": "/chats"
+  },
+  {
+   "i": 1,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "new-chat appeared"
+  },
+  {
+   "i": 2,
+   "op": "press",
+   "ok": true,
+   "ms": 166,
+   "detail": "new-chat ← onPress"
+  },
+  {
+   "i": 3,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 4,
+   "detail": "start-chat appeared"
+  },
+  {
+   "i": 4,
+   "op": "press",
+   "ok": true,
+   "ms": 809,
+   "detail": "start-chat ← onPress"
+  },
+  {
+   "i": 5,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "composer-input appeared"
+  },
+  {
+   "i": 6,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 0,
+   "detail": "Loading gone"
+  },
+  {
+   "i": 7,
+   "op": "sleep",
+   "ok": true,
+   "ms": 1503,
+   "detail": "1500 ms"
+  },
+  {
+   "i": 8,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "FAST",
+    "props": {
+     "accessibilityLabel": "Model",
+     "accessibilityRole": "button",
+     "accessibilityState": {},
+     "disabled": false
+    }
+   },
+   "detail": "FAST"
+  },
+  {
+   "i": 9,
+   "op": "press",
+   "ok": true,
+   "ms": 165,
+   "detail": "open-chats ← onPress"
+  },
+  {
+   "i": 10,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 3,
+   "detail": "close-chats appeared"
+  },
+  {
+   "i": 11,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2006,
+   "detail": "2000 ms"
+  },
+  {
+   "i": 12,
+   "op": "screenshot",
+   "ok": true,
+   "ms": 2856,
+   "detail": "j7-12"
+  },
+  {
+   "i": 13,
+   "op": "dump",
+   "ok": true,
+   "ms": 6,
+   "nodes": [
+    {
+     "testID": "seal",
+     "text": "",
+     "role": "image",
+     "label": "SEALED"
+    },
+    {
+     "testID": "empty-headline",
+     "text": "Nothing leaves this phone."
+    },
+    {
+     "testID": "suggestion-summarize",
+     "text": "Summarize text",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "suggestion-translate",
+     "text": "Translate",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "suggestion-draft",
+     "text": "Draft a message",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "open-chats",
+     "text": "Chats",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "seal-label",
+     "text": "SEALED"
+    },
+    {
+     "testID": "model-chip",
+     "text": "FAST",
+     "role": "button",
+     "label": "Model",
+     "pressable": true
+    },
+    {
+     "testID": "banner-inset",
+     "text": ""
+    },
+    {
+     "testID": "notice",
+     "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+    },
+    {
+     "testID": "context-meter",
+     "text": "",
+     "role": "progressbar"
+    },
+    {
+     "testID": "context-level-ok",
+     "text": ""
+    },
+    {
+     "testID": "attach",
+     "text": "",
+     "role": "button",
+     "label": "Attach documents",
+     "state": {
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "composer-input",
+     "text": "",
+     "value": "",
+     "pressable": true
+    },
+    {
+     "testID": "mic",
+     "text": "",
+     "role": "button",
+     "label": "Dictate",
+     "state": {
+      "disabled": false,
+      "busy": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "send",
+     "text": "",
+     "role": "button",
+     "label": "Send",
+     "state": {
+      "disabled": true
+     },
+     "disabled": true
+    },
+    {
+     "testID": "message-actions",
+     "text": ""
+    },
+    {
+     "testID": "report-sheet",
+     "text": ""
+    },
+    {
+     "testID": "mic-sheet",
+     "text": ""
+    },
+    {
+     "testID": "mic-problem",
+     "text": ""
+    },
+    {
+     "testID": "close-chats",
+     "text": "",
+     "role": "button",
+     "label": "Close",
+     "pressable": true
+    },
+    {
+     "testID": "select-toggle",
+     "text": "Select",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chats-search",
+     "text": "",
+     "label": "Search",
+     "value": "",
+     "pressable": true
+    },
+    {
+     "testID": "new-chat",
+     "text": "New chat",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "new-incognito",
+     "text": "Incognito",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-pin-c8776ad2-2224-4f02-8c5b-9c60475c455d",
+     "text": "Pin",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-archive-c8776ad2-2224-4f02-8c5b-9c60475c455d",
+     "text": "Archive",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-delete-c8776ad2-2224-4f02-8c5b-9c60475c455d",
+     "text": "Delete",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chat-row-c8776ad2-2224-4f02-8c5b-9c60475c455d",
+     "text": "Draft a short, friendly message that 6:27 PM",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-pin-3746c34e-debb-420b-aa51-764745a51ab1",
+     "text": "Pin",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-archive-3746c34e-debb-420b-aa51-764745a51ab1",
+     "text": "Archive",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-delete-3746c34e-debb-420b-aa51-764745a51ab1",
+     "text": "Delete",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chat-row-3746c34e-debb-420b-aa51-764745a51ab1",
+     "text": "hey! what is this app? 6:26 PM",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-pin-7f76ca18-d645-45e4-b8e4-286fd66a7854",
+     "text": "Pin",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-archive-7f76ca18-d645-45e4-b8e4-286fd66a7854",
+     "text": "Archive",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-delete-7f76ca18-d645-45e4-b8e4-286fd66a7854",
+     "text": "Delete",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chat-row-7f76ca18-d645-45e4-b8e4-286fd66a7854",
+     "text": "What do you see? 6:23 PM",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-pin-7505b0a6-16b5-4629-b40e-e2bb50ceacfa",
+     "text": "Pin",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-archive-7505b0a6-16b5-4629-b40e-e2bb50ceacfa",
+     "text": "Archive",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-delete-7505b0a6-16b5-4629-b40e-e2bb50ceacfa",
+     "text": "Delete",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chat-row-7505b0a6-16b5-4629-b40e-e2bb50ceacfa",
+     "text": "What do you see? 5:52 PM",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-pin-3fda51a1-a2a4-487d-af4f-cd2b9c32da62",
+     "text": "Pin",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-archive-3fda51a1-a2a4-487d-af4f-cd2b9c32da62",
+     "text": "Archive",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-delete-3fda51a1-a2a4-487d-af4f-cd2b9c32da62",
+     "text": "Delete",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chat-row-3fda51a1-a2a4-487d-af4f-cd2b9c32da62",
+     "text": "מה בירת צרפת? 5:49 PM",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-pin-b370cad8-f824-427c-b3ce-70d036ee1470",
+     "text": "Pin",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-archive-b370cad8-f824-427c-b3ce-70d036ee1470",
+     "text": "Archive",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-delete-b370cad8-f824-427c-b3ce-70d036ee1470",
+     "text": "Delete",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chat-row-b370cad8-f824-427c-b3ce-70d036ee1470",
+     "text": "What do you see? 5:48 PM",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-pin-aefdc989-8eea-4479-9312-24dc643f2c67",
+     "text": "Pin",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-archive-aefdc989-8eea-4479-9312-24dc643f2c67",
+     "text": "Archive",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-delete-aefdc989-8eea-4479-9312-24dc643f2c67",
+     "text": "Delete",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chat-row-aefdc989-8eea-4479-9312-24dc643f2c67",
+     "text": "What do you see? 5:46 PM",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-pin-e60acc4c-1b88-4151-92c7-cf0f88a5069e",
+     "text": "Pin",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-archive-e60acc4c-1b88-4151-92c7-cf0f88a5069e",
+     "text": "Archive",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-delete-e60acc4c-1b88-4151-92c7-cf0f88a5069e",
+     "text": "Delete",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chat-row-e60acc4c-1b88-4151-92c7-cf0f88a5069e",
+     "text": "What do you see? 5:45 PM",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-pin-027539d6-66a3-408d-ba78-6ec145eadac3",
+     "text": "Pin",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-archive-027539d6-66a3-408d-ba78-6ec145eadac3",
+     "text": "Archive",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-delete-027539d6-66a3-408d-ba78-6ec145eadac3",
+     "text": "Delete",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chat-row-027539d6-66a3-408d-ba78-6ec145eadac3",
+     "text": "What do you see? 5:44 PM",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-pin-4ead6996-05c7-4db5-abe1-4ea2cb177cb7",
+     "text": "Pin",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-archive-4ead6996-05c7-4db5-abe1-4ea2cb177cb7",
+     "text": "Archive",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-delete-4ead6996-05c7-4db5-abe1-4ea2cb177cb7",
+     "text": "Delete",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chat-row-4ead6996-05c7-4db5-abe1-4ea2cb177cb7",
+     "text": "Write a long story of about 5:44 PM",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-pin-d65e06c8-3d4c-4e6d-ba34-251be770f97b",
+     "text": "Pin",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-archive-d65e06c8-3d4c-4e6d-ba34-251be770f97b",
+     "text": "Archive",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-delete-d65e06c8-3d4c-4e6d-ba34-251be770f97b",
+     "text": "Delete",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chat-row-d65e06c8-3d4c-4e6d-ba34-251be770f97b",
+     "text": "Summarize it 5:39 PM",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-pin-74310bdc-3711-45b3-83aa-3ab49e931d29",
+     "text": "Pin",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-archive-74310bdc-3711-45b3-83aa-3ab49e931d29",
+     "text": "Archive",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-delete-74310bdc-3711-45b3-83aa-3ab49e931d29",
+     "text": "Delete",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chat-row-74310bdc-3711-45b3-83aa-3ab49e931d29",
+     "text": "Summarize it 5:37 PM",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-pin-ed28c0d1-09d1-4c30-b520-f70cccc70ea6",
+     "text": "Pin",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-archive-ed28c0d1-09d1-4c30-b520-f70cccc70ea6",
+     "text": "Archive",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-delete-ed28c0d1-09d1-4c30-b520-f70cccc70ea6",
+     "text": "Delete",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chat-row-ed28c0d1-09d1-4c30-b520-f70cccc70ea6",
+     "text": "Summarize it 5:34 PM",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-pin-8b4724e7-06e6-4815-9255-20fbd1eb9b9b",
+     "text": "Pin",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-archive-8b4724e7-06e6-4815-9255-20fbd1eb9b9b",
+     "text": "Archive",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-delete-8b4724e7-06e6-4815-9255-20fbd1eb9b9b",
+     "text": "Delete",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chat-row-8b4724e7-06e6-4815-9255-20fbd1eb9b9b",
+     "text": "Summarize it 5:31 PM",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-pin-11d32572-da91-4a9c-a3af-a70b9ae4e801",
+     "text": "Pin",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-archive-11d32572-da91-4a9c-a3af-a70b9ae4e801",
+     "text": "Archive",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-delete-11d32572-da91-4a9c-a3af-a70b9ae4e801",
+     "text": "Delete",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chat-row-11d32572-da91-4a9c-a3af-a70b9ae4e801",
+     "text": "Summarize it 5:14 PM",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-pin-67ced792-41a1-411a-a513-2d7b3e86f20b",
+     "text": "Pin",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-archive-67ced792-41a1-411a-a513-2d7b3e86f20b",
+     "text": "Archive",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-delete-67ced792-41a1-411a-a513-2d7b3e86f20b",
+     "text": "Delete",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chat-row-67ced792-41a1-411a-a513-2d7b3e86f20b",
+     "text": "thanks 5:00 PM",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-pin-6eb34147-aebd-4b9e-888b-a3d6c30b67bb",
+     "text": "Pin",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-archive-6eb34147-aebd-4b9e-888b-a3d6c30b67bb",
+     "text": "Archive",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-delete-6eb34147-aebd-4b9e-888b-a3d6c30b67bb",
+     "text": "Delete",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chat-row-6eb34147-aebd-4b9e-888b-a3d6c30b67bb",
+     "text": "Hi 4:58 PM",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chats-footer",
+     "text": ""
+    },
+    {
+     "testID": "open-personas",
+     "text": "",
+     "pressable": true
+    },
+    {
+     "testID": "open-memory",
+     "text": "",
+     "pressable": true
+    },
+    {
+     "testID": "open-folders",
+     "text": "",
+     "pressable": true
+    },
+    {
+     "testID": "new-chat-sheet",
+     "text": ""
+    },
+    {
+     "testID": "folder-sheet",
+     "text": ""
+    },
+    {
+     "testID": "vault-code-sheet",
+     "text": ""
+    },
+    {
+     "testID": "export-sheet",
+     "text": ""
+    },
+    {
+     "testID": "drawer-footer",
+     "text": "FAST · OUT 1.27 KB Settings ◯ Proof"
+    },
+    {
+     "testID": "drawer-meter",
+     "text": "FAST · OUT 1.27 KB"
+    },
+    {
+     "testID": "drawer-settings",
+     "text": "Settings",
+     "pressable": true
+    },
+    {
+     "testID": "drawer-proof",
+     "text": "◯ Proof",
+     "pressable": true
+    },
+    {
+     "testID": "banners",
+     "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+     "testID": "banner-thermal",
+     "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+     "testID": "device-explain-sheet",
+     "text": ""
+    },
+    {
+     "testID": "qa-bridge",
+     "text": ""
+    }
+   ],
+   "detail": "j7-12"
+  },
+  {
+   "i": 14,
+   "op": "waitFor",
+   "ok": false,
+   "ms": 3191,
+   "detail": "waitFor drawer-documents never appeared in 3000 ms"
+  },
+  {
+   "i": 15,
+   "op": "press",
+   "ok": false,
+   "ms": 3,
+   "detail": "press drawer-documents: not mounted"
+  },
+  {
+   "i": 16,
+   "op": "waitFor",
+   "ok": false,
+   "ms": 10131,
+   "detail": "waitFor documents-screen never appeared in 10000 ms"
+  },
+  {
+   "i": 17,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2014,
+   "detail": "2000 ms"
+  },
+  {
+   "i": 18,
+   "op": "screenshot",
+   "ok": true,
+   "ms": 4124,
+   "detail": "j7-13"
+  },
+  {
+   "i": 19,
+   "op": "dump",
+   "ok": true,
+   "ms": 6,
+   "nodes": [
+    {
+     "testID": "seal",
+     "text": "",
+     "role": "image",
+     "label": "SEALED"
+    },
+    {
+     "testID": "empty-headline",
+     "text": "Nothing leaves this phone."
+    },
+    {
+     "testID": "suggestion-summarize",
+     "text": "Summarize text",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "suggestion-translate",
+     "text": "Translate",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "suggestion-draft",
+     "text": "Draft a message",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "open-chats",
+     "text": "Chats",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "seal-label",
+     "text": "SEALED"
+    },
+    {
+     "testID": "model-chip",
+     "text": "FAST",
+     "role": "button",
+     "label": "Model",
+     "pressable": true
+    },
+    {
+     "testID": "banner-inset",
+     "text": ""
+    },
+    {
+     "testID": "notice",
+     "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+    },
+    {
+     "testID": "context-meter",
+     "text": "",
+     "role": "progressbar"
+    },
+    {
+     "testID": "context-level-ok",
+     "text": ""
+    },
+    {
+     "testID": "attach",
+     "text": "",
+     "role": "button",
+     "label": "Attach documents",
+     "state": {
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "composer-input",
+     "text": "",
+     "value": "",
+     "pressable": true
+    },
+    {
+     "testID": "mic",
+     "text": "",
+     "role": "button",
+     "label": "Dictate",
+     "state": {
+      "disabled": false,
+      "busy": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "send",
+     "text": "",
+     "role": "button",
+     "label": "Send",
+     "state": {
+      "disabled": true
+     },
+     "disabled": true
+    },
+    {
+     "testID": "message-actions",
+     "text": ""
+    },
+    {
+     "testID": "report-sheet",
+     "text": ""
+    },
+    {
+     "testID": "mic-sheet",
+     "text": ""
+    },
+    {
+     "testID": "mic-problem",
+     "text": ""
+    },
+    {
+     "testID": "close-chats",
+     "text": "",
+     "role": "button",
+     "label": "Close",
+     "pressable": true
+    },
+    {
+     "testID": "select-toggle",
+     "text": "Select",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chats-search",
+     "text": "",
+     "label": "Search",
+     "value": "",
+     "pressable": true
+    },
+    {
+     "testID": "new-chat",
+     "text": "New chat",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "new-incognito",
+     "text": "Incognito",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-pin-c8776ad2-2224-4f02-8c5b-9c60475c455d",
+     "text": "Pin",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-archive-c8776ad2-2224-4f02-8c5b-9c60475c455d",
+     "text": "Archive",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-delete-c8776ad2-2224-4f02-8c5b-9c60475c455d",
+     "text": "Delete",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chat-row-c8776ad2-2224-4f02-8c5b-9c60475c455d",
+     "text": "Draft a short, friendly message that 6:27 PM",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-pin-3746c34e-debb-420b-aa51-764745a51ab1",
+     "text": "Pin",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-archive-3746c34e-debb-420b-aa51-764745a51ab1",
+     "text": "Archive",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-delete-3746c34e-debb-420b-aa51-764745a51ab1",
+     "text": "Delete",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chat-row-3746c34e-debb-420b-aa51-764745a51ab1",
+     "text": "hey! what is this app? 6:26 PM",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-pin-7f76ca18-d645-45e4-b8e4-286fd66a7854",
+     "text": "Pin",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-archive-7f76ca18-d645-45e4-b8e4-286fd66a7854",
+     "text": "Archive",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-delete-7f76ca18-d645-45e4-b8e4-286fd66a7854",
+     "text": "Delete",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chat-row-7f76ca18-d645-45e4-b8e4-286fd66a7854",
+     "text": "What do you see? 6:23 PM",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-pin-7505b0a6-16b5-4629-b40e-e2bb50ceacfa",
+     "text": "Pin",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-archive-7505b0a6-16b5-4629-b40e-e2bb50ceacfa",
+     "text": "Archive",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-delete-7505b0a6-16b5-4629-b40e-e2bb50ceacfa",
+     "text": "Delete",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chat-row-7505b0a6-16b5-4629-b40e-e2bb50ceacfa",
+     "text": "What do you see? 5:52 PM",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-pin-3fda51a1-a2a4-487d-af4f-cd2b9c32da62",
+     "text": "Pin",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-archive-3fda51a1-a2a4-487d-af4f-cd2b9c32da62",
+     "text": "Archive",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-delete-3fda51a1-a2a4-487d-af4f-cd2b9c32da62",
+     "text": "Delete",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chat-row-3fda51a1-a2a4-487d-af4f-cd2b9c32da62",
+     "text": "מה בירת צרפת? 5:49 PM",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-pin-b370cad8-f824-427c-b3ce-70d036ee1470",
+     "text": "Pin",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-archive-b370cad8-f824-427c-b3ce-70d036ee1470",
+     "text": "Archive",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-delete-b370cad8-f824-427c-b3ce-70d036ee1470",
+     "text": "Delete",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chat-row-b370cad8-f824-427c-b3ce-70d036ee1470",
+     "text": "What do you see? 5:48 PM",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-pin-aefdc989-8eea-4479-9312-24dc643f2c67",
+     "text": "Pin",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-archive-aefdc989-8eea-4479-9312-24dc643f2c67",
+     "text": "Archive",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-delete-aefdc989-8eea-4479-9312-24dc643f2c67",
+     "text": "Delete",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chat-row-aefdc989-8eea-4479-9312-24dc643f2c67",
+     "text": "What do you see? 5:46 PM",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-pin-e60acc4c-1b88-4151-92c7-cf0f88a5069e",
+     "text": "Pin",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-archive-e60acc4c-1b88-4151-92c7-cf0f88a5069e",
+     "text": "Archive",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-delete-e60acc4c-1b88-4151-92c7-cf0f88a5069e",
+     "text": "Delete",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chat-row-e60acc4c-1b88-4151-92c7-cf0f88a5069e",
+     "text": "What do you see? 5:45 PM",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-pin-027539d6-66a3-408d-ba78-6ec145eadac3",
+     "text": "Pin",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-archive-027539d6-66a3-408d-ba78-6ec145eadac3",
+     "text": "Archive",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-delete-027539d6-66a3-408d-ba78-6ec145eadac3",
+     "text": "Delete",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chat-row-027539d6-66a3-408d-ba78-6ec145eadac3",
+     "text": "What do you see? 5:44 PM",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-pin-4ead6996-05c7-4db5-abe1-4ea2cb177cb7",
+     "text": "Pin",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-archive-4ead6996-05c7-4db5-abe1-4ea2cb177cb7",
+     "text": "Archive",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-delete-4ead6996-05c7-4db5-abe1-4ea2cb177cb7",
+     "text": "Delete",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chat-row-4ead6996-05c7-4db5-abe1-4ea2cb177cb7",
+     "text": "Write a long story of about 5:44 PM",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-pin-d65e06c8-3d4c-4e6d-ba34-251be770f97b",
+     "text": "Pin",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-archive-d65e06c8-3d4c-4e6d-ba34-251be770f97b",
+     "text": "Archive",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-delete-d65e06c8-3d4c-4e6d-ba34-251be770f97b",
+     "text": "Delete",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chat-row-d65e06c8-3d4c-4e6d-ba34-251be770f97b",
+     "text": "Summarize it 5:39 PM",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-pin-74310bdc-3711-45b3-83aa-3ab49e931d29",
+     "text": "Pin",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-archive-74310bdc-3711-45b3-83aa-3ab49e931d29",
+     "text": "Archive",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-delete-74310bdc-3711-45b3-83aa-3ab49e931d29",
+     "text": "Delete",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chat-row-74310bdc-3711-45b3-83aa-3ab49e931d29",
+     "text": "Summarize it 5:37 PM",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-pin-ed28c0d1-09d1-4c30-b520-f70cccc70ea6",
+     "text": "Pin",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-archive-ed28c0d1-09d1-4c30-b520-f70cccc70ea6",
+     "text": "Archive",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-delete-ed28c0d1-09d1-4c30-b520-f70cccc70ea6",
+     "text": "Delete",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chat-row-ed28c0d1-09d1-4c30-b520-f70cccc70ea6",
+     "text": "Summarize it 5:34 PM",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-pin-8b4724e7-06e6-4815-9255-20fbd1eb9b9b",
+     "text": "Pin",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-archive-8b4724e7-06e6-4815-9255-20fbd1eb9b9b",
+     "text": "Archive",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-delete-8b4724e7-06e6-4815-9255-20fbd1eb9b9b",
+     "text": "Delete",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chat-row-8b4724e7-06e6-4815-9255-20fbd1eb9b9b",
+     "text": "Summarize it 5:31 PM",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-pin-11d32572-da91-4a9c-a3af-a70b9ae4e801",
+     "text": "Pin",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-archive-11d32572-da91-4a9c-a3af-a70b9ae4e801",
+     "text": "Archive",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-delete-11d32572-da91-4a9c-a3af-a70b9ae4e801",
+     "text": "Delete",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chat-row-11d32572-da91-4a9c-a3af-a70b9ae4e801",
+     "text": "Summarize it 5:14 PM",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-pin-67ced792-41a1-411a-a513-2d7b3e86f20b",
+     "text": "Pin",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-archive-67ced792-41a1-411a-a513-2d7b3e86f20b",
+     "text": "Archive",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-delete-67ced792-41a1-411a-a513-2d7b3e86f20b",
+     "text": "Delete",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chat-row-67ced792-41a1-411a-a513-2d7b3e86f20b",
+     "text": "thanks 5:00 PM",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-pin-6eb34147-aebd-4b9e-888b-a3d6c30b67bb",
+     "text": "Pin",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-archive-6eb34147-aebd-4b9e-888b-a3d6c30b67bb",
+     "text": "Archive",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "swipe-delete-6eb34147-aebd-4b9e-888b-a3d6c30b67bb",
+     "text": "Delete",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chat-row-6eb34147-aebd-4b9e-888b-a3d6c30b67bb",
+     "text": "Hi 4:58 PM",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "chats-footer",
+     "text": ""
+    },
+    {
+     "testID": "open-personas",
+     "text": "",
+     "pressable": true
+    },
+    {
+     "testID": "open-memory",
+     "text": "",
+     "pressable": true
+    },
+    {
+     "testID": "open-folders",
+     "text": "",
+     "pressable": true
+    },
+    {
+     "testID": "new-chat-sheet",
+     "text": ""
+    },
+    {
+     "testID": "folder-sheet",
+     "text": ""
+    },
+    {
+     "testID": "vault-code-sheet",
+     "text": ""
+    },
+    {
+     "testID": "export-sheet",
+     "text": ""
+    },
+    {
+     "testID": "drawer-footer",
+     "text": "FAST · OUT 1.27 KB Settings ◯ Proof"
+    },
+    {
+     "testID": "drawer-meter",
+     "text": "FAST · OUT 1.27 KB"
+    },
+    {
+     "testID": "drawer-settings",
+     "text": "Settings",
+     "pressable": true
+    },
+    {
+     "testID": "drawer-proof",
+     "text": "◯ Proof",
+     "pressable": true
+    },
+    {
+     "testID": "banners",
+     "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+     "testID": "banner-thermal",
+     "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+     "testID": "device-explain-sheet",
+     "text": ""
+    },
+    {
+     "testID": "qa-bridge",
+     "text": ""
+    }
+   ],
+   "detail": "j7-13"
+  },
+  {
+   "i": 20,
+   "op": "deeplink",
+   "ok": true,
+   "ms": 154,
+   "detail": "/settings"
+  },
+  {
+   "i": 21,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 2,
+   "detail": "row-pro appeared"
+  },
+  {
+   "i": 22,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2006,
+   "detail": "2000 ms"
+  },
+  {
+   "i": 23,
+   "op": "screenshot",
+   "ok": true,
+   "ms": 3490,
+   "detail": "j7-14"
+  },
+  {
+   "i": 24,
+   "op": "dump",
+   "ok": true,
+   "ms": 4,
+   "nodes": [
+    {
+     "testID": "row-pro",
+     "text": "See what's in Pro You own Pro. Pro for Work adds the client tools. PRO",
+     "value": "PRO",
+     "pressable": true
+    },
+    {
+     "testID": "theme-mode",
+     "text": "Auto Dark Light",
+     "value": "auto",
+     "pressable": true
+    },
+    {
+     "testID": "theme-mode-sub",
+     "text": "Dark at night, 18:00-06:00, and whenever the system is dark."
+    },
+    {
+     "testID": "text-scale",
+     "text": "90% Default 115% 130% 150% 175% 200%",
+     "value": "1",
+     "pressable": true
+    },
+    {
+     "testID": "row-lock",
+     "text": "Require a passcode Your passcode opens Inborn. Also hides chats in the app switcher.",
+     "pressable": true
+    },
+    {
+     "testID": "row-hide",
+     "text": "Hide in app switcher Chats are blurred while Inborn is in the background.",
+     "pressable": true
+    },
+    {
+     "testID": "row-screenshots",
+     "text": "Screenshot protection iOS cannot block screenshots. Inborn hides chats while the screen is recorded or mirrored.",
+     "pressable": true
+    },
+    {
+     "testID": "auto-delete",
+     "text": "Off 1 day 7 days 30 days",
+     "value": "0",
+     "pressable": true
+    },
+    {
+     "testID": "auto-delete-sub",
+     "text": "Chats stay until you delete them."
+    },
+    {
+     "testID": "row-wipe",
+     "text": "Delete everything Chats, key, documents. No recovery.",
+     "pressable": true
+    },
+    {
+     "testID": "row-family-safe",
+     "text": "Family-safe mode Keeps sexually explicit, graphic and self-harm content out of answers. It reduces that content; it cannot catch all of it.",
+     "pressable": true
+    },
+    {
+     "testID": "row-language",
+     "text": "App language English",
+     "value": "English",
+     "pressable": true
+    },
+    {
+     "testID": "row-wifi-only",
+     "text": "Wi-Fi only",
+     "pressable": true
+    },
+    {
+     "testID": "row-reports",
+     "text": "Reports Answers you reported, kept on this device",
+     "pressable": true
+    },
+    {
+     "testID": "row-proof",
+     "text": "Proof",
+     "pressable": true
+    },
+    {
+     "testID": "row-audit",
+     "text": "Audit log Per-vault, hash-chained, never message content",
+     "pressable": true
+    },
+    {
+     "testID": "row-verify",
+     "text": "Verify a signed record Check a .json record's hash and signature",
+     "pressable": true
+    },
+    {
+     "testID": "row-statement",
+     "text": "Architecture statement Dated, printable, for a compliance file",
+     "pressable": true
+    },
+    {
+     "testID": "row-about",
+     "text": "About",
+     "pressable": true
+    },
+    {
+     "testID": "back",
+     "text": "",
+     "role": "button",
+     "label": "Back",
+     "pressable": true
+    },
+    {
+     "testID": "banners",
+     "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+     "testID": "banner-thermal",
+     "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+     "testID": "device-explain-sheet",
+     "text": ""
+    },
+    {
+     "testID": "qa-bridge",
+     "text": ""
+    }
+   ],
+   "detail": "j7-14"
+  },
+  {
+   "i": 25,
+   "op": "press",
+   "ok": true,
+   "ms": 156,
+   "detail": "row-pro ← onPress"
+  },
+  {
+   "i": 26,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 3,
+   "detail": "close-paywall appeared"
+  },
+  {
+   "i": 27,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2014,
+   "detail": "2000 ms"
+  },
+  {
+   "i": 28,
+   "op": "screenshot",
+   "ok": true,
+   "ms": 3806,
+   "detail": "j7-15"
+  },
+  {
+   "i": 29,
+   "op": "dump",
+   "ok": true,
+   "ms": 10,
+   "nodes": [
+    {
+     "testID": "row-pro",
+     "text": "See what's in Pro You own Pro. Pro for Work adds the client tools. PRO",
+     "value": "PRO",
+     "pressable": true
+    },
+    {
+     "testID": "theme-mode",
+     "text": "Auto Dark Light",
+     "value": "auto",
+     "pressable": true
+    },
+    {
+     "testID": "theme-mode-sub",
+     "text": "Dark at night, 18:00-06:00, and whenever the system is dark."
+    },
+    {
+     "testID": "text-scale",
+     "text": "90% Default 115% 130% 150% 175% 200%",
+     "value": "1",
+     "pressable": true
+    },
+    {
+     "testID": "row-lock",
+     "text": "Require a passcode Your passcode opens Inborn. Also hides chats in the app switcher.",
+     "pressable": true
+    },
+    {
+     "testID": "row-hide",
+     "text": "Hide in app switcher Chats are blurred while Inborn is in the background.",
+     "pressable": true
+    },
+    {
+     "testID": "row-screenshots",
+     "text": "Screenshot protection iOS cannot block screenshots. Inborn hides chats while the screen is recorded or mirrored.",
+     "pressable": true
+    },
+    {
+     "testID": "auto-delete",
+     "text": "Off 1 day 7 days 30 days",
+     "value": "0",
+     "pressable": true
+    },
+    {
+     "testID": "auto-delete-sub",
+     "text": "Chats stay until you delete them."
+    },
+    {
+     "testID": "row-wipe",
+     "text": "Delete everything Chats, key, documents. No recovery.",
+     "pressable": true
+    },
+    {
+     "testID": "row-family-safe",
+     "text": "Family-safe mode Keeps sexually explicit, graphic and self-harm content out of answers. It reduces that content; it cannot catch all of it.",
+     "pressable": true
+    },
+    {
+     "testID": "row-language",
+     "text": "App language English",
+     "value": "English",
+     "pressable": true
+    },
+    {
+     "testID": "row-wifi-only",
+     "text": "Wi-Fi only",
+     "pressable": true
+    },
+    {
+     "testID": "row-reports",
+     "text": "Reports Answers you reported, kept on this device",
+     "pressable": true
+    },
+    {
+     "testID": "row-proof",
+     "text": "Proof",
+     "pressable": true
+    },
+    {
+     "testID": "row-audit",
+     "text": "Audit log Per-vault, hash-chained, never message content",
+     "pressable": true
+    },
+    {
+     "testID": "row-verify",
+     "text": "Verify a signed record Check a .json record's hash and signature",
+     "pressable": true
+    },
+    {
+     "testID": "row-statement",
+     "text": "Architecture statement Dated, printable, for a compliance file",
+     "pressable": true
+    },
+    {
+     "testID": "row-about",
+     "text": "About",
+     "pressable": true
+    },
+    {
+     "testID": "back",
+     "text": "",
+     "role": "button",
+     "label": "Back",
+     "pressable": true
+    },
+    {
+     "testID": "close-paywall",
+     "text": "",
+     "role": "button",
+     "label": "Close",
+     "pressable": true
+    },
+    {
+     "testID": "banner-inset",
+     "text": ""
+    },
+    {
+     "testID": "paywall-title",
+     "text": "Pay once. Own it."
+    },
+    {
+     "testID": "owned",
+     "text": "You own Pro Unlocked on every device that uses this App Store account."
+    },
+    {
+     "testID": "tier-inborn.work.upgrade",
+     "text": "FOR PROFESSIONALS PRO FOR WORK PRO OWNERS $49.99 · one-time purchase Prices are US list prices. Your store shows the price where you are. Client vaults with their own passcode Per-vault audit log, hash-chained Signed, verifiable records Profession packs: legal, therapy, medical, accounting Printable architecture statement Upgrade to Work · $49.99"
+    },
+    {
+     "testID": "price-inborn.work.upgrade",
+     "text": "$49.99 · one-time purchase"
+    },
+    {
+     "testID": "buy-inborn.work.upgrade",
+     "text": "Upgrade to Work · $49.99",
+     "role": "button",
+     "label": "Upgrade to Work · $49.99",
+     "pressable": true
+    },
+    {
+     "testID": "restore",
+     "text": "Restore purchases",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "redeem-code",
+     "text": "Have a code?",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "compare-head",
+     "text": "Free Pro Work"
+    },
+    {
+     "testID": "compare-chat",
+     "text": "Unlimited private chat"
+    },
+    {
+     "testID": "compare-chat-free",
+     "text": "",
+     "label": "Included"
+    },
+    {
+     "testID": "compare-chat-pro",
+     "text": "",
+     "label": "Included"
+    },
+    {
+     "testID": "compare-chat-work",
+     "text": "",
+     "label": "Included"
+    },
+    {
+     "testID": "compare-offline",
+     "text": "Offline use"
+    },
+    {
+     "testID": "compare-offline-free",
+     "text": "",
+     "label": "Included"
+    },
+    {
+     "testID": "compare-offline-pro",
+     "text": "",
+     "label": "Included"
+    },
+    {
+     "testID": "compare-offline-work",
+     "text": "",
+     "label": "Included"
+    },
+    {
+     "testID": "compare-files",
+     "text": "Files per chat 1 ∞ ∞"
+    },
+    {
+     "testID": "compare-files-free",
+     "text": "1",
+     "label": "1"
+    },
+    {
+     "testID": "compare-files-pro",
+     "text": "∞",
+     "label": "Unlimited"
+    },
+    {
+     "testID": "compare-files-work",
+     "text": "∞",
+     "label": "Unlimited"
+    },
+    {
+     "testID": "compare-ocr",
+     "text": "Text from scans and photos —"
+    },
+    {
+     "testID": "compare-ocr-free",
+     "text": "—",
+     "label": "Not included"
+    },
+    {
+     "testID": "compare-ocr-pro",
+     "text": "",
+     "label": "Included"
+    },
+    {
+     "testID": "compare-ocr-work",
+     "text": "",
+     "label": "Included"
+    },
+    {
+     "testID": "compare-strict",
+     "text": "Answers only from your documents —"
+    },
+    {
+     "testID": "compare-strict-free",
+     "text": "—",
+     "label": "Not included"
+    },
+    {
+     "testID": "compare-strict-pro",
+     "text": "",
+     "label": "Included"
+    },
+    {
+     "testID": "compare-strict-work",
+     "text": "",
+     "label": "Included"
+    },
+    {
+     "testID": "compare-personas",
+     "text": "Custom personas 3 ∞ ∞"
+    },
+    {
+     "testID": "compare-personas-free",
+     "text": "3",
+     "label": "3"
+    },
+    {
+     "testID": "compare-personas-pro",
+     "text": "∞",
+     "label": "Unlimited"
+    },
+    {
+     "testID": "compare-personas-work",
+     "text": "∞",
+     "label": "Unlimited"
+    },
+    {
+     "testID": "compare-photos",
+     "text": "Photos per message 1 ∞ ∞"
+    },
+    {
+     "testID": "compare-photos-free",
+     "text": "1",
+     "label": "1"
+    },
+    {
+     "testID": "compare-photos-pro",
+     "text": "∞",
+     "label": "Unlimited"
+    },
+    {
+     "testID": "compare-photos-work",
+     "text": "∞",
+     "label": "Unlimited"
+    },
+    {
+     "testID": "compare-memory",
+     "text": "Memory across chats —"
+    },
+    {
+     "testID": "compare-memory-free",
+     "text": "—",
+     "label": "Not included"
+    },
+    {
+     "testID": "compare-memory-pro",
+     "text": "",
+     "label": "Included"
+    },
+    {
+     "testID": "compare-memory-work",
+     "text": "",
+     "label": "Included"
+    },
+    {
+     "testID": "compare-folders",
+     "text": "Folders and full export —"
+    },
+    {
+     "testID": "compare-folders-free",
+     "text": "—",
+     "label": "Not included"
+    },
+    {
+     "testID": "compare-folders-pro",
+     "text": "",
+     "label": "Included"
+    },
+    {
+     "testID": "compare-folders-work",
+     "text": "",
+     "label": "Included"
+    },
+    {
+     "testID": "compare-models",
+     "text": "Larger, sharper models —"
+    },
+    {
+     "testID": "compare-models-free",
+     "text": "—",
+     "label": "Not included"
+    },
+    {
+     "testID": "compare-models-pro",
+     "text": "",
+     "label": "Included"
+    },
+    {
+     "testID": "compare-models-work",
+     "text": "",
+     "label": "Included"
+    },
+    {
+     "testID": "compare-voice",
+     "text": "Voice conversation and dictation —"
+    },
+    {
+     "testID": "compare-voice-free",
+     "text": "—",
+     "label": "Not included"
+    },
+    {
+     "testID": "compare-voice-pro",
+     "text": "",
+     "label": "Included"
+    },
+    {
+     "testID": "compare-voice-work",
+     "text": "",
+     "label": "Included"
+    },
+    {
+     "testID": "compare-stats",
+     "text": "Detailed speed and token stats —"
+    },
+    {
+     "testID": "compare-stats-free",
+     "text": "—",
+     "label": "Not included"
+    },
+    {
+     "testID": "compare-stats-pro",
+     "text": "",
+     "label": "Included"
+    },
+    {
+     "testID": "compare-stats-work",
+     "text": "",
+     "label": "Included"
+    },
+    {
+     "testID": "compare-vaults",
+     "text": "Client vaults with passcodes — —"
+    },
+    {
+     "testID": "compare-vaults-free",
+     "text": "—",
+     "label": "Not included"
+    },
+    {
+     "testID": "compare-vaults-pro",
+     "text": "—",
+     "label": "Not included"
+    },
+    {
+     "testID": "compare-vaults-work",
+     "text": "",
+     "label": "Included"
+    },
+    {
+     "testID": "compare-redaction",
+     "text": "Redaction before sending — —"
+    },
+    {
+     "testID": "compare-redaction-free",
+     "text": "—",
+     "label": "Not included"
+    },
+    {
+     "testID": "compare-redaction-pro",
+     "text": "—",
+     "label": "Not included"
+    },
+    {
+     "testID": "compare-redaction-work",
+     "text": "",
+     "label": "Included"
+    },
+    {
+     "testID": "compare-office",
+     "text": "Excel and HTML import — —"
+    },
+    {
+     "testID": "compare-office-free",
+     "text": "—",
+     "label": "Not included"
+    },
+    {
+     "testID": "compare-office-pro",
+     "text": "—",
+     "label": "Not included"
+    },
+    {
+     "testID": "compare-office-work",
+     "text": "",
+     "label": "Included"
+    },
+    {
+     "testID": "compare-audit",
+     "text": "Per-vault audit log — —"
+    },
+    {
+     "testID": "compare-audit-free",
+     "text": "—",
+     "label": "Not included"
+    },
+    {
+     "testID": "compare-audit-pro",
+     "text": "—",
+     "label": "Not included"
+    },
+    {
+     "testID": "compare-audit-work",
+     "text": "",
+     "label": "Included"
+    },
+    {
+     "testID": "compare-signed",
+     "text": "Signed, verifiable records — —"
+    },
+    {
+     "testID": "compare-signed-free",
+     "text": "—",
+     "label": "Not included"
+    },
+    {
+     "testID": "compare-signed-pro",
+     "text": "—",
+     "label": "Not included"
+    },
+    {
+     "testID": "compare-signed-work",
+     "text": "",
+     "label": "Included"
+    },
+    {
+     "testID": "banners",
+     "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+     "testID": "banner-thermal",
+     "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+     "testID": "device-explain-sheet",
+     "text": ""
+    },
+    {
+     "testID": "qa-bridge",
+     "text": ""
+    }
+   ],
+   "detail": "j7-15"
+  },
+  {
+   "i": 30,
+   "op": "press",
+   "ok": true,
+   "ms": 167,
+   "detail": "close-paywall ← onPress"
+  },
+  {
+   "i": 31,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2001,
+   "detail": "2000 ms"
+  },
+  {
+   "i": 32,
+   "op": "screenshot",
+   "ok": true,
+   "ms": 3807,
+   "detail": "j7-16"
+  },
+  {
+   "i": 33,
+   "op": "dump",
+   "ok": true,
+   "ms": 4,
+   "nodes": [
+    {
+     "testID": "row-pro",
+     "text": "See what's in Pro You own Pro. Pro for Work adds the client tools. PRO",
+     "value": "PRO",
+     "pressable": true
+    },
+    {
+     "testID": "theme-mode",
+     "text": "Auto Dark Light",
+     "value": "auto",
+     "pressable": true
+    },
+    {
+     "testID": "theme-mode-sub",
+     "text": "Dark at night, 18:00-06:00, and whenever the system is dark."
+    },
+    {
+     "testID": "text-scale",
+     "text": "90% Default 115% 130% 150% 175% 200%",
+     "value": "1",
+     "pressable": true
+    },
+    {
+     "testID": "row-lock",
+     "text": "Require a passcode Your passcode opens Inborn. Also hides chats in the app switcher.",
+     "pressable": true
+    },
+    {
+     "testID": "row-hide",
+     "text": "Hide in app switcher Chats are blurred while Inborn is in the background.",
+     "pressable": true
+    },
+    {
+     "testID": "row-screenshots",
+     "text": "Screenshot protection iOS cannot block screenshots. Inborn hides chats while the screen is recorded or mirrored.",
+     "pressable": true
+    },
+    {
+     "testID": "auto-delete",
+     "text": "Off 1 day 7 days 30 days",
+     "value": "0",
+     "pressable": true
+    },
+    {
+     "testID": "auto-delete-sub",
+     "text": "Chats stay until you delete them."
+    },
+    {
+     "testID": "row-wipe",
+     "text": "Delete everything Chats, key, documents. No recovery.",
+     "pressable": true
+    },
+    {
+     "testID": "row-family-safe",
+     "text": "Family-safe mode Keeps sexually explicit, graphic and self-harm content out of answers. It reduces that content; it cannot catch all of it.",
+     "pressable": true
+    },
+    {
+     "testID": "row-language",
+     "text": "App language English",
+     "value": "English",
+     "pressable": true
+    },
+    {
+     "testID": "row-wifi-only",
+     "text": "Wi-Fi only",
+     "pressable": true
+    },
+    {
+     "testID": "row-reports",
+     "text": "Reports Answers you reported, kept on this device",
+     "pressable": true
+    },
+    {
+     "testID": "row-proof",
+     "text": "Proof",
+     "pressable": true
+    },
+    {
+     "testID": "row-audit",
+     "text": "Audit log Per-vault, hash-chained, never message content",
+     "pressable": true
+    },
+    {
+     "testID": "row-verify",
+     "text": "Verify a signed record Check a .json record's hash and signature",
+     "pressable": true
+    },
+    {
+     "testID": "row-statement",
+     "text": "Architecture statement Dated, printable, for a compliance file",
+     "pressable": true
+    },
+    {
+     "testID": "row-about",
+     "text": "About",
+     "pressable": true
+    },
+    {
+     "testID": "back",
+     "text": "",
+     "role": "button",
+     "label": "Back",
+     "pressable": true
+    },
+    {
+     "testID": "banners",
+     "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+     "testID": "banner-thermal",
+     "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+     "testID": "device-explain-sheet",
+     "text": ""
+    },
+    {
+     "testID": "qa-bridge",
+     "text": ""
+    }
+   ],
+   "detail": "j7-16"
+  },
+  {
+   "i": 34,
+   "op": "deeplink",
+   "ok": true,
+   "ms": 155,
+   "detail": "/chats"
+  },
+  {
+   "i": 35,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "new-chat appeared"
+  },
+  {
+   "i": 36,
+   "op": "press",
+   "ok": true,
+   "ms": 166,
+   "detail": "new-chat ← onPress"
+  },
+  {
+   "i": 37,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 2,
+   "detail": "start-chat appeared"
+  },
+  {
+   "i": 38,
+   "op": "press",
+   "ok": true,
+   "ms": 179,
+   "detail": "start-chat ← onPress"
+  },
+  {
+   "i": 39,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "composer-input appeared"
+  },
+  {
+   "i": 40,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 0,
+   "detail": "Loading gone"
+  },
+  {
+   "i": 41,
+   "op": "sleep",
+   "ok": true,
+   "ms": 1502,
+   "detail": "1500 ms"
+  },
+  {
+   "i": 42,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "FAST",
+    "props": {
+     "accessibilityLabel": "Model",
+     "accessibilityRole": "button",
+     "accessibilityState": {},
+     "disabled": false
+    }
+   },
+   "detail": "FAST"
+  },
+  {
+   "i": 43,
+   "op": "devPrompt",
+   "ok": true,
+   "ms": 165,
+   "detail": "attach: turbine-report-3pages.pdf"
+  },
+  {
+   "i": 44,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1601,
+   "detail": "attached-docs appeared"
+  },
+  {
+   "i": 45,
+   "op": "sleep",
+   "ok": true,
+   "ms": 10001,
+   "detail": "10000 ms"
+  },
+  {
+   "i": 46,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "turbine-report-3pages.pdf",
+    "props": {
+     "disabled": false
+    }
+   },
+   "detail": "turbine-report-3pages.pdf"
+  },
+  {
+   "i": 47,
+   "op": "type",
+   "ok": true,
+   "ms": 166,
+   "detail": "composer-input = 41 chars"
+  },
+  {
+   "i": 48,
+   "op": "send",
+   "ok": true,
+   "ms": 204,
+   "detail": "send ← onPress"
+  },
+  {
+   "i": 49,
+   "op": "sleep",
+   "ok": true,
+   "ms": 6333,
+   "detail": "2500 ms"
+  },
+  {
+   "i": 50,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "reading-pages gone"
+  },
+  {
+   "i": 51,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "reading-docs gone"
+  },
+  {
+   "i": 52,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1056,
+   "detail": "stop gone"
+  },
+  {
+   "i": 53,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2501,
+   "detail": "2500 ms"
+  },
+  {
+   "i": 54,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "The serial number of the turbine is RK-4417, as stated in [1].",
+    "props": {
+     "source": "The serial number of the turbine is RK-4417, as stated in [1].",
+     "disabled": false
+    }
+   },
+   "detail": "The serial number of the turbine is RK-4417, as stated in [1]."
+  },
+  {
+   "i": 55,
+   "op": "value",
+   "ok": true,
+   "ms": 0,
+   "value": {
+    "text": "[1] turbine-report-3pages.pdf · p.1",
+    "props": {
+     "disabled": false
+    }
+   },
+   "detail": "[1] turbine-report-3pages.pdf · p.1"
+  },
+  {
+   "i": 56,
+   "op": "value",
+   "ok": false,
+   "ms": 1,
+   "detail": "value none-matched: no node with that testID is mounted"
+  },
+  {
+   "i": 57,
+   "op": "value",
+   "ok": true,
+   "ms": 0,
+   "value": {
+    "text": "Slowing down to keep the phone cool SWITCH TO INSTANT",
+    "props": {
+     "disabled": false
+    }
+   },
+   "detail": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+  },
+  {
+   "i": 58,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "FAST",
+    "props": {
+     "accessibilityLabel": "Model",
+     "accessibilityRole": "button",
+     "accessibilityState": {},
+     "disabled": false
+    }
+   },
+   "detail": "FAST"
+  },
+  {
+   "i": 59,
+   "op": "screenshot",
+   "ok": true,
+   "ms": 2858,
+   "detail": "j7-17"
+  },
+  {
+   "i": 60,
+   "op": "dump",
+   "ok": true,
+   "ms": 2,
+   "nodes": [
+    {
+     "testID": "user-message",
+     "text": "What is the serial number of the turbine?",
+     "role": "text"
+    },
+    {
+     "testID": "assistant-message",
+     "text": "FAST · ON-DEVICE AI The serial number of the turbine is RK-4417, as stated in [1]. [1] turbine-report-3pages.pdf · p.1 Ledger"
+    },
+    {
+     "testID": "assistant-text",
+     "text": "The serial number of the turbine is RK-4417, as stated in [1]."
+    },
+    {
+     "testID": "citations",
+     "text": "[1] turbine-report-3pages.pdf · p.1"
+    },
+    {
+     "testID": "citation-1",
+     "text": "[1] turbine-report-3pages.pdf · p.1",
+     "role": "button",
+     "label": "Open turbine-report-3pages.pdf · p.1",
+     "pressable": true
+    },
+    {
+     "testID": "ledger-toggle",
+     "text": "Ledger",
+     "role": "button",
+     "state": {
+      "expanded": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "open-chats",
+     "text": "Chats",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "seal",
+     "text": "",
+     "role": "image",
+     "label": "SEALED"
+    },
+    {
+     "testID": "seal-label",
+     "text": "SEALED"
+    },
+    {
+     "testID": "model-chip",
+     "text": "FAST",
+     "role": "button",
+     "label": "Model",
+     "pressable": true
+    },
+    {
+     "testID": "banner-inset",
+     "text": ""
+    },
+    {
+     "testID": "notice",
+     "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+    },
+    {
+     "testID": "attached-docs",
+     "text": "turbine-report-3pages.pdf"
+    },
+    {
+     "testID": "attached-chip-muxccacm-1-8is441hw",
+     "text": "turbine-report-3pages.pdf",
+     "role": "button",
+     "label": "Remove turbine-report-3pages.pdf from this chat",
+     "pressable": true
+    },
+    {
+     "testID": "context-meter",
+     "text": "",
+     "role": "progressbar"
+    },
+    {
+     "testID": "context-level-ok",
+     "text": ""
+    },
+    {
+     "testID": "attach",
+     "text": "1",
+     "role": "button",
+     "label": "Attach documents",
+     "state": {
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "composer-input",
+     "text": "",
+     "value": "",
+     "pressable": true
+    },
+    {
+     "testID": "mic",
+     "text": "",
+     "role": "button",
+     "label": "Dictate",
+     "state": {
+      "disabled": false,
+      "busy": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "send",
+     "text": "",
+     "role": "button",
+     "label": "Send",
+     "state": {
+      "disabled": true
+     },
+     "disabled": true
+    },
+    {
+     "testID": "message-actions",
+     "text": ""
+    },
+    {
+     "testID": "report-sheet",
+     "text": ""
+    },
+    {
+     "testID": "mic-sheet",
+     "text": ""
+    },
+    {
+     "testID": "mic-problem",
+     "text": ""
+    },
+    {
+     "testID": "banners",
+     "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+     "testID": "banner-thermal",
+     "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+     "testID": "device-explain-sheet",
+     "text": ""
+    },
+    {
+     "testID": "qa-bridge",
+     "text": ""
+    }
+   ],
+   "detail": "j7-17"
+  },
+  {
+   "i": 61,
+   "op": "type",
+   "ok": true,
+   "ms": 158,
+   "detail": "composer-input = 34 chars"
+  },
+  {
+   "i": 62,
+   "op": "send",
+   "ok": true,
+   "ms": 175,
+   "detail": "send ← onPress"
+  },
+  {
+   "i": 63,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2539,
+   "detail": "2500 ms"
+  },
+  {
+   "i": 64,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "reading-pages gone"
+  },
+  {
+   "i": 65,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 0,
+   "detail": "reading-docs gone"
+  },
+  {
+   "i": 66,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 3920,
+   "detail": "stop gone"
+  },
+  {
+   "i": 67,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2516,
+   "detail": "2500 ms"
+  },
+  {
+   "i": 68,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "The serial number of the turbine is RK-4417, as stated in [1].",
+    "props": {
+     "source": "The serial number of the turbine is RK-4417, as stated in [1].",
+     "disabled": false
+    }
+   },
+   "detail": "The serial number of the turbine is RK-4417, as stated in [1]."
+  },
+  {
+   "i": 69,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "[1] turbine-report-3pages.pdf · p.1",
+    "props": {
+     "disabled": false
+    }
+   },
+   "detail": "[1] turbine-report-3pages.pdf · p.1"
+  },
+  {
+   "i": 70,
+   "op": "value",
+   "ok": true,
+   "ms": 0,
+   "value": {
+    "text": "Nothing in your documents matched this question. Answered without them.",
+    "props": {
+     "disabled": false
+    }
+   },
+   "detail": "Nothing in your documents matched this question. Answered without them."
+  },
+  {
+   "i": 71,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "Slowing down to keep the phone cool SWITCH TO INSTANT",
+    "props": {
+     "disabled": false
+    }
+   },
+   "detail": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+  },
+  {
+   "i": 72,
+   "op": "value",
+   "ok": true,
+   "ms": 0,
+   "value": {
+    "text": "FAST",
+    "props": {
+     "accessibilityLabel": "Model",
+     "accessibilityRole": "button",
+     "accessibilityState": {},
+     "disabled": false
+    }
+   },
+   "detail": "FAST"
+  },
+  {
+   "i": 73,
+   "op": "screenshot",
+   "ok": true,
+   "ms": 2540,
+   "detail": "j7-18"
+  },
+  {
+   "i": 74,
+   "op": "dump",
+   "ok": true,
+   "ms": 2,
+   "nodes": [
+    {
+     "testID": "user-message",
+     "text": "What is the serial number of the turbine?",
+     "role": "text"
+    },
+    {
+     "testID": "assistant-message",
+     "text": "FAST · ON-DEVICE AI The serial number of the turbine is RK-4417, as stated in [1]. [1] turbine-report-3pages.pdf · p.1 Ledger"
+    },
+    {
+     "testID": "assistant-text",
+     "text": "The serial number of the turbine is RK-4417, as stated in [1]."
+    },
+    {
+     "testID": "citations",
+     "text": "[1] turbine-report-3pages.pdf · p.1"
+    },
+    {
+     "testID": "citation-1",
+     "text": "[1] turbine-report-3pages.pdf · p.1",
+     "role": "button",
+     "label": "Open turbine-report-3pages.pdf · p.1",
+     "pressable": true
+    },
+    {
+     "testID": "ledger-toggle",
+     "text": "Ledger",
+     "role": "button",
+     "state": {
+      "expanded": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "open-chats",
+     "text": "Chats",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "seal",
+     "text": "",
+     "role": "image",
+     "label": "SEALED"
+    },
+    {
+     "testID": "seal-label",
+     "text": "SEALED"
+    },
+    {
+     "testID": "model-chip",
+     "text": "FAST",
+     "role": "button",
+     "label": "Model",
+     "pressable": true
+    },
+    {
+     "testID": "banner-inset",
+     "text": ""
+    },
+    {
+     "testID": "none-matched",
+     "text": "Nothing in your documents matched this question. Answered without them."
+    },
+    {
+     "testID": "notice",
+     "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+    },
+    {
+     "testID": "attached-docs",
+     "text": "turbine-report-3pages.pdf"
+    },
+    {
+     "testID": "attached-chip-muxccacm-1-8is441hw",
+     "text": "turbine-report-3pages.pdf",
+     "role": "button",
+     "label": "Remove turbine-report-3pages.pdf from this chat",
+     "pressable": true
+    },
+    {
+     "testID": "context-meter",
+     "text": "",
+     "role": "progressbar"
+    },
+    {
+     "testID": "context-level-ok",
+     "text": ""
+    },
+    {
+     "testID": "attach",
+     "text": "1",
+     "role": "button",
+     "label": "Attach documents",
+     "state": {
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "composer-input",
+     "text": "",
+     "value": "",
+     "pressable": true
+    },
+    {
+     "testID": "mic",
+     "text": "",
+     "role": "button",
+     "label": "Dictate",
+     "state": {
+      "disabled": false,
+      "busy": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "send",
+     "text": "",
+     "role": "button",
+     "label": "Send",
+     "state": {
+      "disabled": true
+     },
+     "disabled": true
+    },
+    {
+     "testID": "message-actions",
+     "text": ""
+    },
+    {
+     "testID": "report-sheet",
+     "text": ""
+    },
+    {
+     "testID": "mic-sheet",
+     "text": ""
+    },
+    {
+     "testID": "mic-problem",
+     "text": ""
+    },
+    {
+     "testID": "banners",
+     "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+     "testID": "banner-thermal",
+     "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+     "testID": "device-explain-sheet",
+     "text": ""
+    },
+    {
+     "testID": "qa-bridge",
+     "text": ""
+    }
+   ],
+   "detail": "j7-18"
+  },
+  {
+   "i": 75,
+   "op": "type",
+   "ok": true,
+   "ms": 155,
+   "detail": "composer-input = 8 chars"
+  },
+  {
+   "i": 76,
+   "op": "send",
+   "ok": true,
+   "ms": 181,
+   "detail": "send ← onPress"
+  },
+  {
+   "i": 77,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2502,
+   "detail": "2500 ms"
+  },
+  {
+   "i": 78,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "reading-pages gone"
+  },
+  {
+   "i": 79,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "reading-docs gone"
+  },
+  {
+   "i": 80,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 3565,
+   "detail": "stop gone"
+  },
+  {
+   "i": 81,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2501,
+   "detail": "2500 ms"
+  },
+  {
+   "i": 82,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "The serial number of the turbine is RK-4417, as stated in [1].",
+    "props": {
+     "source": "The serial number of the turbine is RK-4417, as stated in [1].",
+     "disabled": false
+    }
+   },
+   "detail": "The serial number of the turbine is RK-4417, as stated in [1]."
+  },
+  {
+   "i": 83,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "[1] turbine-report-3pages.pdf · p.1",
+    "props": {
+     "disabled": false
+    }
+   },
+   "detail": "[1] turbine-report-3pages.pdf · p.1"
+  },
+  {
+   "i": 84,
+   "op": "value",
+   "ok": false,
+   "ms": 0,
+   "detail": "value none-matched: no node with that testID is mounted"
+  },
+  {
+   "i": 85,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "Slowing down to keep the phone cool SWITCH TO INSTANT",
+    "props": {
+     "disabled": false
+    }
+   },
+   "detail": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+  },
+  {
+   "i": 86,
+   "op": "value",
+   "ok": true,
+   "ms": 0,
+   "value": {
+    "text": "FAST",
+    "props": {
+     "accessibilityLabel": "Model",
+     "accessibilityRole": "button",
+     "accessibilityState": {},
+     "disabled": false
+    }
+   },
+   "detail": "FAST"
+  },
+  {
+   "i": 87,
+   "op": "screenshot",
+   "ok": true,
+   "ms": 3202,
+   "detail": "j7-19"
+  },
+  {
+   "i": 88,
+   "op": "dump",
+   "ok": true,
+   "ms": 2,
+   "nodes": [
+    {
+     "testID": "user-message",
+     "text": "What is the serial number of the turbine?",
+     "role": "text"
+    },
+    {
+     "testID": "assistant-message",
+     "text": "FAST · ON-DEVICE AI The serial number of the turbine is RK-4417, as stated in [1]. [1] turbine-report-3pages.pdf · p.1 Ledger"
+    },
+    {
+     "testID": "assistant-text",
+     "text": "The serial number of the turbine is RK-4417, as stated in [1]."
+    },
+    {
+     "testID": "citations",
+     "text": "[1] turbine-report-3pages.pdf · p.1"
+    },
+    {
+     "testID": "citation-1",
+     "text": "[1] turbine-report-3pages.pdf · p.1",
+     "role": "button",
+     "label": "Open turbine-report-3pages.pdf · p.1",
+     "pressable": true
+    },
+    {
+     "testID": "ledger-toggle",
+     "text": "Ledger",
+     "role": "button",
+     "state": {
+      "expanded": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "open-chats",
+     "text": "Chats",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "seal",
+     "text": "",
+     "role": "image",
+     "label": "SEALED"
+    },
+    {
+     "testID": "seal-label",
+     "text": "SEALED"
+    },
+    {
+     "testID": "model-chip",
+     "text": "FAST",
+     "role": "button",
+     "label": "Model",
+     "pressable": true
+    },
+    {
+     "testID": "banner-inset",
+     "text": ""
+    },
+    {
+     "testID": "notice",
+     "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+    },
+    {
+     "testID": "attached-docs",
+     "text": "turbine-report-3pages.pdf"
+    },
+    {
+     "testID": "attached-chip-muxccacm-1-8is441hw",
+     "text": "turbine-report-3pages.pdf",
+     "role": "button",
+     "label": "Remove turbine-report-3pages.pdf from this chat",
+     "pressable": true
+    },
+    {
+     "testID": "context-meter",
+     "text": "",
+     "role": "progressbar"
+    },
+    {
+     "testID": "context-level-ok",
+     "text": ""
+    },
+    {
+     "testID": "attach",
+     "text": "1",
+     "role": "button",
+     "label": "Attach documents",
+     "state": {
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "composer-input",
+     "text": "",
+     "value": "",
+     "pressable": true
+    },
+    {
+     "testID": "mic",
+     "text": "",
+     "role": "button",
+     "label": "Dictate",
+     "state": {
+      "disabled": false,
+      "busy": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "send",
+     "text": "",
+     "role": "button",
+     "label": "Send",
+     "state": {
+      "disabled": true
+     },
+     "disabled": true
+    },
+    {
+     "testID": "message-actions",
+     "text": ""
+    },
+    {
+     "testID": "report-sheet",
+     "text": ""
+    },
+    {
+     "testID": "mic-sheet",
+     "text": ""
+    },
+    {
+     "testID": "mic-problem",
+     "text": ""
+    },
+    {
+     "testID": "banners",
+     "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+     "testID": "banner-thermal",
+     "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+     "testID": "device-explain-sheet",
+     "text": ""
+    },
+    {
+     "testID": "qa-bridge",
+     "text": ""
+    }
+   ],
+   "detail": "j7-19"
+  },
+  {
+   "i": 89,
+   "op": "type",
+   "ok": true,
+   "ms": 162,
+   "detail": "composer-input = 32 chars"
+  },
+  {
+   "i": 90,
+   "op": "send",
+   "ok": true,
+   "ms": 250,
+   "detail": "send ← onPress"
+  },
+  {
+   "i": 91,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2500,
+   "detail": "2500 ms"
+  },
+  {
+   "i": 92,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "reading-pages gone"
+  },
+  {
+   "i": 93,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "reading-docs gone"
+  },
+  {
+   "i": 94,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 13316,
+   "detail": "stop gone"
+  },
+  {
+   "i": 95,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2501,
+   "detail": "2500 ms"
+  },
+  {
+   "i": 96,
+   "op": "value",
+   "ok": true,
+   "ms": 2,
+   "value": {
+    "text": "The serial number of the turbine is RK-4417, as stated in [1].",
+    "props": {
+     "source": "The serial number of the turbine is RK-4417, as stated in [1].",
+     "disabled": false
+    }
+   },
+   "detail": "The serial number of the turbine is RK-4417, as stated in [1]."
+  },
+  {
+   "i": 97,
+   "op": "value",
+   "ok": true,
+   "ms": 0,
+   "value": {
+    "text": "[1] turbine-report-3pages.pdf · p.1",
+    "props": {
+     "disabled": false
+    }
+   },
+   "detail": "[1] turbine-report-3pages.pdf · p.1"
+  },
+  {
+   "i": 98,
+   "op": "value",
+   "ok": false,
+   "ms": 1,
+   "detail": "value none-matched: no node with that testID is mounted"
+  },
+  {
+   "i": 99,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "Slowing down to keep the phone cool SWITCH TO INSTANT",
+    "props": {
+     "disabled": false
+    }
+   },
+   "detail": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+  },
+  {
+   "i": 100,
+   "op": "value",
+   "ok": true,
+   "ms": 0,
+   "value": {
+    "text": "FAST",
+    "props": {
+     "accessibilityLabel": "Model",
+     "accessibilityRole": "button",
+     "accessibilityState": {},
+     "disabled": false
+    }
+   },
+   "detail": "FAST"
+  },
+  {
+   "i": 101,
+   "op": "screenshot",
+   "ok": true,
+   "ms": 4133,
+   "detail": "j7-20"
+  },
+  {
+   "i": 102,
+   "op": "dump",
+   "ok": true,
+   "ms": 2,
+   "nodes": [
+    {
+     "testID": "user-message",
+     "text": "What is the serial number of the turbine?",
+     "role": "text"
+    },
+    {
+     "testID": "assistant-message",
+     "text": "FAST · ON-DEVICE AI The serial number of the turbine is RK-4417, as stated in [1]. [1] turbine-report-3pages.pdf · p.1 Ledger"
+    },
+    {
+     "testID": "assistant-text",
+     "text": "The serial number of the turbine is RK-4417, as stated in [1]."
+    },
+    {
+     "testID": "citations",
+     "text": "[1] turbine-report-3pages.pdf · p.1"
+    },
+    {
+     "testID": "citation-1",
+     "text": "[1] turbine-report-3pages.pdf · p.1",
+     "role": "button",
+     "label": "Open turbine-report-3pages.pdf · p.1",
+     "pressable": true
+    },
+    {
+     "testID": "ledger-toggle",
+     "text": "Ledger",
+     "role": "button",
+     "state": {
+      "expanded": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "open-chats",
+     "text": "Chats",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "seal",
+     "text": "",
+     "role": "image",
+     "label": "SEALED"
+    },
+    {
+     "testID": "seal-label",
+     "text": "SEALED"
+    },
+    {
+     "testID": "model-chip",
+     "text": "FAST",
+     "role": "button",
+     "label": "Model",
+     "pressable": true
+    },
+    {
+     "testID": "banner-inset",
+     "text": ""
+    },
+    {
+     "testID": "notice",
+     "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+    },
+    {
+     "testID": "attached-docs",
+     "text": "turbine-report-3pages.pdf"
+    },
+    {
+     "testID": "attached-chip-muxccacm-1-8is441hw",
+     "text": "turbine-report-3pages.pdf",
+     "role": "button",
+     "label": "Remove turbine-report-3pages.pdf from this chat",
+     "pressable": true
+    },
+    {
+     "testID": "context-meter",
+     "text": "",
+     "role": "progressbar"
+    },
+    {
+     "testID": "context-level-ok",
+     "text": ""
+    },
+    {
+     "testID": "attach",
+     "text": "1",
+     "role": "button",
+     "label": "Attach documents",
+     "state": {
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "composer-input",
+     "text": "",
+     "value": "",
+     "pressable": true
+    },
+    {
+     "testID": "mic",
+     "text": "",
+     "role": "button",
+     "label": "Dictate",
+     "state": {
+      "disabled": false,
+      "busy": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "send",
+     "text": "",
+     "role": "button",
+     "label": "Send",
+     "state": {
+      "disabled": true
+     },
+     "disabled": true
+    },
+    {
+     "testID": "message-actions",
+     "text": ""
+    },
+    {
+     "testID": "report-sheet",
+     "text": ""
+    },
+    {
+     "testID": "mic-sheet",
+     "text": ""
+    },
+    {
+     "testID": "mic-problem",
+     "text": ""
+    },
+    {
+     "testID": "banners",
+     "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+     "testID": "banner-thermal",
+     "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+     "testID": "device-explain-sheet",
+     "text": ""
+    },
+    {
+     "testID": "qa-bridge",
+     "text": ""
+    }
+   ],
+   "detail": "j7-20"
+  },
+  {
+   "i": 103,
+   "op": "type",
+   "ok": true,
+   "ms": 159,
+   "detail": "composer-input = 9 chars"
+  },
+  {
+   "i": 104,
+   "op": "send",
+   "ok": true,
+   "ms": 271,
+   "detail": "send ← onPress"
+  },
+  {
+   "i": 105,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2512,
+   "detail": "2500 ms"
+  },
+  {
+   "i": 106,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "reading-pages gone"
+  },
+  {
+   "i": 107,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "reading-docs gone"
+  },
+  {
+   "i": 108,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 5972,
+   "detail": "stop gone"
+  },
+  {
+   "i": 109,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2510,
+   "detail": "2500 ms"
+  },
+  {
+   "i": 110,
+   "op": "value",
+   "ok": true,
+   "ms": 2,
+   "value": {
+    "text": "The serial number of the turbine is RK-4417, as stated in [1].",
+    "props": {
+     "source": "The serial number of the turbine is RK-4417, as stated in [1].",
+     "disabled": false
+    }
+   },
+   "detail": "The serial number of the turbine is RK-4417, as stated in [1]."
+  },
+  {
+   "i": 111,
+   "op": "value",
+   "ok": true,
+   "ms": 0,
+   "value": {
+    "text": "[1] turbine-report-3pages.pdf · p.1",
+    "props": {
+     "disabled": false
+    }
+   },
+   "detail": "[1] turbine-report-3pages.pdf · p.1"
+  },
+  {
+   "i": 112,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "Nothing in your documents matched this question. Answered without them.",
+    "props": {
+     "disabled": false
+    }
+   },
+   "detail": "Nothing in your documents matched this question. Answered without them."
+  },
+  {
+   "i": 113,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "Slowing down to keep the phone cool SWITCH TO INSTANT",
+    "props": {
+     "disabled": false
+    }
+   },
+   "detail": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+  },
+  {
+   "i": 114,
+   "op": "value",
+   "ok": true,
+   "ms": 0,
+   "value": {
+    "text": "FAST",
+    "props": {
+     "accessibilityLabel": "Model",
+     "accessibilityRole": "button",
+     "accessibilityState": {},
+     "disabled": false
+    }
+   },
+   "detail": "FAST"
+  },
+  {
+   "i": 115,
+   "op": "screenshot",
+   "ok": true,
+   "ms": 2253,
+   "detail": "j7-21"
+  },
+  {
+   "i": 116,
+   "op": "dump",
+   "ok": true,
+   "ms": 3,
+   "nodes": [
+    {
+     "testID": "user-message",
+     "text": "What is the serial number of the turbine?",
+     "role": "text"
+    },
+    {
+     "testID": "assistant-message",
+     "text": "FAST · ON-DEVICE AI The serial number of the turbine is RK-4417, as stated in [1]. [1] turbine-report-3pages.pdf · p.1 Ledger"
+    },
+    {
+     "testID": "assistant-text",
+     "text": "The serial number of the turbine is RK-4417, as stated in [1]."
+    },
+    {
+     "testID": "citations",
+     "text": "[1] turbine-report-3pages.pdf · p.1"
+    },
+    {
+     "testID": "citation-1",
+     "text": "[1] turbine-report-3pages.pdf · p.1",
+     "role": "button",
+     "label": "Open turbine-report-3pages.pdf · p.1",
+     "pressable": true
+    },
+    {
+     "testID": "ledger-toggle",
+     "text": "Ledger",
+     "role": "button",
+     "state": {
+      "expanded": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "open-chats",
+     "text": "Chats",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "seal",
+     "text": "",
+     "role": "image",
+     "label": "SEALED"
+    },
+    {
+     "testID": "seal-label",
+     "text": "SEALED"
+    },
+    {
+     "testID": "model-chip",
+     "text": "FAST",
+     "role": "button",
+     "label": "Model",
+     "pressable": true
+    },
+    {
+     "testID": "banner-inset",
+     "text": ""
+    },
+    {
+     "testID": "model-advice",
+     "text": "SHARP handles Hebrew better than FAST, but not fluently. Install SHARP · 2.74 GB Not now"
+    },
+    {
+     "testID": "model-advice-reason",
+     "text": "SHARP handles Hebrew better than FAST, but not fluently."
+    },
+    {
+     "testID": "model-advice-install",
+     "text": "Install SHARP · 2.74 GB",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "model-advice-not-now",
+     "text": "Not now",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "none-matched",
+     "text": "Nothing in your documents matched this question. Answered without them."
+    },
+    {
+     "testID": "notice",
+     "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+    },
+    {
+     "testID": "attached-docs",
+     "text": "turbine-report-3pages.pdf"
+    },
+    {
+     "testID": "attached-chip-muxccacm-1-8is441hw",
+     "text": "turbine-report-3pages.pdf",
+     "role": "button",
+     "label": "Remove turbine-report-3pages.pdf from this chat",
+     "pressable": true
+    },
+    {
+     "testID": "context-meter",
+     "text": "",
+     "role": "progressbar"
+    },
+    {
+     "testID": "context-level-ok",
+     "text": ""
+    },
+    {
+     "testID": "attach",
+     "text": "1",
+     "role": "button",
+     "label": "Attach documents",
+     "state": {
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "composer-input",
+     "text": "",
+     "value": "",
+     "pressable": true
+    },
+    {
+     "testID": "mic",
+     "text": "",
+     "role": "button",
+     "label": "Dictate",
+     "state": {
+      "disabled": false,
+      "busy": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "send",
+     "text": "",
+     "role": "button",
+     "label": "Send",
+     "state": {
+      "disabled": true
+     },
+     "disabled": true
+    },
+    {
+     "testID": "message-actions",
+     "text": ""
+    },
+    {
+     "testID": "report-sheet",
+     "text": ""
+    },
+    {
+     "testID": "mic-sheet",
+     "text": ""
+    },
+    {
+     "testID": "mic-problem",
+     "text": ""
+    },
+    {
+     "testID": "banners",
+     "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+     "testID": "banner-thermal",
+     "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+     "testID": "device-explain-sheet",
+     "text": ""
+    },
+    {
+     "testID": "qa-bridge",
+     "text": ""
+    }
+   ],
+   "detail": "j7-21"
+  }
+ ],
+ "errors": [
+  "step 14 (waitFor): waitFor drawer-documents never appeared in 3000 ms",
+  "step 15 (press): press drawer-documents: not mounted",
+  "step 16 (waitFor): waitFor documents-screen never appeared in 10000 ms",
+  "step 56 (value): value none-matched: no node with that testID is mounted",
+  "step 84 (value): value none-matched: no node with that testID is mounted",
+  "step 98 (value): value none-matched: no node with that testID is mounted",
+  "console.log: [chat] plain=acknowledgement window=5/5 maxTokens=224",
+  "console.log: [chat] plain=follow-up window=5/7 maxTokens=1024"
+ ]
+}

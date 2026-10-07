@@ -1,0 +1,59 @@
+03:43:34 pushing 49 steps as j6b-stop
+03:43:46 shot j6-07
+03:44:00 shot j6-08
+03:44:12 shot j6-09
+03:44:17 ok     0 deeplink   /chats
+03:44:17 ok     1 waitFor    new-chat appeared
+03:44:17 ok     2 press      new-chat ← onPress
+03:44:17 ok     3 waitFor    start-chat appeared
+03:44:17 ok     4 press      start-chat ← onPress
+03:44:17 ok     5 waitFor    composer-input appeared
+03:44:17 ok     6 waitFor    Loading gone
+03:44:17 ok     7 sleep      1500 ms
+03:44:17 ok     8 value      FAST
+03:44:17 ok     9 type       composer-input = 64 chars
+03:44:17 ok    10 send       send ← onPress
+03:44:17 ok    11 waitFor    assistant-text appeared
+03:44:17 ok    12 sleep      4000 ms
+03:44:17 ok    13 press      stop ← onPress
+03:44:17 ok    14 sleep      2000 ms
+03:44:17 ok    15 waitFor    stop gone
+03:44:17 ok    16 value      The salt air always carried a sharp, biting scent that seemed to wash over Elias Miller's skin every single mo
+03:44:17 ok    17 assertText "Continue" present
+03:44:17 ok    18 sleep      0 ms
+03:44:17 ok    19 screenshot j6-07
+03:44:17 ok    20 dump       j6-07
+03:44:17 ok    21 type       composer-input = 30 chars
+03:44:17 ok    22 send       send ← onPress
+03:44:17 ok    23 sleep      2500 ms
+03:44:17 ok    24 waitFor    reading-pages gone
+03:44:17 ok    25 waitFor    reading-docs gone
+03:44:17 ok    26 waitFor    stop gone
+03:44:17 ok    27 sleep      2500 ms
+03:44:17 ok    28 value      The salt air always carried a sharp, biting scent that seemed to wash over Elias Miller's skin every single mo
+03:44:17 FAIL  29 value      value citations: no node with that testID is mounted
+03:44:17 FAIL  30 value      value none-matched: no node with that testID is mounted
+03:44:17 ok    31 value      Slowing down to keep the phone cool SWITCH TO INSTANT
+03:44:17 ok    32 value      FAST
+03:44:17 ok    33 screenshot j6-08
+03:44:17 ok    34 dump       j6-08
+03:44:17 ok    35 type       composer-input = 6 chars
+03:44:17 ok    36 send       send ← onPress
+03:44:17 ok    37 sleep      2500 ms
+03:44:17 ok    38 waitFor    reading-pages gone
+03:44:17 ok    39 waitFor    reading-docs gone
+03:44:17 ok    40 waitFor    stop gone
+03:44:17 ok    41 sleep      2500 ms
+03:44:17 ok    42 value      The salt air always carried a sharp, biting scent that seemed to wash over Elias Miller's skin every single mo
+03:44:17 FAIL  43 value      value citations: no node with that testID is mounted
+03:44:17 FAIL  44 value      value none-matched: no node with that testID is mounted
+03:44:17 ok    45 value      Slowing down to keep the phone cool SWITCH TO INSTANT
+03:44:17 ok    46 value      FAST
+03:44:17 ok    47 screenshot j6-09
+03:44:17 ok    48 dump       j6-09
+03:44:17 45 passed, 4 failed, 3 screenshots → <worktree>/docs/qa/ios-device-pass-41/screens
+03:44:17   ! step 29 (value): value citations: no node with that testID is mounted
+03:44:17   ! step 30 (value): value none-matched: no node with that testID is mounted
+03:44:17   ! step 43 (value): value citations: no node with that testID is mounted
+03:44:17   ! step 44 (value): value none-matched: no node with that testID is mounted
+03:44:17   ! console.log: [chat] plain=acknowledgement window=5/5 maxTokens=224

@@ -1,0 +1,140 @@
+03:44:19 pushing 121 steps as j6c-pictures-instant
+03:44:57 shot j6-10
+03:45:24 shot j6-11
+03:45:41 shot j6-12
+03:45:51 shot j6-13
+03:45:58 ok     0 deeplink   /chats
+03:45:58 ok     1 waitFor    new-chat appeared
+03:45:58 ok     2 press      new-chat ← onPress
+03:45:58 ok     3 waitFor    start-chat appeared
+03:45:58 ok     4 press      start-chat ← onPress
+03:45:58 ok     5 waitFor    composer-input appeared
+03:45:58 ok     6 waitFor    Loading gone
+03:45:58 ok     7 sleep      1500 ms
+03:45:58 ok     8 value      FAST
+03:45:58 ok     9 press      model-chip ← onPress
+03:45:58 ok    10 waitFor    model-sheet appeared
+03:45:58 ok    11 sleep      1500 ms
+03:45:58 ok    12 press      model-sheet-use-instant ← onPress
+03:45:58 ok    13 sleep      3000 ms
+03:45:58 FAIL  14 press      press model-sheet-close: not mounted
+03:45:58 ok    15 waitFor    Loading gone
+03:45:58 ok    16 sleep      1500 ms
+03:45:58 ok    17 value      INSTANT
+03:45:58 ok    18 assertText "INSTANT" present
+03:45:58 ok    19 devPrompt  attach: sign-scan.pdf
+03:45:58 ok    20 waitFor    attached-docs appeared
+03:45:58 ok    21 sleep      10000 ms
+03:45:58 ok    22 value      sign-scan.pdf
+03:45:58 ok    23 value      sign-scan.pdf
+03:45:58 ok    24 type       composer-input = 16 chars
+03:45:58 ok    25 send       send ← onPress
+03:45:58 ok    26 sleep      2500 ms
+03:45:58 FAIL  27 waitFor    waitFor vision-hold never appeared in 8000 ms
+03:45:58 FAIL  28 press      press vision-hold-download: not mounted
+03:45:58 ok    29 idleTimer  idle timer disabled: false
+03:45:58 ok    30 waitFor    vision-hold gone
+03:45:58 ok    31 waitFor    reading-pages gone
+03:45:58 ok    32 waitFor    reading-docs gone
+03:45:58 ok    33 waitFor    stop gone
+03:45:58 ok    34 sleep      2500 ms
+03:45:58 ok    35 value      A weathered sign mounted on a yellow wall reads "КАРАСАЕВ" in Cyrillic letters above the word "КОЧЕСУ".
+03:45:58 FAIL  36 value      value citations: no node with that testID is mounted
+03:45:58 FAIL  37 value      value none-matched: no node with that testID is mounted
+03:45:58 ok    38 value      Slowing down to keep the phone cool
+03:45:58 ok    39 value      INSTANT
+03:45:58 ok    40 assertText "cannot see" absent
+03:45:58 ok    41 assertText "can't see" absent
+03:45:58 ok    42 assertText "cannot physically see" absent
+03:45:58 ok    43 assertText "see images" absent
+03:45:58 ok    44 assertText "text-based" absent
+03:45:58 ok    45 assertText "unable to see" absent
+03:45:58 ok    46 assertText "not able to see" absent
+03:45:58 ok    47 assertText "don't have eyes" absent
+03:45:58 ok    48 screenshot j6-10
+03:45:58 ok    49 dump       j6-10
+03:45:58 ok    50 deeplink   /chats
+03:45:58 ok    51 waitFor    new-chat appeared
+03:45:58 ok    52 press      new-chat ← onPress
+03:45:58 ok    53 waitFor    start-chat appeared
+03:45:58 ok    54 press      start-chat ← onPress
+03:45:58 ok    55 waitFor    composer-input appeared
+03:45:58 ok    56 waitFor    Loading gone
+03:45:58 ok    57 sleep      1500 ms
+03:45:58 ok    58 value      INSTANT
+03:45:58 ok    59 press      model-chip ← onPress
+03:45:58 ok    60 waitFor    model-sheet appeared
+03:45:58 ok    61 sleep      1500 ms
+03:45:58 FAIL  62 press      press model-sheet-use-instant: not mounted
+03:45:58 ok    63 sleep      3000 ms
+03:45:58 ok    64 press      model-sheet-close ← onPress
+03:45:58 ok    65 waitFor    Loading gone
+03:45:58 ok    66 sleep      1500 ms
+03:45:58 ok    67 value      INSTANT
+03:45:58 ok    68 assertText "INSTANT" present
+03:45:58 ok    69 devPrompt  attach: בית קפה הגינה תפריט.jpg
+03:45:58 ok    70 waitFor    pending-images appeared
+03:45:58 ok    71 sleep      3000 ms
+03:45:58 ok    72 value      
+03:45:58 FAIL  73 value      value vision-released: no node with that testID is mounted
+03:45:58 ok    74 value      Slowing down to keep the phone cool
+03:45:58 ok    75 value      INSTANT
+03:45:58 ok    76 type       composer-input = 16 chars
+03:45:58 ok    77 send       send ← onPress
+03:45:58 ok    78 sleep      2000 ms
+03:45:58 ok    79 screenshot j6-11
+03:45:58 FAIL  80 waitFor    waitFor vision-hold never appeared in 8000 ms
+03:45:58 FAIL  81 value      value vision-hold: no node with that testID is mounted
+03:45:58 FAIL  82 press      press vision-hold-download: not mounted
+03:45:58 ok    83 idleTimer  idle timer disabled: false
+03:45:58 ok    84 waitFor    vision-hold gone
+03:45:58 ok    85 waitFor    assistant-text appeared
+03:45:58 ok    86 waitFor    stop gone
+03:45:58 ok    87 sleep      3000 ms
+03:45:58 ok    88 value      A chalkboard menu on a brick wall displays food options including breakfast items like bacon sandwiches and bu
+03:45:58 ok    89 value      
+03:45:58 FAIL  90 value      value vision-released: no node with that testID is mounted
+03:45:58 ok    91 value      Slowing down to keep the phone cool
+03:45:58 ok    92 value      INSTANT
+03:45:58 ok    93 value      FAST sees pictures better than INSTANT. Switch to FAST Not now
+03:45:58 ok    94 value      FAST sees pictures better than INSTANT.
+03:45:58 ok    95 assertText "cannot see" absent
+03:45:58 ok    96 assertText "can't see" absent
+03:45:58 ok    97 assertText "cannot physically see" absent
+03:45:58 ok    98 assertText "see images" absent
+03:45:58 ok    99 assertText "text-based" absent
+03:45:58 ok   100 assertText "unable to see" absent
+03:45:58 ok   101 assertText "not able to see" absent
+03:45:58 ok   102 assertText "don't have eyes" absent
+03:45:58 ok   103 assertText "Your documents don't mention this" absent
+03:45:58 ok   104 assertText "is a scan. Run OCR" absent
+03:45:58 ok   105 screenshot j6-12
+03:45:58 ok   106 dump       j6-12
+03:45:58 ok   107 type       composer-input = 16 chars
+03:45:58 ok   108 send       send ← onPress
+03:45:58 ok   109 sleep      2500 ms
+03:45:58 ok   110 waitFor    reading-pages gone
+03:45:58 ok   111 waitFor    reading-docs gone
+03:45:58 ok   112 waitFor    stop gone
+03:45:58 ok   113 sleep      2500 ms
+03:45:58 ok   114 value      A chalkboard menu on a brick wall displays food options including breakfast items like bacon sandwiches and bu
+03:45:58 FAIL 115 value      value citations: no node with that testID is mounted
+03:45:58 FAIL 116 value      value none-matched: no node with that testID is mounted
+03:45:58 ok   117 value      Slowing down to keep the phone cool
+03:45:58 ok   118 value      INSTANT
+03:45:58 ok   119 screenshot j6-13
+03:45:58 ok   120 dump       j6-13
+03:45:58 108 passed, 13 failed, 4 screenshots → <worktree>/docs/qa/ios-device-pass-41/screens
+03:45:58   ! step 14 (press): press model-sheet-close: not mounted
+03:45:58   ! step 27 (waitFor): waitFor vision-hold never appeared in 8000 ms
+03:45:58   ! step 28 (press): press vision-hold-download: not mounted
+03:45:58   ! step 36 (value): value citations: no node with that testID is mounted
+03:45:58   ! step 37 (value): value none-matched: no node with that testID is mounted
+03:45:58   ! step 62 (press): press model-sheet-use-instant: not mounted
+03:45:58   ! step 73 (value): value vision-released: no node with that testID is mounted
+03:45:58   ! step 80 (waitFor): waitFor vision-hold never appeared in 8000 ms
+03:45:58   ! step 81 (value): value vision-hold: no node with that testID is mounted
+03:45:58   ! step 82 (press): press vision-hold-download: not mounted
+03:45:58   ! step 90 (value): value vision-released: no node with that testID is mounted
+03:45:58   ! step 115 (value): value citations: no node with that testID is mounted
+03:45:58   ! step 116 (value): value none-matched: no node with that testID is mounted

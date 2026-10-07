@@ -1,0 +1,142 @@
+## J1 Onboarding on a fresh twin install, first chat on Instant
+- step: Welcome on a fresh install → j1-01.png
+- step: the model step, the source line names models.inbornapp.com → j1-02.png
+- step: Start now with Instant: the first chat, chip INSTANT → j1-03.png
+- step: "Hi" answered ("Hello! How can I help you today?") → j1-04.png
+- step: past the goal: the Chats list → j1-05.png
+- step: past the goal: back in the chat → j1-06.png
+- step: past the goal: "What can you do?" answered → j1-07.png
+## J2 Install Fast from the vault, then a new chat
+- step: the vault, Fast not installed → j2-01.png
+- step: Fast downloading from models.inbornapp.com → j2-02.png
+- step: Fast installed → j2-03.png
+- step: past the goal: a new chat opens on INSTANT (not Fast) → j2-04.png
+- step: past the goal: the model sheet, INSTANT in use → j2-05.png
+- step: past the goal: the vault, Fast "Installed", Instant in use → j2-06.png
+## J3 134I reworks keep the summary's sources (the founder's file in private/, the constitution here)
+- note: the founder's 9-page file ran first on Fast and on Instant, screenshots p3-01…p3-13 and p3i-01…p3i-06 in the ignored private/ folder only
+- step: r1, the first constitution attach: the pushed file was not on the phone, the summary says "Inborn has not finished reading the file" → j3-00.png
+- step: FAST, the constitution attached (r2, after a re-push) → j3-01.png
+- step: FAST, reading the pages → j3-02.png
+- step: FAST, "Summarize it" → the summary with chips → j3-03.png
+- step: FAST, "Thanks" → j3-04.png
+- step: FAST, "shorter" → a rework WITH chips [2] p.3–4, [3] p.5–6, [4] p.7–9 → j3-05.png
+- step: FAST, "make it 3 bullet points" → 3 bullets, chips [1]…[4] → j3-06.png
+- step: FAST, "translate it to French" → French, chips kept → j3-07.png
+- step: FAST, "give me a pancake recipe" → a Constitution answer with chips p.5, p.6, no none-matched line (the search kept 2 passages on the word match) → j3-08.png
+- step: past the goal: FAST, "Who can veto a bill?" → chips p.3, p.3 → j3-09.png
+- step: past the goal: FAST, the same question again → chips → j3-10.png
+- step: INSTANT (new chat), the constitution attached → j3-11.png
+- step: INSTANT, reading the pages → j3-12.png
+- step: INSTANT, the summary with four chips → j3-13.png
+- step: INSTANT, "shorter" → chips kept → j3-14.png
+- step: INSTANT, "make it 3 bullet points" → chips kept → j3-15.png
+- step: INSTANT, "give me a pancake recipe" → a recipe, no chip, the none-matched line → j3-16.png
+- step: probe: the constitution chat reopened from Chats opens on INSTANT; pancakes again → no chip, none-matched, a refusal → j3-17.png
+## J4 134K the Ask sheet on the constitution, Instant then Fast (Pro, so the stats line shows)
+- step: INSTANT, the Ask sheet → j4-01.png
+- step: INSTANT, "Who won the 1998 World Cup?" → the opener only, "search 92 ms · 0 passages" → j4-02.png
+- step: INSTANT, "What does it say about the moon?" → the opener only, 0 passages → j4-03.png
+- step: INSTANT, "Who wrote this report?" → the opener only, 0 passages → j4-04.png
+- step: INSTANT, "Who can veto a bill?" → an answer with chip p.3, "4 passages · answer 5666 ms · 5.8 tok/s" → j4-05.png
+- step: INSTANT, strict on, World Cup → the same opener, 0 passages → j4-06.png
+- step: past the goal: INSTANT, strict off, "thank you" → the plain line → j4-07.png
+- step: past the goal: INSTANT, "And now" → the plain line → j4-08.png
+- step: FAST, the Ask sheet → j4-09.png
+- step: FAST, World Cup → the opener only, 0 passages → j4-10.png
+- step: FAST, the moon → the opener only, 0 passages → j4-11.png
+- step: FAST, "Who wrote this report?" → the opener only, 0 passages → j4-12.png
+- step: FAST, veto → an answer with chip p.3, "answer 18984 ms · 7.4 tok/s" → j4-13.png
+- step: FAST, strict on, World Cup → the same opener → j4-14.png
+- step: past the goal: FAST, "thank you" → the plain line → j4-15.png
+- step: past the goal: FAST, "And now" → the plain line → j4-16.png
+## J5 134J the hot phone: photo turns on Fast with its pack, heat, new photos
+- step: Fast, the café photo sent → j5-01.png
+- step: Fast, the café photo read with its pack → j5-02.png
+- step: heat round 1, the 600-word story → j5-07.png
+- step: heat round 1, "Give it a title." → j5-08.png
+- step: round 1, a new photo (dogs) sent → j5-09.png
+- step: round 1, the dogs read on Fast → j5-10.png
+- step: round 2, the story → j5-11.png
+- step: round 2, the title → j5-12.png
+- step: round 2, a new photo (mug) sent → j5-13.png
+- step: round 2, the mug read → j5-14.png
+- step: round 3, the story → j5-15.png
+- step: round 3, the title → j5-16.png
+- step: round 3, a new photo (street sign) sent → j5-17.png
+- step: round 3, the sign read → j5-18.png
+- step: round 4, the story → j5-19.png
+- step: round 4, the title → j5-20.png
+- step: round 4, a new photo (receipt) sent → j5-21.png
+- step: round 4, the receipt read → j5-22.png
+- step: round 5, the story → j5-23.png
+- step: round 5, the title → j5-24.png
+- step: round 5, a new photo (nutrition label) sent → j5-25.png
+- step: round 5, the label read; 30 min, no memory warning in the loop → j5-26.png
+- step: after the one real warning (04:26:44, in J7): the J5 chat again, FAST, no quiet line (eased state already cleared), "This chat is getting long" card → j5-03.png
+- step: a new photo sent on Fast → j5-04.png
+- step: the photo turn: "The system stopped generation · Continue" under "Stopped to protect the phone" (heat) → j5-05.png
+- step: past the goal: "what colour is the table?" also stopped → j5-06.png
+- step: retry after 8 min, still too hot → j5-27.png
+- step: retry, the new photo sent → j5-28.png
+- step: retry, the photo turn stopped again → j5-29.png
+- step: retry, the follow-up stopped (dev-run: the pictures in the prompt, Fast's pack attached, 0 tokens) → j5-30.png
+## J6 Regressions
+- step: before the index model: the 468 MB card → j6-01.png
+- step: Cancel: the chat, its file, and the question back in the composer → j6-02.png
+- step: past the goal: "thanks" after Cancel → "I'm glad you said goodnight! How about we try another game tonight?" → j6-03.png
+- step: the composer at its tallest (file row + Redact row) → j6-04.png
+- step: Chats → j6-05.png
+- step: back in the chat → j6-06.png
+- step: Stop mid-answer: the text so far + "Stopped · Continue" → j6-07.png
+- step: past the goal: "What is the capital of France?" → j6-08.png
+- step: past the goal: "thanks" → j6-09.png
+- step: INSTANT, the scanned PDF read as a picture → j6-10.png
+- step: INSTANT, the café photo sent → j6-11.png
+- step: INSTANT, the café photo read, "FAST sees pictures better" card → j6-12.png
+- step: past the goal: INSTANT, "and the colours?" → j6-13.png
+- step: FAST, the scanned PDF (still streaming when shot) → j6-14.png
+- step: FAST, the café photo sent → j6-15.png
+- step: FAST, the café photo read → j6-16.png
+- step: past the goal: FAST, "and the colours?" → j6-17.png
+- step: Hebrew question, the bubble right-aligned, SHARP Hebrew card → j6-18.png
+- step: past the goal: "What is the capital of Italy?" → answered in Hebrew → j6-19.png
+- step: the model sheet → j6-20.png
+- step: the vault, Fast "Loaded" and in use → j6-21.png
+- step: Settings → j6-22.png
+- step: FAST, the scanned PDF again, read → j6-23.png
+- step: past the goal: FAST, "and the colours?" → j6-24.png
+## J7 Exploratory, a new user's wander on Fast and Instant
+- step: a new chat on FAST, the starter chips → j7-01.png
+- step: "hey! what is this app?" → "I cannot identify this specific app… safety guidelines that keep users harmless" → j7-02.png
+- step: "what's the weather like today?" → j7-03.png
+- step: "give me a pancake recipe" (no file) → j7-04.png
+- step: "thanks, and how long do they keep in the fridge?" → j7-05.png
+- step: "who won the last football World Cup?" → "I cannot know the current date or real-time sports results" → j7-06.png
+- step: "my 4 year old won't sleep, any tips?" (the real memory warning hit this turn) → j7-07.png
+- step: the "Draft a message" chip: an unfinished sentence + Redact row → j7-08.png
+- step: the Draft chip's answer → j7-09.png
+- step: the model sheet → j7-10.png
+- step: Manage → the vault → j7-11.png
+- step: the Chats list from the chat, footer "FAST · OUT 1.27 KB" → j7-12.png
+- step: probe c: no Documents entry in Chats (Personas, Memory, Folders) → j7-13.png
+- step: Settings: "You own Pro" (QA tier left over) → j7-14.png
+- step: the paywall: "YOU OWN PRO" → j7-15.png
+- step: after closing the paywall → j7-16.png
+- step: the turbine report: serial number → RK-4417, chip p.1 → j7-17.png
+- step: "when was it inspected and by whom?" → "inspected by the manufacturer" (not in the file) → j7-18.png
+- step: "ok great" → j7-19.png
+- step: "make it a short email to my boss" → an email asking the boss for the serial number → j7-20.png
+- step: Hebrew small talk → j7-21.png
+- step: the "Summarize text" chip + Redact row → j7-22.png
+- step: a pasted note summarized → j7-23.png
+- step: "translate that to Spanish" → j7-24.png
+- step: the ledger toggle → j7-25.png
+- step: Personas from the Chats footer → j7-26.png
+- step: the incognito sheet → j7-27.png
+- step: incognito on INSTANT: puppy names → j7-28.png
+- step: a long trip question on INSTANT (invented facts) → j7-29.png
+- step: "thank you!" → j7-30.png
+- step: back on FAST → j7-31.png
+## J8 Handover: the store app updated in place to 1.0.0 (41), his data kept
+- step: Inborn-41.xcarchive installed over com.inbornapp.mobile 1.0.0 (40) as an update, launched once, no taps: a new chat on FAST, "Nothing leaves this phone." with the three starter chips → j8-01.png

@@ -1,0 +1,583 @@
+{
+  "runId": "j5b-heat-4",
+  "startedAt": "2026-10-07T01:11:16.626Z",
+  "finishedAt": "2026-10-07T01:15:33.946Z",
+  "ok": false,
+  "passed": 26,
+  "failed": 7,
+  "steps": [
+    {
+      "i": 0,
+      "op": "value",
+      "ok": true,
+      "ms": 11,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 1,
+      "op": "value",
+      "ok": false,
+      "ms": 2,
+      "detail": "value vision-released: no node with that testID is mounted"
+    },
+    {
+      "i": 2,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Slowing down to keep the phone cool SWITCH TO INSTANT",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+      "i": 3,
+      "op": "type",
+      "ok": true,
+      "ms": 165,
+      "detail": "composer-input = 64 chars"
+    },
+    {
+      "i": 4,
+      "op": "send",
+      "ok": true,
+      "ms": 430,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 7,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 8,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 154272,
+      "detail": "stop gone"
+    },
+    {
+      "i": 9,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2506,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 10,
+      "op": "value",
+      "ok": true,
+      "ms": 7,
+      "value": {
+        "text": "The image displays an outdoor chalkboard menu mounted on a red brick wall, likely belonging to a cafe or café-hovel named \"The Garden Cafe Hove.\" The board is divided into sections for different times of the day (Opening Hours, Breakfast, Lunch, Brunch) and categories like Sandwiches, Quiche, Hot Drinks, and Friends of St. John's Well Gardens News. It also includes contact information and a note to keep an eye out for updates.",
+        "props": {
+          "source": "The image displays an outdoor chalkboard menu mounted on a red brick wall, likely belonging to a cafe or café-hovel named \"The Garden Cafe Hove.\" The board is divided into sections for different times of the day (Opening Hours, Breakfast, Lunch, Brunch) and categories like Sandwiches, Quiche, Hot Drinks, and Friends of St. John's Well Gardens News. It also includes contact information and a note to keep an eye out for updates.",
+          "disabled": false
+        }
+      },
+      "detail": "The image displays an outdoor chalkboard menu mounted on a red brick wall, likely belonging to a cafe or café-hovel named \"The Garden Cafe Hove.\" The board is divided into sections for different times"
+    },
+    {
+      "i": 11,
+      "op": "value",
+      "ok": false,
+      "ms": 2,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 12,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 13,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "Slowing down to keep the phone cool SWITCH TO INSTANT",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+      "i": 14,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 15,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value vision-released: no node with that testID is mounted"
+    },
+    {
+      "i": 16,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 5376,
+      "detail": "j5-heat-story"
+    },
+    {
+      "i": 17,
+      "op": "dump",
+      "ok": true,
+      "ms": 10,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What do you see?",
+          "role": "text"
+        },
+        {
+          "testID": "user-images",
+          "text": ""
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The image displays an outdoor chalkboard menu mounted on a red brick wall, likely belonging to a cafe or café-hovel named \"The Garden Cafe Hove.\" The board is divided into sections for different times of the day (Opening Hours, Breakfast, Lunch, Brunch) and categories like Sandwiches, Quiche, Hot Drinks, and Friends of St. John's Well Gardens News. It also includes contact information and a note to keep an eye out for updates. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The image displays an outdoor chalkboard menu mounted on a red brick wall, likely belonging to a cafe or café-hovel named \"The Garden Cafe Hove.\" The board is divided into sections for different times of the day (Opening Hours, Breakfast, Lunch, Brunch) and categories like Sandwiches, Quiche, Hot Drinks, and Friends of St. John's Well Gardens News. It also includes contact information and a note to keep an eye out for updates."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "j5-heat-story"
+    },
+    {
+      "i": 18,
+      "op": "type",
+      "ok": true,
+      "ms": 230,
+      "detail": "composer-input = 16 chars"
+    },
+    {
+      "i": 19,
+      "op": "send",
+      "ok": true,
+      "ms": 353,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 20,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 21,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 6,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 22,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 23,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 81344,
+      "detail": "stop gone"
+    },
+    {
+      "i": 24,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 25,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "The image displays an outdoor chalkboard menu mounted on a red brick wall, likely belonging to a cafe or café-hovel named \"The Garden Cafe Hove.\" The board is divided into sections for different times of the day (Opening Hours, Breakfast, Lunch, Brunch) and categories like Sandwiches, Quiche, Hot Drinks, and Friends of St. John's Well Gardens News. It also includes contact information and a note to keep an eye out for updates.",
+        "props": {
+          "source": "The image displays an outdoor chalkboard menu mounted on a red brick wall, likely belonging to a cafe or café-hovel named \"The Garden Cafe Hove.\" The board is divided into sections for different times of the day (Opening Hours, Breakfast, Lunch, Brunch) and categories like Sandwiches, Quiche, Hot Drinks, and Friends of St. John's Well Gardens News. It also includes contact information and a note to keep an eye out for updates.",
+          "disabled": false
+        }
+      },
+      "detail": "The image displays an outdoor chalkboard menu mounted on a red brick wall, likely belonging to a cafe or café-hovel named \"The Garden Cafe Hove.\" The board is divided into sections for different times"
+    },
+    {
+      "i": 26,
+      "op": "value",
+      "ok": false,
+      "ms": 2,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 27,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 28,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Slowing down to keep the phone cool SWITCH TO INSTANT",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+      "i": 29,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 30,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value vision-released: no node with that testID is mounted"
+    },
+    {
+      "i": 31,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 5071,
+      "detail": "j5-heat-title"
+    },
+    {
+      "i": 32,
+      "op": "dump",
+      "ok": true,
+      "ms": 10,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What do you see?",
+          "role": "text"
+        },
+        {
+          "testID": "user-images",
+          "text": ""
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The image displays an outdoor chalkboard menu mounted on a red brick wall, likely belonging to a cafe or café-hovel named \"The Garden Cafe Hove.\" The board is divided into sections for different times of the day (Opening Hours, Breakfast, Lunch, Brunch) and categories like Sandwiches, Quiche, Hot Drinks, and Friends of St. John's Well Gardens News. It also includes contact information and a note to keep an eye out for updates. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The image displays an outdoor chalkboard menu mounted on a red brick wall, likely belonging to a cafe or café-hovel named \"The Garden Cafe Hove.\" The board is divided into sections for different times of the day (Opening Hours, Breakfast, Lunch, Brunch) and categories like Sandwiches, Quiche, Hot Drinks, and Friends of St. John's Well Gardens News. It also includes contact information and a note to keep an eye out for updates."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "j5-heat-title"
+    }
+  ],
+  "errors": [
+    "step 1 (value): value vision-released: no node with that testID is mounted",
+    "step 11 (value): value citations: no node with that testID is mounted",
+    "step 12 (value): value none-matched: no node with that testID is mounted",
+    "step 15 (value): value vision-released: no node with that testID is mounted",
+    "step 26 (value): value citations: no node with that testID is mounted",
+    "step 27 (value): value none-matched: no node with that testID is mounted",
+    "step 30 (value): value vision-released: no node with that testID is mounted"
+  ]
+}

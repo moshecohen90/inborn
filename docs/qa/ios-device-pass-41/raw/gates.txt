@@ -1,0 +1,115 @@
+== install --frozen-lockfile start 02:44:25
+== install --frozen-lockfile rc=0 end 02:44:36
+== typecheck start 02:44:36
+== typecheck rc=0 end 02:44:47
+== lint start 02:44:47
+== lint rc=0 end 02:44:53
+== test start 02:44:53
+== test rc=1 end 02:45:14
+GATES-DONE
+
+== test summary
+packages/ui test:  Test Files  3 passed (3)
+packages/ui test:       Tests  23 passed (23)
+packages/i18n test:  Test Files  5 passed (5)
+packages/i18n test:       Tests  24 passed (24)
+packages/core test:  Test Files  110 passed | 3 skipped (113)
+packages/core test:       Tests  1453 passed | 4 skipped (1457)
+apps/mobile test:      × the photos card respects its snooze, and a fresh turn clears it 6ms
+apps/mobile test: ⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+apps/mobile test:  FAIL  test/fixes-r131-picture.test.ts > round 131 · picture answers in Chat > the photos card respects its snooze, and a fresh turn clears it
+apps/mobile test: AssertionError: expected 'import { useCallback, useEffect, useM…' to contain 'const cardAdvice = (photoAdvice && !a…'
+apps/mobile test:  Test Files  1 failed | 166 passed (167)
+apps/mobile test:       Tests  1 failed | 1470 passed (1471)
+ ERR_PNPM_RECURSIVE_FAIL  
+
+== check:store (after the archive)
+
+> inborn@ check:store <worktree>
+> node docs/store/scripts/check-store-copy.mjs && node scripts/check-shipping-bundles.mjs && bash scripts/check-history-ids.sh
+
+FIELD LENGTHS
+  de     apple.name                    24/30  ok
+  de     apple.subtitle                26/30  ok
+  de     apple.promotional_text      152/170  ok
+  de     apple.description         1863/4000  ok
+  de     apple.whats_new            431/4000  ok
+  de     google.title                  24/30  ok
+  de     google.short_description      80/80  ok
+  de     google.full_description   1810/4000  ok
+  de     apple.keywords              94/100B  ok
+  en     apple.name                    29/30  ok
+  en     apple.subtitle                29/30  ok
+  en     apple.promotional_text      152/170  ok
+  en     apple.description         1642/4000  ok
+  en     apple.whats_new            358/4000  ok
+  en     google.title                  24/30  ok
+  en     google.short_description      78/80  ok
+  en     google.full_description   1582/4000  ok
+  en     apple.keywords              85/100B  ok
+  es     apple.name                    24/30  ok
+  es     apple.subtitle                24/30  ok
+  es     apple.promotional_text      150/170  ok
+  es     apple.description         1826/4000  ok
+  es     apple.whats_new            416/4000  ok
+  es     google.title                  24/30  ok
+  es     google.short_description      78/80  ok
+  es     google.full_description   1793/4000  ok
+  es     apple.keywords              92/100B  ok
+  fr     apple.name                    28/30  ok
+  fr     apple.subtitle                22/30  ok
+  fr     apple.promotional_text      157/170  ok
+  fr     apple.description         1997/4000  ok
+  fr     apple.whats_new            460/4000  ok
+  fr     google.title                  27/30  ok
+  fr     google.short_description      79/80  ok
+  fr     google.full_description   1873/4000  ok
+  fr     apple.keywords              88/100B  ok
+  ja     apple.name                    20/30  ok
+  ja     apple.subtitle                17/30  ok
+  ja     apple.promotional_text       78/170  ok
+  ja     apple.description          896/4000  ok
+  ja     apple.whats_new            197/4000  ok
+  ja     google.title                  20/30  ok
+  ja     google.short_description      39/80  ok
+  ja     google.full_description    869/4000  ok
+  ja     apple.keywords              97/100B  ok
+  ko     apple.name                    21/30  ok
+  ko     apple.subtitle                17/30  ok
+  ko     apple.promotional_text       95/170  ok
+  ko     apple.description          973/4000  ok
+  ko     apple.whats_new            206/4000  ok
+  ko     google.title                  19/30  ok
+  ko     google.short_description      49/80  ok
+  ko     google.full_description    968/4000  ok
+  ko     apple.keywords              85/100B  ok
+  pt-BR  apple.name                    26/30  ok
+  pt-BR  apple.subtitle                24/30  ok
+  pt-BR  apple.promotional_text      152/170  ok
+  pt-BR  apple.description         1767/4000  ok
+  pt-BR  apple.whats_new            409/4000  ok
+  pt-BR  google.title                  27/30  ok
+  pt-BR  google.short_description      67/80  ok
+  pt-BR  google.full_description   1689/4000  ok
+  pt-BR  apple.keywords              90/100B  ok
+  zh-Hant apple.name                    17/30  ok
+  zh-Hant apple.subtitle                15/30  ok
+  zh-Hant apple.promotional_text       66/170  ok
+  zh-Hant apple.description          696/4000  ok
+  zh-Hant apple.whats_new            151/4000  ok
+  zh-Hant google.title                  17/30  ok
+  zh-Hant google.short_description      34/80  ok
+  zh-Hant google.full_description    673/4000  ok
+  zh-Hant apple.keywords              79/100B  ok
+
+PASS: all fields within limits.
+  apps/mobile/ios/build/Inborn.xcarchive (iOS archive): OK: <worktree>/apps/mobile/ios/build/Inborn.xcarchive contains no QA bridge
+
+PASS: 1 shipping artifact(s) carry no QA bridge.
+  apps/mobile/ios/build/Inborn.xcarchive (models): OK instant instant.gguf 532517120 B sha256 matches the catalog
+  apps/mobile/ios/build/Inborn.xcarchive (models): OK vision-qwen35 vision-qwen35.gguf 204987232 B sha256 matches the catalog
+OK: iPhone UDID is in no commit patch
+OK: OnePlus 6T serial is in no commit patch
+OK: ASC key id is in no commit patch
+
+PASS: no personal identifier in the history of HEAD

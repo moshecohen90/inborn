@@ -1,0 +1,73 @@
+02:59:48 pushing 61 steps as j6a-card
+03:00:03 shot j6-01
+03:00:09 shot j6-02
+03:00:17 shot j6-03
+03:00:22 shot j6-04
+03:00:30 shot j6-05
+03:00:35 shot j6-06
+03:00:40 ok     0 deeplink   /chats
+03:00:40 ok     1 waitFor    new-chat appeared
+03:00:40 ok     2 press      new-chat ← onPress
+03:00:40 ok     3 waitFor    start-chat appeared
+03:00:40 ok     4 press      start-chat ← onPress
+03:00:40 ok     5 waitFor    composer-input appeared
+03:00:40 ok     6 waitFor    Loading gone
+03:00:40 ok     7 sleep      1500 ms
+03:00:40 ok     8 value      INSTANT
+03:00:40 ok     9 devPrompt  attach: turbine-report-3pages.pdf
+03:00:40 ok    10 waitFor    attached-docs appeared
+03:00:40 ok    11 sleep      8000 ms
+03:00:40 ok    12 value      turbine-report-3pages.pdf
+03:00:40 ok    13 type       composer-input = 41 chars
+03:00:40 ok    14 send       send ← onPress
+03:00:40 ok    15 waitFor    docs-hold appeared
+03:00:40 ok    16 sleep      1500 ms
+03:00:40 ok    17 value      The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact wo
+03:00:40 ok    18 assertText "468 MB" present
+03:00:40 ok    19 sleep      0 ms
+03:00:40 ok    20 screenshot j6-01
+03:00:40 ok    21 dump       j6-01
+03:00:40 ok    22 press      docs-hold-cancel ← onPress
+03:00:40 ok    23 waitFor    docs-hold gone
+03:00:40 ok    24 waitFor    composer-input appeared
+03:00:40 ok    25 value      turbine-report-3pages.pdf
+03:00:40 FAIL  26 value      value assistant-text: no node with that testID is mounted
+03:00:40 ok    27 sleep      1500 ms
+03:00:40 ok    28 screenshot j6-02
+03:00:40 ok    29 dump       j6-02
+03:00:40 ok    30 type       composer-input = 6 chars
+03:00:40 ok    31 send       send ← onPress
+03:00:40 ok    32 sleep      2500 ms
+03:00:40 ok    33 waitFor    reading-pages gone
+03:00:40 ok    34 waitFor    reading-docs gone
+03:00:40 ok    35 waitFor    stop gone
+03:00:40 ok    36 sleep      2500 ms
+03:00:40 ok    37 value      I'm glad you said goodnight! How about we try another game tonight?
+03:00:40 FAIL  38 value      value citations: no node with that testID is mounted
+03:00:40 FAIL  39 value      value none-matched: no node with that testID is mounted
+03:00:40 ok    40 value      Slowing down to keep the phone cool
+03:00:40 ok    41 value      INSTANT
+03:00:40 ok    42 screenshot j6-03
+03:00:40 ok    43 dump       j6-03
+03:00:40 ok    44 type       composer-input = 40 chars
+03:00:40 ok    45 waitFor    redact-bar appeared
+03:00:40 ok    46 sleep      3000 ms
+03:00:40 ok    47 screenshot j6-04
+03:00:40 ok    48 dump       j6-04
+03:00:40 ok    49 type       composer-input = 0 chars
+03:00:40 ok    50 sleep      1500 ms
+03:00:40 ok    51 press      open-chats ← onPress
+03:00:40 ok    52 waitFor    close-chats appeared
+03:00:40 ok    53 sleep      1500 ms
+03:00:40 ok    54 screenshot j6-05
+03:00:40 ok    55 dump       j6-05
+03:00:40 ok    56 press      close-chats ← onPress
+03:00:40 ok    57 waitFor    composer-input appeared
+03:00:40 ok    58 sleep      2500 ms
+03:00:40 ok    59 screenshot j6-06
+03:00:40 ok    60 dump       j6-06
+03:00:40 58 passed, 3 failed, 6 screenshots → <worktree>/docs/qa/ios-device-pass-41/screens
+03:00:40   ! step 26 (value): value assistant-text: no node with that testID is mounted
+03:00:40   ! step 38 (value): value citations: no node with that testID is mounted
+03:00:40   ! step 39 (value): value none-matched: no node with that testID is mounted
+03:00:40   ! console.log: [chat] plain=acknowledgement window=1/1 maxTokens=224

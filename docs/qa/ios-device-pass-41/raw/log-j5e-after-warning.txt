@@ -1,0 +1,95 @@
+04:35:54 pushing 76 steps as j5e-after-warning
+04:36:02 shot j5-03
+04:36:17 shot j5-04
+04:37:02 shot j5-05
+04:37:14 shot j5-06
+04:37:22 ok     0 deeplink   /chats
+04:37:22 ok     1 waitFor    chat-row-7f76ca18-d645-45e4-b8e4-286fd66a7854 appeared
+04:37:22 ok     2 press      chat-row-7f76ca18-d645-45e4-b8e4-286fd66a7854 ← onPress
+04:37:22 ok     3 waitFor    composer-input appeared
+04:37:22 ok     4 waitFor    Loading gone
+04:37:22 ok     5 sleep      3000 ms
+04:37:22 ok     6 value      FAST
+04:37:22 FAIL   7 value      value attached-docs: no node with that testID is mounted
+04:37:22 FAIL   8 value      value vision-released: no node with that testID is mounted
+04:37:22 ok     9 value      Slowing down to keep the phone cool SWITCH TO INSTANT
+04:37:22 ok    10 sleep      2000 ms
+04:37:22 ok    11 screenshot j5-03
+04:37:22 ok    12 dump       j5-03
+04:37:22 ok    13 press      model-chip ← onPress
+04:37:22 ok    14 waitFor    model-sheet appeared
+04:37:22 ok    15 sleep      1500 ms
+04:37:22 FAIL  16 press      press model-sheet-use-fast: not mounted
+04:37:22 ok    17 sleep      3000 ms
+04:37:22 ok    18 press      model-sheet-close ← onPress
+04:37:22 ok    19 waitFor    Loading gone
+04:37:22 ok    20 sleep      1500 ms
+04:37:22 ok    21 value      FAST
+04:37:22 ok    22 assertText "FAST" present
+04:37:22 ok    23 devPrompt  attach: polka-mug.jpg
+04:37:22 ok    24 waitFor    pending-images appeared
+04:37:22 ok    25 sleep      3000 ms
+04:37:22 ok    26 value      
+04:37:22 FAIL  27 value      value vision-released: no node with that testID is mounted
+04:37:22 ok    28 value      Slowing down to keep the phone cool SWITCH TO INSTANT
+04:37:22 ok    29 value      FAST
+04:37:22 ok    30 type       composer-input = 20 chars
+04:37:22 ok    31 send       send ← onPress
+04:37:22 ok    32 sleep      2000 ms
+04:37:22 ok    33 screenshot j5-04
+04:37:22 FAIL  34 waitFor    waitFor vision-hold never appeared in 8000 ms
+04:37:22 FAIL  35 value      value vision-hold: no node with that testID is mounted
+04:37:22 FAIL  36 press      press vision-hold-download: not mounted
+04:37:22 ok    37 idleTimer  idle timer disabled: false
+04:37:22 ok    38 waitFor    vision-hold gone
+04:37:22 ok    39 waitFor    assistant-text appeared
+04:37:22 ok    40 waitFor    stop gone
+04:37:22 ok    41 sleep      3000 ms
+04:37:22 ok    42 value      The image displays an outdoor chalkboard menu mounted on a red brick wall, likely belonging to a cafe or café-
+04:37:22 ok    43 value      
+04:37:22 FAIL  44 value      value vision-released: no node with that testID is mounted
+04:37:22 ok    45 value      Stopped to protect the phone · Continue when cool CONTINUE
+04:37:22 ok    46 value      FAST
+04:37:22 FAIL  47 value      value model-advice: no node with that testID is mounted
+04:37:22 FAIL  48 value      value model-advice-reason: no node with that testID is mounted
+04:37:22 ok    49 assertText "cannot see" absent
+04:37:22 ok    50 assertText "can't see" absent
+04:37:22 ok    51 assertText "cannot physically see" absent
+04:37:22 ok    52 assertText "see images" absent
+04:37:22 ok    53 assertText "text-based" absent
+04:37:22 ok    54 assertText "unable to see" absent
+04:37:22 ok    55 assertText "not able to see" absent
+04:37:22 ok    56 assertText "don't have eyes" absent
+04:37:22 ok    57 assertText "Your documents don't mention this" absent
+04:37:22 ok    58 assertText "is a scan. Run OCR" absent
+04:37:22 ok    59 screenshot j5-05
+04:37:22 ok    60 dump       j5-05
+04:37:22 ok    61 type       composer-input = 25 chars
+04:37:22 ok    62 send       send ← onPress
+04:37:22 ok    63 sleep      2500 ms
+04:37:22 ok    64 waitFor    reading-pages gone
+04:37:22 ok    65 waitFor    reading-docs gone
+04:37:22 ok    66 waitFor    stop gone
+04:37:22 ok    67 sleep      2500 ms
+04:37:22 ok    68 value      The image displays an outdoor chalkboard menu mounted on a red brick wall, likely belonging to a cafe or café-
+04:37:22 FAIL  69 value      value citations: no node with that testID is mounted
+04:37:22 FAIL  70 value      value none-matched: no node with that testID is mounted
+04:37:22 ok    71 value      Stopped to protect the phone · Continue when cool CONTINUE
+04:37:22 ok    72 value      FAST
+04:37:22 FAIL  73 value      value vision-released: no node with that testID is mounted
+04:37:22 ok    74 screenshot j5-06
+04:37:22 ok    75 dump       j5-06
+04:37:22 63 passed, 13 failed, 4 screenshots → <worktree>/docs/qa/ios-device-pass-41/screens
+04:37:22   ! step 7 (value): value attached-docs: no node with that testID is mounted
+04:37:22   ! step 8 (value): value vision-released: no node with that testID is mounted
+04:37:22   ! step 16 (press): press model-sheet-use-fast: not mounted
+04:37:22   ! step 27 (value): value vision-released: no node with that testID is mounted
+04:37:22   ! step 34 (waitFor): waitFor vision-hold never appeared in 8000 ms
+04:37:22   ! step 35 (value): value vision-hold: no node with that testID is mounted
+04:37:22   ! step 36 (press): press vision-hold-download: not mounted
+04:37:22   ! step 44 (value): value vision-released: no node with that testID is mounted
+04:37:22   ! step 47 (value): value model-advice: no node with that testID is mounted
+04:37:22   ! step 48 (value): value model-advice-reason: no node with that testID is mounted
+04:37:22   ! step 69 (value): value citations: no node with that testID is mounted
+04:37:22   ! step 70 (value): value none-matched: no node with that testID is mounted
+04:37:22   ! step 73 (value): value vision-released: no node with that testID is mounted
