@@ -184,3 +184,24 @@ describe("round 131 · a model that sees better, after a picture answer on Insta
     expect(advise("sharp", ["sharp"])).toBeNull();
   });
 });
+
+describe("F468 · the photo offer names only a model that sees on this device", () => {
+  const catalog = BUNDLED_MANIFEST.models;
+  const byId = (id: string): CatalogModel => catalog.find((m) => m.id === id)!;
+  const advise = (sees?: (id: string) => boolean) => advisePhotoModel({ current: byId("instant"), use: "chat", languageCode: "en", device: { ramGB: 8, deviceClass: "phone", pro: true }, installed: ["instant"], catalog, ...(sees ? { sees } : {}) });
+
+  it("a seer that cannot see here is never offered; the next one that can is", () => {
+    expect(advise()!.better.model.id).toBe("fast");
+    const a = advise((id) => id !== "fast");
+    expect(a?.better.model.id).not.toBe("fast");
+    if (a) expect(a.better.model.vision).toBe(true);
+  });
+
+  it("nothing is offered when no higher-tier model sees here", () => {
+    expect(advise(() => false)).toBeNull();
+  });
+
+  it("without the predicate the catalog flag decides, as before", () => {
+    expect(advise()).toEqual(advise(() => true));
+  });
+});

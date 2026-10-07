@@ -103,6 +103,8 @@ export const recommendationIsWeak = (r: ModelRecommendation): boolean =>
 export interface AdviceInput extends RecommendInput {
   /** The loaded model; no advice without one or when it carries no fit block (imports). */
   current: CatalogModel | null | undefined;
+  /** Whether the model can see on this device; absent = trust the catalog flag. */
+  sees?: (modelId: string) => boolean;
 }
 
 export interface ModelAdvice {
@@ -169,7 +171,7 @@ export function advisePhotoModel(input: AdviceInput): ModelAdvice | null {
   /* Measured 4.10.2026: Sharp reads pictures no better than Fast, so only Instant has a better seer to offer. */
   if (current?.tier !== "instant") return null;
   const offer = offerOf(
-    rankModels(input).filter((r) => r.model.vision && tierIndex(r.model) > tierIndex(current)),
+    rankModels(input).filter((r) => r.model.vision && (input.sees?.(r.model.id) ?? true) && tierIndex(r.model) > tierIndex(current)),
     input.device.pro,
   );
   if (!offer) return null;

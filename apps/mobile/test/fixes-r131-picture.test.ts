@@ -57,6 +57,7 @@ describe("round 131 · picture answers in Chat", () => {
   it("every fresh picture answer, sound or honest, asks for the model that sees better (Instant only, by advisePhotoModel)", () => {
     expect(chat).toMatch(/if \(checksPicture && !familySafeReplaced && reply\.trim\(\) && Platform\.OS !== "web"\) \{[\s\S]*?setPhotoAdvice\(advisePhotoModel\(\{ current: vault\.model\(model\.id\)/);
     expect(chat).not.toMatch(/reply === t\("chat\.vision\.unsure"\)\) \{[^}]*setPhotoAdvice/);
+    expect(chat).toMatch(/setPhotoAdvice\(advisePhotoModel\(\{[^;]*sees: modelHasVision \}\)\)/);
     expect(chat).toMatch(/<ModelAdviceCard[^>]*advice=\{cardAdvice\}/s);
   });
 
