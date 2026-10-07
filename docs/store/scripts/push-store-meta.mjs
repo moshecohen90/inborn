@@ -3,7 +3,7 @@
 // every field is compared with the live value first and only a difference is written. Never touches screenshots,
 // builds, in-app purchases, pricing, availability or submission.
 //
-//   node docs/store/scripts/push-store-meta.mjs [--dry-run | --apply] [--asc-only | --play-only] [--locale ja]
+//   node docs/store/scripts/push-store-meta.mjs [--dry-run | --apply] [--asc-only | --play-only] [--locale ja] [--listings <dir>]
 //
 // --dry-run (default) reads both stores and prints every write it would make with field lengths. Play has no
 // read-only endpoint, so the dry run opens an edit and deletes it without committing.
@@ -12,13 +12,13 @@
 import { execFileSync } from "node:child_process";
 import crypto from "node:crypto";
 import { readFileSync } from "node:fs";
-import { dirname, join } from "node:path";
+import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { API, accessToken, client, commitEdit, loadServiceAccount, parseArgs } from "../../../scripts/lib/play-api.mjs";
 
 const args = parseArgs(process.argv.slice(2));
 const APPLY = args.apply === true;
-const STORE_DIR = join(dirname(fileURLToPath(import.meta.url)), "..");
+const STORE_DIR = args.listings ? resolve(args.listings) : join(dirname(fileURLToPath(import.meta.url)), "..");
 const ASC_APP = "6809165161";
 const ASC_VERSION = "15462083-093b-44c1-8bbd-fe06e00d0c36";
 const PLAY_PKG = "com.inbornapp.mobile";
@@ -259,7 +259,7 @@ async function pushPlay() {
   await api.del(`${API}/${PLAY_PKG}/edits/${edit.id}`).catch(() => {});
 }
 
-console.log(`${APPLY ? "APPLY" : "DRY RUN"} locales=${selected.join(",")}`);
+console.log(`${APPLY ? "APPLY" : "DRY RUN"} locales=${selected.join(",")} listings=${STORE_DIR}`);
 await checkUrls();
 if (!args["play-only"]) await pushAsc();
 if (!args["asc-only"]) await pushPlay();

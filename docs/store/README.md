@@ -100,7 +100,7 @@ and 10-inch Android, and the feature graphic.
 ```
 node docs/store/scripts/check-store-copy.mjs                 # must pass first
 node docs/store/scripts/push-store-meta.mjs                  # dry run: every write it would make, with lengths
-node docs/store/scripts/push-store-meta.mjs --apply          # [--asc-only | --play-only] [--locale ko]
+node docs/store/scripts/push-store-meta.mjs --apply          # [--asc-only | --play-only] [--locale ko] [--listings <dir>]
 ```
 
 It writes only what differs from the live value, so a second `--apply` is a no-op. App Store Connect:
