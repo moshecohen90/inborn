@@ -1,0 +1,178 @@
+20:01:11 pushing 149 steps as jc-rework-fast
+20:01:41 shot sim-jc-01
+20:01:43 shot sim-jc-02
+20:06:16 shot sim-jc-03
+20:06:37 shot sim-jc-04
+20:07:01 shot sim-jc-05
+20:07:13 shot sim-jc-06
+20:07:29 shot sim-jc-07
+20:07:36 shot sim-jc-08
+20:09:41 shot sim-jc-09
+20:09:43 ok     0 deeplink   /chats
+20:09:43 ok     1 waitFor    new-chat appeared
+20:09:43 ok     2 press      new-chat ← onPress
+20:09:43 ok     3 waitFor    start-chat appeared
+20:09:43 ok     4 press      start-chat ← onPress
+20:09:43 ok     5 waitFor    composer-input appeared
+20:09:43 ok     6 waitFor    Loading gone
+20:09:43 ok     7 sleep      1500 ms
+20:09:43 ok     8 value      INSTANT
+20:09:43 ok     9 press      model-chip ← onPress
+20:09:43 ok    10 waitFor    model-sheet appeared
+20:09:43 ok    11 sleep      1500 ms
+20:09:43 ok    12 press      model-sheet-use-fast ← onPress
+20:09:43 ok    13 sleep      3000 ms
+20:09:43 FAIL  14 press      press model-sheet-close: not mounted
+20:09:43 ok    15 waitFor    Loading gone
+20:09:43 ok    16 sleep      1500 ms
+20:09:43 ok    17 value      FAST
+20:09:43 ok    18 assertText "FAST" present
+20:09:43 ok    19 devPrompt  attach: constitution-9pages.pdf
+20:09:43 ok    20 waitFor    attached-docs appeared
+20:09:43 ok    21 sleep      20000 ms
+20:09:43 ok    22 value      constitution-9pages.pdf
+20:09:43 ok    23 screenshot sim-jc-01
+20:09:43 ok    24 type       composer-input = 12 chars
+20:09:43 ok    25 send       send ← onPress
+20:09:43 ok    26 waitFor    reading-pages appeared
+20:09:43 ok    27 value      Reading pages 1–2 of 9…
+20:09:43 ok    28 screenshot sim-jc-02
+20:09:43 ok    29 waitFor    reading-pages gone
+20:09:43 ok    30 waitFor    assistant-text appeared
+20:09:43 ok    31 waitFor    stop gone
+20:09:43 ok    32 sleep      2500 ms
+20:09:43 ok    33 value      This file contains a summary of the main points from the United States Constitution. The document establishes 
+20:09:43 ok    34 value      SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 consti
+20:09:43 ok    35 value      constitution-9pages.pdf
+20:09:43 ok    36 assertText "Summary of all 9 pages." present
+20:09:43 ok    37 screenshot sim-jc-03
+20:09:43 ok    38 dump       sim-jc-03
+20:09:43 ok    39 type       composer-input = 6 chars
+20:09:43 ok    40 send       send ← onPress
+20:09:43 ok    41 sleep      2500 ms
+20:09:43 ok    42 waitFor    reading-pages gone
+20:09:43 ok    43 waitFor    reading-docs gone
+20:09:43 ok    44 waitFor    stop gone
+20:09:43 ok    45 sleep      2500 ms
+20:09:43 ok    46 value      This file contains a summary of the main points from the United States Constitution. The document establishes 
+20:09:43 ok    47 value      SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 consti
+20:09:43 FAIL  48 value      value none-matched: no node with that testID is mounted
+20:09:43 FAIL  49 value      value banners: no node with that testID is mounted
+20:09:43 ok    50 value      FAST
+20:09:43 ok    51 screenshot sim-jc-04
+20:09:43 ok    52 dump       sim-jc-04
+20:09:43 ok    53 type       composer-input = 7 chars
+20:09:43 ok    54 send       send ← onPress
+20:09:43 ok    55 sleep      2500 ms
+20:09:43 ok    56 waitFor    reading-pages gone
+20:09:43 ok    57 waitFor    reading-docs gone
+20:09:43 ok    58 waitFor    stop gone
+20:09:43 ok    59 sleep      2500 ms
+20:09:43 ok    60 value      This file contains a summary of the main points from the United States Constitution. The document establishes 
+20:09:43 ok    61 value      SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 consti
+20:09:43 FAIL  62 value      value none-matched: no node with that testID is mounted
+20:09:43 FAIL  63 value      value banners: no node with that testID is mounted
+20:09:43 ok    64 value      FAST
+20:09:43 ok    65 waitFor    docs-hold gone
+20:09:43 ok    66 waitFor    none-matched gone
+20:09:43 ok    67 assertText "Your documents don't mention this" absent
+20:09:43 ok    68 assertText "You're welcome" absent
+20:09:43 ok    69 waitFor    citations appeared
+20:09:43 ok    70 screenshot sim-jc-05
+20:09:43 ok    71 dump       sim-jc-05
+20:09:43 ok    72 type       composer-input = 23 chars
+20:09:43 ok    73 send       send ← onPress
+20:09:43 ok    74 sleep      2500 ms
+20:09:43 ok    75 waitFor    reading-pages gone
+20:09:43 ok    76 waitFor    reading-docs gone
+20:09:43 ok    77 waitFor    stop gone
+20:09:43 ok    78 sleep      2500 ms
+20:09:43 ok    79 value      This file contains a summary of the main points from the United States Constitution. The document establishes 
+20:09:43 ok    80 value      SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 consti
+20:09:43 FAIL  81 value      value none-matched: no node with that testID is mounted
+20:09:43 FAIL  82 value      value banners: no node with that testID is mounted
+20:09:43 ok    83 value      FAST
+20:09:43 ok    84 waitFor    docs-hold gone
+20:09:43 ok    85 waitFor    none-matched gone
+20:09:43 ok    86 assertText "Your documents don't mention this" absent
+20:09:43 ok    87 assertText "You're welcome" absent
+20:09:43 ok    88 waitFor    citations appeared
+20:09:43 ok    89 screenshot sim-jc-06
+20:09:43 ok    90 dump       sim-jc-06
+20:09:43 ok    91 type       composer-input = 22 chars
+20:09:43 ok    92 send       send ← onPress
+20:09:43 ok    93 sleep      2500 ms
+20:09:43 ok    94 waitFor    reading-pages gone
+20:09:43 ok    95 waitFor    reading-docs gone
+20:09:43 ok    96 waitFor    stop gone
+20:09:43 ok    97 sleep      2500 ms
+20:09:43 ok    98 value      This file contains a summary of the main points from the United States Constitution. The document establishes 
+20:09:43 ok    99 value      SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 consti
+20:09:43 FAIL 100 value      value none-matched: no node with that testID is mounted
+20:09:43 FAIL 101 value      value banners: no node with that testID is mounted
+20:09:43 ok   102 value      FAST
+20:09:43 ok   103 waitFor    docs-hold gone
+20:09:43 ok   104 waitFor    none-matched gone
+20:09:43 ok   105 assertText "Your documents don't mention this" absent
+20:09:43 ok   106 assertText "You're welcome" absent
+20:09:43 ok   107 waitFor    citations appeared
+20:09:43 ok   108 screenshot sim-jc-07
+20:09:43 ok   109 dump       sim-jc-07
+20:09:43 ok   110 type       composer-input = 24 chars
+20:09:43 ok   111 send       send ← onPress
+20:09:43 ok   112 sleep      2500 ms
+20:09:43 ok   113 waitFor    reading-pages gone
+20:09:43 ok   114 waitFor    reading-docs gone
+20:09:43 ok   115 waitFor    stop gone
+20:09:43 ok   116 sleep      2500 ms
+20:09:43 ok   117 value      This file contains a summary of the main points from the United States Constitution. The document establishes 
+20:09:43 ok   118 value      SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 consti
+20:09:43 FAIL 119 value      value none-matched: no node with that testID is mounted
+20:09:43 FAIL 120 value      value banners: no node with that testID is mounted
+20:09:43 ok   121 value      FAST
+20:09:43 FAIL 122 waitFor    waitFor citations never went away in 1000 ms
+20:09:43 ok   123 screenshot sim-jc-08
+20:09:43 ok   124 dump       sim-jc-08
+20:09:43 ok   125 type       composer-input = 31 chars
+20:09:43 ok   126 send       send ← onPress
+20:09:43 ok   127 sleep      2500 ms
+20:09:43 ok   128 waitFor    docs-hold appeared
+20:09:43 ok   129 value      The attached file needs the document index model (468 MB) to be searched by meaning. Without it, only exact wo
+20:09:43 ok   130 press      docs-hold-download ← onPress
+20:09:43 ok   131 idleTimer  idle timer disabled: true
+20:09:43 ok   132 waitFor    docs-hold gone
+20:09:43 ok   133 waitFor    reading-docs gone
+20:09:43 ok   134 waitFor    stop appeared
+20:09:43 ok   135 waitFor    reading-pages gone
+20:09:43 ok   136 waitFor    reading-docs gone
+20:09:43 ok   137 waitFor    stop gone
+20:09:43 ok   138 sleep      2500 ms
+20:09:43 ok   139 value      This file contains a summary of the main points from the United States Constitution. The document establishes 
+20:09:43 ok   140 value      SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 consti
+20:09:43 FAIL 141 value      value none-matched: no node with that testID is mounted
+20:09:43 FAIL 142 value      value banners: no node with that testID is mounted
+20:09:43 ok   143 value      FAST
+20:09:43 ok   144 waitFor    none-matched gone
+20:09:43 ok   145 assertText "Your documents don't mention this" absent
+20:09:43 ok   146 waitFor    citations appeared
+20:09:43 ok   147 screenshot sim-jc-09
+20:09:43 ok   148 dump       sim-jc-09
+20:09:43 135 passed, 14 failed, 9 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-44/docs/qa/ios-device-pass-44/screens
+20:09:43   ! step 14 (press): press model-sheet-close: not mounted
+20:09:43   ! step 48 (value): value none-matched: no node with that testID is mounted
+20:09:43   ! step 49 (value): value banners: no node with that testID is mounted
+20:09:43   ! step 62 (value): value none-matched: no node with that testID is mounted
+20:09:43   ! step 63 (value): value banners: no node with that testID is mounted
+20:09:43   ! step 81 (value): value none-matched: no node with that testID is mounted
+20:09:43   ! step 82 (value): value banners: no node with that testID is mounted
+20:09:43   ! step 100 (value): value none-matched: no node with that testID is mounted
+20:09:43   ! step 101 (value): value banners: no node with that testID is mounted
+20:09:43   ! step 119 (value): value none-matched: no node with that testID is mounted
+20:09:43   ! step 120 (value): value banners: no node with that testID is mounted
+20:09:43   ! step 122 (waitFor): waitFor citations never went away in 1000 ms
+20:09:43   ! step 141 (value): value none-matched: no node with that testID is mounted
+20:09:43   ! step 142 (value): value banners: no node with that testID is mounted
+20:09:43   ! console.log: [chat] plain=acknowledgement window=3/3 maxTokens=224
+20:09:43   ! console.log: [chat] plain=follow-up window=3/5 maxTokens=1024
+20:09:43   ! console.log: [chat] plain=follow-up window=7/7 maxTokens=1024
+20:09:43   ! console.log: [chat] plain=follow-up window=9/9 maxTokens=1024
