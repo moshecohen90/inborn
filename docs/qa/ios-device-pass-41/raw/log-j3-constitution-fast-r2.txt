@@ -1,0 +1,217 @@
+03:17:26 pushing 183 steps as j3-constitution-fast-r2
+03:17:57 shot j3-01
+03:18:02 shot j3-02
+03:22:11 shot j3-03
+03:22:31 shot j3-04
+03:23:30 shot j3-05
+03:24:05 shot j3-06
+03:25:03 shot j3-07
+03:26:11 shot j3-08
+03:27:01 shot j3-09
+03:27:56 shot j3-10
+03:28:01 ok     0 deeplink   /chats
+03:28:01 ok     1 waitFor    new-chat appeared
+03:28:01 ok     2 press      new-chat ← onPress
+03:28:01 ok     3 waitFor    start-chat appeared
+03:28:01 ok     4 press      start-chat ← onPress
+03:28:01 ok     5 waitFor    composer-input appeared
+03:28:01 ok     6 waitFor    Loading gone
+03:28:01 ok     7 sleep      1500 ms
+03:28:01 ok     8 value      FAST
+03:28:01 ok     9 press      model-chip ← onPress
+03:28:01 ok    10 waitFor    model-sheet appeared
+03:28:01 ok    11 sleep      1500 ms
+03:28:01 FAIL  12 press      press model-sheet-use-fast: not mounted
+03:28:01 ok    13 sleep      3000 ms
+03:28:01 ok    14 press      model-sheet-close ← onPress
+03:28:01 ok    15 waitFor    Loading gone
+03:28:01 ok    16 sleep      1500 ms
+03:28:01 ok    17 value      FAST
+03:28:01 ok    18 assertText "FAST" present
+03:28:01 ok    19 devPrompt  attach: constitution-9pages.pdf
+03:28:01 ok    20 waitFor    attached-docs appeared
+03:28:01 ok    21 sleep      20000 ms
+03:28:01 ok    22 value      constitution-9pages.pdf
+03:28:01 ok    23 screenshot j3-01
+03:28:01 ok    24 type       composer-input = 12 chars
+03:28:01 ok    25 send       send ← onPress
+03:28:01 ok    26 waitFor    reading-pages appeared
+03:28:01 ok    27 value      Reading pages 1–2 of 9…
+03:28:01 ok    28 screenshot j3-02
+03:28:01 ok    29 waitFor    reading-pages gone
+03:28:01 ok    30 waitFor    assistant-text appeared
+03:28:01 ok    31 waitFor    stop gone
+03:28:01 ok    32 sleep      2500 ms
+03:28:01 ok    33 value      This file is a summary of the first two pages of the United States Constitution, detailing its structure and k
+03:28:01 ok    34 value      [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4
+03:28:01 ok    35 value      constitution-9pages.pdf
+03:28:01 ok    36 assertText "Summary of all 9 pages." present
+03:28:01 ok    37 screenshot j3-03
+03:28:01 ok    38 dump       j3-03
+03:28:01 ok    39 type       composer-input = 6 chars
+03:28:01 ok    40 send       send ← onPress
+03:28:01 ok    41 sleep      2500 ms
+03:28:01 ok    42 waitFor    reading-pages gone
+03:28:01 ok    43 waitFor    reading-docs gone
+03:28:01 ok    44 waitFor    stop gone
+03:28:01 ok    45 sleep      2500 ms
+03:28:01 ok    46 value      This file is a summary of the first two pages of the United States Constitution, detailing its structure and k
+03:28:01 ok    47 value      [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4
+03:28:01 FAIL  48 value      value none-matched: no node with that testID is mounted
+03:28:01 ok    49 value      Slowing down to keep the phone cool SWITCH TO INSTANT
+03:28:01 ok    50 value      FAST
+03:28:01 ok    51 screenshot j3-04
+03:28:01 ok    52 dump       j3-04
+03:28:01 ok    53 type       composer-input = 7 chars
+03:28:01 ok    54 send       send ← onPress
+03:28:01 ok    55 sleep      2500 ms
+03:28:01 ok    56 waitFor    reading-pages gone
+03:28:01 ok    57 waitFor    reading-docs gone
+03:28:01 ok    58 waitFor    stop gone
+03:28:01 ok    59 sleep      2500 ms
+03:28:01 ok    60 value      This file is a summary of the first two pages of the United States Constitution, detailing its structure and k
+03:28:01 ok    61 value      [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4
+03:28:01 FAIL  62 value      value none-matched: no node with that testID is mounted
+03:28:01 ok    63 value      Slowing down to keep the phone cool SWITCH TO INSTANT
+03:28:01 ok    64 value      FAST
+03:28:01 ok    65 waitFor    docs-hold gone
+03:28:01 ok    66 waitFor    none-matched gone
+03:28:01 ok    67 assertText "Your documents don't mention this" absent
+03:28:01 ok    68 assertText "You're welcome" absent
+03:28:01 ok    69 waitFor    citations appeared
+03:28:01 ok    70 screenshot j3-05
+03:28:01 ok    71 dump       j3-05
+03:28:01 ok    72 type       composer-input = 23 chars
+03:28:01 ok    73 send       send ← onPress
+03:28:01 ok    74 sleep      2500 ms
+03:28:01 ok    75 waitFor    reading-pages gone
+03:28:01 ok    76 waitFor    reading-docs gone
+03:28:01 ok    77 waitFor    stop gone
+03:28:01 ok    78 sleep      2500 ms
+03:28:01 ok    79 value      This file is a summary of the first two pages of the United States Constitution, detailing its structure and k
+03:28:01 ok    80 value      [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4
+03:28:01 FAIL  81 value      value none-matched: no node with that testID is mounted
+03:28:01 ok    82 value      Slowing down to keep the phone cool SWITCH TO INSTANT
+03:28:01 ok    83 value      FAST
+03:28:01 ok    84 waitFor    docs-hold gone
+03:28:01 ok    85 waitFor    none-matched gone
+03:28:01 ok    86 assertText "Your documents don't mention this" absent
+03:28:01 ok    87 assertText "You're welcome" absent
+03:28:01 ok    88 waitFor    citations appeared
+03:28:01 ok    89 screenshot j3-06
+03:28:01 ok    90 dump       j3-06
+03:28:01 ok    91 type       composer-input = 22 chars
+03:28:01 ok    92 send       send ← onPress
+03:28:01 ok    93 sleep      2500 ms
+03:28:01 ok    94 waitFor    reading-pages gone
+03:28:01 ok    95 waitFor    reading-docs gone
+03:28:01 ok    96 waitFor    stop gone
+03:28:01 ok    97 sleep      2500 ms
+03:28:01 ok    98 value      This file is a summary of the first two pages of the United States Constitution, detailing its structure and k
+03:28:01 ok    99 value      [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4
+03:28:01 FAIL 100 value      value none-matched: no node with that testID is mounted
+03:28:01 ok   101 value      Slowing down to keep the phone cool SWITCH TO INSTANT
+03:28:01 ok   102 value      FAST
+03:28:01 ok   103 waitFor    docs-hold gone
+03:28:01 ok   104 waitFor    none-matched gone
+03:28:01 ok   105 assertText "Your documents don't mention this" absent
+03:28:01 ok   106 assertText "You're welcome" absent
+03:28:01 ok   107 waitFor    citations appeared
+03:28:01 ok   108 screenshot j3-07
+03:28:01 ok   109 dump       j3-07
+03:28:01 ok   110 type       composer-input = 24 chars
+03:28:01 ok   111 send       send ← onPress
+03:28:01 ok   112 sleep      2500 ms
+03:28:01 FAIL 113 waitFor    waitFor docs-hold never appeared in 15000 ms
+03:28:01 FAIL 114 value      value docs-hold: no node with that testID is mounted
+03:28:01 FAIL 115 press      press docs-hold-download: not mounted
+03:28:01 ok   116 idleTimer  idle timer disabled: false
+03:28:01 ok   117 waitFor    docs-hold gone
+03:28:01 ok   118 waitFor    reading-docs gone
+03:28:01 ok   119 waitFor    stop appeared
+03:28:01 ok   120 waitFor    reading-pages gone
+03:28:01 ok   121 waitFor    reading-docs gone
+03:28:01 ok   122 waitFor    stop gone
+03:28:01 ok   123 sleep      2500 ms
+03:28:01 ok   124 value      This file is a summary of the first two pages of the United States Constitution, detailing its structure and k
+03:28:01 ok   125 value      [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4
+03:28:01 FAIL 126 value      value none-matched: no node with that testID is mounted
+03:28:01 ok   127 value      Slowing down to keep the phone cool SWITCH TO INSTANT
+03:28:01 ok   128 value      FAST
+03:28:01 FAIL 129 waitFor    waitFor none-matched never appeared in 3000 ms
+03:28:01 ok   130 assertText "I cannot know the current weather" absent
+03:28:01 ok   131 assertText "do not have access to browse" absent
+03:28:01 ok   132 assertText "safe for family consumption" absent
+03:28:01 ok   133 screenshot j3-08
+03:28:01 ok   134 dump       j3-08
+03:28:01 ok   135 type       composer-input = 20 chars
+03:28:01 ok   136 send       send ← onPress
+03:28:01 ok   137 sleep      2500 ms
+03:28:01 FAIL 138 waitFor    waitFor docs-hold never appeared in 15000 ms
+03:28:01 FAIL 139 value      value docs-hold: no node with that testID is mounted
+03:28:01 FAIL 140 press      press docs-hold-download: not mounted
+03:28:01 ok   141 idleTimer  idle timer disabled: false
+03:28:01 ok   142 waitFor    docs-hold gone
+03:28:01 ok   143 waitFor    reading-docs gone
+03:28:01 ok   144 waitFor    stop appeared
+03:28:01 ok   145 waitFor    reading-pages gone
+03:28:01 ok   146 waitFor    reading-docs gone
+03:28:01 ok   147 waitFor    stop gone
+03:28:01 ok   148 sleep      2500 ms
+03:28:01 ok   149 value      This file is a summary of the first two pages of the United States Constitution, detailing its structure and k
+03:28:01 ok   150 value      [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4
+03:28:01 FAIL 151 value      value none-matched: no node with that testID is mounted
+03:28:01 ok   152 value      Slowing down to keep the phone cool SWITCH TO INSTANT
+03:28:01 ok   153 value      FAST
+03:28:01 ok   154 waitFor    none-matched gone
+03:28:01 ok   155 assertText "Your documents don't mention this" absent
+03:28:01 ok   156 waitFor    citations appeared
+03:28:01 ok   157 screenshot j3-09
+03:28:01 ok   158 dump       j3-09
+03:28:01 ok   159 type       composer-input = 20 chars
+03:28:01 ok   160 send       send ← onPress
+03:28:01 ok   161 sleep      2500 ms
+03:28:01 FAIL 162 waitFor    waitFor docs-hold never appeared in 15000 ms
+03:28:01 FAIL 163 value      value docs-hold: no node with that testID is mounted
+03:28:01 FAIL 164 press      press docs-hold-download: not mounted
+03:28:01 ok   165 idleTimer  idle timer disabled: false
+03:28:01 ok   166 waitFor    docs-hold gone
+03:28:01 ok   167 waitFor    reading-docs gone
+03:28:01 ok   168 waitFor    stop appeared
+03:28:01 ok   169 waitFor    reading-pages gone
+03:28:01 ok   170 waitFor    reading-docs gone
+03:28:01 ok   171 waitFor    stop gone
+03:28:01 ok   172 sleep      2500 ms
+03:28:01 ok   173 value      This file is a summary of the first two pages of the United States Constitution, detailing its structure and k
+03:28:01 ok   174 value      [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4
+03:28:01 FAIL 175 value      value none-matched: no node with that testID is mounted
+03:28:01 ok   176 value      Slowing down to keep the phone cool SWITCH TO INSTANT
+03:28:01 ok   177 value      FAST
+03:28:01 ok   178 waitFor    none-matched gone
+03:28:01 ok   179 assertText "Your documents don't mention this" absent
+03:28:01 ok   180 waitFor    citations appeared
+03:28:01 ok   181 screenshot j3-10
+03:28:01 ok   182 dump       j3-10
+03:28:01 165 passed, 18 failed, 10 screenshots → <worktree>/docs/qa/ios-device-pass-41/screens
+03:28:01   ! step 12 (press): press model-sheet-use-fast: not mounted
+03:28:01   ! step 48 (value): value none-matched: no node with that testID is mounted
+03:28:01   ! step 62 (value): value none-matched: no node with that testID is mounted
+03:28:01   ! step 81 (value): value none-matched: no node with that testID is mounted
+03:28:01   ! step 100 (value): value none-matched: no node with that testID is mounted
+03:28:01   ! step 113 (waitFor): waitFor docs-hold never appeared in 15000 ms
+03:28:01   ! step 114 (value): value docs-hold: no node with that testID is mounted
+03:28:01   ! step 115 (press): press docs-hold-download: not mounted
+03:28:01   ! step 126 (value): value none-matched: no node with that testID is mounted
+03:28:01   ! step 129 (waitFor): waitFor none-matched never appeared in 3000 ms
+03:28:01   ! step 138 (waitFor): waitFor docs-hold never appeared in 15000 ms
+03:28:01   ! step 139 (value): value docs-hold: no node with that testID is mounted
+03:28:01   ! step 140 (press): press docs-hold-download: not mounted
+03:28:01   ! step 151 (value): value none-matched: no node with that testID is mounted
+03:28:01   ! step 162 (waitFor): waitFor docs-hold never appeared in 15000 ms
+03:28:01   ! step 163 (value): value docs-hold: no node with that testID is mounted
+03:28:01   ! step 164 (press): press docs-hold-download: not mounted
+03:28:01   ! step 175 (value): value none-matched: no node with that testID is mounted
+03:28:01   ! console.log: [chat] plain=acknowledgement window=3/3 maxTokens=224
+03:28:01   ! console.log: [chat] plain=follow-up window=3/5 maxTokens=1024
+03:28:01   ! console.log: [chat] plain=follow-up window=7/7 maxTokens=1024
+03:28:01   ! console.log: [chat] plain=follow-up window=9/9 maxTokens=1024

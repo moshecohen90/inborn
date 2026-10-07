@@ -1,0 +1,2986 @@
+{
+  "runId": "j3-constitution-fast-r2",
+  "startedAt": "2026-10-07T00:17:27.212Z",
+  "finishedAt": "2026-10-07T00:27:59.217Z",
+  "ok": false,
+  "passed": 165,
+  "failed": 18,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 166,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 175,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1515,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 9,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "model-chip ← onPress"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "model-sheet appeared"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1507,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 12,
+      "op": "press",
+      "ok": false,
+      "ms": 2,
+      "detail": "press model-sheet-use-fast: not mounted"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3015,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 14,
+      "op": "press",
+      "ok": true,
+      "ms": 178,
+      "detail": "model-sheet-close ← onPress"
+    },
+    {
+      "i": 15,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1505,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 17,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 18,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"FAST\" present"
+    },
+    {
+      "i": 19,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 166,
+      "detail": "attach: constitution-9pages.pdf"
+    },
+    {
+      "i": 20,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1114,
+      "detail": "attached-docs appeared"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 20005,
+      "detail": "20000 ms"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "constitution-9pages.pdf",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "constitution-9pages.pdf"
+    },
+    {
+      "i": 23,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3789,
+      "detail": "j3-01"
+    },
+    {
+      "i": 24,
+      "op": "type",
+      "ok": true,
+      "ms": 161,
+      "detail": "composer-input = 12 chars"
+    },
+    {
+      "i": 25,
+      "op": "send",
+      "ok": true,
+      "ms": 213,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 26,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-pages appeared"
+    },
+    {
+      "i": 27,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Reading pages 1–2 of 9…",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Reading pages 1–2 of 9…"
+    },
+    {
+      "i": 28,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 6027,
+      "detail": "j3-02"
+    },
+    {
+      "i": 29,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 168026,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 30,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 13068,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 31,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 59377,
+      "detail": "stop gone"
+    },
+    {
+      "i": 32,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2512,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 33,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers. Main Points: • Legislative Structure (Pages 1–2): The U.S. Congress is bicameral, composed of the Senate and House of Representatives; representatives are apportioned by population, while senators serve six-year terms. The House has sole power to impeach, and the Senate holds exclusive authority over impeachment trials with a two-thirds majority requirement for conviction. Both houses can determine their own rules, punish disorderly behavior, and expel representatives with two-thirds concurrence [1]. • Legislative Process (Pages 3–4): A bill must be presented to the President; signing it makes law, or returning objections requiring a two-thirds vote in both houses before becoming law. If the President does not act within ten days (excluding Sundays), the bill becomes law automatically unless Congress adjourns during that period [2]. • Executive Powers and Judicial Structure (Pages 5–6): The Constitution establishes a single supreme court with appellate jurisdiction over cases involving ambassadors, public ministers, consuls, maritime disputes, and state/citizen controversies. It grants the President Commander-in-Chief status, authority to appoint judges and officers with Senate approval, though inferior officials may be appointed by the President alone or via courts [3]. • Treason and State Relations (Pages 7–9): Treason is defined as levying war against the nation, adhering to its enemies, or providing them aid and comfort; conviction requires two witnesses or an open confession. Congress has power to declare treason penalties but cannot attainder citizens without limiting corruption of blood [4]. The Constitution also mandates that each State respect public records from other states while Congress regulates proof methods [4]. Summary of all 9 pages.",
+        "props": {
+          "source": "This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers.\n\n**Main Points:**\n*   **Legislative Structure (Pages 1–2):** The U.S. Congress is bicameral, composed of the Senate and House of Representatives; representatives are apportioned by population, while senators serve six-year terms. The House has sole power to impeach, and the Senate holds exclusive authority over impeachment trials with a two-thirds majority requirement for conviction. Both houses can determine their own rules, punish disorderly behavior, and expel representatives with two-thirds concurrence [1].\n*   **Legislative Process (Pages 3–4):** A bill must be presented to the President; signing it makes law, or returning objections requiring a two-thirds vote in both houses before becoming law. If the President does not act within ten days (excluding Sundays), the bill becomes law automatically unless Congress adjourns during that period [2].\n*   **Executive Powers and Judicial Structure (Pages 5–6):** The Constitution establishes a single supreme court with appellate jurisdiction over cases involving ambassadors, public ministers, consuls, maritime disputes, and state/citizen controversies. It grants the President Commander-in-Chief status, authority to appoint judges and officers with Senate approval, though inferior officials may be appointed by the President alone or via courts [3].\n*   **Treason and State Relations (Pages 7–9):** Treason is defined as levying war against the nation, adhering to its enemies, or providing them aid and comfort; conviction requires two witnesses or an open confession. Congress has power to declare treason penalties but cannot attainder citizens without limiting corruption of blood [4]. The Constitution also mandates that each State respect public records from other states while Congress regulates proof methods [4].\n\n*Summary of all 9 pages.*",
+          "disabled": false
+        }
+      },
+      "detail": "This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers. Main Points: • Legislative Structure (Pages 1–2): The U.S. Congress is bicamera"
+    },
+    {
+      "i": 34,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+    },
+    {
+      "i": 35,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "constitution-9pages.pdf",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "constitution-9pages.pdf"
+    },
+    {
+      "i": 36,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"Summary of all 9 pages.\" present"
+    },
+    {
+      "i": 37,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 6349,
+      "detail": "j3-03"
+    },
+    {
+      "i": 38,
+      "op": "dump",
+      "ok": true,
+      "ms": 4,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers. Main Points: • Legislative Structure (Pages 1–2): The U.S. Congress is bicameral, composed of the Senate and House of Representatives; representatives are apportioned by population, while senators serve six-year terms. The House has sole power to impeach, and the Senate holds exclusive authority over impeachment trials with a two-thirds majority requirement for conviction. Both houses can determine their own rules, punish disorderly behavior, and expel representatives with two-thirds concurrence [1]. • Legislative Process (Pages 3–4): A bill must be presented to the President; signing it makes law, or returning objections requiring a two-thirds vote in both houses before becoming law. If the President does not act within ten days (excluding Sundays), the bill becomes law automatically unless Congress adjourns during that period [2]. • Executive Powers and Judicial Structure (Pages 5–6): The Constitution establishes a single supreme court with appellate jurisdiction over cases involving ambassadors, public ministers, consuls, maritime disputes, and state/citizen controversies. It grants the President Commander-in-Chief status, authority to appoint judges and officers with Senate approval, though inferior officials may be appointed by the President alone or via courts [3]. • Treason and State Relations (Pages 7–9): Treason is defined as levying war against the nation, adhering to its enemies, or providing them aid and comfort; conviction requires two witnesses or an open confession. Congress has power to declare treason penalties but cannot attainder citizens without limiting corruption of blood [4]. The Constitution also mandates that each State respect public records from other states while Congress regulates proof methods [4]. Summary of all 9 pages. [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers. Main Points: • Legislative Structure (Pages 1–2): The U.S. Congress is bicameral, composed of the Senate and House of Representatives; representatives are apportioned by population, while senators serve six-year terms. The House has sole power to impeach, and the Senate holds exclusive authority over impeachment trials with a two-thirds majority requirement for conviction. Both houses can determine their own rules, punish disorderly behavior, and expel representatives with two-thirds concurrence [1]. • Legislative Process (Pages 3–4): A bill must be presented to the President; signing it makes law, or returning objections requiring a two-thirds vote in both houses before becoming law. If the President does not act within ten days (excluding Sundays), the bill becomes law automatically unless Congress adjourns during that period [2]. • Executive Powers and Judicial Structure (Pages 5–6): The Constitution establishes a single supreme court with appellate jurisdiction over cases involving ambassadors, public ministers, consuls, maritime disputes, and state/citizen controversies. It grants the President Commander-in-Chief status, authority to appoint judges and officers with Senate approval, though inferior officials may be appointed by the President alone or via courts [3]. • Treason and State Relations (Pages 7–9): Treason is defined as levying war against the nation, adhering to its enemies, or providing them aid and comfort; conviction requires two witnesses or an open confession. Congress has power to declare treason penalties but cannot attainder citizens without limiting corruption of blood [4]. The Constitution also mandates that each State respect public records from other states while Congress regulates proof methods [4]. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muxcz3e9-4-pmhqi80j",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "j3-03"
+    },
+    {
+      "i": 39,
+      "op": "type",
+      "ok": true,
+      "ms": 165,
+      "detail": "composer-input = 6 chars"
+    },
+    {
+      "i": 40,
+      "op": "send",
+      "ok": true,
+      "ms": 252,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 41,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2504,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 42,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 43,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 44,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 9350,
+      "detail": "stop gone"
+    },
+    {
+      "i": 45,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2506,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 46,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers. Main Points: • Legislative Structure (Pages 1–2): The U.S. Congress is bicameral, composed of the Senate and House of Representatives; representatives are apportioned by population, while senators serve six-year terms. The House has sole power to impeach, and the Senate holds exclusive authority over impeachment trials with a two-thirds majority requirement for conviction. Both houses can determine their own rules, punish disorderly behavior, and expel representatives with two-thirds concurrence [1]. • Legislative Process (Pages 3–4): A bill must be presented to the President; signing it makes law, or returning objections requiring a two-thirds vote in both houses before becoming law. If the President does not act within ten days (excluding Sundays), the bill becomes law automatically unless Congress adjourns during that period [2]. • Executive Powers and Judicial Structure (Pages 5–6): The Constitution establishes a single supreme court with appellate jurisdiction over cases involving ambassadors, public ministers, consuls, maritime disputes, and state/citizen controversies. It grants the President Commander-in-Chief status, authority to appoint judges and officers with Senate approval, though inferior officials may be appointed by the President alone or via courts [3]. • Treason and State Relations (Pages 7–9): Treason is defined as levying war against the nation, adhering to its enemies, or providing them aid and comfort; conviction requires two witnesses or an open confession. Congress has power to declare treason penalties but cannot attainder citizens without limiting corruption of blood [4]. The Constitution also mandates that each State respect public records from other states while Congress regulates proof methods [4]. Summary of all 9 pages.",
+        "props": {
+          "source": "This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers.\n\n**Main Points:**\n*   **Legislative Structure (Pages 1–2):** The U.S. Congress is bicameral, composed of the Senate and House of Representatives; representatives are apportioned by population, while senators serve six-year terms. The House has sole power to impeach, and the Senate holds exclusive authority over impeachment trials with a two-thirds majority requirement for conviction. Both houses can determine their own rules, punish disorderly behavior, and expel representatives with two-thirds concurrence [1].\n*   **Legislative Process (Pages 3–4):** A bill must be presented to the President; signing it makes law, or returning objections requiring a two-thirds vote in both houses before becoming law. If the President does not act within ten days (excluding Sundays), the bill becomes law automatically unless Congress adjourns during that period [2].\n*   **Executive Powers and Judicial Structure (Pages 5–6):** The Constitution establishes a single supreme court with appellate jurisdiction over cases involving ambassadors, public ministers, consuls, maritime disputes, and state/citizen controversies. It grants the President Commander-in-Chief status, authority to appoint judges and officers with Senate approval, though inferior officials may be appointed by the President alone or via courts [3].\n*   **Treason and State Relations (Pages 7–9):** Treason is defined as levying war against the nation, adhering to its enemies, or providing them aid and comfort; conviction requires two witnesses or an open confession. Congress has power to declare treason penalties but cannot attainder citizens without limiting corruption of blood [4]. The Constitution also mandates that each State respect public records from other states while Congress regulates proof methods [4].\n\n*Summary of all 9 pages.*",
+          "disabled": false
+        }
+      },
+      "detail": "This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers. Main Points: • Legislative Structure (Pages 1–2): The U.S. Congress is bicamera"
+    },
+    {
+      "i": 47,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+    },
+    {
+      "i": 48,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 49,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Slowing down to keep the phone cool SWITCH TO INSTANT",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+      "i": 50,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 51,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 5072,
+      "detail": "j3-04"
+    },
+    {
+      "i": 52,
+      "op": "dump",
+      "ok": true,
+      "ms": 4,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers. Main Points: • Legislative Structure (Pages 1–2): The U.S. Congress is bicameral, composed of the Senate and House of Representatives; representatives are apportioned by population, while senators serve six-year terms. The House has sole power to impeach, and the Senate holds exclusive authority over impeachment trials with a two-thirds majority requirement for conviction. Both houses can determine their own rules, punish disorderly behavior, and expel representatives with two-thirds concurrence [1]. • Legislative Process (Pages 3–4): A bill must be presented to the President; signing it makes law, or returning objections requiring a two-thirds vote in both houses before becoming law. If the President does not act within ten days (excluding Sundays), the bill becomes law automatically unless Congress adjourns during that period [2]. • Executive Powers and Judicial Structure (Pages 5–6): The Constitution establishes a single supreme court with appellate jurisdiction over cases involving ambassadors, public ministers, consuls, maritime disputes, and state/citizen controversies. It grants the President Commander-in-Chief status, authority to appoint judges and officers with Senate approval, though inferior officials may be appointed by the President alone or via courts [3]. • Treason and State Relations (Pages 7–9): Treason is defined as levying war against the nation, adhering to its enemies, or providing them aid and comfort; conviction requires two witnesses or an open confession. Congress has power to declare treason penalties but cannot attainder citizens without limiting corruption of blood [4]. The Constitution also mandates that each State respect public records from other states while Congress regulates proof methods [4]. Summary of all 9 pages. [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers. Main Points: • Legislative Structure (Pages 1–2): The U.S. Congress is bicameral, composed of the Senate and House of Representatives; representatives are apportioned by population, while senators serve six-year terms. The House has sole power to impeach, and the Senate holds exclusive authority over impeachment trials with a two-thirds majority requirement for conviction. Both houses can determine their own rules, punish disorderly behavior, and expel representatives with two-thirds concurrence [1]. • Legislative Process (Pages 3–4): A bill must be presented to the President; signing it makes law, or returning objections requiring a two-thirds vote in both houses before becoming law. If the President does not act within ten days (excluding Sundays), the bill becomes law automatically unless Congress adjourns during that period [2]. • Executive Powers and Judicial Structure (Pages 5–6): The Constitution establishes a single supreme court with appellate jurisdiction over cases involving ambassadors, public ministers, consuls, maritime disputes, and state/citizen controversies. It grants the President Commander-in-Chief status, authority to appoint judges and officers with Senate approval, though inferior officials may be appointed by the President alone or via courts [3]. • Treason and State Relations (Pages 7–9): Treason is defined as levying war against the nation, adhering to its enemies, or providing them aid and comfort; conviction requires two witnesses or an open confession. Congress has power to declare treason penalties but cannot attainder citizens without limiting corruption of blood [4]. The Constitution also mandates that each State respect public records from other states while Congress regulates proof methods [4]. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muxcz3e9-4-pmhqi80j",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "j3-04"
+    },
+    {
+      "i": 53,
+      "op": "type",
+      "ok": true,
+      "ms": 174,
+      "detail": "composer-input = 7 chars"
+    },
+    {
+      "i": 54,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 55,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2502,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 56,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 57,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 58,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 48406,
+      "detail": "stop gone"
+    },
+    {
+      "i": 59,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 60,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers. Main Points: • Legislative Structure (Pages 1–2): The U.S. Congress is bicameral, composed of the Senate and House of Representatives; representatives are apportioned by population, while senators serve six-year terms. The House has sole power to impeach, and the Senate holds exclusive authority over impeachment trials with a two-thirds majority requirement for conviction. Both houses can determine their own rules, punish disorderly behavior, and expel representatives with two-thirds concurrence [1]. • Legislative Process (Pages 3–4): A bill must be presented to the President; signing it makes law, or returning objections requiring a two-thirds vote in both houses before becoming law. If the President does not act within ten days (excluding Sundays), the bill becomes law automatically unless Congress adjourns during that period [2]. • Executive Powers and Judicial Structure (Pages 5–6): The Constitution establishes a single supreme court with appellate jurisdiction over cases involving ambassadors, public ministers, consuls, maritime disputes, and state/citizen controversies. It grants the President Commander-in-Chief status, authority to appoint judges and officers with Senate approval, though inferior officials may be appointed by the President alone or via courts [3]. • Treason and State Relations (Pages 7–9): Treason is defined as levying war against the nation, adhering to its enemies, or providing them aid and comfort; conviction requires two witnesses or an open confession. Congress has power to declare treason penalties but cannot attainder citizens without limiting corruption of blood [4]. The Constitution also mandates that each State respect public records from other states while Congress regulates proof methods [4]. Summary of all 9 pages.",
+        "props": {
+          "source": "This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers.\n\n**Main Points:**\n*   **Legislative Structure (Pages 1–2):** The U.S. Congress is bicameral, composed of the Senate and House of Representatives; representatives are apportioned by population, while senators serve six-year terms. The House has sole power to impeach, and the Senate holds exclusive authority over impeachment trials with a two-thirds majority requirement for conviction. Both houses can determine their own rules, punish disorderly behavior, and expel representatives with two-thirds concurrence [1].\n*   **Legislative Process (Pages 3–4):** A bill must be presented to the President; signing it makes law, or returning objections requiring a two-thirds vote in both houses before becoming law. If the President does not act within ten days (excluding Sundays), the bill becomes law automatically unless Congress adjourns during that period [2].\n*   **Executive Powers and Judicial Structure (Pages 5–6):** The Constitution establishes a single supreme court with appellate jurisdiction over cases involving ambassadors, public ministers, consuls, maritime disputes, and state/citizen controversies. It grants the President Commander-in-Chief status, authority to appoint judges and officers with Senate approval, though inferior officials may be appointed by the President alone or via courts [3].\n*   **Treason and State Relations (Pages 7–9):** Treason is defined as levying war against the nation, adhering to its enemies, or providing them aid and comfort; conviction requires two witnesses or an open confession. Congress has power to declare treason penalties but cannot attainder citizens without limiting corruption of blood [4]. The Constitution also mandates that each State respect public records from other states while Congress regulates proof methods [4].\n\n*Summary of all 9 pages.*",
+          "disabled": false
+        }
+      },
+      "detail": "This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers. Main Points: • Legislative Structure (Pages 1–2): The U.S. Congress is bicamera"
+    },
+    {
+      "i": 61,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+    },
+    {
+      "i": 62,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 63,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Slowing down to keep the phone cool SWITCH TO INSTANT",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+      "i": 64,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 65,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 66,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "none-matched gone"
+    },
+    {
+      "i": 67,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"Your documents don't mention this\" absent"
+    },
+    {
+      "i": 68,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"You're welcome\" absent"
+    },
+    {
+      "i": 69,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "citations appeared"
+    },
+    {
+      "i": 70,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 4763,
+      "detail": "j3-05"
+    },
+    {
+      "i": 71,
+      "op": "dump",
+      "ok": true,
+      "ms": 4,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers. Main Points: • Legislative Structure (Pages 1–2): The U.S. Congress is bicameral, composed of the Senate and House of Representatives; representatives are apportioned by population, while senators serve six-year terms. The House has sole power to impeach, and the Senate holds exclusive authority over impeachment trials with a two-thirds majority requirement for conviction. Both houses can determine their own rules, punish disorderly behavior, and expel representatives with two-thirds concurrence [1]. • Legislative Process (Pages 3–4): A bill must be presented to the President; signing it makes law, or returning objections requiring a two-thirds vote in both houses before becoming law. If the President does not act within ten days (excluding Sundays), the bill becomes law automatically unless Congress adjourns during that period [2]. • Executive Powers and Judicial Structure (Pages 5–6): The Constitution establishes a single supreme court with appellate jurisdiction over cases involving ambassadors, public ministers, consuls, maritime disputes, and state/citizen controversies. It grants the President Commander-in-Chief status, authority to appoint judges and officers with Senate approval, though inferior officials may be appointed by the President alone or via courts [3]. • Treason and State Relations (Pages 7–9): Treason is defined as levying war against the nation, adhering to its enemies, or providing them aid and comfort; conviction requires two witnesses or an open confession. Congress has power to declare treason penalties but cannot attainder citizens without limiting corruption of blood [4]. The Constitution also mandates that each State respect public records from other states while Congress regulates proof methods [4]. Summary of all 9 pages. [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers. Main Points: • Legislative Structure (Pages 1–2): The U.S. Congress is bicameral, composed of the Senate and House of Representatives; representatives are apportioned by population, while senators serve six-year terms. The House has sole power to impeach, and the Senate holds exclusive authority over impeachment trials with a two-thirds majority requirement for conviction. Both houses can determine their own rules, punish disorderly behavior, and expel representatives with two-thirds concurrence [1]. • Legislative Process (Pages 3–4): A bill must be presented to the President; signing it makes law, or returning objections requiring a two-thirds vote in both houses before becoming law. If the President does not act within ten days (excluding Sundays), the bill becomes law automatically unless Congress adjourns during that period [2]. • Executive Powers and Judicial Structure (Pages 5–6): The Constitution establishes a single supreme court with appellate jurisdiction over cases involving ambassadors, public ministers, consuls, maritime disputes, and state/citizen controversies. It grants the President Commander-in-Chief status, authority to appoint judges and officers with Senate approval, though inferior officials may be appointed by the President alone or via courts [3]. • Treason and State Relations (Pages 7–9): Treason is defined as levying war against the nation, adhering to its enemies, or providing them aid and comfort; conviction requires two witnesses or an open confession. Congress has power to declare treason penalties but cannot attainder citizens without limiting corruption of blood [4]. The Constitution also mandates that each State respect public records from other states while Congress regulates proof methods [4]. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muxcz3e9-4-pmhqi80j",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "j3-05"
+    },
+    {
+      "i": 72,
+      "op": "type",
+      "ok": true,
+      "ms": 158,
+      "detail": "composer-input = 23 chars"
+    },
+    {
+      "i": 73,
+      "op": "send",
+      "ok": true,
+      "ms": 170,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 74,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3273,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 75,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 76,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 18,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 77,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 22873,
+      "detail": "stop gone"
+    },
+    {
+      "i": 78,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 79,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers. Main Points: • Legislative Structure (Pages 1–2): The U.S. Congress is bicameral, composed of the Senate and House of Representatives; representatives are apportioned by population, while senators serve six-year terms. The House has sole power to impeach, and the Senate holds exclusive authority over impeachment trials with a two-thirds majority requirement for conviction. Both houses can determine their own rules, punish disorderly behavior, and expel representatives with two-thirds concurrence [1]. • Legislative Process (Pages 3–4): A bill must be presented to the President; signing it makes law, or returning objections requiring a two-thirds vote in both houses before becoming law. If the President does not act within ten days (excluding Sundays), the bill becomes law automatically unless Congress adjourns during that period [2]. • Executive Powers and Judicial Structure (Pages 5–6): The Constitution establishes a single supreme court with appellate jurisdiction over cases involving ambassadors, public ministers, consuls, maritime disputes, and state/citizen controversies. It grants the President Commander-in-Chief status, authority to appoint judges and officers with Senate approval, though inferior officials may be appointed by the President alone or via courts [3]. • Treason and State Relations (Pages 7–9): Treason is defined as levying war against the nation, adhering to its enemies, or providing them aid and comfort; conviction requires two witnesses or an open confession. Congress has power to declare treason penalties but cannot attainder citizens without limiting corruption of blood [4]. The Constitution also mandates that each State respect public records from other states while Congress regulates proof methods [4]. Summary of all 9 pages.",
+        "props": {
+          "source": "This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers.\n\n**Main Points:**\n*   **Legislative Structure (Pages 1–2):** The U.S. Congress is bicameral, composed of the Senate and House of Representatives; representatives are apportioned by population, while senators serve six-year terms. The House has sole power to impeach, and the Senate holds exclusive authority over impeachment trials with a two-thirds majority requirement for conviction. Both houses can determine their own rules, punish disorderly behavior, and expel representatives with two-thirds concurrence [1].\n*   **Legislative Process (Pages 3–4):** A bill must be presented to the President; signing it makes law, or returning objections requiring a two-thirds vote in both houses before becoming law. If the President does not act within ten days (excluding Sundays), the bill becomes law automatically unless Congress adjourns during that period [2].\n*   **Executive Powers and Judicial Structure (Pages 5–6):** The Constitution establishes a single supreme court with appellate jurisdiction over cases involving ambassadors, public ministers, consuls, maritime disputes, and state/citizen controversies. It grants the President Commander-in-Chief status, authority to appoint judges and officers with Senate approval, though inferior officials may be appointed by the President alone or via courts [3].\n*   **Treason and State Relations (Pages 7–9):** Treason is defined as levying war against the nation, adhering to its enemies, or providing them aid and comfort; conviction requires two witnesses or an open confession. Congress has power to declare treason penalties but cannot attainder citizens without limiting corruption of blood [4]. The Constitution also mandates that each State respect public records from other states while Congress regulates proof methods [4].\n\n*Summary of all 9 pages.*",
+          "disabled": false
+        }
+      },
+      "detail": "This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers. Main Points: • Legislative Structure (Pages 1–2): The U.S. Congress is bicamera"
+    },
+    {
+      "i": 80,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+    },
+    {
+      "i": 81,
+      "op": "value",
+      "ok": false,
+      "ms": 6,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 82,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Slowing down to keep the phone cool SWITCH TO INSTANT",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+      "i": 83,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 84,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 85,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "none-matched gone"
+    },
+    {
+      "i": 86,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"Your documents don't mention this\" absent"
+    },
+    {
+      "i": 87,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"You're welcome\" absent"
+    },
+    {
+      "i": 88,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "citations appeared"
+    },
+    {
+      "i": 89,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 6021,
+      "detail": "j3-06"
+    },
+    {
+      "i": 90,
+      "op": "dump",
+      "ok": true,
+      "ms": 4,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers. Main Points: • Legislative Structure (Pages 1–2): The U.S. Congress is bicameral, composed of the Senate and House of Representatives; representatives are apportioned by population, while senators serve six-year terms. The House has sole power to impeach, and the Senate holds exclusive authority over impeachment trials with a two-thirds majority requirement for conviction. Both houses can determine their own rules, punish disorderly behavior, and expel representatives with two-thirds concurrence [1]. • Legislative Process (Pages 3–4): A bill must be presented to the President; signing it makes law, or returning objections requiring a two-thirds vote in both houses before becoming law. If the President does not act within ten days (excluding Sundays), the bill becomes law automatically unless Congress adjourns during that period [2]. • Executive Powers and Judicial Structure (Pages 5–6): The Constitution establishes a single supreme court with appellate jurisdiction over cases involving ambassadors, public ministers, consuls, maritime disputes, and state/citizen controversies. It grants the President Commander-in-Chief status, authority to appoint judges and officers with Senate approval, though inferior officials may be appointed by the President alone or via courts [3]. • Treason and State Relations (Pages 7–9): Treason is defined as levying war against the nation, adhering to its enemies, or providing them aid and comfort; conviction requires two witnesses or an open confession. Congress has power to declare treason penalties but cannot attainder citizens without limiting corruption of blood [4]. The Constitution also mandates that each State respect public records from other states while Congress regulates proof methods [4]. Summary of all 9 pages. [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers. Main Points: • Legislative Structure (Pages 1–2): The U.S. Congress is bicameral, composed of the Senate and House of Representatives; representatives are apportioned by population, while senators serve six-year terms. The House has sole power to impeach, and the Senate holds exclusive authority over impeachment trials with a two-thirds majority requirement for conviction. Both houses can determine their own rules, punish disorderly behavior, and expel representatives with two-thirds concurrence [1]. • Legislative Process (Pages 3–4): A bill must be presented to the President; signing it makes law, or returning objections requiring a two-thirds vote in both houses before becoming law. If the President does not act within ten days (excluding Sundays), the bill becomes law automatically unless Congress adjourns during that period [2]. • Executive Powers and Judicial Structure (Pages 5–6): The Constitution establishes a single supreme court with appellate jurisdiction over cases involving ambassadors, public ministers, consuls, maritime disputes, and state/citizen controversies. It grants the President Commander-in-Chief status, authority to appoint judges and officers with Senate approval, though inferior officials may be appointed by the President alone or via courts [3]. • Treason and State Relations (Pages 7–9): Treason is defined as levying war against the nation, adhering to its enemies, or providing them aid and comfort; conviction requires two witnesses or an open confession. Congress has power to declare treason penalties but cannot attainder citizens without limiting corruption of blood [4]. The Constitution also mandates that each State respect public records from other states while Congress regulates proof methods [4]. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muxcz3e9-4-pmhqi80j",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "j3-06"
+    },
+    {
+      "i": 91,
+      "op": "type",
+      "ok": true,
+      "ms": 158,
+      "detail": "composer-input = 22 chars"
+    },
+    {
+      "i": 92,
+      "op": "send",
+      "ok": true,
+      "ms": 222,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 93,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 94,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 95,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 96,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 46916,
+      "detail": "stop gone"
+    },
+    {
+      "i": 97,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2511,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 98,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers. Main Points: • Legislative Structure (Pages 1–2): The U.S. Congress is bicameral, composed of the Senate and House of Representatives; representatives are apportioned by population, while senators serve six-year terms. The House has sole power to impeach, and the Senate holds exclusive authority over impeachment trials with a two-thirds majority requirement for conviction. Both houses can determine their own rules, punish disorderly behavior, and expel representatives with two-thirds concurrence [1]. • Legislative Process (Pages 3–4): A bill must be presented to the President; signing it makes law, or returning objections requiring a two-thirds vote in both houses before becoming law. If the President does not act within ten days (excluding Sundays), the bill becomes law automatically unless Congress adjourns during that period [2]. • Executive Powers and Judicial Structure (Pages 5–6): The Constitution establishes a single supreme court with appellate jurisdiction over cases involving ambassadors, public ministers, consuls, maritime disputes, and state/citizen controversies. It grants the President Commander-in-Chief status, authority to appoint judges and officers with Senate approval, though inferior officials may be appointed by the President alone or via courts [3]. • Treason and State Relations (Pages 7–9): Treason is defined as levying war against the nation, adhering to its enemies, or providing them aid and comfort; conviction requires two witnesses or an open confession. Congress has power to declare treason penalties but cannot attainder citizens without limiting corruption of blood [4]. The Constitution also mandates that each State respect public records from other states while Congress regulates proof methods [4]. Summary of all 9 pages.",
+        "props": {
+          "source": "This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers.\n\n**Main Points:**\n*   **Legislative Structure (Pages 1–2):** The U.S. Congress is bicameral, composed of the Senate and House of Representatives; representatives are apportioned by population, while senators serve six-year terms. The House has sole power to impeach, and the Senate holds exclusive authority over impeachment trials with a two-thirds majority requirement for conviction. Both houses can determine their own rules, punish disorderly behavior, and expel representatives with two-thirds concurrence [1].\n*   **Legislative Process (Pages 3–4):** A bill must be presented to the President; signing it makes law, or returning objections requiring a two-thirds vote in both houses before becoming law. If the President does not act within ten days (excluding Sundays), the bill becomes law automatically unless Congress adjourns during that period [2].\n*   **Executive Powers and Judicial Structure (Pages 5–6):** The Constitution establishes a single supreme court with appellate jurisdiction over cases involving ambassadors, public ministers, consuls, maritime disputes, and state/citizen controversies. It grants the President Commander-in-Chief status, authority to appoint judges and officers with Senate approval, though inferior officials may be appointed by the President alone or via courts [3].\n*   **Treason and State Relations (Pages 7–9):** Treason is defined as levying war against the nation, adhering to its enemies, or providing them aid and comfort; conviction requires two witnesses or an open confession. Congress has power to declare treason penalties but cannot attainder citizens without limiting corruption of blood [4]. The Constitution also mandates that each State respect public records from other states while Congress regulates proof methods [4].\n\n*Summary of all 9 pages.*",
+          "disabled": false
+        }
+      },
+      "detail": "This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers. Main Points: • Legislative Structure (Pages 1–2): The U.S. Congress is bicamera"
+    },
+    {
+      "i": 99,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+    },
+    {
+      "i": 100,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 101,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Slowing down to keep the phone cool SWITCH TO INSTANT",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+      "i": 102,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 103,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 104,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "none-matched gone"
+    },
+    {
+      "i": 105,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Your documents don't mention this\" absent"
+    },
+    {
+      "i": 106,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"You're welcome\" absent"
+    },
+    {
+      "i": 107,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "citations appeared"
+    },
+    {
+      "i": 108,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 4761,
+      "detail": "j3-07"
+    },
+    {
+      "i": 109,
+      "op": "dump",
+      "ok": true,
+      "ms": 4,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers. Main Points: • Legislative Structure (Pages 1–2): The U.S. Congress is bicameral, composed of the Senate and House of Representatives; representatives are apportioned by population, while senators serve six-year terms. The House has sole power to impeach, and the Senate holds exclusive authority over impeachment trials with a two-thirds majority requirement for conviction. Both houses can determine their own rules, punish disorderly behavior, and expel representatives with two-thirds concurrence [1]. • Legislative Process (Pages 3–4): A bill must be presented to the President; signing it makes law, or returning objections requiring a two-thirds vote in both houses before becoming law. If the President does not act within ten days (excluding Sundays), the bill becomes law automatically unless Congress adjourns during that period [2]. • Executive Powers and Judicial Structure (Pages 5–6): The Constitution establishes a single supreme court with appellate jurisdiction over cases involving ambassadors, public ministers, consuls, maritime disputes, and state/citizen controversies. It grants the President Commander-in-Chief status, authority to appoint judges and officers with Senate approval, though inferior officials may be appointed by the President alone or via courts [3]. • Treason and State Relations (Pages 7–9): Treason is defined as levying war against the nation, adhering to its enemies, or providing them aid and comfort; conviction requires two witnesses or an open confession. Congress has power to declare treason penalties but cannot attainder citizens without limiting corruption of blood [4]. The Constitution also mandates that each State respect public records from other states while Congress regulates proof methods [4]. Summary of all 9 pages. [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers. Main Points: • Legislative Structure (Pages 1–2): The U.S. Congress is bicameral, composed of the Senate and House of Representatives; representatives are apportioned by population, while senators serve six-year terms. The House has sole power to impeach, and the Senate holds exclusive authority over impeachment trials with a two-thirds majority requirement for conviction. Both houses can determine their own rules, punish disorderly behavior, and expel representatives with two-thirds concurrence [1]. • Legislative Process (Pages 3–4): A bill must be presented to the President; signing it makes law, or returning objections requiring a two-thirds vote in both houses before becoming law. If the President does not act within ten days (excluding Sundays), the bill becomes law automatically unless Congress adjourns during that period [2]. • Executive Powers and Judicial Structure (Pages 5–6): The Constitution establishes a single supreme court with appellate jurisdiction over cases involving ambassadors, public ministers, consuls, maritime disputes, and state/citizen controversies. It grants the President Commander-in-Chief status, authority to appoint judges and officers with Senate approval, though inferior officials may be appointed by the President alone or via courts [3]. • Treason and State Relations (Pages 7–9): Treason is defined as levying war against the nation, adhering to its enemies, or providing them aid and comfort; conviction requires two witnesses or an open confession. Congress has power to declare treason penalties but cannot attainder citizens without limiting corruption of blood [4]. The Constitution also mandates that each State respect public records from other states while Congress regulates proof methods [4]. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muxcz3e9-4-pmhqi80j",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "j3-07"
+    },
+    {
+      "i": 110,
+      "op": "type",
+      "ok": true,
+      "ms": 157,
+      "detail": "composer-input = 24 chars"
+    },
+    {
+      "i": 111,
+      "op": "send",
+      "ok": true,
+      "ms": 165,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 112,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 113,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 15237,
+      "detail": "waitFor docs-hold never appeared in 15000 ms"
+    },
+    {
+      "i": 114,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value docs-hold: no node with that testID is mounted"
+    },
+    {
+      "i": 115,
+      "op": "press",
+      "ok": false,
+      "ms": 2,
+      "detail": "press docs-hold-download: not mounted"
+    },
+    {
+      "i": 116,
+      "op": "idleTimer",
+      "ok": true,
+      "ms": 4,
+      "detail": "idle timer disabled: false",
+      "value": {
+        "text": "false",
+        "props": {
+          "idleTimerDisabled": false
+        }
+      }
+    },
+    {
+      "i": 117,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 118,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 119,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "stop appeared"
+    },
+    {
+      "i": 120,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 121,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 122,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 39716,
+      "detail": "stop gone"
+    },
+    {
+      "i": 123,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2504,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 124,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers. Main Points: • Legislative Structure (Pages 1–2): The U.S. Congress is bicameral, composed of the Senate and House of Representatives; representatives are apportioned by population, while senators serve six-year terms. The House has sole power to impeach, and the Senate holds exclusive authority over impeachment trials with a two-thirds majority requirement for conviction. Both houses can determine their own rules, punish disorderly behavior, and expel representatives with two-thirds concurrence [1]. • Legislative Process (Pages 3–4): A bill must be presented to the President; signing it makes law, or returning objections requiring a two-thirds vote in both houses before becoming law. If the President does not act within ten days (excluding Sundays), the bill becomes law automatically unless Congress adjourns during that period [2]. • Executive Powers and Judicial Structure (Pages 5–6): The Constitution establishes a single supreme court with appellate jurisdiction over cases involving ambassadors, public ministers, consuls, maritime disputes, and state/citizen controversies. It grants the President Commander-in-Chief status, authority to appoint judges and officers with Senate approval, though inferior officials may be appointed by the President alone or via courts [3]. • Treason and State Relations (Pages 7–9): Treason is defined as levying war against the nation, adhering to its enemies, or providing them aid and comfort; conviction requires two witnesses or an open confession. Congress has power to declare treason penalties but cannot attainder citizens without limiting corruption of blood [4]. The Constitution also mandates that each State respect public records from other states while Congress regulates proof methods [4]. Summary of all 9 pages.",
+        "props": {
+          "source": "This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers.\n\n**Main Points:**\n*   **Legislative Structure (Pages 1–2):** The U.S. Congress is bicameral, composed of the Senate and House of Representatives; representatives are apportioned by population, while senators serve six-year terms. The House has sole power to impeach, and the Senate holds exclusive authority over impeachment trials with a two-thirds majority requirement for conviction. Both houses can determine their own rules, punish disorderly behavior, and expel representatives with two-thirds concurrence [1].\n*   **Legislative Process (Pages 3–4):** A bill must be presented to the President; signing it makes law, or returning objections requiring a two-thirds vote in both houses before becoming law. If the President does not act within ten days (excluding Sundays), the bill becomes law automatically unless Congress adjourns during that period [2].\n*   **Executive Powers and Judicial Structure (Pages 5–6):** The Constitution establishes a single supreme court with appellate jurisdiction over cases involving ambassadors, public ministers, consuls, maritime disputes, and state/citizen controversies. It grants the President Commander-in-Chief status, authority to appoint judges and officers with Senate approval, though inferior officials may be appointed by the President alone or via courts [3].\n*   **Treason and State Relations (Pages 7–9):** Treason is defined as levying war against the nation, adhering to its enemies, or providing them aid and comfort; conviction requires two witnesses or an open confession. Congress has power to declare treason penalties but cannot attainder citizens without limiting corruption of blood [4]. The Constitution also mandates that each State respect public records from other states while Congress regulates proof methods [4].\n\n*Summary of all 9 pages.*",
+          "disabled": false
+        }
+      },
+      "detail": "This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers. Main Points: • Legislative Structure (Pages 1–2): The U.S. Congress is bicamera"
+    },
+    {
+      "i": 125,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+    },
+    {
+      "i": 126,
+      "op": "value",
+      "ok": false,
+      "ms": 2,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 127,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Slowing down to keep the phone cool SWITCH TO INSTANT",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+      "i": 128,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 129,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 3245,
+      "detail": "waitFor none-matched never appeared in 3000 ms"
+    },
+    {
+      "i": 130,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"I cannot know the current weather\" absent"
+    },
+    {
+      "i": 131,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"do not have access to browse\" absent"
+    },
+    {
+      "i": 132,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"safe for family consumption\" absent"
+    },
+    {
+      "i": 133,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 4116,
+      "detail": "j3-08"
+    },
+    {
+      "i": 134,
+      "op": "dump",
+      "ok": true,
+      "ms": 5,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers. Main Points: • Legislative Structure (Pages 1–2): The U.S. Congress is bicameral, composed of the Senate and House of Representatives; representatives are apportioned by population, while senators serve six-year terms. The House has sole power to impeach, and the Senate holds exclusive authority over impeachment trials with a two-thirds majority requirement for conviction. Both houses can determine their own rules, punish disorderly behavior, and expel representatives with two-thirds concurrence [1]. • Legislative Process (Pages 3–4): A bill must be presented to the President; signing it makes law, or returning objections requiring a two-thirds vote in both houses before becoming law. If the President does not act within ten days (excluding Sundays), the bill becomes law automatically unless Congress adjourns during that period [2]. • Executive Powers and Judicial Structure (Pages 5–6): The Constitution establishes a single supreme court with appellate jurisdiction over cases involving ambassadors, public ministers, consuls, maritime disputes, and state/citizen controversies. It grants the President Commander-in-Chief status, authority to appoint judges and officers with Senate approval, though inferior officials may be appointed by the President alone or via courts [3]. • Treason and State Relations (Pages 7–9): Treason is defined as levying war against the nation, adhering to its enemies, or providing them aid and comfort; conviction requires two witnesses or an open confession. Congress has power to declare treason penalties but cannot attainder citizens without limiting corruption of blood [4]. The Constitution also mandates that each State respect public records from other states while Congress regulates proof methods [4]. Summary of all 9 pages. [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers. Main Points: • Legislative Structure (Pages 1–2): The U.S. Congress is bicameral, composed of the Senate and House of Representatives; representatives are apportioned by population, while senators serve six-year terms. The House has sole power to impeach, and the Senate holds exclusive authority over impeachment trials with a two-thirds majority requirement for conviction. Both houses can determine their own rules, punish disorderly behavior, and expel representatives with two-thirds concurrence [1]. • Legislative Process (Pages 3–4): A bill must be presented to the President; signing it makes law, or returning objections requiring a two-thirds vote in both houses before becoming law. If the President does not act within ten days (excluding Sundays), the bill becomes law automatically unless Congress adjourns during that period [2]. • Executive Powers and Judicial Structure (Pages 5–6): The Constitution establishes a single supreme court with appellate jurisdiction over cases involving ambassadors, public ministers, consuls, maritime disputes, and state/citizen controversies. It grants the President Commander-in-Chief status, authority to appoint judges and officers with Senate approval, though inferior officials may be appointed by the President alone or via courts [3]. • Treason and State Relations (Pages 7–9): Treason is defined as levying war against the nation, adhering to its enemies, or providing them aid and comfort; conviction requires two witnesses or an open confession. Congress has power to declare treason penalties but cannot attainder citizens without limiting corruption of blood [4]. The Constitution also mandates that each State respect public records from other states while Congress regulates proof methods [4]. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muxcz3e9-4-pmhqi80j",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "j3-08"
+    },
+    {
+      "i": 135,
+      "op": "type",
+      "ok": true,
+      "ms": 156,
+      "detail": "composer-input = 20 chars"
+    },
+    {
+      "i": 136,
+      "op": "send",
+      "ok": true,
+      "ms": 212,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 137,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 138,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 15240,
+      "detail": "waitFor docs-hold never appeared in 15000 ms"
+    },
+    {
+      "i": 139,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value docs-hold: no node with that testID is mounted"
+    },
+    {
+      "i": 140,
+      "op": "press",
+      "ok": false,
+      "ms": 4,
+      "detail": "press docs-hold-download: not mounted"
+    },
+    {
+      "i": 141,
+      "op": "idleTimer",
+      "ok": true,
+      "ms": 0,
+      "detail": "idle timer disabled: false",
+      "value": {
+        "text": "false",
+        "props": {
+          "idleTimerDisabled": false
+        }
+      }
+    },
+    {
+      "i": 142,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 143,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 144,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "stop appeared"
+    },
+    {
+      "i": 145,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 146,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 147,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 25469,
+      "detail": "stop gone"
+    },
+    {
+      "i": 148,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2503,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 149,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers. Main Points: • Legislative Structure (Pages 1–2): The U.S. Congress is bicameral, composed of the Senate and House of Representatives; representatives are apportioned by population, while senators serve six-year terms. The House has sole power to impeach, and the Senate holds exclusive authority over impeachment trials with a two-thirds majority requirement for conviction. Both houses can determine their own rules, punish disorderly behavior, and expel representatives with two-thirds concurrence [1]. • Legislative Process (Pages 3–4): A bill must be presented to the President; signing it makes law, or returning objections requiring a two-thirds vote in both houses before becoming law. If the President does not act within ten days (excluding Sundays), the bill becomes law automatically unless Congress adjourns during that period [2]. • Executive Powers and Judicial Structure (Pages 5–6): The Constitution establishes a single supreme court with appellate jurisdiction over cases involving ambassadors, public ministers, consuls, maritime disputes, and state/citizen controversies. It grants the President Commander-in-Chief status, authority to appoint judges and officers with Senate approval, though inferior officials may be appointed by the President alone or via courts [3]. • Treason and State Relations (Pages 7–9): Treason is defined as levying war against the nation, adhering to its enemies, or providing them aid and comfort; conviction requires two witnesses or an open confession. Congress has power to declare treason penalties but cannot attainder citizens without limiting corruption of blood [4]. The Constitution also mandates that each State respect public records from other states while Congress regulates proof methods [4]. Summary of all 9 pages.",
+        "props": {
+          "source": "This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers.\n\n**Main Points:**\n*   **Legislative Structure (Pages 1–2):** The U.S. Congress is bicameral, composed of the Senate and House of Representatives; representatives are apportioned by population, while senators serve six-year terms. The House has sole power to impeach, and the Senate holds exclusive authority over impeachment trials with a two-thirds majority requirement for conviction. Both houses can determine their own rules, punish disorderly behavior, and expel representatives with two-thirds concurrence [1].\n*   **Legislative Process (Pages 3–4):** A bill must be presented to the President; signing it makes law, or returning objections requiring a two-thirds vote in both houses before becoming law. If the President does not act within ten days (excluding Sundays), the bill becomes law automatically unless Congress adjourns during that period [2].\n*   **Executive Powers and Judicial Structure (Pages 5–6):** The Constitution establishes a single supreme court with appellate jurisdiction over cases involving ambassadors, public ministers, consuls, maritime disputes, and state/citizen controversies. It grants the President Commander-in-Chief status, authority to appoint judges and officers with Senate approval, though inferior officials may be appointed by the President alone or via courts [3].\n*   **Treason and State Relations (Pages 7–9):** Treason is defined as levying war against the nation, adhering to its enemies, or providing them aid and comfort; conviction requires two witnesses or an open confession. Congress has power to declare treason penalties but cannot attainder citizens without limiting corruption of blood [4]. The Constitution also mandates that each State respect public records from other states while Congress regulates proof methods [4].\n\n*Summary of all 9 pages.*",
+          "disabled": false
+        }
+      },
+      "detail": "This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers. Main Points: • Legislative Structure (Pages 1–2): The U.S. Congress is bicamera"
+    },
+    {
+      "i": 150,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+    },
+    {
+      "i": 151,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 152,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Slowing down to keep the phone cool SWITCH TO INSTANT",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+      "i": 153,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 154,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "none-matched gone"
+    },
+    {
+      "i": 155,
+      "op": "assertText",
+      "ok": true,
+      "ms": 2,
+      "detail": "\"Your documents don't mention this\" absent"
+    },
+    {
+      "i": 156,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "citations appeared"
+    },
+    {
+      "i": 157,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3179,
+      "detail": "j3-09"
+    },
+    {
+      "i": 158,
+      "op": "dump",
+      "ok": true,
+      "ms": 6,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers. Main Points: • Legislative Structure (Pages 1–2): The U.S. Congress is bicameral, composed of the Senate and House of Representatives; representatives are apportioned by population, while senators serve six-year terms. The House has sole power to impeach, and the Senate holds exclusive authority over impeachment trials with a two-thirds majority requirement for conviction. Both houses can determine their own rules, punish disorderly behavior, and expel representatives with two-thirds concurrence [1]. • Legislative Process (Pages 3–4): A bill must be presented to the President; signing it makes law, or returning objections requiring a two-thirds vote in both houses before becoming law. If the President does not act within ten days (excluding Sundays), the bill becomes law automatically unless Congress adjourns during that period [2]. • Executive Powers and Judicial Structure (Pages 5–6): The Constitution establishes a single supreme court with appellate jurisdiction over cases involving ambassadors, public ministers, consuls, maritime disputes, and state/citizen controversies. It grants the President Commander-in-Chief status, authority to appoint judges and officers with Senate approval, though inferior officials may be appointed by the President alone or via courts [3]. • Treason and State Relations (Pages 7–9): Treason is defined as levying war against the nation, adhering to its enemies, or providing them aid and comfort; conviction requires two witnesses or an open confession. Congress has power to declare treason penalties but cannot attainder citizens without limiting corruption of blood [4]. The Constitution also mandates that each State respect public records from other states while Congress regulates proof methods [4]. Summary of all 9 pages. [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers. Main Points: • Legislative Structure (Pages 1–2): The U.S. Congress is bicameral, composed of the Senate and House of Representatives; representatives are apportioned by population, while senators serve six-year terms. The House has sole power to impeach, and the Senate holds exclusive authority over impeachment trials with a two-thirds majority requirement for conviction. Both houses can determine their own rules, punish disorderly behavior, and expel representatives with two-thirds concurrence [1]. • Legislative Process (Pages 3–4): A bill must be presented to the President; signing it makes law, or returning objections requiring a two-thirds vote in both houses before becoming law. If the President does not act within ten days (excluding Sundays), the bill becomes law automatically unless Congress adjourns during that period [2]. • Executive Powers and Judicial Structure (Pages 5–6): The Constitution establishes a single supreme court with appellate jurisdiction over cases involving ambassadors, public ministers, consuls, maritime disputes, and state/citizen controversies. It grants the President Commander-in-Chief status, authority to appoint judges and officers with Senate approval, though inferior officials may be appointed by the President alone or via courts [3]. • Treason and State Relations (Pages 7–9): Treason is defined as levying war against the nation, adhering to its enemies, or providing them aid and comfort; conviction requires two witnesses or an open confession. Congress has power to declare treason penalties but cannot attainder citizens without limiting corruption of blood [4]. The Constitution also mandates that each State respect public records from other states while Congress regulates proof methods [4]. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muxcz3e9-4-pmhqi80j",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "j3-09"
+    },
+    {
+      "i": 159,
+      "op": "type",
+      "ok": true,
+      "ms": 154,
+      "detail": "composer-input = 20 chars"
+    },
+    {
+      "i": 160,
+      "op": "send",
+      "ok": true,
+      "ms": 176,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 161,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 162,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 15226,
+      "detail": "waitFor docs-hold never appeared in 15000 ms"
+    },
+    {
+      "i": 163,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value docs-hold: no node with that testID is mounted"
+    },
+    {
+      "i": 164,
+      "op": "press",
+      "ok": false,
+      "ms": 3,
+      "detail": "press docs-hold-download: not mounted"
+    },
+    {
+      "i": 165,
+      "op": "idleTimer",
+      "ok": true,
+      "ms": 0,
+      "detail": "idle timer disabled: false",
+      "value": {
+        "text": "false",
+        "props": {
+          "idleTimerDisabled": false
+        }
+      }
+    },
+    {
+      "i": 166,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "docs-hold gone"
+    },
+    {
+      "i": 167,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 168,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "stop appeared"
+    },
+    {
+      "i": 169,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 170,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 171,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 30914,
+      "detail": "stop gone"
+    },
+    {
+      "i": 172,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2504,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 173,
+      "op": "value",
+      "ok": true,
+      "ms": 3,
+      "value": {
+        "text": "This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers. Main Points: • Legislative Structure (Pages 1–2): The U.S. Congress is bicameral, composed of the Senate and House of Representatives; representatives are apportioned by population, while senators serve six-year terms. The House has sole power to impeach, and the Senate holds exclusive authority over impeachment trials with a two-thirds majority requirement for conviction. Both houses can determine their own rules, punish disorderly behavior, and expel representatives with two-thirds concurrence [1]. • Legislative Process (Pages 3–4): A bill must be presented to the President; signing it makes law, or returning objections requiring a two-thirds vote in both houses before becoming law. If the President does not act within ten days (excluding Sundays), the bill becomes law automatically unless Congress adjourns during that period [2]. • Executive Powers and Judicial Structure (Pages 5–6): The Constitution establishes a single supreme court with appellate jurisdiction over cases involving ambassadors, public ministers, consuls, maritime disputes, and state/citizen controversies. It grants the President Commander-in-Chief status, authority to appoint judges and officers with Senate approval, though inferior officials may be appointed by the President alone or via courts [3]. • Treason and State Relations (Pages 7–9): Treason is defined as levying war against the nation, adhering to its enemies, or providing them aid and comfort; conviction requires two witnesses or an open confession. Congress has power to declare treason penalties but cannot attainder citizens without limiting corruption of blood [4]. The Constitution also mandates that each State respect public records from other states while Congress regulates proof methods [4]. Summary of all 9 pages.",
+        "props": {
+          "source": "This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers.\n\n**Main Points:**\n*   **Legislative Structure (Pages 1–2):** The U.S. Congress is bicameral, composed of the Senate and House of Representatives; representatives are apportioned by population, while senators serve six-year terms. The House has sole power to impeach, and the Senate holds exclusive authority over impeachment trials with a two-thirds majority requirement for conviction. Both houses can determine their own rules, punish disorderly behavior, and expel representatives with two-thirds concurrence [1].\n*   **Legislative Process (Pages 3–4):** A bill must be presented to the President; signing it makes law, or returning objections requiring a two-thirds vote in both houses before becoming law. If the President does not act within ten days (excluding Sundays), the bill becomes law automatically unless Congress adjourns during that period [2].\n*   **Executive Powers and Judicial Structure (Pages 5–6):** The Constitution establishes a single supreme court with appellate jurisdiction over cases involving ambassadors, public ministers, consuls, maritime disputes, and state/citizen controversies. It grants the President Commander-in-Chief status, authority to appoint judges and officers with Senate approval, though inferior officials may be appointed by the President alone or via courts [3].\n*   **Treason and State Relations (Pages 7–9):** Treason is defined as levying war against the nation, adhering to its enemies, or providing them aid and comfort; conviction requires two witnesses or an open confession. Congress has power to declare treason penalties but cannot attainder citizens without limiting corruption of blood [4]. The Constitution also mandates that each State respect public records from other states while Congress regulates proof methods [4].\n\n*Summary of all 9 pages.*",
+          "disabled": false
+        }
+      },
+      "detail": "This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers. Main Points: • Legislative Structure (Pages 1–2): The U.S. Congress is bicamera"
+    },
+    {
+      "i": 174,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+    },
+    {
+      "i": 175,
+      "op": "value",
+      "ok": false,
+      "ms": 2,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 176,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Slowing down to keep the phone cool SWITCH TO INSTANT",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+      "i": 177,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 178,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "none-matched gone"
+    },
+    {
+      "i": 179,
+      "op": "assertText",
+      "ok": true,
+      "ms": 4,
+      "detail": "\"Your documents don't mention this\" absent"
+    },
+    {
+      "i": 180,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "citations appeared"
+    },
+    {
+      "i": 181,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3797,
+      "detail": "j3-10"
+    },
+    {
+      "i": 182,
+      "op": "dump",
+      "ok": true,
+      "ms": 7,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize it",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers. Main Points: • Legislative Structure (Pages 1–2): The U.S. Congress is bicameral, composed of the Senate and House of Representatives; representatives are apportioned by population, while senators serve six-year terms. The House has sole power to impeach, and the Senate holds exclusive authority over impeachment trials with a two-thirds majority requirement for conviction. Both houses can determine their own rules, punish disorderly behavior, and expel representatives with two-thirds concurrence [1]. • Legislative Process (Pages 3–4): A bill must be presented to the President; signing it makes law, or returning objections requiring a two-thirds vote in both houses before becoming law. If the President does not act within ten days (excluding Sundays), the bill becomes law automatically unless Congress adjourns during that period [2]. • Executive Powers and Judicial Structure (Pages 5–6): The Constitution establishes a single supreme court with appellate jurisdiction over cases involving ambassadors, public ministers, consuls, maritime disputes, and state/citizen controversies. It grants the President Commander-in-Chief status, authority to appoint judges and officers with Senate approval, though inferior officials may be appointed by the President alone or via courts [3]. • Treason and State Relations (Pages 7–9): Treason is defined as levying war against the nation, adhering to its enemies, or providing them aid and comfort; conviction requires two witnesses or an open confession. Congress has power to declare treason penalties but cannot attainder citizens without limiting corruption of blood [4]. The Constitution also mandates that each State respect public records from other states while Congress regulates proof methods [4]. Summary of all 9 pages. [1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9 Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "This file is a summary of the first two pages of the United States Constitution, detailing its structure and key powers. Main Points: • Legislative Structure (Pages 1–2): The U.S. Congress is bicameral, composed of the Senate and House of Representatives; representatives are apportioned by population, while senators serve six-year terms. The House has sole power to impeach, and the Senate holds exclusive authority over impeachment trials with a two-thirds majority requirement for conviction. Both houses can determine their own rules, punish disorderly behavior, and expel representatives with two-thirds concurrence [1]. • Legislative Process (Pages 3–4): A bill must be presented to the President; signing it makes law, or returning objections requiring a two-thirds vote in both houses before becoming law. If the President does not act within ten days (excluding Sundays), the bill becomes law automatically unless Congress adjourns during that period [2]. • Executive Powers and Judicial Structure (Pages 5–6): The Constitution establishes a single supreme court with appellate jurisdiction over cases involving ambassadors, public ministers, consuls, maritime disputes, and state/citizen controversies. It grants the President Commander-in-Chief status, authority to appoint judges and officers with Senate approval, though inferior officials may be appointed by the President alone or via courts [3]. • Treason and State Relations (Pages 7–9): Treason is defined as levying war against the nation, adhering to its enemies, or providing them aid and comfort; conviction requires two witnesses or an open confession. Congress has power to declare treason penalties but cannot attainder citizens without limiting corruption of blood [4]. The Constitution also mandates that each State respect public records from other states while Congress regulates proof methods [4]. Summary of all 9 pages."
+        },
+        {
+          "testID": "citations",
+          "text": "[1] constitution-9pages.pdf · p.1–2 [2] constitution-9pages.pdf · p.3–4 [3] constitution-9pages.pdf · p.5–6 [4] constitution-9pages.pdf · p.7–9"
+        },
+        {
+          "testID": "citation-1",
+          "text": "[1] constitution-9pages.pdf · p.1–2",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.1–2",
+          "pressable": true
+        },
+        {
+          "testID": "citation-2",
+          "text": "[2] constitution-9pages.pdf · p.3–4",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.3–4",
+          "pressable": true
+        },
+        {
+          "testID": "citation-3",
+          "text": "[3] constitution-9pages.pdf · p.5–6",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.5–6",
+          "pressable": true
+        },
+        {
+          "testID": "citation-4",
+          "text": "[4] constitution-9pages.pdf · p.7–9",
+          "role": "button",
+          "label": "Open constitution-9pages.pdf · p.7–9",
+          "pressable": true
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "constitution-9pages.pdf"
+        },
+        {
+          "testID": "attached-chip-muxcz3e9-4-pmhqi80j",
+          "text": "constitution-9pages.pdf",
+          "role": "button",
+          "label": "Remove constitution-9pages.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "j3-10"
+    }
+  ],
+  "errors": [
+    "step 12 (press): press model-sheet-use-fast: not mounted",
+    "step 48 (value): value none-matched: no node with that testID is mounted",
+    "step 62 (value): value none-matched: no node with that testID is mounted",
+    "step 81 (value): value none-matched: no node with that testID is mounted",
+    "step 100 (value): value none-matched: no node with that testID is mounted",
+    "step 113 (waitFor): waitFor docs-hold never appeared in 15000 ms",
+    "step 114 (value): value docs-hold: no node with that testID is mounted",
+    "step 115 (press): press docs-hold-download: not mounted",
+    "step 126 (value): value none-matched: no node with that testID is mounted",
+    "step 129 (waitFor): waitFor none-matched never appeared in 3000 ms",
+    "step 138 (waitFor): waitFor docs-hold never appeared in 15000 ms",
+    "step 139 (value): value docs-hold: no node with that testID is mounted",
+    "step 140 (press): press docs-hold-download: not mounted",
+    "step 151 (value): value none-matched: no node with that testID is mounted",
+    "step 162 (waitFor): waitFor docs-hold never appeared in 15000 ms",
+    "step 163 (value): value docs-hold: no node with that testID is mounted",
+    "step 164 (press): press docs-hold-download: not mounted",
+    "step 175 (value): value none-matched: no node with that testID is mounted",
+    "console.log: [chat] plain=acknowledgement window=3/3 maxTokens=224",
+    "console.log: [chat] plain=follow-up window=3/5 maxTokens=1024",
+    "console.log: [chat] plain=follow-up window=7/7 maxTokens=1024",
+    "console.log: [chat] plain=follow-up window=9/9 maxTokens=1024"
+  ]
+}

@@ -1,0 +1,632 @@
+[
+ {
+  "script": "j1-onboard",
+  "name": "j1-01",
+  "desc": "Welcome on a fresh install"
+ },
+ {
+  "script": "j1-onboard",
+  "name": "j1-02",
+  "desc": "the model step, the source line names models.inbornapp.com"
+ },
+ {
+  "script": "j1-onboard",
+  "name": "j1-03",
+  "desc": "the first chat, chip INSTANT"
+ },
+ {
+  "script": "j1-onboard",
+  "name": "j1-04",
+  "desc": "'Hi' answered"
+ },
+ {
+  "script": "j1-onboard",
+  "name": "j1-05",
+  "desc": "past the goal: the Chats list"
+ },
+ {
+  "script": "j1-onboard",
+  "name": "j1-06",
+  "desc": "back in the chat"
+ },
+ {
+  "script": "j1-onboard",
+  "name": "j1-07",
+  "desc": "past the goal: 'What can you do?' answered"
+ },
+ {
+  "script": "j2-install-fast",
+  "name": "j2-01",
+  "desc": "the vault, Fast not installed"
+ },
+ {
+  "script": "j2-install-fast",
+  "name": "j2-02",
+  "desc": "Fast downloading"
+ },
+ {
+  "script": "j2-install-fast",
+  "name": "j2-03",
+  "desc": "Fast installed"
+ },
+ {
+  "script": "j2-install-fast",
+  "name": "j2-04",
+  "desc": "past the goal: a new chat, which model it opens on"
+ },
+ {
+  "script": "j2-install-fast",
+  "name": "j2-05",
+  "desc": "the model sheet"
+ },
+ {
+  "script": "j2-install-fast",
+  "name": "j2-06",
+  "desc": "the vault after the install"
+ },
+ {
+  "script": "j6a-card",
+  "name": "j6-01",
+  "desc": "the index card (468 MB) before the download"
+ },
+ {
+  "script": "j6a-card",
+  "name": "j6-02",
+  "desc": "Cancel: the chat and its file stay"
+ },
+ {
+  "script": "j6a-card",
+  "name": "j6-03",
+  "desc": "past the goal: 'thanks' after Cancel"
+ },
+ {
+  "script": "j6a-card",
+  "name": "j6-04",
+  "desc": "the composer at its tallest (file row + Redact row)"
+ },
+ {
+  "script": "j6a-card",
+  "name": "j6-05",
+  "desc": "Chats"
+ },
+ {
+  "script": "j6a-card",
+  "name": "j6-06",
+  "desc": "back in the chat"
+ },
+ {
+  "script": "p3-founder-fast",
+  "name": "p3-01",
+  "desc": "FAST: the founder's file attached"
+ },
+ {
+  "script": "p3-founder-fast",
+  "name": "p3-02",
+  "desc": "FAST: reading the pages"
+ },
+ {
+  "script": "p3-founder-fast",
+  "name": "p3-03",
+  "desc": "FAST: 'Summarize it' → the summary with chips"
+ },
+ {
+  "script": "p3-founder-fast",
+  "name": "p3-04",
+  "desc": "FAST: 'Thanks'"
+ },
+ {
+  "script": "p3-founder-fast",
+  "name": "p3-05",
+  "desc": "FAST: 'shorter' → a shorter summary WITH the chips"
+ },
+ {
+  "script": "p3-founder-fast",
+  "name": "p3-06",
+  "desc": "FAST: 'make it 3 bullet points' → chips kept, no stray [n]"
+ },
+ {
+  "script": "p3-founder-fast",
+  "name": "p3-07",
+  "desc": "FAST: 'translate it to French' → chips kept"
+ },
+ {
+  "script": "p3-founder-fast",
+  "name": "p3-08",
+  "desc": "FAST: 'give me a pancake recipe' → no chip, the none-matched line"
+ },
+ {
+  "script": "p3-founder-fast",
+  "name": "p3-09",
+  "desc": "FAST: 'What does it say about deleting my information?' → chips"
+ },
+ {
+  "script": "p3-founder-fast",
+  "name": "p3-10",
+  "desc": "FAST: the same question again → chips"
+ },
+ {
+  "script": "p3-founder-fast",
+  "name": "p3-11",
+  "desc": "FAST: Chats"
+ },
+ {
+  "script": "p3-founder-fast",
+  "name": "p3-12",
+  "desc": "FAST: back"
+ },
+ {
+  "script": "p3-founder-instant",
+  "name": "p3i-01",
+  "desc": "INSTANT: the founder's file attached"
+ },
+ {
+  "script": "p3-founder-instant",
+  "name": "p3i-02",
+  "desc": "INSTANT: reading the pages"
+ },
+ {
+  "script": "p3-founder-instant",
+  "name": "p3i-03",
+  "desc": "INSTANT: 'Summarize it' → the summary with chips"
+ },
+ {
+  "script": "p3-founder-instant",
+  "name": "p3i-04",
+  "desc": "INSTANT: 'shorter' → a shorter summary WITH the chips"
+ },
+ {
+  "script": "p3-founder-instant",
+  "name": "p3i-05",
+  "desc": "INSTANT: 'make it 3 bullet points' → chips kept, no stray [n]"
+ },
+ {
+  "script": "p3-founder-instant",
+  "name": "p3i-06",
+  "desc": "INSTANT: 'give me a pancake recipe' → no chip, the none-matched line"
+ },
+ {
+  "script": "j3-constitution-fast",
+  "name": "j3-01",
+  "desc": "FAST: the constitution attached"
+ },
+ {
+  "script": "j3-constitution-fast",
+  "name": "j3-02",
+  "desc": "FAST: reading the pages"
+ },
+ {
+  "script": "j3-constitution-fast",
+  "name": "j3-03",
+  "desc": "FAST: 'Summarize it' → the summary with chips"
+ },
+ {
+  "script": "j3-constitution-fast",
+  "name": "j3-04",
+  "desc": "FAST: 'Thanks'"
+ },
+ {
+  "script": "j3-constitution-fast",
+  "name": "j3-05",
+  "desc": "FAST: 'shorter' → a shorter summary WITH the chips"
+ },
+ {
+  "script": "j3-constitution-fast",
+  "name": "j3-06",
+  "desc": "FAST: 'make it 3 bullet points' → chips kept, no stray [n]"
+ },
+ {
+  "script": "j3-constitution-fast",
+  "name": "j3-07",
+  "desc": "FAST: 'translate it to French' → chips kept"
+ },
+ {
+  "script": "j3-constitution-fast",
+  "name": "j3-08",
+  "desc": "FAST: 'give me a pancake recipe' → no chip, the none-matched line"
+ },
+ {
+  "script": "j3-constitution-fast",
+  "name": "j3-09",
+  "desc": "FAST: 'Who can veto a bill?' → chips"
+ },
+ {
+  "script": "j3-constitution-fast",
+  "name": "j3-10",
+  "desc": "FAST: the same question again → chips"
+ },
+ {
+  "script": "j3-constitution-instant",
+  "name": "j3-11",
+  "desc": "INSTANT: the constitution attached"
+ },
+ {
+  "script": "j3-constitution-instant",
+  "name": "j3-12",
+  "desc": "INSTANT: reading the pages"
+ },
+ {
+  "script": "j3-constitution-instant",
+  "name": "j3-13",
+  "desc": "INSTANT: 'Summarize it' → the summary with chips"
+ },
+ {
+  "script": "j3-constitution-instant",
+  "name": "j3-14",
+  "desc": "INSTANT: 'shorter' → a shorter summary WITH the chips"
+ },
+ {
+  "script": "j3-constitution-instant",
+  "name": "j3-15",
+  "desc": "INSTANT: 'make it 3 bullet points' → chips kept, no stray [n]"
+ },
+ {
+  "script": "j3-constitution-instant",
+  "name": "j3-16",
+  "desc": "INSTANT: 'give me a pancake recipe' → no chip, the none-matched line"
+ },
+ {
+  "script": "p3b-founder-again",
+  "name": "p3-13",
+  "desc": "FAST: the same question again → chips"
+ },
+ {
+  "script": "j3x-pancake-probe",
+  "name": "j3-17",
+  "desc": "FAST probe: 'give me a pancake recipe' again in the constitution chat"
+ },
+ {
+  "script": "j4-sheet-instant",
+  "name": "j4-01",
+  "desc": "INSTANT: the Ask sheet on the constitution (Pro, so the stats line shows)"
+ },
+ {
+  "script": "j4-sheet-instant",
+  "name": "j4-02",
+  "desc": "INSTANT: 'Who won the 1998 World Cup?' → the opener only, `0 passages`, no tok/s"
+ },
+ {
+  "script": "j4-sheet-instant",
+  "name": "j4-03",
+  "desc": "INSTANT: 'What does it say about the moon?' → the opener only, `0 passages`, no tok/s"
+ },
+ {
+  "script": "j4-sheet-instant",
+  "name": "j4-04",
+  "desc": "INSTANT: 'Who wrote this report?' → the opener only, `0 passages`, no tok/s"
+ },
+ {
+  "script": "j4-sheet-instant",
+  "name": "j4-05",
+  "desc": "INSTANT: 'Who can veto a bill?' → an answer with chips"
+ },
+ {
+  "script": "j4-sheet-instant",
+  "name": "j4-06",
+  "desc": "INSTANT: strict on, 'Who won the 1998 World Cup?' → the same opener"
+ },
+ {
+  "script": "j4-sheet-instant",
+  "name": "j4-07",
+  "desc": "INSTANT: strict off again, 'thank you' → the plain line"
+ },
+ {
+  "script": "j4-sheet-instant",
+  "name": "j4-08",
+  "desc": "INSTANT: 'And now' → the plain line"
+ },
+ {
+  "script": "j4-sheet-fast",
+  "name": "j4-09",
+  "desc": "FAST: the Ask sheet on the constitution (Pro, so the stats line shows)"
+ },
+ {
+  "script": "j4-sheet-fast",
+  "name": "j4-10",
+  "desc": "FAST: 'Who won the 1998 World Cup?' → the opener only, `0 passages`, no tok/s"
+ },
+ {
+  "script": "j4-sheet-fast",
+  "name": "j4-11",
+  "desc": "FAST: 'What does it say about the moon?' → the opener only, `0 passages`, no tok/s"
+ },
+ {
+  "script": "j4-sheet-fast",
+  "name": "j4-12",
+  "desc": "FAST: 'Who wrote this report?' → the opener only, `0 passages`, no tok/s"
+ },
+ {
+  "script": "j4-sheet-fast",
+  "name": "j4-13",
+  "desc": "FAST: 'Who can veto a bill?' → an answer with chips"
+ },
+ {
+  "script": "j4-sheet-fast",
+  "name": "j4-14",
+  "desc": "FAST: strict on, 'Who won the 1998 World Cup?' → the same opener"
+ },
+ {
+  "script": "j4-sheet-fast",
+  "name": "j4-15",
+  "desc": "FAST: strict off again, 'thank you' → the plain line"
+ },
+ {
+  "script": "j4-sheet-fast",
+  "name": "j4-16",
+  "desc": "FAST: 'And now' → the plain line"
+ },
+ {
+  "script": "j6b-stop",
+  "name": "j6-07",
+  "desc": "Stop mid-answer: the text so far + 'Stopped · Continue'"
+ },
+ {
+  "script": "j6b-stop",
+  "name": "j6-08",
+  "desc": "past the goal: 'What is the capital of France?' after the stop"
+ },
+ {
+  "script": "j6b-stop",
+  "name": "j6-09",
+  "desc": "past the goal: 'thanks'"
+ },
+ {
+  "script": "j6c-pictures-instant",
+  "name": "j6-10",
+  "desc": "INSTANT: the scanned PDF, 'What do you see?'"
+ },
+ {
+  "script": "j6c-pictures-instant",
+  "name": "j6-11",
+  "desc": "INSTANT: the café photo sent"
+ },
+ {
+  "script": "j6c-pictures-instant",
+  "name": "j6-12",
+  "desc": "INSTANT: the café photo answered"
+ },
+ {
+  "script": "j6c-pictures-instant",
+  "name": "j6-13",
+  "desc": "INSTANT: past the goal: 'and the colours?'"
+ },
+ {
+  "script": "j6d-pictures-fast",
+  "name": "j6-14",
+  "desc": "FAST: the scanned PDF, 'What do you see?'"
+ },
+ {
+  "script": "j6d-pictures-fast",
+  "name": "j6-15",
+  "desc": "FAST: the café photo sent"
+ },
+ {
+  "script": "j6d-pictures-fast",
+  "name": "j6-16",
+  "desc": "FAST: the café photo answered"
+ },
+ {
+  "script": "j6d-pictures-fast",
+  "name": "j6-17",
+  "desc": "FAST: past the goal: 'and the colours?'"
+ },
+ {
+  "script": "j6e-hebrew",
+  "name": "j6-18",
+  "desc": "'מה בירת צרפת?' → the bubble right-aligned"
+ },
+ {
+  "script": "j6e-hebrew",
+  "name": "j6-19",
+  "desc": "past the goal: 'What is the capital of Italy?' → LTR"
+ },
+ {
+  "script": "j6e-hebrew",
+  "name": "j6-20",
+  "desc": "the model sheet"
+ },
+ {
+  "script": "j6e-hebrew",
+  "name": "j6-21",
+  "desc": "the vault"
+ },
+ {
+  "script": "j6e-hebrew",
+  "name": "j6-22",
+  "desc": "Settings"
+ },
+ {
+  "script": "j6f-scan-fast",
+  "name": "j6-23",
+  "desc": "FAST: the scanned PDF, 'What do you see?' (again, answered)"
+ },
+ {
+  "script": "j6f-scan-fast",
+  "name": "j6-24",
+  "desc": "FAST: past the goal: 'and the colours?'"
+ },
+ {
+  "script": "j5a-photo-fast",
+  "name": "j5-01",
+  "desc": "Fast: the café photo sent"
+ },
+ {
+  "script": "j5a-photo-fast",
+  "name": "j5-02",
+  "desc": "Fast: the café photo answered with its pack"
+ },
+ {
+  "script": "j5e-after-warning",
+  "name": "j5-03",
+  "desc": "back in the J5 chat after warning 1: chip, quiet line or not"
+ },
+ {
+  "script": "j5e-after-warning",
+  "name": "j5-04",
+  "desc": "a new photo sent on Fast after warning 1"
+ },
+ {
+  "script": "j5e-after-warning",
+  "name": "j5-05",
+  "desc": "the new photo read on Fast (pack attached again)"
+ },
+ {
+  "script": "j5e-after-warning",
+  "name": "j5-06",
+  "desc": "past the goal: 'what colour is the table?'"
+ },
+ {
+  "script": "j7a-explore",
+  "name": "j7-01",
+  "desc": "a new chat: which model, the starter chips"
+ },
+ {
+  "script": "j7a-explore",
+  "name": "j7-02",
+  "desc": "'hey! what is this app?'"
+ },
+ {
+  "script": "j7a-explore",
+  "name": "j7-03",
+  "desc": "'what's the weather like today?' (probe a: echoed system lines)"
+ },
+ {
+  "script": "j7a-explore",
+  "name": "j7-04",
+  "desc": "'give me a pancake recipe' with no file (probe a)"
+ },
+ {
+  "script": "j7a-explore",
+  "name": "j7-05",
+  "desc": "'thanks, and how long do they keep in the fridge?'"
+ },
+ {
+  "script": "j7a-explore",
+  "name": "j7-06",
+  "desc": "'who won the last football World Cup?' (probe a / invented facts)"
+ },
+ {
+  "script": "j7a-explore",
+  "name": "j7-07",
+  "desc": "'my 4 year old won't sleep, any tips?'"
+ },
+ {
+  "script": "j7a-explore",
+  "name": "j7-08",
+  "desc": "the 'Draft a message' chip fills the composer (probe d)"
+ },
+ {
+  "script": "j7a-explore",
+  "name": "j7-09",
+  "desc": "the Draft chip's answer"
+ },
+ {
+  "script": "j7a-explore",
+  "name": "j7-10",
+  "desc": "the model sheet from the chip"
+ },
+ {
+  "script": "j7a-explore",
+  "name": "j7-11",
+  "desc": "Manage → the vault"
+ },
+ {
+  "script": "j7b-explore",
+  "name": "j7-12",
+  "desc": "the Chats list from the chat (footer)"
+ },
+ {
+  "script": "j7b-explore",
+  "name": "j7-13",
+  "desc": "Documents from Chats? (probe c)"
+ },
+ {
+  "script": "j7b-explore",
+  "name": "j7-14",
+  "desc": "Settings"
+ },
+ {
+  "script": "j7b-explore",
+  "name": "j7-15",
+  "desc": "the paywall"
+ },
+ {
+  "script": "j7b-explore",
+  "name": "j7-16",
+  "desc": "after closing the paywall"
+ },
+ {
+  "script": "j7b-explore",
+  "name": "j7-17",
+  "desc": "the turbine report: 'What is the serial number of the turbine?'"
+ },
+ {
+  "script": "j7b-explore",
+  "name": "j7-18",
+  "desc": "'when was it inspected and by whom?' (invented facts?)"
+ },
+ {
+  "script": "j7b-explore",
+  "name": "j7-19",
+  "desc": "'ok great'"
+ },
+ {
+  "script": "j7b-explore",
+  "name": "j7-20",
+  "desc": "'make it a short email to my boss'"
+ },
+ {
+  "script": "j7b-explore",
+  "name": "j7-21",
+  "desc": "Hebrew small talk 'מה שלומך?'"
+ },
+ {
+  "script": "j7c-explore",
+  "name": "j7-22",
+  "desc": "the 'Summarize text' chip fills the composer"
+ },
+ {
+  "script": "j7c-explore",
+  "name": "j7-23",
+  "desc": "a summary of a pasted note"
+ },
+ {
+  "script": "j7c-explore",
+  "name": "j7-24",
+  "desc": "'translate that to Spanish'"
+ },
+ {
+  "script": "j7c-explore",
+  "name": "j7-25",
+  "desc": "the ledger opened"
+ },
+ {
+  "script": "j7c-explore",
+  "name": "j7-26",
+  "desc": "Personas from the Chats footer"
+ },
+ {
+  "script": "j7c-explore",
+  "name": "j7-27",
+  "desc": "the incognito sheet"
+ },
+ {
+  "script": "j7c-explore",
+  "name": "j7-28",
+  "desc": "incognito on Instant: 'what's a good name for a golden retriever puppy?'"
+ },
+ {
+  "script": "j7c-explore",
+  "name": "j7-29",
+  "desc": "a long question on Instant"
+ },
+ {
+  "script": "j7c-explore",
+  "name": "j7-30",
+  "desc": "'thank you!'"
+ },
+ {
+  "script": "j7c-explore",
+  "name": "j7-31",
+  "desc": "back on Fast"
+ }
+]

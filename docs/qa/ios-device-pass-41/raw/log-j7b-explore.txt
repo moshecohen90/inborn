@@ -1,0 +1,137 @@
+04:27:47 pushing 117 steps as j7b-explore
+04:27:54 shot j7-12
+04:28:13 shot j7-13
+04:28:20 shot j7-14
+04:28:25 shot j7-15
+04:28:31 shot j7-16
+04:28:58 shot j7-17
+04:29:10 shot j7-18
+04:29:23 shot j7-19
+04:29:45 shot j7-20
+04:29:59 shot j7-21
+04:30:04 ok     0 deeplink   /chats
+04:30:04 ok     1 waitFor    new-chat appeared
+04:30:04 ok     2 press      new-chat ← onPress
+04:30:04 ok     3 waitFor    start-chat appeared
+04:30:04 ok     4 press      start-chat ← onPress
+04:30:04 ok     5 waitFor    composer-input appeared
+04:30:04 ok     6 waitFor    Loading gone
+04:30:04 ok     7 sleep      1500 ms
+04:30:04 ok     8 value      FAST
+04:30:04 ok     9 press      open-chats ← onPress
+04:30:04 ok    10 waitFor    close-chats appeared
+04:30:04 ok    11 sleep      2000 ms
+04:30:04 ok    12 screenshot j7-12
+04:30:04 ok    13 dump       j7-12
+04:30:04 FAIL  14 waitFor    waitFor drawer-documents never appeared in 3000 ms
+04:30:04 FAIL  15 press      press drawer-documents: not mounted
+04:30:04 FAIL  16 waitFor    waitFor documents-screen never appeared in 10000 ms
+04:30:04 ok    17 sleep      2000 ms
+04:30:04 ok    18 screenshot j7-13
+04:30:04 ok    19 dump       j7-13
+04:30:04 ok    20 deeplink   /settings
+04:30:04 ok    21 waitFor    row-pro appeared
+04:30:04 ok    22 sleep      2000 ms
+04:30:04 ok    23 screenshot j7-14
+04:30:04 ok    24 dump       j7-14
+04:30:04 ok    25 press      row-pro ← onPress
+04:30:04 ok    26 waitFor    close-paywall appeared
+04:30:04 ok    27 sleep      2000 ms
+04:30:04 ok    28 screenshot j7-15
+04:30:04 ok    29 dump       j7-15
+04:30:04 ok    30 press      close-paywall ← onPress
+04:30:04 ok    31 sleep      2000 ms
+04:30:04 ok    32 screenshot j7-16
+04:30:04 ok    33 dump       j7-16
+04:30:04 ok    34 deeplink   /chats
+04:30:04 ok    35 waitFor    new-chat appeared
+04:30:04 ok    36 press      new-chat ← onPress
+04:30:04 ok    37 waitFor    start-chat appeared
+04:30:04 ok    38 press      start-chat ← onPress
+04:30:04 ok    39 waitFor    composer-input appeared
+04:30:04 ok    40 waitFor    Loading gone
+04:30:04 ok    41 sleep      1500 ms
+04:30:04 ok    42 value      FAST
+04:30:04 ok    43 devPrompt  attach: turbine-report-3pages.pdf
+04:30:04 ok    44 waitFor    attached-docs appeared
+04:30:04 ok    45 sleep      10000 ms
+04:30:04 ok    46 value      turbine-report-3pages.pdf
+04:30:04 ok    47 type       composer-input = 41 chars
+04:30:04 ok    48 send       send ← onPress
+04:30:04 ok    49 sleep      2500 ms
+04:30:04 ok    50 waitFor    reading-pages gone
+04:30:04 ok    51 waitFor    reading-docs gone
+04:30:04 ok    52 waitFor    stop gone
+04:30:04 ok    53 sleep      2500 ms
+04:30:04 ok    54 value      The serial number of the turbine is RK-4417, as stated in [1].
+04:30:04 ok    55 value      [1] turbine-report-3pages.pdf · p.1
+04:30:04 FAIL  56 value      value none-matched: no node with that testID is mounted
+04:30:04 ok    57 value      Slowing down to keep the phone cool SWITCH TO INSTANT
+04:30:04 ok    58 value      FAST
+04:30:04 ok    59 screenshot j7-17
+04:30:04 ok    60 dump       j7-17
+04:30:04 ok    61 type       composer-input = 34 chars
+04:30:04 ok    62 send       send ← onPress
+04:30:04 ok    63 sleep      2500 ms
+04:30:04 ok    64 waitFor    reading-pages gone
+04:30:04 ok    65 waitFor    reading-docs gone
+04:30:04 ok    66 waitFor    stop gone
+04:30:04 ok    67 sleep      2500 ms
+04:30:04 ok    68 value      The serial number of the turbine is RK-4417, as stated in [1].
+04:30:04 ok    69 value      [1] turbine-report-3pages.pdf · p.1
+04:30:04 ok    70 value      Nothing in your documents matched this question. Answered without them.
+04:30:04 ok    71 value      Slowing down to keep the phone cool SWITCH TO INSTANT
+04:30:04 ok    72 value      FAST
+04:30:04 ok    73 screenshot j7-18
+04:30:04 ok    74 dump       j7-18
+04:30:04 ok    75 type       composer-input = 8 chars
+04:30:04 ok    76 send       send ← onPress
+04:30:04 ok    77 sleep      2500 ms
+04:30:04 ok    78 waitFor    reading-pages gone
+04:30:04 ok    79 waitFor    reading-docs gone
+04:30:04 ok    80 waitFor    stop gone
+04:30:04 ok    81 sleep      2500 ms
+04:30:04 ok    82 value      The serial number of the turbine is RK-4417, as stated in [1].
+04:30:04 ok    83 value      [1] turbine-report-3pages.pdf · p.1
+04:30:04 FAIL  84 value      value none-matched: no node with that testID is mounted
+04:30:04 ok    85 value      Slowing down to keep the phone cool SWITCH TO INSTANT
+04:30:04 ok    86 value      FAST
+04:30:04 ok    87 screenshot j7-19
+04:30:04 ok    88 dump       j7-19
+04:30:04 ok    89 type       composer-input = 32 chars
+04:30:04 ok    90 send       send ← onPress
+04:30:04 ok    91 sleep      2500 ms
+04:30:04 ok    92 waitFor    reading-pages gone
+04:30:04 ok    93 waitFor    reading-docs gone
+04:30:04 ok    94 waitFor    stop gone
+04:30:04 ok    95 sleep      2500 ms
+04:30:04 ok    96 value      The serial number of the turbine is RK-4417, as stated in [1].
+04:30:04 ok    97 value      [1] turbine-report-3pages.pdf · p.1
+04:30:04 FAIL  98 value      value none-matched: no node with that testID is mounted
+04:30:04 ok    99 value      Slowing down to keep the phone cool SWITCH TO INSTANT
+04:30:04 ok   100 value      FAST
+04:30:04 ok   101 screenshot j7-20
+04:30:04 ok   102 dump       j7-20
+04:30:04 ok   103 type       composer-input = 9 chars
+04:30:04 ok   104 send       send ← onPress
+04:30:04 ok   105 sleep      2500 ms
+04:30:04 ok   106 waitFor    reading-pages gone
+04:30:04 ok   107 waitFor    reading-docs gone
+04:30:04 ok   108 waitFor    stop gone
+04:30:04 ok   109 sleep      2500 ms
+04:30:04 ok   110 value      The serial number of the turbine is RK-4417, as stated in [1].
+04:30:04 ok   111 value      [1] turbine-report-3pages.pdf · p.1
+04:30:04 ok   112 value      Nothing in your documents matched this question. Answered without them.
+04:30:04 ok   113 value      Slowing down to keep the phone cool SWITCH TO INSTANT
+04:30:04 ok   114 value      FAST
+04:30:04 ok   115 screenshot j7-21
+04:30:04 ok   116 dump       j7-21
+04:30:04 111 passed, 6 failed, 10 screenshots → <worktree>/docs/qa/ios-device-pass-41/screens
+04:30:04   ! step 14 (waitFor): waitFor drawer-documents never appeared in 3000 ms
+04:30:04   ! step 15 (press): press drawer-documents: not mounted
+04:30:04   ! step 16 (waitFor): waitFor documents-screen never appeared in 10000 ms
+04:30:04   ! step 56 (value): value none-matched: no node with that testID is mounted
+04:30:04   ! step 84 (value): value none-matched: no node with that testID is mounted
+04:30:04   ! step 98 (value): value none-matched: no node with that testID is mounted
+04:30:04   ! console.log: [chat] plain=acknowledgement window=5/5 maxTokens=224
+04:30:04   ! console.log: [chat] plain=follow-up window=5/7 maxTokens=1024

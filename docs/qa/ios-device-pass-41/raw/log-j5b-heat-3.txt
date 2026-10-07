@@ -1,0 +1,44 @@
+04:04:57 pushing 33 steps as j5b-heat-3
+04:07:50 shot j5-heat-story
+04:09:21 shot j5-heat-title
+04:09:29 ok     0 value      FAST
+04:09:29 FAIL   1 value      value vision-released: no node with that testID is mounted
+04:09:29 ok     2 value      Slowing down to keep the phone cool SWITCH TO INSTANT
+04:09:29 ok     3 type       composer-input = 64 chars
+04:09:29 ok     4 send       send ← onPress
+04:09:29 ok     5 sleep      2500 ms
+04:09:29 ok     6 waitFor    reading-pages gone
+04:09:29 ok     7 waitFor    reading-docs gone
+04:09:29 ok     8 waitFor    stop gone
+04:09:29 ok     9 sleep      2500 ms
+04:09:29 ok    10 value      The image displays an outdoor chalkboard menu mounted on a red brick wall, likely belonging to a cafe or café-
+04:09:29 FAIL  11 value      value citations: no node with that testID is mounted
+04:09:29 FAIL  12 value      value none-matched: no node with that testID is mounted
+04:09:29 ok    13 value      Slowing down to keep the phone cool SWITCH TO INSTANT
+04:09:29 ok    14 value      FAST
+04:09:29 FAIL  15 value      value vision-released: no node with that testID is mounted
+04:09:29 ok    16 screenshot j5-heat-story
+04:09:29 ok    17 dump       j5-heat-story
+04:09:29 ok    18 type       composer-input = 16 chars
+04:09:29 ok    19 send       send ← onPress
+04:09:29 ok    20 sleep      2500 ms
+04:09:29 ok    21 waitFor    reading-pages gone
+04:09:29 ok    22 waitFor    reading-docs gone
+04:09:29 ok    23 waitFor    stop gone
+04:09:29 ok    24 sleep      2500 ms
+04:09:29 ok    25 value      The image displays an outdoor chalkboard menu mounted on a red brick wall, likely belonging to a cafe or café-
+04:09:29 FAIL  26 value      value citations: no node with that testID is mounted
+04:09:29 FAIL  27 value      value none-matched: no node with that testID is mounted
+04:09:29 ok    28 value      Slowing down to keep the phone cool SWITCH TO INSTANT
+04:09:29 ok    29 value      FAST
+04:09:29 FAIL  30 value      value vision-released: no node with that testID is mounted
+04:09:29 ok    31 screenshot j5-heat-title
+04:09:29 ok    32 dump       j5-heat-title
+04:09:29 26 passed, 7 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-41/screens
+04:09:29   ! step 1 (value): value vision-released: no node with that testID is mounted
+04:09:29   ! step 11 (value): value citations: no node with that testID is mounted
+04:09:29   ! step 12 (value): value none-matched: no node with that testID is mounted
+04:09:29   ! step 15 (value): value vision-released: no node with that testID is mounted
+04:09:29   ! step 26 (value): value citations: no node with that testID is mounted
+04:09:29   ! step 27 (value): value none-matched: no node with that testID is mounted
+04:09:29   ! step 30 (value): value vision-released: no node with that testID is mounted

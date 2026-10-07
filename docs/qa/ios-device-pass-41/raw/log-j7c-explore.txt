@@ -1,0 +1,154 @@
+04:31:42 pushing 128 steps as j7c-explore
+04:31:47 shot j7-22
+04:32:00 shot j7-23
+04:32:16 shot j7-24
+04:32:22 shot j7-25-ledger
+04:32:28 shot j7-26
+04:32:33 shot j7-27
+04:32:53 shot j7-28
+04:33:11 shot j7-29
+04:33:21 shot j7-30
+04:33:32 shot j7-31
+04:33:37 ok     0 deeplink   /chats
+04:33:37 ok     1 waitFor    new-chat appeared
+04:33:37 ok     2 press      new-chat ← onPress
+04:33:37 ok     3 waitFor    start-chat appeared
+04:33:37 ok     4 press      start-chat ← onPress
+04:33:37 ok     5 waitFor    composer-input appeared
+04:33:37 ok     6 waitFor    Loading gone
+04:33:37 ok     7 sleep      1500 ms
+04:33:37 ok     8 value      FAST
+04:33:37 ok     9 press      suggestion-summarize ← onPress
+04:33:37 ok    10 sleep      1500 ms
+04:33:37 ok    11 screenshot j7-22
+04:33:37 ok    12 dump       j7-22
+04:33:37 ok    13 type       composer-input = 145 chars
+04:33:37 ok    14 type       composer-input = 145 chars
+04:33:37 ok    15 send       send ← onPress
+04:33:37 ok    16 sleep      2500 ms
+04:33:37 ok    17 waitFor    reading-pages gone
+04:33:37 ok    18 waitFor    reading-docs gone
+04:33:37 ok    19 waitFor    stop gone
+04:33:37 ok    20 sleep      2500 ms
+04:33:37 ok    21 value      The meeting was moved from Tuesday to Thursday at 3pm due to the client's travel schedule. Please bring Q3 num
+04:33:37 FAIL  22 value      value citations: no node with that testID is mounted
+04:33:37 FAIL  23 value      value none-matched: no node with that testID is mounted
+04:33:37 ok    24 value      Slowing down to keep the phone cool SWITCH TO INSTANT
+04:33:37 ok    25 value      FAST
+04:33:37 ok    26 screenshot j7-23
+04:33:37 ok    27 dump       j7-23
+04:33:37 ok    28 type       composer-input = 25 chars
+04:33:37 ok    29 send       send ← onPress
+04:33:37 ok    30 sleep      2500 ms
+04:33:37 ok    31 waitFor    reading-pages gone
+04:33:37 ok    32 waitFor    reading-docs gone
+04:33:37 ok    33 waitFor    stop gone
+04:33:37 ok    34 sleep      2500 ms
+04:33:37 ok    35 value      The meeting was moved from Tuesday to Thursday at 3pm due to the client's travel schedule. Please bring Q3 num
+04:33:37 FAIL  36 value      value citations: no node with that testID is mounted
+04:33:37 FAIL  37 value      value none-matched: no node with that testID is mounted
+04:33:37 ok    38 value      Slowing down to keep the phone cool SWITCH TO INSTANT
+04:33:37 ok    39 value      FAST
+04:33:37 ok    40 screenshot j7-24
+04:33:37 ok    41 dump       j7-24
+04:33:37 ok    42 press      ledger-toggle ← onPress
+04:33:37 ok    43 sleep      1200 ms
+04:33:37 ok    44 value      MODEL FAST QUANT Q4_K CONTEXT 375 / 4096 MS / TOKEN 165 ms TOK / S 6.1 FIRST TOKEN 2436 ms TOKENS IN + OUT 334
+04:33:37 ok    45 screenshot j7-25-ledger
+04:33:37 ok    46 press      ledger-toggle ← onPress
+04:33:37 ok    47 sleep      800 ms
+04:33:37 ok    48 press      open-chats ← onPress
+04:33:37 ok    49 waitFor    close-chats appeared
+04:33:37 ok    50 press      open-personas ← onPress
+04:33:37 ok    51 sleep      1500 ms
+04:33:37 ok    52 screenshot j7-26
+04:33:37 ok    53 dump       j7-26
+04:33:37 ok    54 deeplink   /chats
+04:33:37 ok    55 sleep      1500 ms
+04:33:37 ok    56 press      new-incognito ← onPress
+04:33:37 ok    57 waitFor    start-chat appeared
+04:33:37 ok    58 sleep      1000 ms
+04:33:37 ok    59 screenshot j7-27
+04:33:37 ok    60 dump       j7-27
+04:33:37 ok    61 press      start-chat ← onPress
+04:33:37 ok    62 waitFor    composer-input appeared
+04:33:37 ok    63 press      model-chip ← onPress
+04:33:37 ok    64 waitFor    model-sheet appeared
+04:33:37 ok    65 sleep      1500 ms
+04:33:37 ok    66 press      model-sheet-use-instant ← onPress
+04:33:37 ok    67 sleep      3000 ms
+04:33:37 FAIL  68 press      press model-sheet-close: not mounted
+04:33:37 ok    69 waitFor    Loading gone
+04:33:37 ok    70 sleep      1500 ms
+04:33:37 ok    71 value      INSTANT
+04:33:37 ok    72 assertText "INSTANT" present
+04:33:37 ok    73 type       composer-input = 48 chars
+04:33:37 ok    74 send       send ← onPress
+04:33:37 ok    75 sleep      2500 ms
+04:33:37 ok    76 waitFor    reading-pages gone
+04:33:37 ok    77 waitFor    reading-docs gone
+04:33:37 ok    78 waitFor    stop gone
+04:33:37 ok    79 sleep      2500 ms
+04:33:37 ok    80 value      A golden retriever is a great choice for a puppy, but names should reflect the breed's traits or be fun to say
+04:33:37 FAIL  81 value      value citations: no node with that testID is mounted
+04:33:37 FAIL  82 value      value none-matched: no node with that testID is mounted
+04:33:37 ok    83 value      Slowing down to keep the phone cool
+04:33:37 ok    84 value      INSTANT
+04:33:37 ok    85 screenshot j7-28
+04:33:37 ok    86 dump       j7-28
+04:33:37 ok    87 type       composer-input = 209 chars
+04:33:37 ok    88 send       send ← onPress
+04:33:37 ok    89 sleep      2500 ms
+04:33:37 ok    90 waitFor    reading-pages gone
+04:33:37 ok    91 waitFor    reading-docs gone
+04:33:37 ok    92 waitFor    stop gone
+04:33:37 ok    93 sleep      2500 ms
+04:33:37 ok    94 value      A golden retriever is a great choice for a puppy, but names should reflect the breed's traits or be fun to say
+04:33:37 FAIL  95 value      value citations: no node with that testID is mounted
+04:33:37 FAIL  96 value      value none-matched: no node with that testID is mounted
+04:33:37 ok    97 value      Slowing down to keep the phone cool
+04:33:37 ok    98 value      INSTANT
+04:33:37 ok    99 screenshot j7-29
+04:33:37 ok   100 dump       j7-29
+04:33:37 ok   101 type       composer-input = 10 chars
+04:33:37 ok   102 send       send ← onPress
+04:33:37 ok   103 sleep      2500 ms
+04:33:37 ok   104 waitFor    reading-pages gone
+04:33:37 ok   105 waitFor    reading-docs gone
+04:33:37 ok   106 waitFor    stop gone
+04:33:37 ok   107 sleep      2500 ms
+04:33:37 ok   108 value      A golden retriever is a great choice for a puppy, but names should reflect the breed's traits or be fun to say
+04:33:37 FAIL 109 value      value citations: no node with that testID is mounted
+04:33:37 FAIL 110 value      value none-matched: no node with that testID is mounted
+04:33:37 ok   111 value      Slowing down to keep the phone cool
+04:33:37 ok   112 value      INSTANT
+04:33:37 ok   113 screenshot j7-30
+04:33:37 ok   114 dump       j7-30
+04:33:37 ok   115 press      model-chip ← onPress
+04:33:37 ok   116 waitFor    model-sheet appeared
+04:33:37 ok   117 sleep      1500 ms
+04:33:37 ok   118 press      model-sheet-use-fast ← onPress
+04:33:37 ok   119 sleep      3000 ms
+04:33:37 FAIL 120 press      press model-sheet-close: not mounted
+04:33:37 ok   121 waitFor    Loading gone
+04:33:37 ok   122 sleep      1500 ms
+04:33:37 ok   123 value      FAST
+04:33:37 ok   124 assertText "FAST" present
+04:33:37 ok   125 sleep      2000 ms
+04:33:37 ok   126 screenshot j7-31
+04:33:37 ok   127 dump       j7-31
+04:33:37 116 passed, 12 failed, 10 screenshots → <worktree>/docs/qa/ios-device-pass-41/screens
+04:33:37   ! step 22 (value): value citations: no node with that testID is mounted
+04:33:37   ! step 23 (value): value none-matched: no node with that testID is mounted
+04:33:37   ! step 36 (value): value citations: no node with that testID is mounted
+04:33:37   ! step 37 (value): value none-matched: no node with that testID is mounted
+04:33:37   ! step 68 (press): press model-sheet-close: not mounted
+04:33:37   ! step 81 (value): value citations: no node with that testID is mounted
+04:33:37   ! step 82 (value): value none-matched: no node with that testID is mounted
+04:33:37   ! step 95 (value): value citations: no node with that testID is mounted
+04:33:37   ! step 96 (value): value none-matched: no node with that testID is mounted
+04:33:37   ! step 109 (value): value citations: no node with that testID is mounted
+04:33:37   ! step 110 (value): value none-matched: no node with that testID is mounted
+04:33:37   ! step 120 (press): press model-sheet-close: not mounted
+04:33:37   ! console.log: [chat] plain=follow-up window=3/3 maxTokens=1024
+04:33:37   ! console.log: [chat] plain=acknowledgement window=5/5 maxTokens=224

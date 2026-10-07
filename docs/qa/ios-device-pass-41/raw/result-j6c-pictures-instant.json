@@ -1,0 +1,1519 @@
+{
+  "runId": "j6c-pictures-instant",
+  "startedAt": "2026-10-07T00:44:20.464Z",
+  "finishedAt": "2026-10-07T00:45:55.667Z",
+  "ok": false,
+  "passed": 108,
+  "failed": 13,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 152,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 164,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 239,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1500,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "value",
+      "ok": true,
+      "ms": 2,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 9,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "model-chip ← onPress"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "model-sheet appeared"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1515,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 12,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "model-sheet-use-instant ← onPress"
+    },
+    {
+      "i": 13,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3008,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 14,
+      "op": "press",
+      "ok": false,
+      "ms": 2,
+      "detail": "press model-sheet-close: not mounted"
+    },
+    {
+      "i": 15,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1515,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 17,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "INSTANT",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT"
+    },
+    {
+      "i": 18,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"INSTANT\" present"
+    },
+    {
+      "i": 19,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 165,
+      "detail": "attach: sign-scan.pdf"
+    },
+    {
+      "i": 20,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1050,
+      "detail": "attached-docs appeared"
+    },
+    {
+      "i": 21,
+      "op": "sleep",
+      "ok": true,
+      "ms": 10001,
+      "detail": "10000 ms"
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "sign-scan.pdf",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "sign-scan.pdf"
+    },
+    {
+      "i": 23,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "sign-scan.pdf",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "sign-scan.pdf"
+    },
+    {
+      "i": 24,
+      "op": "type",
+      "ok": true,
+      "ms": 165,
+      "detail": "composer-input = 16 chars"
+    },
+    {
+      "i": 25,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 26,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2500,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 27,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 8002,
+      "detail": "waitFor vision-hold never appeared in 8000 ms"
+    },
+    {
+      "i": 28,
+      "op": "press",
+      "ok": false,
+      "ms": 1,
+      "detail": "press vision-hold-download: not mounted"
+    },
+    {
+      "i": 29,
+      "op": "idleTimer",
+      "ok": true,
+      "ms": 0,
+      "detail": "idle timer disabled: false",
+      "value": {
+        "text": "false",
+        "props": {
+          "idleTimerDisabled": false
+        }
+      }
+    },
+    {
+      "i": 30,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "vision-hold gone"
+    },
+    {
+      "i": 31,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 32,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 33,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2346,
+      "detail": "stop gone"
+    },
+    {
+      "i": 34,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 35,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "A weathered sign mounted on a yellow wall reads \"КАРАСАЕВ\" in Cyrillic letters above the word \"КОЧЕСУ\".",
+        "props": {
+          "source": "A weathered sign mounted on a yellow wall reads \"КАРАСАЕВ\" in Cyrillic letters above the word \"КОЧЕСУ\".",
+          "disabled": false
+        }
+      },
+      "detail": "A weathered sign mounted on a yellow wall reads \"КАРАСАЕВ\" in Cyrillic letters above the word \"КОЧЕСУ\"."
+    },
+    {
+      "i": 36,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 37,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 38,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Slowing down to keep the phone cool",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Slowing down to keep the phone cool"
+    },
+    {
+      "i": 39,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "INSTANT",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT"
+    },
+    {
+      "i": 40,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"cannot see\" absent"
+    },
+    {
+      "i": 41,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"can't see\" absent"
+    },
+    {
+      "i": 42,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"cannot physically see\" absent"
+    },
+    {
+      "i": 43,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"see images\" absent"
+    },
+    {
+      "i": 44,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"text-based\" absent"
+    },
+    {
+      "i": 45,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"unable to see\" absent"
+    },
+    {
+      "i": 46,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"not able to see\" absent"
+    },
+    {
+      "i": 47,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"don't have eyes\" absent"
+    },
+    {
+      "i": 48,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 5383,
+      "detail": "j6-10"
+    },
+    {
+      "i": 49,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What do you see?",
+          "role": "text"
+        },
+        {
+          "testID": "user-images",
+          "text": ""
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI A weathered sign mounted on a yellow wall reads \"КАРАСАЕВ\" in Cyrillic letters above the word \"КОЧЕСУ\". Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "A weathered sign mounted on a yellow wall reads \"КАРАСАЕВ\" in Cyrillic letters above the word \"КОЧЕСУ\"."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "model-advice",
+          "text": "FAST sees pictures better than INSTANT. Switch to FAST Not now"
+        },
+        {
+          "testID": "model-advice-reason",
+          "text": "FAST sees pictures better than INSTANT."
+        },
+        {
+          "testID": "model-advice-switch",
+          "text": "Switch to FAST",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-not-now",
+          "text": "Not now",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "attached-docs",
+          "text": "sign-scan.pdf"
+        },
+        {
+          "testID": "attached-chip-muxdxo2a-7-siz1c2zv",
+          "text": "sign-scan.pdf",
+          "role": "button",
+          "label": "Remove sign-scan.pdf from this chat",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "1",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "j6-10"
+    },
+    {
+      "i": 50,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 158,
+      "detail": "/chats"
+    },
+    {
+      "i": 51,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 52,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 53,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 54,
+      "op": "press",
+      "ok": true,
+      "ms": 553,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 55,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 56,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 57,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1510,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 58,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "INSTANT",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT"
+    },
+    {
+      "i": 59,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "model-chip ← onPress"
+    },
+    {
+      "i": 60,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "model-sheet appeared"
+    },
+    {
+      "i": 61,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1515,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 62,
+      "op": "press",
+      "ok": false,
+      "ms": 3,
+      "detail": "press model-sheet-use-instant: not mounted"
+    },
+    {
+      "i": 63,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3014,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 64,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "model-sheet-close ← onPress"
+    },
+    {
+      "i": 65,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 66,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 67,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "INSTANT",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT"
+    },
+    {
+      "i": 68,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"INSTANT\" present"
+    },
+    {
+      "i": 69,
+      "op": "devPrompt",
+      "ok": true,
+      "ms": 165,
+      "detail": "attach: בית קפה הגינה תפריט.jpg"
+    },
+    {
+      "i": 70,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 7535,
+      "detail": "pending-images appeared"
+    },
+    {
+      "i": 71,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3017,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 72,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 73,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value vision-released: no node with that testID is mounted"
+    },
+    {
+      "i": 74,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Slowing down to keep the phone cool",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Slowing down to keep the phone cool"
+    },
+    {
+      "i": 75,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "INSTANT",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT"
+    },
+    {
+      "i": 76,
+      "op": "type",
+      "ok": true,
+      "ms": 165,
+      "detail": "composer-input = 16 chars"
+    },
+    {
+      "i": 77,
+      "op": "send",
+      "ok": true,
+      "ms": 172,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 78,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2000,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 79,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 7652,
+      "detail": "j6-11"
+    },
+    {
+      "i": 80,
+      "op": "waitFor",
+      "ok": false,
+      "ms": 8011,
+      "detail": "waitFor vision-hold never appeared in 8000 ms"
+    },
+    {
+      "i": 81,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value vision-hold: no node with that testID is mounted"
+    },
+    {
+      "i": 82,
+      "op": "press",
+      "ok": false,
+      "ms": 1,
+      "detail": "press vision-hold-download: not mounted"
+    },
+    {
+      "i": 83,
+      "op": "idleTimer",
+      "ok": true,
+      "ms": 0,
+      "detail": "idle timer disabled: false",
+      "value": {
+        "text": "false",
+        "props": {
+          "idleTimerDisabled": false
+        }
+      }
+    },
+    {
+      "i": 84,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "vision-hold gone"
+    },
+    {
+      "i": 85,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "assistant-text appeared"
+    },
+    {
+      "i": 86,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "stop gone"
+    },
+    {
+      "i": 87,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3013,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 88,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "A chalkboard menu on a brick wall displays food options including breakfast items like bacon sandwiches and burgers, lunch choices such as sandwiches and salads, and snacks like fruit and cheese. The menu also lists drinks, desserts, and other dining items for Monday through Sunday.",
+        "props": {
+          "source": "A chalkboard menu on a brick wall displays food options including breakfast items like bacon sandwiches and burgers, lunch choices such as sandwiches and salads, and snacks like fruit and cheese. The menu also lists drinks, desserts, and other dining items for Monday through Sunday.",
+          "disabled": false
+        }
+      },
+      "detail": "A chalkboard menu on a brick wall displays food options including breakfast items like bacon sandwiches and burgers, lunch choices such as sandwiches and salads, and snacks like fruit and cheese. The "
+    },
+    {
+      "i": 89,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": ""
+    },
+    {
+      "i": 90,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value vision-released: no node with that testID is mounted"
+    },
+    {
+      "i": 91,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Slowing down to keep the phone cool",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Slowing down to keep the phone cool"
+    },
+    {
+      "i": 92,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "INSTANT",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT"
+    },
+    {
+      "i": 93,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST sees pictures better than INSTANT. Switch to FAST Not now",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "FAST sees pictures better than INSTANT. Switch to FAST Not now"
+    },
+    {
+      "i": 94,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "FAST sees pictures better than INSTANT.",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "FAST sees pictures better than INSTANT."
+    },
+    {
+      "i": 95,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"cannot see\" absent"
+    },
+    {
+      "i": 96,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"can't see\" absent"
+    },
+    {
+      "i": 97,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"cannot physically see\" absent"
+    },
+    {
+      "i": 98,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"see images\" absent"
+    },
+    {
+      "i": 99,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"text-based\" absent"
+    },
+    {
+      "i": 100,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"unable to see\" absent"
+    },
+    {
+      "i": 101,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"not able to see\" absent"
+    },
+    {
+      "i": 102,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"don't have eyes\" absent"
+    },
+    {
+      "i": 103,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"Your documents don't mention this\" absent"
+    },
+    {
+      "i": 104,
+      "op": "assertText",
+      "ok": true,
+      "ms": 1,
+      "detail": "\"is a scan. Run OCR\" absent"
+    },
+    {
+      "i": 105,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 4135,
+      "detail": "j6-12"
+    },
+    {
+      "i": 106,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What do you see?",
+          "role": "text"
+        },
+        {
+          "testID": "user-images",
+          "text": ""
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI A chalkboard menu on a brick wall displays food options including breakfast items like bacon sandwiches and burgers, lunch choices such as sandwiches and salads, and snacks like fruit and cheese. The menu also lists drinks, desserts, and other dining items for Monday through Sunday. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "A chalkboard menu on a brick wall displays food options including breakfast items like bacon sandwiches and burgers, lunch choices such as sandwiches and salads, and snacks like fruit and cheese. The menu also lists drinks, desserts, and other dining items for Monday through Sunday."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "model-advice",
+          "text": "FAST sees pictures better than INSTANT. Switch to FAST Not now"
+        },
+        {
+          "testID": "model-advice-reason",
+          "text": "FAST sees pictures better than INSTANT."
+        },
+        {
+          "testID": "model-advice-switch",
+          "text": "Switch to FAST",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-not-now",
+          "text": "Not now",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "j6-12"
+    },
+    {
+      "i": 107,
+      "op": "type",
+      "ok": true,
+      "ms": 154,
+      "detail": "composer-input = 16 chars"
+    },
+    {
+      "i": 108,
+      "op": "send",
+      "ok": true,
+      "ms": 193,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 109,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2509,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 110,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 111,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 112,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "stop gone"
+    },
+    {
+      "i": 113,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2512,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 114,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "A chalkboard menu on a brick wall displays food options including breakfast items like bacon sandwiches and burgers, lunch choices such as sandwiches and salads, and snacks like fruit and cheese. The menu also lists drinks, desserts, and other dining items for Monday through Sunday.",
+        "props": {
+          "source": "A chalkboard menu on a brick wall displays food options including breakfast items like bacon sandwiches and burgers, lunch choices such as sandwiches and salads, and snacks like fruit and cheese. The menu also lists drinks, desserts, and other dining items for Monday through Sunday.",
+          "disabled": false
+        }
+      },
+      "detail": "A chalkboard menu on a brick wall displays food options including breakfast items like bacon sandwiches and burgers, lunch choices such as sandwiches and salads, and snacks like fruit and cheese. The "
+    },
+    {
+      "i": 115,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 116,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 117,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Slowing down to keep the phone cool",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Slowing down to keep the phone cool"
+    },
+    {
+      "i": 118,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "INSTANT",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT"
+    },
+    {
+      "i": 119,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 4437,
+      "detail": "j6-13"
+    },
+    {
+      "i": 120,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What do you see?",
+          "role": "text"
+        },
+        {
+          "testID": "user-images",
+          "text": ""
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI A chalkboard menu on a brick wall displays food options including breakfast items like bacon sandwiches and burgers, lunch choices such as sandwiches and salads, and snacks like fruit and cheese. The menu also lists drinks, desserts, and other dining items for Monday through Sunday. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "A chalkboard menu on a brick wall displays food options including breakfast items like bacon sandwiches and burgers, lunch choices such as sandwiches and salads, and snacks like fruit and cheese. The menu also lists drinks, desserts, and other dining items for Monday through Sunday."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "model-advice",
+          "text": "FAST sees pictures better than INSTANT. Switch to FAST Not now"
+        },
+        {
+          "testID": "model-advice-reason",
+          "text": "FAST sees pictures better than INSTANT."
+        },
+        {
+          "testID": "model-advice-switch",
+          "text": "Switch to FAST",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-not-now",
+          "text": "Not now",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "j6-13"
+    }
+  ],
+  "errors": [
+    "step 14 (press): press model-sheet-close: not mounted",
+    "step 27 (waitFor): waitFor vision-hold never appeared in 8000 ms",
+    "step 28 (press): press vision-hold-download: not mounted",
+    "step 36 (value): value citations: no node with that testID is mounted",
+    "step 37 (value): value none-matched: no node with that testID is mounted",
+    "step 62 (press): press model-sheet-use-instant: not mounted",
+    "step 73 (value): value vision-released: no node with that testID is mounted",
+    "step 80 (waitFor): waitFor vision-hold never appeared in 8000 ms",
+    "step 81 (value): value vision-hold: no node with that testID is mounted",
+    "step 82 (press): press vision-hold-download: not mounted",
+    "step 90 (value): value vision-released: no node with that testID is mounted",
+    "step 115 (value): value citations: no node with that testID is mounted",
+    "step 116 (value): value none-matched: no node with that testID is mounted"
+  ]
+}

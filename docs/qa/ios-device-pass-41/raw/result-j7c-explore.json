@@ -1,0 +1,3330 @@
+{
+  "runId": "j7c-explore",
+  "startedAt": "2026-10-07T01:31:43.169Z",
+  "finishedAt": "2026-10-07T01:33:34.763Z",
+  "ok": false,
+  "passed": 116,
+  "failed": 12,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 150,
+      "detail": "/chats"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "new-chat appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 4,
+      "op": "press",
+      "ok": true,
+      "ms": 179,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 7,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1502,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 8,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 9,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "suggestion-summarize ← onPress"
+    },
+    {
+      "i": 10,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1500,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 11,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3174,
+      "detail": "j7-22"
+    },
+    {
+      "i": 12,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "empty-headline",
+          "text": "Nothing leaves this phone."
+        },
+        {
+          "testID": "suggestion-summarize",
+          "text": "Summarize text",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-translate",
+          "text": "Translate",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "suggestion-draft",
+          "text": "Draft a message",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "redact-bar",
+          "text": "Redact"
+        },
+        {
+          "testID": "redact-open",
+          "text": "Redact",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "Summarize the following text in three bullet points:\n\n",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "j7-22"
+    },
+    {
+      "i": 13,
+      "op": "type",
+      "ok": true,
+      "ms": 158,
+      "detail": "composer-input = 145 chars"
+    },
+    {
+      "i": 14,
+      "op": "type",
+      "ok": true,
+      "ms": 167,
+      "detail": "composer-input = 145 chars"
+    },
+    {
+      "i": 15,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 5926,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 17,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 18,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 19,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "stop gone"
+    },
+    {
+      "i": 20,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2506,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 21,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "The meeting was moved from Tuesday to Thursday at 3pm due to the client's travel schedule. Please bring Q3 numbers and new logo drafts as requested.",
+        "props": {
+          "source": "The meeting was moved from Tuesday to Thursday at 3pm due to the client's travel schedule. Please bring Q3 numbers and new logo drafts as requested.",
+          "disabled": false
+        }
+      },
+      "detail": "The meeting was moved from Tuesday to Thursday at 3pm due to the client's travel schedule. Please bring Q3 numbers and new logo drafts as requested."
+    },
+    {
+      "i": 22,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 23,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 24,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Slowing down to keep the phone cool SWITCH TO INSTANT",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+      "i": 25,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 26,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3487,
+      "detail": "j7-23"
+    },
+    {
+      "i": 27,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize this: The meeting moved from Tuesday to Thursday at 3pm because the client is travelling. Bring the Q3 numbers and the new logo drafts.",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The meeting was moved from Tuesday to Thursday at 3pm due to the client's travel schedule. Please bring Q3 numbers and new logo drafts as requested. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The meeting was moved from Tuesday to Thursday at 3pm due to the client's travel schedule. Please bring Q3 numbers and new logo drafts as requested."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "j7-23"
+    },
+    {
+      "i": 28,
+      "op": "type",
+      "ok": true,
+      "ms": 159,
+      "detail": "composer-input = 25 chars"
+    },
+    {
+      "i": 29,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 30,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 31,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 32,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 33,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 6800,
+      "detail": "stop gone"
+    },
+    {
+      "i": 34,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 35,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "The meeting was moved from Tuesday to Thursday at 3pm due to the client's travel schedule. Please bring Q3 numbers and new logo drafts as requested.",
+        "props": {
+          "source": "The meeting was moved from Tuesday to Thursday at 3pm due to the client's travel schedule. Please bring Q3 numbers and new logo drafts as requested.",
+          "disabled": false
+        }
+      },
+      "detail": "The meeting was moved from Tuesday to Thursday at 3pm due to the client's travel schedule. Please bring Q3 numbers and new logo drafts as requested."
+    },
+    {
+      "i": 36,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 37,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 38,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Slowing down to keep the phone cool SWITCH TO INSTANT",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+    },
+    {
+      "i": 39,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 40,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3823,
+      "detail": "j7-24"
+    },
+    {
+      "i": 41,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize this: The meeting moved from Tuesday to Thursday at 3pm because the client is travelling. Bring the Q3 numbers and the new logo drafts.",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The meeting was moved from Tuesday to Thursday at 3pm due to the client's travel schedule. Please bring Q3 numbers and new logo drafts as requested. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The meeting was moved from Tuesday to Thursday at 3pm due to the client's travel schedule. Please bring Q3 numbers and new logo drafts as requested."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "j7-24"
+    },
+    {
+      "i": 42,
+      "op": "press",
+      "ok": true,
+      "ms": 155,
+      "detail": "ledger-toggle ← onPress"
+    },
+    {
+      "i": 43,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1217,
+      "detail": "1200 ms"
+    },
+    {
+      "i": 44,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "MODEL FAST QUANT Q4_K CONTEXT 375 / 4096 MS / TOKEN 165 ms TOK / S 6.1 FIRST TOKEN 2436 ms TOKENS IN + OUT 334 + 41 GENERATION 9.2 s",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "MODEL FAST QUANT Q4_K CONTEXT 375 / 4096 MS / TOKEN 165 ms TOK / S 6.1 FIRST TOKEN 2436 ms TOKENS IN + OUT 334 + 41 GENERATION 9.2 s"
+    },
+    {
+      "i": 45,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 4760,
+      "detail": "j7-25-ledger"
+    },
+    {
+      "i": 46,
+      "op": "press",
+      "ok": true,
+      "ms": 156,
+      "detail": "ledger-toggle ← onPress"
+    },
+    {
+      "i": 47,
+      "op": "sleep",
+      "ok": true,
+      "ms": 816,
+      "detail": "800 ms"
+    },
+    {
+      "i": 48,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "open-chats ← onPress"
+    },
+    {
+      "i": 49,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "close-chats appeared"
+    },
+    {
+      "i": 50,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "open-personas ← onPress"
+    },
+    {
+      "i": 51,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1508,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 52,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2857,
+      "detail": "j7-26"
+    },
+    {
+      "i": 53,
+      "op": "dump",
+      "ok": true,
+      "ms": 7,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "Summarize this: The meeting moved from Tuesday to Thursday at 3pm because the client is travelling. Bring the Q3 numbers and the new logo drafts.",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "FAST · ON-DEVICE AI The meeting was moved from Tuesday to Thursday at 3pm due to the client's travel schedule. Please bring Q3 numbers and new logo drafts as requested. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "The meeting was moved from Tuesday to Thursday at 3pm due to the client's travel schedule. Please bring Q3 numbers and new logo drafts as requested."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "close-chats",
+          "text": "",
+          "role": "button",
+          "label": "Close",
+          "pressable": true
+        },
+        {
+          "testID": "select-toggle",
+          "text": "Select",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chats-search",
+          "text": "",
+          "label": "Search",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "new-chat",
+          "text": "New chat",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "new-incognito",
+          "text": "Incognito",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-e34365cd-265f-4068-aef7-ed1b86793e6e",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-e34365cd-265f-4068-aef7-ed1b86793e6e",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-e34365cd-265f-4068-aef7-ed1b86793e6e",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-e34365cd-265f-4068-aef7-ed1b86793e6e",
+          "text": "Summarize this: The meeting moved from 6:32 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-901b2d34-cde1-4fcb-9c9d-bb79c8a942cf",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-901b2d34-cde1-4fcb-9c9d-bb79c8a942cf",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-901b2d34-cde1-4fcb-9c9d-bb79c8a942cf",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-901b2d34-cde1-4fcb-9c9d-bb79c8a942cf",
+          "text": "What is the serial number of 6:29 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-c8776ad2-2224-4f02-8c5b-9c60475c455d",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-c8776ad2-2224-4f02-8c5b-9c60475c455d",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-c8776ad2-2224-4f02-8c5b-9c60475c455d",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-c8776ad2-2224-4f02-8c5b-9c60475c455d",
+          "text": "Draft a short, friendly message that 6:27 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-3746c34e-debb-420b-aa51-764745a51ab1",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-3746c34e-debb-420b-aa51-764745a51ab1",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-3746c34e-debb-420b-aa51-764745a51ab1",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-3746c34e-debb-420b-aa51-764745a51ab1",
+          "text": "hey! what is this app? 6:26 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-7f76ca18-d645-45e4-b8e4-286fd66a7854",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-7f76ca18-d645-45e4-b8e4-286fd66a7854",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-7f76ca18-d645-45e4-b8e4-286fd66a7854",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-7f76ca18-d645-45e4-b8e4-286fd66a7854",
+          "text": "What do you see? 6:23 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-7505b0a6-16b5-4629-b40e-e2bb50ceacfa",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-7505b0a6-16b5-4629-b40e-e2bb50ceacfa",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-7505b0a6-16b5-4629-b40e-e2bb50ceacfa",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-7505b0a6-16b5-4629-b40e-e2bb50ceacfa",
+          "text": "What do you see? 5:52 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-3fda51a1-a2a4-487d-af4f-cd2b9c32da62",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-3fda51a1-a2a4-487d-af4f-cd2b9c32da62",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-3fda51a1-a2a4-487d-af4f-cd2b9c32da62",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-3fda51a1-a2a4-487d-af4f-cd2b9c32da62",
+          "text": "מה בירת צרפת? 5:49 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-b370cad8-f824-427c-b3ce-70d036ee1470",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-b370cad8-f824-427c-b3ce-70d036ee1470",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-b370cad8-f824-427c-b3ce-70d036ee1470",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-b370cad8-f824-427c-b3ce-70d036ee1470",
+          "text": "What do you see? 5:48 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-aefdc989-8eea-4479-9312-24dc643f2c67",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-aefdc989-8eea-4479-9312-24dc643f2c67",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-aefdc989-8eea-4479-9312-24dc643f2c67",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-aefdc989-8eea-4479-9312-24dc643f2c67",
+          "text": "What do you see? 5:46 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-e60acc4c-1b88-4151-92c7-cf0f88a5069e",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-e60acc4c-1b88-4151-92c7-cf0f88a5069e",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-e60acc4c-1b88-4151-92c7-cf0f88a5069e",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-e60acc4c-1b88-4151-92c7-cf0f88a5069e",
+          "text": "What do you see? 5:45 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-027539d6-66a3-408d-ba78-6ec145eadac3",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-027539d6-66a3-408d-ba78-6ec145eadac3",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-027539d6-66a3-408d-ba78-6ec145eadac3",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-027539d6-66a3-408d-ba78-6ec145eadac3",
+          "text": "What do you see? 5:44 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-4ead6996-05c7-4db5-abe1-4ea2cb177cb7",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-4ead6996-05c7-4db5-abe1-4ea2cb177cb7",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-4ead6996-05c7-4db5-abe1-4ea2cb177cb7",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-4ead6996-05c7-4db5-abe1-4ea2cb177cb7",
+          "text": "Write a long story of about 5:44 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-d65e06c8-3d4c-4e6d-ba34-251be770f97b",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-d65e06c8-3d4c-4e6d-ba34-251be770f97b",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-d65e06c8-3d4c-4e6d-ba34-251be770f97b",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-d65e06c8-3d4c-4e6d-ba34-251be770f97b",
+          "text": "Summarize it 5:39 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-74310bdc-3711-45b3-83aa-3ab49e931d29",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-74310bdc-3711-45b3-83aa-3ab49e931d29",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-74310bdc-3711-45b3-83aa-3ab49e931d29",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-74310bdc-3711-45b3-83aa-3ab49e931d29",
+          "text": "Summarize it 5:37 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-ed28c0d1-09d1-4c30-b520-f70cccc70ea6",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-ed28c0d1-09d1-4c30-b520-f70cccc70ea6",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-ed28c0d1-09d1-4c30-b520-f70cccc70ea6",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-ed28c0d1-09d1-4c30-b520-f70cccc70ea6",
+          "text": "Summarize it 5:34 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-8b4724e7-06e6-4815-9255-20fbd1eb9b9b",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-8b4724e7-06e6-4815-9255-20fbd1eb9b9b",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-8b4724e7-06e6-4815-9255-20fbd1eb9b9b",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-8b4724e7-06e6-4815-9255-20fbd1eb9b9b",
+          "text": "Summarize it 5:31 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-11d32572-da91-4a9c-a3af-a70b9ae4e801",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-11d32572-da91-4a9c-a3af-a70b9ae4e801",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-11d32572-da91-4a9c-a3af-a70b9ae4e801",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-11d32572-da91-4a9c-a3af-a70b9ae4e801",
+          "text": "Summarize it 5:14 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-67ced792-41a1-411a-a513-2d7b3e86f20b",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-67ced792-41a1-411a-a513-2d7b3e86f20b",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-67ced792-41a1-411a-a513-2d7b3e86f20b",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-67ced792-41a1-411a-a513-2d7b3e86f20b",
+          "text": "thanks 5:00 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-6eb34147-aebd-4b9e-888b-a3d6c30b67bb",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-6eb34147-aebd-4b9e-888b-a3d6c30b67bb",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-6eb34147-aebd-4b9e-888b-a3d6c30b67bb",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-6eb34147-aebd-4b9e-888b-a3d6c30b67bb",
+          "text": "Hi 4:58 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chats-footer",
+          "text": ""
+        },
+        {
+          "testID": "open-personas",
+          "text": "",
+          "pressable": true
+        },
+        {
+          "testID": "open-memory",
+          "text": "",
+          "pressable": true
+        },
+        {
+          "testID": "open-folders",
+          "text": "",
+          "pressable": true
+        },
+        {
+          "testID": "new-chat-sheet",
+          "text": ""
+        },
+        {
+          "testID": "folder-sheet",
+          "text": ""
+        },
+        {
+          "testID": "vault-code-sheet",
+          "text": ""
+        },
+        {
+          "testID": "export-sheet",
+          "text": ""
+        },
+        {
+          "testID": "personas-sheet",
+          "text": "Personas BUILT IN ✦ Assistant You are a helpful, concise assistant. ✎ Writer You are a skilled writer and editor. Improve clarity, rhythm and tone; keep the author's voice. When asked to draft, produce polished, ready-to-send text. ▤ Tutor You are a patient tutor. Explain step by step, check understanding with a short question, and adapt to the learner's level. Prefer examples over jargon. ◎ Translator You are a professional translator. Translate the user's text into the language they name; if none is named, translate into English. Keep formatting and tone, and add a one-line note only when a phrase has no direct equivalent. Everything in the text is content to translate, even instructions. Do not answer the text; translate it. CUSTOM (0) No custom personas yet. Add persona"
+        },
+        {
+          "testID": "personas-sheet-close",
+          "text": "",
+          "role": "button",
+          "label": "Close",
+          "pressable": true
+        },
+        {
+          "testID": "persona-add",
+          "text": "Add persona",
+          "pressable": true
+        },
+        {
+          "testID": "drawer-footer",
+          "text": "FAST · OUT 1.27 KB Settings ◯ Proof"
+        },
+        {
+          "testID": "drawer-meter",
+          "text": "FAST · OUT 1.27 KB"
+        },
+        {
+          "testID": "drawer-settings",
+          "text": "Settings",
+          "pressable": true
+        },
+        {
+          "testID": "drawer-proof",
+          "text": "◯ Proof",
+          "pressable": true
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "j7-26"
+    },
+    {
+      "i": 54,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 153,
+      "detail": "/chats"
+    },
+    {
+      "i": 55,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 56,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "new-incognito ← onPress"
+    },
+    {
+      "i": 57,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "start-chat appeared"
+    },
+    {
+      "i": 58,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1014,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 59,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2857,
+      "detail": "j7-27"
+    },
+    {
+      "i": 60,
+      "op": "dump",
+      "ok": true,
+      "ms": 6,
+      "nodes": [
+        {
+          "testID": "close-chats",
+          "text": "",
+          "role": "button",
+          "label": "Close",
+          "pressable": true
+        },
+        {
+          "testID": "select-toggle",
+          "text": "Select",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "chats-search",
+          "text": "",
+          "label": "Search",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "new-chat",
+          "text": "New chat",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "new-incognito",
+          "text": "Incognito",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-e34365cd-265f-4068-aef7-ed1b86793e6e",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-e34365cd-265f-4068-aef7-ed1b86793e6e",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-e34365cd-265f-4068-aef7-ed1b86793e6e",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-e34365cd-265f-4068-aef7-ed1b86793e6e",
+          "text": "Summarize this: The meeting moved from 6:32 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-901b2d34-cde1-4fcb-9c9d-bb79c8a942cf",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-901b2d34-cde1-4fcb-9c9d-bb79c8a942cf",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-901b2d34-cde1-4fcb-9c9d-bb79c8a942cf",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-901b2d34-cde1-4fcb-9c9d-bb79c8a942cf",
+          "text": "What is the serial number of 6:29 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-c8776ad2-2224-4f02-8c5b-9c60475c455d",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-c8776ad2-2224-4f02-8c5b-9c60475c455d",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-c8776ad2-2224-4f02-8c5b-9c60475c455d",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-c8776ad2-2224-4f02-8c5b-9c60475c455d",
+          "text": "Draft a short, friendly message that 6:27 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-3746c34e-debb-420b-aa51-764745a51ab1",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-3746c34e-debb-420b-aa51-764745a51ab1",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-3746c34e-debb-420b-aa51-764745a51ab1",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-3746c34e-debb-420b-aa51-764745a51ab1",
+          "text": "hey! what is this app? 6:26 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-7f76ca18-d645-45e4-b8e4-286fd66a7854",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-7f76ca18-d645-45e4-b8e4-286fd66a7854",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-7f76ca18-d645-45e4-b8e4-286fd66a7854",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-7f76ca18-d645-45e4-b8e4-286fd66a7854",
+          "text": "What do you see? 6:23 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-7505b0a6-16b5-4629-b40e-e2bb50ceacfa",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-7505b0a6-16b5-4629-b40e-e2bb50ceacfa",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-7505b0a6-16b5-4629-b40e-e2bb50ceacfa",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-7505b0a6-16b5-4629-b40e-e2bb50ceacfa",
+          "text": "What do you see? 5:52 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-3fda51a1-a2a4-487d-af4f-cd2b9c32da62",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-3fda51a1-a2a4-487d-af4f-cd2b9c32da62",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-3fda51a1-a2a4-487d-af4f-cd2b9c32da62",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-3fda51a1-a2a4-487d-af4f-cd2b9c32da62",
+          "text": "מה בירת צרפת? 5:49 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-b370cad8-f824-427c-b3ce-70d036ee1470",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-b370cad8-f824-427c-b3ce-70d036ee1470",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-b370cad8-f824-427c-b3ce-70d036ee1470",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-b370cad8-f824-427c-b3ce-70d036ee1470",
+          "text": "What do you see? 5:48 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-aefdc989-8eea-4479-9312-24dc643f2c67",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-aefdc989-8eea-4479-9312-24dc643f2c67",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-aefdc989-8eea-4479-9312-24dc643f2c67",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-aefdc989-8eea-4479-9312-24dc643f2c67",
+          "text": "What do you see? 5:46 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-e60acc4c-1b88-4151-92c7-cf0f88a5069e",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-e60acc4c-1b88-4151-92c7-cf0f88a5069e",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-e60acc4c-1b88-4151-92c7-cf0f88a5069e",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-e60acc4c-1b88-4151-92c7-cf0f88a5069e",
+          "text": "What do you see? 5:45 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-027539d6-66a3-408d-ba78-6ec145eadac3",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-027539d6-66a3-408d-ba78-6ec145eadac3",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-027539d6-66a3-408d-ba78-6ec145eadac3",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-027539d6-66a3-408d-ba78-6ec145eadac3",
+          "text": "What do you see? 5:44 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-4ead6996-05c7-4db5-abe1-4ea2cb177cb7",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-4ead6996-05c7-4db5-abe1-4ea2cb177cb7",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-4ead6996-05c7-4db5-abe1-4ea2cb177cb7",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-4ead6996-05c7-4db5-abe1-4ea2cb177cb7",
+          "text": "Write a long story of about 5:44 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-d65e06c8-3d4c-4e6d-ba34-251be770f97b",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-d65e06c8-3d4c-4e6d-ba34-251be770f97b",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-d65e06c8-3d4c-4e6d-ba34-251be770f97b",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-d65e06c8-3d4c-4e6d-ba34-251be770f97b",
+          "text": "Summarize it 5:39 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-74310bdc-3711-45b3-83aa-3ab49e931d29",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-74310bdc-3711-45b3-83aa-3ab49e931d29",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-74310bdc-3711-45b3-83aa-3ab49e931d29",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-74310bdc-3711-45b3-83aa-3ab49e931d29",
+          "text": "Summarize it 5:37 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-ed28c0d1-09d1-4c30-b520-f70cccc70ea6",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-ed28c0d1-09d1-4c30-b520-f70cccc70ea6",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-ed28c0d1-09d1-4c30-b520-f70cccc70ea6",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-ed28c0d1-09d1-4c30-b520-f70cccc70ea6",
+          "text": "Summarize it 5:34 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-8b4724e7-06e6-4815-9255-20fbd1eb9b9b",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-8b4724e7-06e6-4815-9255-20fbd1eb9b9b",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-8b4724e7-06e6-4815-9255-20fbd1eb9b9b",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-8b4724e7-06e6-4815-9255-20fbd1eb9b9b",
+          "text": "Summarize it 5:31 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-11d32572-da91-4a9c-a3af-a70b9ae4e801",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-11d32572-da91-4a9c-a3af-a70b9ae4e801",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-11d32572-da91-4a9c-a3af-a70b9ae4e801",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-11d32572-da91-4a9c-a3af-a70b9ae4e801",
+          "text": "Summarize it 5:14 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-67ced792-41a1-411a-a513-2d7b3e86f20b",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-67ced792-41a1-411a-a513-2d7b3e86f20b",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-67ced792-41a1-411a-a513-2d7b3e86f20b",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-67ced792-41a1-411a-a513-2d7b3e86f20b",
+          "text": "thanks 5:00 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-6eb34147-aebd-4b9e-888b-a3d6c30b67bb",
+          "text": "Pin",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-6eb34147-aebd-4b9e-888b-a3d6c30b67bb",
+          "text": "Archive",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-6eb34147-aebd-4b9e-888b-a3d6c30b67bb",
+          "text": "Delete",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-6eb34147-aebd-4b9e-888b-a3d6c30b67bb",
+          "text": "Hi 4:58 PM",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chats-footer",
+          "text": ""
+        },
+        {
+          "testID": "open-personas",
+          "text": "",
+          "pressable": true
+        },
+        {
+          "testID": "open-memory",
+          "text": "",
+          "pressable": true
+        },
+        {
+          "testID": "open-folders",
+          "text": "",
+          "pressable": true
+        },
+        {
+          "testID": "new-chat-sheet",
+          "text": "Incognito PERSONA ✦ Assistant ✎ Writer ▤ Tutor ◎ Translator MODEL FAST · FITS THIS DEVICE Incognito Not saved, no memory. Gone when you close it. Cancel Start"
+        },
+        {
+          "testID": "new-chat-sheet-close",
+          "text": "",
+          "role": "button",
+          "label": "Close",
+          "pressable": true
+        },
+        {
+          "testID": "persona-chip-builtin:assistant",
+          "text": "✦ Assistant",
+          "role": "radio",
+          "state": {
+            "selected": true
+          },
+          "pressable": true
+        },
+        {
+          "testID": "persona-chip-builtin:writer",
+          "text": "✎ Writer",
+          "role": "radio",
+          "state": {
+            "selected": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "persona-chip-builtin:tutor",
+          "text": "▤ Tutor",
+          "role": "radio",
+          "state": {
+            "selected": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "persona-chip-builtin:translator",
+          "text": "◎ Translator",
+          "role": "radio",
+          "state": {
+            "selected": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "incognito-switch",
+          "text": "",
+          "value": "true",
+          "pressable": true
+        },
+        {
+          "testID": "start-chat",
+          "text": "Start",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "folder-sheet",
+          "text": ""
+        },
+        {
+          "testID": "vault-code-sheet",
+          "text": ""
+        },
+        {
+          "testID": "export-sheet",
+          "text": ""
+        },
+        {
+          "testID": "drawer-footer",
+          "text": "FAST · OUT 1.27 KB Settings ◯ Proof"
+        },
+        {
+          "testID": "drawer-meter",
+          "text": "FAST · OUT 1.27 KB"
+        },
+        {
+          "testID": "drawer-settings",
+          "text": "Settings",
+          "pressable": true
+        },
+        {
+          "testID": "drawer-proof",
+          "text": "◯ Proof",
+          "pressable": true
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "j7-27"
+    },
+    {
+      "i": 61,
+      "op": "press",
+      "ok": true,
+      "ms": 152,
+      "detail": "start-chat ← onPress"
+    },
+    {
+      "i": 62,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 63,
+      "op": "press",
+      "ok": true,
+      "ms": 151,
+      "detail": "model-chip ← onPress"
+    },
+    {
+      "i": 64,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "model-sheet appeared"
+    },
+    {
+      "i": 65,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1508,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 66,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "model-sheet-use-instant ← onPress"
+    },
+    {
+      "i": 67,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3008,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 68,
+      "op": "press",
+      "ok": false,
+      "ms": 1,
+      "detail": "press model-sheet-close: not mounted"
+    },
+    {
+      "i": 69,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 70,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1514,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 71,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "INSTANT",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT"
+    },
+    {
+      "i": 72,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"INSTANT\" present"
+    },
+    {
+      "i": 73,
+      "op": "type",
+      "ok": true,
+      "ms": 166,
+      "detail": "composer-input = 48 chars"
+    },
+    {
+      "i": 74,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 75,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2728,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 76,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 77,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 78,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 4348,
+      "detail": "stop gone"
+    },
+    {
+      "i": 79,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2507,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 80,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "A golden retriever is a great choice for a puppy, but names should reflect the breed's traits or be fun to say. Some popular options include \"Buddy,\" \"Lucky,\" \"Rocket,\" \"Sparky,\" and \"Tweety.\" Another option is using descriptive words like \"Golden\" itself or adding elements like \"Purrfect\" to make it sound more personal.",
+        "props": {
+          "source": "A golden retriever is a great choice for a puppy, but names should reflect the breed's traits or be fun to say. Some popular options include \"Buddy,\" \"Lucky,\" \"Rocket,\" \"Sparky,\" and \"Tweety.\" Another option is using descriptive words like \"Golden\" itself or adding elements like \"Purrfect\" to make it sound more personal.",
+          "disabled": false
+        }
+      },
+      "detail": "A golden retriever is a great choice for a puppy, but names should reflect the breed's traits or be fun to say. Some popular options include \"Buddy,\" \"Lucky,\" \"Rocket,\" \"Sparky,\" and \"Tweety.\" Another"
+    },
+    {
+      "i": 81,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 82,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 83,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Slowing down to keep the phone cool",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Slowing down to keep the phone cool"
+    },
+    {
+      "i": 84,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "INSTANT",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT"
+    },
+    {
+      "i": 85,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 3171,
+      "detail": "j7-28"
+    },
+    {
+      "i": 86,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "what's a good name for a golden retriever puppy?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI A golden retriever is a great choice for a puppy, but names should reflect the breed's traits or be fun to say. Some popular options include \"Buddy,\" \"Lucky,\" \"Rocket,\" \"Sparky,\" and \"Tweety.\" Another option is using descriptive words like \"Golden\" itself or adding elements like \"Purrfect\" to make it sound more personal. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "A golden retriever is a great choice for a puppy, but names should reflect the breed's traits or be fun to say. Some popular options include \"Buddy,\" \"Lucky,\" \"Rocket,\" \"Sparky,\" and \"Tweety.\" Another option is using descriptive words like \"Golden\" itself or adding elements like \"Purrfect\" to make it sound more personal."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "incognito-badge",
+          "text": "INCOGNITO · NOT SAVED"
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "j7-28"
+    },
+    {
+      "i": 87,
+      "op": "type",
+      "ok": true,
+      "ms": 159,
+      "detail": "composer-input = 209 chars"
+    },
+    {
+      "i": 88,
+      "op": "send",
+      "ok": true,
+      "ms": 154,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 89,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3233,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 90,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 91,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 92,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 9124,
+      "detail": "stop gone"
+    },
+    {
+      "i": 93,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2500,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 94,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "A golden retriever is a great choice for a puppy, but names should reflect the breed's traits or be fun to say. Some popular options include \"Buddy,\" \"Lucky,\" \"Rocket,\" \"Sparky,\" and \"Tweety.\" Another option is using descriptive words like \"Golden\" itself or adding elements like \"Purrfect\" to make it sound more personal.",
+        "props": {
+          "source": "A golden retriever is a great choice for a puppy, but names should reflect the breed's traits or be fun to say. Some popular options include \"Buddy,\" \"Lucky,\" \"Rocket,\" \"Sparky,\" and \"Tweety.\" Another option is using descriptive words like \"Golden\" itself or adding elements like \"Purrfect\" to make it sound more personal.",
+          "disabled": false
+        }
+      },
+      "detail": "A golden retriever is a great choice for a puppy, but names should reflect the breed's traits or be fun to say. Some popular options include \"Buddy,\" \"Lucky,\" \"Rocket,\" \"Sparky,\" and \"Tweety.\" Another"
+    },
+    {
+      "i": 95,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 96,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 97,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "Slowing down to keep the phone cool",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Slowing down to keep the phone cool"
+    },
+    {
+      "i": 98,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "INSTANT",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT"
+    },
+    {
+      "i": 99,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2858,
+      "detail": "j7-29"
+    },
+    {
+      "i": 100,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "what's a good name for a golden retriever puppy?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI A golden retriever is a great choice for a puppy, but names should reflect the breed's traits or be fun to say. Some popular options include \"Buddy,\" \"Lucky,\" \"Rocket,\" \"Sparky,\" and \"Tweety.\" Another option is using descriptive words like \"Golden\" itself or adding elements like \"Purrfect\" to make it sound more personal. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "A golden retriever is a great choice for a puppy, but names should reflect the breed's traits or be fun to say. Some popular options include \"Buddy,\" \"Lucky,\" \"Rocket,\" \"Sparky,\" and \"Tweety.\" Another option is using descriptive words like \"Golden\" itself or adding elements like \"Purrfect\" to make it sound more personal."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "incognito-badge",
+          "text": "INCOGNITO · NOT SAVED"
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "j7-29"
+    },
+    {
+      "i": 101,
+      "op": "type",
+      "ok": true,
+      "ms": 160,
+      "detail": "composer-input = 10 chars"
+    },
+    {
+      "i": 102,
+      "op": "send",
+      "ok": true,
+      "ms": 166,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 103,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2661,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 104,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 3,
+      "detail": "reading-pages gone"
+    },
+    {
+      "i": 105,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 6,
+      "detail": "reading-docs gone"
+    },
+    {
+      "i": 106,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1912,
+      "detail": "stop gone"
+    },
+    {
+      "i": 107,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2502,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 108,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "A golden retriever is a great choice for a puppy, but names should reflect the breed's traits or be fun to say. Some popular options include \"Buddy,\" \"Lucky,\" \"Rocket,\" \"Sparky,\" and \"Tweety.\" Another option is using descriptive words like \"Golden\" itself or adding elements like \"Purrfect\" to make it sound more personal.",
+        "props": {
+          "source": "A golden retriever is a great choice for a puppy, but names should reflect the breed's traits or be fun to say. Some popular options include \"Buddy,\" \"Lucky,\" \"Rocket,\" \"Sparky,\" and \"Tweety.\" Another option is using descriptive words like \"Golden\" itself or adding elements like \"Purrfect\" to make it sound more personal.",
+          "disabled": false
+        }
+      },
+      "detail": "A golden retriever is a great choice for a puppy, but names should reflect the breed's traits or be fun to say. Some popular options include \"Buddy,\" \"Lucky,\" \"Rocket,\" \"Sparky,\" and \"Tweety.\" Another"
+    },
+    {
+      "i": 109,
+      "op": "value",
+      "ok": false,
+      "ms": 0,
+      "detail": "value citations: no node with that testID is mounted"
+    },
+    {
+      "i": 110,
+      "op": "value",
+      "ok": false,
+      "ms": 1,
+      "detail": "value none-matched: no node with that testID is mounted"
+    },
+    {
+      "i": 111,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Slowing down to keep the phone cool",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Slowing down to keep the phone cool"
+    },
+    {
+      "i": 112,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "INSTANT",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "INSTANT"
+    },
+    {
+      "i": 113,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2545,
+      "detail": "j7-30"
+    },
+    {
+      "i": 114,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "what's a good name for a golden retriever puppy?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI A golden retriever is a great choice for a puppy, but names should reflect the breed's traits or be fun to say. Some popular options include \"Buddy,\" \"Lucky,\" \"Rocket,\" \"Sparky,\" and \"Tweety.\" Another option is using descriptive words like \"Golden\" itself or adding elements like \"Purrfect\" to make it sound more personal. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "A golden retriever is a great choice for a puppy, but names should reflect the breed's traits or be fun to say. Some popular options include \"Buddy,\" \"Lucky,\" \"Rocket,\" \"Sparky,\" and \"Tweety.\" Another option is using descriptive words like \"Golden\" itself or adding elements like \"Purrfect\" to make it sound more personal."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "incognito-badge",
+          "text": "INCOGNITO · NOT SAVED"
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "j7-30"
+    },
+    {
+      "i": 115,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "model-chip ← onPress"
+    },
+    {
+      "i": 116,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 6,
+      "detail": "model-sheet appeared"
+    },
+    {
+      "i": 117,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1511,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 118,
+      "op": "press",
+      "ok": true,
+      "ms": 167,
+      "detail": "model-sheet-use-fast ← onPress"
+    },
+    {
+      "i": 119,
+      "op": "sleep",
+      "ok": true,
+      "ms": 3024,
+      "detail": "3000 ms"
+    },
+    {
+      "i": 120,
+      "op": "press",
+      "ok": false,
+      "ms": 1,
+      "detail": "press model-sheet-close: not mounted"
+    },
+    {
+      "i": 121,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "Loading gone"
+    },
+    {
+      "i": 122,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1508,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 123,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "FAST",
+        "props": {
+          "accessibilityLabel": "Model",
+          "accessibilityRole": "button",
+          "accessibilityState": {},
+          "disabled": false
+        }
+      },
+      "detail": "FAST"
+    },
+    {
+      "i": 124,
+      "op": "assertText",
+      "ok": true,
+      "ms": 0,
+      "detail": "\"FAST\" present"
+    },
+    {
+      "i": 125,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2016,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 126,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2857,
+      "detail": "j7-31"
+    },
+    {
+      "i": 127,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "what's a good name for a golden retriever puppy?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · ON-DEVICE AI A golden retriever is a great choice for a puppy, but names should reflect the breed's traits or be fun to say. Some popular options include \"Buddy,\" \"Lucky,\" \"Rocket,\" \"Sparky,\" and \"Tweety.\" Another option is using descriptive words like \"Golden\" itself or adding elements like \"Purrfect\" to make it sound more personal. Ledger"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "A golden retriever is a great choice for a puppy, but names should reflect the breed's traits or be fun to say. Some popular options include \"Buddy,\" \"Lucky,\" \"Rocket,\" \"Sparky,\" and \"Tweety.\" Another option is using descriptive words like \"Golden\" itself or adding elements like \"Purrfect\" to make it sound more personal."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Ledger",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SEALED"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SEALED"
+        },
+        {
+          "testID": "model-chip",
+          "text": "FAST",
+          "role": "button",
+          "label": "Model",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "incognito-badge",
+          "text": "INCOGNITO · NOT SAVED"
+        },
+        {
+          "testID": "notice",
+          "text": "This is AI running on your phone. It can be wrong. Check important facts. Dismiss"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Attach documents",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Dictate",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Send",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "banners",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "banner-thermal",
+          "text": "Slowing down to keep the phone cool SWITCH TO INSTANT"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "j7-31"
+    }
+  ],
+  "errors": [
+    "step 22 (value): value citations: no node with that testID is mounted",
+    "step 23 (value): value none-matched: no node with that testID is mounted",
+    "step 36 (value): value citations: no node with that testID is mounted",
+    "step 37 (value): value none-matched: no node with that testID is mounted",
+    "step 68 (press): press model-sheet-close: not mounted",
+    "step 81 (value): value citations: no node with that testID is mounted",
+    "step 82 (value): value none-matched: no node with that testID is mounted",
+    "step 95 (value): value citations: no node with that testID is mounted",
+    "step 96 (value): value none-matched: no node with that testID is mounted",
+    "step 109 (value): value citations: no node with that testID is mounted",
+    "step 110 (value): value none-matched: no node with that testID is mounted",
+    "step 120 (press): press model-sheet-close: not mounted",
+    "console.log: [chat] plain=follow-up window=3/3 maxTokens=1024",
+    "console.log: [chat] plain=acknowledgement window=5/5 maxTokens=224"
+  ]
+}

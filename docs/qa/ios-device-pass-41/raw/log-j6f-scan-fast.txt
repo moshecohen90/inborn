@@ -1,0 +1,70 @@
+03:51:06 pushing 61 steps as j6f-scan-fast
+03:52:15 shot j6-23
+03:52:36 shot j6-24
+03:52:44 ok     0 deeplink   /chats
+03:52:44 ok     1 waitFor    new-chat appeared
+03:52:44 ok     2 press      new-chat ← onPress
+03:52:44 ok     3 waitFor    start-chat appeared
+03:52:44 ok     4 press      start-chat ← onPress
+03:52:44 ok     5 waitFor    composer-input appeared
+03:52:44 ok     6 waitFor    Loading gone
+03:52:44 ok     7 sleep      1500 ms
+03:52:44 ok     8 value      FAST
+03:52:44 ok     9 press      model-chip ← onPress
+03:52:44 ok    10 waitFor    model-sheet appeared
+03:52:44 ok    11 sleep      1500 ms
+03:52:44 FAIL  12 press      press model-sheet-use-fast: not mounted
+03:52:44 ok    13 sleep      3000 ms
+03:52:44 ok    14 press      model-sheet-close ← onPress
+03:52:44 ok    15 waitFor    Loading gone
+03:52:44 ok    16 sleep      1500 ms
+03:52:44 ok    17 value      FAST
+03:52:44 ok    18 assertText "FAST" present
+03:52:44 ok    19 devPrompt  attach: sign-scan.pdf
+03:52:44 ok    20 waitFor    attached-docs appeared
+03:52:44 ok    21 sleep      10000 ms
+03:52:44 ok    22 value      sign-scan.pdf
+03:52:44 ok    23 value      sign-scan.pdf
+03:52:44 ok    24 type       composer-input = 16 chars
+03:52:44 ok    25 send       send ← onPress
+03:52:44 ok    26 sleep      2500 ms
+03:52:44 ok    27 waitFor    stop appeared
+03:52:44 ok    28 waitFor    reading-pages gone
+03:52:44 ok    29 waitFor    reading-docs gone
+03:52:44 ok    30 waitFor    stop gone
+03:52:44 ok    31 sleep      2500 ms
+03:52:44 ok    32 value      I see a weathered blue sign mounted on a yellow wall in a town or village, displaying two lines of text: "КАРА
+03:52:44 FAIL  33 value      value citations: no node with that testID is mounted
+03:52:44 FAIL  34 value      value none-matched: no node with that testID is mounted
+03:52:44 ok    35 value      Slowing down to keep the phone cool SWITCH TO INSTANT
+03:52:44 ok    36 value      FAST
+03:52:44 ok    37 assertText "cannot see" absent
+03:52:44 ok    38 assertText "can't see" absent
+03:52:44 ok    39 assertText "cannot physically see" absent
+03:52:44 ok    40 assertText "see images" absent
+03:52:44 ok    41 assertText "text-based" absent
+03:52:44 ok    42 assertText "unable to see" absent
+03:52:44 ok    43 assertText "not able to see" absent
+03:52:44 ok    44 assertText "don't have eyes" absent
+03:52:44 ok    45 screenshot j6-23
+03:52:44 ok    46 dump       j6-23
+03:52:44 ok    47 type       composer-input = 16 chars
+03:52:44 ok    48 send       send ← onPress
+03:52:44 ok    49 sleep      2500 ms
+03:52:44 ok    50 waitFor    reading-pages gone
+03:52:44 ok    51 waitFor    reading-docs gone
+03:52:44 ok    52 waitFor    stop gone
+03:52:44 ok    53 sleep      2500 ms
+03:52:44 ok    54 value      I see a weathered blue sign mounted on a yellow wall in a town or village, displaying two lines of text: "КАРА
+03:52:44 FAIL  55 value      value citations: no node with that testID is mounted
+03:52:44 FAIL  56 value      value none-matched: no node with that testID is mounted
+03:52:44 ok    57 value      Slowing down to keep the phone cool SWITCH TO INSTANT
+03:52:44 ok    58 value      FAST
+03:52:44 ok    59 screenshot j6-24
+03:52:44 ok    60 dump       j6-24
+03:52:44 56 passed, 5 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-41/screens
+03:52:44   ! step 12 (press): press model-sheet-use-fast: not mounted
+03:52:44   ! step 33 (value): value citations: no node with that testID is mounted
+03:52:44   ! step 34 (value): value none-matched: no node with that testID is mounted
+03:52:44   ! step 55 (value): value citations: no node with that testID is mounted
+03:52:44   ! step 56 (value): value none-matched: no node with that testID is mounted

@@ -1,0 +1,2256 @@
+{
+ "runId": "j4-sheet-instant",
+ "startedAt": "2026-10-07T00:40:28.712Z",
+ "finishedAt": "2026-10-07T00:41:39.141Z",
+ "ok": false,
+ "passed": 126,
+ "failed": 16,
+ "steps": [
+  {
+   "i": 0,
+   "op": "deeplink",
+   "ok": true,
+   "ms": 164,
+   "detail": "/chats"
+  },
+  {
+   "i": 1,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "new-chat appeared"
+  },
+  {
+   "i": 2,
+   "op": "press",
+   "ok": true,
+   "ms": 166,
+   "detail": "new-chat ← onPress"
+  },
+  {
+   "i": 3,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 2,
+   "detail": "start-chat appeared"
+  },
+  {
+   "i": 4,
+   "op": "press",
+   "ok": true,
+   "ms": 347,
+   "detail": "start-chat ← onPress"
+  },
+  {
+   "i": 5,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "composer-input appeared"
+  },
+  {
+   "i": 6,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 0,
+   "detail": "Loading gone"
+  },
+  {
+   "i": 7,
+   "op": "sleep",
+   "ok": true,
+   "ms": 1508,
+   "detail": "1500 ms"
+  },
+  {
+   "i": 8,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "INSTANT",
+    "props": {
+     "accessibilityLabel": "Model",
+     "accessibilityRole": "button",
+     "accessibilityState": {},
+     "disabled": false
+    }
+   },
+   "detail": "INSTANT"
+  },
+  {
+   "i": 9,
+   "op": "press",
+   "ok": true,
+   "ms": 166,
+   "detail": "model-chip ← onPress"
+  },
+  {
+   "i": 10,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 2,
+   "detail": "model-sheet appeared"
+  },
+  {
+   "i": 11,
+   "op": "sleep",
+   "ok": true,
+   "ms": 1515,
+   "detail": "1500 ms"
+  },
+  {
+   "i": 12,
+   "op": "press",
+   "ok": false,
+   "ms": 2,
+   "detail": "press model-sheet-use-instant: not mounted"
+  },
+  {
+   "i": 13,
+   "op": "sleep",
+   "ok": true,
+   "ms": 3015,
+   "detail": "3000 ms"
+  },
+  {
+   "i": 14,
+   "op": "press",
+   "ok": true,
+   "ms": 166,
+   "detail": "model-sheet-close ← onPress"
+  },
+  {
+   "i": 15,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "Loading gone"
+  },
+  {
+   "i": 16,
+   "op": "sleep",
+   "ok": true,
+   "ms": 1516,
+   "detail": "1500 ms"
+  },
+  {
+   "i": 17,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "INSTANT",
+    "props": {
+     "accessibilityLabel": "Model",
+     "accessibilityRole": "button",
+     "accessibilityState": {},
+     "disabled": false
+    }
+   },
+   "detail": "INSTANT"
+  },
+  {
+   "i": 18,
+   "op": "assertText",
+   "ok": true,
+   "ms": 1,
+   "detail": "\"INSTANT\" present"
+  },
+  {
+   "i": 19,
+   "op": "setTier",
+   "ok": true,
+   "ms": 182,
+   "detail": "pro"
+  },
+  {
+   "i": 20,
+   "op": "deeplink",
+   "ok": true,
+   "ms": 166,
+   "detail": "/documents"
+  },
+  {
+   "i": 21,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "doc-select-muxcz3e9-4-pmhqi80j appeared"
+  },
+  {
+   "i": 22,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2000,
+   "detail": "2000 ms"
+  },
+  {
+   "i": 23,
+   "op": "press",
+   "ok": true,
+   "ms": 158,
+   "detail": "doc-select-muxcz3e9-4-pmhqi80j ← onPress"
+  },
+  {
+   "i": 24,
+   "op": "sleep",
+   "ok": true,
+   "ms": 1000,
+   "detail": "1000 ms"
+  },
+  {
+   "i": 25,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "Ask about 1 document",
+    "props": {
+     "accessibilityRole": "button",
+     "disabled": false,
+     "accessibilityState": {
+      "disabled": false
+     }
+    }
+   },
+   "detail": "Ask about 1 document"
+  },
+  {
+   "i": 26,
+   "op": "press",
+   "ok": true,
+   "ms": 166,
+   "detail": "documents-ask-selected ← onPress"
+  },
+  {
+   "i": 27,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "ask-sheet appeared"
+  },
+  {
+   "i": 28,
+   "op": "sleep",
+   "ok": true,
+   "ms": 1501,
+   "detail": "1500 ms"
+  },
+  {
+   "i": 29,
+   "op": "sleep",
+   "ok": true,
+   "ms": 515,
+   "detail": "500 ms"
+  },
+  {
+   "i": 30,
+   "op": "screenshot",
+   "ok": true,
+   "ms": 2223,
+   "detail": "j4-01"
+  },
+  {
+   "i": 31,
+   "op": "dump",
+   "ok": true,
+   "ms": 2,
+   "nodes": [
+    {
+     "testID": "documents-close",
+     "text": "Close",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "documents-add",
+     "text": "Add file",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "banner-inset",
+     "text": ""
+    },
+    {
+     "testID": "documents-strict",
+     "text": "",
+     "value": "false",
+     "pressable": true
+    },
+    {
+     "testID": "doc-row-muxcz3e9-4-pmhqi80j",
+     "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+     "pressable": true
+    },
+    {
+     "testID": "doc-select-muxcz3e9-4-pmhqi80j",
+     "text": "",
+     "role": "checkbox",
+     "state": {
+      "checked": true,
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "doc-state-muxcz3e9-4-pmhqi80j",
+     "text": "Indexed · 45 passages"
+    },
+    {
+     "testID": "doc-row-muxcm45y-3-bvtke2k7",
+     "text": "constitution-9pages.pdf ? · 0 B Inborn could not find that file where it was saved. Resume",
+     "pressable": true
+    },
+    {
+     "testID": "doc-select-muxcm45y-3-bvtke2k7",
+     "text": "",
+     "role": "checkbox",
+     "state": {
+      "checked": false,
+      "disabled": true
+     },
+     "disabled": true
+    },
+    {
+     "testID": "doc-state-muxcm45y-3-bvtke2k7",
+     "text": "Inborn could not find that file where it was saved."
+    },
+    {
+     "testID": "doc-resume-muxcm45y-3-bvtke2k7",
+     "text": "Resume",
+     "pressable": true
+    },
+    {
+     "testID": "doc-row-muxccacm-1-8is441hw",
+     "text": "turbine-report-3pages.pdf PDF · 3 pages · 1.73 KB Indexed · 3 passages",
+     "pressable": true
+    },
+    {
+     "testID": "doc-select-muxccacm-1-8is441hw",
+     "text": "",
+     "role": "checkbox",
+     "state": {
+      "checked": false,
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "doc-state-muxccacm-1-8is441hw",
+     "text": "Indexed · 3 passages"
+    },
+    {
+     "testID": "documents-ask-selected",
+     "text": "Ask about 1 document",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "ask-sheet",
+     "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. ↑"
+    },
+    {
+     "testID": "ask-strict",
+     "text": "",
+     "value": "false",
+     "pressable": true
+    },
+    {
+     "testID": "ask-input",
+     "text": "",
+     "value": "",
+     "pressable": true
+    },
+    {
+     "testID": "ask-send",
+     "text": "↑",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "banners",
+     "text": "Slowing down to keep the phone cool"
+    },
+    {
+     "testID": "banner-thermal",
+     "text": "Slowing down to keep the phone cool"
+    },
+    {
+     "testID": "device-explain-sheet",
+     "text": ""
+    },
+    {
+     "testID": "qa-bridge",
+     "text": ""
+    }
+   ],
+   "detail": "j4-01"
+  },
+  {
+   "i": 32,
+   "op": "type",
+   "ok": true,
+   "ms": 159,
+   "detail": "ask-input = 27 chars"
+  },
+  {
+   "i": 33,
+   "op": "press",
+   "ok": true,
+   "ms": 166,
+   "detail": "ask-send ← onPress"
+  },
+  {
+   "i": 34,
+   "op": "sleep",
+   "ok": true,
+   "ms": 1500,
+   "detail": "1500 ms"
+  },
+  {
+   "i": 35,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "ask-not-found appeared"
+  },
+  {
+   "i": 36,
+   "op": "sleep",
+   "ok": true,
+   "ms": 1501,
+   "detail": "1500 ms"
+  },
+  {
+   "i": 37,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "Your documents don't mention this.",
+    "props": {
+     "disabled": false
+    }
+   },
+   "detail": "Your documents don't mention this."
+  },
+  {
+   "i": 38,
+   "op": "value",
+   "ok": true,
+   "ms": 0,
+   "value": {
+    "text": "search 92 ms · 0 passages",
+    "props": {
+     "disabled": false
+    }
+   },
+   "detail": "search 92 ms · 0 passages"
+  },
+  {
+   "i": 39,
+   "op": "value",
+   "ok": false,
+   "ms": 1,
+   "detail": "value ask-answer: no node with that testID is mounted"
+  },
+  {
+   "i": 40,
+   "op": "value",
+   "ok": false,
+   "ms": 0,
+   "detail": "value citations: no node with that testID is mounted"
+  },
+  {
+   "i": 41,
+   "op": "assertText",
+   "ok": true,
+   "ms": 1,
+   "detail": "\"Your documents don't mention this\" present"
+  },
+  {
+   "i": 42,
+   "op": "assertText",
+   "ok": true,
+   "ms": 0,
+   "detail": "\"0 passages\" present"
+  },
+  {
+   "i": 43,
+   "op": "assertText",
+   "ok": true,
+   "ms": 1,
+   "detail": "\"tok/s\" absent"
+  },
+  {
+   "i": 44,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 0,
+   "detail": "ask-answer gone"
+  },
+  {
+   "i": 45,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 0,
+   "detail": "ask-none-matched gone"
+  },
+  {
+   "i": 46,
+   "op": "screenshot",
+   "ok": true,
+   "ms": 2219,
+   "detail": "j4-02"
+  },
+  {
+   "i": 47,
+   "op": "dump",
+   "ok": true,
+   "ms": 2,
+   "nodes": [
+    {
+     "testID": "documents-close",
+     "text": "Close",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "documents-add",
+     "text": "Add file",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "banner-inset",
+     "text": ""
+    },
+    {
+     "testID": "documents-strict",
+     "text": "",
+     "value": "false",
+     "pressable": true
+    },
+    {
+     "testID": "doc-row-muxcz3e9-4-pmhqi80j",
+     "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+     "pressable": true
+    },
+    {
+     "testID": "doc-select-muxcz3e9-4-pmhqi80j",
+     "text": "",
+     "role": "checkbox",
+     "state": {
+      "checked": true,
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "doc-state-muxcz3e9-4-pmhqi80j",
+     "text": "Indexed · 45 passages"
+    },
+    {
+     "testID": "doc-row-muxcm45y-3-bvtke2k7",
+     "text": "constitution-9pages.pdf ? · 0 B Inborn could not find that file where it was saved. Resume",
+     "pressable": true
+    },
+    {
+     "testID": "doc-select-muxcm45y-3-bvtke2k7",
+     "text": "",
+     "role": "checkbox",
+     "state": {
+      "checked": false,
+      "disabled": true
+     },
+     "disabled": true
+    },
+    {
+     "testID": "doc-state-muxcm45y-3-bvtke2k7",
+     "text": "Inborn could not find that file where it was saved."
+    },
+    {
+     "testID": "doc-resume-muxcm45y-3-bvtke2k7",
+     "text": "Resume",
+     "pressable": true
+    },
+    {
+     "testID": "doc-row-muxccacm-1-8is441hw",
+     "text": "turbine-report-3pages.pdf PDF · 3 pages · 1.73 KB Indexed · 3 passages",
+     "pressable": true
+    },
+    {
+     "testID": "doc-select-muxccacm-1-8is441hw",
+     "text": "",
+     "role": "checkbox",
+     "state": {
+      "checked": false,
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "doc-state-muxccacm-1-8is441hw",
+     "text": "Indexed · 3 passages"
+    },
+    {
+     "testID": "documents-ask-selected",
+     "text": "Ask about 1 document",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "ask-sheet",
+     "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. Your documents don't mention this. search 92 ms · 0 passages ↑"
+    },
+    {
+     "testID": "ask-strict",
+     "text": "",
+     "value": "false",
+     "pressable": true
+    },
+    {
+     "testID": "ask-not-found",
+     "text": "Your documents don't mention this."
+    },
+    {
+     "testID": "ask-stats",
+     "text": "search 92 ms · 0 passages"
+    },
+    {
+     "testID": "ask-input",
+     "text": "",
+     "value": "Who won the 1998 World Cup?",
+     "pressable": true
+    },
+    {
+     "testID": "ask-send",
+     "text": "↑",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "banners",
+     "text": "Slowing down to keep the phone cool"
+    },
+    {
+     "testID": "banner-thermal",
+     "text": "Slowing down to keep the phone cool"
+    },
+    {
+     "testID": "device-explain-sheet",
+     "text": ""
+    },
+    {
+     "testID": "qa-bridge",
+     "text": ""
+    }
+   ],
+   "detail": "j4-02"
+  },
+  {
+   "i": 48,
+   "op": "type",
+   "ok": true,
+   "ms": 157,
+   "detail": "ask-input = 32 chars"
+  },
+  {
+   "i": 49,
+   "op": "press",
+   "ok": true,
+   "ms": 166,
+   "detail": "ask-send ← onPress"
+  },
+  {
+   "i": 50,
+   "op": "sleep",
+   "ok": true,
+   "ms": 1501,
+   "detail": "1500 ms"
+  },
+  {
+   "i": 51,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "ask-not-found appeared"
+  },
+  {
+   "i": 52,
+   "op": "sleep",
+   "ok": true,
+   "ms": 1501,
+   "detail": "1500 ms"
+  },
+  {
+   "i": 53,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "Your documents don't mention this.",
+    "props": {
+     "disabled": false
+    }
+   },
+   "detail": "Your documents don't mention this."
+  },
+  {
+   "i": 54,
+   "op": "value",
+   "ok": true,
+   "ms": 0,
+   "value": {
+    "text": "search 114 ms · 0 passages",
+    "props": {
+     "disabled": false
+    }
+   },
+   "detail": "search 114 ms · 0 passages"
+  },
+  {
+   "i": 55,
+   "op": "value",
+   "ok": false,
+   "ms": 1,
+   "detail": "value ask-answer: no node with that testID is mounted"
+  },
+  {
+   "i": 56,
+   "op": "value",
+   "ok": false,
+   "ms": 0,
+   "detail": "value citations: no node with that testID is mounted"
+  },
+  {
+   "i": 57,
+   "op": "assertText",
+   "ok": true,
+   "ms": 0,
+   "detail": "\"Your documents don't mention this\" present"
+  },
+  {
+   "i": 58,
+   "op": "assertText",
+   "ok": true,
+   "ms": 1,
+   "detail": "\"0 passages\" present"
+  },
+  {
+   "i": 59,
+   "op": "assertText",
+   "ok": true,
+   "ms": 3,
+   "detail": "\"tok/s\" absent"
+  },
+  {
+   "i": 60,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "ask-answer gone"
+  },
+  {
+   "i": 61,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 0,
+   "detail": "ask-none-matched gone"
+  },
+  {
+   "i": 62,
+   "op": "screenshot",
+   "ok": true,
+   "ms": 2548,
+   "detail": "j4-03"
+  },
+  {
+   "i": 63,
+   "op": "dump",
+   "ok": true,
+   "ms": 2,
+   "nodes": [
+    {
+     "testID": "documents-close",
+     "text": "Close",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "documents-add",
+     "text": "Add file",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "banner-inset",
+     "text": ""
+    },
+    {
+     "testID": "documents-strict",
+     "text": "",
+     "value": "false",
+     "pressable": true
+    },
+    {
+     "testID": "doc-row-muxcz3e9-4-pmhqi80j",
+     "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+     "pressable": true
+    },
+    {
+     "testID": "doc-select-muxcz3e9-4-pmhqi80j",
+     "text": "",
+     "role": "checkbox",
+     "state": {
+      "checked": true,
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "doc-state-muxcz3e9-4-pmhqi80j",
+     "text": "Indexed · 45 passages"
+    },
+    {
+     "testID": "doc-row-muxcm45y-3-bvtke2k7",
+     "text": "constitution-9pages.pdf ? · 0 B Inborn could not find that file where it was saved. Resume",
+     "pressable": true
+    },
+    {
+     "testID": "doc-select-muxcm45y-3-bvtke2k7",
+     "text": "",
+     "role": "checkbox",
+     "state": {
+      "checked": false,
+      "disabled": true
+     },
+     "disabled": true
+    },
+    {
+     "testID": "doc-state-muxcm45y-3-bvtke2k7",
+     "text": "Inborn could not find that file where it was saved."
+    },
+    {
+     "testID": "doc-resume-muxcm45y-3-bvtke2k7",
+     "text": "Resume",
+     "pressable": true
+    },
+    {
+     "testID": "doc-row-muxccacm-1-8is441hw",
+     "text": "turbine-report-3pages.pdf PDF · 3 pages · 1.73 KB Indexed · 3 passages",
+     "pressable": true
+    },
+    {
+     "testID": "doc-select-muxccacm-1-8is441hw",
+     "text": "",
+     "role": "checkbox",
+     "state": {
+      "checked": false,
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "doc-state-muxccacm-1-8is441hw",
+     "text": "Indexed · 3 passages"
+    },
+    {
+     "testID": "documents-ask-selected",
+     "text": "Ask about 1 document",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "ask-sheet",
+     "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. Your documents don't mention this. search 114 ms · 0 passages ↑"
+    },
+    {
+     "testID": "ask-strict",
+     "text": "",
+     "value": "false",
+     "pressable": true
+    },
+    {
+     "testID": "ask-not-found",
+     "text": "Your documents don't mention this."
+    },
+    {
+     "testID": "ask-stats",
+     "text": "search 114 ms · 0 passages"
+    },
+    {
+     "testID": "ask-input",
+     "text": "",
+     "value": "What does it say about the moon?",
+     "pressable": true
+    },
+    {
+     "testID": "ask-send",
+     "text": "↑",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "banners",
+     "text": "Slowing down to keep the phone cool"
+    },
+    {
+     "testID": "banner-thermal",
+     "text": "Slowing down to keep the phone cool"
+    },
+    {
+     "testID": "device-explain-sheet",
+     "text": ""
+    },
+    {
+     "testID": "qa-bridge",
+     "text": ""
+    }
+   ],
+   "detail": "j4-03"
+  },
+  {
+   "i": 64,
+   "op": "type",
+   "ok": true,
+   "ms": 158,
+   "detail": "ask-input = 22 chars"
+  },
+  {
+   "i": 65,
+   "op": "press",
+   "ok": true,
+   "ms": 165,
+   "detail": "ask-send ← onPress"
+  },
+  {
+   "i": 66,
+   "op": "sleep",
+   "ok": true,
+   "ms": 1501,
+   "detail": "1500 ms"
+  },
+  {
+   "i": 67,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "ask-not-found appeared"
+  },
+  {
+   "i": 68,
+   "op": "sleep",
+   "ok": true,
+   "ms": 1501,
+   "detail": "1500 ms"
+  },
+  {
+   "i": 69,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "Your documents don't mention this.",
+    "props": {
+     "disabled": false
+    }
+   },
+   "detail": "Your documents don't mention this."
+  },
+  {
+   "i": 70,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "search 101 ms · 0 passages",
+    "props": {
+     "disabled": false
+    }
+   },
+   "detail": "search 101 ms · 0 passages"
+  },
+  {
+   "i": 71,
+   "op": "value",
+   "ok": false,
+   "ms": 0,
+   "detail": "value ask-answer: no node with that testID is mounted"
+  },
+  {
+   "i": 72,
+   "op": "value",
+   "ok": false,
+   "ms": 0,
+   "detail": "value citations: no node with that testID is mounted"
+  },
+  {
+   "i": 73,
+   "op": "assertText",
+   "ok": true,
+   "ms": 1,
+   "detail": "\"Your documents don't mention this\" present"
+  },
+  {
+   "i": 74,
+   "op": "assertText",
+   "ok": true,
+   "ms": 0,
+   "detail": "\"0 passages\" present"
+  },
+  {
+   "i": 75,
+   "op": "assertText",
+   "ok": true,
+   "ms": 1,
+   "detail": "\"tok/s\" absent"
+  },
+  {
+   "i": 76,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 0,
+   "detail": "ask-answer gone"
+  },
+  {
+   "i": 77,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 0,
+   "detail": "ask-none-matched gone"
+  },
+  {
+   "i": 78,
+   "op": "screenshot",
+   "ok": true,
+   "ms": 2218,
+   "detail": "j4-04"
+  },
+  {
+   "i": 79,
+   "op": "dump",
+   "ok": true,
+   "ms": 2,
+   "nodes": [
+    {
+     "testID": "documents-close",
+     "text": "Close",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "documents-add",
+     "text": "Add file",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "banner-inset",
+     "text": ""
+    },
+    {
+     "testID": "documents-strict",
+     "text": "",
+     "value": "false",
+     "pressable": true
+    },
+    {
+     "testID": "doc-row-muxcz3e9-4-pmhqi80j",
+     "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+     "pressable": true
+    },
+    {
+     "testID": "doc-select-muxcz3e9-4-pmhqi80j",
+     "text": "",
+     "role": "checkbox",
+     "state": {
+      "checked": true,
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "doc-state-muxcz3e9-4-pmhqi80j",
+     "text": "Indexed · 45 passages"
+    },
+    {
+     "testID": "doc-row-muxcm45y-3-bvtke2k7",
+     "text": "constitution-9pages.pdf ? · 0 B Inborn could not find that file where it was saved. Resume",
+     "pressable": true
+    },
+    {
+     "testID": "doc-select-muxcm45y-3-bvtke2k7",
+     "text": "",
+     "role": "checkbox",
+     "state": {
+      "checked": false,
+      "disabled": true
+     },
+     "disabled": true
+    },
+    {
+     "testID": "doc-state-muxcm45y-3-bvtke2k7",
+     "text": "Inborn could not find that file where it was saved."
+    },
+    {
+     "testID": "doc-resume-muxcm45y-3-bvtke2k7",
+     "text": "Resume",
+     "pressable": true
+    },
+    {
+     "testID": "doc-row-muxccacm-1-8is441hw",
+     "text": "turbine-report-3pages.pdf PDF · 3 pages · 1.73 KB Indexed · 3 passages",
+     "pressable": true
+    },
+    {
+     "testID": "doc-select-muxccacm-1-8is441hw",
+     "text": "",
+     "role": "checkbox",
+     "state": {
+      "checked": false,
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "doc-state-muxccacm-1-8is441hw",
+     "text": "Indexed · 3 passages"
+    },
+    {
+     "testID": "documents-ask-selected",
+     "text": "Ask about 1 document",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "ask-sheet",
+     "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. Your documents don't mention this. search 101 ms · 0 passages ↑"
+    },
+    {
+     "testID": "ask-strict",
+     "text": "",
+     "value": "false",
+     "pressable": true
+    },
+    {
+     "testID": "ask-not-found",
+     "text": "Your documents don't mention this."
+    },
+    {
+     "testID": "ask-stats",
+     "text": "search 101 ms · 0 passages"
+    },
+    {
+     "testID": "ask-input",
+     "text": "",
+     "value": "Who wrote this report?",
+     "pressable": true
+    },
+    {
+     "testID": "ask-send",
+     "text": "↑",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "banners",
+     "text": "Slowing down to keep the phone cool"
+    },
+    {
+     "testID": "banner-thermal",
+     "text": "Slowing down to keep the phone cool"
+    },
+    {
+     "testID": "device-explain-sheet",
+     "text": ""
+    },
+    {
+     "testID": "qa-bridge",
+     "text": ""
+    }
+   ],
+   "detail": "j4-04"
+  },
+  {
+   "i": 80,
+   "op": "type",
+   "ok": true,
+   "ms": 158,
+   "detail": "ask-input = 20 chars"
+  },
+  {
+   "i": 81,
+   "op": "press",
+   "ok": true,
+   "ms": 166,
+   "detail": "ask-send ← onPress"
+  },
+  {
+   "i": 82,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2501,
+   "detail": "2500 ms"
+  },
+  {
+   "i": 83,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 3200,
+   "detail": "ask-stop gone"
+  },
+  {
+   "i": 84,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2002,
+   "detail": "2000 ms"
+  },
+  {
+   "i": 85,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "[1] No State or foreign State can veto a bill; only the President of the United States is authorized to do so.",
+    "props": {
+     "source": "[1] No State or foreign State can veto a bill; only the President of the United States is authorized to do so.",
+     "disabled": false
+    }
+   },
+   "detail": "[1] No State or foreign State can veto a bill; only the President of the United States is authorized to do so."
+  },
+  {
+   "i": 86,
+   "op": "value",
+   "ok": true,
+   "ms": 0,
+   "value": {
+    "text": "search 105 ms · 4 passages · answer 5666 ms · 5.8 tok/s · prompt 874 tokens",
+    "props": {
+     "disabled": false
+    }
+   },
+   "detail": "search 105 ms · 4 passages · answer 5666 ms · 5.8 tok/s · prompt 874 tokens"
+  },
+  {
+   "i": 87,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "[1] constitution-9pages.pdf · p.3",
+    "props": {
+     "disabled": false
+    }
+   },
+   "detail": "[1] constitution-9pages.pdf · p.3"
+  },
+  {
+   "i": 88,
+   "op": "value",
+   "ok": false,
+   "ms": 0,
+   "detail": "value ask-not-found: no node with that testID is mounted"
+  },
+  {
+   "i": 89,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "ask-not-found gone"
+  },
+  {
+   "i": 90,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 0,
+   "detail": "citations appeared"
+  },
+  {
+   "i": 91,
+   "op": "screenshot",
+   "ok": true,
+   "ms": 2852,
+   "detail": "j4-05"
+  },
+  {
+   "i": 92,
+   "op": "dump",
+   "ok": true,
+   "ms": 5,
+   "nodes": [
+    {
+     "testID": "documents-close",
+     "text": "Close",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "documents-add",
+     "text": "Add file",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "banner-inset",
+     "text": ""
+    },
+    {
+     "testID": "documents-strict",
+     "text": "",
+     "value": "false",
+     "pressable": true
+    },
+    {
+     "testID": "doc-row-muxcz3e9-4-pmhqi80j",
+     "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+     "pressable": true
+    },
+    {
+     "testID": "doc-select-muxcz3e9-4-pmhqi80j",
+     "text": "",
+     "role": "checkbox",
+     "state": {
+      "checked": true,
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "doc-state-muxcz3e9-4-pmhqi80j",
+     "text": "Indexed · 45 passages"
+    },
+    {
+     "testID": "doc-row-muxcm45y-3-bvtke2k7",
+     "text": "constitution-9pages.pdf ? · 0 B Inborn could not find that file where it was saved. Resume",
+     "pressable": true
+    },
+    {
+     "testID": "doc-select-muxcm45y-3-bvtke2k7",
+     "text": "",
+     "role": "checkbox",
+     "state": {
+      "checked": false,
+      "disabled": true
+     },
+     "disabled": true
+    },
+    {
+     "testID": "doc-state-muxcm45y-3-bvtke2k7",
+     "text": "Inborn could not find that file where it was saved."
+    },
+    {
+     "testID": "doc-resume-muxcm45y-3-bvtke2k7",
+     "text": "Resume",
+     "pressable": true
+    },
+    {
+     "testID": "doc-row-muxccacm-1-8is441hw",
+     "text": "turbine-report-3pages.pdf PDF · 3 pages · 1.73 KB Indexed · 3 passages",
+     "pressable": true
+    },
+    {
+     "testID": "doc-select-muxccacm-1-8is441hw",
+     "text": "",
+     "role": "checkbox",
+     "state": {
+      "checked": false,
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "doc-state-muxccacm-1-8is441hw",
+     "text": "Indexed · 3 passages"
+    },
+    {
+     "testID": "documents-ask-selected",
+     "text": "Ask about 1 document",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "ask-sheet",
+     "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. INSTANT · ON-DEVICE AI [1] No State or foreign State can veto a bill; only the President of the United States is authorized to do so. [1] constitution-9pages.pdf · p.3 search 105 ms · 4 passages · answer 5666 ms · 5.8 tok/s · prompt 874 tokens ↑"
+    },
+    {
+     "testID": "ask-strict",
+     "text": "",
+     "value": "false",
+     "pressable": true
+    },
+    {
+     "testID": "ask-answer",
+     "text": "[1] No State or foreign State can veto a bill; only the President of the United States is authorized to do so."
+    },
+    {
+     "testID": "citations",
+     "text": "[1] constitution-9pages.pdf · p.3"
+    },
+    {
+     "testID": "citation-1",
+     "text": "[1] constitution-9pages.pdf · p.3",
+     "role": "button",
+     "label": "Open constitution-9pages.pdf · p.3",
+     "pressable": true
+    },
+    {
+     "testID": "ask-stats",
+     "text": "search 105 ms · 4 passages · answer 5666 ms · 5.8 tok/s · prompt 874 tokens"
+    },
+    {
+     "testID": "ask-input",
+     "text": "",
+     "value": "Who can veto a bill?",
+     "pressable": true
+    },
+    {
+     "testID": "ask-send",
+     "text": "↑",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "banners",
+     "text": "Slowing down to keep the phone cool"
+    },
+    {
+     "testID": "banner-thermal",
+     "text": "Slowing down to keep the phone cool"
+    },
+    {
+     "testID": "device-explain-sheet",
+     "text": ""
+    },
+    {
+     "testID": "qa-bridge",
+     "text": ""
+    }
+   ],
+   "detail": "j4-05"
+  },
+  {
+   "i": 93,
+   "op": "press",
+   "ok": true,
+   "ms": 154,
+   "detail": "ask-strict ← onPress"
+  },
+  {
+   "i": 94,
+   "op": "sleep",
+   "ok": true,
+   "ms": 1501,
+   "detail": "1500 ms"
+  },
+  {
+   "i": 95,
+   "op": "value",
+   "ok": true,
+   "ms": 2,
+   "value": {
+    "text": "",
+    "props": {
+     "value": true,
+     "label": "Answer only from my documents",
+     "accessibilityLabel": "Answer only from my documents",
+     "accessibilityRole": "switch",
+     "accessibilityState": {
+      "checked": true,
+      "disabled": false
+     },
+     "disabled": false
+    }
+   },
+   "detail": ""
+  },
+  {
+   "i": 96,
+   "op": "type",
+   "ok": true,
+   "ms": 165,
+   "detail": "ask-input = 27 chars"
+  },
+  {
+   "i": 97,
+   "op": "press",
+   "ok": true,
+   "ms": 166,
+   "detail": "ask-send ← onPress"
+  },
+  {
+   "i": 98,
+   "op": "sleep",
+   "ok": true,
+   "ms": 1500,
+   "detail": "1500 ms"
+  },
+  {
+   "i": 99,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "ask-not-found appeared"
+  },
+  {
+   "i": 100,
+   "op": "sleep",
+   "ok": true,
+   "ms": 1501,
+   "detail": "1500 ms"
+  },
+  {
+   "i": 101,
+   "op": "value",
+   "ok": true,
+   "ms": 0,
+   "value": {
+    "text": "Your documents don't mention this.",
+    "props": {
+     "disabled": false
+    }
+   },
+   "detail": "Your documents don't mention this."
+  },
+  {
+   "i": 102,
+   "op": "value",
+   "ok": true,
+   "ms": 4,
+   "value": {
+    "text": "search 97 ms · 0 passages",
+    "props": {
+     "disabled": false
+    }
+   },
+   "detail": "search 97 ms · 0 passages"
+  },
+  {
+   "i": 103,
+   "op": "value",
+   "ok": false,
+   "ms": 0,
+   "detail": "value ask-answer: no node with that testID is mounted"
+  },
+  {
+   "i": 104,
+   "op": "value",
+   "ok": false,
+   "ms": 1,
+   "detail": "value citations: no node with that testID is mounted"
+  },
+  {
+   "i": 105,
+   "op": "assertText",
+   "ok": true,
+   "ms": 0,
+   "detail": "\"Your documents don't mention this\" present"
+  },
+  {
+   "i": 106,
+   "op": "assertText",
+   "ok": true,
+   "ms": 1,
+   "detail": "\"0 passages\" present"
+  },
+  {
+   "i": 107,
+   "op": "assertText",
+   "ok": true,
+   "ms": 0,
+   "detail": "\"tok/s\" absent"
+  },
+  {
+   "i": 108,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 0,
+   "detail": "ask-answer gone"
+  },
+  {
+   "i": 109,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "ask-none-matched gone"
+  },
+  {
+   "i": 110,
+   "op": "screenshot",
+   "ok": true,
+   "ms": 2215,
+   "detail": "j4-06"
+  },
+  {
+   "i": 111,
+   "op": "dump",
+   "ok": true,
+   "ms": 3,
+   "nodes": [
+    {
+     "testID": "documents-close",
+     "text": "Close",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "documents-add",
+     "text": "Add file",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "banner-inset",
+     "text": ""
+    },
+    {
+     "testID": "documents-strict",
+     "text": "",
+     "value": "true",
+     "pressable": true
+    },
+    {
+     "testID": "doc-row-muxcz3e9-4-pmhqi80j",
+     "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+     "pressable": true
+    },
+    {
+     "testID": "doc-select-muxcz3e9-4-pmhqi80j",
+     "text": "",
+     "role": "checkbox",
+     "state": {
+      "checked": true,
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "doc-state-muxcz3e9-4-pmhqi80j",
+     "text": "Indexed · 45 passages"
+    },
+    {
+     "testID": "doc-row-muxcm45y-3-bvtke2k7",
+     "text": "constitution-9pages.pdf ? · 0 B Inborn could not find that file where it was saved. Resume",
+     "pressable": true
+    },
+    {
+     "testID": "doc-select-muxcm45y-3-bvtke2k7",
+     "text": "",
+     "role": "checkbox",
+     "state": {
+      "checked": false,
+      "disabled": true
+     },
+     "disabled": true
+    },
+    {
+     "testID": "doc-state-muxcm45y-3-bvtke2k7",
+     "text": "Inborn could not find that file where it was saved."
+    },
+    {
+     "testID": "doc-resume-muxcm45y-3-bvtke2k7",
+     "text": "Resume",
+     "pressable": true
+    },
+    {
+     "testID": "doc-row-muxccacm-1-8is441hw",
+     "text": "turbine-report-3pages.pdf PDF · 3 pages · 1.73 KB Indexed · 3 passages",
+     "pressable": true
+    },
+    {
+     "testID": "doc-select-muxccacm-1-8is441hw",
+     "text": "",
+     "role": "checkbox",
+     "state": {
+      "checked": false,
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "doc-state-muxccacm-1-8is441hw",
+     "text": "Indexed · 3 passages"
+    },
+    {
+     "testID": "documents-ask-selected",
+     "text": "Ask about 1 document",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "ask-sheet",
+     "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. Your documents don't mention this. search 97 ms · 0 passages ↑"
+    },
+    {
+     "testID": "ask-strict",
+     "text": "",
+     "value": "true",
+     "pressable": true
+    },
+    {
+     "testID": "ask-not-found",
+     "text": "Your documents don't mention this."
+    },
+    {
+     "testID": "ask-stats",
+     "text": "search 97 ms · 0 passages"
+    },
+    {
+     "testID": "ask-input",
+     "text": "",
+     "value": "Who won the 1998 World Cup?",
+     "pressable": true
+    },
+    {
+     "testID": "ask-send",
+     "text": "↑",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "banners",
+     "text": "Slowing down to keep the phone cool"
+    },
+    {
+     "testID": "banner-thermal",
+     "text": "Slowing down to keep the phone cool"
+    },
+    {
+     "testID": "device-explain-sheet",
+     "text": ""
+    },
+    {
+     "testID": "qa-bridge",
+     "text": ""
+    }
+   ],
+   "detail": "j4-06"
+  },
+  {
+   "i": 112,
+   "op": "press",
+   "ok": true,
+   "ms": 157,
+   "detail": "ask-strict ← onPress"
+  },
+  {
+   "i": 113,
+   "op": "sleep",
+   "ok": true,
+   "ms": 1500,
+   "detail": "1500 ms"
+  },
+  {
+   "i": 114,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "",
+    "props": {
+     "value": false,
+     "label": "Answer only from my documents",
+     "accessibilityLabel": "Answer only from my documents",
+     "accessibilityRole": "switch",
+     "accessibilityState": {
+      "checked": false,
+      "disabled": false
+     },
+     "disabled": false
+    }
+   },
+   "detail": ""
+  },
+  {
+   "i": 115,
+   "op": "type",
+   "ok": true,
+   "ms": 167,
+   "detail": "ask-input = 9 chars"
+  },
+  {
+   "i": 116,
+   "op": "press",
+   "ok": true,
+   "ms": 166,
+   "detail": "ask-send ← onPress"
+  },
+  {
+   "i": 117,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2501,
+   "detail": "2500 ms"
+  },
+  {
+   "i": 118,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 0,
+   "detail": "ask-stop gone"
+  },
+  {
+   "i": 119,
+   "op": "sleep",
+   "ok": true,
+   "ms": 1516,
+   "detail": "1500 ms"
+  },
+  {
+   "i": 120,
+   "op": "value",
+   "ok": true,
+   "ms": 0,
+   "value": {
+    "text": "You're welcome. Ask another question about these documents.",
+    "props": {
+     "disabled": false
+    }
+   },
+   "detail": "You're welcome. Ask another question about these documents."
+  },
+  {
+   "i": 121,
+   "op": "value",
+   "ok": false,
+   "ms": 1,
+   "detail": "value ask-not-found: no node with that testID is mounted"
+  },
+  {
+   "i": 122,
+   "op": "value",
+   "ok": false,
+   "ms": 0,
+   "detail": "value ask-answer: no node with that testID is mounted"
+  },
+  {
+   "i": 123,
+   "op": "value",
+   "ok": false,
+   "ms": 0,
+   "detail": "value ask-stats: no node with that testID is mounted"
+  },
+  {
+   "i": 124,
+   "op": "assertText",
+   "ok": true,
+   "ms": 1,
+   "detail": "\"Ask another question about these documents\" present"
+  },
+  {
+   "i": 125,
+   "op": "screenshot",
+   "ok": true,
+   "ms": 3171,
+   "detail": "j4-07"
+  },
+  {
+   "i": 126,
+   "op": "dump",
+   "ok": true,
+   "ms": 2,
+   "nodes": [
+    {
+     "testID": "documents-close",
+     "text": "Close",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "documents-add",
+     "text": "Add file",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "banner-inset",
+     "text": ""
+    },
+    {
+     "testID": "documents-strict",
+     "text": "",
+     "value": "false",
+     "pressable": true
+    },
+    {
+     "testID": "doc-row-muxcz3e9-4-pmhqi80j",
+     "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+     "pressable": true
+    },
+    {
+     "testID": "doc-select-muxcz3e9-4-pmhqi80j",
+     "text": "",
+     "role": "checkbox",
+     "state": {
+      "checked": true,
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "doc-state-muxcz3e9-4-pmhqi80j",
+     "text": "Indexed · 45 passages"
+    },
+    {
+     "testID": "doc-row-muxcm45y-3-bvtke2k7",
+     "text": "constitution-9pages.pdf ? · 0 B Inborn could not find that file where it was saved. Resume",
+     "pressable": true
+    },
+    {
+     "testID": "doc-select-muxcm45y-3-bvtke2k7",
+     "text": "",
+     "role": "checkbox",
+     "state": {
+      "checked": false,
+      "disabled": true
+     },
+     "disabled": true
+    },
+    {
+     "testID": "doc-state-muxcm45y-3-bvtke2k7",
+     "text": "Inborn could not find that file where it was saved."
+    },
+    {
+     "testID": "doc-resume-muxcm45y-3-bvtke2k7",
+     "text": "Resume",
+     "pressable": true
+    },
+    {
+     "testID": "doc-row-muxccacm-1-8is441hw",
+     "text": "turbine-report-3pages.pdf PDF · 3 pages · 1.73 KB Indexed · 3 passages",
+     "pressable": true
+    },
+    {
+     "testID": "doc-select-muxccacm-1-8is441hw",
+     "text": "",
+     "role": "checkbox",
+     "state": {
+      "checked": false,
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "doc-state-muxccacm-1-8is441hw",
+     "text": "Indexed · 3 passages"
+    },
+    {
+     "testID": "documents-ask-selected",
+     "text": "Ask about 1 document",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "ask-sheet",
+     "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. You're welcome. Ask another question about these documents. ↑"
+    },
+    {
+     "testID": "ask-strict",
+     "text": "",
+     "value": "false",
+     "pressable": true
+    },
+    {
+     "testID": "ask-plain",
+     "text": "You're welcome. Ask another question about these documents."
+    },
+    {
+     "testID": "ask-input",
+     "text": "",
+     "value": "thank you",
+     "pressable": true
+    },
+    {
+     "testID": "ask-send",
+     "text": "↑",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "banners",
+     "text": "Slowing down to keep the phone cool"
+    },
+    {
+     "testID": "banner-thermal",
+     "text": "Slowing down to keep the phone cool"
+    },
+    {
+     "testID": "device-explain-sheet",
+     "text": ""
+    },
+    {
+     "testID": "qa-bridge",
+     "text": ""
+    }
+   ],
+   "detail": "j4-07"
+  },
+  {
+   "i": 127,
+   "op": "type",
+   "ok": true,
+   "ms": 159,
+   "detail": "ask-input = 7 chars"
+  },
+  {
+   "i": 128,
+   "op": "press",
+   "ok": true,
+   "ms": 166,
+   "detail": "ask-send ← onPress"
+  },
+  {
+   "i": 129,
+   "op": "sleep",
+   "ok": true,
+   "ms": 2501,
+   "detail": "2500 ms"
+  },
+  {
+   "i": 130,
+   "op": "waitFor",
+   "ok": true,
+   "ms": 1,
+   "detail": "ask-stop gone"
+  },
+  {
+   "i": 131,
+   "op": "sleep",
+   "ok": true,
+   "ms": 1500,
+   "detail": "1500 ms"
+  },
+  {
+   "i": 132,
+   "op": "value",
+   "ok": true,
+   "ms": 1,
+   "value": {
+    "text": "This sheet answers one question at a time: ask the full question (for example, \"Summarize it in three lines\").",
+    "props": {
+     "disabled": false
+    }
+   },
+   "detail": "This sheet answers one question at a time: ask the full question (for example, \"Summarize it in three lines\")."
+  },
+  {
+   "i": 133,
+   "op": "value",
+   "ok": false,
+   "ms": 1,
+   "detail": "value ask-not-found: no node with that testID is mounted"
+  },
+  {
+   "i": 134,
+   "op": "value",
+   "ok": false,
+   "ms": 0,
+   "detail": "value ask-answer: no node with that testID is mounted"
+  },
+  {
+   "i": 135,
+   "op": "value",
+   "ok": false,
+   "ms": 1,
+   "detail": "value ask-stats: no node with that testID is mounted"
+  },
+  {
+   "i": 136,
+   "op": "assertText",
+   "ok": true,
+   "ms": 0,
+   "detail": "\"This sheet answers one question at a time\" present"
+  },
+  {
+   "i": 137,
+   "op": "screenshot",
+   "ok": true,
+   "ms": 3487,
+   "detail": "j4-08"
+  },
+  {
+   "i": 138,
+   "op": "dump",
+   "ok": true,
+   "ms": 1,
+   "nodes": [
+    {
+     "testID": "documents-close",
+     "text": "Close",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "documents-add",
+     "text": "Add file",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "banner-inset",
+     "text": ""
+    },
+    {
+     "testID": "documents-strict",
+     "text": "",
+     "value": "false",
+     "pressable": true
+    },
+    {
+     "testID": "doc-row-muxcz3e9-4-pmhqi80j",
+     "text": "constitution-9pages.pdf PDF · 9 pages · 55.6 KB Indexed · 45 passages",
+     "pressable": true
+    },
+    {
+     "testID": "doc-select-muxcz3e9-4-pmhqi80j",
+     "text": "",
+     "role": "checkbox",
+     "state": {
+      "checked": true,
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "doc-state-muxcz3e9-4-pmhqi80j",
+     "text": "Indexed · 45 passages"
+    },
+    {
+     "testID": "doc-row-muxcm45y-3-bvtke2k7",
+     "text": "constitution-9pages.pdf ? · 0 B Inborn could not find that file where it was saved. Resume",
+     "pressable": true
+    },
+    {
+     "testID": "doc-select-muxcm45y-3-bvtke2k7",
+     "text": "",
+     "role": "checkbox",
+     "state": {
+      "checked": false,
+      "disabled": true
+     },
+     "disabled": true
+    },
+    {
+     "testID": "doc-state-muxcm45y-3-bvtke2k7",
+     "text": "Inborn could not find that file where it was saved."
+    },
+    {
+     "testID": "doc-resume-muxcm45y-3-bvtke2k7",
+     "text": "Resume",
+     "pressable": true
+    },
+    {
+     "testID": "doc-row-muxccacm-1-8is441hw",
+     "text": "turbine-report-3pages.pdf PDF · 3 pages · 1.73 KB Indexed · 3 passages",
+     "pressable": true
+    },
+    {
+     "testID": "doc-select-muxccacm-1-8is441hw",
+     "text": "",
+     "role": "checkbox",
+     "state": {
+      "checked": false,
+      "disabled": false
+     },
+     "pressable": true
+    },
+    {
+     "testID": "doc-state-muxccacm-1-8is441hw",
+     "text": "Indexed · 3 passages"
+    },
+    {
+     "testID": "documents-ask-selected",
+     "text": "Ask about 1 document",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "ask-sheet",
+     "text": "Close ASK YOUR DOCUMENTS Searching 1 document: constitution-9pages.pdf Answer only from my documents When nothing relevant is found, Inborn says so instead of guessing. This sheet answers one question at a time: ask the full question (for example, \"Summarize it in three lines\"). ↑"
+    },
+    {
+     "testID": "ask-strict",
+     "text": "",
+     "value": "false",
+     "pressable": true
+    },
+    {
+     "testID": "ask-plain",
+     "text": "This sheet answers one question at a time: ask the full question (for example, \"Summarize it in three lines\")."
+    },
+    {
+     "testID": "ask-input",
+     "text": "",
+     "value": "And now",
+     "pressable": true
+    },
+    {
+     "testID": "ask-send",
+     "text": "↑",
+     "role": "button",
+     "pressable": true
+    },
+    {
+     "testID": "banners",
+     "text": "Slowing down to keep the phone cool"
+    },
+    {
+     "testID": "banner-thermal",
+     "text": "Slowing down to keep the phone cool"
+    },
+    {
+     "testID": "device-explain-sheet",
+     "text": ""
+    },
+    {
+     "testID": "qa-bridge",
+     "text": ""
+    }
+   ],
+   "detail": "j4-08"
+  },
+  {
+   "i": 139,
+   "op": "deeplink",
+   "ok": true,
+   "ms": 158,
+   "detail": "/chats"
+  },
+  {
+   "i": 140,
+   "op": "sleep",
+   "ok": true,
+   "ms": 1500,
+   "detail": "1500 ms"
+  },
+  {
+   "i": 141,
+   "op": "setTier",
+   "ok": true,
+   "ms": 191,
+   "detail": "free"
+  }
+ ],
+ "errors": [
+  "step 12 (press): press model-sheet-use-instant: not mounted",
+  "step 39 (value): value ask-answer: no node with that testID is mounted",
+  "step 40 (value): value citations: no node with that testID is mounted",
+  "step 55 (value): value ask-answer: no node with that testID is mounted",
+  "step 56 (value): value citations: no node with that testID is mounted",
+  "step 71 (value): value ask-answer: no node with that testID is mounted",
+  "step 72 (value): value citations: no node with that testID is mounted",
+  "step 88 (value): value ask-not-found: no node with that testID is mounted",
+  "step 103 (value): value ask-answer: no node with that testID is mounted",
+  "step 104 (value): value citations: no node with that testID is mounted",
+  "step 121 (value): value ask-not-found: no node with that testID is mounted",
+  "step 122 (value): value ask-answer: no node with that testID is mounted",
+  "step 123 (value): value ask-stats: no node with that testID is mounted",
+  "step 133 (value): value ask-not-found: no node with that testID is mounted",
+  "step 134 (value): value ask-answer: no node with that testID is mounted",
+  "step 135 (value): value ask-stats: no node with that testID is mounted"
+ ]
+}

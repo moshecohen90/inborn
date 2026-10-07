@@ -1,0 +1,76 @@
+02:56:50 pushing 60 steps as j1-onboard
+02:56:53 shot j1-01
+02:56:59 shot j1-02
+02:57:40 shot j1-03
+02:57:47 shot j1-04
+02:57:53 shot j1-05
+02:57:58 shot j1-06
+02:58:07 shot j1-07
+02:58:11 ok     0 waitFor    onboarding-continue appeared
+02:58:11 ok     1 sleep      1200 ms
+02:58:11 ok     2 screenshot j1-01
+02:58:11 ok     3 dump       j1-01
+02:58:11 ok     4 press      onboarding-continue ← onPress
+02:58:11 ok     5 waitFor    onboarding-model appeared
+02:58:11 ok     6 sleep      2500 ms
+02:58:11 ok     7 value      1.28 GB · one download from models.inbornapp.com
+02:58:11 ok     8 assertText "models.inbornapp.com" present
+02:58:11 ok     9 screenshot j1-02
+02:58:11 ok    10 press      start-now-with ← onPress
+02:58:11 ok    11 waitFor    sealed-start appeared
+02:58:11 ok    12 sleep      5000 ms
+02:58:11 ok    13 press      sealed-start ← onPress
+02:58:11 ok    14 waitFor    lock-start appeared
+02:58:11 ok    15 press      lock-start ← onPress
+02:58:11 ok    16 waitFor    composer-input appeared
+02:58:11 ok    17 waitFor    Loading gone
+02:58:11 ok    18 sleep      2000 ms
+02:58:11 ok    19 value      INSTANT
+02:58:11 ok    20 assertText "INSTANT" present
+02:58:11 ok    21 screenshot j1-03
+02:58:11 ok    22 type       composer-input = 2 chars
+02:58:11 ok    23 send       send ← onPress
+02:58:11 ok    24 sleep      2500 ms
+02:58:11 ok    25 waitFor    reading-pages gone
+02:58:11 ok    26 waitFor    reading-docs gone
+02:58:11 ok    27 waitFor    stop gone
+02:58:11 ok    28 sleep      2500 ms
+02:58:11 ok    29 value      Hello! How can I help you today?
+02:58:11 FAIL  30 value      value citations: no node with that testID is mounted
+02:58:11 FAIL  31 value      value none-matched: no node with that testID is mounted
+02:58:11 FAIL  32 value      value banners: no node with that testID is mounted
+02:58:11 ok    33 value      INSTANT
+02:58:11 ok    34 screenshot j1-04
+02:58:11 ok    35 dump       j1-04
+02:58:11 ok    36 press      open-chats ← onPress
+02:58:11 ok    37 waitFor    close-chats appeared
+02:58:11 ok    38 sleep      1500 ms
+02:58:11 ok    39 screenshot j1-05
+02:58:11 ok    40 dump       j1-05
+02:58:11 ok    41 press      close-chats ← onPress
+02:58:11 ok    42 waitFor    composer-input appeared
+02:58:11 ok    43 sleep      2500 ms
+02:58:11 ok    44 screenshot j1-06
+02:58:11 ok    45 dump       j1-06
+02:58:11 ok    46 type       composer-input = 16 chars
+02:58:11 ok    47 send       send ← onPress
+02:58:11 ok    48 sleep      2500 ms
+02:58:11 ok    49 waitFor    reading-pages gone
+02:58:11 ok    50 waitFor    reading-docs gone
+02:58:11 ok    51 waitFor    stop gone
+02:58:11 ok    52 sleep      2500 ms
+02:58:11 ok    53 value      Hello! How can I help you today?
+02:58:11 FAIL  54 value      value citations: no node with that testID is mounted
+02:58:11 FAIL  55 value      value none-matched: no node with that testID is mounted
+02:58:11 FAIL  56 value      value banners: no node with that testID is mounted
+02:58:11 ok    57 value      INSTANT
+02:58:11 ok    58 screenshot j1-07
+02:58:11 ok    59 dump       j1-07
+02:58:11 54 passed, 6 failed, 7 screenshots → <worktree>/docs/qa/ios-device-pass-41/screens
+02:58:11   ! step 30 (value): value citations: no node with that testID is mounted
+02:58:11   ! step 31 (value): value none-matched: no node with that testID is mounted
+02:58:11   ! step 32 (value): value banners: no node with that testID is mounted
+02:58:11   ! step 54 (value): value citations: no node with that testID is mounted
+02:58:11   ! step 55 (value): value none-matched: no node with that testID is mounted
+02:58:11   ! step 56 (value): value banners: no node with that testID is mounted
+02:58:11   ! console.log: [chat] plain=acknowledgement window=1/1 maxTokens=224

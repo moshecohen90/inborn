@@ -1,0 +1,53 @@
+04:03:10 pushing 41 steps as j5c-photo-1-2
+04:03:19 shot j5-photo1-sent
+04:04:48 shot j5-photo1-answer
+04:04:56 ok     0 value      FAST
+04:04:56 FAIL   1 value      value vision-released: no node with that testID is mounted
+04:04:56 ok     2 value      Slowing down to keep the phone cool SWITCH TO INSTANT
+04:04:56 ok     3 devPrompt  attach: polka-mug.jpg
+04:04:56 ok     4 waitFor    pending-images appeared
+04:04:56 ok     5 sleep      3000 ms
+04:04:56 ok     6 value      
+04:04:56 FAIL   7 value      value vision-released: no node with that testID is mounted
+04:04:56 ok     8 value      Slowing down to keep the phone cool SWITCH TO INSTANT
+04:04:56 ok     9 value      FAST
+04:04:56 ok    10 type       composer-input = 16 chars
+04:04:56 ok    11 send       send ← onPress
+04:04:56 ok    12 sleep      2000 ms
+04:04:56 ok    13 screenshot j5-photo1-sent
+04:04:56 FAIL  14 waitFor    waitFor vision-hold never appeared in 8000 ms
+04:04:56 FAIL  15 value      value vision-hold: no node with that testID is mounted
+04:04:56 FAIL  16 press      press vision-hold-download: not mounted
+04:04:56 ok    17 idleTimer  idle timer disabled: false
+04:04:56 ok    18 waitFor    vision-hold gone
+04:04:56 ok    19 waitFor    assistant-text appeared
+04:04:56 ok    20 waitFor    stop gone
+04:04:56 ok    21 sleep      3000 ms
+04:04:56 ok    22 value      The image displays an outdoor chalkboard menu mounted on a red brick wall, likely belonging to a cafe or café-
+04:04:56 ok    23 value      
+04:04:56 FAIL  24 value      value vision-released: no node with that testID is mounted
+04:04:56 ok    25 value      Slowing down to keep the phone cool SWITCH TO INSTANT
+04:04:56 ok    26 value      FAST
+04:04:56 FAIL  27 value      value model-advice: no node with that testID is mounted
+04:04:56 FAIL  28 value      value model-advice-reason: no node with that testID is mounted
+04:04:56 ok    29 assertText "cannot see" absent
+04:04:56 ok    30 assertText "can't see" absent
+04:04:56 ok    31 assertText "cannot physically see" absent
+04:04:56 ok    32 assertText "see images" absent
+04:04:56 ok    33 assertText "text-based" absent
+04:04:56 ok    34 assertText "unable to see" absent
+04:04:56 ok    35 assertText "not able to see" absent
+04:04:56 ok    36 assertText "don't have eyes" absent
+04:04:56 ok    37 assertText "Your documents don't mention this" absent
+04:04:56 ok    38 assertText "is a scan. Run OCR" absent
+04:04:56 ok    39 screenshot j5-photo1-answer
+04:04:56 ok    40 dump       j5-photo1-answer
+04:04:56 33 passed, 8 failed, 2 screenshots → <worktree>/docs/qa/ios-device-pass-41/screens
+04:04:56   ! step 1 (value): value vision-released: no node with that testID is mounted
+04:04:56   ! step 7 (value): value vision-released: no node with that testID is mounted
+04:04:56   ! step 14 (waitFor): waitFor vision-hold never appeared in 8000 ms
+04:04:56   ! step 15 (value): value vision-hold: no node with that testID is mounted
+04:04:56   ! step 16 (press): press vision-hold-download: not mounted
+04:04:56   ! step 24 (value): value vision-released: no node with that testID is mounted
+04:04:56   ! step 27 (value): value model-advice: no node with that testID is mounted
+04:04:56   ! step 28 (value): value model-advice-reason: no node with that testID is mounted

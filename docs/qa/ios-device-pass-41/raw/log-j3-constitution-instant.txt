@@ -1,0 +1,119 @@
+03:31:44 pushing 102 steps as j3-constitution-instant
+03:32:16 shot j3-11
+03:32:21 shot j3-12
+03:34:06 shot j3-13
+03:34:21 shot j3-14
+03:34:35 shot j3-15
+03:36:29 shot j3-16
+03:36:34 ok     0 deeplink   /chats
+03:36:34 ok     1 waitFor    new-chat appeared
+03:36:34 ok     2 press      new-chat ← onPress
+03:36:34 ok     3 waitFor    start-chat appeared
+03:36:34 ok     4 press      start-chat ← onPress
+03:36:34 ok     5 waitFor    composer-input appeared
+03:36:34 ok     6 waitFor    Loading gone
+03:36:34 ok     7 sleep      1500 ms
+03:36:34 ok     8 value      INSTANT
+03:36:34 ok     9 press      model-chip ← onPress
+03:36:34 ok    10 waitFor    model-sheet appeared
+03:36:34 ok    11 sleep      1500 ms
+03:36:34 FAIL  12 press      press model-sheet-use-instant: not mounted
+03:36:34 ok    13 sleep      3000 ms
+03:36:34 ok    14 press      model-sheet-close ← onPress
+03:36:34 ok    15 waitFor    Loading gone
+03:36:34 ok    16 sleep      1500 ms
+03:36:34 ok    17 value      INSTANT
+03:36:34 ok    18 assertText "INSTANT" present
+03:36:34 ok    19 devPrompt  attach: constitution-9pages.pdf
+03:36:34 ok    20 waitFor    attached-docs appeared
+03:36:34 ok    21 sleep      20000 ms
+03:36:34 ok    22 value      constitution-9pages.pdf
+03:36:34 ok    23 screenshot j3-11
+03:36:34 ok    24 type       composer-input = 12 chars
+03:36:34 ok    25 send       send ← onPress
+03:36:34 ok    26 waitFor    reading-pages appeared
+03:36:34 ok    27 value      Reading pages 1–2 of 9…
+03:36:34 ok    28 screenshot j3-12
+03:36:34 ok    29 waitFor    reading-pages gone
+03:36:34 ok    30 waitFor    assistant-text appeared
+03:36:34 ok    31 waitFor    stop gone
+03:36:34 ok    32 sleep      2500 ms
+03:36:34 ok    33 value      The document is a standard 9-page Constitution PDF containing the following main points: • Legislative Power: 
+03:36:34 ok    34 value      SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 consti
+03:36:34 ok    35 value      constitution-9pages.pdf
+03:36:34 ok    36 assertText "Summary of all 9 pages." present
+03:36:34 ok    37 screenshot j3-13
+03:36:34 ok    38 dump       j3-13
+03:36:34 ok    39 type       composer-input = 7 chars
+03:36:34 ok    40 send       send ← onPress
+03:36:34 ok    41 sleep      2500 ms
+03:36:34 ok    42 waitFor    reading-pages gone
+03:36:34 ok    43 waitFor    reading-docs gone
+03:36:34 ok    44 waitFor    stop gone
+03:36:34 ok    45 sleep      2500 ms
+03:36:34 ok    46 value      The document is a standard 9-page Constitution PDF containing the following main points: • Legislative Power: 
+03:36:34 ok    47 value      SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 consti
+03:36:34 FAIL  48 value      value none-matched: no node with that testID is mounted
+03:36:34 ok    49 value      Slowing down to keep the phone cool
+03:36:34 ok    50 value      INSTANT
+03:36:34 ok    51 waitFor    docs-hold gone
+03:36:34 ok    52 waitFor    none-matched gone
+03:36:34 ok    53 assertText "Your documents don't mention this" absent
+03:36:34 ok    54 assertText "You're welcome" absent
+03:36:34 ok    55 waitFor    citations appeared
+03:36:34 ok    56 screenshot j3-14
+03:36:34 ok    57 dump       j3-14
+03:36:34 ok    58 type       composer-input = 23 chars
+03:36:34 ok    59 send       send ← onPress
+03:36:34 ok    60 sleep      2500 ms
+03:36:34 ok    61 waitFor    reading-pages gone
+03:36:34 ok    62 waitFor    reading-docs gone
+03:36:34 ok    63 waitFor    stop gone
+03:36:34 ok    64 sleep      2500 ms
+03:36:34 ok    65 value      The document is a standard 9-page Constitution PDF containing the following main points: • Legislative Power: 
+03:36:34 ok    66 value      SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 consti
+03:36:34 FAIL  67 value      value none-matched: no node with that testID is mounted
+03:36:34 ok    68 value      Slowing down to keep the phone cool
+03:36:34 ok    69 value      INSTANT
+03:36:34 ok    70 waitFor    docs-hold gone
+03:36:34 ok    71 waitFor    none-matched gone
+03:36:34 ok    72 assertText "Your documents don't mention this" absent
+03:36:34 ok    73 assertText "You're welcome" absent
+03:36:34 ok    74 waitFor    citations appeared
+03:36:34 ok    75 screenshot j3-15
+03:36:34 ok    76 dump       j3-15
+03:36:34 ok    77 type       composer-input = 24 chars
+03:36:34 ok    78 send       send ← onPress
+03:36:34 ok    79 sleep      2500 ms
+03:36:34 FAIL  80 waitFor    waitFor docs-hold never appeared in 15000 ms
+03:36:34 FAIL  81 value      value docs-hold: no node with that testID is mounted
+03:36:34 FAIL  82 press      press docs-hold-download: not mounted
+03:36:34 ok    83 idleTimer  idle timer disabled: false
+03:36:34 ok    84 waitFor    docs-hold gone
+03:36:34 ok    85 waitFor    reading-docs gone
+03:36:34 FAIL  86 waitFor    waitFor stop never appeared in 90000 ms
+03:36:34 ok    87 waitFor    reading-pages gone
+03:36:34 ok    88 waitFor    reading-docs gone
+03:36:34 ok    89 waitFor    stop gone
+03:36:34 ok    90 sleep      2500 ms
+03:36:34 ok    91 value      The document is a standard 9-page Constitution PDF containing the following main points: • Legislative Power: 
+03:36:34 ok    92 value      SOURCES constitution-9pages.pdf · p.1–2 constitution-9pages.pdf · p.3–4 constitution-9pages.pdf · p.5–6 consti
+03:36:34 ok    93 value      Nothing in your documents matched this question. Answered without them.
+03:36:34 ok    94 value      Slowing down to keep the phone cool
+03:36:34 ok    95 value      INSTANT
+03:36:34 ok    96 waitFor    none-matched appeared
+03:36:34 ok    97 assertText "I cannot know the current weather" absent
+03:36:34 ok    98 assertText "do not have access to browse" absent
+03:36:34 ok    99 assertText "safe for family consumption" absent
+03:36:34 ok   100 screenshot j3-16
+03:36:34 ok   101 dump       j3-16
+03:36:34 95 passed, 7 failed, 6 screenshots → <worktree>/docs/qa/ios-device-pass-41/screens
+03:36:34   ! step 12 (press): press model-sheet-use-instant: not mounted
+03:36:34   ! step 48 (value): value none-matched: no node with that testID is mounted
+03:36:34   ! step 67 (value): value none-matched: no node with that testID is mounted
+03:36:34   ! step 80 (waitFor): waitFor docs-hold never appeared in 15000 ms
+03:36:34   ! step 81 (value): value docs-hold: no node with that testID is mounted
+03:36:34   ! step 82 (press): press docs-hold-download: not mounted
+03:36:34   ! step 86 (waitFor): waitFor stop never appeared in 90000 ms
+03:36:34   ! console.log: [chat] plain=follow-up window=3/3 maxTokens=1024
+03:36:34   ! console.log: [chat] plain=follow-up window=5/5 maxTokens=1024

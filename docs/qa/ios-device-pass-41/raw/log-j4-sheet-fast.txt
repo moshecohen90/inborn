@@ -1,0 +1,168 @@
+03:41:42 pushing 142 steps as j4-sheet-fast
+03:42:00 shot j4-09
+03:42:06 shot j4-10
+03:42:11 shot j4-11
+03:42:17 shot j4-12
+03:42:41 shot j4-13
+03:42:48 shot j4-14
+03:42:58 shot j4-15
+03:43:05 shot j4-16
+03:43:11 ok     0 deeplink   /chats
+03:43:11 ok     1 waitFor    new-chat appeared
+03:43:11 ok     2 press      new-chat ← onPress
+03:43:11 ok     3 waitFor    start-chat appeared
+03:43:11 ok     4 press      start-chat ← onPress
+03:43:11 ok     5 waitFor    composer-input appeared
+03:43:11 ok     6 waitFor    Loading gone
+03:43:11 ok     7 sleep      1500 ms
+03:43:11 ok     8 value      INSTANT
+03:43:11 ok     9 press      model-chip ← onPress
+03:43:11 ok    10 waitFor    model-sheet appeared
+03:43:11 ok    11 sleep      1500 ms
+03:43:11 ok    12 press      model-sheet-use-fast ← onPress
+03:43:11 ok    13 sleep      3000 ms
+03:43:11 FAIL  14 press      press model-sheet-close: not mounted
+03:43:11 ok    15 waitFor    Loading gone
+03:43:11 ok    16 sleep      1500 ms
+03:43:11 ok    17 value      FAST
+03:43:11 ok    18 assertText "FAST" present
+03:43:11 ok    19 setTier    pro
+03:43:11 ok    20 deeplink   /documents
+03:43:11 ok    21 waitFor    doc-select-muxcz3e9-4-pmhqi80j appeared
+03:43:11 ok    22 sleep      2000 ms
+03:43:11 ok    23 press      doc-select-muxcz3e9-4-pmhqi80j ← onPress
+03:43:11 ok    24 sleep      1000 ms
+03:43:11 ok    25 value      Ask about 1 document
+03:43:11 ok    26 press      documents-ask-selected ← onPress
+03:43:11 ok    27 waitFor    ask-sheet appeared
+03:43:11 ok    28 sleep      1500 ms
+03:43:11 ok    29 sleep      500 ms
+03:43:11 ok    30 screenshot j4-09
+03:43:11 ok    31 dump       j4-09
+03:43:11 ok    32 type       ask-input = 27 chars
+03:43:11 ok    33 press      ask-send ← onPress
+03:43:11 ok    34 sleep      1500 ms
+03:43:11 ok    35 waitFor    ask-not-found appeared
+03:43:11 ok    36 sleep      1500 ms
+03:43:11 ok    37 value      Your documents don't mention this.
+03:43:11 ok    38 value      search 93 ms · 0 passages
+03:43:11 FAIL  39 value      value ask-answer: no node with that testID is mounted
+03:43:11 FAIL  40 value      value citations: no node with that testID is mounted
+03:43:11 ok    41 assertText "Your documents don't mention this" present
+03:43:11 ok    42 assertText "0 passages" present
+03:43:11 ok    43 assertText "tok/s" absent
+03:43:11 ok    44 waitFor    ask-answer gone
+03:43:11 ok    45 waitFor    ask-none-matched gone
+03:43:11 ok    46 screenshot j4-10
+03:43:11 ok    47 dump       j4-10
+03:43:11 ok    48 type       ask-input = 32 chars
+03:43:11 ok    49 press      ask-send ← onPress
+03:43:11 ok    50 sleep      1500 ms
+03:43:11 ok    51 waitFor    ask-not-found appeared
+03:43:11 ok    52 sleep      1500 ms
+03:43:11 ok    53 value      Your documents don't mention this.
+03:43:11 ok    54 value      search 115 ms · 0 passages
+03:43:11 FAIL  55 value      value ask-answer: no node with that testID is mounted
+03:43:11 FAIL  56 value      value citations: no node with that testID is mounted
+03:43:11 ok    57 assertText "Your documents don't mention this" present
+03:43:11 ok    58 assertText "0 passages" present
+03:43:11 ok    59 assertText "tok/s" absent
+03:43:11 ok    60 waitFor    ask-answer gone
+03:43:11 ok    61 waitFor    ask-none-matched gone
+03:43:11 ok    62 screenshot j4-11
+03:43:11 ok    63 dump       j4-11
+03:43:11 ok    64 type       ask-input = 22 chars
+03:43:11 ok    65 press      ask-send ← onPress
+03:43:11 ok    66 sleep      1500 ms
+03:43:11 ok    67 waitFor    ask-not-found appeared
+03:43:11 ok    68 sleep      1500 ms
+03:43:11 ok    69 value      Your documents don't mention this.
+03:43:11 ok    70 value      search 100 ms · 0 passages
+03:43:11 FAIL  71 value      value ask-answer: no node with that testID is mounted
+03:43:11 FAIL  72 value      value citations: no node with that testID is mounted
+03:43:11 ok    73 assertText "Your documents don't mention this" present
+03:43:11 ok    74 assertText "0 passages" present
+03:43:11 ok    75 assertText "tok/s" absent
+03:43:11 ok    76 waitFor    ask-answer gone
+03:43:11 ok    77 waitFor    ask-none-matched gone
+03:43:11 ok    78 screenshot j4-12
+03:43:11 ok    79 dump       j4-12
+03:43:11 ok    80 type       ask-input = 20 chars
+03:43:11 ok    81 press      ask-send ← onPress
+03:43:11 ok    82 sleep      2500 ms
+03:43:11 ok    83 waitFor    ask-stop gone
+03:43:11 ok    84 sleep      2000 ms
+03:43:11 ok    85 value      According to the document, if a bill is not returned by the President within ten days (Sundays excepted), it s
+03:43:11 ok    86 value      search 103 ms · 4 passages · answer 18984 ms · 7.4 tok/s · prompt 894 tokens
+03:43:11 ok    87 value      [1] constitution-9pages.pdf · p.3
+03:43:11 FAIL  88 value      value ask-not-found: no node with that testID is mounted
+03:43:11 ok    89 waitFor    ask-not-found gone
+03:43:11 ok    90 waitFor    citations appeared
+03:43:11 ok    91 screenshot j4-13
+03:43:11 ok    92 dump       j4-13
+03:43:11 ok    93 press      ask-strict ← onPress
+03:43:11 ok    94 sleep      1500 ms
+03:43:11 ok    95 value      
+03:43:11 ok    96 type       ask-input = 27 chars
+03:43:11 ok    97 press      ask-send ← onPress
+03:43:11 ok    98 sleep      1500 ms
+03:43:11 ok    99 waitFor    ask-not-found appeared
+03:43:11 ok   100 sleep      1500 ms
+03:43:11 ok   101 value      Your documents don't mention this.
+03:43:11 ok   102 value      search 145 ms · 0 passages
+03:43:11 FAIL 103 value      value ask-answer: no node with that testID is mounted
+03:43:11 FAIL 104 value      value citations: no node with that testID is mounted
+03:43:11 ok   105 assertText "Your documents don't mention this" present
+03:43:11 ok   106 assertText "0 passages" present
+03:43:11 ok   107 assertText "tok/s" absent
+03:43:11 ok   108 waitFor    ask-answer gone
+03:43:11 ok   109 waitFor    ask-none-matched gone
+03:43:11 ok   110 screenshot j4-14
+03:43:11 ok   111 dump       j4-14
+03:43:11 ok   112 press      ask-strict ← onPress
+03:43:11 ok   113 sleep      1500 ms
+03:43:11 ok   114 value      
+03:43:11 ok   115 type       ask-input = 9 chars
+03:43:11 ok   116 press      ask-send ← onPress
+03:43:11 ok   117 sleep      2500 ms
+03:43:11 ok   118 waitFor    ask-stop gone
+03:43:11 ok   119 sleep      1500 ms
+03:43:11 ok   120 value      You're welcome. Ask another question about these documents.
+03:43:11 FAIL 121 value      value ask-not-found: no node with that testID is mounted
+03:43:11 FAIL 122 value      value ask-answer: no node with that testID is mounted
+03:43:11 FAIL 123 value      value ask-stats: no node with that testID is mounted
+03:43:11 ok   124 assertText "Ask another question about these documents" present
+03:43:11 ok   125 screenshot j4-15
+03:43:11 ok   126 dump       j4-15
+03:43:11 ok   127 type       ask-input = 7 chars
+03:43:11 ok   128 press      ask-send ← onPress
+03:43:11 ok   129 sleep      2500 ms
+03:43:11 ok   130 waitFor    ask-stop gone
+03:43:11 ok   131 sleep      1500 ms
+03:43:11 ok   132 value      This sheet answers one question at a time: ask the full question (for example, "Summarize it in three lines").
+03:43:11 FAIL 133 value      value ask-not-found: no node with that testID is mounted
+03:43:11 FAIL 134 value      value ask-answer: no node with that testID is mounted
+03:43:11 FAIL 135 value      value ask-stats: no node with that testID is mounted
+03:43:11 ok   136 assertText "This sheet answers one question at a time" present
+03:43:11 ok   137 screenshot j4-16
+03:43:11 ok   138 dump       j4-16
+03:43:11 ok   139 deeplink   /chats
+03:43:11 ok   140 sleep      1500 ms
+03:43:11 ok   141 setTier    free
+03:43:11 126 passed, 16 failed, 8 screenshots → <worktree>/docs/qa/ios-device-pass-41/screens
+03:43:11   ! step 14 (press): press model-sheet-close: not mounted
+03:43:11   ! step 39 (value): value ask-answer: no node with that testID is mounted
+03:43:11   ! step 40 (value): value citations: no node with that testID is mounted
+03:43:11   ! step 55 (value): value ask-answer: no node with that testID is mounted
+03:43:11   ! step 56 (value): value citations: no node with that testID is mounted
+03:43:11   ! step 71 (value): value ask-answer: no node with that testID is mounted
+03:43:11   ! step 72 (value): value citations: no node with that testID is mounted
+03:43:11   ! step 88 (value): value ask-not-found: no node with that testID is mounted
+03:43:11   ! step 103 (value): value ask-answer: no node with that testID is mounted
+03:43:11   ! step 104 (value): value citations: no node with that testID is mounted
+03:43:11   ! step 121 (value): value ask-not-found: no node with that testID is mounted
+03:43:11   ! step 122 (value): value ask-answer: no node with that testID is mounted
+03:43:11   ! step 123 (value): value ask-stats: no node with that testID is mounted
+03:43:11   ! step 133 (value): value ask-not-found: no node with that testID is mounted
+03:43:11   ! step 134 (value): value ask-answer: no node with that testID is mounted
+03:43:11   ! step 135 (value): value ask-stats: no node with that testID is mounted
