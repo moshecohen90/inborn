@@ -6,17 +6,16 @@ import { selfAnswer } from "@inborn/i18n";
 
 const chat = readFileSync(join(__dirname, "../src/screens/Chat.tsx"), "utf8");
 const generate = chat.slice(chat.indexOf("const generate = async"), chat.indexOf("const submit = async"));
-const card = generate.slice(generate.indexOf("const self = "), generate.indexOf("/* Strict mode with nothing to search"));
+const card = generate.slice(generate.indexOf("const cardTurn = "), generate.indexOf("/* Strict mode with nothing to search"));
 
 describe("round 134N · a question about the assistant is answered by the app, with no model call", () => {
   it("only a fresh text turn with no file, photo or page asks selfQuestionMatch, in the UI locale first", () => {
-    expect(card).toContain(
-      "const self = !existingMessageId && !continueFrom && !history[lastUserAt]?.images?.length && !photoDocIds.length && !page && !docs.documents.length ? selfQuestionMatch(lastUser, i18n.language) : null;",
-    );
+    expect(card).toContain("const cardTurn = !existingMessageId && !continueFrom && !history[lastUserAt]?.images?.length && !photoDocIds.length && !page && !docs.documents.length;");
+    expect(card).toContain("const self = cardTurn ? selfQuestionMatch(lastUser, i18n.language) : null;");
   });
 
   it("the answer is the app's template in the asker's language, persisted as an assistant row, and the turn returns before the model", () => {
-    expect(card).toContain("const content = selfAnswer(self.kind, self.lang, { device: deviceNoun(), model: findModel(BUNDLED_MANIFEST, model.id)?.name });");
+    expect(card).toContain("? selfAnswer(self.kind, self.lang, { device: deviceNoun(), model: findModel(BUNDLED_MANIFEST, model.id)?.name })");
     expect(card).toContain('const saved = await store.appendMessage({ chatId: chatIdNow, role: "assistant", content, modelId: model.id });');
     expect(card).toContain("setRows((all) => all.map((x) => (x.id === rowId ? saved : x)));");
     expect(card).toMatch(/return;\s*\}\s*$/);
@@ -27,7 +26,7 @@ describe("round 134N · a question about the assistant is answered by the app, w
   });
 
   it("logs an identity stats line the QA bridge keeps", () => {
-    expect(card).toContain("console.log(`[chat] identity kind=${self.kind} lang=${self.lang} model=${model.id}`);");
+    expect(card).toContain("`[chat] identity kind=${self.kind} lang=${self.lang} model=${model.id}`");
     expect(readFileSync(join(__dirname, "../src/qa/Bridge.tsx"), "utf8")).toContain('line.startsWith("[chat] identity")');
   });
 

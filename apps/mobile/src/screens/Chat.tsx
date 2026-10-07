@@ -96,8 +96,9 @@ import {
   type DocumentRecord,
   IMAGE_WRAPPER_TOKENS,
   selfQuestionMatch,
+  liveDataQuestionMatch,
 } from "@inborn/core";
-import { selfAnswer } from "@inborn/i18n";
+import { offlineAnswer, selfAnswer } from "@inborn/i18n";
 import { enableVision, getEngine, isVisionEased, loadSession, noteCarriedOver, settledModelId, subscribeVisionEased, wasStoppedByGuard } from "../engine";
 import { writeDevResult } from "../adapters/devModel";
 import { imageMaxTokens } from "../adapters/imageTokens";
@@ -655,10 +656,15 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         turn = planTurn();
       }
       /* Round 134N: a question about the assistant itself is answered by the app; asked it, a small model reads its rules out or names its base model. */
-      const self = !existingMessageId && !continueFrom && !history[lastUserAt]?.images?.length && !photoDocIds.length && !page && !docs.documents.length ? selfQuestionMatch(lastUser, i18n.language) : null;
-      if (self) {
-        console.log(`[chat] identity kind=${self.kind} lang=${self.lang} model=${model.id}`);
-        const content = selfAnswer(self.kind, self.lang, { device: deviceNoun(), model: findModel(BUNDLED_MANIFEST, model.id)?.name });
+      const cardTurn = !existingMessageId && !continueFrom && !history[lastUserAt]?.images?.length && !photoDocIds.length && !page && !docs.documents.length;
+      const self = cardTurn ? selfQuestionMatch(lastUser, i18n.language) : null;
+      /* Round 134O: today's weather, last night's score, a price right now: offline, the honest answer is the app's; Instant made one up 6 times in 9. */
+      const liveData = cardTurn && !self ? liveDataQuestionMatch(lastUser, i18n.language) : null;
+      if (self || liveData) {
+        const content = self
+          ? selfAnswer(self.kind, self.lang, { device: deviceNoun(), model: findModel(BUNDLED_MANIFEST, model.id)?.name })
+          : offlineAnswer(liveData!.kind, liveData!.lang, { device: deviceNoun() });
+        console.log(self ? `[chat] identity kind=${self.kind} lang=${self.lang} model=${model.id}` : `[chat] offline kind=${liveData!.kind} lang=${liveData!.lang} model=${model.id}`);
         const saved = await store.appendMessage({ chatId: chatIdNow, role: "assistant", content, modelId: model.id });
         setRows((all) => all.map((x) => (x.id === rowId ? saved : x)));
         return;
