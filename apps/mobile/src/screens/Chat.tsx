@@ -931,7 +931,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           .filter((e) => e.model.role === "chat" && !e.stray && e.state.kind === "ready")
           .map((e) => e.model.id);
         const turnUse = detectUse({ text: lastUser, personaId: persona.id, personaIcon: persona.icon, hasDocuments: docs.documents.length > 0 });
-        setPhotoAdvice(advisePhotoModel({ current: vault.model(model.id), use: turnUse, languageCode: detectLanguage(lastUser), device: { ...vault.device, pro: tier !== "free" }, installed, catalog: vault.manifest.models }));
+        setPhotoAdvice(advisePhotoModel({ current: vault.model(model.id), use: turnUse, languageCode: detectLanguage(lastUser), device: { ...vault.device, pro: tier !== "free" }, installed, catalog: vault.manifest.models, sees: modelHasVision }));
       }
       if (citations && isNotFoundReply(reply)) {
         reply = t("documents.notFound");
