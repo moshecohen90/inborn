@@ -32,7 +32,7 @@ const DENIES_SIGHT: readonly RegExp[] = [
 ];
 
 /* The system prompt's crisis line, given back (often translated) to a message that says nothing of the kind. */
-const CRISIS_ADVICE: readonly RegExp[] = [
+export const CRISIS_ADVICE: readonly RegExp[] = [
   /\b(?:someone (?:you|they) (?:trust|feel comfortable with)|crisis (?:line|hotline|center)|harm(?:ing)? (?:yourself|themselves)|self-harm)\b/i,
   /מישהו ש(?:נוח לך|אתה סומך|את סומכת|תסמוך)|קו (?:חירום|סיוע|משבר|קריאה)|לפגוע בעצמ/,
 ];

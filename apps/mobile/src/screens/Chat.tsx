@@ -16,6 +16,8 @@ import {
   groundedCitations,
   inheritedCitations,
   withoutEchoedLabels,
+  withoutEchoedRules,
+  systemOf,
   withoutStrayMarkers,
   type RetrievalHit,
   PASTE_OFFER_CHARS,
@@ -555,9 +557,12 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     let joint: string | null = prefix && !continueFrom ? null : "";
     let sources: Citation[] | null = null;
     let live = true;
+    /* Round 134M: a fresh general answer, with no file passage or picture behind it, never says its own rules back. */
+    let ruleNet: { instructions: string; question: string } | null = null;
     const shown = (): string => {
       if (joint === null && reply) joint = continuationSeparator(prefix, reply);
       const text = prefix + (joint ?? "") + reply;
+      if (ruleNet && !prefix) return withoutEchoedRules(text, { ...ruleNet, streaming: live });
       /* F457: a fresh answer over documents drops the passage header a small model copies onto its first line. */
       return sources && !prefix ? withoutEchoedLabels(text, { streaming: live, citations: sources }) : text;
     };
@@ -783,6 +788,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       /* Round 131: a fresh answer about a picture is checked against what the app knows about its turn before it is shown. */
       const checksPicture = !existingMessageId && messages.some((m) => m.images?.length);
       if (checksPicture && persona.temperature === undefined) opts = { ...opts, ...PICTURE_SAMPLING };
+      if (!existingMessageId && !continueFrom && !sources && plainChat !== "follow-up" && !messages.some((m) => m.images?.length)) ruleNet = { instructions: systemOf(messages), question: lastUser };
       const turnFacts: TurnFacts = { pictureSent: true, sources: (citations ?? []).map((c) => citationLabel(c)), instructions: messages[0]?.role === "system" ? messages[0].content : "", question: lastUser };
       /* F369/F415: one guard for every engine. A second copy never reaches the screen: the guard stops that generation
          (only it, so the user's Stop still means the turn), keeps one copy, and continues once, silently, with harder sampling. */
@@ -859,6 +865,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
         if (d.done) usage = d.done;
       }
       live = false;
+      /* Not behind __DEV__: QA counts what the user never saw. Lengths only, no text. */
+      if (ruleNet && shown() !== reply) console.log(`[chat] rule-echo kept ${shown().length}/${reply.length} chars`);
       const reason = stopReason.current;
       /* F50: the answer the model actually produced is never stored or exported; the row keeps one sentence and the mark. */
       const familySafeReplaced = familySafeHit || screenText(reply, familySafe).flagged;

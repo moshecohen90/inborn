@@ -1,0 +1,71 @@
+{
+  "runId": "m1-onboard-instant",
+  "_": "Fresh install, no index model: welcome, keep Instant, Start chatting through the seal and lock steps.",
+  "steps": [
+    {
+      "op": "waitFor",
+      "testID": "onboarding-continue",
+      "timeoutMs": 90000
+    },
+    {
+      "op": "press",
+      "testID": "onboarding-continue"
+    },
+    {
+      "op": "waitFor",
+      "testID": "onboarding-model",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "sleep",
+      "ms": 3000
+    },
+    {
+      "op": "press",
+      "testID": "model-option-instant"
+    },
+    {
+      "op": "sleep",
+      "ms": 1000
+    },
+    {
+      "op": "press",
+      "testID": "start-chatting"
+    },
+    {
+      "op": "waitFor",
+      "testID": "sealed-start",
+      "timeoutMs": 30000
+    },
+    {
+      "op": "sleep",
+      "ms": 8000
+    },
+    {
+      "op": "press",
+      "testID": "sealed-start"
+    },
+    {
+      "op": "waitFor",
+      "testID": "lock-start",
+      "timeoutMs": 20000
+    },
+    {
+      "op": "press",
+      "testID": "lock-start"
+    },
+    {
+      "op": "waitFor",
+      "testID": "composer-input",
+      "timeoutMs": 60000
+    },
+    {
+      "op": "sleep",
+      "ms": 5000
+    },
+    {
+      "op": "screenshot",
+      "name": "m1-chat-instant"
+    }
+  ]
+}
