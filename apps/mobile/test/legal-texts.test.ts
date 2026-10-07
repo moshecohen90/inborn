@@ -450,8 +450,8 @@ describe("F207/F209/F214 · what the site may not go back to saying", () => {
    */
   it("no shipped text promises that a name is what the store listing shows", () => {
     for (const file of [...SHIPPED, ...SITE_TEXT]) expect(read(file), file).not.toMatch(/the developer account shown on the store listing/i);
-    expect(read("docs/legal/privacy-policy.md")).toContain("Publisher: Cohen Apps\n");
-    expect(read("docs/legal/accessibility-policy.md")).toContain("Owner: Cohen Apps\n");
+    expect(read("docs/legal/privacy-policy.md")).toContain("Publisher and data controller: Moshe Cohen, trading as Cohen Apps (Israel)\n");
+    expect(read("docs/legal/accessibility-policy.md")).toContain("Owner: Moshe Cohen, trading as Cohen Apps (Israel)\n");
   });
 });
 

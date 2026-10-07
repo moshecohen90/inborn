@@ -2,8 +2,8 @@
 
 Spec basis: §2.3, §5.1, §5.3, §11.1–§11.3, §15. Last edited 22 September 2026.
 
-Effective date: 22 September 2026
-Publisher: Cohen Apps
+Effective date: 8 October 2026
+Publisher and data controller: Moshe Cohen, trading as Cohen Apps (Israel)
 Contact: support@inbornapp.com
 
 ---
@@ -30,6 +30,7 @@ None from the app. The release build does not declare the INTERNET permission (y
 
 - **Model delivery.** The built-in "Instant" model and any larger model you choose in the Vault are delivered by Google Play as asset packs (Play Asset Delivery). Google performs the download exactly as it performs an app install or update, under Google's own privacy policy.
 - **Purchases.** Pro and Work are sold through Google Play Billing. Google processes the payment and holds the purchase record; Inborn only reads the locally cached entitlement. We never see your name, email or payment details.
+- **Offline speech and voices.** If you tap "Download the offline pack" for dictation, or choose a new voice in Android's own settings, Android's system services (Android System Intelligence, Google Text-to-Speech) download that pack under Google's privacy policy. Inborn takes no part in that download and still has no network permission.
 
 ### iOS and iPadOS
 The app itself opens no connection by default.
@@ -79,6 +80,10 @@ Inborn processes your data only on your own device, for your own use. We never r
 ## 8. California (CCPA/CPRA) and other US state laws
 
 We do not collect personal information as defined by the CCPA, and we do not sell or share personal information. This statement serves as our "Do Not Sell or Share My Personal Information" notice: there is nothing to opt out of. If you contact support, the only personal information involved is your email address, used to respond to you.
+
+## 8a. Brazil, Japan, South Korea and Taiwan
+
+Brazil (LGPD), Japan (APPI), South Korea (PIPA) and Taiwan (PDPA): Inborn collects no personal information, so none of it is used, shared, transferred abroad or kept. For support email, the purpose, legal basis, retention and rights in section 5 apply, and your email may be stored on servers outside your country (section 5). Person responsible for personal information (privacy officer / encarregado): Moshe Cohen, support@inbornapp.com, +1-440-847-8502. A guardian's consent is needed before a child under 14 (South Korea) writes to us with personal details.
 
 ## 9. Children
 

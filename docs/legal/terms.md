@@ -2,8 +2,8 @@
 
 Spec basis: §2.3, §10.5, §10.7, §11.3, §12. Last edited 22 September 2026.
 
-Effective date: 22 September 2026
-Licensor: Cohen Apps ("we", "us")
+Effective date: 8 October 2026
+Licensor: Moshe Cohen, trading as Cohen Apps (Israel) ("we", "us")
 Contact: support@inbornapp.com or +1-440-847-8502. We have no physical reception and offer no in-person service.
 
 These terms apply to the Inborn apps for iOS, Android, Windows and macOS and to the Inborn web version. If you obtained the app from the Apple App Store, Google Play or the Microsoft Store, that store's terms also apply, and where they conflict with these terms on a point the store controls (payment, refunds, delivery), the store's terms prevail.
@@ -32,7 +32,7 @@ You may not: redistribute the app or its Pro/Work features; remove or bypass lic
 
 Payments are processed by the store (Apple, Google, Microsoft) or by Paddle as merchant of record. We do not receive or store your payment details. **Refunds are handled by the store you bought from**, under its refund policy:
 
-- App Store: https://support.apple.com/HT204084
+- App Store: https://support.apple.com/en-us/118223
 - Google Play: https://support.google.com/googleplay/answer/2479637
 - Microsoft Store: https://support.microsoft.com/account-billing
 - Paddle: https://www.paddle.com/legal/checkout-buyer-terms
