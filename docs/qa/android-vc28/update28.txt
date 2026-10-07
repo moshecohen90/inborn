@@ -1,0 +1,28 @@
+=== before
+    versionCode=27 minSdk=26 targetSdk=36
+    firstInstallTime=2026-09-21 22:59:16
+    lastUpdateTime=2026-10-08 00:41:27
+    installerPackageName=com.android.vending
+01:16:27 try 1: recording since 01:16:02, pressed Atualizar → unavailable=0 
+01:17:33 try 2: recording since 01:17:09, pressed Atualizar → unavailable=0 
+01:18:41 try 3: recording since 01:18:16, pressed Atualizar → unavailable=0 
+01:19:48 try 4: recording since 01:19:23, pressed Atualizar → unavailable=0 
+01:20:55 try 5: recording since 01:20:30, pressed Atualizar → unavailable=0 
+01:22:02 try 6: recording since 01:21:37, pressed Atualizar → unavailable=0 
+01:23:09 try 7: recording since 01:22:44, pressed Atualizar → unavailable=0  |  | 0%  |  | Cancelar 
+01:23:09 DOWNLOAD-STARTED (recording since 01:22:44)
+01:35:17 UPDATED-TO-28 (lastUpdateTime)
+01:37:57 vault: text="2.10 GB no cofre · 6.47 GB livres · RODA EM: ANDROID-LEGACY · 8 GB" text="Entregando SHARP · 100% de 2.74 GB" 
+01:38:04 services: com.inbornapp.mobile/com.google.android.play.core.assetpacks.ExtractionForegroundService}     isForeground=true foregroundId=-1883842196 foregroundNoti=Notification(channel=playcore-assetpacks-service-notification-channel shortcut 
+01:38:24 fgs=1 text="2.63 GB no cofre · 5.30 GB livres · RODA EM: ANDROID-LEGACY · 8 GB" text="Entregando SHARP · 100% de 2.74 GB" 
+01:38:46 fgs=1 text="2.63 GB no cofre · 6.47 GB livres · RODA EM: ANDROID-LEGACY · 8 GB" text="Entregando SHARP · 100% de 2.74 GB" 
+01:39:09 fgs=0 text="5.38 GB no cofre · 12 GB livres · RODA EM: ANDROID-LEGACY · 8 GB" 
+    versionCode=28 minSdk=26 targetSdk=36
+    firstInstallTime=2026-09-21 22:59:16
+    lastUpdateTime=2026-10-08 01:35:17
+=== screen recording
+Each press attempt started a fresh recording; clips of attempts 1-6 (no download) were deleted on the phone.
+01:22:44-01:43:49 clips 1-7: from before the press that started the download, through install, Vault "Entregando…",
+the shade (01:38, it showed "Sem notificações" although dumpsys reported the service in the foreground),
+re-delivery to 5.38 GB, the model sheet, the attach sheet and the photo hold on Fast -> fgs-datasync.mp4 (private evidence dir).
+The few seconds of the system file picker (01:40) are cut out of the video.
