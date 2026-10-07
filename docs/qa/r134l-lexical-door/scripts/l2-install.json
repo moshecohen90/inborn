@@ -1,0 +1,18 @@
+{
+  "runId": "l2-install",
+  "_": "The shell writes `install embed-e5` and `install fast` to Documents/dev-vault.txt; the vault reads it and downloads both from scripts/serve-models.mjs.",
+  "steps": [
+    {
+      "op": "deeplink",
+      "url": "/vault"
+    },
+    {
+      "op": "sleep",
+      "ms": 240000
+    },
+    {
+      "op": "screenshot",
+      "name": "v1-vault"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+# Sabotage: packages/core/src/rag/bm25.ts search() back to 'if (isWeakTerm(t)) e.weak.add(t);' (common words counted as content), then restored.
+     × the pancake request over the constitution: the passages that share only 'give' count no term and none is kept 10ms
+     × What's the weather like tomorrow? keeps no constitution passage on its one common word 4ms
+     × What time is it in Tokyo? keeps no constitution passage on its one common word 11ms
+     × How do I take a screenshot on my phone? keeps no constitution passage on its one common word 2ms
+     × Recommend a good movie to watch tonight keeps no constitution passage on its one common word 2ms
+     × Give me a workout plan for two weeks keeps no constitution passage on its one common word 2ms
+     × a common word still counts beside a content word, and still scores 1ms
+AssertionError: expected 1 to be +0 // Object.is equality
+AssertionError: expected [ { …(5) }, { …(5) }, { …(5) } ] to deeply equal []
+AssertionError: expected [ { …(5) }, { …(5) }, { …(5) }, …(3) ] to deeply equal []
+AssertionError: expected [ { …(5) }, { …(5) }, { …(5) }, …(1) ] to deeply equal []
+AssertionError: expected [ { …(5) }, { …(5) }, { …(5) } ] to deeply equal []
+AssertionError: expected [ { …(5) }, { …(5) } ] to deeply equal []
+AssertionError: expected { id: 'a', …(2) } to match object { id: 'a', matched: +0 }
+ Test Files  1 failed (1)
+      Tests  7 failed | 3 passed (10)

@@ -67,6 +67,15 @@ export const isWeakTerm = (term: string): boolean => {
   return unit !== term && ([...unit].length <= 2 || UNITS.has(unit));
 };
 
+/* Words any English request shares with any English text: "give" alone kept the constitution for a pancake recipe (r134L). */
+const COMMON = new Set(
+  "give gives gave given giving make makes made making take takes took taken taking get gets got getting go goes went going come comes came coming put puts set sets use uses used using find finds found know knows knew see sees saw seen want wants wanted need needs needed like likes liked let lets keep keeps kept tell tells told say says said show shows showed shown help helps try tries ask asks think look looks call called write recommend recommends suggest time times place places people person thing things way ways lot part kind sort good best better great nice well really please today tomorrow tonight now one two three four five six seven eight nine ten hundred thousand"
+    .split(" "),
+);
+
+/** A common English word: like a weak term, it counts as a shared term only beside a content word. */
+export const isCommonWord = (term: string): boolean => COMMON.has(term);
+
 /* French, Italian and Catalan articles and pronouns that elide into the next word: "l'œuvre", "dell'arte", "qu'il". */
 const ELISION = new Set("l d qu j c m n s t jusqu lorsqu puisqu quoiqu un dell all nell dall sull quest quell".split(" "));
 /* What an elided article leaves behind that is still glue ("j'ai", "c'est", "d'une"); "ai" is glue only here, as English "AI" is a word. */
@@ -110,7 +119,7 @@ export const bm25Tokens = (text: string): string[] => termGroups(text).map((g) =
 export interface Bm25Hit {
   id: string;
   score: number;
-  /** Distinct content query terms that matched; glue is excluded, and weak terms count only beside a content term. */
+  /** Distinct content query terms that matched; glue is excluded, and weak and common terms count only beside a content term. */
   matched: number;
 }
 
@@ -182,7 +191,7 @@ export class Bm25Index {
         let e = scores.get(id);
         if (!e) scores.set(id, (e = { score: 0, matched: new Set(), weak: new Set() }));
         e.score += s;
-        if (isWeakTerm(t)) e.weak.add(t);
+        if (isWeakTerm(t) || isCommonWord(t)) e.weak.add(t);
         else if (!isCjkFunctionTerm(t)) e.matched.add(t);
       }
     }
