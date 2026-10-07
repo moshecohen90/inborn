@@ -1,0 +1,40 @@
+16:58:49 pushing 33 steps as p0-fast
+16:59:09 shot sim-p0-fast-answer
+16:59:12 ok     0 deeplink   /chats
+16:59:12 ok     1 waitFor    new-chat appeared
+16:59:12 ok     2 press      new-chat ← onPress
+16:59:12 ok     3 waitFor    start-chat appeared
+16:59:12 ok     4 press      start-chat ← onPress
+16:59:12 ok     5 waitFor    composer-input appeared
+16:59:12 ok     6 waitFor    Loading gone
+16:59:12 ok     7 sleep      1500 ms
+16:59:12 ok     8 value      INSTANT
+16:59:12 ok     9 press      model-chip ← onPress
+16:59:12 ok    10 waitFor    model-sheet appeared
+16:59:12 ok    11 sleep      1500 ms
+16:59:12 ok    12 press      model-sheet-use-fast ← onPress
+16:59:12 ok    13 sleep      3000 ms
+16:59:12 FAIL  14 press      press model-sheet-close: not mounted
+16:59:12 ok    15 waitFor    Loading gone
+16:59:12 ok    16 sleep      1500 ms
+16:59:12 ok    17 value      FAST
+16:59:12 ok    18 assertText "FAST" present
+16:59:12 ok    19 type       composer-input = 48 chars
+16:59:12 ok    20 send       send ← onPress
+16:59:12 ok    21 sleep      2500 ms
+16:59:12 ok    22 waitFor    reading-pages gone
+16:59:12 ok    23 waitFor    reading-docs gone
+16:59:12 ok    24 waitFor    stop gone
+16:59:12 ok    25 sleep      2500 ms
+16:59:12 ok    26 value      Some excellent names for a golden retriever puppy include Charlie, Max, Barnaby, and Teddy. If you prefer some
+16:59:12 FAIL  27 value      value citations: no node with that testID is mounted
+16:59:12 FAIL  28 value      value none-matched: no node with that testID is mounted
+16:59:12 FAIL  29 value      value banners: no node with that testID is mounted
+16:59:12 ok    30 value      FAST
+16:59:12 ok    31 screenshot sim-p0-fast-answer
+16:59:12 ok    32 dump       sim-p0-fast-answer
+16:59:12 29 passed, 4 failed, 1 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-42/docs/qa/ios-device-pass-42/screens
+16:59:12   ! step 14 (press): press model-sheet-close: not mounted
+16:59:12   ! step 27 (value): value citations: no node with that testID is mounted
+16:59:12   ! step 28 (value): value none-matched: no node with that testID is mounted
+16:59:12   ! step 29 (value): value banners: no node with that testID is mounted

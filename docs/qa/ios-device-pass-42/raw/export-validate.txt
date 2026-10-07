@@ -1,0 +1,35 @@
+== xcodebuild -exportArchive (ExportOptions: method app-store-connect, signingStyle automatic, teamID NGCHN95667, manageAppVersionAndBuildNumber false)
+2026-10-07 15:33:10.830 xcodebuild[87429:37125778] [MT] IDEDistribution: -[IDEDistributionLogging _createLoggingBundleAtPath:]: Created bundle at path "<tmp>".
+Exported Inborn to: ~/dev/inborn-docs/builds/export-42
+** EXPORT SUCCEEDED **
+
+
+== export-42/
+total 1402728
+drwxr-xr-x@ 6 moshecohen  staff        192 Oct  7 15:34 .
+drwxr-xr-x@ 5 moshecohen  staff        160 Oct  7 15:33 ..
+-rw-r--r--@ 1 moshecohen  staff       7707 Oct  7 15:34 DistributionSummary.plist
+-rw-r--r--@ 1 moshecohen  staff        622 Oct  7 15:34 ExportOptions.plist
+-rw-r--r--@ 1 moshecohen  staff  717755766 Oct  7 15:34 Inborn.ipa
+-rw-r--r--@ 1 moshecohen  staff     425889 Oct  7 15:34 Packaging.log
+
+== Inborn.ipa sha256 76420086726db73047a605c57b559a08b24948b9bc08861ee46f60d607a41f4b
+== IPA Info.plist: CFBundleVersion 42, CFBundleShortVersionString 1.0.0, appex CFBundleVersion 42
+== embedded.mobileprovision: iOS Team Store Provisioning Profile: com.inbornapp.mobile, get-task-allow false
+532517120  10-07-2026 15:30   Payload/Inborn.app/instant.gguf
+  7066441  10-07-2026 15:30   Payload/Inborn.app/main.jsbundle
+204987232  10-07-2026 15:30   Payload/Inborn.app/vision-qwen35.gguf
+  4113088  10-07-2026 15:30   Payload/Inborn.app/DocExtractOcr.bundle/tessdata/eng.traineddata
+   961404  10-07-2026 15:30   Payload/Inborn.app/DocExtractOcr.bundle/tessdata/heb.traineddata
+
+== xcrun altool --validate-app -f <builds>/export-42/Inborn.ipa -t ios --apiKey <admin key> --apiIssuer <issuer>  (rc 0)
+Running altool at path '/Applications/Xcode.app/Contents/SharedFrameworks/ContentDelivery.framework/Resources/altool'...
+
+2026-10-07 15:35:32.549  INFO: [ContentDelivery.Uploader.1014D7030] 
+==========================================
+VERIFY SUCCEEDED with no errors
+==========================================
+No errors validating archive at '~/dev/inborn-docs/builds/export-42/Inborn.ipa'.
+
+== scripts/asc-key-env.sh --cleanup: removed staged .p8 files; ~/.appstoreconnect/private_keys now holds 0 files
+== DistributionSummary.plist: signing certificate type 'Cloud Managed Apple Distribution' (expires 06/09/2027) for the app and the share extension

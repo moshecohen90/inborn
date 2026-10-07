@@ -1,0 +1,81 @@
+16:55:10 pushing 62 steps as j1-onboard
+16:55:12 shot sim-j1-01
+16:55:16 shot sim-j1-02
+16:55:24 shot sim-j1-03
+16:55:29 shot sim-j1-04
+16:55:54 shot sim-j1-05
+16:56:07 shot sim-j1-06
+16:56:17 shot sim-j1-07
+16:56:33 shot sim-j1-08
+16:56:55 shot sim-j1-09
+16:57:04 ok     0 waitFor    onboarding-continue appeared
+16:57:04 ok     1 sleep      1200 ms
+16:57:04 ok     2 screenshot sim-j1-01
+16:57:04 ok     3 dump       sim-j1-01
+16:57:04 ok     4 press      onboarding-continue ← onPress
+16:57:04 ok     5 waitFor    onboarding-model appeared
+16:57:04 ok     6 sleep      2500 ms
+16:57:04 ok     7 value      1.28 GB · one download from localhost
+16:57:04 FAIL   8 assertText assertText "models.inbornapp.com" is not on screen under model-source-fast
+16:57:04 ok     9 screenshot sim-j1-02
+16:57:04 ok    10 press      start-now-with ← onPress
+16:57:04 ok    11 waitFor    sealed-start appeared
+16:57:04 ok    12 sleep      5000 ms
+16:57:04 ok    13 screenshot sim-j1-03
+16:57:04 ok    14 press      sealed-start ← onPress
+16:57:04 ok    15 waitFor    lock-start appeared
+16:57:04 ok    16 screenshot sim-j1-04
+16:57:04 ok    17 press      lock-start ← onPress
+16:57:04 ok    18 waitFor    composer-input appeared
+16:57:04 ok    19 waitFor    Loading gone
+16:57:04 ok    20 sleep      2000 ms
+16:57:04 ok    21 value      INSTANT
+16:57:04 ok    22 assertText "INSTANT" present
+16:57:04 ok    23 screenshot sim-j1-05
+16:57:04 ok    24 type       composer-input = 2 chars
+16:57:04 ok    25 send       send ← onPress
+16:57:04 ok    26 sleep      2500 ms
+16:57:04 ok    27 waitFor    reading-pages gone
+16:57:04 ok    28 waitFor    reading-docs gone
+16:57:04 ok    29 waitFor    stop gone
+16:57:04 ok    30 sleep      2500 ms
+16:57:04 ok    31 value      Hi! What can I do today for you?
+16:57:04 FAIL  32 value      value citations: no node with that testID is mounted
+16:57:04 FAIL  33 value      value none-matched: no node with that testID is mounted
+16:57:04 FAIL  34 value      value banners: no node with that testID is mounted
+16:57:04 ok    35 value      INSTANT
+16:57:04 ok    36 screenshot sim-j1-06
+16:57:04 ok    37 dump       sim-j1-06
+16:57:04 ok    38 press      open-chats ← onPress
+16:57:04 ok    39 waitFor    close-chats appeared
+16:57:04 ok    40 sleep      1500 ms
+16:57:04 ok    41 screenshot sim-j1-07
+16:57:04 ok    42 dump       sim-j1-07
+16:57:04 ok    43 press      close-chats ← onPress
+16:57:04 ok    44 waitFor    composer-input appeared
+16:57:04 ok    45 sleep      2500 ms
+16:57:04 ok    46 screenshot sim-j1-08
+16:57:04 ok    47 dump       sim-j1-08
+16:57:04 ok    48 type       composer-input = 16 chars
+16:57:04 ok    49 send       send ← onPress
+16:57:04 ok    50 sleep      2500 ms
+16:57:04 ok    51 waitFor    reading-pages gone
+16:57:04 ok    52 waitFor    reading-docs gone
+16:57:04 ok    53 waitFor    stop gone
+16:57:04 ok    54 sleep      2500 ms
+16:57:04 ok    55 value      Hi! What can I do today for you?
+16:57:04 FAIL  56 value      value citations: no node with that testID is mounted
+16:57:04 FAIL  57 value      value none-matched: no node with that testID is mounted
+16:57:04 FAIL  58 value      value banners: no node with that testID is mounted
+16:57:04 ok    59 value      INSTANT
+16:57:04 ok    60 screenshot sim-j1-09
+16:57:04 ok    61 dump       sim-j1-09
+16:57:04 55 passed, 7 failed, 9 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-42/docs/qa/ios-device-pass-42/screens
+16:57:04   ! step 8 (assertText): assertText "models.inbornapp.com" is not on screen under model-source-fast
+16:57:04   ! step 32 (value): value citations: no node with that testID is mounted
+16:57:04   ! step 33 (value): value none-matched: no node with that testID is mounted
+16:57:04   ! step 34 (value): value banners: no node with that testID is mounted
+16:57:04   ! step 56 (value): value citations: no node with that testID is mounted
+16:57:04   ! step 57 (value): value none-matched: no node with that testID is mounted
+16:57:04   ! step 58 (value): value banners: no node with that testID is mounted
+16:57:04   ! console.log: [chat] plain=acknowledgement window=1/1 maxTokens=224

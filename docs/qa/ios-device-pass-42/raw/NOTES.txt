@@ -1,0 +1,13 @@
+2026-10-07 15:40:20 start ios-build-42; worktree at 00d8b6fe, commit a0fbb084 (a0fbb084a930) buildNumber 41->42 + guard + ignore line; gates rc 0 (check:permissions n/a, Android-only); archive 15:18:06->15:30:17 ok; export + altool --validate-app VERIFY SUCCEEDED 15:35; twin 15:36:27->15:39:50 verified
+2026-10-07 15:40:20 phone before twin: com.inbornapp.mobile 1.0.0 41;com.inbornapp.mobile.uitests.xctrunner 1.0 1;
+2026-10-07 15:40:44 twin installed rc=0
+2026-10-07 15:40:45 launched (before any push)
+2026-10-07 15:40:55 j1-onboard start
+2026-10-07 15:42:32 j1-onboard rc=1 15:42:31   ! console.log: [chat] plain=acknowledgement window=1/1 maxTokens=224
+2026-10-07 15:43:46 pushed warm.txt + 9 fixtures + the founder's file; read back: 10 identical
+2026-10-07 15:43:49 j2-install-fast start
+2026-10-07 15:47:04 j2-install-fast rc=1 15:47:02   ! step 4 (value): value model-status-fast: no node with that testID is mounted
+2026-10-07 15:47:10 ja-lexical-fast start
+2026-10-07 15:56:46 ja-lexical-fast rc=1 15:56:46   ! console.log: [chat] plain=acknowledgement window=5/5 maxTokens=224
+2026-10-07 15:57:05 ja-lexical-instant start
+2026-10-07 16:46:17 ja-lexical-instant: phone unavailable to the Mac from ~16:07 (devicectl 'unavailable'); the run stopped at ja-13 (veto turn); samplers stopped; lead told

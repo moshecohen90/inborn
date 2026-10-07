@@ -1,0 +1,53 @@
+15:43:50 pushing 43 steps as j2-install-fast
+15:43:55 shot j2-01
+15:44:00 shot j2-02
+15:44:19 shot j2-03
+15:46:36 shot j2-04
+15:46:44 shot j2-05
+15:46:48 shot j2-06
+15:46:55 shot j2-07
+15:47:02 ok     0 deeplink   /vault
+15:47:02 ok     1 waitFor    best-for appeared
+15:47:02 ok     2 sleep      3000 ms
+15:47:02 ok     3 value      Included with the app
+15:47:02 FAIL   4 value      value model-status-fast: no node with that testID is mounted
+15:47:02 ok     5 screenshot j2-01
+15:47:02 ok     6 scrollTo   install-fast
+15:47:02 ok     7 screenshot j2-02
+15:47:02 ok     8 press      install-fast ← onPress
+15:47:02 ok     9 sleep      1500 ms
+15:47:02 ok    10 press      confirm-download ← onPress
+15:47:02 ok    11 sleep      15000 ms
+15:47:02 ok    12 value      7% · 101 MB of 1.28 GB
+15:47:02 ok    13 screenshot j2-03
+15:47:02 ok    14 idleTimer  idle timer disabled: true
+15:47:02 ok    15 waitFor    use-fast appeared
+15:47:02 ok    16 value      Installed
+15:47:02 ok    17 screenshot j2-04
+15:47:02 ok    18 deeplink   /chats
+15:47:02 ok    19 waitFor    new-chat appeared
+15:47:02 ok    20 press      new-chat ← onPress
+15:47:02 ok    21 waitFor    start-chat appeared
+15:47:02 ok    22 press      start-chat ← onPress
+15:47:02 ok    23 waitFor    composer-input appeared
+15:47:02 ok    24 waitFor    Loading gone
+15:47:02 ok    25 sleep      1500 ms
+15:47:02 ok    26 value      INSTANT
+15:47:02 ok    27 sleep      2000 ms
+15:47:02 ok    28 screenshot j2-05
+15:47:02 ok    29 dump       j2-05
+15:47:02 ok    30 press      model-chip ← onPress
+15:47:02 ok    31 waitFor    model-sheet appeared
+15:47:02 ok    32 sleep      1500 ms
+15:47:02 ok    33 screenshot j2-06
+15:47:02 ok    34 dump       j2-06
+15:47:02 ok    35 press      model-sheet-close ← onPress
+15:47:02 ok    36 deeplink   /vault
+15:47:02 ok    37 waitFor    best-for appeared
+15:47:02 ok    38 value      Installed
+15:47:02 ok    39 value      Included with the app
+15:47:02 ok    40 sleep      3000 ms
+15:47:02 ok    41 screenshot j2-07
+15:47:02 ok    42 dump       j2-07
+15:47:02 42 passed, 1 failed, 7 screenshots → /Users/moshecohen/dev/inborn-wt/ios-build-42/docs/qa/ios-device-pass-42/screens
+15:47:02   ! step 4 (value): value model-status-fast: no node with that testID is mounted
