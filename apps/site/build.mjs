@@ -413,7 +413,7 @@ const orgGraph = () => [
     name: "Inborn",
     url: `${siteOrigin}/`,
     logo: { "@id": ID.logo },
-    slogan: "Turn the internet off. Keep chatting.",
+    slogan: "AI that stays on your phone.",
     description: "Inborn is an on-device AI chat app: the model runs on the user's own phone or computer, so no conversation is sent to a server. No account, no cloud, no analytics, no subscription.",
   },
 ];
@@ -522,7 +522,7 @@ const homeGraph = (l) => [
     inLanguage: l.code,
     softwareVersion: "1.0",
     permissions: t(l, "ld.permissions"),
-    featureList: Array.from({ length: 8 }, (_, i) => t(l, `ld.feature.${i + 1}`)),
+    featureList: Array.from({ length: 9 }, (_, i) => t(l, `ld.feature.${i + 1}`)),
     publisher: { "@id": ID.org },
     brand: { "@id": ID.brand },
     offers: [

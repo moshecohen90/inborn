@@ -3,7 +3,7 @@
   <div class="mesh" aria-hidden="true"></div>
   <div class="hero-body">
   <p class="eyebrow mono">{{t:home.private-on-device-ai-iphone}}</p>
-  <h1>{{t:home.turn-the-internet-off-keep}}</h1>
+  <h1>{{t:home.ai-that-stays-on-your}}</h1>
   <p class="lede">{{t:home.inborn-is-an-ai-chat}}</p>
 
   <form class="composer" action="{{APP_ORIGIN}}/" method="get" role="search">
@@ -70,29 +70,54 @@
   </div>
 </section>
 
-<section class="band" aria-labelledby="models" id="models">
-  <div class="rail"><span class="mono num">03</span><span class="mono rail-k">{{t:home.models}}</span></div>
+<section class="band" aria-labelledby="files" id="files">
+  <div class="rail"><span class="mono num">03</span><span class="mono rail-k">{{t:home.your-files}}</span></div>
   <div class="band-body">
-    <h2 id="models">{{t:home.pick-the-model-your-device}}</h2>
-    <p>{{t:home.bigger-models-write-better-and}}</p>
-    <div class="table-wrap"><table>
-      <caption class="sr-only">{{t:home.inborn-s-built-in-models}}</caption>
-      <thead><tr><th>{{t:home.model}}</th><th>{{t:home.size}}</th><th>{{t:home.license}}</th><th>{{t:home.good-at}}</th><th>{{t:home.on-a-2018-android-flagship}}</th></tr></thead>
-      <tbody>
-        <tr><td><strong>{{t:home.instant}}</strong><div class="mono small">{{t:home.qwen3-5-0-8b-free}}</div></td><td class="mono small">{{t:home.0-53-gb}}</td><td class="mono small">{{t:home.apache-2-0}}</td><td>{{t:home.quick-answers-rewrites-summaries-weak}}</td><td class="mono small">{{t:home.12-15-tok-s}}</td></tr>
-        <tr><td><strong>{{t:home.fast}}</strong><div class="mono small">{{t:home.qwen3-5-2b-free}}</div></td><td class="mono small">{{t:home.1-28-gb}}</td><td class="mono small">{{t:home.apache-2-0-2}}</td><td>{{t:home.the-everyday-one-writing-questions}}</td><td class="mono small">{{t:home.5-6-tok-s}}</td></tr>
-        <tr><td><strong>{{t:home.sharp}}</strong><div class="mono small">{{t:home.qwen3-5-4b-pro}}</div></td><td class="mono small">{{t:home.2-74-gb}}</td><td class="mono small">{{t:home.apache-2-0-3}}</td><td>{{t:home.analysis-code-and-long-documents}}</td><td class="mono small">{{t:home.too-slow-to-use}}</td></tr>
-        <tr><td><strong>{{t:home.sharp-phi}}</strong><div class="mono small">{{t:home.phi-4-mini-3-8b}}</div></td><td class="mono small">{{t:home.2-49-gb}}</td><td class="mono small">{{t:home.mit}}</td><td>{{t:home.reasoning-math-and-code-in}}</td><td class="mono small">{{t:home.2-3-tok-s}}</td></tr>
-      </tbody>
-    </table></div>
-    <p class="small">{{t:home.speeds-are-ours-measured-on}}</p>
+    <h2 id="files">{{t:home.your-photos-and-pdfs-read}}</h2>
+    <div class="grid two">
+      <div class="card">
+        <span class="label">{{t:home.photos}}</span>
+        <h3>{{t:home.read-a-photo-offline}}</h3>
+        <p>{{t:home.receipts-labels-screenshots-read}}</p>
+      </div>
+      <div class="card">
+        <span class="label">{{t:home.documents}}</span>
+        <h3>{{t:home.ask-your-pdfs-nothing-uploaded}}</h3>
+        <p>{{t:home.every-answer-cites-the-page}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" aria-labelledby="lock" id="lock">
+  <div class="rail"><span class="mono num">04</span><span class="mono rail-k">{{t:home.only-you}}</span></div>
+  <div class="band-body">
+    <h2 id="lock">{{t:home.lock-it-wipe-it}}</h2>
+    <p class="lede-2">{{t:home.screen-lock-incognito-chats-emergency}}</p>
+    <div class="grid">
+      <div class="card">
+        <span class="label">{{t:home.screen-lock}}</span>
+        <h3>{{t:home.face-id-or-your-passcode}}</h3>
+        <p>{{t:home.chats-stay-encrypted-until-then}}</p>
+      </div>
+      <div class="card">
+        <span class="label">{{t:home.incognito}}</span>
+        <h3>{{t:home.not-saved-no-memory}}</h3>
+        <p>{{t:home.an-incognito-chat-is-gone}}</p>
+      </div>
+      <div class="card">
+        <span class="label">{{t:home.emergency-wipe}}</span>
+        <h3>{{t:home.delete-everything}}</h3>
+        <p>{{t:home.chats-the-encryption-key-and}}</p>
+      </div>
+    </div>
   </div>
 </section>
 
 <section class="band" aria-labelledby="proof" id="proof">
-  <div class="rail"><span class="mono num">04</span><span class="mono rail-k">{{t:home.proof}}</span></div>
+  <div class="rail"><span class="mono num">05</span><span class="mono rail-k">{{t:home.proof}}</span></div>
   <div class="band-body">
-    <h2 id="proof">{{t:home.how-do-i-know-it}}</h2>
+    <h2 id="proof">{{t:home.verify-it-yourself}}</h2>
     <p class="lede-2">{{t:home.every-ai-app-calls-itself}}</p>
     <div class="grid two">
       <div class="card">
@@ -121,8 +146,27 @@
   </div>
 </section>
 
+<section class="band" aria-labelledby="models" id="models">
+  <div class="rail"><span class="mono num">06</span><span class="mono rail-k">{{t:home.models}}</span></div>
+  <div class="band-body">
+    <h2 id="models">{{t:home.a-model-that-fits-your}}</h2>
+    <p>{{t:home.bigger-models-write-better-and}}</p>
+    <div class="table-wrap"><table>
+      <caption class="sr-only">{{t:home.inborn-s-built-in-models}}</caption>
+      <thead><tr><th>{{t:home.model}}</th><th>{{t:home.size}}</th><th>{{t:home.license}}</th><th>{{t:home.good-at}}</th><th>{{t:home.on-a-2018-android-flagship}}</th></tr></thead>
+      <tbody>
+        <tr><td><strong>{{t:home.instant}}</strong><div class="mono small">{{t:home.qwen3-5-0-8b-free}}</div></td><td class="mono small">{{t:home.0-53-gb}}</td><td class="mono small">{{t:home.apache-2-0}}</td><td>{{t:home.quick-answers-rewrites-summaries-weak}}</td><td class="mono small">{{t:home.12-15-tok-s}}</td></tr>
+        <tr><td><strong>{{t:home.fast}}</strong><div class="mono small">{{t:home.qwen3-5-2b-free}}</div></td><td class="mono small">{{t:home.1-28-gb}}</td><td class="mono small">{{t:home.apache-2-0-2}}</td><td>{{t:home.the-everyday-one-writing-questions}}</td><td class="mono small">{{t:home.5-6-tok-s}}</td></tr>
+        <tr><td><strong>{{t:home.sharp}}</strong><div class="mono small">{{t:home.qwen3-5-4b-pro}}</div></td><td class="mono small">{{t:home.2-74-gb}}</td><td class="mono small">{{t:home.apache-2-0-3}}</td><td>{{t:home.analysis-code-and-long-documents}}</td><td class="mono small">{{t:home.too-slow-to-use}}</td></tr>
+        <tr><td><strong>{{t:home.sharp-phi}}</strong><div class="mono small">{{t:home.phi-4-mini-3-8b}}</div></td><td class="mono small">{{t:home.2-49-gb}}</td><td class="mono small">{{t:home.mit}}</td><td>{{t:home.reasoning-math-and-code-in}}</td><td class="mono small">{{t:home.2-3-tok-s}}</td></tr>
+      </tbody>
+    </table></div>
+    <p class="small">{{t:home.speeds-are-ours-measured-on}}</p>
+  </div>
+</section>
+
 <section class="band" aria-labelledby="pricing" id="pricing">
-  <div class="rail"><span class="mono num">05</span><span class="mono rail-k">{{t:home.pricing}}</span></div>
+  <div class="rail"><span class="mono num">07</span><span class="mono rail-k">{{t:home.pricing}}</span></div>
   <div class="band-body">
     <h2 id="pricing">{{t:home.how-much-does-inborn-cost}}</h2>
     <p class="lede-2">{{t:home.inborn-is-a-one-time}}</p>
@@ -134,6 +178,7 @@
         <ul>
           <li>{{t:home.unlimited-chat-with-the-built}}</li>
           <li>{{t:home.no-message-caps-no-watermarks}}</li>
+          <li>{{t:home.one-document-of-up-to}}</li>
           <li>{{t:home.proof-screen-incognito-screen-lock}}</li>
         </ul>
       </div>
@@ -142,7 +187,7 @@
         <p class="price">{{t:home.19-99-one-time}}</p>
         <p>{{t:home.buy-it-once-on-your}}</p>
         <ul>
-          <li>{{t:home.ask-your-own-pdfs-and}}</li>
+          <li>{{t:home.unlimited-documents-and-ocr}}</li>
           <li>{{t:home.voice-in-and-out-with}}</li>
           <li>{{t:home.the-larger-sharp-models-unlimited}}</li>
           <li>{{t:home.export-everything-to-a-file}}</li>
@@ -164,7 +209,7 @@
 </section>
 
 <section class="band" aria-labelledby="faq" id="faq">
-  <div class="rail"><span class="mono num">06</span><span class="mono rail-k">{{t:home.questions}}</span></div>
+  <div class="rail"><span class="mono num">08</span><span class="mono rail-k">{{t:home.questions}}</span></div>
   <div class="band-body">
     <h2 id="faq">{{t:home.questions-people-ask}}</h2>
     <div class="qa-list">{{FAQ}}</div>
@@ -172,7 +217,7 @@
 </section>
 
 <section class="band get" aria-labelledby="get" id="get">
-  <div class="rail"><span class="mono num">07</span><span class="mono rail-k">{{t:home.get-it}}</span></div>
+  <div class="rail"><span class="mono num">09</span><span class="mono rail-k">{{t:home.get-it}}</span></div>
   <div class="band-body">
     <h2 id="get">{{t:home.get-inborn}}</h2>
     <p class="lede-2">{{t:home.iphone-and-android-first-windows}}</p>
