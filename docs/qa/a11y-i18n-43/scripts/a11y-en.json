@@ -1,0 +1,336 @@
+{
+ "_": "a11y-i18n-43 a11y-en",
+ "steps": [
+  {
+   "op": "waitFor",
+   "testID": "onboarding-continue",
+   "timeoutMs": 120000
+  },
+  {
+   "op": "sleep",
+   "ms": 1200
+  },
+  {
+   "op": "screenshot",
+   "name": "sim-j1-01"
+  },
+  {
+   "op": "dump",
+   "name": "sim-j1-01"
+  },
+  {
+   "op": "press",
+   "testID": "onboarding-continue"
+  },
+  {
+   "op": "waitFor",
+   "testID": "onboarding-model",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "screenshot",
+   "name": "sim-j1-02"
+  },
+  {
+   "op": "press",
+   "testID": "start-now-with"
+  },
+  {
+   "op": "waitFor",
+   "testID": "sealed-start",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 5000
+  },
+  {
+   "op": "screenshot",
+   "name": "sim-j1-03"
+  },
+  {
+   "op": "press",
+   "testID": "sealed-start"
+  },
+  {
+   "op": "waitFor",
+   "testID": "lock-start",
+   "timeoutMs": 20000
+  },
+  {
+   "op": "screenshot",
+   "name": "sim-j1-04"
+  },
+  {
+   "op": "press",
+   "testID": "lock-start"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 60000
+  },
+  {
+   "op": "waitFor",
+   "text": "Loading",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "assertText",
+   "text": "INSTANT",
+   "testID": "model-chip"
+  },
+  {
+   "op": "screenshot",
+   "name": "sim-j1-05"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "What can you do?"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 300000
+  },
+  {
+   "op": "sleep",
+   "ms": 2000
+  },
+  {
+   "op": "screenshot",
+   "name": "en-01-capabilities"
+  },
+  {
+   "op": "dump",
+   "name": "en-01-capabilities"
+  },
+  {
+   "op": "press",
+   "testID": "model-chip"
+  },
+  {
+   "op": "waitFor",
+   "testID": "model-sheet",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "screenshot",
+   "name": "en-02-model-sheet"
+  },
+  {
+   "op": "dump",
+   "name": "en-02-model-sheet"
+  },
+  {
+   "op": "press",
+   "testID": "model-sheet-close"
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "press",
+   "testID": "open-chats"
+  },
+  {
+   "op": "waitFor",
+   "testID": "close-chats",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "press",
+   "testID": "new-chat"
+  },
+  {
+   "op": "waitFor",
+   "testID": "new-chat-sheet",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "screenshot",
+   "name": "en-03-new-chat-sheet"
+  },
+  {
+   "op": "dump",
+   "name": "en-03-new-chat-sheet"
+  },
+  {
+   "op": "press",
+   "testID": "new-chat-sheet-close"
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "press",
+   "testID": "open-personas"
+  },
+  {
+   "op": "waitFor",
+   "testID": "persona-add",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "press",
+   "testID": "persona-add"
+  },
+  {
+   "op": "waitFor",
+   "testID": "persona-icon-spark",
+   "timeoutMs": 10000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "screenshot",
+   "name": "en-04-persona-icons"
+  },
+  {
+   "op": "dump",
+   "name": "en-04-persona-icons"
+  },
+  {
+   "op": "press",
+   "testID": "personas-sheet-close"
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "deeplink",
+   "url": "/settings"
+  },
+  {
+   "op": "waitFor",
+   "testID": "row-about",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "screenshot",
+   "name": "en-05-settings"
+  },
+  {
+   "op": "dump",
+   "name": "en-05-settings"
+  },
+  {
+   "op": "deeplink",
+   "url": "/proof"
+  },
+  {
+   "op": "waitFor",
+   "testID": "proof",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "value",
+   "testID": "proof-delivery-builtin"
+  },
+  {
+   "op": "value",
+   "testID": "perm-network"
+  },
+  {
+   "op": "screenshot",
+   "name": "en-06-proof"
+  },
+  {
+   "op": "dump",
+   "name": "en-06-proof"
+  },
+  {
+   "op": "scrollTo",
+   "testID": "perm-network"
+  },
+  {
+   "op": "sleep",
+   "ms": 1000
+  },
+  {
+   "op": "screenshot",
+   "name": "en-07-proof-permissions"
+  },
+  {
+   "op": "deeplink",
+   "url": "/settings/about"
+  },
+  {
+   "op": "waitFor",
+   "testID": "about",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "screenshot",
+   "name": "en-08-about"
+  },
+  {
+   "op": "dump",
+   "name": "en-08-about"
+  },
+  {
+   "op": "deeplink",
+   "url": "/"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 15000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  }
+ ]
+}
