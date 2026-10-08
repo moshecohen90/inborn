@@ -45,7 +45,12 @@ function switchBody(path: PhotoPath, seer: string, count: number, size: (bytes: 
   return { key: "chat.vision.switchReady", params: { seer, count } };
 }
 
-export function photoHoldView(held: HeldPhoto, route: PhotoRoute, state: ExtensionState | null, { count, model, seer, size }: { count: number; model: string; seer: string; size: (bytes: number) => string }): PhotoHoldView {
+export function photoHoldView(
+  held: HeldPhoto,
+  route: PhotoRoute,
+  state: ExtensionState | null,
+  { count, model, seer, size, storeReachable = true }: { count: number; model: string; seer: string; size: (bytes: number) => string; storeReachable?: boolean },
+): PhotoHoldView {
   const cancel = { key: "extensions.vision.cancel", params: { count } };
   const base = { progress: null, error: null, primary: null, secondary: null, caption: null, keepOpen: false, cancel, offline: false };
   if (held.kind === "none") return { ...base, title: { key: "chat.vision.holdTitleModel", params: { model } }, body: { key: "chat.attach.noVisionHere", params: { model } } };
@@ -59,6 +64,12 @@ export function photoHoldView(held: HeldPhoto, route: PhotoRoute, state: Extensi
   const running = (have: number): Msg => (onAlt ? { key: "chat.vision.downloadingSeer", params: { seer, ...partOf(have, path.bytes) } } : { key: "chat.vision.downloadingPack", params: partOf(have, path.bytes) });
   const retry = { action: "retry" as const, label: { key: "extensions.retry" } };
   const s = state ?? { kind: "missing" as const, bytes: path.bytes };
+  /* Nothing can bring this file here, so Try again would fail the same way: the way out becomes the button, and Play is named only when Play itself is absent. */
+  if (s.kind === "failed" && s.error === "no-delivery") {
+    const blocked = { ...base, title: { key: "chat.vision.holdTitleModel", params: { model } }, error: storeReachable ? null : s.error };
+    if (!alt) return { ...blocked, body: { key: "chat.attach.noVisionHere", params: { model } } };
+    return { ...blocked, body: { key: "chat.vision.packNotHere", params: { seer, model } }, primary: { action: "switch", label: switchLabel(alt, seer, size) } };
+  }
   switch (s.kind) {
     case "downloading":
       return { ...base, title, keepOpen: !!s.keepOpen, body: running(s.bytes), progress: extensionPercent(s) / 100 };
