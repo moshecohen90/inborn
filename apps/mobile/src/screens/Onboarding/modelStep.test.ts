@@ -217,6 +217,7 @@ describe("Android · Instant and its photo pack are one download", () => {
     const p2 = landed.options[0]!.state.kind === "arriving" ? landed.options[0]!.state.percent : -1;
     expect(p1).toBe(50);
     expect(p2).toBeGreaterThan(p1);
+    expect(landed.options[0]!.bytes, "the size does not shrink when the projector lands first").toBe(instant.bytes + vision.bytes);
   });
 
   it("the Wi-Fi hint shows wherever a Play download can start from the step, and nowhere else", () => {

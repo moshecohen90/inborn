@@ -75,6 +75,8 @@ function VaultModelChoice() {
   const download = async (id: string) => {
     setFailed(false);
     setStopped(false);
+    /* The chosen model stays selected once it lands, instead of the step moving on to the next offer. */
+    setPicked(id);
     /* Chosen now, so the model takes over the moment it verifies, whether that is on this screen or in the chat. */
     vault.setDefault(id);
     const end = await vault.install(id);
