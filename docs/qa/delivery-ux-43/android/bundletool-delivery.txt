@@ -1,0 +1,26 @@
+=== bundletool dump manifest --module=inborn_model
+  <dist:module dist:type="asset-pack">
+    <dist:delivery>
+      <dist:on-demand/>
+    </dist:delivery>
+  </dist:module>
+=== bundletool dump manifest --module=inborn_model_vision
+  <dist:module dist:type="asset-pack">
+    <dist:delivery>
+      <dist:on-demand/>
+    </dist:delivery>
+  </dist:module>
+=== bundletool dump manifest --module=inborn_model_fast
+  <dist:module dist:type="asset-pack">
+    <dist:delivery>
+      <dist:on-demand/>
+    </dist:delivery>
+  </dist:module>
+=== any fast-follow in any module
+inborn_model: dist:on-demand 
+inborn_model_fast: dist:on-demand 
+inborn_model_embed: dist:on-demand 
+inborn_model_speech: dist:on-demand 
+inborn_model_vision: dist:on-demand 
+inborn_model_sharp: dist:on-demand 
+inborn_model_sharp_2: dist:on-demand 

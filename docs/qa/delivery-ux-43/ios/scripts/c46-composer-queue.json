@@ -1,0 +1,156 @@
+{
+ "_": "C46: cold start; type 'Hi' and tap Send while Instant is still loading; the composer says it is queued; the message goes when the model is ready and is answered.",
+ "steps": [
+  {
+   "op": "waitFor",
+   "testID": "onboarding-continue",
+   "timeoutMs": 120000
+  },
+  {
+   "op": "sleep",
+   "ms": 1200
+  },
+  {
+   "op": "screenshot",
+   "name": "sim-c46-01"
+  },
+  {
+   "op": "dump",
+   "name": "sim-c46-01"
+  },
+  {
+   "op": "press",
+   "testID": "onboarding-continue"
+  },
+  {
+   "op": "waitFor",
+   "testID": "onboarding-model",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "value",
+   "testID": "model-source-fast"
+  },
+  {
+   "op": "screenshot",
+   "name": "sim-c46-02"
+  },
+  {
+   "op": "press",
+   "testID": "start-now-with"
+  },
+  {
+   "op": "waitFor",
+   "testID": "sealed-start",
+   "timeoutMs": 30000
+  },
+  {
+   "op": "sleep",
+   "ms": 5000
+  },
+  {
+   "op": "screenshot",
+   "name": "sim-c46-03"
+  },
+  {
+   "op": "press",
+   "testID": "sealed-start"
+  },
+  {
+   "op": "waitFor",
+   "testID": "lock-start",
+   "timeoutMs": 20000
+  },
+  {
+   "op": "screenshot",
+   "name": "sim-c46-04"
+  },
+  {
+   "op": "press",
+   "testID": "lock-start"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-input",
+   "timeoutMs": 60000
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-waiting",
+   "timeoutMs": 20000
+  },
+  {
+   "op": "value",
+   "testID": "composer-waiting"
+  },
+  {
+   "op": "type",
+   "testID": "composer-input",
+   "text": "Hi"
+  },
+  {
+   "op": "send"
+  },
+  {
+   "op": "value",
+   "testID": "composer-waiting"
+  },
+  {
+   "op": "assertText",
+   "text": "your message goes as soon as it is ready",
+   "testID": "composer-waiting"
+  },
+  {
+   "op": "screenshot",
+   "name": "sim-c46-05-queued"
+  },
+  {
+   "op": "dump",
+   "name": "sim-c46-05-queued"
+  },
+  {
+   "op": "waitFor",
+   "testID": "composer-waiting",
+   "gone": true,
+   "timeoutMs": 180000
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "waitFor",
+   "testID": "stop",
+   "gone": true,
+   "timeoutMs": 900000
+  },
+  {
+   "op": "sleep",
+   "ms": 2500
+  },
+  {
+   "op": "value",
+   "testID": "assistant-text"
+  },
+  {
+   "op": "value",
+   "testID": "composer-input"
+  },
+  {
+   "op": "value",
+   "testID": "model-chip"
+  },
+  {
+   "op": "screenshot",
+   "name": "sim-c46-06-answered"
+  },
+  {
+   "op": "dump",
+   "name": "sim-c46-06-answered"
+  }
+ ]
+}
