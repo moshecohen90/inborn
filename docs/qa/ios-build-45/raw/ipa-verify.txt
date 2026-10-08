@@ -1,0 +1,14 @@
+== exported IPA export-45/Inborn.ipa
+CFBundleVersion = 45
+profile = iOS Team Store Provisioning Profile: com.inbornapp.mobile
+get-task-allow = false
+main.jsbundle sha256 = a3e6117140bdd599013638b811da3c42eb877eb21b5be63dedf62c9b37a490ed
+strings -a ipa-main.jsbundle | grep -c 2026-10-09T00:00:00Z = 1
+strings -a ipa-main.jsbundle | grep -c 'Moshe Cohen' = 0
+strings -a ipa-main.jsbundle | grep -c 'Cohen Apps (Israel)' = 0
+bytes '2026-10-09T00:00:00Z': utf8 1, utf16le 0
+bytes '93dc69378201': utf8 1, utf16le 0
+bytes 'Moshe Cohen': utf8 0, utf16le 0
+bytes 'Cohen Apps (Israel)': utf8 0, utf16le 3
+bytes 'Publisher and data controller: Cohen Apps (Israel)': utf8 0, utf16le 1
+bytes 'Licensor: Cohen Apps (Israel)': utf8 0, utf16le 1

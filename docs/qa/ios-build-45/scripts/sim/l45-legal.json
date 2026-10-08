@@ -1,0 +1,28 @@
+{
+ "_": "Build 45: Settings → About shows 1.0.0 (45); About → Privacy policy names the publisher Cohen Apps (Israel); Terms names the licensor the same way.",
+ "steps": [
+  { "op": "deeplink", "url": "/settings" },
+  { "op": "waitFor", "testID": "row-about", "timeoutMs": 15000 },
+  { "op": "scrollTo", "testID": "row-about" },
+  { "op": "press", "testID": "row-about" },
+  { "op": "waitFor", "testID": "about", "timeoutMs": 10000 },
+  { "op": "sleep", "ms": 1500 },
+  { "op": "value", "testID": "about" },
+  { "op": "assertText", "text": "1.0.0 (45)", "testID": "about" },
+  { "op": "screenshot", "name": "sim-l45-01" },
+  { "op": "scrollTo", "testID": "row-privacy" },
+  { "op": "press", "testID": "row-privacy" },
+  { "op": "waitFor", "testID": "legal-meta", "timeoutMs": 10000 },
+  { "op": "sleep", "ms": 1500 },
+  { "op": "value", "testID": "legal-meta" },
+  { "op": "assertText", "text": "Cohen Apps (Israel)", "testID": "legal-meta" },
+  { "op": "screenshot", "name": "sim-l45-02" },
+  { "op": "dump", "name": "sim-l45-02" },
+  { "op": "deeplink", "url": "/legal/terms" },
+  { "op": "waitFor", "testID": "legal-meta", "timeoutMs": 10000 },
+  { "op": "sleep", "ms": 1500 },
+  { "op": "value", "testID": "legal-meta" },
+  { "op": "assertText", "text": "Cohen Apps (Israel)", "testID": "legal-meta" },
+  { "op": "screenshot", "name": "sim-l45-03" }
+ ]
+}
