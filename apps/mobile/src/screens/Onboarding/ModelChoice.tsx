@@ -45,6 +45,7 @@ function VaultModelChoice() {
   const { tier } = useEntitlement();
   const [picked, setPicked] = useState<string | null>(null);
   const [failed, setFailed] = useState(false);
+  const [stopped, setStopped] = useState(false);
 
   const step = useMemo(
     () =>
@@ -57,6 +58,10 @@ function VaultModelChoice() {
         ramGB: vault.device.ramGB,
         languageCode: i18n.language.split("-")[0] ?? null,
         pro: tier !== "free",
+        photos: (id) => {
+          const pack = vault.photoPackOf(id);
+          return pack ? { bytes: pack.bytes, state: vault.state(pack.id) } : null;
+        },
       }),
     [entries, vault, engine.model.id, i18n.language, tier],
   );
@@ -69,6 +74,7 @@ function VaultModelChoice() {
 
   const download = async (id: string) => {
     setFailed(false);
+    setStopped(false);
     /* Chosen now, so the model takes over the moment it verifies, whether that is on this screen or in the chat. */
     vault.setDefault(id);
     const end = await vault.install(id);
@@ -110,7 +116,15 @@ function VaultModelChoice() {
             <Button testID="start-now-with" title={t("onboarding.model.startNowWith", { name: modelOf(startNowWith).name })} variant="link" onPress={() => start(startNowWith)} />
           ) : null}
           {selected?.state.kind === "arriving" ? (
-            <Button testID="cancel-download" title={t("onboarding.model.cancelDownload")} variant="link" onPress={() => void vault.cancel(selected.id)} />
+            <Button
+              testID="cancel-download"
+              title={t("onboarding.model.cancelDownload")}
+              variant="link"
+              onPress={() => {
+                setStopped(true);
+                void vault.cancel(selected.id);
+              }}
+            />
           ) : null}
         </>
       }
@@ -148,6 +162,16 @@ function VaultModelChoice() {
       {offline && selected?.state.kind === "download" ? (
         <Text testID="download-offline" style={[type.bodySmall, { color: theme.text2 }]}>
           {t(offlineKey("vault.confirm.offline"))}
+        </Text>
+      ) : null}
+      {step.showPlayWifiHint ? (
+        <Text testID="play-wifi-hint" style={[type.bodySmall, { color: theme.text2 }]}>
+          {t("onboarding.model.playWifiHint")}
+        </Text>
+      ) : null}
+      {stopped && !step.usableNow && selected?.state.kind === "download" ? (
+        <Text testID="model-needed" style={[type.bodySmall, { color: theme.text }]}>
+          {t("onboarding.model.needModel")}
         </Text>
       ) : null}
       {failed ? (
@@ -206,7 +230,7 @@ function OptionCard({ option, model, selected, onSelect }: { option: ModelOption
           <MonoLabel color={theme.accent}>{t("onboarding.model.betterIn", { language: t(`language.${option.betterInLanguage}`, { defaultValue: option.betterInLanguage }) })}</MonoLabel>
         ) : null}
       </View>
-      <MonoLabel testID={`model-source-${option.id}`}>{t(sourceKey(state), { size, host: "host" in state ? state.host : "" })}</MonoLabel>
+      <MonoLabel testID={`model-source-${option.id}`}>{t(sourceKey(state, option.withPhotos), { size, host: "host" in state ? state.host : "" })}</MonoLabel>
       <Text style={[type.bodySmall, { color: theme.text2 }]}>{modelCopy(t, model, { photos: Platform.OS !== "web" }).goodFor}</Text>
       <Text style={[type.bodySmall, { color: theme.text3 }]}>{languages}</Text>
       {state.kind === "arriving" && state.waiting === "network" ? (

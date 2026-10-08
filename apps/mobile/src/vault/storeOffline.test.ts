@@ -86,7 +86,6 @@ afterEach(() => vi.useRealTimers());
 async function vault() {
   const v = new VaultStore();
   await v.ready();
-  /* The boot asks Play for the fast-follow packs (Instant, its projector); those legs are not this test's. */
   await tick();
   calls = 0;
   return v;

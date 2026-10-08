@@ -9,12 +9,13 @@ const fast = byId("fast");
 const ready = (via: "play" | "https" | "bundled"): InstallState => ({ kind: "ready", path: "/x", bytes: 1, sha256: "", via });
 
 describe("F374 · includedWithApp", () => {
-  it("a Play fast-follow pack is part of the app, like the iOS bundle", () => {
-    expect(includedWithApp(vision, ready("play"))).toBe(true);
-    expect(includedWithApp(byId("instant"), ready("play"))).toBe(true);
+  it("the iOS bundle is part of the app", () => {
     expect(includedWithApp(vision, ready("bundled"))).toBe(true);
+    expect(includedWithApp(byId("instant"), ready("bundled"))).toBe(true);
   });
-  it("an on-demand pack, an HTTPS download and a missing pack stay removable", () => {
+  it("every Play pack (all on-demand now, Instant's too), an HTTPS download and a missing pack stay removable", () => {
+    expect(includedWithApp(vision, ready("play"))).toBe(false);
+    expect(includedWithApp(byId("instant"), ready("play"))).toBe(false);
     expect(includedWithApp(fast, ready("play"))).toBe(false);
     expect(includedWithApp(vision, ready("https"))).toBe(false);
     expect(includedWithApp(vision, { kind: "not-installed" })).toBe(false);
@@ -82,7 +83,7 @@ const { VaultStore } = await import("./store");
 const settled = () => new Promise((r) => setTimeout(r, 0));
 const install = (m: CatalogModel) => ({ file: m.file, bytes: m.bytes, sha256: m.sha256, via: "play" as const, installedAt: 1 });
 
-describe("F374 · Remove on a Play-owned pack", () => {
+describe("Remove on a Play pack", () => {
   beforeEach(() => {
     removed.length = 0;
     fetched.length = 0;
@@ -92,12 +93,12 @@ describe("F374 · Remove on a Play-owned pack", () => {
     record = { version: 1, installs: { "vision-qwen35": install(vision), fast: install(fast) }, imports: {}, hf: {}, downloads: {} };
   });
 
-  it("keeps the photo pack, so no vault open or app update can fetch 205 MB the user removed", async () => {
+  it("removes the photo pack, and no vault open or app update fetches the 205 MB the user removed", async () => {
     const vault = new VaultStore();
     await vault.ready();
     await vault.remove("vision-qwen35");
-    expect(removed).toEqual([]);
-    expect(vault.state("vision-qwen35").kind).toBe("ready");
+    expect(removed).toEqual(["vision-qwen35"]);
+    expect(vault.state("vision-qwen35").kind).toBe("not-installed");
     vault.requestKnownPacks();
     await settled();
     expect(fetched).not.toContain("vision-qwen35");

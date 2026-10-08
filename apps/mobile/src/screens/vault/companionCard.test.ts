@@ -60,8 +60,9 @@ describe("F346 · a companion's vault card says what it is", () => {
   it("a chat model still offers Use, so the rule is about companions and nothing else", () => {
     expect(card("fast", { state: { kind: "ready", via: "https", bytes: 1, path: "/x", sha256: "" } })).toContain('data-testid="use-fast"');
   });
-  it("F374 · a photo pack Play delivered with the app reads 'Included with the app'", () => {
-    expect(card("vision-qwen35", { state: { kind: "ready", via: "play", bytes: 1, path: "/x", sha256: "" } })).toContain(">vault.state.bundled<");
+  it("only the photo pack inside the app reads 'Included with the app'; a Play pack the user downloaded does not", () => {
+    expect(card("vision-qwen35", { state: { kind: "ready", via: "bundled", bytes: 1, path: "/x", sha256: "" } })).toContain(">vault.state.bundled<");
+    expect(card("vision-qwen35", { state: { kind: "ready", via: "play", bytes: 1, path: "/x", sha256: "" } })).not.toContain(">vault.state.bundled<");
     expect(card("vision-qwen35", { state: { kind: "ready", via: "https", bytes: 1, path: "/x", sha256: "" } })).not.toContain(">vault.state.bundled<");
   });
   it("the card an entry point opened the vault for is marked", () => {

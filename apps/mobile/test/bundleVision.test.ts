@@ -11,35 +11,37 @@ const CONFIG = readFileSync(path.join(REPO, "apps/mobile/app.config.ts"), "utf8"
 const models = BUNDLED_MANIFEST.models;
 const byId = (id: string) => models.find((m) => m.id === id) as CatalogModel;
 const bundledIds = (ms: CatalogModel[]) => ms.filter((m) => m.delivery.some((d) => d.kind === "bundled")).map((m) => m.id);
-const fastFollowPacks = (ms: CatalogModel[]) => ms.flatMap((m) => m.delivery.flatMap((d) => (d.kind === "play-asset-pack" && d.mode === "fast-follow" ? [d.pack] : [])));
+const playPacks = (ms: CatalogModel[]) => ms.flatMap((m) => m.delivery.flatMap((d) => (d.kind === "play-asset-pack" ? [d.pack] : [])));
 
-/** The `BUNDLED_IOS_MODELS` object and the fast-follow packs of `ALL_PACKS`, read out of app.config.ts the way check-android-bundle.sh reads it. */
+/** The `BUNDLED_IOS_MODELS` object and each pack's delivery type in `ALL_PACKS`, read out of app.config.ts the way check-android-bundle.sh reads it. */
 function configShips() {
   const ios = /const BUNDLED_IOS_MODELS = \{([^}]*)\}/.exec(CONFIG)?.[1] ?? "";
   const iosModels = Object.fromEntries([...ios.matchAll(/"?([a-z0-9-]+)"?: "([^"]+)"/g)].map((m) => [m[1], m[2]]));
   const packs = /^const ALL_PACKS = \{([\s\S]*?)^\} as const;/m.exec(CONFIG)?.[1] ?? "";
-  const fastFollow = [...packs.matchAll(/name: "([a-z0-9_]+)", deliveryType: "fast-follow"/g)].map((m) => m[1]);
-  return { iosModels, fastFollow };
+  const types = Object.fromEntries([...packs.matchAll(/name: "([a-z0-9_]+)", deliveryType: "([a-z-]+)"/g)].map((m) => [m[1], m[2]]));
+  return { iosModels, types };
 }
 
 describe("F340/F341 · Instant's projector ships wherever Instant ships", () => {
-  it("the catalog bundles it on iOS and makes it a fast-follow Play pack, like Instant", () => {
+  it("the catalog bundles it on iOS and gives it an on-demand Play pack, like Instant", () => {
     const v = byId("vision-qwen35");
     expect(v.delivery.map((d) => d.kind)).toEqual(["bundled", "play-asset-pack", "https"]);
-    expect(v.delivery.find((d) => d.kind === "play-asset-pack")).toMatchObject({ pack: "inborn_model_vision", mode: "fast-follow", file: v.file });
+    expect(v.delivery.find((d) => d.kind === "play-asset-pack")).toMatchObject({ pack: "inborn_model_vision", mode: "on-demand", file: v.file });
   });
 
-  it("every chat model that can see and ships in the store build brings the projector along, on both stores", () => {
+  it("every chat model that can see and ships in the iOS build brings the projector along, and both have a Play pack", () => {
     const seers = models.filter((m) => m.role === "chat" && m.vision);
     const projector = models.filter((m) => m.role === "vision");
     for (const s of seers) {
-      if (bundledIds([s]).length) expect(bundledIds(projector), `${s.id} is bundled`).not.toHaveLength(0);
-      if (fastFollowPacks([s]).length) expect(fastFollowPacks(projector), `${s.id} is fast-follow`).not.toHaveLength(0);
+      if (!bundledIds([s]).length) continue;
+      expect(bundledIds(projector), `${s.id} is bundled`).not.toHaveLength(0);
+      expect(playPacks([s]), `${s.id} has a Play pack`).not.toHaveLength(0);
+      expect(playPacks(projector.filter((p) => bundledIds([p]).length)), `${s.id}'s projector has a Play pack`).not.toHaveLength(0);
     }
     /* The complement: with the projector back on demand, the rule above must fail. */
     const onDemand = projector.map((m) => ({ ...m, delivery: m.delivery.filter((d) => d.kind === "https") }));
     expect(bundledIds(onDemand)).toHaveLength(0);
-    expect(fastFollowPacks(onDemand)).toHaveLength(0);
+    expect(playPacks(onDemand)).toHaveLength(0);
   });
 
   it("app.config.ts bundles exactly the catalog's `bundled` models, each under its catalog file", () => {
@@ -48,8 +50,12 @@ describe("F340/F341 · Instant's projector ships wherever Instant ships", () => 
     for (const [id, file] of Object.entries(iosModels)) expect(file, id).toBe(byId(id).file);
   });
 
-  it("app.config.ts makes exactly the catalog's fast-follow packs fast-follow", () => {
-    expect(configShips().fastFollow.sort()).toEqual(fastFollowPacks(models).sort());
+  /* Founder, 8.10: Play fetched 700 MB of fast-follow packs right after the install, with no way to stop it. */
+  it("no Play pack downloads without a tap: every pack is on-demand, in the catalog and in app.config.ts", () => {
+    const { types } = configShips();
+    expect(Object.keys(types).sort()).toEqual([...new Set(playPacks(models))].sort());
+    for (const [pack, type] of Object.entries(types)) expect(type, pack).toBe("on-demand");
+    for (const m of models) for (const d of m.delivery) if (d.kind === "play-asset-pack") expect(d.mode, d.pack).toBe("on-demand");
   });
 });
 
@@ -59,7 +65,7 @@ describe("F341 · the release gate refuses a build without the catalog's shipped
   const dir = mkdtempSync(path.join(tmpdir(), "inborn-models-"));
   const bytes = { a: Buffer.from("instant-bytes"), b: Buffer.from("projector-bytes") };
   const sha = (b: Buffer) => createHash("sha256").update(b).digest("hex");
-  const model = (id: string, file: string, b: Buffer, pack: string) => ({ id, file, bytes: b.length, sha256: sha(b), delivery: [{ kind: "bundled", file }, { kind: "play-asset-pack", pack, mode: "fast-follow", file }] });
+  const model = (id: string, file: string, b: Buffer, pack: string) => ({ id, file, bytes: b.length, sha256: sha(b), delivery: [{ kind: "bundled", file }, { kind: "play-asset-pack", pack, mode: "on-demand", file }] });
   const catalog = path.join(dir, "manifest.json");
   writeFileSync(catalog, JSON.stringify({ models: [model("instant", "i.gguf", bytes.a, "inborn_model"), model("vision-qwen35", "p.gguf", bytes.b, "inborn_model_vision")] }));
   const run = (target: string) => {
@@ -84,7 +90,7 @@ describe("F341 · the release gate refuses a build without the catalog's shipped
     expect(run(path.join(dir, "Inborn.xcarchive")).code).toBe(0);
   });
 
-  it("Android: passes with both fast-follow packs in the AAB, fails without the projector's", () => {
+  it("Android: passes with both packs in the AAB, fails without the projector's", () => {
     const stage = path.join(dir, "aab");
     mkdirSync(path.join(stage, "inborn_model/assets"), { recursive: true });
     mkdirSync(path.join(stage, "inborn_model_vision/assets"), { recursive: true });

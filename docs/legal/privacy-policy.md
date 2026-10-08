@@ -28,7 +28,7 @@ The only situations in which anything at all leaves your device are listed in se
 ### Android
 None from the app. The release build does not declare the INTERNET permission (you can confirm this on the app's Google Play permissions page, which does not list "full network access"; the one entry Android's app info may show that Inborn did not declare, "Google Play license check", is added by Google Play itself when it builds the installed APKs from our app bundle and gives the app no network access). Two things happen through Google Play, not through Inborn:
 
-- **Model delivery.** The built-in "Instant" model and any larger model you choose in the Vault are delivered by Google Play as asset packs (Play Asset Delivery). Google performs the download exactly as it performs an app install or update, under Google's own privacy policy.
+- **Model delivery.** The "Instant" model and any larger model are delivered by Google Play as asset packs (Play Asset Delivery), only after you choose one and tap Download. Google performs the download exactly as it performs an app install or update, under Google's own privacy policy.
 - **Purchases.** Pro and Work are sold through Google Play Billing. Google processes the payment and holds the purchase record; Inborn only reads the locally cached entitlement. We never see your name, email or payment details.
 - **Offline speech and voices.** If you tap "Download the offline pack" for dictation, or choose a new voice in Android's own settings, Android's system services (Android System Intelligence, Google Text-to-Speech) download that pack under Google's privacy policy. Inborn takes no part in that download and still has no network permission.
 

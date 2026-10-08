@@ -16,6 +16,7 @@ import {
   isNoSpaceError,
   requiredFreeBytes,
   transition,
+  visionPackFor,
   type CatalogManifest,
   type CatalogModel,
   type DeliverySource,
@@ -164,7 +165,7 @@ export class VaultStore {
         continue;
       }
       if (located && !rec) {
-        /* Delivered outside this store (fast-follow pack on first launch, a file put in place by hand): verify before trusting. */
+        /* Delivered outside this store (a Play pack this record never saw, a file put in place by hand): verify before trusting. */
         await this.adopt(model, located, Platform.OS === "android" ? "play" : this.record.hf[model.id] ? "hf" : "https");
         continue;
       }
@@ -255,18 +256,30 @@ export class VaultStore {
   }
 
   /**
-   * Asks Play for the packs this device should already have: fast-follow ones Play delivers by itself after an install
-   * (S02), and any pack the vault recorded as delivered, which every app update unbinds (purchases run §K). Both are one
-   * request away from bytes that are on the phone, and Play serves them without downloading again. Runs on the boot scan
-   * and on vault open.
+   * Asks Play again for every pack the vault recorded as delivered, which every app update unbinds (purchases run §K):
+   * one request away from bytes that are on the phone, and Play serves them without downloading again. A pack this
+   * device never had is never asked for here; only the user's tap starts a download (S02). Runs on the boot scan and
+   * on vault open.
    */
   requestKnownPacks(): void {
     for (const model of this.manifest.models) {
       if (this.states.get(model.id)?.kind !== "not-installed") continue;
-      const fastFollow = model.delivery.some((d) => d.kind === "play-asset-pack" && d.mode === "fast-follow");
-      const delivered = this.record.installs[model.id]?.via === "play";
-      if ((fastFollow || delivered) && this.delivery.plan(model)?.via === "play") void this.install(model.id);
+      /* A projector the user removed stays removed: only its own record brings it back. */
+      if (this.record.installs[model.id]?.via === "play" && this.delivery.plan(model)?.via === "play") void this.install(model.id, { withPhotos: false });
     }
+  }
+
+  /**
+   * The photo pack that comes with a chat model as one choice: Instant's projector on Android, where both are Play
+   * packs. Null when the pack comes by its own download (HTTPS, the photo hold card).
+   */
+  photoPackOf(id: string): CatalogModel | null {
+    const model = this.model(id);
+    if (model?.role !== "chat" || !model.vision) return null;
+    const pack = visionPackFor(id);
+    const packModel = pack ? this.model(pack.id) : undefined;
+    if (!packModel || !this.manifestStatus.ok || this.delivery.plan(packModel)?.via !== "play") return null;
+    return packModel;
   }
 
   /** The copy the store signed is ready at once; it is hashed once, in the background, and the verdict is kept so no launch re-reads 500 MB (§5.4). */
@@ -490,13 +503,15 @@ export class VaultStore {
 
   // ---- commands ---------------------------------------------------------------
 
-  async install(id: string): Promise<InstallState> {
+  async install(id: string, { withPhotos = true }: { withPhotos?: boolean } = {}): Promise<InstallState> {
     const model = this.model(id);
     if (!model) throw new Error(`unknown model ${id}`);
     const plan = this.manifestStatus.ok ? this.delivery.plan(model) : null;
     if (!plan) return this.set2(id, { kind: "failed", via: "https", error: "no-delivery", retryable: false });
-    const state = this.dispatch(id, { type: "request", via: plan.via, requiredBytes: requiredFreeBytes(model.bytes), freeBytes: freeDiskBytes() });
+    const photos = withPhotos ? this.photoPackOf(id) : null;
+    const state = this.dispatch(id, { type: "request", via: plan.via, requiredBytes: requiredFreeBytes(model.bytes + (photos?.bytes ?? 0)), freeBytes: freeDiskBytes() });
     if (state.kind !== "delivering") return state;
+    if (photos && this.state(photos.id).kind === "not-installed") void this.install(photos.id);
     await this.lanes.acquire(id, model.bytes);
     if (this.state(id).kind !== "delivering") return this.state(id);
     try {
@@ -598,6 +613,9 @@ export class VaultStore {
     this.dispatch(id, { type: "cancel" });
     this.lanes.release(id);
     downloadAwake.release(id);
+    /* One choice, one Cancel: the photo pack that started with this model stops with it. */
+    const photos = this.photoPackOf(id);
+    if (photos && this.state(photos.id).kind === "delivering") await this.cancel(photos.id);
   }
 
   async remove(id: string): Promise<void> {

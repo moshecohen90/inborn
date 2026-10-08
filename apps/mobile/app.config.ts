@@ -178,14 +178,15 @@ const BUNDLED_IOS_MODELS = { instant: "Qwen3.5-0.8B-Q4_K_M.gguf", "vision-qwen35
 
 /* Tier keys match the catalog (§5.1); INBORN_PACKS="instant,fast" ships a subset (Play internal testing), unset = all. Pack names and asset names must match the catalog's play-asset-pack deliveries. */
 const ALL_PACKS = {
-  instant: [{ name: "inborn_model", deliveryType: "fast-follow", assets: { "Qwen3.5-0.8B-Q4_K_M.gguf": "Qwen3.5-0.8B-Q4_K_M.gguf" } }],
+  /* Every pack is on-demand: a fast-follow pack starts downloading after install before the user chose anything, and the app cannot stop it. */
+  instant: [{ name: "inborn_model", deliveryType: "on-demand", assets: { "Qwen3.5-0.8B-Q4_K_M.gguf": "Qwen3.5-0.8B-Q4_K_M.gguf" } }],
   fast: [{ name: "inborn_model_fast", deliveryType: "on-demand", assets: { "Qwen3.5-2B-Q4_K_M.gguf": "Qwen3.5-2B-Q4_K_M.gguf" } }],
   /* Document index companion (spec §6.2): Play delivers it too, so the app still opens no socket. */
   embed: [{ name: "inborn_model_embed", deliveryType: "on-demand", assets: { "multilingual-e5-large-instruct-Q6_K.gguf": "multilingual-e5-large-instruct-Q6_K.gguf" } }],
   /* Voice (whisper base) companion, same rule. */
   speech: [{ name: "inborn_model_speech", deliveryType: "on-demand", assets: { "ggml-base.bin": "ggml-base.bin" } }],
-  /* Instant's projector arrives with Instant (fast-follow), so the first photo on a fresh install is answered; Play re-delivers it on every update, so the vault shows it as part of the app (F374). */
-  vision: [{ name: "inborn_model_vision", deliveryType: "fast-follow", assets: { "mmproj-Qwen3.5-0.8B-F16.gguf": "mmproj-Qwen3.5-0.8B-F16.gguf" } }],
+  /* Instant's projector: the vault fetches it together with Instant (src/vault/store.ts install), so the first photo after the first download is answered. */
+  vision: [{ name: "inborn_model_vision", deliveryType: "on-demand", assets: { "mmproj-Qwen3.5-0.8B-F16.gguf": "mmproj-Qwen3.5-0.8B-F16.gguf" } }],
   /* Play caps one pack at 1.5 GB, so each llama-gguf-split shard is its own pack; the vault links them into one directory (src/vault/playDelivery.ts). */
   sharp: [
     { name: "inborn_model_sharp", deliveryType: "on-demand", assets: { "Qwen3.5-4B-Q4_K_M-00001-of-00002.gguf": "Qwen3.5-4B-Q4_K_M-00001-of-00002.gguf" } },

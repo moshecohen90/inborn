@@ -132,10 +132,17 @@ describe("the option the step opens on", () => {
     expect(s.usableNow).toBe(true);
   });
 
-  it("Android with nothing landed yet: opens on the recommended download, and offers no ready model it does not have", () => {
+  it("Android with nothing landed yet: opens on the smallest download (Instant) even when Fast is recommended, and offers no ready model it does not have", () => {
     const s = step({ platform: "android", entries: [entry(instant, NOT_INSTALLED, playPlan(instant)), entry(fast, NOT_INSTALLED, playPlan(fast))], recommendedId: "fast" });
-    expect(s.initialSelection).toBe("fast");
+    expect(s.initialSelection).toBe("instant");
+    expect(s.options.find((o) => o.id === "fast")!.recommended).toBe(true);
     expect(s.startNowWith).toBe(null);
+  });
+
+  it("Android: a download already started on the step stays selected, whichever model it is", () => {
+    const delivering: InstallState = { kind: "delivering", via: "play", bytes: 1, total: fast.bytes, paused: false, waitingForWifi: false, needsConfirmation: false };
+    const s = step({ platform: "android", entries: [entry(instant, NOT_INSTALLED, playPlan(instant)), entry(fast, delivering, playPlan(fast))] });
+    expect(s.initialSelection).toBe("fast");
   });
 
   it("a recommendation already here or arriving is selected, with no second way to start", () => {
@@ -178,5 +185,43 @@ describe("card lines", () => {
   it("truncates the languages line and counts what it left out", () => {
     expect(languagesLine(["en", "zh", "pt"])).toEqual({ list: ["en", "zh", "pt"], more: 0 });
     expect(languagesLine(["en", "zh", "es", "fr", "pt", "it"])).toEqual({ list: ["en", "zh", "es", "fr"], more: 2 });
+  });
+});
+
+describe("Android · Instant and its photo pack are one download", () => {
+  const vision = model("vision-qwen35");
+  const photos = (state: InstallState) => (id: string) => (id === "instant" ? { bytes: vision.bytes, state } : null);
+  const entries = [entry(instant, NOT_INSTALLED, playPlan(instant)), entry(fast, NOT_INSTALLED, playPlan(fast))];
+
+  it("Instant's card and button carry Instant plus its projector; Fast carries Fast alone", () => {
+    const s = step({ platform: "android", entries, photos: photos(NOT_INSTALLED) });
+    const [i, f] = s.options;
+    expect(i).toMatchObject({ id: "instant", bytes: instant.bytes + vision.bytes, withPhotos: true });
+    expect(i!.state).toEqual({ kind: "download", via: "play", bytes: instant.bytes + vision.bytes });
+    expect(f).toMatchObject({ id: "fast", bytes: fast.bytes, withPhotos: false });
+    expect(sourceKey(i!.state, i!.withPhotos)).toBe("onboarding.model.source.playPhotos");
+    expect(sourceKey(f!.state, f!.withPhotos)).toBe("onboarding.model.source.play");
+  });
+
+  it("a projector already here adds nothing to Instant's size", () => {
+    const s = step({ platform: "android", entries, photos: photos(ready("play")) });
+    expect(s.options[0]).toMatchObject({ bytes: instant.bytes, withPhotos: false });
+  });
+
+  it("one bar for both while they arrive, and it never goes back when the projector lands first", () => {
+    const arriving = (bytes: number): InstallState => ({ kind: "delivering", via: "play", bytes, total: instant.bytes, paused: false, waitingForWifi: false, needsConfirmation: false });
+    const half = (b: number) => Math.floor(b / 2);
+    const both = step({ platform: "android", entries: [entry(instant, arriving(half(instant.bytes)), playPlan(instant))], photos: photos(arriving(half(vision.bytes))) });
+    const landed = step({ platform: "android", entries: [entry(instant, arriving(half(instant.bytes)), playPlan(instant))], photos: photos(ready("play")) });
+    const p1 = both.options[0]!.state.kind === "arriving" ? both.options[0]!.state.percent : -1;
+    const p2 = landed.options[0]!.state.kind === "arriving" ? landed.options[0]!.state.percent : -1;
+    expect(p1).toBe(50);
+    expect(p2).toBeGreaterThan(p1);
+  });
+
+  it("the Wi-Fi hint shows wherever a Play download can start from the step, and nowhere else", () => {
+    expect(step({ platform: "android", entries }).showPlayWifiHint).toBe(true);
+    expect(step({ platform: "android", entries: [entry(instant, ready("play"), playPlan(instant))] }).showPlayWifiHint).toBe(false);
+    expect(step({ platform: "ios", entries: [entry(instant, ready("bundled"), httpsPlan(instant)), entry(fast, NOT_INSTALLED, httpsPlan(fast))] }).showPlayWifiHint).toBe(false);
   });
 });

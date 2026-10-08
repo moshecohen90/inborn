@@ -75,6 +75,7 @@ export class PlayDelivery implements ModelDelivery {
   private fetchOne(pack: PlayPack, bytes: number, progress: (bytes: number) => void, emit: (e: InstallEvent) => void): Promise<void> {
     return new Promise<void>((resolve, reject) => {
       let settled = false;
+      const asked = { wifi: false, confirm: false };
       const done = (fn: () => void) => {
         if (settled) return;
         settled = true;
@@ -91,12 +92,19 @@ export class PlayDelivery implements ModelDelivery {
             return;
           case AssetPackStatus.WAITING_FOR_WIFI:
             emit({ type: "waiting-for-wifi" });
+            /* Play's own "download over mobile data?" dialog, once per fetch; a No keeps the pack waiting for Wi-Fi. */
+            if (!asked.wifi) {
+              asked.wifi = true;
+              void confirmOnce().catch(() => undefined);
+            }
             return;
           case AssetPackStatus.REQUIRES_USER_CONFIRMATION:
             emit({ type: "needs-confirmation" });
-            void showPackConfirmation().then((r) => {
+            if (asked.confirm) return;
+            asked.confirm = true;
+            void confirmOnce().then((r) => {
               if (r === 0) done(() => reject(new Error("canceled")));
-            });
+            }, () => undefined);
             return;
           case AssetPackStatus.COMPLETED: {
             const dir = getPackPath(pack.pack);
@@ -146,6 +154,15 @@ export class PlayDelivery implements ModelDelivery {
       /* never linked */
     }
   }
+}
+
+/* Instant and its projector wait for Wi-Fi together; one dialog answers for both. */
+let confirming: Promise<number> | null = null;
+function confirmOnce(): Promise<number> {
+  confirming ??= showPackConfirmation().finally(() => {
+    confirming = null;
+  });
+  return confirming;
 }
 
 export function describePlayError(code: number): string {

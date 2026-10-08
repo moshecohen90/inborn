@@ -2,8 +2,9 @@
 /**
  * Release gate: every shipping artifact present in this tree is free of the QA bridge (F299), and every store build
  * carries the models the catalog says it ships, byte for byte (F341): the iOS archive each `bundled` model as
- * `<App>.app/<id>.gguf`, the Android bundle each `fast-follow` Play pack. Instant's photo projector is one of them, so
- * a build without it would answer a fresh install's first photo with a download offer.
+ * `<App>.app/<id>.gguf`, the Android bundle the Play pack(s) of those same models, the first-run choice Play delivers
+ * on demand. Instant's photo projector is one of them, so a build without it would answer the first photo with a
+ * download offer.
  *
  * scripts/check-qa-bridge.sh was run by hand by whoever remembered, so a future build could ship the bridge and
  * nothing would fail. This walks the artifact paths the builds actually write and runs that gate on each one, so
@@ -44,15 +45,16 @@ function expand({ path: rel, what, ext }) {
 
 const catalog = JSON.parse(readFileSync(process.env.INBORN_CATALOG || path.join(repo, "packages/core/src/catalog/manifest.json"), "utf8"));
 
-/** What each store build must carry: iOS every `bundled` model at the bundle root, Android every fast-follow pack's file(s). */
+/** What each store build must carry: iOS every `bundled` model at the bundle root, Android the Play pack file(s) of the same models. */
 function shippedModels() {
   const ios = [];
   const android = [];
   for (const m of catalog.models) {
     const parts = m.parts ?? [{ file: m.file, bytes: m.bytes, sha256: m.sha256 }];
+    const bundled = m.delivery.some((d) => d.kind === "bundled");
     for (const d of m.delivery) {
       if (d.kind === "bundled") ios.push({ id: m.id, entry: `${m.id}.gguf`, bytes: m.bytes, sha256: m.sha256 });
-      if (d.kind === "play-asset-pack" && d.mode === "fast-follow") {
+      if (d.kind === "play-asset-pack" && bundled) {
         const part = parts.find((p) => p.file === d.file) ?? parts[0];
         android.push({ id: m.id, entry: `${d.pack}/assets/${d.file}`, bytes: part.bytes, sha256: part.sha256 });
       }

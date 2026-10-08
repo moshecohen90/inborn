@@ -11,7 +11,10 @@ export type OptionState =
 
 export interface ModelOption {
   id: string;
+  /** What the download moves: the model plus the photo pack that comes with it, when that pack is not here yet. */
   bytes: number;
+  /** The model's photo pack arrives with it as part of the same download (Instant's projector on Play). */
+  withPhotos: boolean;
   state: OptionState;
   recommended: boolean;
   /** Language codes the catalog rates native or good, in catalog order. */
@@ -39,6 +42,8 @@ export interface ModelStepInput {
   /** The app's current language, for the "better in your language" hint. */
   languageCode: string | null;
   pro: boolean;
+  /** `VaultStore.photoPackOf`: the photo pack that downloads together with this model, with its state now. */
+  photos?: (id: string) => { bytes: number; state: InstallState } | null;
 }
 
 export interface ModelStep {
@@ -53,6 +58,8 @@ export interface ModelStep {
   showWifiOnly: boolean;
   /** Android delivers through Play precisely because the app has no internet permission; the line is part of the claim. */
   showPlayNotice: boolean;
+  /** A Play download this screen can start: say Wi-Fi is best, and that Play asks before it uses mobile data. */
+  showPlayWifiHint: boolean;
 }
 
 const INSTALLED: InstallState["kind"][] = ["ready", "quarantined"];
@@ -71,11 +78,15 @@ export function modelStep(input: ModelStepInput): ModelStep {
   for (const { model, state, plan } of chat) {
     /* A model the device cannot hold is not a choice, it is a disappointment; the vault still lists it with the reason. */
     if (ramGB !== null && model.minRamGB > ramGB) continue;
-    const optionState = stateOf(state, plan, freeBytes, model.bytes, model.id === input.engineModelId);
+    const photos = input.photos?.(model.id) ?? null;
+    const photoBytes = photos && !INSTALLED.includes(photos.state.kind) ? photos.bytes : 0;
+    const bytes = model.bytes + photoBytes;
+    const optionState = withPhotoProgress(stateOf(state, plan, freeBytes, bytes, model.id === input.engineModelId), state, model.bytes, photos);
     if (!optionState) continue;
     options.push({
       id: model.id,
-      bytes: model.bytes,
+      bytes,
+      withPhotos: photoBytes > 0 || (optionState.kind === "arriving" && !!photos),
       state: optionState,
       recommended: input.recommendedId === model.id,
       languages: model.fit ? goodLanguagesOf(model.fit) : [...model.goodLanguages],
@@ -86,7 +97,10 @@ export function modelStep(input: ModelStepInput): ModelStep {
   const offer = options.find((o) => o.recommended && o.state.kind === "download");
   /* Arriving too: the recommended download just started on this screen must stay selected, or its progress and cancel vanish. */
   const coming = offer ?? options.find((o) => o.recommended && o.state.kind === "arriving");
-  const initial = coming ?? usable.find((o) => o.recommended) ?? usable[0] ?? options.find((o) => o.recommended) ?? options[0] ?? null;
+  /* Android with nothing here yet: the first download is the smallest one, so the first answer comes soonest. */
+  const firstDownload = platform === "android" && !usable.length ? [...options].filter((o) => o.state.kind === "download").sort((a, b) => a.bytes - b.bytes)[0] : undefined;
+  const arriving = options.find((o) => o.state.kind === "arriving");
+  const initial = (platform === "android" && !usable.length ? (arriving ?? firstDownload) : undefined) ?? coming ?? usable.find((o) => o.recommended) ?? usable[0] ?? options.find((o) => o.recommended) ?? options[0] ?? null;
   return {
     options,
     initialSelection: initial?.id ?? null,
@@ -94,7 +108,17 @@ export function modelStep(input: ModelStepInput): ModelStep {
     usableNow: usable.length > 0,
     showWifiOnly: platform !== "web" && options.some((o) => o.state.kind === "download" && (o.state.via === "https" || o.state.via === "hf")),
     showPlayNotice: platform === "android" && options.some((o) => o.state.kind !== "ready" && o.state.via === "play"),
+    showPlayWifiHint: platform === "android" && options.some((o) => o.state.kind === "download" && o.state.via === "play"),
   };
+}
+
+/** One bar for the model and its photo pack while both arrive, so the bar never jumps back when the smaller one lands. */
+function withPhotoProgress(option: OptionState | null, state: InstallState, modelBytes: number, photos: { bytes: number; state: InstallState } | null): OptionState | null {
+  if (option?.kind !== "arriving" || option.verifying || state.kind !== "delivering" || !photos) return option;
+  const p = photos.state;
+  const photoDone = p.kind === "delivering" ? p.bytes : p.kind === "verifying" || (INSTALLED.includes(p.kind) && "via" in p && p.via === "play") ? photos.bytes : null;
+  if (photoDone === null) return option;
+  return { ...option, percent: downloadPercent(state.bytes + photoDone, modelBytes + photos.bytes) };
 }
 
 function stateOf(state: InstallState, plan: StepEntry["plan"], freeBytes: number, bytes: number, loadedByEngine: boolean): OptionState | null {
@@ -127,8 +151,9 @@ export function languagesLine(names: readonly string[], max = 4): { list: string
 }
 
 /** Which "where it comes from" line the card prints; the source is read off the delivery, never guessed from the platform. */
-export function sourceKey(state: OptionState): string {
+export function sourceKey(state: OptionState, withPhotos = false): string {
   if (state.kind === "ready") return state.via === "bundled" ? "onboarding.model.source.bundled" : "onboarding.model.source.ready";
   if (state.kind === "arriving" && state.via === "play") return "onboarding.model.source.playPending";
-  return state.via === "play" ? "onboarding.model.source.play" : "onboarding.model.source.https";
+  if (state.via === "play") return withPhotos ? "onboarding.model.source.playPhotos" : "onboarding.model.source.play";
+  return "onboarding.model.source.https";
 }

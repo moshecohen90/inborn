@@ -9,6 +9,9 @@ const PATH = `file:///data/data/com.inbornapp.mobile/files/assetpacks/inborn_mod
 /* What Play answers this app version: `bound` is what getPackLocation points at, `fetched` what the app asked for. */
 const bound = new Set<string>();
 const fetched: string[] = [];
+const cancelled: string[] = [];
+/* Ids whose delivery stays in flight until cancelled, like a Play pack mid-download. */
+const hang = new Set<string>();
 let record: VaultRecord;
 const sizes = new Map<string, number>();
 /* What the mocked hasher answers, so a Play delivery can be handed a bad shard. */
@@ -31,18 +34,19 @@ vi.mock("expo-file-system", () => ({ File: FakeFile }));
 vi.mock("react-native", () => ({ Platform: { OS: "android" } }));
 vi.mock("./playDelivery", () => ({
   PlayDelivery: class {
-    plan = (model: CatalogModel) => ({ via: "play" as const, origin: "Google Play", bytes: model.bytes });
+    plan = (model: CatalogModel) => (model.delivery.some((d) => d.kind === "play-asset-pack") ? { via: "play" as const, origin: "Google Play", bytes: model.bytes } : null);
     locate = (model: CatalogModel) => (model.id === "fast" && bound.has("inborn_model_fast") ? PATH : null);
     /* A pack Play still holds comes back on request without downloading; anything else is not on this device. */
     deliver = async (model: CatalogModel) => {
       fetched.push(model.id);
+      if (hang.has(model.id)) return new Promise<string>(() => undefined);
       if (model.id !== "fast") throw new Error("pack unavailable");
       bound.add("inborn_model_fast");
       sizes.set(PATH, fast.bytes);
       return PATH;
     };
     pause = async () => undefined;
-    cancel = async () => undefined;
+    cancel = async (model: CatalogModel) => void cancelled.push(model.id);
     remove = async () => undefined;
   },
 }));
@@ -81,6 +85,8 @@ beforeEach(() => {
   sizes.clear();
   bound.clear();
   fetched.length = 0;
+  cancelled.length = 0;
+  hang.clear();
 });
 
 describe("VaultStore after a Play version update (purchases run §K)", () => {
@@ -111,12 +117,13 @@ describe("VaultStore after a Play version update (purchases run §K)", () => {
     expect(record.installs.fast).toBeDefined();
   });
 
-  /* F341: Instant's projector is a fast-follow pack like Instant, so Play has it on the phone before the first photo. */
-  it("a fresh install asks Play for Instant and its projector together, and for nothing on-demand", async () => {
+  /* Founder, 8.10: 700 MB arrived right after the install with no way to stop it. Nothing moves before a tap. */
+  it("a fresh install asks Play for nothing, not even Instant", async () => {
     const vault = new VaultStore();
     await vault.ready();
     await settled();
-    expect(fetched.sort()).toEqual(["instant", "vision-qwen35"]);
+    expect(fetched).toEqual([]);
+    expect(vault.state("instant").kind).toBe("not-installed");
   });
 
   it("leaves a model this device never had alone, so no boot starts an unasked download", async () => {
@@ -145,6 +152,48 @@ describe("VaultStore after a Play version update (purchases run §K)", () => {
     vault.requestKnownPacks();
     await settled();
     expect(fetched).toContain("fast");
+  });
+});
+
+describe("VaultStore · a chat model and its photo pack are one choice on Play", () => {
+  it("Download Instant fetches its projector with it", async () => {
+    const vault = new VaultStore();
+    await vault.ready();
+    await vault.install("instant");
+    await settled();
+    expect(fetched.sort()).toEqual(["instant", "vision-qwen35"]);
+    expect(vault.photoPackOf("instant")?.id).toBe("vision-qwen35");
+  });
+
+  it("Download Fast fetches Fast alone: no Instant, and no projector Play cannot bring", async () => {
+    const vault = new VaultStore();
+    await vault.ready();
+    await vault.install("fast");
+    await settled();
+    expect(fetched).toEqual(["fast"]);
+    expect(vault.photoPackOf("fast")).toBeNull();
+  });
+
+  it("Cancel on Instant cancels both Play fetches and leaves both downloadable again", async () => {
+    hang.add("instant").add("vision-qwen35");
+    const vault = new VaultStore();
+    await vault.ready();
+    void vault.install("instant");
+    await settled();
+    expect(vault.state("vision-qwen35").kind).toBe("delivering");
+    await vault.cancel("instant");
+    expect(cancelled.sort()).toEqual(["instant", "vision-qwen35"]);
+    expect(vault.state("instant").kind).toBe("not-installed");
+    expect(vault.state("vision-qwen35").kind).toBe("not-installed");
+  });
+
+  it("an update re-asks for a delivered Instant without fetching a projector the user removed", async () => {
+    const instant = BUNDLED_MANIFEST.models.find((m) => m.id === "instant") as CatalogModel;
+    record = { ...emptyRecord(), installs: { instant: { file: instant.file, bytes: instant.bytes, sha256: instant.sha256, via: "play", installedAt: 1 } } };
+    const vault = new VaultStore();
+    await vault.ready();
+    await settled();
+    expect(fetched).toEqual(["instant"]);
   });
 });
 

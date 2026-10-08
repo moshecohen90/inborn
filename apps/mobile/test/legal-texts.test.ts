@@ -404,6 +404,15 @@ describe("F157 · the accessibility statement matches the code it describes", ()
   });
 });
 
+/* Founder, 8.10: on Android no model comes with the app any more; Play fetches one only after a tap. */
+describe("Android model delivery in the privacy policy", () => {
+  const android = read("docs/legal/privacy-policy.md").split("\n").find((l) => l.startsWith("- **Model delivery.** The \"Instant\" model")) ?? "";
+  it("says Play delivers every model, Instant too, only after the user chooses one", () => {
+    expect(android).toContain("delivered by Google Play as asset packs (Play Asset Delivery), only after you choose one and tap Download");
+    expect(android).not.toMatch(/built-in/);
+  });
+});
+
 /**
  * Round 48 (F207, F209, F214). The site published three things the rest of the repository already contradicted:
  * an absolute zero-bytes-out claim nine lines above the download it admits to, a promise of per-release hashes that
