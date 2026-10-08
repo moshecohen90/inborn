@@ -15,8 +15,10 @@ interface ComposerProps {
   onSend: () => void;
   onStop: () => void;
   busy: boolean;
-  /** Holds Send only: a field that is not editable swallows every tap while the model loads (round 128). */
+  /** Holds Send only, for a model that failed to load; a loading model queues the send instead (`waiting`). */
   disabled?: boolean;
+  /** Why the next message waits ("Loading Instant…"), shown above the field while the model loads. */
+  waiting?: string | null;
   /** Editing the last user turn: the field carries its text and a cancel affordance (§7.1 edit + regenerate). */
   editing?: boolean;
   onCancelEdit?: () => void;
@@ -47,14 +49,14 @@ const MIN_FIELD = 45;
 const webInput = web ? ({ outlineStyle: "none" } as object) : null;
 
 /** Anchored composer (§9.6): well field, amber focus border, grows to six lines, 44 pt targets; attach and mic sit in text-2, dimmed while they wait for M5. */
-export function Composer({ value, onChange, onSend, onStop, busy, disabled, editing, onCancelEdit, placeholder, incognito, onAttach, attachedCount = 0, onMic, onMicLongPress, mic = "idle", inputRef, preparing = 0 }: ComposerProps) {
+export function Composer({ value, onChange, onSend, onStop, busy, disabled, editing, onCancelEdit, placeholder, incognito, onAttach, attachedCount = 0, onMic, onMicLongPress, mic = "idle", inputRef, preparing = 0, waiting = null }: ComposerProps) {
   const theme = useTheme();
   const type = useType();
   const { t } = useTranslation();
   const scale = useFontScale() * type.scale;
   const [focused, setFocused] = useState(false);
   const dir = value ? directionOf(value) : "ltr";
-  const canSend = composerCanSend({ text: value, preparing, busy, disabled });
+  const canSend = composerCanSend({ text: value, busy, disabled });
   /* A physical keyboard's Enter sends while the field has focus; Shift+Enter still breaks the line (QA T28, F108). Latest props through a ref: the capture is armed once per focus. */
   const enter = useRef({ canSend, onSend });
   enter.current = { canSend, onSend };
@@ -86,6 +88,12 @@ export function Composer({ value, onChange, onSend, onStop, busy, disabled, edit
           <Pressable testID="cancel-edit" accessibilityRole="button" onPress={onCancelEdit} hitSlop={8} style={styles.cancelEdit}>
             <Text style={[type.caption, { color: theme.text2 }]}>{t("chats.cancel")}</Text>
           </Pressable>
+        </View>
+      ) : null}
+      {waiting ? (
+        <View testID="composer-waiting" aria-live="polite" style={styles.editRow}>
+          <ActivityIndicator size="small" color={theme.accent} />
+          <Text style={[type.monoLabel, styles.preparing, { color: theme.accent }]}>{waiting}</Text>
         </View>
       ) : null}
       {preparing > 0 ? (

@@ -106,7 +106,7 @@ import { File, Paths } from "expo-file-system";
 import { devVoiceRecord } from "../voice/devLive";
 import { DEV_AUTOVOICE, DEV_AUTOVOICE_DICTATE, DEV_AUTOVOICE_TTS, getWhisper, isSpeaking, speak, stopSpeaking, useDictation, whisperInstalled, WHISPER_MODEL_ID } from "../voice";
 import { imageUri, importImageFile, modelHasVision, pickImages, removeImage, resolveVision, photoPlanHere, visionPackId, storedImagePath, visionInstalled, visionScanned, type PickedImage } from "../images";
-import { pickIntoComposer } from "../images/intake";
+import { flushQueued, pickIntoComposer, planSend } from "../images/intake";
 import { languageName as localeLabel } from "./Settings/Settings";
 import { Seal, type SealState } from "../components/Seal";
 import { AssistantMessage, type AssistantRow } from "../components/chat/AssistantMessage";
@@ -1147,10 +1147,22 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       setBusy(false);
     }
   };
-  const send = () => submit(draft);
+  /* A Send tapped while the model loads (or a photo is still being scaled) is held here and goes the moment nothing holds it. */
+  const [queued, setQueued] = useState(false);
+  const send = () => {
+    const plan = planSend({ text: draft, busy: busy || summarizing, modelReady: status.kind === "ready" && !!session.current, preparing: preparingPhotos });
+    if (plan === "queue") setQueued(true);
+    else if (plan === "now") void submit(draft);
+  };
   /* The dev voice hook runs once, when the model is ready; these keep it on the live send path instead of that render's. */
   const submitRef = useRef(submit);
   submitRef.current = submit;
+  useEffect(() => {
+    const next = flushQueued({ queued, text: draft, busy: busy || summarizing, modelReady: status.kind === "ready" && !!session.current, preparing: preparingPhotos });
+    if (next === "wait") return;
+    setQueued(false);
+    if (next === "send") void submitRef.current(draft);
+  }, [queued, draft, busy, summarizing, status.kind, preparingPhotos]);
   /* The file driver's interval is created once per busy/status change; without this it would send through the render's stale `docs` and miss an attachment made after it. */
   const docsRef = useRef(docs);
   docsRef.current = docs;
@@ -1972,7 +1984,8 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
           abort.current?.abort();
         }}
         busy={busy || summarizing}
-        disabled={status.kind !== "ready"}
+        disabled={status.kind === "error"}
+        waiting={status.kind === "loading" ? t(queued ? "chat.queued" : "chat.loading", { model: chipLabel(t, model.id) }) : null}
         editing={editingId !== null}
         onCancelEdit={() => {
           setEditingId(null);

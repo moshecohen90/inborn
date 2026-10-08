@@ -125,11 +125,12 @@ describe("round 128 · a picture attached from the library is asked about as a p
 });
 
 describe("round 128 · the keyboard", () => {
-  it("the message field is editable while the model loads; only Send waits for it", () => {
+  it("the message field is editable while the model loads, and Send takes the message into a queue (founder, 8.10)", () => {
     const composer = read("../src/components/chat/Composer.tsx");
     expect(composer).not.toMatch(/editable=/);
-    expect(composer).toContain("const canSend = composerCanSend({ text: value, preparing, busy, disabled });");
-    expect(chat).toContain('disabled={status.kind !== "ready"}');
+    expect(composer).toContain("const canSend = composerCanSend({ text: value, busy, disabled });");
+    expect(chat).toContain('disabled={status.kind === "error"}');
+    expect(chat).toContain('t(queued ? "chat.queued" : "chat.loading"');
   });
 
   it("after a send the on-screen keyboard goes away", () => {

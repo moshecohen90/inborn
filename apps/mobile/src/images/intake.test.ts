@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { composerCanSend, pickIntoComposer } from "./intake";
+import { composerCanSend, flushQueued, pickIntoComposer, planSend } from "./intake";
 import type { PickedImage, PickOutcome } from "./pick";
 
 const photo: PickedImage = { uri: "file:///doc/images/a.jpg", width: 1024, height: 768, bytes: 90_000 };
@@ -23,7 +23,8 @@ function composer() {
       s.log.push(`add ${images.length}`);
     },
   };
-  return { s, io, canSend: (text: string) => composerCanSend({ text, preparing: s.preparing, busy: false }) };
+  /* What a tap on Send does now: with the model ready, only a photo still being prepared queues the turn. */
+  return { s, io, canSend: (text: string) => planSend({ text, preparing: s.preparing, busy: false, modelReady: true }) === "now" };
 }
 
 describe("F350 · a turn never leaves while a photo is being prepared", () => {
@@ -74,9 +75,36 @@ describe("F350 · a turn never leaves while a photo is being prepared", () => {
   });
 
   it("busy, disabled and an empty draft still hold the send as before", () => {
-    expect(composerCanSend({ text: "", preparing: 0, busy: false })).toBe(false);
-    expect(composerCanSend({ text: "hi", preparing: 0, busy: true })).toBe(false);
-    expect(composerCanSend({ text: "hi", preparing: 0, busy: false, disabled: true })).toBe(false);
+    expect(composerCanSend({ text: "", busy: false })).toBe(false);
+    expect(composerCanSend({ text: "  ", busy: false })).toBe(false);
+    expect(composerCanSend({ text: "hi", busy: true })).toBe(false);
+    expect(composerCanSend({ text: "hi", busy: false, disabled: true })).toBe(false);
+  });
+});
+
+/* Founder, 8.10: on first open Send would not take his message for ~10 s while the model loaded, and nothing said why. */
+describe("Send while the model loads: queued, never refused", () => {
+  const loading = { busy: false, modelReady: false, preparing: 0 };
+  it("the Send button takes a typed message while the model is still loading", () => {
+    expect(composerCanSend({ text: "Hi", busy: false })).toBe(true);
+    expect(planSend({ text: "Hi", ...loading })).toBe("queue");
+  });
+  it("sends at once when the model is ready, and does nothing for an empty draft or a streaming reply", () => {
+    expect(planSend({ text: "Hi", busy: false, modelReady: true, preparing: 0 })).toBe("now");
+    expect(planSend({ text: " ", ...loading })).toBe("none");
+    expect(planSend({ text: "Hi", ...loading, busy: true })).toBe("none");
+  });
+  it("a queued message leaves the moment the model is ready, not before", () => {
+    expect(flushQueued({ queued: true, text: "Hi", ...loading })).toBe("wait");
+    expect(flushQueued({ queued: true, text: "Hi", ...loading, modelReady: true })).toBe("send");
+  });
+  it("waits for a photo still being prepared and for a reply still streaming", () => {
+    expect(flushQueued({ queued: true, text: "Hi", busy: false, modelReady: true, preparing: 1 })).toBe("wait");
+    expect(flushQueued({ queued: true, text: "Hi", busy: true, modelReady: true, preparing: 0 })).toBe("wait");
+  });
+  it("emptying the composer withdraws the queued send; nothing queued never sends", () => {
+    expect(flushQueued({ queued: true, text: "", ...loading, modelReady: true })).toBe("drop");
+    expect(flushQueued({ queued: false, text: "Hi", ...loading, modelReady: true })).toBe("wait");
   });
 });
 
