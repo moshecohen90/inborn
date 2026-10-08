@@ -79,7 +79,7 @@ export function PersonasSheet({ visible, onClose, store, onChanged, onUnlock }: 
           <TextInput testID="persona-name" value={draft.name} onChangeText={(name) => setDraft({ ...draft, name })} placeholder={t("personas.name")} placeholderTextColor={theme.text3} style={[shape.field, { backgroundColor: theme.well, borderColor: theme.border, color: theme.text }]} />
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.icons}>
             {PERSONA_ICONS.map((icon) => (
-              <Pressable key={icon} testID={`persona-icon-${icon}`} accessibilityRole="radio" accessibilityLabel={icon} accessibilityState={{ selected: draft.icon === icon }} onPress={() => setDraft({ ...draft, icon })}>
+              <Pressable key={icon} testID={`persona-icon-${icon}`} accessibilityRole="radio" accessibilityLabel={t(`personas.icon.${icon}`)} accessibilityState={{ selected: draft.icon === icon }} onPress={() => setDraft({ ...draft, icon })}>
                 <PersonaGlyph icon={icon} size={40} active={draft.icon === icon} />
               </Pressable>
             ))}

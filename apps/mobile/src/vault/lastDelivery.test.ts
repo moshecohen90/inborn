@@ -60,6 +60,6 @@ describe("the strip is wired to it · the branch Proof waits for is reachable", 
   });
 
   it("matches the status the Proof screen branches on", () => {
-    expect(proof).toContain('delivery.status === "done"');
+    expect(proof).toMatch(/delivery\??\.status === "done"/);
   });
 });

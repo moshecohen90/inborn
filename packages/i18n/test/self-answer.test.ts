@@ -38,7 +38,7 @@ describe("round 134N · the app's own answer to a question about the assistant",
     );
     expect(selfAnswer("identity", "en", { device: "phone" })).not.toContain("answering");
     expect(selfAnswer("capabilities", "en", { device: "browser", model: "Fast" })).toBe(
-      "Inborn can answer questions, write and edit text, translate, and explain things step by step. Attach a PDF or a photo and I'll read it and answer about it. All of it happens on this browser.",
+      "I'm Inborn, and I can answer questions, write and edit text, translate, and explain things step by step. Attach a PDF or a photo and I'll read it and answer about it. All of it happens on this browser.",
     );
   });
 
