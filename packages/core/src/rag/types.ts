@@ -41,6 +41,10 @@ export interface DocumentRecord {
   ocrPages: number;
   /** Set while a rebuild for a new embedder runs: the embedder of the rows past `indexedPages`, still searched by their words. */
   reindexFrom?: string;
+  /** Set while only the vectors are rebuilt from the stored passages: pages up to here already carry the current embedder's. */
+  vectorPages?: number;
+  /** How the passages were cut (`chunkingOf`); absent on rows written before round 43 of the docs index. */
+  chunking?: string;
 }
 
 export interface Chunk {
@@ -135,7 +139,8 @@ export interface Embedder {
   readonly id: string;
   /** Bumped when a fix changes this embedder's vectors, so indexes stored under the old revision are rebuilt (`indexModelOf`). */
   readonly revision?: number;
-  embed(texts: string[]): Promise<Float32Array[]>;
+  /** `signal` lets a background rebuild stop between texts when the user's own work needs the engine. */
+  embed(texts: string[], signal?: AbortSignal): Promise<Float32Array[]>;
 }
 
 export interface RetrievalHit {

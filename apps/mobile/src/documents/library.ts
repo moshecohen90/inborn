@@ -5,6 +5,7 @@ import {
   assertImportable,
   buildRagPrompt,
   chunkFor,
+  chunkingOf,
   citationsForAnswer,
   embedBudget,
   filePages,
@@ -15,10 +16,11 @@ import {
   LEXICAL_INDEX_ID,
   isRelevant,
   relevanceDoors,
-  needsReindex,
   newId,
   reindexFrom,
+  reembedFrom,
   reembedStored,
+  rebuildKind,
   planWholeFile,
   readWholeFile,
   vectorsValidUpTo,
@@ -130,6 +132,8 @@ interface Job {
   ocr: boolean;
   /** "rebuild" re-embeds a document already searchable for a new embedder; "read" is a first read or a user's resume. */
   kind: "read" | "rebuild";
+  /** A rebuild stopped for the user's own work; it goes back in the queue and resumes from its committed page. */
+  yielded?: boolean;
 }
 
 /**
@@ -148,6 +152,9 @@ export class DocumentLibrary {
   private jobs = new Map<string, Job>();
   private queue: string[] = [];
   private running = false;
+  private current: { id: string; job: Job } | null = null;
+  /* Rebuilds of the documents a question or an attachment is about, run before the other rebuilds. */
+  private urgent = new Set<string>();
   private listeners = new Set<() => void>();
   private prefs: DocumentPrefs = readPrefs();
   /* §5.7: a document added inside an incognito session is owned by RAM for as long as the session lasts. */
@@ -227,12 +234,13 @@ export class DocumentLibrary {
       }
       /* Without an index model every index is searched by its words (`ask`), so nothing is rebuilt until one lands. */
       if (!this.embedderRef) continue;
-      const stale = needsReindex(doc, this.embedderRef.embedder);
+      const kind = doc.reindexFrom ? "none" : rebuildKind(doc, this.embedderRef.embedder, this.chunking());
       /* A rebuild stopped by a kill or the background resumes at its last committed page, not from zero. */
-      const unfinished = !stale && !!doc.reindexFrom;
-      if (!stale && !unfinished) continue;
-      this.commit(stale ? reindexFrom(doc) : doc);
-      this.enqueue(doc.id, doc.ocrPages > 0, undefined, "rebuild");
+      if (kind === "none" && !doc.reindexFrom) continue;
+      const queued = kind === "vectors" ? reembedFrom(doc) : kind === "full" ? reindexFrom(doc) : doc;
+      this.commit(queued);
+      /* A vectors-only rebuild reads no page, so a scan is not OCRed again. */
+      this.enqueue(doc.id, queued.vectorPages === undefined && doc.ocrPages > 0, undefined, "rebuild");
     }
   }
 
@@ -283,6 +291,7 @@ export class DocumentLibrary {
   attach(chatId: string, docId: string): void {
     const list = this.prefs.attachments[chatId] ?? [];
     if (!list.includes(docId)) this.prefs.attachments[chatId] = [...list, docId];
+    this.prioritize([docId]);
     this.savePrefs();
     this.notify();
   }
@@ -421,18 +430,42 @@ export class DocumentLibrary {
 
   private pageCaps = new Map<string, number>();
 
-  private enqueue(id: string, ocr: boolean, pageCap?: number, kind: "read" | "rebuild" = "read"): void {
+  private enqueue(id: string, ocr: boolean, pageCap?: number, kind: "read" | "rebuild" = "read", resumed = false): void {
     if (this.jobs.has(id)) return;
     this.jobs.set(id, { abort: new AbortController(), ocr, kind });
     const doc = this.docs.get(id);
     if (doc && doc.status !== "queued") this.commit({ ...doc, status: "queued" });
     if (pageCap) this.pageCaps.set(id, pageCap);
     else this.pageCaps.delete(id);
-    /* A file the user just added is read before the rebuilds still waiting: its turn waits for it, theirs does not. */
-    const firstRebuild = kind === "read" ? this.queue.findIndex((q) => this.jobs.get(q)?.kind === "rebuild") : -1;
-    if (firstRebuild >= 0) this.queue.splice(firstRebuild, 0, id);
+    if (resumed) this.queue.unshift(id);
     else this.queue.push(id);
+    this.order();
+    /* A file the user just added is read before any rebuild, even one already running: its turn waits for it, theirs does not. */
+    if (kind === "read") this.yieldRebuild(true);
     void this.pump();
+  }
+
+  /* Stable: reads first, then the rebuilds a question is about, then the rest in the order they came. */
+  private order(): void {
+    const rank = (id: string) => (this.jobs.get(id)?.kind !== "rebuild" ? 0 : this.urgent.has(id) ? 1 : 2);
+    this.queue.sort((a, b) => rank(a) - rank(b));
+  }
+
+  /** A running rebuild stops at its next text, keeps every page it committed and goes back in the queue. */
+  private yieldRebuild(forRead: boolean): void {
+    const cur = this.current;
+    if (!cur || cur.job.kind !== "rebuild" || (!forRead && this.urgent.has(cur.id)) || !this.queue.length) return;
+    cur.job.yielded = true;
+    cur.job.abort.abort();
+  }
+
+  /** The documents a question or an attachment is about are rebuilt before the rest of the library. */
+  private prioritize(ids: string[]): void {
+    const rebuilding = ids.filter((id) => this.jobs.get(id)?.kind === "rebuild" && !this.urgent.has(id));
+    if (!rebuilding.length) return;
+    for (const id of rebuilding) this.urgent.add(id);
+    this.order();
+    this.yieldRebuild(false);
   }
 
   private async pump(): Promise<void> {
@@ -443,20 +476,67 @@ export class DocumentLibrary {
         const id = this.queue.shift()!;
         const job = this.jobs.get(id);
         if (!job) continue;
+        this.current = { id, job };
         await this.runJob(id, job);
+        this.current = null;
         this.jobs.delete(id);
+        if (job.yielded && !this.disposed && this.docs.has(id)) this.enqueue(id, job.ocr, undefined, "rebuild", true);
+        else this.urgent.delete(id);
         /* The job outlives its last commit, so a turn waiting on "nothing is being read any more" needs this one. */
         this.notify();
       }
     } finally {
+      this.current = null;
       this.running = false;
     }
   }
 
+  private chunking(): string {
+    return chunkingOf(chunkFor(this.embedderRef?.contextTokens ?? WORD_INDEX_CONTEXT));
+  }
+
+  /* A yielded rebuild is still waiting, not stopped by the user, so its record never reads "cancelled". */
+  private settle(job: Job, result: DocumentRecord): void {
+    this.progress.delete(result.id);
+    this.commit(job.yielded && result.status === "cancelled" ? { ...result, status: "queued" } : result);
+    this.retriever?.invalidate();
+  }
+
+  /** Only the vectors change: the stored passages are re-embedded page by page, nothing is read again. */
+  private async reembed(job: Job, doc: DocumentRecord, store: EmbeddingStore, note: string): Promise<void> {
+    const started = Date.now();
+    const rebuilt = await reembedStored({
+      doc,
+      store,
+      embedder: this.lanes!.index,
+      signal: job.abort.signal,
+      ...(doc.vectorPages !== undefined ? { chunking: this.chunking() } : {}),
+      onProgress: (p) => {
+        this.progress.set(doc.id, p);
+        const current = this.docs.get(doc.id);
+        if (current) this.docs.set(doc.id, { ...current, status: "indexing", vectorPages: p.page });
+        if (p.phase === "store") this.retriever?.invalidate();
+        this.notify();
+      },
+    }).catch((e: unknown) => {
+      console.warn(`[documents] ${doc.name}: re-embedding stored passages failed`, e);
+      return null;
+    });
+    if (!rebuilt) return;
+    const pages = Math.max(1, rebuilt.indexedPages);
+    console.log(`[documents] ${doc.name}: ${rebuilt.status} (re-embedded ${rebuilt.chunkCount} stored passages, ${note}) · ${Date.now() - started} ms (${Math.round((Date.now() - started) / pages)} ms/page)`);
+    this.settle(job, rebuilt);
+  }
+
   private async runJob(id: string, job: Job): Promise<void> {
-    const doc = this.docs.get(id);
+    let doc = this.docs.get(id);
     const store = this.store;
     if (!doc || !store) return;
+    if (doc.vectorPages !== undefined && doc.reindexFrom) {
+      if (this.lanes && !job.ocr) return this.reembed(job, doc, store, "passages unchanged");
+      /* "Run OCR" re-reads every page, so the passages kept for a vectors-only rebuild go with it. */
+      if (job.ocr) doc = reindexFrom(doc);
+    }
     const extractor = this.extractors.find((x) => x.supports(doc.kind));
     if (!extractor) {
       this.commit({ ...doc, status: "failed", error: "unsupported" });
@@ -468,16 +548,7 @@ export class DocumentLibrary {
         this.commit({ ...doc, status: "failed", error: "missing" });
         return;
       }
-      const started = Date.now();
-      const rebuilt = await reembedStored({ doc, store, embedder: this.lanes.index, signal: job.abort.signal }).catch((e: unknown) => {
-        console.warn(`[documents] ${doc.name}: re-embedding stored passages failed`, e);
-        return null;
-      });
-      if (!rebuilt) return;
-      console.log(`[documents] ${doc.name}: ${rebuilt.status} (re-embedded ${rebuilt.chunkCount} stored passages, source not held) · ${Date.now() - started} ms`);
-      this.commit(rebuilt);
-      this.retriever?.invalidate();
-      return;
+      return this.reembed(job, doc, store, "source not held");
     }
     let opened: OpenedDocument & { render?: (index: number) => Promise<string> };
     try {
@@ -513,9 +584,7 @@ export class DocumentLibrary {
     await opened.close().catch(() => undefined);
     const pages = Math.max(1, result.indexedPages);
     console.log(`[documents] ${doc.name}: ${result.status}${result.embedModel === LEXICAL_INDEX_ID ? " (words only, no index model)" : ""}${result.error ? ` (${result.error})` : ""} · ${result.indexedPages}/${result.pages} pages · ${result.chunkCount} chunks · ${Date.now() - started} ms (${Math.round((Date.now() - started) / pages)} ms/page)`);
-    this.progress.delete(id);
-    this.commit(result);
-    this.retriever?.invalidate();
+    this.settle(job, result);
   }
 
   /* A copy made a moment ago can still read back as 0 bytes on Android; a non-empty file gets one more try. */
@@ -537,7 +606,9 @@ export class DocumentLibrary {
   }
 
   cancel(id: string): void {
-    this.jobs.get(id)?.abort.abort();
+    const job = this.jobs.get(id);
+    if (job) job.yielded = false;
+    job?.abort.abort();
     this.queue = this.queue.filter((q) => q !== id);
   }
 
@@ -624,6 +695,7 @@ export class DocumentLibrary {
     const indexed = this.state().documents.filter(searchable);
     const docIds = o.docIds?.length ? o.docIds.filter((id) => { const d = this.docs.get(id); return !!d && searchable(d); }) : indexed.map((d) => d.id);
     const rebuilding = lexical ? [] : docIds.map((id) => this.docs.get(id)!).filter((d) => d.reindexFrom);
+    if (o.docIds?.length) this.prioritize(rebuilding.map((d) => d.id));
     const vectorPages = lexical ? Object.fromEntries(docIds.map((id) => [id, 0])) : Object.fromEntries(rebuilding.map((d) => [d.id, vectorsValidUpTo(d)]));
     /* "What is this file about?" names no subject a passage could match: it is handed the files' opening instead. */
     const overview = !!o.docIds?.length && docIds.length > 0 && isAboutAttachment(question);

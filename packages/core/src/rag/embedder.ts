@@ -72,6 +72,7 @@ export function hashEmbedder(dim = 64, id = "null"): Embedder {
 
 interface EmbedCall {
   texts: string[];
+  signal?: AbortSignal;
   out: Float32Array[];
   resolve: (v: Float32Array[]) => void;
   reject: (e: unknown) => void;
@@ -91,14 +92,14 @@ export class EmbedLanes {
   readonly index: Embedder;
 
   constructor(private readonly inner: Embedder) {
-    this.query = { id: inner.id, revision: inner.revision, embed: (texts) => this.submit("query", texts) };
-    this.index = { id: inner.id, revision: inner.revision, embed: (texts) => this.submit("index", texts) };
+    this.query = { id: inner.id, revision: inner.revision, embed: (texts, signal) => this.submit("query", texts, signal) };
+    this.index = { id: inner.id, revision: inner.revision, embed: (texts, signal) => this.submit("index", texts, signal) };
   }
 
-  private submit(lane: "query" | "index", texts: string[]): Promise<Float32Array[]> {
+  private submit(lane: "query" | "index", texts: string[], signal?: AbortSignal): Promise<Float32Array[]> {
     if (!texts.length) return Promise.resolve([]);
     return new Promise((resolve, reject) => {
-      this.lanes[lane].push({ texts, out: [], resolve, reject });
+      this.lanes[lane].push({ texts, signal, out: [], resolve, reject });
       void this.pump();
     });
   }
@@ -109,6 +110,7 @@ export class EmbedLanes {
     try {
       for (let call = this.next(); call; call = this.next()) {
         try {
+          if (call.signal?.aborted) throw new Error("cancelled");
           const [v] = await this.inner.embed([call.texts[call.out.length]!]);
           if (!v) throw new Error("embedder returned no vector");
           call.out.push(v);
