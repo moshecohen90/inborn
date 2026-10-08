@@ -68,6 +68,42 @@ export function crisisResources(region: string | undefined): CrisisResource[] {
   return (region && BY_REGION[region.toUpperCase()]) || INTERNATIONAL;
 }
 
+const EU_112: CrisisResource[] = [{ name: "112", phone: "112" }];
+
+/* Each row checked 2026-10-08 against the source on its line; the EU members' 112 against https://digital-strategy.ec.europa.eu/en/policies/112 */
+const EMERGENCY_BY_REGION: Record<string, CrisisResource[]> = {
+  US: [{ name: "911", phone: "911" }], // https://www.fcc.gov/general/9-1-1-and-e9-1-1-services
+  CA: [{ name: "911", phone: "911" }], // https://crtc.gc.ca/eng/phone/911/
+  MX: [{ name: "911", phone: "911" }], // https://www.gob.mx/911/articulos/numero-unico-de-emergencias-9-1-1
+  AR: [{ name: "911", phone: "911" }, { name: "SAME", phone: "107" }], // https://www.argentina.gob.ar/tema/emergencias
+  GB: [{ name: "999", phone: "999" }, ...EU_112], // https://www.gov.uk/guidance/999-and-112-the-uks-national-emergency-numbers
+  IE: [...EU_112, { name: "999", phone: "999" }], // https://www.citizensinformation.ie/en/health/health-system/emergency-health-services-in-ireland/
+  DE: EU_112,
+  AT: EU_112,
+  FR: EU_112,
+  BE: EU_112,
+  ES: EU_112,
+  PT: EU_112,
+  CH: [...EU_112, { name: "Sanität / Ambulance", phone: "144" }, { name: "Polizei / Police", phone: "117" }], // https://www.ch.ch/en/safety-and-justice/emergencies-and-danger/
+  BR: [{ name: "SAMU", phone: "192" }, { name: "Polícia", phone: "190" }, { name: "Bombeiros", phone: "193" }], // https://www.agenciabrasilia.df.gov.br/w/192-ou-193-saiba-quando-acionar-o-samu-ou-o-corpo-de-bombeiros-em-situacoes-de-emergencia
+  JP: [{ name: "救急・消防", phone: "119" }, { name: "警察", phone: "110" }], // https://www.jnto.go.jp/emergency/eng/mi_guide.html
+  KR: [{ name: "119 구급·소방", phone: "119" }, { name: "112 경찰", phone: "112" }], // https://english.visitkorea.or.kr/svc/contents/contentsView.do?vcontsId=140042
+  TW: [{ name: "119 救護・消防", phone: "119" }, { name: "110 警察", phone: "110" }], // 110 https://www.npa.gov.tw/en/app/artwebsite/view?module=artwebsite&id=8018&serno=8de79b2b-17ff-4cfa-a9e1-7583d22b523f · 119 https://www.tyfd.gov.tw/en/index.php?code=list&ids=1228
+  AU: [{ name: "Triple Zero", phone: "000" }], // https://www.infrastructure.gov.au/media-communications/phone/triple-zero
+  NZ: [{ name: "111", phone: "111" }], // https://www.police.govt.nz/call-111
+  IL: [{ name: "מד\"א", phone: "101" }, { name: "משטרה", phone: "100" }, { name: "כבאות", phone: "102" }], // https://www.gov.il/BlobFolder/generalpage/be-prepared-for-emergency-situations/en/9134_Emergency%20Preparedness.pdf
+};
+
+/** The region's verified emergency numbers (ambulance, police, fire); none when the region is unknown or not listed. */
+export function emergencyNumbers(region: string | undefined): CrisisResource[] {
+  return (region && EMERGENCY_BY_REGION[region.toUpperCase()]) || [];
+}
+
+/** What the safety card lists: the region's crisis lines, then its emergency numbers. */
+export function helpResources(region: string | undefined): CrisisResource[] {
+  return [...crisisResources(region), ...emergencyNumbers(region)];
+}
+
 const VERIFIED_DIGITS = new Set([...Object.values(BY_REGION).flat(), ...INTERNATIONAL].map((r) => r.phone.replace(/\D/g, "")));
 
 const LATIN_CONTACT = [
@@ -99,14 +135,15 @@ function phonesIn(text: string): string[] {
 const talksContact = (text: string, question: string): boolean => CONTACT.test(text) || CONTACT.test(question) || detectCrisis(question);
 
 /** Numbers to call that the model wrote itself: not on the verified list, not given by the user. */
-const madeUp = (text: string, question: string): string[] => {
-  const given = new Set(phonesIn(question).map(digitsOf));
-  return phonesIn(text).filter((p) => !VERIFIED_DIGITS.has(digitsOf(p)) && !given.has(digitsOf(p)));
+/* Only the device region's emergency numbers are kept: the model cannot know where the user is, so 911 is wrong in Germany. */
+const madeUp = (text: string, question: string, region: string | undefined): string[] => {
+  const kept = new Set([...phonesIn(question), ...emergencyNumbers(region).map((r) => r.phone)].map(digitsOf));
+  return phonesIn(text).filter((p) => !VERIFIED_DIGITS.has(digitsOf(p)) && !kept.has(digitsOf(p)));
 };
 
-/** Phone numbers a model wrote in a turn about crisis or emergency help that are not on the app's verified list (F-134N-1). */
-export function crisisNumbersIn(text: string, question = ""): string[] {
-  return talksContact(text, question) ? madeUp(text, question) : [];
+/** Phone numbers a model wrote in a turn about crisis or emergency help that are not on the app's verified lists for `region` (F-134N-1). */
+export function crisisNumbersIn(text: string, question = "", region?: string): string[] {
+  return talksContact(text, question) ? madeUp(text, question, region) : [];
 }
 
 /**
@@ -114,7 +151,7 @@ export function crisisNumbersIn(text: string, question = ""): string[] {
  * nothing under it; the app's own card shows verified numbers instead. While streaming, an unfinished sentence holding
  * a number waits until it can be judged.
  */
-export function withoutCrisisNumbers(text: string, { streaming = false, question = "" }: { streaming?: boolean; question?: string } = {}): string {
+export function withoutCrisisNumbers(text: string, { streaming = false, question = "", region }: { streaming?: boolean; question?: string; region?: string | undefined } = {}): string {
   const contact = talksContact(text, question);
   if (!contact && !streaming) return text;
   const lines = text.split("\n");
@@ -123,7 +160,7 @@ export function withoutCrisisNumbers(text: string, { streaming = false, question
   let changed = false;
   const kept = lines.map((line, i) => {
     const sentences = line.split(SENTENCE_END);
-    const out = sentences.filter((sentence, k) => !(contact && madeUp(sentence, question).length) && !(streaming && i === last && k === sentences.length - 1 && /\d{3}/.test(sentence)));
+    const out = sentences.filter((sentence, k) => !(contact && madeUp(sentence, question, region).length) && !(streaming && i === last && k === sentences.length - 1 && /\d{3}/.test(sentence)));
     if (out.length === sentences.length) return line;
     changed = true;
     if (!out.join("").trim()) drop.add(i);

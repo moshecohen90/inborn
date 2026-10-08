@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildPrompt, buildRagPrompt, crisisNumbersIn, namesFile, crisisResources, turnSystemPrompt, withoutAppAnswers, withoutCrisisNumbers, type Message } from "../src/index";
+import { buildPrompt, buildRagPrompt, crisisNumbersIn, emergencyNumbers, helpResources, namesFile, crisisResources, turnSystemPrompt, withoutAppAnswers, withoutCrisisNumbers, type Message } from "../src/index";
 
 /* What @inborn/i18n's isAppAnswer says for these two rows; the real matcher is covered in packages/i18n. */
 const CARD = "I run offline on this phone, so live weather and forecasts are out of reach. Check a weather app, and I can help you plan around what it says.";
@@ -111,5 +111,44 @@ describe("F-134N-1 · a crisis number the model made up is never shown", () => {
     expect(withoutCrisisNumbers("Rest well.\nCrisis Line: 980-55", { streaming: true })).toBe("Rest well.");
     expect(withoutCrisisNumbers("Rest well.\nCrisis Line: 980-554-1212\nKeep", { streaming: true })).toBe("Rest well.\nKeep");
     expect(withoutCrisisNumbers("Rest well.\n1. Keep", { streaming: true })).toBe("Rest well.\n1. Keep");
+  });
+});
+
+describe("F-134N-1 follow-up · the device region's verified emergency number is kept, every other region's is removed", () => {
+  const child = "If your child stops breathing, call 911 right away.";
+  const eu = "In an emergency, call 112 for an ambulance.";
+
+  it("US: 911 is kept with its sentence, 112 goes", () => {
+    expect(withoutCrisisNumbers(child, { region: "US" })).toBe(child);
+    expect(crisisNumbersIn(child, "", "US")).toEqual([]);
+    expect(withoutCrisisNumbers(eu, { region: "US" })).toBe("");
+    expect(crisisNumbersIn(eu, "", "us")).toEqual(["112"]);
+  });
+
+  it("DE: 112 is kept, 911 goes", () => {
+    expect(withoutCrisisNumbers(eu, { region: "DE" })).toBe(eu);
+    expect(withoutCrisisNumbers(`${eu} ${child}`, { region: "DE" })).toBe(eu);
+  });
+
+  it("IL: 101 and 100 are kept, 911 goes", () => {
+    const il = "For an ambulance call Magen David Adom at 101. For the police in an emergency, call 100. In the US it is 911.";
+    expect(withoutCrisisNumbers(il, { region: "IL" })).toBe("For an ambulance call Magen David Adom at 101. For the police in an emergency, call 100.");
+  });
+
+  it("an unknown region keeps no emergency number, and its card lists the international crisis lines only", () => {
+    expect(withoutCrisisNumbers(`${eu} ${child}`, { region: "ZZ" })).toBe("");
+    expect(withoutCrisisNumbers(`${eu} ${child}`)).toBe("");
+    expect(emergencyNumbers(undefined)).toEqual([]);
+    expect(helpResources("ZZ")).toEqual(crisisResources(undefined));
+  });
+
+  it("the card lists the region's crisis lines, then its emergency numbers", () => {
+    expect(helpResources("US").map((r) => r.phone)).toEqual(["988", "911"]);
+    expect(helpResources("IL").map((r) => r.phone)).toEqual(["1201", "101", "100", "102"]);
+    expect(helpResources("DE").map((r) => r.phone)).toEqual(["08001110111", "112"]);
+  });
+
+  it("every launch region has a verified emergency number", () => {
+    for (const region of ["US", "CA", "GB", "IE", "DE", "AT", "CH", "FR", "BE", "ES", "MX", "AR", "PT", "BR", "JP", "KR", "TW", "AU", "NZ", "IL"]) expect(emergencyNumbers(region).length).toBeGreaterThan(0);
   });
 });

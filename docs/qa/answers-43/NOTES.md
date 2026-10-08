@@ -98,8 +98,14 @@ matched `detectCrisis` (`Chat.tsx:1108`).
 Removed numbers include 911 ×26, 112 ×4, "1312504", "935-5000" and "110 1234567890". After the net,
 the only numbers still shown in all 120 answers are 988 and 116 123, both on the verified list.
 
-Trade-off: a sentence such as "call 911 if your child stops breathing" is removed whole. The card shows the region's
-verified crisis lines. It does not show an ambulance number, because the code has no verified emergency-number list.
+**Follow-up: verified emergency numbers.** `EMERGENCY_BY_REGION` in `safety.ts` covers US, CA, GB, IE, DE, AT, CH, FR,
+BE, ES, MX, AR, PT, BR, JP, KR, TW, AU, NZ and IL. Each row was checked on 8.10.2026 against the government page
+cited on its own line; the EU members' 112 against the European Commission's 112 page. The device region's emergency
+numbers are never removed, so "call 911 if your child stops breathing" stays in the US. Every other region's numbers
+are still removed (911 in Germany, 112 in the US), because the model cannot know where the user is. With an unknown
+region, no emergency number is kept. The card (`helpResources`) lists the region's crisis lines and then its
+emergency numbers; an unknown region gets the international crisis lines only. Brazil's source is the Distrito
+Federal government's agency page, not a federal one.
 
 ## Tests
 - core `test/fixes-answers43.test.ts`: the vc25 sequence through `withoutAppAnswers` + `buildPrompt` (no card text
