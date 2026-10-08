@@ -95,8 +95,11 @@ describe("F437 · the catalog and the registry agree on who sees", () => {
     expect(findExtension("vision-qwen35-4b")).toMatchObject({ file: "mmproj-Qwen3.5-4B-F16.gguf", bytes: SHARP_PACK, sha256: "cd88edcf8d031894960bb0c9c5b9b7e1fea6ebee02b9f7ce925a00d12891f864", path: "mmproj-Qwen3.5-4B-F16.gguf", bundledOn: [] });
     for (const id of ["vision-qwen35-2b", "vision-qwen35-4b"]) {
       expect(byId(id).role).toBe("vision");
-      expect(byId(id).delivery).toEqual([{ kind: "https", path: findExtension(id)!.file }]);
+      expect(byId(id).delivery.find((d) => d.kind === "https")).toEqual({ kind: "https", path: findExtension(id)!.file });
     }
+    /* Android has no INTERNET permission, so Fast's pack also comes as an on-demand Play pack; Sharp's is not shipped there. */
+    expect(byId("vision-qwen35-2b").delivery[0]).toEqual({ kind: "play-asset-pack", pack: "inborn_model_vision_fast", mode: "on-demand", file: "mmproj-Qwen3.5-2B-F16.gguf" });
+    expect(byId("vision-qwen35-4b").delivery).toHaveLength(1);
     expect(findExtension("vision-qwen35")!.bundledOn).toEqual(["ios", "android"]);
   });
 });

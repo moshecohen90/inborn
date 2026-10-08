@@ -391,6 +391,11 @@ export class VaultStore {
     return !!model && this.manifestStatus.ok && this.delivery.plan(model) !== null;
   }
 
+  /** Whether the store that delivers here answers at all: false only when Play itself is absent, not when a file simply has no pack. */
+  deliveryReachable(): boolean {
+    return this.delivery.reachable?.() ?? true;
+  }
+
   /** A file picked in the Hugging Face search joins the vault as a not-installed model; Install then runs the usual HTTPS + hash path. */
   addHfModel(model: CatalogModel): VaultEntry {
     if (!this.record.hf[model.id]) {

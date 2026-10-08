@@ -475,6 +475,12 @@
       ],
       "delivery": [
         {
+          "kind": "play-asset-pack",
+          "pack": "inborn_model_vision_fast",
+          "mode": "on-demand",
+          "file": "mmproj-Qwen3.5-2B-F16.gguf"
+        },
+        {
           "kind": "https",
           "path": "mmproj-Qwen3.5-2B-F16.gguf"
         }
@@ -515,5 +521,5 @@
       "minEngine": 1
     }
   ],
-  "signature": "036616933e755ed55ab37af7aefae77d41af91aafb5d6cf6832bc9069b4d7af0060479f42f97e7b8815573db3d39dfcbdb56948049accf3afb37eb6bbd858908"
+  "signature": "e5c44976b341127141a40d90003d15b6f9cfef97d6885144a8f95ec0502d029a0d0e73568cbed39f8d74796dae83e932cd24ec0fd3f57c8b793c870ed6ac4707"
 }

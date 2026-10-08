@@ -7,6 +7,8 @@ import type { VaultRecord } from "../vault/record";
 /* Round 134Q (F463): Android vc24, Fast selected, a photo offered "Download the photo pack · 668 MB" that only HTTPS serves. */
 
 let os = "android";
+/* False on a device where Play Core cannot bind (no Play services). */
+let play = true;
 let record: VaultRecord;
 const sizes = new Map<string, number>();
 const fetched: string[] = [];
@@ -33,7 +35,7 @@ vi.mock("react-native", () => ({ Platform: { get OS() { return os; } }, AppState
 vi.mock("../../modules/asset-packs", () => ({
   AssetPackStatus: {},
   AssetPackErrorCode: {},
-  hasAssetPacks: () => true,
+  hasAssetPacks: () => play,
   getPackPath: () => null,
   fetchPack: async (name: string) => void fetched.push(`play:${name}`),
   getPackState: async () => null,
@@ -75,16 +77,34 @@ beforeEach(() => {
   sizes.clear();
   fetched.length = 0;
   onPhone = ON_PHONE;
+  play = true;
   for (const id of ON_PHONE) sizes.set(fileOf(id), BUNDLED_MANIFEST.models.find((m) => m.id === id)!.bytes);
 });
 
-describe("F463 · the photo card offers only a pack this phone can receive", () => {
-  it("Android, Fast selected: no 668 MB dead end, the switch to Instant's projector at no cost", async () => {
+describe("the photo card offers only a pack this phone can receive", () => {
+  it("Android, Fast selected: Fast's 668 MB pack is offered through Play, with Instant as the way out", async () => {
     const v = await phone("android");
-    expect(v.photoPlanHere("fast", false)).toEqual({ kind: "switch", alt: { model: "instant", pack: "vision-qwen35", missing: [], bytes: 0 } });
+    const plan = v.photoPlanHere("fast", false);
+    expect(plan).toMatchObject({ kind: "pack", path: { pack: "vision-qwen35-2b", bytes: 668_227_264 }, alt: { model: "instant", missing: [] } });
   });
 
-  it("Android: asking for Fast's pack anyway starts no download and fails as undeliverable", async () => {
+  it("Android: the download asks Play for inborn_model_vision_fast and nothing else", async () => {
+    const v = await phone("android");
+    /* The fake Play never reports completion, so only the request is checked. */
+    void v.installVision("fast");
+    await vi.waitFor(() => expect(fetched).toEqual(["play:inborn_model_vision_fast"]));
+  });
+
+  it("Android without Play: no pack is offered, the switch to Instant's projector at no cost", async () => {
+    play = false;
+    const v = await phone("android");
+    expect(v.photoPlanHere("fast", false)).toEqual({ kind: "switch", alt: { model: "instant", pack: "vision-qwen35", missing: [], bytes: 0 } });
+    const { getVault } = await import("../vault/store");
+    expect(getVault().deliveryReachable()).toBe(false);
+  });
+
+  it("Android without Play: asking for Fast's pack anyway starts no download and fails as undeliverable", async () => {
+    play = false;
     const v = await phone("android");
     const { getVault } = await import("../vault/store");
     await v.installVision("fast");
@@ -100,7 +120,9 @@ describe("F463 · the photo card offers only a pack this phone can receive", () 
 });
 
 describe("F463 · a model sees on this phone only through a pack that is here or can come here", () => {
-  it("Android: Fast's pack is neither on the phone nor in Play, so Fast does not see and the attach sheet offers Instant", async () => {
+  it("Android: Fast sees through Play's pack; without Play, Fast does not see and the attach sheet offers Instant", async () => {
+    expect((await phone("android")).modelHasVision("fast")).toBe(true);
+    play = false;
     const v = await phone("android");
     expect(v.modelHasVision("fast")).toBe(false);
     expect(v.modelHasVision("instant")).toBe(true);

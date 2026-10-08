@@ -17,6 +17,9 @@ export function extensionState(id: string): ExtensionState {
   return fromInstallState(vault.state(id), model.bytes, Platform.OS);
 }
 
+/** False only when the platform store itself is out of reach (no Play on this Android), so the card may say so. */
+export const storeReachable = (): boolean => getVault().deliveryReachable();
+
 export const subscribeExtensions = (listener: () => void): (() => void) => getVault().subscribe(listener);
 
 /** A pack Play or the app bundle owns is removed with the app, and the vault's own card says so (round 90). */

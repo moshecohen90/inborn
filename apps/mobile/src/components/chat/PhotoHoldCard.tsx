@@ -6,6 +6,7 @@ import { MIN_TOUCH, radius, type Theme } from "@inborn/ui";
 import { holdTestIds } from "../../extensions/card";
 import { activePath, photoHoldView, type HeldPhoto, type PhotoRoute } from "../../extensions/photoCard";
 import { installPath, pendingPiece, usePathState } from "../../extensions/photoPath";
+import { storeReachable } from "../../extensions/store";
 import { installFailureText } from "../../vault/failureText";
 import { offlineKey } from "../../lib/offlineWording";
 import { useType } from "../../services/type";
@@ -45,7 +46,7 @@ export function PhotoHoldCard({ held, theme, count, model, seer, hint, onCancel,
   }, [state?.kind, onAlt, path, onReady, onSwitch]);
 
   const ids = holdTestIds({ id: path?.pack ?? "vision-qwen35", kind: "vision" });
-  const view = photoHoldView(held, route, state, { count, model, seer, size: formatModelBytes });
+  const view = photoHoldView(held, route, state, { count, model, seer, size: formatModelBytes, storeReachable: storeReachable() });
   const offline = typeof navigator !== "undefined" && navigator.onLine === false;
   const takeWayOut = () => {
     if (held.kind === "none") return;
@@ -93,7 +94,7 @@ export function PhotoHoldCard({ held, theme, count, model, seer, hint, onCancel,
       ) : null}
       {view.error !== null ? (
         <Text testID={ids.error} style={[type.bodySmall, { color: theme.danger }]}>
-          {installFailureText(t, view.error, Platform.OS, offline)}
+          {view.error === "no-delivery" ? t("chat.vision.noStore") : installFailureText(t, view.error, Platform.OS, offline)}
         </Text>
       ) : null}
       {hint && !onAlt && state?.kind !== "unavailable" ? (
