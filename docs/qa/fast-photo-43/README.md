@@ -20,6 +20,25 @@ reproduced: reading the code, `PlayDelivery.plan()` is null for a model without 
 change Fast's pack has a Play entry, so the pack card is now a real offer, and the card no longer ends in Try again on
 `no-delivery` in any case.
 
+### Repro of main on the same emulator (lead's question: why did `canDeliver` say yes?)
+
+Checked against main (110229a1 at the time, which carries 134Q/134R like vc29):
+- (a) The catalog declares only `https` for vision-qwen35-2b and `app.config.ts` builds no pack for it, so
+  `PlayDelivery.plan()` (`apps/mobile/src/vault/playDelivery.ts:17`) is null and `canDeliver` is false.
+- (b) `describePlayError` maps only APP_NOT_OWNED, UNRECOGNIZED_INSTALLATION, PLAY_STORE_NOT_FOUND and API_NOT_AVAILABLE to
+  `play-unavailable`; a missing pack (PACK_UNAVAILABLE -2) becomes `play-error--2`, a retryable failure. Neither path
+  produces the founder's screen: his red line is the `no-delivery` that `install()` sets when `plan()` is null
+  (`store.ts:497`), without asking Play.
+- Release AAB of main (`INBORN_PACKS=instant,fast,vision`), bundletool `--local-testing`, the same steps: the attach
+  sheet says "FAST cannot look at photos. INSTANT can." (`main-01-attach-sheet-fast.png`) and Send shows the switch
+  card "FAST can't see photos / Switch to INSTANT · installed / Remove the photo" (`main-02-card.png`). No pack card,
+  and no Play call.
+
+So main's code does not produce the founder's card. The screen matches the pre-134Q builds (vc24/vc25: pack card,
+then `no-delivery` on the tap). The build and commit on his phone (Settings › About) were not read here.
+`test/assetPacks.test.ts` now guards the other direction with the real catalog and the real `ALL_PACKS`: removing the
+`visionFast` line from `app.config.ts` turns it red (`red-catalog-vs-packs.txt`).
+
 ## Play size limits
 
 Source: Google Play Console Help, "Maximum size limits", https://support.google.com/googleplay/android-developer/answer/9859372

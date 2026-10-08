@@ -1,0 +1,5 @@
+     × every catalog Play pack is built by app.config.ts with the same name, delivery type and asset file, and nothing else is 4ms
+     × writes an on-demand asset-pack module named after the pack 0ms
+     × links the asset from INBORN_MODELS_DIR under its catalog file name, and skips the pack when the file is absent 1ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+AssertionError: expected [ 'inborn_model', …(6) ] to deeply equal [ 'inborn_model', …(7) ]
