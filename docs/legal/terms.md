@@ -3,7 +3,7 @@
 Spec basis: §2.3, §10.5, §10.7, §11.3, §12. Last edited 22 September 2026.
 
 Effective date: 8 October 2026
-Licensor: Moshe Cohen, trading as Cohen Apps (Israel) ("we", "us")
+Licensor: Cohen Apps (Israel) ("we", "us")
 Contact: support@inbornapp.com or +1-440-847-8502. We have no physical reception and offer no in-person service.
 
 These terms apply to the Inborn apps for iOS, Android, Windows and macOS and to the Inborn web version. If you obtained the app from the Apple App Store, Google Play or the Microsoft Store, that store's terms also apply, and where they conflict with these terms on a point the store controls (payment, refunds, delivery), the store's terms prevail.

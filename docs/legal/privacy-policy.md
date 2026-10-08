@@ -3,7 +3,7 @@
 Spec basis: §2.3, §5.1, §5.3, §11.1–§11.3, §15. Last edited 22 September 2026.
 
 Effective date: 8 October 2026
-Publisher and data controller: Moshe Cohen, trading as Cohen Apps (Israel)
+Publisher and data controller: Cohen Apps (Israel)
 Contact: support@inbornapp.com
 
 ---
@@ -83,7 +83,7 @@ We do not collect personal information as defined by the CCPA, and we do not sel
 
 ## 8a. Brazil, Japan, South Korea and Taiwan
 
-Brazil (LGPD), Japan (APPI), South Korea (PIPA) and Taiwan (PDPA): Inborn collects no personal information, so none of it is used, shared, transferred abroad or kept. For support email, the purpose, legal basis, retention and rights in section 5 apply, and your email may be stored on servers outside your country (section 5). Person responsible for personal information (privacy officer / encarregado): Moshe Cohen, support@inbornapp.com, +1-440-847-8502. A guardian's consent is needed before a child under 14 (South Korea) writes to us with personal details.
+Brazil (LGPD), Japan (APPI), South Korea (PIPA) and Taiwan (PDPA): Inborn collects no personal information, so none of it is used, shared, transferred abroad or kept. For support email, the purpose, legal basis, retention and rights in section 5 apply, and your email may be stored on servers outside your country (section 5). Person responsible for personal information (privacy officer / encarregado): the owner of Cohen Apps, support@inbornapp.com, +1-440-847-8502. A guardian's consent is needed before a child under 14 (South Korea) writes to us with personal details.
 
 ## 9. Children
 

@@ -445,13 +445,14 @@ describe("F207/F209/F214 · what the site may not go back to saying", () => {
   });
   /**
    * F296. "Publisher: Cohen Apps (the developer account shown on the store listing)" is true on Google Play and false
-   * on the App Store, where the single-person account reads "Moshe Cohen". The name stays; the promise about the
-   * listing does not, because no one text can make it true on both stores.
+   * on the App Store, where a single-person account shows the person's name. The legal texts name the trading name
+   * only (the founder's choice, 8.10.2026) and make no promise about what either listing shows.
    */
   it("no shipped text promises that a name is what the store listing shows", () => {
     for (const file of [...SHIPPED, ...SITE_TEXT]) expect(read(file), file).not.toMatch(/the developer account shown on the store listing/i);
-    expect(read("docs/legal/privacy-policy.md")).toContain("Publisher and data controller: Moshe Cohen, trading as Cohen Apps (Israel)\n");
-    expect(read("docs/legal/accessibility-policy.md")).toContain("Owner: Moshe Cohen, trading as Cohen Apps (Israel)\n");
+    expect(read("docs/legal/privacy-policy.md")).toContain("Publisher and data controller: Cohen Apps (Israel)\n");
+    expect(read("docs/legal/accessibility-policy.md")).toContain("Owner: Cohen Apps (Israel)\n");
+    expect(read("docs/legal/terms.md")).toContain('Licensor: Cohen Apps (Israel) ("we", "us")\n');
   });
 });
 
