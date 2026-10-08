@@ -40,6 +40,12 @@ export function chunkFor(contextTokens: number, options: ChunkOptions = {}): Req
   return { targetTokens, minTokens, overlapTokens: Math.min(options.overlapTokens ?? DEFAULT_CHUNK.overlapTokens, Math.floor(targetTokens / 4)) };
 }
 
+/* Bump when a change to the chunker, `normalizeText` or `estimateTokens` moves any chunk boundary: stored passages are then re-cut. */
+export const CHUNKER_VERSION = 1;
+
+/** What a document's passages were cut with, stored on its record so a rebuild knows whether the stored passages still hold. */
+export const chunkingOf = (o: Required<ChunkOptions>): string => `v${CHUNKER_VERSION}:${o.targetTokens}/${o.overlapTokens}/${o.minTokens}`;
+
 interface Segment {
   text: string;
   start: number;
