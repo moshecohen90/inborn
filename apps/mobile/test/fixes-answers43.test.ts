@@ -43,20 +43,21 @@ describe("F469 · the chat quotes an opener only in the question's language", ()
 
 describe("F-134N-1 · a crisis number the model made up is never shown", () => {
   it("every text the chat shows goes through the net, judged against the user's question", () => {
-    expect(generate).toContain("const shown = (): string => withoutCrisisNumbers(echoNetted(), { streaming: live, question: askedNow });");
+    expect(generate).toContain("const shown = (): string => withoutCrisisNumbers(echoNetted(), { streaming: live, question: askedNow, region: deviceRegion() });");
     expect(generate).toContain("askedNow = asked;");
   });
 
   it("a removed number raises the app's verified card, and an answer left empty says the card's line", () => {
     const after = generate.slice(generate.indexOf("const madeUpNumbers = "), generate.indexOf("const reason = stopReason.current;"));
-    expect(after).toContain("crisisNumbersIn(reply, asked)");
-    expect(after).toContain("setSafety(crisisResources(getLocales()[0]?.regionCode ?? undefined));");
+    expect(after).toContain("crisisNumbersIn(reply, asked, deviceRegion())");
+    expect(after).toContain("setSafety(helpResources(deviceRegion()));");
+    expect(chat).toContain("if (detectCrisis(text)) setSafety(helpResources(deviceRegion()));");
     expect(after).toContain('reply = t("safety.title");');
   });
 
   it("hands-free voice shows and keeps only the netted answer", () => {
     const voice = read("../src/voice/useHandsFree.ts");
-    expect(voice).toContain("withoutCrisisNumbers(reply, { streaming: true, question: effect.text })");
-    expect(voice).toContain("else reply = withoutCrisisNumbers(reply, { question: effect.text });");
+    expect(voice).toContain("withoutCrisisNumbers(reply, { streaming: true, question: effect.text, region: getLocales()[0]?.regionCode ?? undefined })");
+    expect(voice).toContain("else reply = withoutCrisisNumbers(reply, { question: effect.text, region: getLocales()[0]?.regionCode ?? undefined });");
   });
 });

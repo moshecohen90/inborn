@@ -29,7 +29,7 @@ import {
   calibrate,
   contextLevel,
   crisisNumbersIn,
-  crisisResources,
+  helpResources,
   detectCrisis,
   withoutAppAnswers,
   withoutCrisisNumbers,
@@ -234,6 +234,7 @@ export { afterSheetClose };
 
 const subscribeVault = (listener: () => void) => getVault().subscribe(listener);
 const missingSnapshot = () => getVault().missingModel();
+const deviceRegion = (): string | undefined => getLocales()[0]?.regionCode ?? undefined;
 const errorText = (e: unknown) => (e instanceof Error ? e.message : String(e));
 const wire = (rows: readonly Row[]): Pick<ChatMessage, "id" | "role" | "content" | "images">[] =>
   withoutAppAnswers(
@@ -580,7 +581,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const bare = sources && !prefix ? withoutEchoedLabels(text, { streaming: live, citations: sources }) : text;
       return ruleNet && !prefix ? withoutEchoedRules(bare, { ...ruleNet, streaming: live }) : bare;
     };
-    const shown = (): string => withoutCrisisNumbers(echoNetted(), { streaming: live, question: askedNow });
+    const shown = (): string => withoutCrisisNumbers(echoNetted(), { streaming: live, question: askedNow, region: deviceRegion() });
     let reasoning = continueFrom?.reasoning ?? "";
     let usage: Usage | undefined;
     let tokens = 0;
@@ -900,10 +901,10 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       /* Not behind __DEV__: QA counts what the user never saw. Lengths only, no text. */
       if (ruleNet && shown() !== reply) console.log(`[chat] rule-echo kept ${shown().length}/${reply.length} chars`);
       /* F-134N-1: a crisis number the model made up is never shown; the app's verified card takes its place. */
-      const madeUpNumbers = crisisNumbersIn(reply, asked).length;
+      const madeUpNumbers = crisisNumbersIn(reply, asked, deviceRegion()).length;
       if (madeUpNumbers) {
         console.log(`[chat] crisis-number removed n=${madeUpNumbers}`);
-        setSafety(crisisResources(getLocales()[0]?.regionCode ?? undefined));
+        setSafety(helpResources(deviceRegion()));
         if (!shown().trim()) {
           ruleNet = null;
           reply = t("safety.title");
@@ -1127,7 +1128,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     let userId: string | null = null;
     const editing = editingId;
     setEditingId(null);
-    if (detectCrisis(text)) setSafety(crisisResources(getLocales()[0]?.regionCode ?? undefined));
+    if (detectCrisis(text)) setSafety(helpResources(deviceRegion()));
     try {
       const chatIdNow = await ensureChat(text);
       if (editing) {
