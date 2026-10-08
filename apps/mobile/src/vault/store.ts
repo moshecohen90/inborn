@@ -278,7 +278,8 @@ export class VaultStore {
     if (model?.role !== "chat" || !model.vision) return null;
     const pack = visionPackFor(id);
     const packModel = pack ? this.model(pack.id) : undefined;
-    if (!packModel || !this.manifestStatus.ok || this.delivery.plan(packModel)?.via !== "play") return null;
+    /* Only the projector that ships with the app on iOS rides along; Fast's comes through its own photo card. */
+    if (!packModel?.delivery.some((d) => d.kind === "bundled") || !this.manifestStatus.ok || this.delivery.plan(packModel)?.via !== "play") return null;
     return packModel;
   }
 
@@ -402,6 +403,11 @@ export class VaultStore {
   canDeliver(id: string): boolean {
     const model = this.model(id);
     return !!model && this.manifestStatus.ok && this.delivery.plan(model) !== null;
+  }
+
+  /** Whether the store that delivers here answers at all: false only when Play itself is absent, not when a file simply has no pack. */
+  deliveryReachable(): boolean {
+    return this.delivery.reachable?.() ?? true;
   }
 
   /** A file picked in the Hugging Face search joins the vault as a not-installed model; Install then runs the usual HTTPS + hash path. */

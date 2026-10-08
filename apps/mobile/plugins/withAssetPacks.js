@@ -92,3 +92,5 @@ assetPack {
 }
 
 module.exports = withAssetPacks;
+module.exports.resolvePacks = resolvePacks;
+module.exports.packBuildGradle = packBuildGradle;

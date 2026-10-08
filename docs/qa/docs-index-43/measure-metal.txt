@@ -1,0 +1,6 @@
+pages=40 chunks=231 engine=http://127.0.0.1:8797
+| run | s/page | extract | embed | store | other | texts | chars/text |
+|---|---|---|---|---|---|---|---|
+| fresh read | 0.252 | 0.026 | 0.225 | 0.000 | 0.002 | 231 | 751 |
+| update rebuild, previous build (read + cut + embed again) | 0.259 | 0.030 | 0.227 | 0.000 | 0.002 | 231 | 751 |
+| update rebuild, this build (stored passages, vectors only) | 0.218 | 0.000 | 0.217 | 0.000 | 0.000 | 231 | 751 |

@@ -67,3 +67,116 @@ const INTERNATIONAL: CrisisResource[] = [
 export function crisisResources(region: string | undefined): CrisisResource[] {
   return (region && BY_REGION[region.toUpperCase()]) || INTERNATIONAL;
 }
+
+const EU_112: CrisisResource[] = [{ name: "112", phone: "112" }];
+
+/* Each row checked 2026-10-08 against the source on its line; the EU members' 112 against https://digital-strategy.ec.europa.eu/en/policies/112 */
+const EMERGENCY_BY_REGION: Record<string, CrisisResource[]> = {
+  US: [{ name: "911", phone: "911" }], // https://www.fcc.gov/general/9-1-1-and-e9-1-1-services
+  CA: [{ name: "911", phone: "911" }], // https://crtc.gc.ca/eng/phone/911/
+  MX: [{ name: "911", phone: "911" }], // https://www.gob.mx/911/articulos/numero-unico-de-emergencias-9-1-1
+  AR: [{ name: "911", phone: "911" }, { name: "SAME", phone: "107" }], // https://www.argentina.gob.ar/tema/emergencias
+  GB: [{ name: "999", phone: "999" }, ...EU_112], // https://www.gov.uk/guidance/999-and-112-the-uks-national-emergency-numbers
+  IE: [...EU_112, { name: "999", phone: "999" }], // https://www.citizensinformation.ie/en/health/health-system/emergency-health-services-in-ireland/
+  DE: EU_112,
+  AT: EU_112,
+  FR: EU_112,
+  BE: EU_112,
+  ES: EU_112,
+  PT: EU_112,
+  CH: [...EU_112, { name: "Sanität / Ambulance", phone: "144" }, { name: "Polizei / Police", phone: "117" }], // https://www.ch.ch/en/safety-and-justice/emergencies-and-danger/
+  BR: [{ name: "SAMU", phone: "192" }, { name: "Polícia", phone: "190" }, { name: "Bombeiros", phone: "193" }], // https://www.agenciabrasilia.df.gov.br/w/192-ou-193-saiba-quando-acionar-o-samu-ou-o-corpo-de-bombeiros-em-situacoes-de-emergencia
+  JP: [{ name: "救急・消防", phone: "119" }, { name: "警察", phone: "110" }], // https://www.jnto.go.jp/emergency/eng/mi_guide.html
+  KR: [{ name: "119 구급·소방", phone: "119" }, { name: "112 경찰", phone: "112" }], // https://english.visitkorea.or.kr/svc/contents/contentsView.do?vcontsId=140042
+  TW: [{ name: "119 救護・消防", phone: "119" }, { name: "110 警察", phone: "110" }], // 110 https://www.npa.gov.tw/en/app/artwebsite/view?module=artwebsite&id=8018&serno=8de79b2b-17ff-4cfa-a9e1-7583d22b523f · 119 https://www.tyfd.gov.tw/en/index.php?code=list&ids=1228
+  AU: [{ name: "Triple Zero", phone: "000" }], // https://www.infrastructure.gov.au/media-communications/phone/triple-zero
+  NZ: [{ name: "111", phone: "111" }], // https://www.police.govt.nz/call-111
+  IL: [{ name: "מד\"א", phone: "101" }, { name: "משטרה", phone: "100" }, { name: "כבאות", phone: "102" }], // https://www.gov.il/BlobFolder/generalpage/be-prepared-for-emergency-situations/en/9134_Emergency%20Preparedness.pdf
+};
+
+/** The region's verified emergency numbers (ambulance, police, fire); none when the region is unknown or not listed. */
+export function emergencyNumbers(region: string | undefined): CrisisResource[] {
+  return (region && EMERGENCY_BY_REGION[region.toUpperCase()]) || [];
+}
+
+/** What the safety card lists: the region's crisis lines, then its emergency numbers. */
+export function helpResources(region: string | undefined): CrisisResource[] {
+  return [...crisisResources(region), ...emergencyNumbers(region)];
+}
+
+const VERIFIED_DIGITS = new Set([...Object.values(BY_REGION).flat(), ...INTERNATIONAL].map((r) => r.phone.replace(/\D/g, "")));
+
+const LATIN_CONTACT = [
+  "crisis", "hotline", "helpline", "help line", "lifeline", "emergenc", "suicid", "samaritan", "ambulance", "poison control", "police", "self-harm",
+  "hurt herself", "hurt himself", "hurt themselves", "hurt yourself", "harm herself", "harm himself", "harm themselves", "harm yourself",
+  "emergência", "crise", "cvv", "linha de", "ambulância", "polícia", "línea de", "ambulancia", "policía",
+  "urgence", "ligne d'écoute", "samu", "pompiers", "krise", "notruf", "notfall", "seelsorge", "suizid", "krankenwagen", "polizei",
+];
+const OTHER_CONTACT = ["חירום", "קו חם", "קו סיוע", "ער\"ן", "התאבד", "מד\"א", "משטרה", "緊急", "救急", "いのちの電話", "ホットライン", "相談窓口", "自殺", "警察", "위기", "긴급", "응급", "상담전화", "핫라인", "자살", "경찰", "危機", "危机", "紧急", "急救", "熱線", "热线", "專線", "专线", "自杀"];
+const CONTACT = new RegExp(`(?<!\\p{L})(?:${LATIN_CONTACT.join("|")})|${OTHER_CONTACT.join("|")}`, "iu");
+/* Units after a number mean a quantity ("7 hours", "65-68°F"), never a line to call; "988-555-FREEDOM" is a number spelled in letters. */
+const PHONE = /\+?\(?\d[\d ().-]*\d(?:-[A-Z]{3,})?(?!\d|\s*(?:%|°|º|h\b|hours?|hrs?|min|minutes?|mg|ml|kg|years?|days?|weeks?|am\b|pm\b))/gu;
+const LIST_ITEM = /^\s*(?:[-*•]|\d+[.)])\s/;
+const SENTENCE_END = /(?<=[.!?。！？])\s+/u;
+
+const digitsOf = (token: string) => token.replace(/\D/g, "");
+
+function phonesIn(text: string): string[] {
+  return [...text.matchAll(PHONE)]
+    .map((m) => m[0])
+    .filter((token) => {
+      const digits = digitsOf(token).length;
+      if (digits > 15 || digits < 3) return false;
+      return digits >= 7 || /[A-Z]{3}$/.test(token) || !/[.-]/.test(token);
+    });
+}
+
+/** A turn about crisis or emergency help: in the answer, or in the question it answers. */
+const talksContact = (text: string, question: string): boolean => CONTACT.test(text) || CONTACT.test(question) || detectCrisis(question);
+
+/** Numbers to call that the model wrote itself: not on the verified list, not given by the user. */
+/* Only the device region's emergency numbers are kept: the model cannot know where the user is, so 911 is wrong in Germany. */
+const madeUp = (text: string, question: string, region: string | undefined): string[] => {
+  const kept = new Set([...phonesIn(question), ...emergencyNumbers(region).map((r) => r.phone)].map(digitsOf));
+  return phonesIn(text).filter((p) => !VERIFIED_DIGITS.has(digitsOf(p)) && !kept.has(digitsOf(p)));
+};
+
+/** Phone numbers a model wrote in a turn about crisis or emergency help that are not on the app's verified lists for `region` (F-134N-1). */
+export function crisisNumbersIn(text: string, question = "", region?: string): string[] {
+  return talksContact(text, question) ? madeUp(text, question, region) : [];
+}
+
+/**
+ * The answer without the sentences that give a model-made crisis or emergency number, and without a heading left with
+ * nothing under it; the app's own card shows verified numbers instead. While streaming, an unfinished sentence holding
+ * a number waits until it can be judged.
+ */
+export function withoutCrisisNumbers(text: string, { streaming = false, question = "", region }: { streaming?: boolean; question?: string; region?: string | undefined } = {}): string {
+  const contact = talksContact(text, question);
+  if (!contact && !streaming) return text;
+  const lines = text.split("\n");
+  const last = lines.length - 1;
+  const drop = new Set<number>();
+  let changed = false;
+  const kept = lines.map((line, i) => {
+    const sentences = line.split(SENTENCE_END);
+    const out = sentences.filter((sentence, k) => !(contact && madeUp(sentence, question, region).length) && !(streaming && i === last && k === sentences.length - 1 && /\d{3}/.test(sentence)));
+    if (out.length === sentences.length) return line;
+    changed = true;
+    if (!out.join("").trim()) drop.add(i);
+    return out.join(" ");
+  });
+  if (!changed) return text;
+  for (let i = 0; i < lines.length; i++) {
+    if (drop.has(i) || !/[:：]\s*\**\s*$/.test(kept[i]!)) continue;
+    let j = i + 1;
+    while (j < lines.length && (!lines[j]!.trim() || LIST_ITEM.test(lines[j]!))) j++;
+    const items = [...Array(j - i - 1).keys()].map((k) => i + 1 + k).filter((k) => lines[k]!.trim());
+    if (items.length && items.every((k) => drop.has(k))) drop.add(i);
+  }
+  return kept
+    .filter((_, i) => !drop.has(i))
+    .join("\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}

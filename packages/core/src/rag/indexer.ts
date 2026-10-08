@@ -3,7 +3,7 @@
  * Every page is committed with its chunks and vectors before `indexedPages` advances, so a cancel, a crash or a
  * full disk resumes from the last committed page and never leaves half a page behind.
  */
-import { chunkPage, type ChunkOptions } from "./chunker";
+import { DEFAULT_CHUNK, chunkPage, chunkingOf, type ChunkOptions } from "./chunker";
 import { forDocuments, indexModelOf } from "./embedder";
 import { countInstructionLines } from "./injection";
 import { LEXICAL_INDEX_ID } from "./overview";
@@ -51,32 +51,92 @@ export const reindexFrom = (doc: DocumentRecord): DocumentRecord => ({
 export const isSearchable = (doc: Pick<DocumentRecord, "chunkCount" | "reindexFrom">): boolean => doc.chunkCount > 0 || !!doc.reindexFrom;
 
 /** The page from which a document's vectors are not in the current embedder's space: every page while nothing is rebuilt. */
-export const vectorsValidUpTo = (doc: Pick<DocumentRecord, "reindexFrom" | "indexedPages">): number => (doc.reindexFrom ? doc.indexedPages : Infinity);
+export const vectorsValidUpTo = (doc: Pick<DocumentRecord, "reindexFrom" | "indexedPages" | "vectorPages">): number => (doc.reindexFrom ? (doc.vectorPages ?? doc.indexedPages) : Infinity);
+
+/** What a document needs under this embedder and chunking: nothing, new vectors for its stored passages, or a fresh read. */
+export type RebuildKind = "none" | "vectors" | "full";
+
+const baseModel = (embedModel: string | undefined): string | undefined => embedModel?.split("@")[0];
+
+/* A row from before `chunking` was stored, from this same model, was cut by today's chunker: chunker.ts and tokens.ts have not moved since embed-e5 shipped. */
+const storedChunking = (doc: Pick<DocumentRecord, "chunking" | "embedModel">, embedder: Pick<Embedder, "id">, chunking: string): string | undefined =>
+  doc.chunking ?? (baseModel(doc.embedModel) === embedder.id ? chunking : undefined);
+
+export function rebuildKind(doc: Pick<DocumentRecord, "embedModel" | "indexedPages" | "chunkCount" | "status" | "chunking">, embedder: Pick<Embedder, "id" | "revision">, chunking: string): RebuildKind {
+  if (doc.indexedPages === 0) return "none";
+  const sameCut = storedChunking(doc, embedder, chunking) === chunking;
+  if (doc.embedModel === indexModelOf(embedder)) return sameCut ? "none" : "full";
+  return sameCut && doc.status === "indexed" && doc.chunkCount > 0 ? "vectors" : "full";
+}
+
+/** The record to re-queue when only the vectors change: every passage stays, and stays searchable, while `vectorPages` advances. */
+export const reembedFrom = (doc: DocumentRecord): DocumentRecord => ({ ...doc, status: "queued", reindexFrom: doc.reindexFrom ?? doc.embedModel ?? "unknown", vectorPages: doc.vectorPages ?? 0 });
+
+/* Bounded so a long file's run cannot hold every vector it made. */
+const MEMO_LIMIT = 256;
+
+/** Embeds `texts` in batches; a text already embedded in this run (a repeated header page, an empty form) reuses its vector. */
+async function embedTexts(embedder: Embedder, texts: string[], batchSize: number, memo: Map<string, Float32Array>, signal?: AbortSignal): Promise<Float32Array[]> {
+  const fresh = [...new Set(texts.filter((t) => !memo.has(t)))];
+  for (let i = 0; i < fresh.length; i += batchSize) {
+    if (signal?.aborted) throw new IndexCancelled();
+    const batch = fresh.slice(i, i + batchSize);
+    const vectors = await embedder.embed(forDocuments(embedder.id, batch), signal);
+    batch.forEach((t, j) => memo.set(t, vectors[j]!));
+  }
+  const out = texts.map((t) => memo.get(t)!);
+  for (const key of memo.keys()) {
+    if (memo.size <= MEMO_LIMIT) break;
+    memo.delete(key);
+  }
+  return out;
+}
 
 /**
- * Rebuilds a document for `embedder` from the passages already stored, when its source cannot be read again (a browser
- * keeps a picked file for one page load). The passages were cut to the index model's size, so only the vectors change.
+ * Rebuilds a document's vectors for `embedder` from the passages already stored, page by page: no page is read, OCRed or
+ * re-cut, a cancel resumes at `vectorPages`, and a question meanwhile uses the new vectors up to there and words past it.
  */
-export async function reembedStored(o: { doc: DocumentRecord; store: EmbeddingStore; embedder: Embedder; batchSize?: number; signal?: AbortSignal }): Promise<DocumentRecord> {
+export async function reembedStored(o: { doc: DocumentRecord; store: EmbeddingStore; embedder: Embedder; batchSize?: number; signal?: AbortSignal; onProgress?: (p: IndexProgress) => void; chunking?: string; now?: () => number }): Promise<DocumentRecord> {
+  const now = o.now ?? Date.now;
+  const started = now();
   const chunks = await o.store.chunksOf(o.doc.id);
-  const batchSize = o.batchSize ?? 8;
-  const vectors: Float32Array[] = [];
-  for (let i = 0; i < chunks.length; i += batchSize) {
-    if (o.signal?.aborted) throw new IndexCancelled();
-    vectors.push(...(await o.embedder.embed(forDocuments(o.embedder.id, chunks.slice(i, i + batchSize).map((c) => c.text)))));
+  const lastPage = chunks.reduce((max, c) => Math.max(max, c.page), 0);
+  const doc: DocumentRecord = { ...o.doc, status: "indexing", reindexFrom: o.doc.reindexFrom ?? o.doc.embedModel ?? "unknown", vectorPages: o.doc.vectorPages ?? 0 };
+  const total = Math.max(o.doc.pages, lastPage);
+  const report = (phase: IndexProgress["phase"]) => o.onProgress?.({ docId: doc.id, phase, page: doc.vectorPages ?? 0, pages: total, chunks: chunks.length, elapsedMs: now() - started });
+  const byPage = new Map<number, Chunk[]>();
+  for (const c of chunks) if (c.page > doc.vectorPages!) byPage.set(c.page, [...(byPage.get(c.page) ?? []), c]);
+  const memo = new Map<string, Float32Array>();
+  try {
+    for (const [page, rows] of [...byPage].sort((a, b) => a[0] - b[0])) {
+      if (o.signal?.aborted) throw new IndexCancelled();
+      report("embed");
+      await o.store.putChunks(rows, await embedTexts(o.embedder, rows.map((r) => r.text), o.batchSize ?? 8, memo, o.signal));
+      doc.vectorPages = page;
+      await o.store.putDocument(doc);
+      report("store");
+    }
+  } catch (e: unknown) {
+    if (!(e instanceof IndexCancelled) && !o.signal?.aborted) throw e;
+    doc.status = "cancelled";
+    await o.store.putDocument(doc);
+    report("cancelled");
+    return doc;
   }
-  await o.store.putChunks(chunks, vectors);
-  const doc: DocumentRecord = {
-    ...o.doc,
+  const done: DocumentRecord = {
+    ...doc,
     embedModel: indexModelOf(o.embedder),
     chunkCount: chunks.length,
-    indexedPages: chunks.reduce((max, c) => Math.max(max, c.page), 0),
+    indexedPages: Math.max(o.doc.indexedPages, lastPage),
     status: chunks.length ? "indexed" : "empty",
+    ...(o.chunking ? { chunking: o.chunking } : {}),
   };
-  delete doc.reindexFrom;
-  delete doc.error;
-  await o.store.putDocument(doc);
-  return doc;
+  delete done.reindexFrom;
+  delete done.vectorPages;
+  delete done.error;
+  await o.store.putDocument(done);
+  report(done.status === "indexed" ? "done" : "empty");
+  return done;
 }
 
 export class IndexCancelled extends Error {
@@ -92,7 +152,8 @@ export async function indexDocument(o: IndexOptions): Promise<DocumentRecord> {
   const started = now();
   const batchSize = o.batchSize ?? 8;
   const total = Math.min(o.opened.pages, o.maxPages ?? Infinity);
-  const doc: DocumentRecord = { ...o.doc, pages: o.opened.pages, status: "indexing", embedModel: o.embedder ? indexModelOf(o.embedder) : LEXICAL_INDEX_ID };
+  const doc: DocumentRecord = { ...o.doc, pages: o.opened.pages, status: "indexing", embedModel: o.embedder ? indexModelOf(o.embedder) : LEXICAL_INDEX_ID, chunking: chunkingOf({ ...DEFAULT_CHUNK, ...o.chunk }) };
+  delete doc.vectorPages;
   const report = (phase: IndexProgress["phase"]) => o.onProgress?.({ docId: doc.id, phase, page: doc.indexedPages, pages: total, chunks: doc.chunkCount, elapsedMs: now() - started });
   const cancelled = () => o.signal?.aborted === true;
   /* Rows past the committed page are either a page interrupted mid-commit or the old embedder's rows of a rebuild:
@@ -101,6 +162,7 @@ export async function indexDocument(o: IndexOptions): Promise<DocumentRecord> {
   let ord = (await o.store.chunksOf(doc.id)).filter((c) => c.page <= doc.indexedPages).length;
   doc.chunkCount = ord;
   let blankPages = 0;
+  const memo = new Map<string, Float32Array>();
   const scripts = new Map<string, number>();
   try {
     for (let p = doc.indexedPages; p < total; p++) {
@@ -130,13 +192,8 @@ export async function indexDocument(o: IndexOptions): Promise<DocumentRecord> {
       scripts.set(script, (scripts.get(script) ?? 0) + normalized.length);
       const rows: Chunk[] = chunks.map((c, i) => ({ id: chunkId(doc.id, p + 1, ord + i), docId: doc.id, page: p + 1, ord: ord + i, text: c.text, start: c.start, end: c.end, tokens: c.tokens }));
       ord += rows.length;
-      const vectors: Float32Array[] = [];
-      for (let i = 0; o.embedder && i < rows.length; i += batchSize) {
-        if (cancelled()) throw new IndexCancelled();
-        report("embed");
-        const batch = rows.slice(i, i + batchSize);
-        vectors.push(...(await o.embedder.embed(forDocuments(o.embedder.id, batch.map((r) => r.text)))));
-      }
+      if (o.embedder) report("embed");
+      const vectors = o.embedder ? await embedTexts(o.embedder, rows.map((r) => r.text), batchSize, memo, o.signal) : [];
       await o.store.deleteChunksOfPage(doc.id, p + 1);
       await o.store.putChunks(rows, vectors);
       doc.chunkCount += rows.length;

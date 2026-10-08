@@ -1,6 +1,7 @@
 import { useCallback, useMemo, useSyncExternalStore } from "react";
 import { useTranslation } from "react-i18next";
-import { isSearchable, type Citation, type DocumentRecord, type Message } from "@inborn/core";
+import { detectLanguage, isSearchable, namesFile, type Citation, type DocumentRecord, type Message } from "@inborn/core";
+import { questionOpeners } from "@inborn/i18n";
 import { useEntitlement } from "../licence";
 import { peekEngine } from "../engine";
 import { canCiteMarkers, getLibrary, type AskResult, type DocumentLibrary, type LibraryState } from "./library";
@@ -70,7 +71,11 @@ export function useDocumentContext(chatId: string | null): DocumentContext {
     attach: (docId) => library.attach(key, docId),
     detach: (docId) => library.detach(key, docId),
     ready,
-    buildPrompt: (question, history, nCtx, systemPrompt, photoDocIds = [], page) => library.ask(question, { docIds: [...docIds, ...photoDocIds], history, nCtx, systemPrompt, strict, citeMarkers: canCiteMarkers(peekEngine()?.model.id), openers: noPassageOpeners(t), ...(page ? { page } : {}) }),
+    buildPrompt: (question, history, nCtx, systemPrompt, photoDocIds = [], page) => {
+      /* F469: an opener in the UI language pulled answers into it; a question about its files gets one in its own language, any other question none (quoted, it refused recipes). */
+      const asked = namesFile(question) ? questionOpeners(detectLanguage(question)) : null;
+      return library.ask(question, { docIds: [...docIds, ...photoDocIds], history, nCtx, systemPrompt, strict, citeMarkers: canCiteMarkers(peekEngine()?.model.id), openers: { ...noPassageOpeners(t), ...asked }, quoteOpener: !!asked, ...(page ? { page } : {}) });
+    },
     citationsFor: (answer, citations) => library.citationsFor(answer, citations),
     context: { docIds, strict },
   };

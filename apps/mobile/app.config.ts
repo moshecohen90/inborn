@@ -187,6 +187,8 @@ const ALL_PACKS = {
   speech: [{ name: "inborn_model_speech", deliveryType: "on-demand", assets: { "ggml-base.bin": "ggml-base.bin" } }],
   /* Instant's projector: the vault fetches it together with Instant (src/vault/store.ts install), so the first photo after the first download is answered. */
   vision: [{ name: "inborn_model_vision", deliveryType: "on-demand", assets: { "mmproj-Qwen3.5-0.8B-F16.gguf": "mmproj-Qwen3.5-0.8B-F16.gguf" } }],
+  /* Fast's projector: without it the release build (no INTERNET) cannot let Fast see a photo at all. */
+  visionFast: [{ name: "inborn_model_vision_fast", deliveryType: "on-demand", assets: { "mmproj-Qwen3.5-2B-F16.gguf": "mmproj-Qwen3.5-2B-F16.gguf" } }],
   /* Play caps one pack at 1.5 GB, so each llama-gguf-split shard is its own pack; the vault links them into one directory (src/vault/playDelivery.ts). */
   sharp: [
     { name: "inborn_model_sharp", deliveryType: "on-demand", assets: { "Qwen3.5-4B-Q4_K_M-00001-of-00002.gguf": "Qwen3.5-4B-Q4_K_M-00001-of-00002.gguf" } },

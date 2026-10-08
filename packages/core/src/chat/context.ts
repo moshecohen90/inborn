@@ -108,7 +108,21 @@ export function followUpWindow<M extends Pick<Message, "role" | "content" | "ima
   return kept.slice(0, kept.map((m) => m.role).lastIndexOf("user")).some((m) => m.role === "assistant") ? kept : [...messages];
 }
 
-/** The answer a follow-up reworks: the last answer of its window, past any thanks; null when the follow-up opens the chat. */
+/**
+ * The conversation the model sees without the app's own replies that `isAppAnswer` names (`isAppDecline` in @inborn/i18n)
+ * and the questions they answered: replayed as the model's turns, three "out of reach" cards made Fast decline sleep tips (F464).
+ */
+export function withoutAppAnswers<M extends Pick<Message, "role" | "content">>(messages: readonly M[], isAppAnswer: (content: string) => boolean): M[] {
+  const drop = new Set<number>();
+  messages.forEach((m, i) => {
+    if (m.role !== "assistant" || !isAppAnswer(m.content)) return;
+    drop.add(i);
+    if (messages[i - 1]?.role === "user") drop.add(i - 1);
+  });
+  return drop.size ? messages.filter((_, i) => !drop.has(i)) : [...messages];
+}
+
+/** The answer a follow-up reworks:the last answer of its window, past any thanks; null when the follow-up opens the chat. */
 export function reworkedAnswer<M extends Pick<Message, "role" | "content" | "images">>(messages: readonly M[]): M | null {
   const window = followUpWindow(messages);
   for (let i = window.map((m) => m.role).lastIndexOf("user") - 1; i >= 0; i--) {

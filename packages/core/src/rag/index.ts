@@ -1,7 +1,7 @@
 export * from "./types";
 export { estimateTokens as estimateRagTokens, clipToTokens, detectScript, isRtlScript, type Script as TextScript } from "./tokens";
 export { normalizeText, foldForSearch, foldDiacritics, words } from "./text";
-export { chunkPage, segments, chunkFor, embedBudget, DEFAULT_CHUNK, EMBED_TOKEN_SAFETY, type ChunkOptions, type PageChunk } from "./chunker";
+export { chunkPage, segments, chunkFor, chunkingOf, CHUNKER_VERSION, embedBudget, DEFAULT_CHUNK, EMBED_TOKEN_SAFETY, type ChunkOptions, type PageChunk } from "./chunker";
 export { Bm25Index, bm25Tokens, termsOf, isStopWord, isCjkFunctionTerm, isWeakTerm, type Bm25Hit } from "./bm25";
 export { VectorIndex, normalize, quantize, dequantize, cosine, cosineQuantized, type VectorHit } from "./vector";
 export { reciprocalRankFusion, mmr, type Ranked, type MmrCandidate } from "./fusion";
@@ -9,7 +9,7 @@ export { stripInstructions, countInstructionLines, looksLikeInstruction, fenceDo
 export { buildCitations, citationLabel, citationsForAnswer, evidenceTerms, groundedCitations, inheritedCitations, withoutEchoedLabels, withoutStrayMarkers, MIN_SOURCE_SHARE, sourceShare, citedNumbers, pageGlyph, pageUnit, snippetOf, PAGE_WORDS, type PageUnit, type PageWords } from "./citations";
 export { withoutEchoedInstructions, systemOf } from "./echo";
 export { buildRagPrompt, trimHistory, isRelevant, NOT_FOUND_TOKEN, isNotFoundReply, NOTHING_RELEVANT_RULE, thinPageRule, openingRule, DEFAULT_OPENERS, DEFAULT_ANSWER_RESERVE, DEFAULT_HISTORY_SHARE, DEFAULT_MIN_COSINE, DEFAULT_MIN_COSINE_ALONE, DEFAULT_MIN_BM25, DEFAULT_EMBEDDER_ID, RELEVANCE_DOORS, UNMEASURED_DOORS, relevanceDoors, type RelevanceDoors, type PromptOptions, type NoPassageOpeners } from "./prompt";
-export { indexDocument, reembedStored, chunkId, needsReindex, reindexFrom, vectorsValidUpTo, isSearchable, IndexCancelled, type IndexOptions } from "./indexer";
+export { indexDocument, reembedStored, reembedFrom, rebuildKind, chunkId, needsReindex, reindexFrom, vectorsValidUpTo, isSearchable, IndexCancelled, type IndexOptions, type RebuildKind } from "./indexer";
 export { isAboutAttachment, openingHits, lexicalEmbedder, LEXICAL_INDEX_ID } from "./overview";
 export { fileAsk, filePages, planWholeFile, readWholeFile, sectionNoteMessages, wholeFilePrompt, wholeFitTokens, SECTION_TOKENS, WHOLE_FILE_TOKENS, NOTE_TOKENS, SUMMARY_RESERVE, type FileAsk, type FilePage, type FileSection, type WholeFilePlan, type PlanOptions, type ReadOptions, type SummaryPromptOptions } from "./wholeFile";
 export { Retriever, DEFAULT_K, DEFAULT_CANDIDATES, type RetrieveOptions } from "./retriever";

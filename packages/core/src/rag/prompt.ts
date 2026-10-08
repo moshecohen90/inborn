@@ -33,6 +33,8 @@ export interface PromptOptions {
   overview?: boolean;
   /** What a reply with no passage opens with, in the UI language; English when absent. */
   openers?: NoPassageOpeners;
+  /** False when `openers` are not in the question's language: the no-passage rule then quotes nothing, and the chat's own strip says it. */
+  quoteOpener?: boolean;
   /** `hits` are all the text of one page that may be mostly pictures the model is not shown (round 130). */
   thinPage?: boolean;
   /** The model also sees the picture of the page these passages come from (round 131). */
@@ -66,6 +68,10 @@ export const DEFAULT_OPENERS: Required<NoPassageOpeners> = {
  */
 const startWith = (sentence: string, searched: boolean): string =>
   `${searched ? "The user's files were searched and nothing in them matched, so never say what they state or contain." : "Never say what the user's files state, say or contain."} If you do not know the answer for sure, say only the opening sentence. Start with "${sentence}"`;
+
+/* F469: a quoted pt-BR opener was the only language the prompt named, so an English question was answered in Portuguese. */
+const SEARCHED_NOTHING = "The user's files were searched and nothing in them matched, so never say what they state or contain.";
+const NOTHING_FITS = "Never say what the user's files state, say or contain.";
 
 /** A page with only crumbs of text whose pictures did not reach the model: say what it has, never what it cannot see. */
 export const thinPageRule = (opener: string): string =>
@@ -210,7 +216,7 @@ export function buildRagPrompt(o: PromptOptions): RagPrompt {
     if (o.strict) return { messages: [], citations: [], used: [], droppedForBudget: dropped, noAnswer: true, promptTokens: 0 };
     /* Nothing relevant is a different story from nothing that fits: the first must be said out loud, the second only explained. */
     const openers = o.openers ?? DEFAULT_OPENERS;
-    const why = relevant.length ? startWith(openers.nothingFits, false) : startWith(openers.nothingRelevant, true);
+    const why = o.quoteOpener === false ? (relevant.length ? NOTHING_FITS : SEARCHED_NOTHING) : relevant.length ? startWith(openers.nothingFits, false) : startWith(openers.nothingRelevant, true);
     const plain: Message[] = [{ role: "system", content: `${base}${why}` }, ...history, { role: "user", content: o.question }];
     return { messages: plain, citations: [], used: [], droppedForBudget: dropped, noAnswer: false, promptTokens: fixed + historyTokens };
   }

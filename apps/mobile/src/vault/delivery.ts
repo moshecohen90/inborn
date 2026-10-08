@@ -13,6 +13,8 @@ export interface DeliveryPlan {
 export interface ModelDelivery {
   /** Null when this platform cannot deliver the model (sideloaded Android, web): the vault offers import instead. */
   plan(model: CatalogModel): DeliveryPlan | null;
+  /** False once the platform's store itself is out of reach (Play not bound on this device); absent = always reachable. */
+  reachable?(): boolean;
   /** Starts (or resumes) delivery; resolves with the local file path once bytes are complete, before hashing. */
   deliver(model: CatalogModel, emit: (e: InstallEvent) => void): Promise<string>;
   pause(model: CatalogModel): Promise<void>;

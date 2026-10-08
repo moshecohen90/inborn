@@ -1,0 +1,1822 @@
+{
+  "runId": "a11y-pt",
+  "startedAt": "2026-10-08T15:31:04.640Z",
+  "finishedAt": "2026-10-08T15:32:02.231Z",
+  "ok": false,
+  "passed": 62,
+  "failed": 1,
+  "steps": [
+    {
+      "i": 0,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 156,
+      "detail": "/settings/language"
+    },
+    {
+      "i": 1,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "lang-pt-BR appeared"
+    },
+    {
+      "i": 2,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "lang-pt-BR ← onPress"
+    },
+    {
+      "i": 3,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2000,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 4,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 167,
+      "detail": "/"
+    },
+    {
+      "i": 5,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 6,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 7,
+      "op": "type",
+      "ok": true,
+      "ms": 151,
+      "detail": "composer-input = 22 chars"
+    },
+    {
+      "i": 8,
+      "op": "send",
+      "ok": true,
+      "ms": 167,
+      "detail": "send ← onPress"
+    },
+    {
+      "i": 9,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2501,
+      "detail": "2500 ms"
+    },
+    {
+      "i": 10,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "stop gone"
+    },
+    {
+      "i": 11,
+      "op": "sleep",
+      "ok": true,
+      "ms": 2014,
+      "detail": "2000 ms"
+    },
+    {
+      "i": 12,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 9508,
+      "detail": "pt-01-capabilities"
+    },
+    {
+      "i": 13,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What can you do?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · IA NO APARELHO I'm Inborn, and I can answer questions, write and edit text, translate, and explain things step by step. Attach a PDF or a photo and I'll read it and answer about it. All of it happens on this phone. Registro"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "I'm Inborn, and I can answer questions, write and edit text, translate, and explain things step by step. Attach a PDF or a photo and I'll read it and answer about it. All of it happens on this phone."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Registro",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SELADO"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SELADO"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Modelo",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "model-advice",
+          "text": "FAST lida com o português melhor que INSTANT. Instalar FAST · 1.28 GB Agora não"
+        },
+        {
+          "testID": "model-advice-reason",
+          "text": "FAST lida com o português melhor que INSTANT."
+        },
+        {
+          "testID": "model-advice-install",
+          "text": "Instalar FAST · 1.28 GB",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-not-now",
+          "text": "Agora não",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "notice",
+          "text": "Isto é IA rodando no seu celular. Pode errar. Confira fatos importantes. Fechar"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Anexar (vem com documentos)",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Ditar",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Enviar",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "pt-01-capabilities"
+    },
+    {
+      "i": 14,
+      "op": "press",
+      "ok": true,
+      "ms": 158,
+      "detail": "model-chip ← onPress"
+    },
+    {
+      "i": 15,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "model-sheet appeared"
+    },
+    {
+      "i": 16,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 17,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1585,
+      "detail": "pt-02-model-sheet"
+    },
+    {
+      "i": 18,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What can you do?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · IA NO APARELHO I'm Inborn, and I can answer questions, write and edit text, translate, and explain things step by step. Attach a PDF or a photo and I'll read it and answer about it. All of it happens on this phone. Registro"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "I'm Inborn, and I can answer questions, write and edit text, translate, and explain things step by step. Attach a PDF or a photo and I'll read it and answer about it. All of it happens on this phone."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Registro",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SELADO"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SELADO"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Modelo",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "model-advice",
+          "text": "FAST lida com o português melhor que INSTANT. Instalar FAST · 1.28 GB Agora não"
+        },
+        {
+          "testID": "model-advice-reason",
+          "text": "FAST lida com o português melhor que INSTANT."
+        },
+        {
+          "testID": "model-advice-install",
+          "text": "Instalar FAST · 1.28 GB",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-not-now",
+          "text": "Agora não",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "notice",
+          "text": "Isto é IA rodando no seu celular. Pode errar. Confira fatos importantes. Fechar"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Anexar (vem com documentos)",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Ditar",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Enviar",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "model-sheet",
+          "text": "Modelo FREE Ver o que tem no Pro RECOMENDADO PARA ESTE CELULAR · CONVERSA EM PORTUGUÊS Neste aparelho INSTANT Bom em: Conversa, Notas de voz, Fotos português · Básico 533 MB Em uso Cabe no seu celular FAST RECOMENDADO Bom em: Conversa, Escrita, Resumos, Tradução, Documentos, Notas de voz, Fotos português · Bom 1.28 GB Instalar · 1.28 GB de localhost SHARP PRO Bom em: Conversa, Escrita, Resumos, Tradução, Código, Documentos, Notas de voz, Matemática e raciocínio, Fotos português · Bom 2.74 GB Instalar · 2.74 GB de localhost SHARP (PHI) PRO Bom em: Conversa, Escrita, Resumos, Código, Documentos, Notas de voz, Matemática e raciocínio português · Bom 2.49 GB Instalar · 2.49 GB de localhost Cofre de modelos Ajustes do chat Fechar"
+        },
+        {
+          "testID": "model-sheet-close",
+          "text": "",
+          "role": "button",
+          "label": "Fechar",
+          "pressable": true
+        },
+        {
+          "testID": "tier-chip",
+          "text": "FREE"
+        },
+        {
+          "testID": "see-whats-in-pro",
+          "text": "Ver o que tem no Pro",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-sheet-recommended",
+          "text": "RECOMENDADO PARA ESTE CELULAR · CONVERSA EM PORTUGUÊS"
+        },
+        {
+          "testID": "model-sheet-row-instant",
+          "text": "INSTANT Bom em: Conversa, Notas de voz, Fotos português · Básico 533 MB Em uso"
+        },
+        {
+          "testID": "model-sheet-goodat-instant",
+          "text": "Bom em: Conversa, Notas de voz, Fotos"
+        },
+        {
+          "testID": "model-sheet-language-instant",
+          "text": "português · Básico"
+        },
+        {
+          "testID": "model-sheet-inuse-instant",
+          "text": "Em uso"
+        },
+        {
+          "testID": "model-sheet-row-fast",
+          "text": "FAST RECOMENDADO Bom em: Conversa, Escrita, Resumos, Tradução, Documentos, Notas de voz, Fotos português · Bom 1.28 GB Instalar · 1.28 GB de localhost"
+        },
+        {
+          "testID": "model-sheet-recommended-fast",
+          "text": "RECOMENDADO"
+        },
+        {
+          "testID": "model-sheet-goodat-fast",
+          "text": "Bom em: Conversa, Escrita, Resumos, Tradução, Documentos, Notas de voz, Fotos"
+        },
+        {
+          "testID": "model-sheet-language-fast",
+          "text": "português · Bom"
+        },
+        {
+          "testID": "model-sheet-download-fast",
+          "text": "Instalar · 1.28 GB de localhost",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-sheet-row-sharp",
+          "text": "SHARP PRO Bom em: Conversa, Escrita, Resumos, Tradução, Código, Documentos, Notas de voz, Matemática e raciocínio, Fotos português · Bom 2.74 GB Instalar · 2.74 GB de localhost"
+        },
+        {
+          "testID": "model-sheet-goodat-sharp",
+          "text": "Bom em: Conversa, Escrita, Resumos, Tradução, Código, Documentos, Notas de voz, Matemática e raciocínio, Fotos"
+        },
+        {
+          "testID": "model-sheet-language-sharp",
+          "text": "português · Bom"
+        },
+        {
+          "testID": "model-sheet-download-sharp",
+          "text": "Instalar · 2.74 GB de localhost",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-sheet-row-sharp-phi",
+          "text": "SHARP (PHI) PRO Bom em: Conversa, Escrita, Resumos, Código, Documentos, Notas de voz, Matemática e raciocínio português · Bom 2.49 GB Instalar · 2.49 GB de localhost"
+        },
+        {
+          "testID": "model-sheet-goodat-sharp-phi",
+          "text": "Bom em: Conversa, Escrita, Resumos, Código, Documentos, Notas de voz, Matemática e raciocínio"
+        },
+        {
+          "testID": "model-sheet-language-sharp-phi",
+          "text": "português · Bom"
+        },
+        {
+          "testID": "model-sheet-download-sharp-phi",
+          "text": "Instalar · 2.49 GB de localhost",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-sheet-manage",
+          "text": "Cofre de modelos",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-sheet-chat-settings",
+          "text": "Ajustes do chat",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "pt-02-model-sheet"
+    },
+    {
+      "i": 19,
+      "op": "press",
+      "ok": true,
+      "ms": 162,
+      "detail": "model-sheet-close ← onPress"
+    },
+    {
+      "i": 20,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 21,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "open-chats ← onPress"
+    },
+    {
+      "i": 22,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "close-chats appeared"
+    },
+    {
+      "i": 23,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 24,
+      "op": "press",
+      "ok": true,
+      "ms": 166,
+      "detail": "new-chat ← onPress"
+    },
+    {
+      "i": 25,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "new-chat-sheet appeared"
+    },
+    {
+      "i": 26,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1500,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 27,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2872,
+      "detail": "pt-03-new-chat-sheet"
+    },
+    {
+      "i": 28,
+      "op": "dump",
+      "ok": true,
+      "ms": 3,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What can you do?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · IA NO APARELHO I'm Inborn, and I can answer questions, write and edit text, translate, and explain things step by step. Attach a PDF or a photo and I'll read it and answer about it. All of it happens on this phone. Registro"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "I'm Inborn, and I can answer questions, write and edit text, translate, and explain things step by step. Attach a PDF or a photo and I'll read it and answer about it. All of it happens on this phone."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Registro",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SELADO"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SELADO"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Modelo",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "model-advice",
+          "text": "FAST lida com o português melhor que INSTANT. Instalar FAST · 1.28 GB Agora não"
+        },
+        {
+          "testID": "model-advice-reason",
+          "text": "FAST lida com o português melhor que INSTANT."
+        },
+        {
+          "testID": "model-advice-install",
+          "text": "Instalar FAST · 1.28 GB",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-not-now",
+          "text": "Agora não",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "notice",
+          "text": "Isto é IA rodando no seu celular. Pode errar. Confira fatos importantes. Fechar"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Anexar (vem com documentos)",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Ditar",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Enviar",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "close-chats",
+          "text": "",
+          "role": "button",
+          "label": "Fechar",
+          "pressable": true
+        },
+        {
+          "testID": "select-toggle",
+          "text": "Selecionar",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chats-search",
+          "text": "",
+          "label": "Buscar",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "new-chat",
+          "text": "Novo chat",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "new-incognito",
+          "text": "Anônimo",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-1899d88c-e098-41ca-aba7-0e9f0905e5bb",
+          "text": "Fixar",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-1899d88c-e098-41ca-aba7-0e9f0905e5bb",
+          "text": "Arquivar",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-1899d88c-e098-41ca-aba7-0e9f0905e5bb",
+          "text": "Excluir",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-1899d88c-e098-41ca-aba7-0e9f0905e5bb",
+          "text": "What can you do? 18:31",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chats-footer",
+          "text": "PRO"
+        },
+        {
+          "testID": "open-personas",
+          "text": "",
+          "pressable": true
+        },
+        {
+          "testID": "open-memory",
+          "text": "",
+          "pressable": true
+        },
+        {
+          "testID": "open-folders",
+          "text": "PRO",
+          "pressable": true
+        },
+        {
+          "testID": "pro-tag",
+          "text": "PRO"
+        },
+        {
+          "testID": "new-chat-sheet",
+          "text": "Novo chat PERSONA ✦ Assistente ✎ Escritor ▤ Tutor ◎ Tradutor MODELO INSTANT · CABE NESTE APARELHO Anônimo Não salvo, sem memória. Some quando você fecha. Cancelar Começar"
+        },
+        {
+          "testID": "new-chat-sheet-close",
+          "text": "",
+          "role": "button",
+          "label": "Fechar",
+          "pressable": true
+        },
+        {
+          "testID": "persona-chip-builtin:assistant",
+          "text": "✦ Assistente",
+          "role": "radio",
+          "state": {
+            "selected": true
+          },
+          "pressable": true
+        },
+        {
+          "testID": "persona-chip-builtin:writer",
+          "text": "✎ Escritor",
+          "role": "radio",
+          "state": {
+            "selected": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "persona-chip-builtin:tutor",
+          "text": "▤ Tutor",
+          "role": "radio",
+          "state": {
+            "selected": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "persona-chip-builtin:translator",
+          "text": "◎ Tradutor",
+          "role": "radio",
+          "state": {
+            "selected": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "incognito-switch",
+          "text": "",
+          "value": "false",
+          "pressable": true
+        },
+        {
+          "testID": "start-chat",
+          "text": "Começar",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "folder-sheet",
+          "text": ""
+        },
+        {
+          "testID": "vault-code-sheet",
+          "text": ""
+        },
+        {
+          "testID": "export-sheet",
+          "text": ""
+        },
+        {
+          "testID": "drawer-footer",
+          "text": "INSTANT · OUT 0 B Ajustes ◯ Prova"
+        },
+        {
+          "testID": "drawer-meter",
+          "text": "INSTANT · OUT 0 B"
+        },
+        {
+          "testID": "drawer-settings",
+          "text": "Ajustes",
+          "pressable": true
+        },
+        {
+          "testID": "drawer-proof",
+          "text": "◯ Prova",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "pt-03-new-chat-sheet"
+    },
+    {
+      "i": 29,
+      "op": "press",
+      "ok": true,
+      "ms": 158,
+      "detail": "new-chat-sheet-close ← onPress"
+    },
+    {
+      "i": 30,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 31,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "open-personas ← onPress"
+    },
+    {
+      "i": 32,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 2,
+      "detail": "persona-add appeared"
+    },
+    {
+      "i": 33,
+      "op": "press",
+      "ok": true,
+      "ms": 165,
+      "detail": "persona-add ← onPress"
+    },
+    {
+      "i": 34,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "persona-icon-spark appeared"
+    },
+    {
+      "i": 35,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 36,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1268,
+      "detail": "pt-04-persona-icons"
+    },
+    {
+      "i": 37,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "user-message",
+          "text": "What can you do?",
+          "role": "text"
+        },
+        {
+          "testID": "assistant-message",
+          "text": "INSTANT · IA NO APARELHO I'm Inborn, and I can answer questions, write and edit text, translate, and explain things step by step. Attach a PDF or a photo and I'll read it and answer about it. All of it happens on this phone. Registro"
+        },
+        {
+          "testID": "assistant-text",
+          "text": "I'm Inborn, and I can answer questions, write and edit text, translate, and explain things step by step. Attach a PDF or a photo and I'll read it and answer about it. All of it happens on this phone."
+        },
+        {
+          "testID": "ledger-toggle",
+          "text": "Registro",
+          "role": "button",
+          "state": {
+            "expanded": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "open-chats",
+          "text": "Chats",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SELADO"
+        },
+        {
+          "testID": "seal-label",
+          "text": "SELADO"
+        },
+        {
+          "testID": "model-chip",
+          "text": "INSTANT",
+          "role": "button",
+          "label": "Modelo",
+          "pressable": true
+        },
+        {
+          "testID": "banner-inset",
+          "text": ""
+        },
+        {
+          "testID": "model-advice",
+          "text": "FAST lida com o português melhor que INSTANT. Instalar FAST · 1.28 GB Agora não"
+        },
+        {
+          "testID": "model-advice-reason",
+          "text": "FAST lida com o português melhor que INSTANT."
+        },
+        {
+          "testID": "model-advice-install",
+          "text": "Instalar FAST · 1.28 GB",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "model-advice-not-now",
+          "text": "Agora não",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "notice",
+          "text": "Isto é IA rodando no seu celular. Pode errar. Confira fatos importantes. Fechar"
+        },
+        {
+          "testID": "context-meter",
+          "text": "",
+          "role": "progressbar"
+        },
+        {
+          "testID": "context-level-ok",
+          "text": ""
+        },
+        {
+          "testID": "attach",
+          "text": "",
+          "role": "button",
+          "label": "Anexar (vem com documentos)",
+          "state": {
+            "disabled": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "composer-input",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "mic",
+          "text": "",
+          "role": "button",
+          "label": "Ditar",
+          "state": {
+            "disabled": false,
+            "busy": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "send",
+          "text": "",
+          "role": "button",
+          "label": "Enviar",
+          "state": {
+            "disabled": true
+          },
+          "disabled": true
+        },
+        {
+          "testID": "message-actions",
+          "text": ""
+        },
+        {
+          "testID": "report-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-sheet",
+          "text": ""
+        },
+        {
+          "testID": "mic-problem",
+          "text": ""
+        },
+        {
+          "testID": "close-chats",
+          "text": "",
+          "role": "button",
+          "label": "Fechar",
+          "pressable": true
+        },
+        {
+          "testID": "select-toggle",
+          "text": "Selecionar",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chats-search",
+          "text": "",
+          "label": "Buscar",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "new-chat",
+          "text": "Novo chat",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "new-incognito",
+          "text": "Anônimo",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-pin-1899d88c-e098-41ca-aba7-0e9f0905e5bb",
+          "text": "Fixar",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-archive-1899d88c-e098-41ca-aba7-0e9f0905e5bb",
+          "text": "Arquivar",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "swipe-delete-1899d88c-e098-41ca-aba7-0e9f0905e5bb",
+          "text": "Excluir",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chat-row-1899d88c-e098-41ca-aba7-0e9f0905e5bb",
+          "text": "What can you do? 18:31",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "chats-footer",
+          "text": "PRO"
+        },
+        {
+          "testID": "open-personas",
+          "text": "",
+          "pressable": true
+        },
+        {
+          "testID": "open-memory",
+          "text": "",
+          "pressable": true
+        },
+        {
+          "testID": "open-folders",
+          "text": "PRO",
+          "pressable": true
+        },
+        {
+          "testID": "pro-tag",
+          "text": "PRO"
+        },
+        {
+          "testID": "new-chat-sheet",
+          "text": ""
+        },
+        {
+          "testID": "folder-sheet",
+          "text": ""
+        },
+        {
+          "testID": "vault-code-sheet",
+          "text": ""
+        },
+        {
+          "testID": "export-sheet",
+          "text": ""
+        },
+        {
+          "testID": "personas-sheet",
+          "text": "Nova persona ✦ ✎ ▤ ◎ ‹› ⚖ ♡ ▣ ⚗ ✧ Modelo padrão: o atual Cancelar Salvar"
+        },
+        {
+          "testID": "personas-sheet-close",
+          "text": "",
+          "role": "button",
+          "label": "Fechar",
+          "pressable": true
+        },
+        {
+          "testID": "persona-name",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "persona-icon-spark",
+          "text": "✦",
+          "role": "radio",
+          "label": "Faísca",
+          "state": {
+            "selected": true
+          },
+          "pressable": true
+        },
+        {
+          "testID": "persona-icon-pen",
+          "text": "✎",
+          "role": "radio",
+          "label": "Caneta",
+          "state": {
+            "selected": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "persona-icon-book",
+          "text": "▤",
+          "role": "radio",
+          "label": "Livro",
+          "state": {
+            "selected": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "persona-icon-globe",
+          "text": "◎",
+          "role": "radio",
+          "label": "Globo",
+          "state": {
+            "selected": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "persona-icon-code",
+          "text": "‹›",
+          "role": "radio",
+          "label": "Código",
+          "state": {
+            "selected": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "persona-icon-scale",
+          "text": "⚖",
+          "role": "radio",
+          "label": "Balança",
+          "state": {
+            "selected": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "persona-icon-heart",
+          "text": "♡",
+          "role": "radio",
+          "label": "Coração",
+          "state": {
+            "selected": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "persona-icon-briefcase",
+          "text": "▣",
+          "role": "radio",
+          "label": "Maleta",
+          "state": {
+            "selected": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "persona-icon-flask",
+          "text": "⚗",
+          "role": "radio",
+          "label": "Frasco",
+          "state": {
+            "selected": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "persona-icon-compass",
+          "text": "✧",
+          "role": "radio",
+          "label": "Bússola",
+          "state": {
+            "selected": false
+          },
+          "pressable": true
+        },
+        {
+          "testID": "persona-prompt",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "persona-temperature",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "persona-disclaimer",
+          "text": "",
+          "value": "",
+          "pressable": true
+        },
+        {
+          "testID": "persona-save",
+          "text": "Salvar",
+          "role": "button",
+          "pressable": true
+        },
+        {
+          "testID": "drawer-footer",
+          "text": "INSTANT · OUT 0 B Ajustes ◯ Prova"
+        },
+        {
+          "testID": "drawer-meter",
+          "text": "INSTANT · OUT 0 B"
+        },
+        {
+          "testID": "drawer-settings",
+          "text": "Ajustes",
+          "pressable": true
+        },
+        {
+          "testID": "drawer-proof",
+          "text": "◯ Prova",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "pt-04-persona-icons"
+    },
+    {
+      "i": 38,
+      "op": "press",
+      "ok": true,
+      "ms": 163,
+      "detail": "personas-sheet-close ← onPress"
+    },
+    {
+      "i": 39,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1517,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 40,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 166,
+      "detail": "/settings"
+    },
+    {
+      "i": 41,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "row-about appeared"
+    },
+    {
+      "i": 42,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1500,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 43,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 1909,
+      "detail": "pt-05-settings"
+    },
+    {
+      "i": 44,
+      "op": "dump",
+      "ok": true,
+      "ms": 2,
+      "nodes": [
+        {
+          "testID": "settings",
+          "text": "Inborn Pro Ver o que tem no Pro Veja o que o Pro acrescenta ao app grátis. FREE APARÊNCIA Tema Automático Escuro Claro Escuro à noite, das 18h às 6h, e sempre que o sistema estiver no escuro. Tamanho do texto 90% Padrão 115% 130% 150% 175% 200% SEGURANÇA Exigir um código Seu código abre o Inborn. Também esconde os chats no seletor de apps. Definir um código Esconder no seletor de apps Os chats ficam desfocados enquanto o Inborn está em segundo plano. Proteção contra capturas de tela O iOS não consegue bloquear capturas. O Inborn esconde os chats enquanto a tela é gravada ou espelhada. Excluir chats automaticamente Desligado 1 dia 7 dias 30 dias Os chats ficam até você apagá-los. Validade da área de transferência Desligado 60 s Apagar tudo Chats, chave, documentos. Sem recuperação. CHAT Modelo INSTANT Modo para toda a família Mantém conteúdo sexual explícito, violência gráfica e automutilação fora das respostas. Ele reduz isso; não pega tudo. Vibração Sons Desligados. Não existe nenhum. DESEMPENHO Eco Equilibrado Máx. Gerenciamento automático de energia Modelo menor com bateria baixa ou aquecimento. Ligado em celulares, desligado em computadores. Nunca trocar meu modelo automaticamente IDIOMA Idioma do app Português (Brasil) Idioma sugerido para as respostas Segue o idioma do app DOWNLOADS Só no Wi-Fi Local de armazenamento Interno ACESSIBILIDADE Reduzir movimento Segue o ajuste do sistema. Desligado PRIVACIDADE E ARMAZENAMENTO Privacidade e armazenamento Denúncias Respostas que você denunciou, guardadas neste aparelho Prova Pro for Work Registro de auditoria Por cofre, encadeado por hash, nunca o conteúdo das mensagens Verificar um registro assinado Conferir o hash e a assinatura de um registro .json Declaração de arquitetura Datada, para impressão, para um dossiê de conformidade SOBRE Sobre Licenças dos modelos Não coletamos nada. Não há do que se descadastrar. Ajustes"
+        },
+        {
+          "testID": "row-pro",
+          "text": "Ver o que tem no Pro Veja o que o Pro acrescenta ao app grátis. FREE",
+          "value": "FREE",
+          "pressable": true
+        },
+        {
+          "testID": "theme-mode",
+          "text": "Automático Escuro Claro",
+          "value": "auto",
+          "pressable": true
+        },
+        {
+          "testID": "theme-mode-sub",
+          "text": "Escuro à noite, das 18h às 6h, e sempre que o sistema estiver no escuro."
+        },
+        {
+          "testID": "text-scale",
+          "text": "90% Padrão 115% 130% 150% 175% 200%",
+          "value": "1",
+          "pressable": true
+        },
+        {
+          "testID": "row-lock",
+          "text": "Exigir um código Seu código abre o Inborn. Também esconde os chats no seletor de apps.",
+          "pressable": true
+        },
+        {
+          "testID": "row-hide",
+          "text": "Esconder no seletor de apps Os chats ficam desfocados enquanto o Inborn está em segundo plano.",
+          "pressable": true
+        },
+        {
+          "testID": "row-screenshots",
+          "text": "Proteção contra capturas de tela O iOS não consegue bloquear capturas. O Inborn esconde os chats enquanto a tela é gravada ou espelhada.",
+          "pressable": true
+        },
+        {
+          "testID": "auto-delete",
+          "text": "Desligado 1 dia 7 dias 30 dias",
+          "value": "0",
+          "pressable": true
+        },
+        {
+          "testID": "auto-delete-sub",
+          "text": "Os chats ficam até você apagá-los."
+        },
+        {
+          "testID": "row-wipe",
+          "text": "Apagar tudo Chats, chave, documentos. Sem recuperação.",
+          "pressable": true
+        },
+        {
+          "testID": "row-family-safe",
+          "text": "Modo para toda a família Mantém conteúdo sexual explícito, violência gráfica e automutilação fora das respostas. Ele reduz isso; não pega tudo.",
+          "pressable": true
+        },
+        {
+          "testID": "row-language",
+          "text": "Idioma do app Português (Brasil)",
+          "value": "Português (Brasil)",
+          "pressable": true
+        },
+        {
+          "testID": "row-wifi-only",
+          "text": "Só no Wi-Fi",
+          "pressable": true
+        },
+        {
+          "testID": "row-storage",
+          "text": "Privacidade e armazenamento",
+          "pressable": true
+        },
+        {
+          "testID": "row-reports",
+          "text": "Denúncias Respostas que você denunciou, guardadas neste aparelho",
+          "pressable": true
+        },
+        {
+          "testID": "row-proof",
+          "text": "Prova",
+          "pressable": true
+        },
+        {
+          "testID": "row-audit",
+          "text": "Registro de auditoria Por cofre, encadeado por hash, nunca o conteúdo das mensagens",
+          "pressable": true
+        },
+        {
+          "testID": "row-verify",
+          "text": "Verificar um registro assinado Conferir o hash e a assinatura de um registro .json",
+          "pressable": true
+        },
+        {
+          "testID": "row-statement",
+          "text": "Declaração de arquitetura Datada, para impressão, para um dossiê de conformidade",
+          "pressable": true
+        },
+        {
+          "testID": "row-about",
+          "text": "Sobre",
+          "pressable": true
+        },
+        {
+          "testID": "back",
+          "text": "",
+          "role": "button",
+          "label": "Voltar",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "pt-05-settings"
+    },
+    {
+      "i": 45,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 155,
+      "detail": "/proof"
+    },
+    {
+      "i": 46,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 0,
+      "detail": "proof appeared"
+    },
+    {
+      "i": 47,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 48,
+      "op": "value",
+      "ok": true,
+      "ms": 1,
+      "value": {
+        "text": "O Instant e o pacote de fotos dele vêm dentro do app · nada baixado",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "O Instant e o pacote de fotos dele vêm dentro do app · nada baixado"
+    },
+    {
+      "i": 49,
+      "op": "value",
+      "ok": true,
+      "ms": 0,
+      "value": {
+        "text": "Rede o iOS não tem essa permissão · usada só para um download que você pede",
+        "props": {
+          "disabled": false
+        }
+      },
+      "detail": "Rede o iOS não tem essa permissão · usada só para um download que você pede"
+    },
+    {
+      "i": 50,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 5068,
+      "detail": "pt-06-proof"
+    },
+    {
+      "i": 51,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "proof",
+          "text": "SELADO · NO APARELHO desde a instalação · 0 dia SAI 0 B · ENTRA 0 B CONEXÕES 0 nesta sessão O iOS não mantém contador de bytes por app; OUT é o que a camada de rede do próprio Inborn registrou. Verifique no nível do sistema no Relatório de Privacidade do App. LISTA DE REDE PERMITIDA huggingface.co só quando você pede · aí aparece no Relatório de Privacidade do App, de propósito *.hf.co os bytes do arquivo de um download do Hugging Face, depois que huggingface.co redireciona para lá ÚLTIMA ENTREGA O Instant e o pacote de fotos dele vêm dentro do app · nada baixado PERMISSÕES Rede o iOS não tem essa permissão · usada só para um download que você pede Microfone desligada · pedida só quando você usa Câmera desligada · pedida só quando você usa Face ID / Touch ID desligada · pedida só quando você usa RASTREADORES 0 nenhum SDK de análise, falhas, anúncios ou atribuição BUILD 1.0.0 (45) · ea308cd6c963 compilado em 2026-10-08 O código-fonte é público em github.com/moshecohen90/inborn: este identificador indica o commit de onde foi compilado, e você pode consultá-lo por conta própria. Tudo em CONFIRA VOCÊ MESMO continua funcionando sem ele. TESTE EM MODO AVIÃO Ative o modo avião e pergunte qualquer coisa. A resposta vem do mesmo jeito, porque ela sempre saiu deste celular. Fazer o teste do modo avião Ver registro de rede CONFIRA VOCÊ MESMO Ajustes → Privacidade e Segurança → Relatório de Privacidade do App → Inborn: nenhum domínio, a menos que você tenha pedido um download do Hugging Face. Coloque a gente atrás do Little Snitch, NetGuard ou Lockdown e veja que nada aparece. SELADO · NO APARELHO"
+        },
+        {
+          "testID": "proof-readout",
+          "text": "SELADO · NO APARELHO desde a instalação · 0 dia SAI 0 B · ENTRA 0 B CONEXÕES 0 nesta sessão O iOS não mantém contador de bytes por app; OUT é o que a camada de rede do próprio Inborn registrou. Verifique no nível do sistema no Relatório de Privacidade do App."
+        },
+        {
+          "testID": "proof-meter",
+          "text": "SAI 0 B · ENTRA 0 B CONEXÕES 0 nesta sessão",
+          "value": "CONEXÕES 0 nesta sessão"
+        },
+        {
+          "testID": "proof-delivery-builtin",
+          "text": "O Instant e o pacote de fotos dele vêm dentro do app · nada baixado"
+        },
+        {
+          "testID": "perm-network",
+          "text": "Rede o iOS não tem essa permissão · usada só para um download que você pede"
+        },
+        {
+          "testID": "perm-microphone",
+          "text": "Microfone desligada · pedida só quando você usa"
+        },
+        {
+          "testID": "perm-camera",
+          "text": "Câmera desligada · pedida só quando você usa"
+        },
+        {
+          "testID": "perm-biometrics",
+          "text": "Face ID / Touch ID desligada · pedida só quando você usa"
+        },
+        {
+          "testID": "proof-build",
+          "text": "1.0.0 (45) · ea308cd6c963 compilado em 2026-10-08"
+        },
+        {
+          "testID": "proof-source-note",
+          "text": "O código-fonte é público em github.com/moshecohen90/inborn: este identificador indica o commit de onde foi compilado, e você pode consultá-lo por conta própria. Tudo em CONFIRA VOCÊ MESMO continua funcionando sem ele."
+        },
+        {
+          "testID": "proof-airplane-why",
+          "text": "Ative o modo avião e pergunte qualquer coisa. A resposta vem do mesmo jeito, porque ela sempre saiu deste celular."
+        },
+        {
+          "testID": "proof-airplane",
+          "text": "Fazer o teste do modo avião",
+          "pressable": true
+        },
+        {
+          "testID": "proof-log",
+          "text": "Ver registro de rede",
+          "pressable": true
+        },
+        {
+          "testID": "network-log",
+          "text": ""
+        },
+        {
+          "testID": "back",
+          "text": "",
+          "role": "button",
+          "label": "Voltar",
+          "pressable": true
+        },
+        {
+          "testID": "seal",
+          "text": "",
+          "role": "image",
+          "label": "SELADO · NO APARELHO"
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "pt-06-proof"
+    },
+    {
+      "i": 52,
+      "op": "scrollTo",
+      "ok": false,
+      "ms": 0,
+      "detail": "scrollTo perm-network: not mounted"
+    },
+    {
+      "i": 53,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1013,
+      "detail": "1000 ms"
+    },
+    {
+      "i": 54,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 2219,
+      "detail": "pt-07-proof-permissions"
+    },
+    {
+      "i": 55,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 163,
+      "detail": "/settings/about"
+    },
+    {
+      "i": 56,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "about appeared"
+    },
+    {
+      "i": 57,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1501,
+      "detail": "1500 ms"
+    },
+    {
+      "i": 58,
+      "op": "screenshot",
+      "ok": true,
+      "ms": 4758,
+      "detail": "pt-08-about"
+    },
+    {
+      "i": 59,
+      "op": "dump",
+      "ok": true,
+      "ms": 1,
+      "nodes": [
+        {
+          "testID": "about",
+          "text": "VERSÃO 1.0.0 (45) ea308cd6c963 LICENÇAS Licenças dos modelos Licenças de código aberto PRIVACIDADE Não coletamos nada. Não há do que se descadastrar. Política de privacidade Termos de uso Acessibilidade AJUDA Relatar um problema Cria um e-mail com detalhes do aparelho e do motor. Sem conteúdo de chat. O que está faltando? Feito sem servidor. Sobre"
+        },
+        {
+          "testID": "row-privacy",
+          "text": "Política de privacidade",
+          "pressable": true
+        },
+        {
+          "testID": "row-terms",
+          "text": "Termos de uso",
+          "pressable": true
+        },
+        {
+          "testID": "row-accessibility",
+          "text": "Acessibilidade",
+          "pressable": true
+        },
+        {
+          "testID": "back",
+          "text": "",
+          "role": "button",
+          "label": "Voltar",
+          "pressable": true
+        },
+        {
+          "testID": "device-explain-sheet",
+          "text": ""
+        },
+        {
+          "testID": "qa-bridge",
+          "text": ""
+        }
+      ],
+      "detail": "pt-08-about"
+    },
+    {
+      "i": 60,
+      "op": "deeplink",
+      "ok": true,
+      "ms": 156,
+      "detail": "/"
+    },
+    {
+      "i": 61,
+      "op": "waitFor",
+      "ok": true,
+      "ms": 1,
+      "detail": "composer-input appeared"
+    },
+    {
+      "i": 62,
+      "op": "sleep",
+      "ok": true,
+      "ms": 1516,
+      "detail": "1500 ms"
+    }
+  ],
+  "errors": [
+    "step 52 (scrollTo): scrollTo perm-network: not mounted",
+    "console.log: [chat] identity kind=capabilities lang=pt-BR model=instant"
+  ]
+}

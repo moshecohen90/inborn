@@ -1,0 +1,7 @@
+     × a new embedder revision re-embeds the stored passages in place: no page is read again, every passage is kept 26ms
+     × passages cut another way are read and cut again 1ms
+     × a rebuild killed halfway resumes at its committed page 3ms
+     × a file attached during a library rebuild is read at once; the rebuild steps aside and resumes where it stopped 5002ms
+     × the document a question is about is rebuilt before the rest of the library 120ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+      Tests  5 failed | 1 passed (6)

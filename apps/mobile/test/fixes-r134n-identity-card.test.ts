@@ -36,7 +36,7 @@ describe("round 134N · a question about the assistant is answered by the app, w
       return m ? selfAnswer(m.kind, m.lang, { device: "phone", model: "Fast" }) : null;
     };
     expect(answer("hey! what is this app?")).toBe("I'm Inborn, a private assistant that runs on this phone. Nothing you write or attach leaves it. I help with questions, writing, translation, PDFs and photos. Right now Fast is answering.");
-    expect(answer("what can you do?")).toMatch(/^Inborn can answer questions, write and edit text, translate/);
+    expect(answer("what can you do?")).toMatch(/^I'm Inborn, and I can answer questions, write and edit text, translate/);
     expect(answer("מי אתה?")).toMatch(/^אני Inborn/);
     expect(answer("give me a pancake recipe")).toBeNull();
   });

@@ -164,8 +164,8 @@ describe("F399 · the library across two visits", () => {
     const after = two.library.document(doc.id)!;
     expect(after).toMatchObject({ status: "indexed", embedModel: "embed-e5", chunkCount: 1 });
     expect(after.error).toBeUndefined();
-    /* Read again from the stored bytes, not from a dead blob key. */
-    expect(opened).toEqual([after.uri]);
+    /* The word index was cut to the index model's size, so only its vectors are made: the file is not read again. */
+    expect(opened).toEqual([]);
     const { prompt, lexical } = await two.library.ask("What did the new fuel pier cost?", { docIds: [doc.id] });
     expect(lexical).toBeUndefined();
     expect(prompt.used.map((h) => h.chunk.docId)).toEqual([doc.id]);

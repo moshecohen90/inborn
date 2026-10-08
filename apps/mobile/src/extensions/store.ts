@@ -61,6 +61,9 @@ export function extensionUri(id: string): string | null {
   return ext && extensionState(id).kind === "ready" ? opfsUri(ext.file) : null;
 }
 
+/** A browser has no store between it and the catalog host. */
+export const storeReachable = (): boolean => true;
+
 /** Downloads into OPFS (resuming a partial file) and verifies; the state carries progress and the F349 failure. */
 export async function installExtension(id: string): Promise<ExtensionState> {
   const now = extensionState(id);

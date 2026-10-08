@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View, type StyleProp, type ViewStyle } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
+import { useTranslation } from "react-i18next";
 import { Icon } from "@inborn/ui";
 
 import { useTheme } from "../../services/theme";
@@ -29,12 +30,13 @@ export function Header({ title, seal, back = true, end, onBack }: HeaderProps) {
   const { theme } = useTheme();
   const type = useType();
   const router = useRouter();
+  const { t } = useTranslation();
   const goBack = onBack ?? (() => (router.canGoBack() ? router.back() : router.replace("/")));
   return (
     <View style={styles.header}>
       <View style={styles.headerSide}>
         {back ? (
-          <Pressable testID="back" accessibilityRole="button" accessibilityLabel={typeof back === "string" ? back : "Back"} onPress={goBack} hitSlop={8} style={styles.headerBtn}>
+          <Pressable testID="back" accessibilityRole="button" accessibilityLabel={typeof back === "string" ? back : t("a11y.back")} onPress={goBack} hitSlop={8} style={styles.headerBtn}>
             <Icon name="chevronLeft" size={24} color={theme.text2} />
             {typeof back === "string" ? <Text style={[type.body, { color: theme.text2 }]}>{back}</Text> : null}
           </Pressable>

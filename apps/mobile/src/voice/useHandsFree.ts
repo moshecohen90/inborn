@@ -1,6 +1,7 @@
+import { getLocales } from "expo-localization";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { AppState } from "react-native";
-import { BUNDLED_MANIFEST, SAFETY_BASELINE, VOICE_SYSTEM_HINT, buildPrompt, findModel, planAnswerLength, initialHandsFree, isEmptyTranscript, languageHint, nextHandsFree, screenText, turnSystemPrompt, titleFromFirstMessage, type ChatStore, type HandsFreeEffect, type HandsFreeEvent, type HandsFreeState, type Message } from "@inborn/core";
+import { BUNDLED_MANIFEST, SAFETY_BASELINE, VOICE_SYSTEM_HINT, buildPrompt, findModel, planAnswerLength, initialHandsFree, isEmptyTranscript, languageHint, nextHandsFree, screenText, turnSystemPrompt, titleFromFirstMessage, withoutCrisisNumbers, type ChatStore, type HandsFreeEffect, type HandsFreeEvent, type HandsFreeState, type Message } from "@inborn/core";
 import { getEngine, loadSession } from "../engine";
 import { useDeviceState } from "../device/useDeviceState";
 import { UtteranceListener } from "./mic";
@@ -150,7 +151,7 @@ export function useHandsFree({ store, chatId: initialChatId, incognito, modelId,
           for await (const d of engine.generate(session, prompt.messages, { reasoning: false, maxTokens: length.maxTokens, temperature: 0.6 }, ac.signal)) {
             if (d.text) {
               reply += d.text;
-              const snapshot = reply;
+              const snapshot = withoutCrisisNumbers(reply, { streaming: true, question: effect.text, region: getLocales()[0]?.regionCode ?? undefined });
               if (stateRef.current.phase === "thinking") setState((s) => ({ ...s, live: snapshot }));
             }
           }
@@ -160,6 +161,7 @@ export function useHandsFree({ store, chatId: initialChatId, incognito, modelId,
           devVoiceRecord("handsFree.answer", { answerMs: Date.now() - started, text: reply.trim() });
           const replaced = screenText(reply, familySafe).flagged;
           if (replaced) reply = familySafeText;
+          else reply = withoutCrisisNumbers(reply, { question: effect.text, region: getLocales()[0]?.regionCode ?? undefined });
           if (id && reply.trim()) await store.appendMessage({ chatId: id, role: "assistant", content: reply.trim(), modelId, ...(replaced ? { safety: "family-safe" as const } : {}) });
           dispatch({ type: "answer", text: reply });
           return;

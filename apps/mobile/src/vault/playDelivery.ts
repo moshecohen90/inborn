@@ -14,7 +14,11 @@ export class PlayDelivery implements ModelDelivery {
   private unavailable = false;
 
   plan(model: CatalogModel): DeliveryPlan | null {
-    return !this.unavailable && packsOf(model).length && hasAssetPacks() ? { via: "play", origin: "Google Play", bytes: model.bytes } : null;
+    return this.reachable() && packsOf(model).length ? { via: "play", origin: "Google Play", bytes: model.bytes } : null;
+  }
+
+  reachable(): boolean {
+    return !this.unavailable && hasAssetPacks();
   }
 
   locate(model: CatalogModel): string | null {
