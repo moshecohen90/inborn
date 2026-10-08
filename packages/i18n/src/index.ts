@@ -83,4 +83,4 @@ export { installed as intlPolyfills } from "./intl";
 export { i18next };
 export { joinList, listSeparator } from "./list";
 export { htmlLang, RTL_LOCALES } from "./documentLang";
-export { offlineAnswer, selfAnswer } from "./selfAnswer";
+export { isAppDecline, offlineAnswer, questionOpeners, selfAnswer } from "./selfAnswer";

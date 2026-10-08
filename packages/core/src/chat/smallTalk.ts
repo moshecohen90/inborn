@@ -172,6 +172,9 @@ export function plainChatKind(text: string): PlainChatKind | null {
   return words <= REWORK_MAX_WORDS && REWORKS.some((re) => re.test(folded)) ? "follow-up" : null;
 }
 
+/** True when a message names a file, page or section in one of the launch languages or Hebrew ("what does my document say…"). */
+export const namesFile = (text: string): boolean => FILE_WORD.test(text.normalize("NFKC").toLowerCase().replace(NOT_FILE_WORDS, " "));
+
 /** True for either kind of plain chat turn: neither one searches the attached files. */
 export const isPlainChatTurn = (text: string): boolean => plainChatKind(text) !== null;
 
