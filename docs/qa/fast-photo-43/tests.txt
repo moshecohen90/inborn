@@ -1,0 +1,37 @@
+# vitest apps/mobile, affected suites (verbose)
+ ✓ src/images/photoPlanHere.test.ts > the photo card offers only a pack this phone can receive > Android, Fast selected: Fast's 668 MB pack is offered through Play, with Instant as the way out 422ms
+ ✓ src/images/photoPlanHere.test.ts > the photo card offers only a pack this phone can receive > Android: the download asks Play for inborn_model_vision_fast and nothing else 104ms
+ ✓ src/images/photoPlanHere.test.ts > the photo card offers only a pack this phone can receive > Android without Play: no pack is offered, the switch to Instant's projector at no cost 40ms
+ ✓ src/images/photoPlanHere.test.ts > the photo card offers only a pack this phone can receive > Android without Play: asking for Fast's pack anyway starts no download and fails as undeliverable 14ms
+ ✓ src/images/photoPlanHere.test.ts > the photo card offers only a pack this phone can receive > iOS, Fast selected: the 668 MB pack over HTTPS stays the offer 25ms
+ ✓ src/images/photoPlanHere.test.ts > F463 · a model sees on this phone only through a pack that is here or can come here > Android: Fast sees through Play's pack; without Play, Fast does not see and the attach sheet offers Instant 119ms
+ ✓ src/images/photoPlanHere.test.ts > F463 · a model sees on this phone only through a pack that is here or can come here > Android: Fast sees once its pack is on the phone 136ms
+ ✓ src/images/photoPlanHere.test.ts > F463 · a model sees on this phone only through a pack that is here or can come here > iOS: Fast sees while its pack is still to download, because HTTPS can bring it 89ms
+ ✓ src/images/photoPlanHere.test.ts > F463 · a model sees on this phone only through a pack that is here or can come here > a model without vision never sees 13ms
+ ✓ src/images/photoPlanHere.test.ts > F463 · a model sees on this phone only through a pack that is here or can come here > the Model sheet's Good at line names photos only for a model that sees here 1ms
+ ✓ src/extensions/photoCardDelivery.test.ts > the photo card offers only what this phone can do > Fast's pack comes through Play: the card offers that one download with its size, nothing that fails 3ms
+ ✓ src/extensions/photoCardDelivery.test.ts > the photo card offers only what this phone can do > the download runs on the card with its progress 0ms
+ ✓ src/extensions/photoCardDelivery.test.ts > the photo card offers only what this phone can do > Play cannot bring the pack: Instant reads the photo here, the switch is the button, no Try again and no Play blame 0ms
+ ✓ src/extensions/photoCardDelivery.test.ts > the photo card offers only what this phone can do > Play itself is absent on the device: the card says so, and still offers the switch 0ms
+ ✓ src/extensions/photoCardDelivery.test.ts > the photo card offers only what this phone can do > no way out at all: the card says Fast cannot look at photos here and offers only Remove the photo 0ms
+ ✓ src/extensions/photoCardDelivery.test.ts > the photo card offers only what this phone can do > a pack Play cannot serve is never offered: the plan is the switch to Instant 0ms
+ ✓ src/extensions/photoCardDelivery.test.ts > the photo card offers only what this phone can do > an ordinary failure keeps its Try again 0ms
+ ✓ src/extensions/photoCardDelivery.test.ts > the photo card offers only what this phone can do > every locale carries the two new lines with the placeholders the card fills 12ms
+ ✓ test/assetPacks.test.ts > the Play pack catalogue > Fast's projector is an on-demand Play pack beside its HTTPS route 2ms
+ ✓ test/assetPacks.test.ts > the Play pack catalogue > every catalog Play pack is built by app.config.ts with the same name, delivery type and asset file, and nothing else is 2ms
+ ✓ test/assetPacks.test.ts > the Play pack catalogue > the packs stay inside Play's limits: 1.5 GB each, 30 GB for on-demand and fast-follow together, 100 packs 0ms
+ ✓ test/assetPacks.test.ts > plugins/withAssetPacks.js output for Fast's photo pack > writes an on-demand asset-pack module named after the pack 0ms
+ ✓ test/assetPacks.test.ts > plugins/withAssetPacks.js output for Fast's photo pack > links the asset from INBORN_MODELS_DIR under its catalog file name, and skips the pack when the file is absent 1ms
+ Test Files  22 passed (22)
+      Tests  153 passed (153)
+
+      Tests  153 passed (153)
+
+# full suites
+ Test Files  174 passed (174)
+      Tests  1509 passed (1509)
+ Test Files  119 passed | 4 skipped (123)
+      Tests  1566 passed | 5 skipped (1571)
+
+# catalog signature
+manifest signature OK

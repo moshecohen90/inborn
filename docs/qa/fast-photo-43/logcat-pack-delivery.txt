@@ -1,0 +1,27 @@
+10-08 18:29:54.320  6841  6874 I PlayCore: UID: [10162]  PID: [6841] AssetPackStateListenerRegistryV2 : registerListener
+10-08 18:29:54.320  6841  6874 I PlayCore: UID: [10162]  PID: [6841] AssetPackServiceListenerRegistry : registerListener
+10-08 18:29:54.334  6841  6918 I PlayCore: UID: [10162]  PID: [6841] FakeAssetPackService : syncPacks()
+10-08 18:29:54.338  6841  6874 I PlayCore: UID: [10162]  PID: [6841] FakeAssetPackService : startDownload([inborn_model_vision_fast])
+10-08 18:30:42.942  6841  6931 I PlayCore: UID: [10162]  PID: [6841] FakeAssetPackService : keepAlive
+10-08 18:30:49.021  6841  6931 I PlayCore: UID: [10162]  PID: [6841] FakeAssetPackService : keepAlive
+10-08 18:30:54.056  6841  6931 I PlayCore: UID: [10162]  PID: [6841] FakeAssetPackService : keepAlive
+10-08 18:30:54.441  6841  6918 I PlayCore: UID: [10162]  PID: [6841] FakeAssetPackService : getChunkFileDescriptor(session=4, inborn_model_vision_fast, inborn_model_vision_fast, 0)
+10-08 18:30:56.106  6841  6874 I PlayCore: UID: [10162]  PID: [6841] FakeAssetPackService : getPackStates([inborn_model_vision_fast])
+10-08 18:30:57.491  6841  6874 I PlayCore: UID: [10162]  PID: [6841] FakeAssetPackService : getPackStates([inborn_model_vision_fast])
+10-08 18:30:58.993  6841  6874 I PlayCore: UID: [10162]  PID: [6841] FakeAssetPackService : getPackStates([inborn_model_vision_fast])
+10-08 18:31:00.550  6841  6874 I PlayCore: UID: [10162]  PID: [6841] FakeAssetPackService : getPackStates([inborn_model_vision_fast])
+10-08 18:31:02.166  6841  6874 I PlayCore: UID: [10162]  PID: [6841] FakeAssetPackService : getPackStates([inborn_model_vision_fast])
+10-08 18:31:03.670  6841  6874 I PlayCore: UID: [10162]  PID: [6841] FakeAssetPackService : getPackStates([inborn_model_vision_fast])
+10-08 18:31:05.167  6841  6874 I PlayCore: UID: [10162]  PID: [6841] FakeAssetPackService : getPackStates([inborn_model_vision_fast])
+10-08 18:31:06.862  6841  6874 I PlayCore: UID: [10162]  PID: [6841] FakeAssetPackService : getPackStates([inborn_model_vision_fast])
+10-08 18:31:07.374  6841  6918 I PlayCore: UID: [10162]  PID: [6841] ExtractChunkTaskHandler : Extraction finished for chunk 0 of slice inborn_model_vision_fast of pack inborn_model_vision_fast of session 4.
+10-08 18:31:07.375  6841  6918 I PlayCore: UID: [10162]  PID: [6841] FakeAssetPackService : notifyChunkTransferred
+10-08 18:31:08.226  6841  6874 I PlayCore: UID: [10162]  PID: [6841] FakeAssetPackService : getPackStates([inborn_model_vision_fast])
+10-08 18:31:09.770  6841  6874 I PlayCore: UID: [10162]  PID: [6841] FakeAssetPackService : getPackStates([inborn_model_vision_fast])
+10-08 18:31:10.260  6841  6918 I PlayCore: UID: [10162]  PID: [6841] VerifySliceTaskHandler : Verification of slice inborn_model_vision_fast of pack inborn_model_vision_fast successful.
+10-08 18:31:10.317  6841  6918 I PlayCore: UID: [10162]  PID: [6841] FakeAssetPackService : notifyModuleCompleted
+10-08 18:31:10.332  6841  6874 I PlayCore: UID: [10162]  PID: [6841] AssetPackStateListenerRegistryV2 : unregisterListener
+10-08 18:31:10.332  6841  6874 I PlayCore: UID: [10162]  PID: [6841] AssetPackServiceListenerRegistry : unregisterListener
+10-08 18:31:16.179  6841  6931 I PlayCore: UID: [10162]  PID: [6841] FakeAssetPackService : keepAlive
+10-08 18:31:16.774  6841  7126 I RNLlama : llama_rn_context_mtmd:707 [DEBUG] Initializing multimodal with mmproj path: /data/data/com.inbornapp.mobile/files/assetpacks/inborn_model_vision_fast/1/1/assets/mmproj-Qwen3.5-2B-F16.gguf
+10-08 18:31:26.517  6841  7126 I RNLlama : llama_rn_context_mtmd:753 Multimodal context initialized successfully with mmproj: /data/data/com.inbornapp.mobile/files/assetpacks/inborn_model_vision_fast/1/1/assets/mmproj-Qwen3.5-2B-F16.gguf
