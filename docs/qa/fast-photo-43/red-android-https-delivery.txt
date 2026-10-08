@@ -1,0 +1,6 @@
+     × canDeliver is true exactly for the catalog files that have a Play pack; an HTTPS entry never counts 66ms
+     × without Play on the device nothing is deliverable, HTTPS entries included 12ms
+     × the vault builds its one delivery itself, and nothing else in the app hands it another 1ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+AssertionError: sharp-phi: expected true to be false // Object.is equality
+AssertionError: instant: expected true to be false // Object.is equality
