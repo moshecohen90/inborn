@@ -54,6 +54,7 @@ const MIME = {
   ".png": "image/png",
   ".jpg": "image/jpeg",
   ".ico": "image/x-icon",
+  ".mp4": "video/mp4",
   ".woff2": "font/woff2",
   ".wasm": "application/wasm",
   ".gguf": "application/octet-stream",

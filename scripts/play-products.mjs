@@ -28,6 +28,8 @@ const PRODUCTS = [
       "fr-FR": ["Inborn Pro", "Toutes les fonctions Pro. Payez une fois, gardez pour toujours."],
       "es-ES": ["Inborn Pro", "Todas las funciones Pro. Paga una vez, es tuyo para siempre."],
       "pt-BR": ["Inborn Pro", "Todos os recursos Pro. Pague uma vez, é seu para sempre."],
+      "ko-KR": ["Inborn Pro", "Pro의 모든 기능. 한 번 사면, 계속 내 것."],
+      "zh-TW": ["Inborn Pro", "Pro 全部功能。買一次，永遠是你的。"],
     },
   },
   {
@@ -40,6 +42,8 @@ const PRODUCTS = [
       "fr-FR": ["Inborn Pro (prix de lancement)", "Pro au prix de lancement. Payez une fois, gardez pour toujours."],
       "es-ES": ["Inborn Pro (precio de lanzamiento)", "Pro a precio de lanzamiento. Paga una vez, es tuyo para siempre."],
       "pt-BR": ["Inborn Pro (preço de lançamento)", "Pro com preço de lançamento. Pague uma vez, é seu para sempre."],
+      "ko-KR": ["Inborn Pro (출시 기념 가격)", "출시 기념 가격의 Pro. 한 번 사면, 계속 내 것."],
+      "zh-TW": ["Inborn Pro（上市優惠價）", "以上市優惠價取得 Pro。買一次，永遠是你的。"],
     },
   },
   {
@@ -52,6 +56,8 @@ const PRODUCTS = [
       "fr-FR": ["Inborn Pro for Work", "Personas et outils Work. Achat unique."],
       "es-ES": ["Inborn Pro for Work", "Personas y herramientas Work. Pago único."],
       "pt-BR": ["Inborn Pro for Work", "Personas e ferramentas Work. Pagamento único."],
+      "ko-KR": ["Inborn Pro for Work", "Work용 페르소나와 도구. 1회 구매."],
+      "zh-TW": ["Inborn Pro for Work", "Work 專用角色與工具。一次買斷。"],
     },
   },
   {
@@ -64,6 +70,8 @@ const PRODUCTS = [
       "fr-FR": ["Passer à Pro for Work", "Pour les propriétaires de Pro : ajoutez les fonctions Work. Payez une fois."],
       "es-ES": ["Pasar a Pro for Work", "Para dueños de Pro: añade las funciones Work. Paga una vez."],
       "pt-BR": ["Mudar para o Pro for Work", "Para quem tem o Pro: adicione os recursos Work. Pague uma vez."],
+      "ko-KR": ["Pro for Work로 업그레이드", "Pro 사용자용: Work 기능 추가. 1회 구매."],
+      "zh-TW": ["升級到 Pro for Work", "Pro 用戶專屬：加購 Work 功能。一次買斷。"],
     },
   },
 ];
