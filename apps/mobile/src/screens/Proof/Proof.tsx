@@ -40,6 +40,7 @@ export function Proof() {
   const version = Application.nativeApplicationVersion ?? Constants.expoConfig?.version ?? "0.0.1";
   const build = Application.nativeBuildVersion ?? "web";
   const log = networkLog.list();
+  const downloaded = delivery?.status === "done" && delivery.source !== "bundled";
 
   return (
     <Screen header={{ back: true, seal: { state: sealState, label: sealLabel } }} testID="proof">
@@ -64,15 +65,19 @@ export function Proof() {
           ) : (
             <Line text={t("proof.delivery.webNone")} testID="proof-delivery-web" />
           )
-        ) : delivery && delivery.status === "done" ? (
-          <Line mono={`${delivery.name} · ${formatModelBytes(delivery.totalBytes)}`} text={t(deliveryKey(delivery.source), { host: MODELS_HOST })} mark={deliveryHashChecked(delivery.source)} testID="proof-delivery" />
         ) : (
-          <Line text={Platform.OS === "android" ? t("proof.delivery.builtinPlay") : t("proof.delivery.builtin")} />
+          <>
+            {downloaded && delivery ? (
+              <Line mono={`${delivery.name} · ${formatModelBytes(delivery.totalBytes)}`} text={t(deliveryKey(delivery.source), { host: MODELS_HOST })} mark={deliveryHashChecked(delivery.source)} testID="proof-delivery" />
+            ) : null}
+            {/* The iOS app itself carries Instant and its photo pack, so a later download must not hide that line. */}
+            {Platform.OS === "ios" || !downloaded ? <Line text={Platform.OS === "android" ? t("proof.delivery.builtinPlay") : t("proof.delivery.builtin")} testID="proof-delivery-builtin" /> : null}
+          </>
         )}
       </Section>
 
       <Section title={t("proof.permissions")}>
-        {permissionRows().map((p) => (
+        {permissionRows(Platform.OS, __DEV__).map((p) => (
           <Line key={p.key} mono={t(`proof.permission.${p.key}`)} text={t(`proof.permissionState.${p.state}`)} testID={`perm-${p.key}`} />
         ))}
       </Section>

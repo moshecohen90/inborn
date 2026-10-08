@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Pressable, StyleSheet, Text, View, useWindowDimensions } from "react-native";
 import { AppModal } from "./AppModal";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useTranslation } from "react-i18next";
 import { radius } from "@inborn/ui";
 import { useTheme } from "../../services/theme";
 import { useKeyboardLift } from "../../lib/keyboard";
@@ -14,6 +15,7 @@ import { useWide } from "../../lib/useLayout";
 /** Bottom sheet (§9.4 radius 20, 280 ms): confirmations, the network log, the passcode entry. */
 export function Sheet({ visible, onClose, title, children, testID }: { visible: boolean; onClose: () => void; title?: string; children: ReactNode; testID?: string }) {
   const { theme } = useTheme();
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const lift = useKeyboardLift();
   const { height: windowHeight } = useWindowDimensions();
@@ -30,7 +32,7 @@ export function Sheet({ visible, onClose, title, children, testID }: { visible: 
   );
   return (
     <AppModal visible={visible} transparent animationType={wide ? "fade" : "slide"} onRequestClose={onClose}>
-      <Pressable testID={testID ? `${testID}-close` : "sheet-close"} accessibilityLabel="Close" style={styles.backdrop} onPress={onClose} />
+      <Pressable testID={testID ? `${testID}-close` : "sheet-close"} accessibilityLabel={t("a11y.close")} style={styles.backdrop} onPress={onClose} />
       {wide ? (
         <View pointerEvents="box-none" style={styles.centre}>
           <View testID={testID} style={[styles.dialog, panelStyle, { maxHeight: geometry.maxHeight, backgroundColor: panelColor(theme.surface1), borderColor: theme.border }]}>
