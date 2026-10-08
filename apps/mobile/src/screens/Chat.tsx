@@ -28,8 +28,11 @@ import {
   replyReserve,
   calibrate,
   contextLevel,
+  crisisNumbersIn,
   crisisResources,
   detectCrisis,
+  withoutAppAnswers,
+  withoutCrisisNumbers,
   continuationSeparator,
   continueRequest,
   prefillText,
@@ -98,7 +101,7 @@ import {
   selfQuestionMatch,
   liveDataQuestionMatch,
 } from "@inborn/core";
-import { offlineAnswer, selfAnswer } from "@inborn/i18n";
+import { isAppDecline, offlineAnswer, selfAnswer } from "@inborn/i18n";
 import { enableVision, getEngine, isVisionEased, loadSession, noteCarriedOver, settledModelId, subscribeVisionEased, wasStoppedByGuard } from "../engine";
 import { writeDevResult } from "../adapters/devModel";
 import { imageMaxTokens } from "../adapters/imageTokens";
@@ -232,7 +235,11 @@ export { afterSheetClose };
 const subscribeVault = (listener: () => void) => getVault().subscribe(listener);
 const missingSnapshot = () => getVault().missingModel();
 const errorText = (e: unknown) => (e instanceof Error ? e.message : String(e));
-const wire = (rows: readonly Row[]): Pick<ChatMessage, "id" | "role" | "content" | "images">[] => rows.filter((r) => !r.streaming && !r.error && (r.role !== "assistant" || r.content)).map(({ id, role, content, images }) => ({ id, role, content, ...(images?.length ? { images } : {}) }));
+const wire = (rows: readonly Row[]): Pick<ChatMessage, "id" | "role" | "content" | "images">[] =>
+  withoutAppAnswers(
+    rows.filter((r) => !r.streaming && !r.error && (r.role !== "assistant" || r.content)).map(({ id, role, content, images }) => ({ id, role, content, ...(images?.length ? { images } : {}) })),
+    isAppDecline,
+  );
 const toMessage = ({ role, content, images }: Pick<ChatMessage, "role" | "content" | "images">): Message => ({ role, content, ...(images?.length ? { images: images.map(imageUri) } : {}) });
 
 const NO_SNOOZE: readonly string[] = [];
@@ -562,15 +569,18 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
     let live = true;
     /* Round 134M: a fresh answer with no picture never says its own rules back; over files or reworking an answer, only the document rules count. */
     let ruleNet: { instructions: string; question: string; files: boolean } | null = null;
+    /* F-134N-1: the question decides whether the turn is about help, and a number the user gave is theirs. */
+    let askedNow = "";
     /* Round 134M: the passages are the file's opening, so the source share does not judge the answer (`groundedCitations`). */
     let overview = false;
-    const shown = (): string => {
+    const echoNetted = (): string => {
       if (joint === null && reply) joint = continuationSeparator(prefix, reply);
       const text = prefix + (joint ?? "") + reply;
       /* F457: a fresh answer over documents drops the passage header a small model copies onto its first line. */
       const bare = sources && !prefix ? withoutEchoedLabels(text, { streaming: live, citations: sources }) : text;
       return ruleNet && !prefix ? withoutEchoedRules(bare, { ...ruleNet, streaming: live }) : bare;
     };
+    const shown = (): string => withoutCrisisNumbers(echoNetted(), { streaming: live, question: askedNow });
     let reasoning = continueFrom?.reasoning ?? "";
     let usage: Usage | undefined;
     let tokens = 0;
@@ -629,6 +639,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       const lastUser = lastUserAt >= 0 ? history[lastUserAt]!.content : "";
       /* F389: what the user asked for, so repetition they requested is not cut as a loop; Continue's own instruction is not the ask. */
       const asked = [...history].reverse().find((m) => m.role === "user" && m.content !== CONTINUE_PROMPT)?.content ?? "";
+      askedNow = asked;
       /* The notice belongs to the answer below it, so a fresh turn withdraws the last one; Continue keeps it, since it resumes that same answer. */
       if (!existingMessageId) setNoneMatched(false);
       if (!existingMessageId) setReindexing(null);
@@ -888,6 +899,17 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       live = false;
       /* Not behind __DEV__: QA counts what the user never saw. Lengths only, no text. */
       if (ruleNet && shown() !== reply) console.log(`[chat] rule-echo kept ${shown().length}/${reply.length} chars`);
+      /* F-134N-1: a crisis number the model made up is never shown; the app's verified card takes its place. */
+      const madeUpNumbers = crisisNumbersIn(reply, asked).length;
+      if (madeUpNumbers) {
+        console.log(`[chat] crisis-number removed n=${madeUpNumbers}`);
+        setSafety(crisisResources(getLocales()[0]?.regionCode ?? undefined));
+        if (!shown().trim()) {
+          ruleNet = null;
+          reply = t("safety.title");
+          patch((x) => ({ ...x, content: shown() }));
+        }
+      }
       const reason = stopReason.current;
       /* F50: the answer the model actually produced is never stored or exported; the row keeps one sentence and the mark. */
       const familySafeReplaced = familySafeHit || screenText(reply, familySafe).flagged;

@@ -67,3 +67,79 @@ const INTERNATIONAL: CrisisResource[] = [
 export function crisisResources(region: string | undefined): CrisisResource[] {
   return (region && BY_REGION[region.toUpperCase()]) || INTERNATIONAL;
 }
+
+const VERIFIED_DIGITS = new Set([...Object.values(BY_REGION).flat(), ...INTERNATIONAL].map((r) => r.phone.replace(/\D/g, "")));
+
+const LATIN_CONTACT = [
+  "crisis", "hotline", "helpline", "help line", "lifeline", "emergenc", "suicid", "samaritan", "ambulance", "poison control", "police", "self-harm",
+  "hurt herself", "hurt himself", "hurt themselves", "hurt yourself", "harm herself", "harm himself", "harm themselves", "harm yourself",
+  "emergência", "crise", "cvv", "linha de", "ambulância", "polícia", "línea de", "ambulancia", "policía",
+  "urgence", "ligne d'écoute", "samu", "pompiers", "krise", "notruf", "notfall", "seelsorge", "suizid", "krankenwagen", "polizei",
+];
+const OTHER_CONTACT = ["חירום", "קו חם", "קו סיוע", "ער\"ן", "התאבד", "מד\"א", "משטרה", "緊急", "救急", "いのちの電話", "ホットライン", "相談窓口", "自殺", "警察", "위기", "긴급", "응급", "상담전화", "핫라인", "자살", "경찰", "危機", "危机", "紧急", "急救", "熱線", "热线", "專線", "专线", "自杀"];
+const CONTACT = new RegExp(`(?<!\\p{L})(?:${LATIN_CONTACT.join("|")})|${OTHER_CONTACT.join("|")}`, "iu");
+/* Units after a number mean a quantity ("7 hours", "65-68°F"), never a line to call; "988-555-FREEDOM" is a number spelled in letters. */
+const PHONE = /\+?\(?\d[\d ().-]*\d(?:-[A-Z]{3,})?(?!\d|\s*(?:%|°|º|h\b|hours?|hrs?|min|minutes?|mg|ml|kg|years?|days?|weeks?|am\b|pm\b))/gu;
+const LIST_ITEM = /^\s*(?:[-*•]|\d+[.)])\s/;
+const SENTENCE_END = /(?<=[.!?。！？])\s+/u;
+
+const digitsOf = (token: string) => token.replace(/\D/g, "");
+
+function phonesIn(text: string): string[] {
+  return [...text.matchAll(PHONE)]
+    .map((m) => m[0])
+    .filter((token) => {
+      const digits = digitsOf(token).length;
+      if (digits > 15 || digits < 3) return false;
+      return digits >= 7 || /[A-Z]{3}$/.test(token) || !/[.-]/.test(token);
+    });
+}
+
+/** A turn about crisis or emergency help: in the answer, or in the question it answers. */
+const talksContact = (text: string, question: string): boolean => CONTACT.test(text) || CONTACT.test(question) || detectCrisis(question);
+
+/** Numbers to call that the model wrote itself: not on the verified list, not given by the user. */
+const madeUp = (text: string, question: string): string[] => {
+  const given = new Set(phonesIn(question).map(digitsOf));
+  return phonesIn(text).filter((p) => !VERIFIED_DIGITS.has(digitsOf(p)) && !given.has(digitsOf(p)));
+};
+
+/** Phone numbers a model wrote in a turn about crisis or emergency help that are not on the app's verified list (F-134N-1). */
+export function crisisNumbersIn(text: string, question = ""): string[] {
+  return talksContact(text, question) ? madeUp(text, question) : [];
+}
+
+/**
+ * The answer without the sentences that give a model-made crisis or emergency number, and without a heading left with
+ * nothing under it; the app's own card shows verified numbers instead. While streaming, an unfinished sentence holding
+ * a number waits until it can be judged.
+ */
+export function withoutCrisisNumbers(text: string, { streaming = false, question = "" }: { streaming?: boolean; question?: string } = {}): string {
+  const contact = talksContact(text, question);
+  if (!contact && !streaming) return text;
+  const lines = text.split("\n");
+  const last = lines.length - 1;
+  const drop = new Set<number>();
+  let changed = false;
+  const kept = lines.map((line, i) => {
+    const sentences = line.split(SENTENCE_END);
+    const out = sentences.filter((sentence, k) => !(contact && madeUp(sentence, question).length) && !(streaming && i === last && k === sentences.length - 1 && /\d{3}/.test(sentence)));
+    if (out.length === sentences.length) return line;
+    changed = true;
+    if (!out.join("").trim()) drop.add(i);
+    return out.join(" ");
+  });
+  if (!changed) return text;
+  for (let i = 0; i < lines.length; i++) {
+    if (drop.has(i) || !/[:：]\s*\**\s*$/.test(kept[i]!)) continue;
+    let j = i + 1;
+    while (j < lines.length && (!lines[j]!.trim() || LIST_ITEM.test(lines[j]!))) j++;
+    const items = [...Array(j - i - 1).keys()].map((k) => i + 1 + k).filter((k) => lines[k]!.trim());
+    if (items.length && items.every((k) => drop.has(k))) drop.add(i);
+  }
+  return kept
+    .filter((_, i) => !drop.has(i))
+    .join("\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
