@@ -2,90 +2,145 @@
 /**
  * Raw store-screenshot captures from the real app (spec §13.3): six screens per platform per locale.
  *
- *   node design/store/capture.mjs [--platform=android,ios,ipad] [--locale=en,ja,de,fr,es,pt-BR] [--screens=chat,proof,documents,paywall,vault,lock]
- *                                 [--port=8095] [--keep-metro] [--no-install]
+ *   node design/store/capture.mjs [--platform=android,ios,ipad] [--locale=en,ja,de,fr,es,pt-BR,ko,zh-Hant]
+ *                                 [--screens=chat,proof,documents,photo,paywall,vault,lock] [--copy=<prompts.json>] [--proof-text=<content_size>|''] [--no-install] [--keep-booted]
  *
- * Needs the dev builds from the README "Run on a phone" / "iOS simulator" recipes:
- *   design/store/raw/app-dev.apk + raw/app-proof.apk                       (node design/store/build.mjs)
- *   apps/mobile/ios/build/ss/Build/Products/Debug-iphonesimulator/Inborndev.app (xcodebuild -sdk iphonesimulator SWIFT_VERSION=5.0)
- * and the models in .models/ (Instant chat model + nomic embedder). It boots Pixel_6_API_33 and the two simulators named
- * below, drives the app through deep links plus the app's own dev hooks (EXPO_PUBLIC_AUTOPROMPT / AUTOINDEX / AUTOASK are
- * bundle-time, so Metro restarts once per locale), and writes design/store/raw/<platform>/<locale>/<screen>.png.
+ * Needs the builds design/store/build.mjs makes: the QA variant (com.inbornapp.mobile.qa, bundle embedded, QA bridge on)
+ * for the iOS simulator and for Android, plus the Android store build for the Proof screen. The app is driven through the
+ * in-app QA bridge (apps/mobile/src/qa: scripts in Documents/qa/in, screenshots acknowledged under Documents/qa/ack), the
+ * same transport scripts/ios-qa.mjs uses, so there is no Metro and no XCUITest runner. Writes
+ * design/store/raw/<android|ios|ipad>/<locale>/<screen>.png.
  */
 import { execFileSync, spawn, spawnSync } from "node:child_process";
-import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from "node:fs";
+import { copyFileSync, existsSync, mkdirSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dir = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dir, "../..");
 const MOBILE = join(ROOT, "apps/mobile");
-const MODELS = join(ROOT, ".models");
+const MODELS = process.env.INBORN_MODELS_DIR || join(ROOT, ".models");
 const RAW = join(__dir, "raw");
-const APK = join(__dir, "raw/app-dev.apk");
-const PROOF_APK = join(__dir, "raw/app-proof.apk");
-const IOS_APP = join(MOBILE, "ios/build/ss/Build/Products/Debug-iphonesimulator/Inborndev.app");
-const XCTESTRUN = () => join(MOBILE, "ios/build/ss/Build/Products", (existsSync(join(MOBILE, "ios/build/ss/Build/Products")) ? readdirSync(join(MOBILE, "ios/build/ss/Build/Products")).find((f) => f.endsWith(".xctestrun")) : undefined) ?? "none.xctestrun");
-const BUNDLE = "com.inbornapp.mobile";
-const AVD = "Pixel_6_API_33";
-const SIMS = { ios: "inborn-ss-iphone", ipad: "inborn-ss-ipad" };
+const QA_AAB = join(RAW, "app-qa.aab");
+const BUNDLETOOL = process.env.BUNDLETOOL || join(ROOT, ".tools/bundletool-all-1.18.3.jar");
+const PROOF_APK = join(RAW, "app-proof.apk");
+const IOS_APP = join(MOBILE, "ios/build/qa-sim/Build/Products/Release-iphonesimulator/Inborndev.app");
+const QA_BUNDLE = "com.inbornapp.mobile.qa";
+const STORE_BUNDLE = "com.inbornapp.mobile";
+/* any arm64 Android 13 google_apis AVD with root and a 32 GB /data (a Pixel 6 copy): the Fast and Sharp packs are copied out of
+   the local-testing packs, which stay beside them, so the default 16 GB fills up */
+const AVD = process.argv.find((a) => a.startsWith("--avd="))?.slice(6) ?? "inborn-ss-pixel6";
+const EMU_PORT = 5570;
+/* named per device type + runtime, so a simulator left from an older pipeline (iPhone 15 Pro Max / iOS 17) is never reused */
+/* "-kb": a device that has never seen a hardware keyboard, so the passcode sheet shows its on-screen keypad */
+const SIMS = { ios: "inborn-ss-iphone17promax-ios26-kb", ipad: "inborn-ss-ipadpro13m5-ios26" };
+/* 6.9" class (1320×2868 native) and the 13" iPad, on the runtime the app ships against */
 const SIM_TYPES = {
-  ios: ["com.apple.CoreSimulator.SimDeviceType.iPhone-15-Pro-Max", "com.apple.CoreSimulator.SimRuntime.iOS-17-0"],
-  ipad: ["com.apple.CoreSimulator.SimDeviceType.iPad-Pro-13-inch-M4-8GB", "com.apple.CoreSimulator.SimRuntime.iOS-17-5"],
+  ios: ["com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro-Max", "com.apple.CoreSimulator.SimRuntime.iOS-26-2"],
+  ipad: ["com.apple.CoreSimulator.SimDeviceType.iPad-Pro-13-inch-M5-12GB", "com.apple.CoreSimulator.SimRuntime.iOS-26-2"],
 };
-const CHAT_MODEL = "Qwen3.5-0.8B-Q4_K_M.gguf";
+/* Fast (Qwen3.5 2B) and Sharp (Qwen3.5 4B, two shards): see MODEL_FOR */
+const CHAT_MODEL_FILES = ["Qwen3.5-2B-Q4_K_M.gguf", "Qwen3.5-4B-Q4_K_M-00001-of-00002.gguf", "Qwen3.5-4B-Q4_K_M-00002-of-00002.gguf"];
 const EMBED_MODEL = "multilingual-e5-large-instruct-Q6_K.gguf";
+/* Fast and Sharp read photos through their projectors (extensions vision-qwen35-2b / -4b) */
+const VISION_MODELS = ["mmproj-Qwen3.5-2B-F16.gguf", "mmproj-Qwen3.5-4B-F16.gguf"];
+const PHOTO = "receipt.png";
 const FIXTURE = "lease.pdf";
-const SCREENS = ["chat", "proof", "documents", "paywall", "vault", "lock"];
+const SCREENS = ["chat", "proof", "documents", "photo", "paywall", "vault", "lock"];
 const PASSCODE = "2468";
+const TMP = process.env.SS_TMP || "/private/tmp/claude-501/inborn-store-shots";
 
 const arg = (k, d) => process.argv.find((a) => a.startsWith(`--${k}=`))?.split("=").slice(1).join("=") ?? d;
 const flag = (k) => process.argv.includes(`--${k}`);
-const PORT = Number(arg("port", "8095"));
 const PLATFORMS = arg("platform", "android,ios,ipad").split(",").filter(Boolean);
-const LOCALES = arg("locale", "en,ja,de,fr,es,pt-BR").split(",").filter(Boolean);
+const LOCALES = arg("locale", "en,ja,de,fr,es,pt-BR,ko,zh-Hant").split(",").filter(Boolean);
 const ONLY = arg("screens", SCREENS.join(",")).split(",").filter(Boolean);
+/* the meter card is the Proof panel's message: iOS Dynamic Type size, and the Android font scale that matches it */
+const PROOF_TEXT = arg("proof-text", "extra-extra-extra-large");
+const PROOF_SCALE = "1.3";
 
-/* The user's side of each capture, in the listing language: a table + code block for the chat, one question over the lease. */
+/* The user's side of each capture, in the listing language (docs/store messaging plan 2026-10-08): a note and a raise request
+   with no facts to get wrong, a summary and questions over the lease, "what can you do" and a question over the receipt. The
+   electricity question is EN only (a short query in another language than the English lease misses retrieval); Sharp's
+   languages ask what was bought, because Sharp miscounts the items. */
 const COPY = {
   en: {
-    prompt: "Compare tea and coffee in a small table: caffeine and brew time. Then a two-line Python snippet that prints today's date.",
-    question: "When does the lease end, and how much is the security deposit?",
+    warmup: "Write a short, friendly note telling my team the Monday meeting moved to 3 pm. Sign it Sam.",
+    prompt: "Help me ask my manager for a raise. Three sentences, confident.",
+    prequestion: "Who pays for electricity and internet?",
+    summary: "Summarize this file in three bullets.",
+    question: "When does my lease end, and how much is the deposit?",
+    photoPre: "What can you do?",
+    photo: "What is the total on this receipt, and how many items were bought?",
   },
   ja: {
-    prompt: "紅茶とコーヒーを小さな表で比べて（カフェインと抽出時間）。その後、今日の日付を表示する2行のPythonコードも。",
+    warmup: "月曜の会議が15時に変更になったことをチームに伝える、短くて感じのいいメモを書いて。署名はサムで。",
+    prompt: "上司に昇給をお願いしたい。自信のある3文で書いて。",
+    summary: "このファイルを3つの箇条書きで要約して。",
     question: "この賃貸契約はいつ終了しますか？敷金はいくらですか？",
+    photoPre: "何ができますか？",
+    photo: "このレシートの合計はいくら？何を買いましたか？",
   },
   de: {
-    prompt: "Vergleiche Tee und Kaffee in einer kleinen Tabelle: Koffein und Ziehzeit. Dann ein zweizeiliges Python-Snippet, das das heutige Datum ausgibt.",
+    warmup: "Schreib eine kurze, freundliche Nachricht an mein Team: Das Meeting am Montag ist auf 15 Uhr verschoben. Unterschreib mit Sam.",
+    prompt: "Hilf mir, meinen Chef um eine Gehaltserhöhung zu bitten. Drei Sätze, selbstbewusst.",
+    summary: "Fasse diese Datei in drei Stichpunkten zusammen.",
     question: "Wann endet der Mietvertrag und wie hoch ist die Kaution?",
+    photoPre: "Was kannst du?",
+    photo: "Wie hoch ist die Summe auf diesem Kassenbon, und was wurde gekauft?",
   },
   fr: {
-    prompt: "Compare le the et le cafe dans un petit tableau : cafeine et temps d'infusion. Puis un extrait Python de deux lignes qui affiche la date du jour.",
-    question: "Quand le bail se termine-t-il et quel est le montant du depot de garantie ?",
+    warmup: "Écris un petit mot sympa pour prévenir mon équipe que la réunion de lundi est déplacée à 15h. Signe Sam.",
+    prompt: "Écris un message à mon manager pour lui demander une augmentation. Trois phrases, avec assurance.",
+    summary: "Résume ce fichier en trois points.",
+    question: "Quand le bail se termine-t-il et quel est le montant du dépôt de garantie ?",
+    photoPre: "Que sais-tu faire ?",
+    photo: "Quel est le total de ce ticket, et combien d'articles ont été achetés ?",
   },
   es: {
-    prompt: "Compara el te y el cafe en una tabla pequena: cafeina y tiempo de preparacion. Luego un fragmento de Python de dos lineas que imprima la fecha de hoy.",
-    question: "¿Cuando termina el contrato de alquiler y cuanto es el deposito de garantia?",
+    warmup: "Escribe una nota breve y amable para avisar a mi equipo de que la reunión del lunes pasa a las 15:00. Firma como Sam.",
+    prompt: "Escribe un mensaje para mi jefe pidiéndole un aumento. Tres frases, con seguridad.",
+    summary: "Resume este archivo en tres puntos.",
+    question: "¿Cuándo termina el contrato de alquiler y cuánto es el depósito de garantía?",
+    photoPre: "¿Qué puedes hacer?",
+    photo: "¿Cuál es el total de este recibo y cuántos artículos se compraron?",
   },
   "pt-BR": {
-    prompt: "Compare cha e cafe em uma tabela pequena: cafeina e tempo de preparo. Depois um trecho Python de duas linhas que imprima a data de hoje.",
-    question: "Quando termina o contrato de aluguel e qual e o valor do deposito caucao?",
+    warmup: "Escreva um recado curto e simpático avisando minha equipe que a reunião de segunda mudou para as 15h. Assine como Sam.",
+    prompt: "Escreva uma mensagem para o meu chefe pedindo um aumento. Três frases, com confiança.",
+    summary: "Resuma este arquivo em três tópicos.",
+    /* Fast's summary of the English lease drifted into Spanish and wrong terms in Portuguese */
+    docsModel: "sharp",
+    question: "Quando termina o contrato de locação e qual é o valor da caução?",
+    photoPre: "O que você sabe fazer?",
+    photo: "Qual é o total deste recibo e quantos itens foram comprados?",
   },
   ko: {
-    prompt: "차와 커피를 작은 표로 비교해 주세요: 카페인과 우리는 시간. 그다음 오늘 날짜를 출력하는 두 줄짜리 파이썬 코드도요.",
+    warmup: "월요일 회의가 오후 3시로 바뀌었다고 팀에 알리는 짧고 친근한 메모를 써 줘. 서명은 샘으로 해 줘.",
+    prompt: "상사에게 연봉 인상을 요청하고 싶어. 자신감 있게 세 문장으로 써 줘.",
+    summary: "이 파일을 세 개의 글머리 기호로 요약해 줘.",
     question: "임대차 계약은 언제 끝나고 보증금은 얼마인가요?",
+    photoPre: "무엇을 할 수 있나요?",
+    photo: "이 영수증의 합계는 얼마이고, 무엇을 샀나요?",
   },
   "zh-Hant": {
-    prompt: "用一個小表格比較茶和咖啡：咖啡因和沖泡時間。然後給我兩行印出今天日期的 Python 程式碼。",
+    warmup: "幫我寫一則簡短友善的訊息，告訴團隊星期一的會議改到下午三點。署名用 Sam。",
+    prompt: "幫我寫一則給主管的訊息，由我請求加薪。三句話，語氣要有自信。",
+    summary: "請用三個重點摘要這份文件。",
     question: "租約什麼時候到期？押金是多少？",
+    photoPre: "你能做什麼？",
+    photo: "這張收據的總金額是多少？買了幾件商品？",
   },
 };
+
+/* --copy=<file>: { "<locale>": { "<key>": "text" } } over the defaults above, so a store-copy plan sets the asks without a code change */
+const COPY_FILE = arg("copy", "");
+if (COPY_FILE) for (const [locale, keys] of Object.entries(JSON.parse(readFileSync(COPY_FILE, "utf8")))) COPY[locale] = { ...COPY[locale], ...keys };
 
 const log = (...a) => console.log(new Date().toISOString().slice(11, 19), ...a);
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const sh = (cmd, args, opts = {}) => execFileSync(cmd, args, { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], maxBuffer: 64 << 20, ...opts });
-const shOk = (cmd, args, opts = {}) => spawnSync(cmd, args, { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], ...opts });
+const shOk = (cmd, args, opts = {}) => spawnSync(cmd, args, { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], maxBuffer: 64 << 20, ...opts });
 const now = () => Date.now();
 
 const prefsFor = (locale, lock = false) => ({
@@ -96,10 +151,12 @@ const prefsFor = (locale, lock = false) => ({
   locale,
   answerLanguage: locale,
   haptics: true,
-  lock: { enabled: lock, timeoutSec: 0, hideInSwitcher: true, screenshotProtection: false, wipeAfterFailed: lock ? 10 : null },
+  /* "hide in app switcher" sets FLAG_SECURE on Android, which blanks screenshots, the lock screen's included */
+  lock: { enabled: lock, timeoutSec: 0, hideInSwitcher: !lock, screenshotProtection: false, wipeAfterFailed: lock ? 10 : null },
   lockReminderShown: true,
   autoDeleteDays: 0,
   clipboardExpirySec: 0,
+  contentSafety: true,
   performance: "balanced",
   autoPower: true,
   neverAutoSwitch: false,
@@ -199,258 +256,254 @@ async function ensureFixture() {
   return out;
 }
 
-/* ---------- Metro (one per locale: the dev prompts are inlined at bundle time) ---------- */
-let metro = null;
-const killPort = () => {
-  for (const pid of shOk("lsof", ["-nP", `-iTCP:${PORT}`, "-sTCP:LISTEN", "-t"]).stdout.split("\n").filter(Boolean)) shOk("kill", ["-9", pid]);
-};
-/* Two passes per locale: "chat" auto-answers a prompt (chat/proof/paywall/vault/lock); "docs" auto-indexes the lease and
-   asks over it (documents). They never share a Metro, so the single engine and dev-run.json are not contended. */
-async function startMetro(locale, mode) {
-  await stopMetro();
-  killPort();
-  const env = {
-    ...process.env,
-    APP_VARIANT: "development",
-    CI: "1",
-    EXPO_NO_TELEMETRY: "1",
-    /* the emulator reports 4 GB, which marks most of the catalog "too big"; a mainstream 8 GB phone is the honest vault to show */
-    EXPO_PUBLIC_DEV_RAM_GB: "8",
-    ...(mode === "docs" ? { EXPO_PUBLIC_AUTOINDEX: FIXTURE, EXPO_PUBLIC_AUTOASK: COPY[locale].question } : { EXPO_PUBLIC_AUTOPROMPT: COPY[locale].prompt }),
-  };
-  metro = spawn("npx", ["expo", "start", "--port", String(PORT), "--clear"], { cwd: MOBILE, env, stdio: ["ignore", "pipe", "pipe"] });
-  metro.stdout.on("data", (d) => process.env.SS_VERBOSE && process.stdout.write(`[metro] ${d}`));
-  metro.stderr.on("data", (d) => process.env.SS_VERBOSE && process.stderr.write(`[metro] ${d}`));
-  const t0 = now();
-  while (now() - t0 < 60_000) {
-    const r = shOk("curl", ["-s", "-m", "2", `http://127.0.0.1:${PORT}/status`]);
-    if (/packager-status:running/.test(r.stdout)) return log(`metro up on ${PORT} (${locale}/${mode})`);
-    await sleep(1000);
-  }
-  throw new Error("Metro did not come up");
-}
-async function stopMetro() {
-  if (!metro) return;
-  const child = metro;
-  metro = null;
-  child.kill("SIGTERM");
-  await sleep(1500);
-  if (child.exitCode === null) child.kill("SIGKILL");
-  /* expo start forks a bundler that survives its parent on SIGTERM */
-  killPort();
+/* The photo screen's picture: the receipt the per-model photo QA reads (docs/qa/photo-per-model), known answer 17.59, five items. */
+function ensurePhoto() {
+  const out = join(RAW, PHOTO);
+  if (!existsSync(out)) copyFileSync(join(ROOT, "docs/qa/photo-per-model/photos", PHOTO), out);
+  return out;
 }
 
-/* ---------- Android ---------- */
+/* ---------- the QA bridge driver: push a script, take each screenshot it asks for, acknowledge, read the report ---------- */
+let runSeq = 0;
+async function bridge(dev, name, steps, dir, timeoutMs = 600_000) {
+  /* the device and pid keep runs of parallel capture processes (one per device) apart in the shared TMP */
+  const runId = `ss-${name}-${dev.name}-${process.pid}-${Date.now().toString(36)}-${runSeq++}`;
+  mkdirSync(TMP, { recursive: true });
+  const local = join(TMP, `${runId}.json`);
+  writeFileSync(local, JSON.stringify({ runId, steps }));
+  dev.push(local, `qa/in/${runId}.json`);
+  rmSync(local, { force: true });
+  const took = new Set();
+  const until = now() + timeoutMs;
+  let done = null;
+  while (now() < until && !done) {
+    const text = dev.pull(`qa/out/${runId}/progress.json`);
+    let p = null;
+    try {
+      p = text ? JSON.parse(text) : null;
+    } catch {
+      /* half-written; the next poll reads it whole */
+    }
+    if (p?.awaiting && !took.has(p.awaiting)) {
+      await dev.shot(join(dir, `${p.awaiting}.png`));
+      const ok = join(TMP, `${runId}-${p.awaiting}.ok`);
+      writeFileSync(ok, p.awaiting);
+      dev.push(ok, `qa/ack/${runId}/${p.awaiting}.ok`);
+      rmSync(ok, { force: true });
+      took.add(p.awaiting);
+      log(`${dev.name}: shot ${p.awaiting}`);
+    }
+    if (p?.state === "done" || p?.state === "crashed") done = p;
+    else await sleep(800);
+  }
+  const result = dev.pull(`qa/out/${runId}/result.json`);
+  if (!result) throw new Error(`${dev.name}/${name}: no bridge result (last progress ${JSON.stringify(done)})`);
+  const r = JSON.parse(result);
+  writeFileSync(join(dir, `bridge-${name}.json`), JSON.stringify(r, null, 2));
+  for (const s of r.steps) if (!s.ok) log(`${dev.name}/${name}: step ${s.i} ${s.op} failed: ${String(s.detail).slice(0, 160)}`);
+  return r;
+}
+
+/* Launch, then wait until the bridge has written boot.json for this process (a stale one is removed first). */
+async function launchAndWait(dev) {
+  dev.remove("qa");
+  dev.launch();
+  const t0 = now();
+  /* a cold start takes minutes when other builds and emulators share the Mac */
+  while (now() - t0 < 300_000) {
+    if (dev.pull("qa/boot.json")) return;
+    await sleep(1000);
+  }
+  throw new Error(`${dev.name}: the QA bridge never booted (is this the EXPO_PUBLIC_QA=1 build?)`);
+}
+
+/* ---------- Android emulator (root: the QA build is a release build, so run-as is not available) ---------- */
 class Android {
   name = "android";
-  serial = null;
-  uid = null;
+  serial = `emulator-${EMU_PORT}`;
+  bundle = QA_BUNDLE;
   bootedHere = false;
-  async setup() {
-    this.serial = this.find();
-    if (!this.serial) {
-      log(`booting ${AVD}`);
-      const emu = spawn(join(process.env.ANDROID_HOME ?? `${process.env.HOME}/Library/Android/sdk`, "emulator/emulator"), ["-avd", AVD, "-port", "5570", "-no-snapshot-load", "-no-snapshot-save", "-no-boot-anim", "-memory", "4096"], { detached: true, stdio: "ignore" });
-      emu.unref();
-      this.bootedHere = true;
-      const t0 = now();
-      while (now() - t0 < 180_000) {
-        await sleep(3000);
-        this.serial = this.find();
-        if (this.serial && shOk("adb", ["-s", this.serial, "shell", "getprop", "sys.boot_completed"]).stdout.trim() === "1") break;
-      }
-      if (!this.serial) throw new Error(`${AVD} did not boot`);
-      await sleep(5000);
-    }
-    log(`android: ${this.serial}`);
-    if (!flag("no-install")) {
-      log("installing apk");
-      sh("adb", ["-s", this.serial, "install", "-r", APK]);
-    }
-    /* files/ exists after the first launch; the model must be there before the screens are driven */
-    this.launch("inborn://");
-    await sleep(6000);
-    this.stop();
-    this.pushOnce(join(MODELS, CHAT_MODEL), "files/instant.gguf");
-    this.pushOnce(join(MODELS, EMBED_MODEL), "files/embed.gguf");
-    this.pushOnce(join(RAW, FIXTURE), `files/${FIXTURE}`);
-    this.adb("shell", "cmd", "uimode", "night", "yes");
-    /* Dev screens reach Metro over 10.0.2.2 (set in launch()), which needs the radios on; the airplane glyph is SystemUI demo
-       mode (cosmetic) here. The Proof screen's honest OUT 0 B comes from the store build in real airplane mode (proofSetup). */
-    this.demoBar();
-  }
-  demoBar() {
-    this.adb("shell", "settings", "put", "global", "sysui_demo_allowed", "1");
-    for (const a of [
-      ["command", "enter"],
-      ["command", "clock", "-e", "hhmm", "0941"],
-      ["command", "battery", "-e", "level", "100", "-e", "plugged", "false"],
-      ["command", "network", "-e", "airplane", "show", "-e", "wifi", "hide", "-e", "mobile", "hide"],
-      ["command", "notifications", "-e", "visible", "false"],
-    ]) this.adb("shell", "am", "broadcast", "-a", "com.android.systemui.demo", "-e", ...a);
-  }
-  find() {
-    for (const line of shOk("adb", ["devices"]).stdout.split("\n")) {
-      const m = /^(emulator-\d+)\s+device/.exec(line);
-      if (m && shOk("adb", ["-s", m[1], "emu", "avd", "name"]).stdout.split("\n")[0].trim() === AVD) return m[1];
-    }
-    return null;
+  emuPid = null;
+  get docDir() {
+    return `/data/data/${this.bundle}/files`;
   }
   adb(...args) {
     return shOk("adb", ["-s", this.serial, ...args]).stdout;
   }
-  runAs(cmd) {
-    return shOk("adb", ["-s", this.serial, "shell", `run-as ${BUNDLE} sh -c '${cmd}'`]).stdout;
+  booted() {
+    return shOk("adb", ["-s", this.serial, "shell", "getprop", "sys.boot_completed"]).stdout.trim() === "1";
   }
-  pushOnce(src, dest) {
+  async setup() {
+    if (!this.booted()) {
+      log(`booting ${AVD} on ${EMU_PORT}`);
+      const emu = spawn(join(process.env.ANDROID_HOME ?? `${process.env.HOME}/Library/Android/sdk`, "emulator/emulator"), ["-avd", AVD, "-port", String(EMU_PORT), "-no-snapshot-load", "-no-snapshot-save", "-no-boot-anim", "-memory", "8192", "-no-audio"], { detached: true, stdio: "ignore" });
+      emu.unref();
+      this.emuPid = emu.pid;
+      this.bootedHere = true;
+      const t0 = now();
+      while (now() - t0 < 240_000 && !this.booted()) await sleep(3000);
+      if (!this.booted()) throw new Error(`${AVD} did not boot`);
+      await sleep(5000);
+    }
+    log(`android: ${this.serial}`);
+    this.adb("root");
+    await sleep(2000);
+    this.adb("wait-for-device");
+    /* the clock is set by hand for the status bar */
+    this.adb("shell", "settings", "put", "global", "auto_time", "0");
+    /* the passcode panel shows its on-screen keypad even though the emulator has a host keyboard */
+    this.adb("shell", "settings", "put", "secure", "show_ime_with_hard_keyboard", "1");
+    if (!flag("no-install")) {
+      /* --local-testing: the packs ride along and Play Core serves them from the device, as Play would after a store install */
+      log("installing the QA bundle (bundletool --local-testing)");
+      const apks = join(TMP, "app-qa.apks");
+      mkdirSync(TMP, { recursive: true });
+      sh("java", ["-jar", BUNDLETOOL, "build-apks", "--bundle", QA_AAB, "--output", apks, "--local-testing", "--overwrite"]);
+      this.adb("uninstall", this.bundle);
+      sh("java", ["-jar", BUNDLETOOL, "install-apks", "--apks", apks, "--device-id", this.serial, "--adb", join(process.env.ANDROID_HOME ?? `${process.env.HOME}/Library/Android/sdk`, "platform-tools/adb")]);
+      rmSync(apks, { force: true });
+    }
+    this.uid = /userId=(\d+)/.exec(this.adb("shell", "dumpsys", "package", this.bundle))?.[1];
+    /* bundletool pushes the packs to shared storage as whoever adb is; under root they get root's owner and label, and
+       Play Core's FakeAssetPackService is then denied reading them (SELinux), so they are handed to the app */
+    const lt = `/data/media/0/Android/data/${this.bundle}/files/local_testing`;
+    this.adb("shell", `chown -R ${this.uid}:ext_data_rw ${lt} && chcon -R u:object_r:media_rw_data_file:s0 ${lt}`);
+    /* files/ exists after the first launch */
+    this.launch();
+    await sleep(8000);
+    this.terminate();
+    this.pushOnce(join(MODELS, EMBED_MODEL), "embed.gguf");
+    this.pushOnce(join(RAW, FIXTURE), FIXTURE);
+    this.pushOnce(join(RAW, PHOTO), PHOTO);
+    this.adb("shell", "cmd", "uimode", "night", "yes");
+    /* No Metro any more: the whole Android run is in real airplane mode, and the status bar shows it. */
+    this.adb("shell", "cmd", "connectivity", "airplane-mode", "enable");
+    this.statusBar();
+  }
+  /* The real status bar, not SystemUI demo mode: on Android 13 demo mode cannot draw the airplane glyph, the real bar does.
+     Battery full and unplugged through the emulator console, the clock set to 09:41 before every shot. */
+  statusBar() {
+    for (const a of [["power", "ac", "off"], ["power", "status", "not-charging"], ["power", "capacity", "100"]]) this.adb("emu", ...a);
+    this.adb("shell", "date 100709412026.00");
+  }
+  /* root writes land with root's owner and label; the app must own them to read, consume and delete them */
+  push(local, rel) {
+    const dest = `${this.docDir}/${rel}`;
+    const dir = dest.slice(0, dest.lastIndexOf("/"));
+    sh("adb", ["-s", this.serial, "push", local, "/data/local/tmp/ss-push"]);
+    this.adb("shell", `mkdir -p ${dir} && mv /data/local/tmp/ss-push ${dest} && chown -R ${this.uid}:${this.uid} ${this.docDir} && chmod 600 ${dest} && restorecon -R ${this.docDir}`);
+  }
+  pushOnce(src, rel) {
     const size = statSync(src).size;
-    const have = this.runAs(`stat -c %s ${dest} 2>/dev/null`).trim();
-    if (have === String(size)) return;
-    log(`push ${dest} (${(size / 1e6).toFixed(0)} MB)`);
-    execFileSync("sh", ["-c", `adb -s ${this.serial} exec-in "run-as ${BUNDLE} sh -c 'cat > ${dest}'" < "${src}"`], { stdio: "ignore" });
+    if (this.adb("shell", `stat -c %s ${this.docDir}/${rel} 2>/dev/null`).trim() === String(size)) return;
+    log(`push ${rel} (${(size / 1e6).toFixed(0)} MB)`);
+    this.push(src, rel);
   }
-  writeFile(rel, text) {
-    execFileSync("sh", ["-c", `printf '%s' "$SS_TEXT" | adb -s ${this.serial} exec-in "run-as ${BUNDLE} sh -c 'cat > ${rel}'"`], { env: { ...process.env, SS_TEXT: text }, stdio: "ignore" });
+  pull(rel) {
+    const r = shOk("adb", ["-s", this.serial, "exec-out", "cat", `${this.docDir}/${rel}`]);
+    return r.status === 0 && r.stdout && !r.stdout.includes("No such file") ? r.stdout : null;
   }
-  readFile(rel) {
-    return this.runAs(`cat ${rel} 2>/dev/null`);
+  remove(rel) {
+    this.adb("shell", `rm -rf ${this.docDir}/${rel}`);
+  }
+  writeText(rel, text) {
+    const tmp = join(TMP, `w-${Date.now()}.txt`);
+    mkdirSync(TMP, { recursive: true });
+    writeFileSync(tmp, text);
+    this.push(tmp, rel);
+    rmSync(tmp, { force: true });
   }
   reset(locale, lock = false) {
-    this.stop();
-    this.runAs("rm -rf files/SQLite files/documents files/dev-run.json files/documents.json");
-    this.writeFile("files/prefs.json", JSON.stringify(prefsFor(locale, lock)));
+    this.terminate();
+    /* a force-stop during a model load leaves the vault's "loading" mark, which the app reads as a crash and quarantines the model;
+       here every stop is ours, so both marks are cleared */
+    const v = `${this.docDir}/models/vault.json`;
+    /* rewritten in place (cat >), so the file keeps the app's owner and SELinux categories */
+    this.adb("shell", `[ -f ${v} ] && sed 's/"loading":true/"loading":false/g; s/"quarantined":true/"quarantined":false/g' ${v} > /data/local/tmp/ss-vault && cat /data/local/tmp/ss-vault > ${v}; rm -f /data/local/tmp/ss-vault`);
+    for (const p of ["SQLite", "documents", "documents.json", "dev-run.json", "dev-prompt.txt", "qa", "prefs.bak.json"]) this.remove(p);
+    this.writeText("prefs.json", JSON.stringify(prefsFor(locale, lock)));
   }
-  launch(url) {
-    /* Metro over 10.0.2.2 (the emulator's host-loopback alias), not adb reverse: the reverse relay drops after force-stop on
-       this image, 10.0.2.2 survives it. Radios stay on (demo-mode airplane glyph), so the NAT route to the host is up. */
-    this.setDebugHost();
-    this.adb("shell", "am", "start", "-W", "-a", "android.intent.action.VIEW", "-d", url, BUNDLE);
+  launch(url = "inborn://") {
+    this.adb("shell", "am", "start", "-W", "-a", "android.intent.action.VIEW", "-d", url, this.bundle);
   }
-  setDebugHost() {
-    if (this.debugHostSet) return;
-    const xml = `<?xml version="1.0" encoding="utf-8" standalone="yes" ?>\n<map>\n<string name="debug_http_host">10.0.2.2:${PORT}</string>\n</map>\n`;
-    this.runAs(`mkdir -p shared_prefs; printf '%s' '${xml}' > shared_prefs/${BUNDLE}_preferences.xml`);
-    this.debugHostSet = true;
-  }
-  open(url) {
-    this.launch(url);
-  }
-  stop() {
-    this.adb("shell", "am", "force-stop", BUNDLE);
+  terminate() {
+    this.adb("shell", "am", "force-stop", this.bundle);
   }
   async shot(file) {
-    this.demoBar();
-    await sleep(400);
-    const png = execFileSync("adb", ["-s", this.serial, "exec-out", "screencap", "-p"], { maxBuffer: 64 << 20 });
-    writeFileSync(file, png);
+    this.statusBar();
+    await sleep(1200);
+    writeFileSync(file, execFileSync("adb", ["-s", this.serial, "exec-out", "screencap", "-p"], { maxBuffer: 64 << 20 }));
   }
-  /* uiautomator sees RN testIDs as resource-id; tap the centre of the first match (three tries: the dump waits for idle) */
-  async tap(query) {
-    for (let i = 0; i < 3; i++) {
+  async waitUi(re, ms) {
+    const t0 = now();
+    while (now() - t0 < ms) {
       this.adb("shell", "uiautomator", "dump", "/sdcard/ss-ui.xml");
-      const xml = this.adb("exec-out", "cat", "/sdcard/ss-ui.xml");
-      const re = new RegExp(`<node[^>]*(?:resource-id|text|content-desc)="${query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"[^>]*bounds="\\[(\\d+),(\\d+)\\]\\[(\\d+),(\\d+)\\]"`);
-      const m = re.exec(xml);
-      if (m) {
-        this.adb("shell", "input", "tap", String((Number(m[1]) + Number(m[3])) / 2), String((Number(m[2]) + Number(m[4])) / 2));
-        return true;
-      }
-      await sleep(1000);
+      if (re.test(this.adb("shell", "cat", "/sdcard/ss-ui.xml"))) return true;
+      await sleep(2000);
     }
-    log(`android: no element "${query}"`);
     return false;
   }
-  async has(query) {
+  /* autoFocus inside a modal raises no keyboard on Android; a real tap on the field does */
+  async tapEditText() {
     this.adb("shell", "uiautomator", "dump", "/sdcard/ss-ui.xml");
-    return this.adb("exec-out", "cat", "/sdcard/ss-ui.xml").includes(`"${query}"`);
+    const b = /class="android\.widget\.EditText"[^>]*bounds="\[(\d+),(\d+)\]\[(\d+),(\d+)\]"/.exec(this.adb("shell", "cat", "/sdcard/ss-ui.xml"));
+    if (b) this.adb("shell", "input", "tap", String((+b[1] + +b[3]) >> 1), String((+b[2] + +b[4]) >> 1));
+    await sleep(1500);
   }
-  async dismissNotice(labels) {
-    return this.tap(labels.dismiss);
-  }
-  async scrollChat() {
-    this.adb("shell", "input", "swipe", "540", "1900", "540", "600", "350");
-  }
-  async setPasscode(labels) {
-    this.open("inborn://settings");
-    await sleep(3000);
-    if (!(await this.tap(labels.setPasscode))) {
-      this.adb("shell", "input", "swipe", "540", "1500", "540", "900", "300");
-      await sleep(800);
-      /* the Keystore keeps the passcode across runs: the row then reads "Change passcode" and nothing needs typing */
-      if (await this.has(labels.changePasscode)) return true;
-      if (!(await this.tap(labels.setPasscode))) return false;
-    }
-    for (let i = 0; i < 2; i++) {
-      await sleep(1200);
-      this.adb("shell", "input", "text", PASSCODE);
-      await sleep(300);
-      await this.tap("passcode-submit");
-    }
-    await sleep(1000);
-    return true;
-  }
-  /* Proof screen: the store build (no INTERNET permission, no Metro) after a clean uninstall, so the kernel counter starts at zero */
+  /* Proof screen: the store build (no INTERNET permission, no bridge) after a clean uninstall, so the kernel counter starts at zero */
   async proofSetup() {
-    if (!existsSync(PROOF_APK)) throw new Error(`missing ${PROOF_APK} (design/store/build.mjs makes it)`);
-    /* the store build has no run-as debuggability, so its files/ is reached as root; adb root only happens in this phase,
-       after every Metro-dependent capture is done; the dev screens reach Metro over 10.0.2.2, not a reverse. */
-    this.adb("root");
-    if (this.serial) this.adb("wait-for-device");
-    this.stop();
-    this.adb("uninstall", BUNDLE);
-    /* the store build has no INTERNET permission and no Metro; real airplane mode makes the meter's OUT 0 B honest */
-    this.adb("shell", "cmd", "connectivity", "airplane-mode", "enable");
+    if (!existsSync(PROOF_APK)) throw new Error(`missing ${PROOF_APK} (design/store/build.mjs --proof)`);
+    this.terminate();
+    this.bundle = STORE_BUNDLE;
+    this.adb("uninstall", STORE_BUNDLE);
     sh("adb", ["-s", this.serial, "install", PROOF_APK]);
-    this.uid = /userId=(\d+)/.exec(this.adb("shell", "dumpsys", "package", BUNDLE))?.[1];
-    this.launch("inborn://");
-    await sleep(5000);
-    this.stop();
-    this.rootPush(join(MODELS, CHAT_MODEL), "instant.gguf");
-  }
-  rootPush(src, name) {
-    const dest = `/data/data/${BUNDLE}/files/${name}`;
-    sh("adb", ["-s", this.serial, "push", src, "/data/local/tmp/ss-push"]);
-    this.adb("shell", `mv /data/local/tmp/ss-push ${dest} && chown ${this.uid}:${this.uid} ${dest} && chmod 600 ${dest} && restorecon ${dest}`);
+    this.uid = /userId=(\d+)/.exec(this.adb("shell", "dumpsys", "package", STORE_BUNDLE))?.[1];
+    this.launch();
+    await sleep(6000);
+    this.terminate();
   }
   async proof(locale, file) {
-    this.stop();
-    const tmp = join(RAW, "prefs.tmp.json");
-    writeFileSync(tmp, JSON.stringify(prefsFor(locale)));
-    this.rootPush(tmp, "prefs.json");
-    this.launch("inborn://");
-    await sleep(6000);
-    this.open("inborn://proof");
-    await sleep(3000);
-    await this.shot(file);
-    this.stop();
+    this.reset(locale);
+    this.adb("shell", "settings", "put", "system", "font_scale", PROOF_SCALE);
+    try {
+      this.launch("inborn://proof");
+      /* a cold start of the store build right after install takes a while; the counter line ("0 B") marks the screen as drawn */
+      await this.waitUi(/ 0 B/, 60_000);
+      await sleep(1500);
+      await this.shot(file);
+      this.terminate();
+    } finally {
+      this.adb("shell", "settings", "put", "system", "font_scale", "1.0");
+    }
   }
   async teardown() {
-    this.stop();
-    this.adb("shell", "am", "broadcast", "-a", "com.android.systemui.demo", "-e", "command", "exit");
+    this.terminate();
+    this.adb("shell", "settings", "put", "global", "auto_time", "1");
     this.adb("shell", "cmd", "connectivity", "airplane-mode", "disable");
-    if (this.bootedHere) this.adb("emu", "kill");
+    if (this.bootedHere) {
+      this.adb("emu", "kill");
+      const t0 = now();
+      while (now() - t0 < 30_000 && this.emuPid && shOk("ps", ["-p", String(this.emuPid)]).status === 0) await sleep(1000);
+    }
   }
 }
 
-/* ---------- iOS simulator (iPhone + iPad share the code; only the device differs) ----------
-   Taps happen inside an XCUITest (ios-tests/ScreenshotDriverUITests.swift) because nothing else reaches the simulator's screen;
-   one xcodebuild test run per locale drives the whole step list and writes the PNGs itself. */
+/* ---------- iOS simulator (iPhone + iPad share the code; only the device differs) ---------- */
 class Sim {
   constructor(kind) {
     this.name = kind;
     this.kind = kind;
     this.udid = null;
     this.bootedHere = false;
+    this.bundle = QA_BUNDLE;
   }
   async setup() {
-    const list = sh("xcrun", ["simctl", "list", "devices", "-j"]);
-    const devices = Object.values(JSON.parse(list).devices).flat();
+    const devices = Object.values(JSON.parse(sh("xcrun", ["simctl", "list", "devices", "-j"])).devices).flat();
     let dev = devices.find((d) => d.name === SIMS[this.kind] && d.isAvailable);
     if (!dev) {
       const [type, runtime] = SIM_TYPES[this.kind];
-      const udid = sh("xcrun", ["simctl", "create", SIMS[this.kind], type, runtime]).trim();
-      dev = { udid, state: "Shutdown" };
-      log(`created ${SIMS[this.kind]} ${udid}`);
+      dev = { udid: sh("xcrun", ["simctl", "create", SIMS[this.kind], type, runtime]).trim(), state: "Shutdown" };
+      log(`created ${SIMS[this.kind]} ${dev.udid}`);
     }
     this.udid = dev.udid;
     if (dev.state !== "Booted") {
@@ -459,23 +512,37 @@ class Sim {
     }
     sh("xcrun", ["simctl", "bootstatus", this.udid, "-b"]);
     log(`${this.kind}: ${this.udid}`);
-    if (!existsSync(XCTESTRUN())) throw new Error("no .xctestrun under apps/mobile/ios/build/ss (node design/store/build.mjs --ios)");
     if (!flag("no-install")) {
+      if (!existsSync(IOS_APP)) throw new Error(`missing ${IOS_APP} (design/store/build.mjs --ios)`);
       log("installing app");
       sh("xcrun", ["simctl", "install", this.udid, IOS_APP]);
     }
-    /* RN reads the packager host:port from the app's NSUserDefaults; every other worktree's Metro sits on 8081 */
-    sh("xcrun", ["simctl", "spawn", this.udid, "defaults", "write", BUNDLE, "RCT_jsLocation", `localhost:${PORT}`]);
-    mkdirSync(join(this.container(), "Documents"), { recursive: true });
-    this.copyOnce(join(MODELS, CHAT_MODEL), "Documents/instant.gguf");
-    this.copyOnce(join(MODELS, EMBED_MODEL), "Documents/embed.gguf");
+    mkdirSync(join(this.container(), "Documents/models"), { recursive: true });
+    /* Instant ships inside the iOS app. Fast and the document index are put where an HTTPS download leaves them; the vault
+       finds them at boot, checks their SHA-256 against the catalog and adopts them as installed. */
+    for (const f of CHAT_MODEL_FILES) this.copyOnce(join(MODELS, f), `Documents/models/${f}`);
+    this.copyOnce(join(MODELS, EMBED_MODEL), `Documents/models/${EMBED_MODEL}`);
+    for (const v of VISION_MODELS) if (existsSync(join(MODELS, v))) this.copyOnce(join(MODELS, v), `Documents/models/${v}`);
+    rmSync(join(this.container(), "Documents/embed.gguf"), { force: true });
     this.copyOnce(join(RAW, FIXTURE), `Documents/${FIXTURE}`);
+    this.copyOnce(join(RAW, PHOTO), `Documents/${PHOTO}`);
     sh("xcrun", ["simctl", "ui", this.udid, "appearance", "dark"]);
-    sh("xcrun", ["simctl", "status_bar", this.udid, "override", "--time", "9:41", "--batteryState", "charged", "--batteryLevel", "100", "--cellularMode", "notSupported", "--wifiMode", "active", "--wifiBars", "3"]);
+    /* no Face ID enrolled, so the lock screen opens on its passcode keypad: the store panel shows a code being asked for */
+    shOk("xcrun", ["simctl", "spawn", this.udid, "notifyutil", "-s", "com.apple.BiometricKit.enrollmentChanged", "0"]);
+    shOk("xcrun", ["simctl", "spawn", this.udid, "notifyutil", "-p", "com.apple.BiometricKit.enrollmentChanged"]);
+    this.statusBar();
+  }
+  /* The simulator has no airplane glyph: cellular is hidden and Wi-Fi shows as not connected. Re-applied before every
+     shot because a relaunch can drop the override. */
+  statusBar() {
+    sh("xcrun", ["simctl", "status_bar", this.udid, "override", "--time", "9:41", "--batteryState", "discharging", "--batteryLevel", "100", "--dataNetwork", "hide", "--wifiMode", "failed", "--wifiBars", "0", "--cellularMode", "notSupported", "--operatorName", ""]);
+  }
+  textSize(size) {
+    sh("xcrun", ["simctl", "ui", this.udid, "content_size", size]);
   }
   container() {
     /* the data-container UUID changes whenever the app is reinstalled, so resolve it fresh, never cache */
-    return sh("xcrun", ["simctl", "get_app_container", this.udid, BUNDLE, "data"]).trim();
+    return sh("xcrun", ["simctl", "get_app_container", this.udid, this.bundle, "data"]).trim();
   }
   copyOnce(src, rel) {
     const dest = join(this.container(), rel);
@@ -483,200 +550,307 @@ class Sim {
     log(`copy ${rel}`);
     sh("cp", [src, dest]);
   }
+  push(local, rel) {
+    const dest = join(this.container(), "Documents", rel);
+    mkdirSync(dirname(dest), { recursive: true });
+    sh("cp", [local, dest]);
+  }
+  pull(rel) {
+    const p = join(this.container(), "Documents", rel);
+    try {
+      return existsSync(p) ? readFileSync(p, "utf8") : null;
+    } catch {
+      return null;
+    }
+  }
+  remove(rel) {
+    rmSync(join(this.container(), "Documents", rel), { recursive: true, force: true });
+  }
   reset(locale, lock = false) {
-    shOk("xcrun", ["simctl", "terminate", this.udid, BUNDLE]);
-    const c = this.container();
-    for (const p of ["Documents/SQLite", "Documents/documents", "Documents/dev-run.json", "Documents/documents.json"]) rmSync(join(c, p), { recursive: true, force: true });
-    writeFileSync(join(c, "Documents/prefs.json"), JSON.stringify(prefsFor(locale, lock)));
+    this.terminate();
+    const vault = join(this.container(), "Documents/models/vault.json");
+    if (existsSync(vault)) writeFileSync(vault, readFileSync(vault, "utf8").replace(/"loading":true/g, '"loading":false').replace(/"quarantined":true/g, '"quarantined":false'));
+    for (const p of ["SQLite", "documents", "documents.json", "dev-run.json", "dev-prompt.txt", "qa", "prefs.bak.json"]) this.remove(p);
+    writeFileSync(join(this.container(), "Documents/prefs.json"), JSON.stringify(prefsFor(locale, lock)));
   }
-  /* one test run = one step list; the runner writes the PNGs into `dir` */
-  drive(steps, dir) {
-    /* TEST_RUNNER_ variables do not reach a test-without-building runner; the step list travels through /tmp, keyed by udid */
-    writeFileSync(`/tmp/inborn-ss-driver-${this.udid}.json`, JSON.stringify({ steps, out: dir, docs: join(this.container(), "Documents") }));
-    const r = spawnSync(
-      "xcodebuild",
-      ["test-without-building", "-xctestrun", XCTESTRUN(), "-destination", `id=${this.udid}`, "-only-testing:InbornUITests/ScreenshotDriverUITests/testDrive"],
-      { encoding: "utf8", cwd: join(MOBILE, "ios"), maxBuffer: 64 << 20 },
-    );
-    const lines = (r.stdout + r.stderr).split("\n");
-    for (const l of lines) if (/\[ss\] (no element|unknown)|error:|failed/.test(l) && !/^\s*$/.test(l)) log(`${this.kind}: ${l.trim().slice(0, 200)}`);
-    if (!/TEST EXECUTE SUCCEEDED|Test Suite .* passed/.test(r.stdout)) log(`${this.kind}: driver run did not report success (see xcodebuild output)`);
-    return r.status === 0;
+  launch() {
+    sh("xcrun", ["simctl", "launch", "--terminate-running-process", this.udid, this.bundle]);
   }
-  async captureLocale(locale, labels, dir, screens) {
-    const want = (s) => screens.includes(s);
-    if (want("documents")) {
-      /* docs pass: no chat auto-prompt, so the engine serves the RAG ask straight away */
-      this.reset(locale);
-      this.drive(["launch", "sleep:3", "open:inborn://documents", "waitfile:dev-run.json:ask:300", "sleep:2.5", "shot:documents", "terminate"], dir);
-      if (!existsSync(join(dir, "documents.png"))) throw new Error(`${this.kind}/${locale}: no documents.png`);
-      return;
-    }
-    const steps = ["launch", "waitfile:dev-run.json:reply:300", "sleep:2", `tap:${labels.dismiss}`, "sleep:1.2", "dragup", "sleep:1.5"];
-    if (want("chat")) steps.push("shot:chat");
-    if (want("proof")) steps.push("open:inborn://proof", "sleep:3", "shot:proof");
-    if (want("paywall")) steps.push("open:inborn://paywall", "sleep:4", "shot:paywall");
-    if (want("vault")) steps.push("open:inborn://vault", "sleep:3", "shot:vault");
-    if (want("lock") && !this.passcodeDone) steps.push("open:inborn://settings", "sleep:3", `tap:${labels.setPasscode}`, "sleep:1.5", `type:${PASSCODE}`, "tap:passcode-submit", "sleep:1.5", `type:${PASSCODE}`, "tap:passcode-submit", "sleep:1");
-    steps.push("terminate");
-    this.reset(locale);
-    log(`${this.kind}/${locale}: driving ${steps.length} steps`);
-    this.drive(steps, dir);
-    this.passcodeDone = true;
-    if (want("lock")) {
-      this.reset(locale, true);
-      this.drive(["launch", "sleep:8", "shot:lock", "terminate"], dir);
-    }
-    for (const s of screens) if (!existsSync(join(dir, `${s}.png`))) throw new Error(`${this.kind}/${locale}: no ${s}.png`);
+  terminate() {
+    shOk("xcrun", ["simctl", "terminate", this.udid, this.bundle]);
+  }
+  async shot(file) {
+    this.statusBar();
+    await sleep(2500);
+    sh("xcrun", ["simctl", "io", this.udid, "screenshot", file]);
   }
   async teardown() {
-    shOk("xcrun", ["simctl", "terminate", this.udid, BUNDLE]);
+    this.terminate();
     shOk("xcrun", ["simctl", "status_bar", this.udid, "clear"]);
-    if (this.bootedHere) shOk("xcrun", ["simctl", "shutdown", this.udid]);
+    if (this.bootedHere && !flag("keep-booted")) shOk("xcrun", ["simctl", "shutdown", this.udid]);
   }
 }
 
-/* ---------- the drive: six screens per locale ---------- */
-async function waitFor(dev, key, timeoutMs) {
-  const t0 = now();
-  while (now() - t0 < timeoutMs) {
-    const txt = dev.readFile(dev.name === "android" ? "files/dev-run.json" : "Documents/dev-run.json");
-    if (txt.includes(`"${key}"`)) return txt;
-    await sleep(1500);
-  }
-  throw new Error(`${dev.name}: timed out waiting for ${key} in dev-run.json`);
-}
+/* ---------- the drive: six screens per locale, every one through the bridge ---------- */
 
-async function captureLocale(dev, locale, labels, screens) {
-  const dir = join(RAW, dev.name, locale);
+/* An answer is finished when Stop is gone and the message actions are mounted. Send stays disabled until the model is
+   loaded, so a second press follows; it fails harmlessly once the first one went through (the composer is empty). */
+const ask = (text, timeoutMs = 300_000) => [
+  { op: "waitFor", testID: "composer-input", timeoutMs: 120_000 },
+  { op: "sleep", ms: 6000 },
+  { op: "type", testID: "composer-input", text },
+  { op: "sleep", ms: 1500 },
+  /* Sharp can take most of a minute to load on the emulator; presses after the one that went through fail harmlessly */
+  ...[5000, 10_000, 20_000, 30_000].flatMap((ms) => [{ op: "send" }, { op: "sleep", ms }]),
+  { op: "send" },
+  /* on the emulator the first token can take a minute; an answer already finished makes this wait fail harmlessly */
+  { op: "waitFor", testID: "stop", timeoutMs: 120_000 },
+  { op: "waitFor", testID: "stop", gone: true, timeoutMs },
+  { op: "waitFor", testID: "message-actions", timeoutMs: 30_000 },
+  { op: "sleep", ms: 1500 },
+];
+/* The first-run "it can be wrong" notice and the model advice card are dismissed the way a user would, once. */
+const dismissNotice = [{ op: "press", testID: "notice-dismiss" }, { op: "sleep", ms: 600 }, { op: "press", testID: "model-advice-not-now" }, { op: "sleep", ms: 600 }];
+const visit = (url, shot, ms = 3000) => [{ op: "deeplink", url }, { op: "sleep", ms }, { op: "screenshot", name: shot }];
+
+/* The model each locale is shown with: the one the vault recommends for chat in that language on a phone of this class.
+   Fast is "Basic" in German, Japanese and Korean (the chat then says so on screen), so those three run on Sharp (Pro). */
+const MODEL_FOR = { en: "fast", ja: "sharp", de: "sharp", fr: "fast", es: "fast", "pt-BR": "fast", ko: "sharp", "zh-Hant": "fast" };
+const CHAT_MODELS = ["fast", "sharp"];
+
+/* Once per install: Fast, Sharp and the document index installed through the vault (Android: Play packs, local testing;
+   iOS: the files the setup copied are adopted at boot), so every locale only has to pick one. */
+async function installModels(dev) {
+  dev.reset("en");
+  await launchAndWait(dev);
+  const dir = join(TMP, `prepare-${dev.name}`);
   mkdirSync(dir, { recursive: true });
+  log(`${dev.name}: installing Fast, Sharp and the document index`);
+  const r = await bridge(
+    dev,
+    "install",
+    [
+      { op: "setTier", tier: "pro" },
+      { op: "deeplink", url: "inborn://vault" },
+      { op: "sleep", ms: 4000 },
+      /* Install opens the confirmation sheet (size + where it comes from); Download starts it */
+      ...["embed-e5", ...CHAT_MODELS].flatMap((id) => [{ op: "press", testID: `install-${id}` }, { op: "sleep", ms: 1500 }, { op: "press", testID: "confirm-download" }, { op: "sleep", ms: 2500 }]),
+      /* delivering and verifying both show Cancel */
+      ...["embed-e5", ...CHAT_MODELS].map((id) => ({ op: "waitFor", testID: `cancel-${id}`, gone: true, timeoutMs: 900_000 })),
+      { op: "sleep", ms: 2000 },
+      ...["embed-e5", ...CHAT_MODELS].map((id) => ({ op: "value", testID: `model-status-${id}` })),
+    ],
+    dir,
+    3_000_000,
+  );
+  for (const st of r.steps.filter((x) => x.op === "value")) log(`${dev.name}: ${st.detail}`);
+}
+
+/* Free tier unless the locale's model is Pro; the paywall is always captured from a free launch of its own. */
+const pick = (model) => [
+  ...(model === "fast" ? [] : [{ op: "setTier", tier: "pro" }]),
+  { op: "deeplink", url: "inborn://vault" },
+  { op: "sleep", ms: 3000 },
+  { op: "press", testID: `use-${model}` },
+  /* a switch has to release the old weights first; a message sent meanwhile fails with "model not loaded" */
+  { op: "sleep", ms: model === "fast" ? 20_000 : 60_000 },
+];
+
+async function captureLocale(dev, locale, dir, screens) {
   const want = (s) => screens.includes(s);
-  const file = (s) => join(dir, `${s}.png`);
-  if (want("documents")) {
-    /* docs pass (no chat auto-prompt): open the library, let it index the lease and answer, capture the cited answer */
-    dev.reset(locale);
-    dev.launch("inborn://");
-    await sleep(3000);
-    dev.open("inborn://documents");
-    log(`${dev.name}/${locale}: indexing the lease + asking`);
-    await waitFor(dev, "ask", 300_000);
-    await sleep(2500);
-    await dev.shot(file("documents"));
-    return;
-  }
-  dev.reset(locale);
-  dev.launch("inborn://");
-  log(`${dev.name}/${locale}: waiting for the chat answer`);
-  const chat = await waitFor(dev, "reply", 300_000);
-  const { reply, ...stats } = JSON.parse(chat);
-  log(`${dev.name}/${locale}: reply ${reply?.length ?? 0} chars · ${Number(stats.tokPerSec ?? 0).toFixed(1)} tok/s`);
-  await sleep(2000);
-  /* the first-run "it can be wrong" notice is dismissed once per database; the database is fresh per locale */
-  await dev.dismissNotice(labels);
-  await sleep(1200);
-  /* the answer runs past the fold on a fresh chat: bring the table and the code block into view */
-  await dev.scrollChat();
-  await sleep(1500);
-  if (want("chat")) await dev.shot(file("chat"));
-  if (want("proof") && dev.name !== "android") {
-    dev.open("inborn://proof");
-    await sleep(3000);
-    await dev.shot(file("proof"));
-  }
+  const copy = COPY[locale];
+  const model = MODEL_FOR[locale];
   if (want("paywall")) {
-    dev.open("inborn://paywall");
-    await sleep(3500);
-    await dev.shot(file("paywall"));
+    dev.reset(locale);
+    await launchAndWait(dev);
+    log(`${dev.name}/${locale}: paywall`);
+    await bridge(dev, "paywall", [{ op: "waitFor", testID: "composer-input", timeoutMs: 60_000 }, ...visit("inborn://paywall", "paywall", 4000)], dir);
   }
-  if (want("vault")) {
-    dev.open("inborn://vault");
-    await sleep(3000);
-    await dev.shot(file("vault"));
+  const main = [...pick(model)];
+  /* The chat comes before any other picture: on Android each picture sets the clock back to 09:41, and an answer
+     started after that jump stalls. "Use" goes back to the chat, so the vault is opened again for its picture. */
+  if (want("chat")) main.push({ op: "deeplink", url: "inborn://" }, ...(copy.warmup ? ask(copy.warmup) : []), ...ask(copy.prompt), ...dismissNotice, { op: "devPrompt", lines: ["/scroll"] }, { op: "sleep", ms: 2500 }, { op: "screenshot", name: "chat" });
+  if (want("vault")) main.push(...visit("inborn://vault", "vault"));
+  if (want("proof") && dev.name !== "android" && !PROOF_TEXT) main.push(...visit("inborn://proof", "proof"));
+  if (main.length > pick(model).length) {
+    dev.reset(locale);
+    await launchAndWait(dev);
+    log(`${dev.name}/${locale}: ${model} · vault/chat/proof pass`);
+    await bridge(dev, "main", main, dir);
   }
-  if (want("lock")) {
-    /* a passcode lives in the Keystore/Keychain, so once per install is enough; the lock screen itself needs a relaunch */
-    if (!dev.passcodeDone) dev.passcodeDone = await dev.setPasscode(labels);
-    if (dev.passcodeDone) {
-      dev.reset(locale, true);
-      dev.launch("inborn://");
-      await sleep(9000);
-      await dev.shot(file("lock"));
-    } else {
-      log(`${dev.name}/${locale}: could not set a passcode; capturing the Security settings instead`);
-      dev.open("inborn://settings");
-      await sleep(3000);
-      await dev.shot(file("lock"));
+  /* the meter card is the message, so the Proof screen can be captured at a larger Dynamic Type size of its own */
+  if (want("proof") && dev.name !== "android" && PROOF_TEXT) {
+    dev.reset(locale);
+    dev.textSize(PROOF_TEXT);
+    try {
+      await launchAndWait(dev);
+      log(`${dev.name}/${locale}: proof at ${PROOF_TEXT}`);
+      await bridge(dev, "proof", [{ op: "waitFor", testID: "composer-input", timeoutMs: 60_000 }, ...visit("inborn://proof", "proof", 4000)], dir);
+    } finally {
+      dev.textSize("large");
     }
   }
+  if (want("documents")) {
+    dev.reset(locale);
+    await launchAndWait(dev);
+    log(`${dev.name}/${locale}: documents pass`);
+    await bridge(
+      dev,
+      "documents",
+      [
+        ...pick(copy.docsModel ?? model),
+        { op: "deeplink", url: "inborn://" },
+        { op: "waitFor", testID: "composer-input", timeoutMs: 120_000 },
+        ...dismissNotice,
+        { op: "devPrompt", lines: [`attach: ${FIXTURE}`] },
+        { op: "waitFor", testID: "attached-docs", timeoutMs: 120_000 },
+        /* answers only from the file: the DOCS ONLY tag beside the chip; a line of its own, once the file is in */
+        { op: "sleep", ms: 2000 },
+        { op: "devPrompt", lines: ["strict: on"] },
+        { op: "sleep", ms: 4000 },
+        /* Sharp reads the retrieved pages first; on the emulator's CPU that alone takes minutes */
+        ...(copy.summary ? ask(copy.summary, 1_200_000) : []),
+        ...(copy.prequestion ? ask(copy.prequestion, 1_200_000) : []),
+        ...ask(copy.question, 1_200_000),
+        ...dismissNotice,
+        { op: "sleep", ms: 1000 },
+        { op: "screenshot", name: "documents" },
+      ],
+      dir,
+      1_800_000,
+    );
+  }
+  if (want("photo")) {
+    dev.reset(locale);
+    await launchAndWait(dev);
+    log(`${dev.name}/${locale}: photo pass`);
+    await bridge(
+      dev,
+      "photo",
+      [
+        ...pick(dev.name === "android" ? "fast" : model),
+        { op: "deeplink", url: "inborn://" },
+        { op: "waitFor", testID: "composer-input", timeoutMs: 120_000 },
+        ...dismissNotice,
+        /* a text turn above the photo, so the conversation fills the screen; the Play panel shows the photo turn alone */
+        ...(copy.photoPre && dev.name !== "android" ? ask(copy.photoPre) : []),
+        { op: "devPrompt", lines: [`image: ${PHOTO}`] },
+        { op: "waitFor", testID: "pending-images", timeoutMs: 30_000 },
+        /* the projector loads beside the model on the first photo */
+        ...(dev.name === "android"
+          ? [
+              ...ask(copy.photo).slice(0, 4),
+              { op: "send" },
+              { op: "sleep", ms: 5000 },
+              /* Fast's photo pack is an on-demand Play pack; the photo goes out by itself once it lands */
+              { op: "press", testID: "vision-hold-download" },
+              { op: "waitFor", testID: "vision-hold", gone: true, timeoutMs: 1_200_000 },
+              { op: "waitFor", testID: "stop", timeoutMs: 600_000 },
+              { op: "waitFor", testID: "stop", gone: true, timeoutMs: 1_800_000 },
+              { op: "sleep", ms: 1500 },
+            ]
+          : ask(copy.photo, 1_200_000)),
+        /* a follow-up on the same photo, so the conversation fills the screen */
+        ...(copy.photoFollow ? ask(copy.photoFollow, 600_000) : []),
+        ...dismissNotice,
+        /* the model advice card can come back once the answer is in */
+        { op: "sleep", ms: 1500 },
+        { op: "press", testID: "model-advice-not-now" },
+        { op: "sleep", ms: 1000 },
+        { op: "screenshot", name: "photo" },
+      ],
+      dir,
+      3_600_000,
+    );
+  }
+  if (want("lock")) {
+    /* the passcode lives in the Keychain / Keystore, so it is set once per install; the lock screen needs a relaunch */
+    if (!dev.passcodeDone) {
+      dev.reset(locale);
+      await launchAndWait(dev);
+      const r = await bridge(
+        dev,
+        "passcode",
+        [
+          { op: "deeplink", url: "inborn://settings" },
+          { op: "sleep", ms: 2500 },
+          { op: "scrollTo", testID: "row-lock" },
+          { op: "press", testID: "row-lock" },
+          { op: "waitFor", testID: "passcode-input", timeoutMs: 10_000 },
+          { op: "type", testID: "passcode-input", text: PASSCODE },
+          { op: "press", testID: "passcode-submit" },
+          { op: "sleep", ms: 1200 },
+          { op: "type", testID: "passcode-input", text: PASSCODE },
+          { op: "press", testID: "passcode-submit" },
+          { op: "sleep", ms: 1500 },
+          { op: "screenshot", name: "passcode-set" },
+        ],
+        dir,
+      );
+      /* a passcode kept in the Keychain from an earlier run makes the sheet never open, which is fine */
+      dev.passcodeDone = r.ok || r.steps.some((s) => s.op === "press" && s.ok && /row-lock/.test(s.detail ?? ""));
+      rmSync(join(dir, "passcode-set.png"), { force: true });
+    }
+    dev.reset(locale, true);
+    dev.launch();
+    await sleep(9000);
+    if (dev.waitUi) await dev.waitUi(/EditText/, 90_000);
+    /* the passcode sheet slides up on its own; four typed digits show the code being entered */
+    await sleep(3000);
+    if (dev.tapEditText) await dev.tapEditText();
+    await bridge(dev, "lock", [{ op: "type", testID: "passcode-input", text: "2580" }, { op: "sleep", ms: 1500 }, { op: "screenshot", name: "lock" }], dir, 90_000);
+    if (!existsSync(join(dir, "lock.png"))) await dev.shot(join(dir, "lock.png"));
+    dev.terminate();
+  }
+  for (const s of screens) if (!(dev.name === "android" && s === "proof") && !existsSync(join(dir, `${s}.png`))) throw new Error(`${dev.name}/${locale}: no ${s}.png`);
 }
-
-const mkdirRaw = (name, locale) => {
-  const dir = join(RAW, name, locale);
-  mkdirSync(dir, { recursive: true });
-  return dir;
-};
-const strings = (locale) => JSON.parse(readFileSync(join(ROOT, "packages/i18n/locales", `${locale}.json`), "utf8"));
 
 async function main() {
   mkdirSync(RAW, { recursive: true });
   await ensureFixture();
-  if (!existsSync(join(MODELS, CHAT_MODEL))) throw new Error(`missing ${join(MODELS, CHAT_MODEL)}`);
+  ensurePhoto();
+  for (const m of [...CHAT_MODEL_FILES, EMBED_MODEL]) if (!existsSync(join(MODELS, m))) throw new Error(`missing ${join(MODELS, m)} (set INBORN_MODELS_DIR)`);
   const devices = [];
   if (PLATFORMS.includes("android")) {
-    if (!existsSync(APK)) throw new Error(`missing ${APK} (node design/store/build.mjs --android)`);
+    if (!flag("no-install") && !existsSync(QA_AAB)) throw new Error(`missing ${QA_AAB} (node design/store/build.mjs --android)`);
+    if (!flag("no-install") && !existsSync(BUNDLETOOL)) throw new Error(`missing ${BUNDLETOOL} (set BUNDLETOOL to bundletool-all.jar)`);
     devices.push(new Android());
   }
-  for (const k of ["ios", "ipad"]) if (PLATFORMS.includes(k)) {
-    if (!existsSync(IOS_APP)) throw new Error(`missing ${IOS_APP}`);
-    devices.push(new Sim(k));
-  }
+  for (const k of ["ios", "ipad"]) if (PLATFORMS.includes(k)) devices.push(new Sim(k));
   const failures = [];
-  /* the Android Proof screen comes from the store build (separate phase); iOS/iPad Proof is captured in the chat pass */
-  const chatScreens = ONLY.filter((s) => s !== "documents" && !(s === "proof" && PLATFORMS.every((p) => p === "android")));
-  const docScreens = ONLY.filter((s) => s === "documents");
-  const run = async (dev, locale, labels, screens) => {
-    if (!screens.length) return;
-    if (!dev.udid && !dev.serial) await dev.setup();
+  /* one device at a time: the simulators and the emulator never run side by side */
+  for (const dev of devices) {
     try {
-      if (dev.captureLocale) await dev.captureLocale(locale, labels, mkdirRaw(dev.name, locale), screens);
-      else await captureLocale(dev, locale, labels, screens);
-    } catch (e) {
-      failures.push(`${dev.name}/${locale}: ${e.message}`);
-      log("FAIL", e.message);
-    }
-  };
-  try {
-    for (const locale of LOCALES) {
-      const s = strings(locale);
-      const labels = { setPasscode: s["passcode.set"], changePasscode: s["passcode.change"], save: s["chats.save"], dismiss: s["safety.dismiss"] };
-      if (chatScreens.length) {
-        await startMetro(locale, "chat");
-        for (const dev of devices) await run(dev, locale, labels, chatScreens);
-      }
-      if (docScreens.length) {
-        await startMetro(locale, "docs");
-        for (const dev of devices) await run(dev, locale, labels, docScreens);
-      }
-    }
-    if (!flag("keep-metro")) await stopMetro();
-    const android = devices.find((d) => d.name === "android");
-    if (android && ONLY.includes("proof")) {
-      if (!android.serial) await android.setup();
-      log("android: proof screens from the store build");
-      await android.proofSetup();
+      await dev.setup();
+      await installModels(dev);
       for (const locale of LOCALES) {
+        const dir = join(RAW, dev.name, locale);
+        mkdirSync(dir, { recursive: true });
         try {
-          mkdirSync(join(RAW, "android", locale), { recursive: true });
-          await android.proof(locale, join(RAW, "android", locale, "proof.png"));
+          await captureLocale(dev, locale, dir, ONLY);
         } catch (e) {
-          failures.push(`android/${locale}/proof: ${e.message}`);
+          failures.push(`${dev.name}/${locale}: ${e.message}`);
           log("FAIL", e.message);
         }
       }
+      if (dev.name === "android" && ONLY.includes("proof")) {
+        log("android: proof screens from the store build");
+        await dev.proofSetup();
+        for (const locale of LOCALES) {
+          try {
+            await dev.proof(locale, join(RAW, "android", locale, "proof.png"));
+          } catch (e) {
+            failures.push(`android/${locale}/proof: ${e.message}`);
+            log("FAIL", e.message);
+          }
+        }
+      }
+    } catch (e) {
+      failures.push(`${dev.name}: ${e.message}`);
+      log("FAIL", e.message);
+    } finally {
+      await dev.teardown();
     }
-  } finally {
-    if (!flag("keep-metro")) await stopMetro();
-    for (const dev of devices) if (dev.udid || dev.serial) await dev.teardown();
   }
   if (failures.length) {
     console.error(failures.join("\n"));

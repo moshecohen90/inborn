@@ -971,25 +971,36 @@ Verified: `plutil -lint` on the plist, `NOTICE.json` parses; license inventory f
 - Docs: one "not built" list above, privacy policy §3 web row says the model is served from the page's own origin, the store README documents
   `voice_lines`.
 
-## Store screenshots (spec §13.3) — status 6.9.2026
+## Store screenshots (spec §13.3) — status 7.10.2026
 `design/store/` renders the six store screens per language from the real app, not mockups:
 ```
-node design/store/build.mjs            # dev APK, store-build APK (no INTERNET), iOS simulator app → design/store/raw/
-node design/store/capture.mjs          # Pixel_6_API_33 + iPhone 15 Pro Max (iOS 17.0) + iPad Pro 13" (iOS 17.5), en + ja/de/fr/es/pt-BR/ko/zh-Hant
-node design/store/compose.mjs          # design/store/out/<apple|play>/<locale>/<set>/NN-<screen>.png + out/preview.html
+node design/store/build.mjs            # Android store build (Proof only) + Android QA AAB + iOS QA simulator app
+node design/store/capture.mjs --avd=<avd>   # iPhone 17 Pro Max + iPad Pro 13" (M5), iOS 26.2 simulators + an Android 13 emulator, 8 locales
+node design/store/compose.mjs          # design/store/out/<apple|play>/<locale>/<set>/NN-<screen>.png, out/play/icon-512.png, out/preview.html
+node design/store/upload-asc.mjs --dry-run   # App Store Connect: replace the screenshot sets of version 1.0 (see the file head)
+INBORN_PLAY_SA_KEYCHAIN=store-reviews:play-service-account node design/store/upload-play.mjs --dry-run   # Play listing graphics, one edit
 ```
-- Copy comes from `docs/store/listing.<locale>.json` (`screenshots[]`), fonts from `design/store/fonts/` (IBM Plex Sans/Mono/Sans JP TTFs
-  from the official IBM releases, OFL, gitignored; download them there before composing).
-- capture.mjs drives the app through deep links and the existing dev hooks (`EXPO_PUBLIC_AUTOPROMPT`, `AUTOINDEX`, `AUTOASK`, one Metro per
-  locale on port 8095 so other worktrees' Metro on 8081 is untouched), writes `prefs.json` into the app container per locale, taps the
-  few things that need a finger (the first-run notice, the passcode) with uiautomator on Android and `idb` on the simulators
-  (`brew install idb-companion` from the facebook/fb tap + `pipx install fb-idb`), and pushes the Instant model, the nomic embedder and a
-  generated three-page lease PDF as the documents fixture. Android runs in real airplane mode (the status bar shows it); the Proof screen
-  on Android is captured from the store build after a clean uninstall, so the kernel counter reads OUT 0 B and Internet is
-  "none (not in the manifest)"; on iOS the dev build's Proof screen is the honest one already (log meter, no Internet permission concept).
-- Sets: Apple 6.9" 1320×2868, 6.5" 1284×2778, iPad 13" 2064×2752 (real iPad capture); Play phone 1080×1920, 7" 1200×1920 and 10"
-  1600×2560 (the phone capture on a tablet canvas, noted on the panel until there is an Android tablet capture), feature graphic 1024×500.
-- Only the English set is committed (`out/apple/en`, `out/play/en`, `out/preview.html`); other locales and raw captures are regenerated.
+- Copy comes from `docs/store/listing.<locale>.json` (`screenshots[]`; the feature graphic uses `google.short_description`), the
+  eyebrow from the app's own `onboarding.sealed.label`. Fonts in `design/store/fonts/` (gitignored, OFL, from the IBM/plex
+  releases): IBM Plex Sans + Mono, Plex Sans JP / KR / TC for ja / ko / zh-Hant.
+- The app is the QA variant (`com.inbornapp.mobile.qa`, `EXPO_PUBLIC_QA=1`, bundle embedded, no Metro) driven by the in-app QA
+  bridge (`apps/mobile/src/qa`): scripts in `Documents/qa/in`, screenshots acknowledged under `Documents/qa/ack`, the same
+  transport as `scripts/ios-qa.mjs`. The lease PDF goes in through the dev `attach:` door (`EXPO_PUBLIC_AUTOPROMPT=file`).
+- Models: each locale runs on the model the vault recommends for chat in its language (`MODEL_FOR` in capture.mjs): Fast for
+  en/fr/es/pt-BR/zh-Hant, Sharp (Pro, via the bridge's `setTier`) for de/ja/ko, where Fast is "Basic" and says so on screen.
+  On iOS the gguf files are copied into `Documents/models` and the vault adopts them at boot after the SHA-256 check; on
+  Android the AAB carries the Instant, Fast, Sharp, photo and index packs and is installed with `bundletool --local-testing`, so
+  the vault sees Play Asset Delivery (a plain sideloaded APK shows "Google Play is not available here"). That needs an AVD with
+  about 6 GB free on /data (`--avd`), and `BUNDLETOOL=<bundletool-all.jar>`. Simulators report the Mac's RAM, so the QA build
+  takes `EXPO_PUBLIC_DEV_RAM_GB` (12 on iOS, 8 on Android) as the device's.
+- Android runs in real airplane mode with its real status bar (SystemUI demo mode cannot draw the airplane glyph; the clock is
+  set to 09:41 and the battery to full, unplugged, through the emulator console); its Proof screen comes from the store build after a clean
+  uninstall (no INTERNET permission, OUT 0 B). The iOS simulator has no airplane glyph: cellular is hidden and Wi-Fi shows as not
+  connected. The paywall is always captured from a free launch of its own.
+- Sets: Apple 6.9" 1320×2868 and 6.5" 1284×2778 (both from the 6.9" capture), iPad 13" 2064×2752 (real iPad capture); Play
+  phone 1080×1920, 7" 1200×1920 and 10" 1600×2560 (the phone capture on a tablet canvas), feature graphic 1024×500, hi-res
+  icon 512×512 from `apps/mobile/assets/icon.png`.
+- Only the English set, the icon and `out/preview.html` are committed; the other locales stay on disk for the upload scripts.
 
 ## QA bug fixes round 4b (`docs/qa/qa-run-2026-09-06.md` B7–B13, B17) — branch `fixes-r4b`
 - **B7 wipe** deletes every Keychain / Keystore item: `src/storage/secureItems.ts` is the single list (db key, lock passcode) that the

@@ -12,7 +12,8 @@ export interface DeviceInfo extends DeviceProfile {
 
 /** The one RAM reading every screen shares (onboarding S01, vault S30): physical bytes, or the dev override, or null on the web. */
 export function ramBytes(): number | null {
-  const override = devBuild() ? DEV_RAM_GB : NaN;
+  /* A QA build on a simulator would otherwise report the Mac's RAM as the phone's (store screenshots, design/store). */
+  const override = devBuild() || process.env.EXPO_PUBLIC_QA === "1" ? DEV_RAM_GB : NaN;
   if (Number.isFinite(override) && override > 0) return override * 1024 ** 3;
   return totalMemoryBytes();
 }

@@ -36,28 +36,36 @@
   },
   "screenshots": [
     {
-      "headline": "Fonctionne en mode avion.",
-      "subline": "Toutes les radios coupées. Il répond quand même."
+      "headline": "L'IA reste sur votre téléphone.",
+      "subline": "Mode avion activé. Elle répond quand même, aussi vite.",
+      "accent": "reste",
+      "sublinePlay": "Sans connexion. Mode avion activé, elle répond quand même."
     },
     {
-      "headline": "Rien ne quitte votre téléphone. Vérifiez.",
-      "subline": "Preuve : OUT 0 B. Vérifiez vous-même."
+      "headline": "Lire une photo. Hors ligne.",
+      "subline": "Reçus, étiquettes, captures. Lus ici, jamais envoyés.",
+      "accent": "Hors ligne"
     },
     {
-      "headline": "Discutez avec vos documents. Hors ligne.",
-      "subline": "Interrogez vos PDF, sur l'appareil."
-    },
-    {
-      "headline": "Sans compte. Sans abonnement. Payez une fois.",
-      "subline": "Le gratuit est complet. Pro est unique."
-    },
-    {
-      "headline": "Choisissez le modèle adapté à votre appareil.",
-      "subline": "Qwen, Phi ou votre propre fichier GGUF."
+      "headline": "Parlez à vos PDF. Rien d'envoyé.",
+      "subline": "Chaque réponse cite la page. Le fichier reste ici.",
+      "accent": "Rien"
     },
     {
       "headline": "Verrouillez. Effacez.",
-      "subline": "Verrou, privé, effacement d'urgence."
+      "subline": "Verrouillage, chats privés, effacement d'urgence.",
+      "accent": "Effacez"
+    },
+    {
+      "headline": "Vérifiez par vous-même.",
+      "subline": "Compteur réseau en direct, dans l'app. SORTIE 0 B.",
+      "accent": "Vérifiez",
+      "sublinePlay": "Aucune permission internet. Le compteur affiche SORTIE 0 B."
+    },
+    {
+      "headline": "Un modèle adapté au téléphone.",
+      "subline": "Instant, Fast ou Sharp. Vitesse mesurée sur votre téléphone.",
+      "accent": "adapté"
     }
   ],
   "reviewer_notes": "Inborn runs an AI model entirely on the device. There is no backend server and no user account.\n\nTESTING OFFLINE: A small model ships inside the app, so you can start chatting immediately with no download. Turn on Airplane Mode and the chat still works at the same speed.\n\nNETWORK: On Android the release manifest has no INTERNET permission at all (verified with aapt2 dump permissions against every release build; models are delivered by Google Play as asset packs). On iOS every network path is optional and user-initiated: installing a larger model from our own CDN at models.inbornapp.com, and, only if the tester asks for it, a Hugging Face import. The default model ships inside the app, needs no download, and the app opens no socket on its own, so those hosts appear in the App Privacy Report only while a download the tester started is running.\n\nNO ACCOUNT: No login, email or sign-in is required for any feature.\n\nAI CONTENT: Responses are AI-generated and are labeled as such in onboarding and on outputs. To test the report control, open any AI reply and choose Report; it works offline and transmits nothing.\n\nPURCHASES: Pro is a single non-consumable in-app purchase. Family Sharing is not enabled for this release. The free tier is fully functional without it: unlimited chat, no message limit, no watermark.",

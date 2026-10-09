@@ -1915,7 +1915,7 @@ export function Chat({ store, chatId, incognito, onOpenChats, onChatCreated, per
       {notice && status.kind === "ready" ? (
         <View testID="notice" style={[styles.notice, { borderColor: theme.border }]}>
           <Text style={[type.caption, styles.grow, { color: theme.text2 }]}>{t("chat.canBeWrong", { device: deviceNoun() })}</Text>
-          <Pressable accessibilityRole="button" onPress={dismissNotice} hitSlop={8} style={styles.noticeBtn}>
+          <Pressable testID="notice-dismiss" accessibilityRole="button" onPress={dismissNotice} hitSlop={8} style={styles.noticeBtn}>
             <Text style={[type.caption, { color: theme.accent }]}>{t("safety.dismiss")}</Text>
           </Pressable>
         </View>

@@ -36,28 +36,36 @@
   },
   "screenshots": [
     {
-      "headline": "Funciona em modo avião.",
-      "subline": "Com todo o sinal desligado, ele ainda responde."
+      "headline": "IA que fica no seu celular.",
+      "subline": "Modo avião ligado. Ela ainda responde, na mesma velocidade.",
+      "accent": "fica",
+      "sublinePlay": "Sem internet. Modo avião ligado, ela ainda responde."
     },
     {
-      "headline": "Nada sai do seu celular. Verifique.",
-      "subline": "Prova: OUT 0 B. Confira você mesmo."
+      "headline": "Leia uma foto. Offline.",
+      "subline": "Recibos, rótulos, capturas de tela. Lidos aqui, nunca saem.",
+      "accent": "Offline"
     },
     {
-      "headline": "Converse com seus documentos. Offline.",
-      "subline": "Pergunte aos seus próprios PDFs, no aparelho."
-    },
-    {
-      "headline": "Sem conta. Sem assinatura. Pague uma vez.",
-      "subline": "O grátis é completo. O Pro é pagamento único."
-    },
-    {
-      "headline": "Escolha o modelo ideal para seu celular.",
-      "subline": "Qwen, Phi ou seu próprio arquivo GGUF."
+      "headline": "Pergunte ao PDF. Nada é enviado.",
+      "subline": "Cada resposta cita a página. O arquivo nunca sai.",
+      "accent": "Nada"
     },
     {
       "headline": "Bloqueie. Apague.",
-      "subline": "Bloqueio, anônimo, apagar tudo."
+      "subline": "Bloqueio de tela, chats anônimos, apagamento de emergência.",
+      "accent": "Apague"
+    },
+    {
+      "headline": "Verifique você mesmo.",
+      "subline": "Medidor de rede ao vivo, no app. SAI 0 B.",
+      "accent": "Verifique",
+      "sublinePlay": "Sem permissão de internet. O medidor mostra SAI 0 B."
+    },
+    {
+      "headline": "Um modelo que cabe no celular.",
+      "subline": "Instant, Fast ou Sharp. Velocidade medida no seu celular.",
+      "accent": "cabe"
     }
   ],
   "reviewer_notes": "Inborn runs an AI model entirely on the device. There is no backend server and no user account.\n\nTESTING OFFLINE: A small model ships inside the app, so you can start chatting immediately with no download. Turn on Airplane Mode and the chat still works at the same speed.\n\nNETWORK: On Android the release manifest has no INTERNET permission at all (verified with aapt2 dump permissions against every release build; models are delivered by Google Play as asset packs). On iOS every network path is optional and user-initiated: installing a larger model from our own CDN at models.inbornapp.com, and, only if the tester asks for it, a Hugging Face import. The default model ships inside the app, needs no download, and the app opens no socket on its own, so those hosts appear in the App Privacy Report only while a download the tester started is running.\n\nNO ACCOUNT: No login, email or sign-in is required for any feature.\n\nAI CONTENT: Responses are AI-generated and are labeled as such in onboarding and on outputs. To test the report control, open any AI reply and choose Report; it works offline and transmits nothing.\n\nPURCHASES: Pro is a single non-consumable in-app purchase. Family Sharing is not enabled for this release. The free tier is fully functional without it: unlimited chat, no message limit, no watermark.",

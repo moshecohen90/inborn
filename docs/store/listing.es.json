@@ -36,28 +36,36 @@
   },
   "screenshots": [
     {
-      "headline": "Funciona en modo avión.",
-      "subline": "Con todas las redes apagadas, sigue respondiendo."
+      "headline": "IA que se queda en tu teléfono.",
+      "subline": "Modo avión activado. Sigue respondiendo, igual de rápido.",
+      "accent": "queda",
+      "sublinePlay": "Sin internet. Modo avión activado y sigue respondiendo."
     },
     {
-      "headline": "Nada sale de tu teléfono. Compruébalo.",
-      "subline": "Prueba: OUT 0 B. Compruébalo tú mismo."
+      "headline": "Lee una foto. Sin conexión.",
+      "subline": "Recibos, etiquetas, capturas. Leídos aquí, nunca enviados.",
+      "accent": "Sin conexión"
     },
     {
-      "headline": "Chatea con tus documentos. Sin conexión.",
-      "subline": "Pregunta a tus propios PDF, en el dispositivo."
-    },
-    {
-      "headline": "Sin cuenta. Sin suscripción. Paga una vez.",
-      "subline": "Gratis es completo. Pro es de pago único."
-    },
-    {
-      "headline": "Elige el modelo para tu teléfono.",
-      "subline": "Qwen, Phi o tu propio archivo GGUF."
+      "headline": "Pregunta a tu PDF. Nada se sube.",
+      "subline": "Cada respuesta cita la página. El archivo nunca sale.",
+      "accent": "Nada"
     },
     {
       "headline": "Bloquéalo. Bórralo.",
-      "subline": "Bloqueo, incógnito, eliminar todo."
+      "subline": "Bloqueo, chats de incógnito, borrado de emergencia.",
+      "accent": "Bórralo"
+    },
+    {
+      "headline": "Compruébalo tú mismo.",
+      "subline": "Medidor de red integrado, en vivo. SALEN 0 B.",
+      "accent": "Compruébalo",
+      "sublinePlay": "Sin permiso de internet. El medidor marca SALEN 0 B."
+    },
+    {
+      "headline": "El modelo cabe en tu teléfono.",
+      "subline": "Instant, Fast o Sharp. Velocidad medida en tu teléfono.",
+      "accent": "cabe"
     }
   ],
   "reviewer_notes": "Inborn runs an AI model entirely on the device. There is no backend server and no user account.\n\nTESTING OFFLINE: A small model ships inside the app, so you can start chatting immediately with no download. Turn on Airplane Mode and the chat still works at the same speed.\n\nNETWORK: On Android the release manifest has no INTERNET permission at all (verified with aapt2 dump permissions against every release build; models are delivered by Google Play as asset packs). On iOS every network path is optional and user-initiated: installing a larger model from our own CDN at models.inbornapp.com, and, only if the tester asks for it, a Hugging Face import. The default model ships inside the app, needs no download, and the app opens no socket on its own, so those hosts appear in the App Privacy Report only while a download the tester started is running.\n\nNO ACCOUNT: No login, email or sign-in is required for any feature.\n\nAI CONTENT: Responses are AI-generated and are labeled as such in onboarding and on outputs. To test the report control, open any AI reply and choose Report; it works offline and transmits nothing.\n\nPURCHASES: Pro is a single non-consumable in-app purchase. Family Sharing is not enabled for this release. The free tier is fully functional without it: unlimited chat, no message limit, no watermark.",

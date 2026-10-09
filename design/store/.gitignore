@@ -1,13 +1,18 @@
-# raw device captures, the proof APK, the lease fixture
+# raw device captures, the proof APK, the QA bundle, the lease fixture
 raw/
 # IBM Plex TTFs (OFL): download per README, never committed
 fonts/
 # rendered sets: only the English set travels with the repo
 out/*
 !out/preview.html
+# the design demo for the direction pick, and the AI-art declaration list a --style render writes
+!out/demo-inborn.html
+!out/demo/
+!out/ai-art-manifest.json
 !out/apple/
 out/apple/*
 !out/apple/en/
 !out/play/
 out/play/*
 !out/play/en/
+!out/play/icon-512.png

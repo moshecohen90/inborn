@@ -36,28 +36,36 @@
   },
   "screenshots": [
     {
-      "headline": "飛航模式下照樣能用。",
-      "subline": "關掉所有無線電，它還是回答。"
+      "headline": "AI 留在你的手機裡。",
+      "subline": "開了飛航模式，它照樣回答，一樣快。",
+      "accent": "留在",
+      "sublinePlay": "不用網路。開了飛航模式，它照樣回答。"
     },
     {
-      "headline": "什麼都不會離開你的手機。自己驗證。",
-      "subline": "「證明」顯示 OUT 0 B。親自查證。"
+      "headline": "讀一張照片。離線就行。",
+      "subline": "收據、標籤、截圖。在這裡讀，從不送出。",
+      "accent": "離線"
     },
     {
-      "headline": "和你的文件對話。離線就行。",
-      "subline": "在裝置內問你自己的 PDF。"
-    },
-    {
-      "headline": "不用帳號。不用訂閱。買一次就好。",
-      "subline": "免費版就很完整，Pro 一次買斷。"
-    },
-    {
-      "headline": "挑一個適合你手機的模型。",
-      "subline": "Qwen、Phi，或你自己的 GGUF 檔。"
+      "headline": "問你的 PDF。什麼都不上傳。",
+      "subline": "每個回答都註明頁碼。檔案從不離開。",
+      "accent": "不上傳"
     },
     {
       "headline": "鎖起來。清乾淨。",
-      "subline": "螢幕鎖定、無痕模式、緊急清除。"
+      "subline": "螢幕鎖定、無痕對話、緊急清除。",
+      "accent": "清乾淨"
+    },
+    {
+      "headline": "自己驗證看看。",
+      "subline": "即時網路計量，就在 App 裡。送出 0 B。",
+      "accent": "驗證",
+      "sublinePlay": "沒有網路權限。計量顯示送出 0 B。"
+    },
+    {
+      "headline": "適合你手機的模型。",
+      "subline": "Instant、Fast 或 Sharp。速度在你手機上實測。",
+      "accent": "適合"
     }
   ],
   "reviewer_notes": "Inborn runs an AI model entirely on the device. There is no backend server and no user account.\n\nTESTING OFFLINE: A small model ships inside the app, so you can start chatting immediately with no download. Turn on Airplane Mode and the chat still works at the same speed.\n\nNETWORK: On Android the release manifest has no INTERNET permission at all (verified with aapt2 dump permissions against every release build; models are delivered by Google Play as asset packs). On iOS every network path is optional and user-initiated: installing a larger model from our own CDN at models.inbornapp.com, and, only if the tester asks for it, a Hugging Face import. The default model ships inside the app, needs no download, and the app opens no socket on its own, so those hosts appear in the App Privacy Report only while a download the tester started is running.\n\nNO ACCOUNT: No login, email or sign-in is required for any feature.\n\nAI CONTENT: Responses are AI-generated and are labeled as such in onboarding and on outputs. To test the report control, open any AI reply and choose Report; it works offline and transmits nothing.\n\nPURCHASES: Pro is a single non-consumable in-app purchase. Family Sharing is not enabled for this release. The free tier is fully functional without it: unlimited chat, no message limit, no watermark.",
