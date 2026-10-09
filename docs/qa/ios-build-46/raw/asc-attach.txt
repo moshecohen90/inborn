@@ -1,0 +1,21 @@
+09:27 poll 0 not listed yet
+09:29 poll 1 not listed yet
+09:30 poll 2 not listed yet
+09:32 poll 3 not listed yet
+09:33 poll 4 not listed yet
+09:35 poll 5 not listed yet
+09:36 poll 6 not listed yet
+09:38 poll 7 46 VALID
+version build before: {"version":"45"}
+attach status 204
+version build after: {"version":"46","processingState":"VALID"}
+build state: {"version":"46","expired":false,"processingState":"VALID","usesNonExemptEncryption":false}
+file:///private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/asc.mjs:47
+  const grp = g.body.data[0];
+                         ^
+
+TypeError: Cannot read properties of undefined (reading '0')
+    at file:///private/tmp/claude-501/-Users-moshecohen-dev-bibleapps/e1fec2dd-3831-49ec-a78e-d650b5c0d26b/scratchpad/asc.mjs:47:26
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+
+Node.js v20.19.4

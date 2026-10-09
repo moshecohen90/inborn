@@ -1,0 +1,10 @@
+CFBundleVersion 46
+share extension: AskInborn.appex version 46
+models: instant.gguf vision-qwen35.gguf 
+tessdata: eng.traineddata heb.traineddata 
+LAUNCH_AT strings -a count: 1
+.app size: 768M
+shipping gate --models:
+  /Users/moshecohen/dev/inborn-docs/builds/Inborn-46.xcarchive (models): OK vision-qwen35 vision-qwen35.gguf 204987232 B sha256 matches the catalog
+
+PASS: every model the catalog ships is in the build, byte for byte.
