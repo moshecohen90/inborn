@@ -1,0 +1,10 @@
+6:const edit = await api.post(`${API}/${pkg}/edits`, {});
+8:  const base = `${API}/${pkg}/edits/${edit.id}`;
+27:  await api.del(`${API}/${pkg}/edits/${edit.id}`);
+package com.inbornapp.mobile, track internal, status completed, aab app-release.aab (5841 MB)
+edit 05111594516999678331
+bundle uploaded: versionCode 30, sha256 24a120096b468261c1ebbc5fd31bca94e6c6fe8502f2113db56e33eb57defec6
+track internal: [{"name":"30","versionCodes":["30"],"status":"completed"}]
+committed edit 05111594516999678331
+
+[exited with code 0]
