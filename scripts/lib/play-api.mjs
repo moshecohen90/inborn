@@ -68,6 +68,8 @@ export function client(token) {
    ingesting a multi-GB bundle, and the caller's error path deletes the edit — which throws the finished upload away
    (vc22 lost a 5.1 GB one that way). Waiting is the whole fix: only this message is retried. */
 const STILL_INGESTING = /uploads are not completed yet/i;
+/* Play answered a commit with a bare 503 right after a 10-minute bundle upload (11.10); a transient 5xx is worth the same wait. */
+const TRANSIENT = /→ 50[0234]\b/;
 
 export async function commitEdit(api, pkg, editId, opts = {}) {
   const tries = opts.tries ?? 20;
@@ -78,8 +80,9 @@ export async function commitEdit(api, pkg, editId, opts = {}) {
     try {
       return await api.post(`${API}/${pkg}/edits/${editId}:commit`, null);
     } catch (e) {
-      if (attempt >= tries || !STILL_INGESTING.test(String(e.message))) throw e;
-      log(`commit refused while Play finishes ingesting the bundle; retrying in ${Math.round(waitMs / 1000)}s (attempt ${attempt}/${tries})`);
+      const message = String(e.message);
+      if (attempt >= tries || !(STILL_INGESTING.test(message) || TRANSIENT.test(message))) throw e;
+      log(`commit ${TRANSIENT.test(message) ? `got ${message.split("\n")[0]}` : "refused while Play finishes ingesting the bundle"}; retrying in ${Math.round(waitMs / 1000)}s (attempt ${attempt}/${tries})`);
       await sleep(waitMs);
     }
   }

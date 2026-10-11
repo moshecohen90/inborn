@@ -102,7 +102,7 @@ export class PlayDelivery implements ModelDelivery {
   private async deliverPacks(model: CatalogModel, emit: (e: InstallEvent) => void, silent: boolean): Promise<string> {
     const packs = packsOf(model);
     if (!packs.length) throw new Error(`${model.id} has no Play pack`);
-    const located = this.owned(model) ?? this.adopt(model) ?? this.inPlay(model);
+    const located = this.owned(model) ?? this.adoptAndRelease(model) ?? this.inPlay(model);
     if (located) return located;
     /* Packs arrive one after another; progress is cumulative so the card shows one bar for the whole model. */
     let done = 0;
@@ -117,8 +117,15 @@ export class PlayDelivery implements ModelDelivery {
       await this.fetchOne(pack, bytes, (b) => emit({ type: "progress", bytes: done + b, total: model.bytes }), emit, silent);
       done += bytes;
     }
-    const path = this.adopt(model) ?? this.inPlay(model);
+    const path = this.adoptAndRelease(model) ?? this.inPlay(model);
     if (!path) throw new Error(`packs for ${model.id} completed but a shard is missing`);
+    return path;
+  }
+
+  /* Release follows the hard link, not the minutes-long hash after it: an app backgrounded or updated in between must not leave an installed pack behind (6T 32→33, 11.10). */
+  private adoptAndRelease(model: CatalogModel): string | null {
+    const path = this.adopt(model);
+    if (path) void this.release(model, path);
     return path;
   }
 

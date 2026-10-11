@@ -21,3 +21,8 @@ Packs the app released after verifying its own copy (Finsky DS: onRemove, first 
 19:52:59 inborn_model_vision
 19:53:08 inborn_model_vision_fast
 crash buffer entries for the app: 0
+
+CORRECTION (11.10 23:05, after the vc33 and vc34 updates — docs/qa/android-vc33/6t-update-33.md, docs/qa/android-vc34/6t-update-34.txt):
+- The "DS: onRemove" lines above were Finsky cleaning up the update's own download requests (the first two are the base APK and config.en), NOT the vault releasing packs. The raw log of this run holds 0 "removePack(" / "removeModule for package" lines: in this session the vault never got to release() (release ran only after the sha256 verification of every model, and the app was sent to the background 90 s after launch). The next update (32→33) therefore found all eight packs still installed and Play re-materialised them (10 KB patches, 7.6 GB rewritten, PlayCore notification stuck 22 min).
+- "App Data Sizes ... unchanged" is a daily cache in dumpsys diskstats, not a live reading; withdrawn. Live free space is Data-Free.
+- What is true: 0 crashes; no model bytes were downloaded again at 31→32 beyond the packs Play itself re-delivered (the round-44 bug this build fixes for the app's own requests).

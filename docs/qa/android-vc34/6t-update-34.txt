@@ -1,0 +1,39 @@
+# 6T: update 1.0.0 (33) → 1.0.0 (34) from Play, after the vault had released all eight packs and the app had restarted (6t-update-33.md).
+# Driver update-6t.sh (scratch). Finsky lines about other apps' auto-updates (InstaShot, Shazam, inDriver, Docs, Facebook) removed; free-space swings below are those updates.
+# 6T update to vc34 — 11.10 22:37, device anchor 10-11 22:37:23.000
+before:     versionCode=33 minSdk=26 targetSdk=36 | Data-Free: 11870924K / 113468064K total = 10% free | notif=0 | pid=27428
+try 10 22:48: TAB x10 focused Atualizar at 784 658, DPAD_CENTER sent
+download started 22:48
+installed versionCode=34 at 22:48
+after install:     versionCode=34 minSdk=26 targetSdk=36 | Data-Free: 11619784K / 113468064K total = 10% free | notif=0
+  +15s Data-Free: 11688656K / 113468064K total = 10% free notif=0 module-requests=0 patched=0
+  +30s Data-Free: 11618336K / 113468064K total = 10% free notif=0 module-requests=0 patched=0
+  +45s Data-Free: 11437300K / 113468064K total = 10% free notif=0 module-requests=0 patched=0
+  +60s Data-Free: 11470244K / 113468064K total = 10% free notif=0 module-requests=0 patched=0
+  +75s Data-Free: 11507672K / 113468064K total = 10% free notif=0 module-requests=0 patched=0
+  +90s Data-Free: 11614644K / 113468064K total = 10% free notif=0 module-requests=0 patched=0
+  +105s Data-Free: 11501444K / 113468064K total = 10% free notif=0 module-requests=0 patched=0
+  +120s Data-Free: 11417144K / 113468064K total = 10% free notif=0 module-requests=0 patched=0
+--- pack lines before launch:
+10-11 22:50:51.030 16875 19992 I Finsky:background: [31583] DS: DS: onRemove(request_id=4142, files_to_download=[config.arm64_v8a(size:1290896)], context[group_id=com.google.androi
+10-11 22:50:51.046 16875 19992 I Finsky:background: [31583] DS: DS: onRemove(request_id=4143, files_to_download=[config.pt(size:31534)], context[group_id=com.google.android.apps.do
+10-11 22:50:51.056 16875 19992 I Finsky:background: [31583] DS: DS: onRemove(request_id=4144, files_to_download=[config.en(size:33696)], context[group_id=com.google.android.apps.do
+10-11 22:50:51.072 16875 19992 I Finsky:background: [31583] DS: DS: onRemove(request_id=4145, files_to_download=[config.xxhdpi(size:7283)], context[group_id=com.google.android.apps
+--- launch app 22:50
+  +15s Data-Free: 11329588K / 113468064K total = 9% free notif=0 pid=27431
+  +30s Data-Free: 11334584K / 113468064K total = 9% free notif=0 pid=27431
+  +45s Data-Free: 11268472K / 113468064K total = 9% free notif=0 pid=27431
+  +60s Data-Free: 11276728K / 113468064K total = 9% free notif=0 pid=27431
+  +75s Data-Free: 11282824K / 113468064K total = 9% free notif=0 pid=27431
+  +90s Data-Free: 11048372K / 113468064K total = 9% free notif=0 pid=27431
+  +105s Data-Free: 10715972K / 113468064K total = 9% free notif=0 pid=27431
+  +120s Data-Free: 10857372K / 113468064K total = 9% free notif=0 pid=27431
+--- pack lines since launch:
+10-11 22:51:12.922 16875 19992 I Finsky:background: [31583] DS: DS: onRemove(request_id=4146, files_to_download=[config.arm64_v8a(size:1122252)], context[group_id=com.google.androi
+10-11 22:51:12.969 16875 19992 I Finsky:background: [31583] DS: DS: onRemove(request_id=4147, files_to_download=[config.en(size:19198)], context[group_id=com.google.android.apps.do
+10-11 22:51:13.038 16875 19992 I Finsky:background: [31583] DS: DS: onRemove(request_id=4149, files_to_download=[config.xxhdpi(size:7399)], context[group_id=com.google.android.apps
+10-11 22:51:13.137 16875 19992 I Finsky:background: [31583] DS: DS: onRemove(request_id=4151, files_to_download=[config.pt(size:18066)], context[group_id=com.google.android.apps.do
+crash buffer entries for inborn: 0
+end: Data-Free: 10828692K / 113468064K total = 9% free | notif=0 | # done 22:52
+
+RESULT: Play requested 0 asset modules on this update (module-requests=0, patched=0, no PlayCore notification, no inborn pack line in Finsky), 0 crashes. Once Finsky processed removeModule for every pack (seen at the vc33 relaunch), the update no longer touches the models.

@@ -1,0 +1,5 @@
+# commitEdit guard 11.10.2026: after the vc34 commit died on a bare 503 (edit 15827346068683190852, bundle already uploaded), transient 5xx now waits like 'uploads are not completed yet'. Fake api, sleep=0.
+A 503,503,ok → {"id":"1"} calls 3 | commit got POST /pkg/edits/1:commit → 503; retrying in 60s (attempt 1/20)
+B 404 → thrown after 1 call
+C ingest,500,ok → {"id":"1"} calls 3
+D 3×503 with tries=3 → thrown after 3 calls

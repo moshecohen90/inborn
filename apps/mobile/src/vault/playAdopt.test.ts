@@ -64,20 +64,22 @@ beforeEach(() => {
 });
 
 describe("PlayDelivery · the vault owns what Play delivered", () => {
-  it("delivers into the vault directory, never Play's, and removes nothing before the copy verified", async () => {
+  it("delivers into the vault directory, never Play's, and takes the pack out of Play the moment the vault owns the hard link", async () => {
     const path = await new PlayDelivery().deliver(model("fast"), () => undefined);
     expect(path).toBe(`file://${VAULT}/${model("fast").file}`);
     expect(path).not.toContain("assetpacks");
-    expect(calls.filter((c) => c.startsWith("removed"))).toEqual([]);
+    /* 6T 32→33 (11.10): a release that waited for the hash never ran before the app was backgrounded, and the next update re-materialised every pack. */
+    expect(calls.indexOf("removed inborn_model_fast")).toBeGreaterThan(calls.indexOf("adopt " + model("fast").file));
   });
 
-  it("takes every pack of the model out of Play once, after verification, and a refusal never fails the install", async () => {
+  it("takes every pack of the model out of Play at adoption; the post-verification release is a harmless repeat and a refusal never fails anything", async () => {
     const sharp = model("sharp");
     const d = new PlayDelivery();
     const path = await d.deliver(sharp, () => undefined);
     expect(modelParts(sharp).every((p) => onDisk.has(`${VAULT}/${p.file}`))).toBe(true);
-    await expect(d.release(sharp, path)).resolves.toBeUndefined();
     expect(calls.filter((c) => c.startsWith("removed"))).toEqual(["removed inborn_model_sharp", "removed inborn_model_sharp_2"]);
+    await expect(d.release(sharp, path)).resolves.toBeUndefined();
+    expect(calls.filter((c) => c.startsWith("removed"))).toHaveLength(4);
     expect(d.locate(sharp)).toBe(path);
   });
 

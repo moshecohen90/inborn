@@ -1,0 +1,4 @@
+# vc34 → Play internal, 11.10.2026 22:36 (play-upload.mjs --track internal --status completed). vc34 = main 3837997e, same code as vc32/vc33; built only to watch the second update on the 6T after the vault released every pack and the app restarted.
+bundle sha256 12f27ce6e854dd461abef9ee7637786642a99ef6b68bdc62588e6123835ccc81, versionCode 34 (bundletool), 8/8 packs dist:on-demand (same bundle recipe as vc33).
+first attempt: edit 15827346068683190852 uploaded, commit → 503 (Play) — abandoned; play-api.mjs now retries transient 5xx (guard-commit-transient-5xx.txt).
+second attempt: committed edit 11808735216820393197 after 2 ingest waits.
