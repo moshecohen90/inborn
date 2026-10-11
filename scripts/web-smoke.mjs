@@ -476,6 +476,12 @@ async function waitForEngineAfter(lines, from) {
   throw new Error("the engine never loaded");
 }
 
+/* Round 44 (11.10): a hold-card Download above 200 MB opens the vault's confirm sheet first; the smoke answers it like a user. */
+async function confirmIfAsked(p) {
+  const sheet = p.getByTestId("confirm-download");
+  if (await sheet.waitFor({ timeout: 3_000 }).then(() => true, () => false)) await sheet.click();
+}
+
 /**
  * Round 93: attaches `file` in a fresh chat, asks about it, answers the index-model card with `onHold` when it shows,
  * and returns what the reader saw. The answer is done when its ledger row appears (rendered once streaming ends).
@@ -969,7 +975,7 @@ try {
     /* The .pdf installs the index model from this host (the card's Download), then goes out by itself. */
     out.pdf = await attachAndAsk(page, consoleLines, "turbine-report.pdf", async (p, seen) => {
       if (!out.indexModelServed) return p.getByTestId("docs-hold-words").click();
-      await p.getByTestId("docs-hold-download").click();
+      await p.getByTestId("docs-hold-download").click().then(() => confirmIfAsked(p));
       await p.getByTestId("docs-hold").waitFor({ state: "detached", timeout: LOAD_TIMEOUT_MS }).catch(async () => {
         seen.downloadError = await p.getByTestId("docs-hold-error").textContent({ timeout: 1000 }).catch(() => null);
         throw new Error(`the index-model download did not finish: ${seen.downloadError ?? "card still up"}`);
@@ -1008,7 +1014,7 @@ try {
         s.unavailable = ((await p.getByTestId("vision-hold-body").textContent()) ?? "").trim();
         return true;
       }
-      await p.getByTestId("vision-hold-download").click();
+      await p.getByTestId("vision-hold-download").click().then(() => confirmIfAsked(p));
       await p.getByTestId("vision-hold").waitFor({ state: "detached", timeout: PHOTO_TIMEOUT_MS }).catch(async () => {
         s.downloadError = await p.getByTestId("vision-hold-error").textContent({ timeout: 1000 }).catch(() => null);
         throw new Error(`the photo pack download did not finish: ${s.downloadError ?? "card still up"}`);
@@ -1058,7 +1064,7 @@ try {
       out.shellForIndexModel = `${probe.status()} ${probe.headers()["content-type"]}`;
       if (!/^200 text\/html/.test(out.shellForIndexModel)) throw new Error(`the deployed-like host did not answer the shell: ${out.shellForIndexModel}`);
       out.txt = await attachAndAsk(page, consoleLines, "greenhouse-notes.txt", async (p, seen) => {
-        await p.getByTestId("docs-hold-download").click();
+        await p.getByTestId("docs-hold-download").click().then(() => confirmIfAsked(p));
         seen.downloadError = ((await p.getByTestId("docs-hold-error").textContent({ timeout: 60_000 }).catch(() => "")) ?? "").trim();
         await p.screenshot({ path: path.join(outDir, "web-smoke-deployed-like-hold-error.png") });
         await p.getByTestId("docs-hold-words").click();
@@ -1070,7 +1076,7 @@ try {
       out.modelLines = consoleLines.filter((l) => /not a model file|\[(rag|documents)\]/.test(l));
       /* Round 105: the projector goes through the same downloader, so a shell in its place is "not on the download server" too. */
       const photo = await photoAndAsk(page, consoleLines, async (p, seen) => {
-        await p.getByTestId("vision-hold-download").click();
+        await p.getByTestId("vision-hold-download").click().then(() => confirmIfAsked(p));
         seen.downloadError = ((await p.getByTestId("vision-hold-error").textContent({ timeout: 60_000 }).catch(() => "")) ?? "").trim();
         await p.screenshot({ path: path.join(outDir, "web-smoke-deployed-like-photo-hold.png") });
         return true;
