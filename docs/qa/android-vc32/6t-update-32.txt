@@ -1,0 +1,23 @@
+6T: Play update vc31 -> vc32 on 2026-10-11 19:51 IDT (my tap on Update), app launched 19:52:09; read-only observation
+versionCode after: 32; App Data Sizes before/after update/after launch: 5397856256 B each (no growth: adopt hard-linked, no copy)
+Play pack downloads during this update (RF: onProgress per artifact):
+   1 artifact_id=inborn_model
+   1 artifact_id=inborn_model_embed
+   1 artifact_id=inborn_model_fast
+   1 artifact_id=inborn_model_sharp_
+   1 artifact_id=inborn_model_speech
+   1 artifact_id=inborn_model_vision
+   1 artifact_id=inborn_model_vision_fast
+Play's own re-binding after the update: 'Requesting installation of asset modules' x9, notifyModuleCompleted x44
+Packs the app released after verifying its own copy (Finsky DS: onRemove, first time per pack):
+19:52:11 com
+19:52:11 config
+19:53:16 inborn_model
+19:52:27 inborn_model_embed
+19:52:22 inborn_model_fast
+19:52:42 inborn_model_sharp
+19:52:57 inborn_model_sharp_2
+19:53:40 inborn_model_speech
+19:52:59 inborn_model_vision
+19:53:08 inborn_model_vision_fast
+crash buffer entries for the app: 0
