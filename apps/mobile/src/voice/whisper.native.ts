@@ -4,6 +4,7 @@ import { Platform } from "react-native";
 import { initWhisper, type WhisperContext } from "whisper.rn/index";
 import { bcp47FromWhisper, cleanTranscript } from "@inborn/core";
 import { getVault } from "../vault/store";
+import type { UserTap } from "../vault/intent";
 
 /** Catalog id of the on-device transcription companion (spec §6.2: whisper.cpp base, 142 MB). */
 export const WHISPER_MODEL_ID = "speech-whisper-base";
@@ -28,8 +29,8 @@ export function resolveWhisper(): string | null {
 export const whisperInstalled = (): boolean => resolveWhisper() !== null;
 
 /** Starts the vault delivery (Play pack on Android, HTTPS on iOS); the vault screens show progress. */
-export function installWhisper(): Promise<unknown> {
-  return getVault().install(WHISPER_MODEL_ID);
+export function installWhisper(tap: UserTap): Promise<unknown> {
+  return getVault().install(WHISPER_MODEL_ID, tap);
 }
 
 /**

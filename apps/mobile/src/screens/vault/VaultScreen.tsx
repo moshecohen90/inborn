@@ -17,6 +17,7 @@ import { benchmarkModel, engineModelId, resetEngine, subscribeEngineState } from
 import { useAppServices } from "../../services/AppServices";
 import { useGgufOpenHandler, useVault, type VaultEntry } from "../../vault";
 import { DEV_AUTOIMPORT, DEV_AUTOINSTALL, DEV_VAULT_FILE, devBuild } from "../../vault/devFlags";
+import { userTap } from "../../vault/intent";
 import { ModelCard } from "./ModelCard";
 import { toggleUse, usesLabel } from "./bestFor";
 import { ModelDetails } from "./ModelDetails";
@@ -64,6 +65,8 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock, focus }: VaultS
   const insets = useSafeAreaInsets();
   const contentMax = useContentMaxWidth();
   const { vault, entries } = useVault();
+  /* Dev builds only (devBuild() guards both callers): the dev switch stands in for the tap. */
+  const devTap = (id: string) => userTap(vault.model(id)?.bytes ?? 0);
   const [bestUses, setBestUses] = useState<UseCase[]>(["chat"]);
   const [bestLanguage, setBestLanguage] = useState(() => startLanguage(i18n.language));
   const [picker, setPicker] = useState<"use" | "language" | null>(null);
@@ -105,10 +108,9 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock, focus }: VaultS
 
   useEffect(() => {
     void vault.ready().then(async () => {
-      vault.requestKnownPacks();
       if (!devBuild() || devHooksRan) return;
       devHooksRan = true;
-      if (DEV_AUTOINSTALL && vault.state(DEV_AUTOINSTALL).kind !== "ready") void vault.install(DEV_AUTOINSTALL);
+      if (DEV_AUTOINSTALL && vault.state(DEV_AUTOINSTALL).kind !== "ready") void vault.install(DEV_AUTOINSTALL, devTap(DEV_AUTOINSTALL));
       for (const name of DEV_AUTOIMPORT) await importUri(new File(Paths.document, name).uri);
     });
   }, [vault, importUri]);
@@ -177,7 +179,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock, focus }: VaultS
       for (const line of lines) {
         const [cmd, arg, name] = line.trim().split(/\s+/);
         if (!cmd || !arg) continue;
-        if (cmd === "install") void vault.install(arg);
+        if (cmd === "install") void vault.install(arg, devTap(arg));
         else if (cmd === "use") void use(arg);
         else if (cmd === "remove") void vault.remove(arg);
         else if (cmd === "import") void importUri(arg, name);
@@ -188,7 +190,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock, focus }: VaultS
 
   const startInstall = (entry: VaultEntry) => {
     setConfirm(null);
-    void vault.install(entry.model.id);
+    void vault.install(entry.model.id, userTap(entry.model.bytes));
   };
 
   const groups = groupByFit(
@@ -348,7 +350,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock, focus }: VaultS
             onInstall={() => (paywallFor(tier, { kind: "model", proOnly: !!item.model.proOnly }) ? onUnlock?.("model") : setConfirm({ entry: item }))}
             onCancel={() => void vault.cancel(item.model.id)}
             onPause={() => void vault.pause(item.model.id)}
-            onResume={() => void vault.resume(item.model.id)}
+            onResume={() => void vault.resume(item.model.id, userTap(item.model.bytes))}
             onUse={() => void use(item.model.id)}
             onDetails={() => setDetails(item.model)}
             stray={!!item.stray}

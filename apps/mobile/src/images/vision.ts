@@ -4,6 +4,7 @@ import { chatModelState, offeredChatModels } from "../extensions/chatModel";
 import { extensionState, extensionUri, installExtension, refreshExtension } from "../extensions/store";
 import { scaleImage } from "./pick";
 import { MAX_EDGE } from "./scale";
+import type { UserTap } from "../vault/intent";
 
 export const VISION_MODEL_ID = "vision-qwen35";
 export const DEV_VISION_FILE = "mmproj.gguf";
@@ -25,9 +26,9 @@ export function visionScanned(): Promise<void> {
   const packs = offeredChatModels(true).map((m) => visionPackFor(m.id)?.id).filter((id): id is string => !!id);
   return Promise.all(packs.map((id) => refreshExtension(id))).then(() => undefined);
 }
-export function installVision(modelId: string): Promise<unknown> {
+export function installVision(modelId: string, tap: UserTap): Promise<unknown> {
   const id = visionPackId(modelId);
-  return id ? installExtension(id) : Promise.reject(new Error("vision-unavailable"));
+  return id ? installExtension(id, tap) : Promise.reject(new Error("vision-unavailable"));
 }
 
 export const modelHasVision = (modelId: string): boolean => browser() && BUNDLED_MANIFEST.models.find((m) => m.id === modelId)?.vision === true && !!visionPackFor(modelId);

@@ -1,3 +1,5 @@
+import type { UserTap } from "../vault/intent";
+
 /* Web / desktop: whisper on WebGPU is a later phase (spec §5.6); the browser tier has no transcription companion yet. */
 export const WHISPER_MODEL_ID = "speech-whisper-base";
 export const DEV_WHISPER_FILE = "whisper.bin";
@@ -11,7 +13,7 @@ export interface Transcription {
 
 export const resolveWhisper = (): string | null => null;
 export const whisperInstalled = (): boolean => false;
-export async function installWhisper(): Promise<unknown> {
+export async function installWhisper(_tap: UserTap): Promise<unknown> {
   throw new Error("whisper-unavailable");
 }
 

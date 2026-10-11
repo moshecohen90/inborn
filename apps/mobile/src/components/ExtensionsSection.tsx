@@ -6,6 +6,7 @@ import { MIN_TOUCH, radius, type Theme } from "@inborn/ui";
 import { extKey, vaultRowState } from "../extensions/card";
 import { chatModelState, offeredChatModels } from "../extensions/chatModel";
 import { canRemoveExtensions, cancelExtension, installExtension, refreshExtension, removeExtension } from "../extensions/store";
+import { userTap } from "../vault/intent";
 import { useExtension } from "../extensions/useExtension";
 import { useType } from "../services/type";
 import { chatModelName, packNeedsModel } from "../vault/packOffer";
@@ -60,7 +61,7 @@ function ExtensionRow({ ext, theme }: { ext: Extension; theme: Theme }) {
   const action = neededModel
     ? null
     : state.kind === "missing" || state.kind === "failed"
-      ? { id: `ext-download-${ext.id}`, label: t("extensions.downloadNow"), run: () => void installExtension(ext.id).catch(() => undefined), cta: true }
+      ? { id: `ext-download-${ext.id}`, label: t("extensions.downloadNow"), run: () => void installExtension(ext.id, userTap(ext.bytes)).catch(() => undefined), cta: true }
       : state.kind === "downloading"
         ? { id: `ext-cancel-${ext.id}`, label: t("vault.cancel"), run: () => cancelExtension(ext.id), cta: false }
         : state.kind === "ready" && !state.bundled && canRemoveExtensions

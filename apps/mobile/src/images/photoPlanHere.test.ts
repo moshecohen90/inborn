@@ -3,6 +3,7 @@ import { join } from "node:path";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { BUNDLED_MANIFEST } from "@inborn/core";
 import type { VaultRecord } from "../vault/record";
+import { userTap } from "../vault/intent";
 
 /* Round 134Q (F463): Android vc24, Fast selected, a photo offered "Download the photo pack · 668 MB" that only HTTPS serves. */
 
@@ -91,7 +92,7 @@ describe("the photo card offers only a pack this phone can receive", () => {
   it("Android: the download asks Play for inborn_model_vision_fast and nothing else", async () => {
     const v = await phone("android");
     /* The fake Play never reports completion, so only the request is checked. */
-    void v.installVision("fast");
+    void v.installVision("fast", userTap(1));
     await vi.waitFor(() => expect(fetched).toEqual(["play:inborn_model_vision_fast"]));
   });
 
@@ -107,7 +108,7 @@ describe("the photo card offers only a pack this phone can receive", () => {
     play = false;
     const v = await phone("android");
     const { getVault } = await import("../vault/store");
-    await v.installVision("fast");
+    await v.installVision("fast", userTap(1));
     expect(fetched).toEqual([]);
     expect(getVault().state("vision-qwen35-2b")).toMatchObject({ kind: "failed", error: "no-delivery" });
   });

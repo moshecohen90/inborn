@@ -4,6 +4,7 @@ import { ALLOWED_MODEL_ORIGINS } from "../web/boot";
 import { WebModelDelivery, fetchCompanion, type WebModelSource } from "../web/modelDelivery";
 import { deleteModel, modelStatus, opfsSupported, opfsUri, readyModelStatus } from "../web/opfs";
 import type { ExtensionState } from "./state";
+import type { UserTap } from "../vault/intent";
 
 /**
  * Browser (and desktop shell) side of the extensions (round 105): one resumable downloader, one state per registry
@@ -65,7 +66,7 @@ export function extensionUri(id: string): string | null {
 export const storeReachable = (): boolean => true;
 
 /** Downloads into OPFS (resuming a partial file) and verifies; the state carries progress and the F349 failure. */
-export async function installExtension(id: string): Promise<ExtensionState> {
+export async function installExtension(id: string, _tap: UserTap): Promise<ExtensionState> {
   const now = extensionState(id);
   if (isTauri() || now.kind === "downloading" || now.kind === "ready") return now;
   const src = await source(id);
@@ -97,7 +98,7 @@ export function cancelExtension(id: string): void {
 }
 
 /** The phones resume a parked transfer; a browser's cancelled download simply starts again with a Range request. */
-export const resumeExtension = (id: string): Promise<ExtensionState> => installExtension(id);
+export const resumeExtension = (id: string, tap: UserTap): Promise<ExtensionState> => installExtension(id, tap);
 
 export async function removeExtension(id: string): Promise<ExtensionState> {
   const ext = findExtension(id);

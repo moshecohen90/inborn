@@ -99,7 +99,6 @@ describe("Remove on a Play pack", () => {
     await vault.remove("vision-qwen35");
     expect(removed).toEqual(["vision-qwen35"]);
     expect(vault.state("vision-qwen35").kind).toBe("not-installed");
-    vault.requestKnownPacks();
     await settled();
     expect(fetched).not.toContain("vision-qwen35");
   });
@@ -110,7 +109,6 @@ describe("Remove on a Play pack", () => {
     await vault.remove("fast");
     expect(removed).toEqual(["fast"]);
     expect(vault.state("fast").kind).toBe("not-installed");
-    vault.requestKnownPacks();
     await settled();
     expect(fetched).not.toContain("fast");
   });

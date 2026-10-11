@@ -3,6 +3,7 @@ import type { CatalogModel } from "@inborn/core";
 import { getVault } from "../vault/store";
 import { fromInstallState } from "./installState";
 import type { ExtensionState } from "./state";
+import type { UserTap } from "../vault/intent";
 
 export type SeeingModel = Pick<CatalogModel, "id" | "bytes" | "vision">;
 
@@ -17,8 +18,8 @@ export function chatModelState(id: string): ExtensionState {
   return model ? fromInstallState(vault.state(id), model.bytes, Platform.OS) : { kind: "unavailable" };
 }
 
-export async function installChatModel(id: string): Promise<ExtensionState> {
-  await getVault().install(id);
+export async function installChatModel(id: string, tap: UserTap): Promise<ExtensionState> {
+  await getVault().install(id, tap);
   return chatModelState(id);
 }
 

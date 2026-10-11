@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { BUNDLED_MANIFEST, type CatalogModel } from "@inborn/core";
 import type { VaultRecord } from "./record";
+import { userTap, type UserTap } from "./intent";
 
 const fast = BUNDLED_MANIFEST.models.find((m) => m.id === "fast") as CatalogModel;
 const embed = BUNDLED_MANIFEST.models.find((m) => m.id === "embed-e5") as CatalogModel;
@@ -90,12 +91,16 @@ beforeEach(() => {
 });
 
 describe("VaultStore after a Play version update (purchases run §K)", () => {
-  it("asks Play for a pack the update unbound instead of offering it as a new download", async () => {
+  /* A fetch for a pack whose content changed in the new version is a real download, so it waits for the tap (S02). */
+  it("asks Play for nothing a version update unbound; the user's tap brings it back", async () => {
     record = hadFast();
     const vault = new VaultStore();
     await vault.ready();
     await settled();
-    expect(fetched).toContain("fast");
+    expect(fetched).toEqual([]);
+    expect(vault.state("fast").kind).toBe("not-installed");
+    await vault.install("fast", userTap(fast.bytes));
+    expect(fetched).toEqual(["fast"]);
     expect(vault.state("fast")).toMatchObject({ kind: "ready", path: PATH, via: "play" });
   });
 
@@ -105,7 +110,7 @@ describe("VaultStore after a Play version update (purchases run §K)", () => {
     sha = "0".repeat(64);
     const vault = new VaultStore();
     await vault.ready();
-    await settled();
+    await vault.install("fast", userTap(fast.bytes));
     expect(vault.state("fast")).toMatchObject({ kind: "corrupt", reason: "hash-mismatch", via: "play" });
     expect(deleted, "Play owns the pack files; the app must not delete them").toEqual([]);
   });
@@ -142,16 +147,14 @@ describe("VaultStore after a Play version update (purchases run §K)", () => {
     expect(vault.state("embed-e5").kind).toBe("not-installed");
   });
 
-  it("re-asks on vault open, for an update that landed after the boot scan", async () => {
-    record = emptyRecord();
+  /* Founder, 11.10: Play opened on a 1.94 GB download (Fast 1,280,835,840 B + its projector 668,227,264 B) he never asked for. */
+  it("a phone that once had Fast and its projector fetches neither on boot", async () => {
+    const vf = BUNDLED_MANIFEST.models.find((m) => m.id === "vision-qwen35-2b") as CatalogModel;
+    record = { ...hadFast(), installs: { ...hadFast().installs, "vision-qwen35-2b": { file: vf.file, bytes: vf.bytes, sha256: vf.sha256, via: "play", installedAt: 1 } } };
     const vault = new VaultStore();
     await vault.ready();
     await settled();
-    expect(fetched).not.toContain("fast");
-    record.installs.fast = { file: fast.file, bytes: fast.bytes, sha256: fast.sha256, via: "play", installedAt: 1 };
-    vault.requestKnownPacks();
-    await settled();
-    expect(fetched).toContain("fast");
+    expect(fetched).toEqual([]);
   });
 });
 
@@ -159,7 +162,7 @@ describe("VaultStore · a chat model and its photo pack are one choice on Play",
   it("Download Instant fetches its projector with it", async () => {
     const vault = new VaultStore();
     await vault.ready();
-    await vault.install("instant");
+    await vault.install("instant", userTap(1));
     await settled();
     expect(fetched.sort()).toEqual(["instant", "vision-qwen35"]);
     expect(vault.photoPackOf("instant")?.id).toBe("vision-qwen35");
@@ -168,7 +171,7 @@ describe("VaultStore · a chat model and its photo pack are one choice on Play",
   it("Download Fast fetches Fast alone: no Instant, and no projector Play cannot bring", async () => {
     const vault = new VaultStore();
     await vault.ready();
-    await vault.install("fast");
+    await vault.install("fast", userTap(fast.bytes));
     await settled();
     expect(fetched).toEqual(["fast"]);
     expect(vault.photoPackOf("fast")).toBeNull();
@@ -178,7 +181,7 @@ describe("VaultStore · a chat model and its photo pack are one choice on Play",
     hang.add("instant").add("vision-qwen35");
     const vault = new VaultStore();
     await vault.ready();
-    void vault.install("instant");
+    void vault.install("instant", userTap(1));
     await settled();
     expect(vault.state("vision-qwen35").kind).toBe("delivering");
     await vault.cancel("instant");
@@ -187,13 +190,24 @@ describe("VaultStore · a chat model and its photo pack are one choice on Play",
     expect(vault.state("vision-qwen35").kind).toBe("not-installed");
   });
 
-  it("an update re-asks for a delivered Instant without fetching a projector the user removed", async () => {
+  it("an update fetches nothing, not even a delivered Instant", async () => {
     const instant = BUNDLED_MANIFEST.models.find((m) => m.id === "instant") as CatalogModel;
     record = { ...emptyRecord(), installs: { instant: { file: instant.file, bytes: instant.bytes, sha256: instant.sha256, via: "play", installedAt: 1 } } };
     const vault = new VaultStore();
     await vault.ready();
     await settled();
-    expect(fetched).toEqual(["instant"]);
+    expect(fetched).toEqual([]);
+  });
+});
+
+describe("VaultStore · nothing downloads without the user's tap (S02)", () => {
+  it("refuses an install that carries no tap, and asks Play for nothing", async () => {
+    const vault = new VaultStore();
+    await vault.ready();
+    for (const tap of [undefined, null, {}, { bytes: 0 }]) await expect(vault.install("fast", tap as unknown as UserTap)).rejects.toThrow(/without a user tap/);
+    await expect(vault.resume("fast", undefined as unknown as UserTap)).rejects.toThrow(/without a user tap/);
+    expect(fetched).toEqual([]);
+    expect(vault.state("fast").kind).toBe("not-installed");
   });
 });
 
@@ -202,7 +216,7 @@ describe("VaultStore.lastDelivery (F206)", () => {
     record = hadFast();
     const vault = new VaultStore();
     await vault.ready();
-    await settled();
+    await vault.install("fast", userTap(fast.bytes));
     expect(vault.lastDelivery()).toMatchObject({ id: "fast", name: fast.name, via: "play", bytes: fast.bytes });
   });
 

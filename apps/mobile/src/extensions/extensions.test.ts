@@ -4,6 +4,7 @@ import { createElement, type ReactElement, type ReactNode } from "react";
 import { afterAll, beforeEach, describe, expect, it, vi } from "vitest";
 import { BUNDLED_MANIFEST, MODELS_ORIGIN, extensions, findExtension, registerExtension, type Extension } from "@inborn/core";
 import type { ExtensionState } from "./state";
+import { userTap } from "../vault/intent";
 
 /*
  * F406 (round 105): one registry drives the hold card, the vault's Extensions section and the downloader. A third
@@ -140,7 +141,7 @@ describe("F406 · a third extension is one registry entry and one locale block",
   it("the web catalog carries it and the downloader fetches it from the CDN into OPFS, then Remove deletes it", async () => {
     const c = (manifest as { companions: { id: string; kind: string; delivery: { url: string }[] }[] }).companions.find((x) => x.id === "ocr-fake");
     expect(c).toMatchObject({ kind: "ocr", delivery: [{ url: `${MODELS_ORIGIN}/v1/ocr-fake.gguf` }] });
-    const end = await store.installExtension("ocr-fake");
+    const end = await store.installExtension("ocr-fake", userTap(1));
     expect(downloads).toEqual([{ id: "ocr-fake", tier: "instant", name: "ocr-fake", file: "ocr-fake.gguf", bytes: 12_345_678, sha256: "a".repeat(64), url: `${MODELS_ORIGIN}/v1/ocr-fake.gguf` }]);
     expect(end).toEqual({ kind: "ready" });
     expect(store.extensionUri("ocr-fake")).toBe("opfs://models/ocr-fake.gguf");
@@ -148,7 +149,7 @@ describe("F406 · a third extension is one registry entry and one locale block",
     expect(store.extensionState("ocr-fake").kind).toBe("missing");
   });
   it("the shipped two go down the same path: the projector's download URL is the CDN one", async () => {
-    await store.installExtension("vision-qwen35");
+    await store.installExtension("vision-qwen35", userTap(1));
     expect(downloads.map((d) => d.url)).toEqual([`${MODELS_ORIGIN}/v1/${vision.file}`]);
   });
   it("a host whose catalog does not list it gets no Download (unavailable), and the index stays first", async () => {
@@ -190,11 +191,11 @@ describe("F407 · the browser can see once the photo pack is in", () => {
     expect(v.resolveVision("fast")).toBeNull();
     const plan = v.photoPlanHere("fast", false);
     expect(plan.kind === "pack" && plan.path.pack).toBe("vision-qwen35-2b");
-    await v.installVision("fast");
+    await v.installVision("fast", userTap(1));
     expect(v.resolveVision("fast")).toBe("opfs://models/mmproj-Qwen3.5-2B-F16.gguf");
     expect(v.resolveVision("instant")).toBeNull();
     expect(v.photoPlanHere("fast", false).kind).toBe("send");
-    await v.installVision("instant");
+    await v.installVision("instant", userTap(1));
     expect(v.resolveVision("instant")).toBe(`opfs://models/${vision.file}`);
     expect(fitWithin(4032, 3024)).toEqual({ width: 1024, height: 768 });
     expect(fitWithin(800, 600)).toEqual({ width: 800, height: 600 });

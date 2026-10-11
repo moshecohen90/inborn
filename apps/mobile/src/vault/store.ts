@@ -41,6 +41,7 @@ import { PlayDelivery } from "./playDelivery";
 import { includedWithApp } from "./included";
 import { readRecord, writeRecord, type ImportedModel, type VaultRecord } from "./record";
 import { downloadAwake } from "./keepAwake";
+import { isUserTap, type UserTap } from "./intent";
 
 /** A .gguf in the vault folder that neither the catalog nor an import registered (copied by hand, a crash mid-import): shown, counted, removable, never loaded. */
 export interface StrayFile {
@@ -97,7 +98,7 @@ export class VaultStore {
       },
     };
     /* Debug APKs cannot reach Play Core; pointing a dev bundle at scripts/serve-models.mjs gives Android the same HTTPS path the other platforms use. */
-    this.delivery = Platform.OS === "android" && !(devBuild() && DEV_MODELS_BASE_URL) ? new PlayDelivery() : new HttpsDelivery(ctx);
+    this.delivery = Platform.OS === "android" && !(devBuild() && DEV_MODELS_BASE_URL) ? new PlayDelivery(playPackNames(this.manifest)) : new HttpsDelivery(ctx);
     for (const m of this.deliverable()) this.states.set(m.id, NOT_INSTALLED);
   }
 
@@ -186,7 +187,6 @@ export class VaultStore {
     this.strays = this.scanStrays();
     this.persist();
     this.notify();
-    this.requestKnownPacks();
   }
 
   /**
@@ -253,20 +253,6 @@ export class VaultStore {
     if (next) this.record.defaultModelId = next;
     else delete this.record.defaultModelId;
     this.persist();
-  }
-
-  /**
-   * Asks Play again for every pack the vault recorded as delivered, which every app update unbinds (purchases run §K):
-   * one request away from bytes that are on the phone, and Play serves them without downloading again. A pack this
-   * device never had is never asked for here; only the user's tap starts a download (S02). Runs on the boot scan and
-   * on vault open.
-   */
-  requestKnownPacks(): void {
-    for (const model of this.manifest.models) {
-      if (this.states.get(model.id)?.kind !== "not-installed") continue;
-      /* A projector the user removed stays removed: only its own record brings it back. */
-      if (this.record.installs[model.id]?.via === "play" && this.delivery.plan(model)?.via === "play") void this.install(model.id, { withPhotos: false });
-    }
   }
 
   /**
@@ -509,7 +495,9 @@ export class VaultStore {
 
   // ---- commands ---------------------------------------------------------------
 
-  async install(id: string, { withPhotos = true }: { withPhotos?: boolean } = {}): Promise<InstallState> {
+  /** `tap`: the user's tap on a button that named the size; a fetch whose pack content changed is a real download (S02). */
+  async install(id: string, tap: UserTap, { withPhotos = true }: { withPhotos?: boolean } = {}): Promise<InstallState> {
+    if (!isUserTap(tap)) throw new Error(`install ${id} without a user tap`);
     const model = this.model(id);
     if (!model) throw new Error(`unknown model ${id}`);
     const plan = this.manifestStatus.ok ? this.delivery.plan(model) : null;
@@ -517,7 +505,7 @@ export class VaultStore {
     const photos = withPhotos ? this.photoPackOf(id) : null;
     const state = this.dispatch(id, { type: "request", via: plan.via, requiredBytes: requiredFreeBytes(model.bytes + (photos?.bytes ?? 0)), freeBytes: freeDiskBytes() });
     if (state.kind !== "delivering") return state;
-    if (photos && this.state(photos.id).kind === "not-installed") void this.install(photos.id);
+    if (photos && this.state(photos.id).kind === "not-installed") void this.install(photos.id, tap);
     await this.lanes.acquire(id, model.bytes);
     if (this.state(id).kind !== "delivering") return this.state(id);
     try {
@@ -607,10 +595,10 @@ export class VaultStore {
     if (m) await this.delivery.pause(m);
   }
 
-  async resume(id: string): Promise<InstallState> {
+  async resume(id: string, tap: UserTap): Promise<InstallState> {
     const s = this.state(id);
     if (s.kind === "delivering" && s.paused) this.set(id, NOT_INSTALLED);
-    return this.install(id);
+    return this.install(id, tap);
   }
 
   async cancel(id: string): Promise<void> {
@@ -714,6 +702,8 @@ function withDevBaseUrl(manifest: CatalogManifest): CatalogManifest {
     return manifest;
   }
 }
+
+const playPackNames = (manifest: CatalogManifest): string[] => manifest.models.flatMap((m) => m.delivery.flatMap((d) => (d.kind === "play-asset-pack" ? [d.pack] : [])));
 
 /* A sharded model records the sum of its parts, so the scan must measure every shard next to the first one. */
 function onDiskBytes(model: CatalogModel, firstPart: string): number {

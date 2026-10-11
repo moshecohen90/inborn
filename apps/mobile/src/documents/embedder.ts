@@ -4,6 +4,7 @@ import { WllamaEmbedder } from "../adapters/wllama";
 import { cancelExtension, extensionState, installExtension, refreshExtension, subscribeExtensions } from "../extensions/store";
 import { opfsUri } from "../web/opfs";
 import type { IndexModelState } from "./indexModel";
+import type { UserTap } from "../vault/intent";
 
 export const EMBED_MODEL_ID = "embed-e5";
 export const DEV_EMBED_FILE = "embed.gguf";
@@ -69,9 +70,9 @@ export function watchEmbedder(onChange: () => void): () => void {
 }
 
 /** Downloads the index model through the extension downloader (OPFS, resumable, verified). */
-export async function installEmbedder(): Promise<void> {
+export async function installEmbedder(tap: UserTap): Promise<void> {
   if (isTauri()) return;
-  const state = await installExtension(EMBED_MODEL_ID);
+  const state = await installExtension(EMBED_MODEL_ID, tap);
   if (state.kind !== "ready") return;
   resolved = undefined;
   await resolveEmbedderAsync();

@@ -3,6 +3,7 @@ import { BUNDLED_MANIFEST, type Embedder } from "@inborn/core";
 import { LlamaRnEmbedder } from "../adapters/llamaRn";
 import { getVault } from "../vault/store";
 import type { IndexModelState } from "./indexModel";
+import type { UserTap } from "../vault/intent";
 
 /** Catalog id of the document-index model (spec §6.2). */
 export const EMBED_MODEL_ID = "embed-e5";
@@ -31,8 +32,8 @@ export function resolveEmbedder(): ResolvedEmbedder | null {
 }
 
 /** Starts the vault delivery for the companion (Play pack on Android, HTTPS on iOS); the vault screens show progress. */
-export function installEmbedder(): Promise<unknown> {
-  return getVault().install(EMBED_MODEL_ID);
+export function installEmbedder(tap: UserTap): Promise<unknown> {
+  return getVault().install(EMBED_MODEL_ID, tap);
 }
 
 const readyPath = (): string | null => {

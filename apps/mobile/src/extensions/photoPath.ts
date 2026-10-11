@@ -2,6 +2,7 @@ import { useSyncExternalStore } from "react";
 import type { PathPiece, PhotoPath } from "@inborn/core";
 import { cancelChatModel, chatModelState, installChatModel, subscribeChatModels } from "./chatModel";
 import type { ExtensionState } from "./state";
+import type { UserTap } from "../vault/intent";
 import { cancelExtension, extensionState, installExtension, resumeExtension, subscribeExtensions } from "./store";
 
 const pieceState = (p: PathPiece): ExtensionState => (p.kind === "pack" ? extensionState(p.id) : chatModelState(p.id));
@@ -23,10 +24,10 @@ export function pathState(path: PhotoPath): ExtensionState {
   return { kind: "missing", bytes: path.bytes };
 }
 
-export async function installPath(path: PhotoPath, resume = false): Promise<ExtensionState> {
+export async function installPath(path: PhotoPath, tap: UserTap, resume = false): Promise<ExtensionState> {
   for (const p of path.missing) {
     if (pieceState(p).kind === "ready") continue;
-    const end = p.kind === "pack" ? await (resume ? resumeExtension(p.id) : installExtension(p.id)) : await installChatModel(p.id);
+    const end = p.kind === "pack" ? await (resume ? resumeExtension(p.id, tap) : installExtension(p.id, tap)) : await installChatModel(p.id, tap);
     if (end.kind !== "ready") return pathState(path);
   }
   return pathState(path);

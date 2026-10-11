@@ -8,6 +8,7 @@ import { useVault } from "../../vault";
 import { resetEngine } from "../../engine";
 import { openPaywall } from "../../licence";
 import { browserModels } from "./browserModels";
+import { userTap } from "../../vault/intent";
 
 export interface ChatModelSheetProps {
   visible: boolean;
@@ -72,7 +73,7 @@ export function ChatModelSheet({ visible, onClose, theme, currentId, use, langua
         vault.setDefault(id);
         void resetEngine();
       }}
-      onDownload={(id) => void vault.install(id)}
+      onDownload={(id) => void vault.install(id, userTap(vault.model(id)?.bytes ?? 0))}
       onUnlock={() => {
         onClose();
         onOpenPaywall?.("model");

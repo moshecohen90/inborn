@@ -3,6 +3,7 @@ import { join } from "node:path";
 import { createElement, type ReactElement, type ReactNode } from "react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { BUNDLED_MANIFEST, MODELS_ORIGIN, formatModelBytes, photoPlan, type PhotoPlan } from "@inborn/core";
+import { userTap } from "../vault/intent";
 
 /*
  * Round 117 (F437): the one photo card. Moshe, Fast selected on the web, was offered Instant's 205 MB pack, then told
@@ -184,7 +185,7 @@ describe("F437 · the card as rendered, and the way out in one tap", () => {
     if (p.kind !== "pack") throw new Error(p.kind);
     const instant = { model: "instant", pack: "vision-qwen35", missing: [{ id: "instant", kind: "model" as const, bytes: 532_517_120 }, { id: "vision-qwen35", kind: "pack" as const, bytes: 204_987_232 }], bytes: 737_504_352 };
     expect(pathState(instant)).toEqual({ kind: "missing", bytes: 737_504_352 });
-    const end = await installPath(instant);
+    const end = await installPath(instant, userTap(1));
     expect(downloads).toEqual(["Qwen3.5-0.8B-Q4_K_M.gguf", "mmproj-Qwen3.5-0.8B-F16.gguf"]);
     expect(end).toEqual({ kind: "ready" });
   });

@@ -12,6 +12,7 @@ import { ocrEngine } from "../../../modules/doc-extract";
 import { DEV_AUTOASK, DEV_AUTOASK_STRICT, DEV_AUTOINDEX, DEV_AUTOOCR } from "../../documents/devFlags";
 import { devOcrReads } from "../../documents/extract";
 import { installEmbedder } from "../../documents/embedder";
+import { userTap } from "../../vault/intent";
 import { indexModelPercent, useIndexModel } from "../../documents/useIndexModel";
 import { devFileUri, sizeOf } from "../../documents/files";
 import { listClipping } from "../../lib/listClipping";
@@ -262,7 +263,7 @@ export function DocumentsScreen({ onClose, pro: proOverride, onUnlock }: Documen
             <Pressable
               testID="embedder-install"
               accessibilityRole="button"
-              onPress={() => void installEmbedder().then(() => library.refreshEmbedder())}
+              onPress={() => void installEmbedder(userTap(embedBytes)).then(() => library.refreshEmbedder())}
               style={[styles.btn, { backgroundColor: theme.ctaFill }]}
             >
               <Text style={[styles.btnText, { color: theme.ctaText }]}>{t("documents.embedder.install", { size: formatModelBytes(embedBytes) })}</Text>

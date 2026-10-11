@@ -12,6 +12,7 @@ import { Screen } from "../../components/shell/Screen";
 import { Button, DISABLED_OPACITY, MonoLabel, shellStyles, Toggle } from "../../components/shell/primitives";
 import { ChipGlyph } from "../../components/shell/ChipGlyph";
 import { useVault } from "../../vault";
+import { userTap } from "../../vault/intent";
 import { useEntitlement } from "../../licence";
 import { modelCopy } from "../../lib/models";
 import { roomNoteParams } from "../../lib/modelSheetLines";
@@ -72,14 +73,14 @@ function VaultModelChoice() {
   const selected = step.options.find((o) => o.id === selectedId) ?? null;
   const modelOf = (id: string) => entries.find((e) => e.model.id === id)!.model;
 
-  const download = async (id: string) => {
+  const download = async (id: string, bytes: number) => {
     setFailed(false);
     setStopped(false);
     /* The chosen model stays selected once it lands, instead of the step moving on to the next offer. */
     setPicked(id);
     /* Chosen now, so the model takes over the moment it verifies, whether that is on this screen or in the chat. */
     vault.setDefault(id);
-    const end = await vault.install(id);
+    const end = await vault.install(id, userTap(bytes));
     if (end.kind !== "ready" && end.kind !== "delivering" && end.kind !== "verifying") setFailed(true);
   };
 
@@ -104,7 +105,7 @@ function VaultModelChoice() {
             <Button
               testID="download-model"
               title={t("onboarding.model.download", { name: modelOf(selected.id).name, size: formatModelBytes(selected.bytes) })}
-              onPress={() => void download(selected.id)}
+              onPress={() => void download(selected.id, selected.bytes)}
             />
           ) : (
             <Button

@@ -3,6 +3,7 @@ import { Platform } from "react-native";
 import { getVault } from "../vault/store";
 import { fromInstallState } from "./installState";
 import type { ExtensionState } from "./state";
+import type { UserTap } from "../vault/intent";
 
 /**
  * Phone side of the extensions (round 105): the vault already installs every catalog file (bundled, Play pack or
@@ -36,8 +37,8 @@ export function extensionUri(id: string): string | null {
   return s.kind === "ready" ? s.path : null;
 }
 
-export async function installExtension(id: string): Promise<ExtensionState> {
-  await getVault().install(id);
+export async function installExtension(id: string, tap: UserTap): Promise<ExtensionState> {
+  await getVault().install(id, tap);
   return extensionState(id);
 }
 
@@ -48,8 +49,8 @@ export function cancelExtension(id: string): void {
   void getVault().cancel(id);
 }
 
-export async function resumeExtension(id: string): Promise<ExtensionState> {
-  await getVault().resume(id);
+export async function resumeExtension(id: string, tap: UserTap): Promise<ExtensionState> {
+  await getVault().resume(id, tap);
   return extensionState(id);
 }
 

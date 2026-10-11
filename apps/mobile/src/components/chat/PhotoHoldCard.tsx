@@ -7,6 +7,7 @@ import { holdTestIds } from "../../extensions/card";
 import { activePath, photoHoldView, type HeldPhoto, type PhotoRoute } from "../../extensions/photoCard";
 import { installPath, pendingPiece, usePathState } from "../../extensions/photoPath";
 import { storeReachable } from "../../extensions/store";
+import { userTap } from "../../vault/intent";
 import { installFailureText } from "../../vault/failureText";
 import { offlineKey } from "../../lib/offlineWording";
 import { useType } from "../../services/type";
@@ -55,7 +56,7 @@ export function PhotoHoldCard({ held, theme, count, model, seer, hint, onCancel,
     if (alt.missing.length === 0) return onSwitch(alt.model);
     setRoute("alt");
     setStarted(true);
-    void installPath(alt).catch(() => undefined);
+    void installPath(alt, userTap(alt.bytes)).catch(() => undefined);
   };
   const act = () => {
     if (!path || !view.primary) return;
@@ -66,10 +67,10 @@ export function PhotoHoldCard({ held, theme, count, model, seer, hint, onCancel,
         return onOpenVault?.(pendingPiece(path)?.id ?? path.pack);
       case "resume":
         setStarted(true);
-        return void installPath(path, true).catch(() => undefined);
+        return void installPath(path, userTap(path.bytes), true).catch(() => undefined);
       default:
         setStarted(true);
-        return void installPath(path).catch(() => undefined);
+        return void installPath(path, userTap(path.bytes)).catch(() => undefined);
     }
   };
   const primaryId = view.primary?.action === "switch" ? `${ids.card}-switch` : view.primary?.action === "resume" ? ids.resume : view.primary?.action === "vault" ? ids.vault : ids.download;

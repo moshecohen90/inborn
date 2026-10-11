@@ -2,6 +2,7 @@ import { File, Paths } from "expo-file-system";
 import { extensions, photoPlan, visionPackFor, type PhotoPlan } from "@inborn/core";
 import { chatModelState, offeredChatModels } from "../extensions/chatModel";
 import { getVault } from "../vault/store";
+import type { UserTap } from "../vault/intent";
 
 /** Catalog id of Instant's projector, the one the app bundles (spec §6.1 "vision: yes (mmproj)", §6.2). */
 export const VISION_MODEL_ID = "vision-qwen35";
@@ -30,9 +31,9 @@ export const visionInstalled = (modelId: string): boolean => resolveVision(model
 /** Resolves once the vault has read the disk: before that every model reads as "no projector installed" (QA F294). */
 export const visionScanned = (): Promise<void> => getVault().ready();
 
-export function installVision(modelId: string): Promise<unknown> {
+export function installVision(modelId: string, tap: UserTap): Promise<unknown> {
   const id = visionPackId(modelId);
-  return id ? getVault().install(id) : Promise.reject(new Error("vision-unavailable"));
+  return id ? getVault().install(id, tap) : Promise.reject(new Error("vision-unavailable"));
 }
 
 /** Whether the model can see on this phone: its pack is here, or this build can bring it (Android only through Play, F463). */

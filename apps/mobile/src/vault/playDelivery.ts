@@ -12,6 +12,10 @@ const packsOf = (model: CatalogModel): PlayPack[] => model.delivery.filter((d): 
 export class PlayDelivery implements ModelDelivery {
   /* Once Play has refused to bind, every pack on this device is out of reach for this run: the vault offers import instead of a dead Install. */
   private unavailable = false;
+  /* Packs a user tap is fetching right now: Play's dialog approves every pending pack, so any other one is cancelled first. */
+  private readonly asked = new Set<string>();
+
+  constructor(private readonly allPacks: readonly string[] = []) {}
 
   plan(model: CatalogModel): DeliveryPlan | null {
     return this.reachable() && packsOf(model).length ? { via: "play", origin: "Google Play", bytes: model.bytes } : null;
@@ -83,6 +87,7 @@ export class PlayDelivery implements ModelDelivery {
       const done = (fn: () => void) => {
         if (settled) return;
         settled = true;
+        this.asked.delete(pack.pack);
         sub.remove();
         fn();
       };
@@ -99,14 +104,14 @@ export class PlayDelivery implements ModelDelivery {
             /* Play's own "download over mobile data?" dialog, once per fetch; a No keeps the pack waiting for Wi-Fi. */
             if (!asked.wifi) {
               asked.wifi = true;
-              void confirmOnce().catch(() => undefined);
+              void this.confirm().catch(() => undefined);
             }
             return;
           case AssetPackStatus.REQUIRES_USER_CONFIRMATION:
             emit({ type: "needs-confirmation" });
             if (asked.confirm) return;
             asked.confirm = true;
-            void confirmOnce().then((r) => {
+            void this.confirm().then((r) => {
               if (r === 0) done(() => reject(new Error("canceled")));
             }, () => undefined);
             return;
@@ -127,6 +132,7 @@ export class PlayDelivery implements ModelDelivery {
         }
       };
       const sub = addPackListener(onState);
+      this.asked.add(pack.pack);
       fetchPack(pack.pack)
         .then((s) => {
           if (s) onState(s);
@@ -140,6 +146,24 @@ export class PlayDelivery implements ModelDelivery {
         })
         .catch((e: unknown) => done(() => reject(e instanceof Error ? e : new Error(String(e)))));
     });
+  }
+
+  /* Instant and its projector wait for Wi-Fi together; one dialog answers for both, and for nothing the user did not ask for. */
+  private confirm(): Promise<number> {
+    confirming ??= this.cancelUnasked()
+      .then(() => showPackConfirmation())
+      .finally(() => {
+        confirming = null;
+      });
+    return confirming;
+  }
+
+  private async cancelUnasked(): Promise<void> {
+    for (const name of this.allPacks) {
+      if (this.asked.has(name)) continue;
+      const s = await getPackState(name).catch(() => null);
+      if (s && AWAITING_DIALOG.has(s.status)) cancelPack(name);
+    }
   }
 
   async pause(): Promise<void> {
@@ -160,14 +184,8 @@ export class PlayDelivery implements ModelDelivery {
   }
 }
 
-/* Instant and its projector wait for Wi-Fi together; one dialog answers for both. */
 let confirming: Promise<number> | null = null;
-function confirmOnce(): Promise<number> {
-  confirming ??= showPackConfirmation().finally(() => {
-    confirming = null;
-  });
-  return confirming;
-}
+const AWAITING_DIALOG = new Set<number>([AssetPackStatus.WAITING_FOR_WIFI, AssetPackStatus.REQUIRES_USER_CONFIRMATION]);
 
 export function describePlayError(code: number): string {
   switch (code) {

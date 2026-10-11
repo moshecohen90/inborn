@@ -4,6 +4,7 @@ import { WebModelDelivery } from "../web/modelDelivery";
 import { readyModelStatus } from "../web/opfs";
 import { recordWebTransfer } from "../web/transfers";
 import type { ExtensionState } from "./state";
+import type { UserTap } from "../vault/intent";
 
 /* Uses the door's own downloader (OPFS worker, sha256, GGUF magic), so a model fetched from the photo card is verified the same way. */
 export type SeeingModel = Pick<CatalogModel, "id" | "bytes" | "vision">;
@@ -54,7 +55,7 @@ export function chatModelState(id: string): ExtensionState {
   return c.installed ? { kind: "ready" } : { kind: "missing", bytes: c.source.bytes };
 }
 
-export async function installChatModel(id: string): Promise<ExtensionState> {
+export async function installChatModel(id: string, _tap: UserTap): Promise<ExtensionState> {
   const c = choiceOf(id);
   if (!c) return set(id, { kind: "unavailable" });
   const now = chatModelState(id);

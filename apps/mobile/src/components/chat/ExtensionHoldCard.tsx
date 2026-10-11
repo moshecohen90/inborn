@@ -8,6 +8,7 @@ import { extensionReleases } from "../../extensions/state";
 import { installExtension, resumeExtension } from "../../extensions/store";
 import { useExtension } from "../../extensions/useExtension";
 import { installFailureText } from "../../vault/failureText";
+import { userTap } from "../../vault/intent";
 import { offlineKey } from "../../lib/offlineWording";
 import { useType } from "../../services/type";
 
@@ -85,14 +86,14 @@ export function ExtensionHoldCard({ extensionId, theme, count, onCancel, onFallb
       ) : null}
       <View style={styles.actions}>
         {view.download ? (
-          <Pressable testID={ids.download} accessibilityRole="button" onPress={() => void installExtension(ext.id).catch(() => undefined)} style={[styles.btn, { backgroundColor: theme.ctaFill }]}>
+          <Pressable testID={ids.download} accessibilityRole="button" onPress={() => void installExtension(ext.id, userTap(ext.bytes)).catch(() => undefined)} style={[styles.btn, { backgroundColor: theme.ctaFill }]}>
             <Text numberOfLines={1} style={[type.bodySmall, type.strong, { color: theme.ctaText }]}>
               {t(view.download.key, view.download.params)}
             </Text>
           </Pressable>
         ) : null}
         {view.resume ? (
-          <Pressable testID={ids.resume} accessibilityRole="button" onPress={() => void resumeExtension(ext.id).catch(() => undefined)} style={[styles.btn, { backgroundColor: theme.ctaFill }]}>
+          <Pressable testID={ids.resume} accessibilityRole="button" onPress={() => void resumeExtension(ext.id, userTap(ext.bytes)).catch(() => undefined)} style={[styles.btn, { backgroundColor: theme.ctaFill }]}>
             <Text numberOfLines={1} style={[type.bodySmall, type.strong, { color: theme.ctaText }]}>
               {t("extensions.download", { size })}
             </Text>

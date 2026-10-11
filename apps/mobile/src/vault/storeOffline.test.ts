@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { BUNDLED_MANIFEST, type CatalogModel, type NetworkKind } from "@inborn/core";
 import type { VaultRecord } from "./record";
+import { userTap } from "./intent";
 
 /* Round 130: a transfer that fails for want of a connection waits for one and goes again by itself, on any delivery. */
 const embed = BUNDLED_MANIFEST.models.find((m) => m.id === "embed-e5") as CatalogModel;
@@ -96,7 +97,7 @@ describe("VaultStore across a lost connection (round 130)", () => {
     const v = await vault();
     legs = ["Unable to download a file: The network connection was lost."];
     net.kind = "none";
-    const done = v.install("embed-e5");
+    const done = v.install("embed-e5", userTap(1));
     await tick();
     expect(v.state("embed-e5")).toMatchObject({ kind: "delivering", waitingForNetwork: true });
     expect(calls).toBe(1);
@@ -109,7 +110,7 @@ describe("VaultStore across a lost connection (round 130)", () => {
     const v = await vault();
     legs = ["network"];
     net.kind = "none";
-    const done = v.install("embed-e5");
+    const done = v.install("embed-e5", userTap(1));
     await tick();
     await v.cancel("embed-e5");
     expect(await done).toEqual({ kind: "not-installed" });
@@ -122,7 +123,7 @@ describe("VaultStore across a lost connection (round 130)", () => {
     const v = await vault();
     vi.useFakeTimers();
     legs = ["Network request failed", "Network request failed", "Network request failed", "Network request failed"];
-    const done = v.install("embed-e5");
+    const done = v.install("embed-e5", userTap(1));
     await vi.advanceTimersByTimeAsync(2_000 + 4_000 + 8_000 + 100);
     const end = await done;
     expect(calls).toBe(4);
@@ -132,7 +133,7 @@ describe("VaultStore across a lost connection (round 130)", () => {
   it("an error that is not the connection fails at once, as before", async () => {
     const v = await vault();
     legs = ["size mismatch: host says 1 bytes, catalog 2"];
-    expect(await v.install("embed-e5")).toMatchObject({ kind: "failed" });
+    expect(await v.install("embed-e5", userTap(1))).toMatchObject({ kind: "failed" });
     expect(calls).toBe(1);
   });
 });

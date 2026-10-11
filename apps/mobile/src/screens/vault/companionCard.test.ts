@@ -108,7 +108,7 @@ describe("F346 · 'install X' lands on X's card", () => {
     expect(chat).toMatch(/onInstall=\{\(id\) => \{\s*snoozeAdvice\(cardAdvice\.key\);\s*onOpenVault\?\.\(id\);/);
     /* Round 93: the index model is installed from the chat's hold card itself, which works on the web too. */
     expect(chat).toContain("<ExtensionHoldCard extensionId={EMBED_MODEL_ID}");
-    expect(src("../../components/chat/ExtensionHoldCard.tsx")).toContain("installExtension(ext.id)");
+    expect(src("../../components/chat/ExtensionHoldCard.tsx")).toContain("installExtension(ext.id, userTap(ext.bytes))");
     expect(chat).not.toMatch(/onOpenVault\?\.\(\)/);
     expect(src("../../app/voice.tsx")).toContain("params: { focus: WHISPER_MODEL_ID }");
     expect(src("../../app/index.tsx")).toContain('params: { focus } } : "/vault"');

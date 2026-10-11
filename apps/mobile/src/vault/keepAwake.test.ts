@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { BUNDLED_MANIFEST, DeliveryLanes, type CatalogModel, type InstallEvent } from "@inborn/core";
 import type { VaultRecord } from "./record";
+import { userTap } from "./intent";
 
 /*
  * Round 91: iOS parks an in-process download when the app leaves the screen (F370), and auto-lock backgrounds the app
@@ -95,7 +96,7 @@ const tick = (id: string, bytes = 10) => legs.get(id)?.emit({ type: "progress", 
 
 /* Wrapped: an async function returning the install promise would wait for the whole download. */
 async function started(vault: InstanceType<typeof VaultStore>, id: string): Promise<{ run: Promise<unknown> }> {
-  const run = vault.install(id);
+  const run = vault.install(id, userTap(1));
   await settled();
   tick(id);
   return { run };
