@@ -1,0 +1,54 @@
+# 6T: update 1.0.0 (34) → 1.0.0 (35) from Play (vc35 = def2e36d, release at adoption). Driver update-6t.sh; other apps' Play auto-update lines removed.
+# 6T update to vc35 — 11.10 23:15, device anchor 10-11 23:15:48.000
+before:     versionCode=34 minSdk=26 targetSdk=36 | Data-Free: 11878224K / 113468064K total = 10% free | notif=0 | pid=27431
+try 10 23:26: TAB x10 focused Atualizar at 784 658, DPAD_CENTER sent
+download started 23:26
+installed versionCode=35 at 23:27
+after install:     versionCode=35 minSdk=26 targetSdk=36 | Data-Free: 11874016K / 113468064K total = 10% free | notif=0
+  +15s Data-Free: 11874020K / 113468064K total = 10% free notif=0 module-requests=0 patched=0
+  +30s Data-Free: 11874276K / 113468064K total = 10% free notif=0 module-requests=0 patched=0
+  +45s Data-Free: 11874164K / 113468064K total = 10% free notif=0 module-requests=0 patched=0
+  +60s Data-Free: 11874152K / 113468064K total = 10% free notif=0 module-requests=0 patched=0
+  +75s Data-Free: 11874152K / 113468064K total = 10% free notif=0 module-requests=0 patched=0
+  +90s Data-Free: 11874208K / 113468064K total = 10% free notif=0 module-requests=0 patched=0
+  +105s Data-Free: 11874208K / 113468064K total = 10% free notif=0 module-requests=0 patched=0
+  +120s Data-Free: 11874204K / 113468064K total = 10% free notif=0 module-requests=0 patched=0
+--- pack lines before launch:
+10-11 23:26:56.317  2657  2869 I Finsky:background: [32136] DS: enqueue(request_id=4252, files_to_download=[com.inbornapp.mobile.dm(size:9815)], context[group_id=com.inbornapp.mobi
+10-11 23:26:56.330  2657  2869 I Finsky:background: [32136] DS: enqueue(request_id=4253, files_to_download=[config.arm64_v8a(size:45320363)], context[group_id=com.inbornapp.mobile:
+10-11 23:26:56.330  2657  2869 I Finsky:background: [32136] DS: enqueue(request_id=4254, files_to_download=[com.inbornapp.mobile.apk(size:28015714)], context[group_id=com.inbornapp
+10-11 23:26:56.356  2657  2869 I Finsky:background: [32136] DS: enqueue(request_id=4255, files_to_download=[config.pt(size:28489)], context[group_id=com.inbornapp.mobile:DljPTSauRK
+10-11 23:26:56.402  2657  2869 I Finsky:background: [32136] DS: enqueue(request_id=4256, files_to_download=[config.xxhdpi(size:95525)], context[group_id=com.inbornapp.mobile:DljPTS
+10-11 23:26:56.413  2657  2869 I Finsky:background: [32136] DS: enqueue(request_id=4257, files_to_download=[config.en(size:29601)], context[group_id=com.inbornapp.mobile:DljPTSauRK
+10-11 23:26:56.461  2657  2869 I Finsky:background: [32136] DS: enqueue with parallel downloads (request_id=4252,groupId=com.inbornapp.mobile:DljPTSauRKKehrySjmYm_g)
+10-11 23:26:56.487  2657  2869 I Finsky:background: [32136] DS: enqueue with parallel downloads (request_id=4253,groupId=com.inbornapp.mobile:DljPTSauRKKehrySjmYm_g)
+10-11 23:26:56.487  2657  2869 I Finsky:background: [32136] DS: enqueue with parallel downloads (request_id=4254,groupId=com.inbornapp.mobile:DljPTSauRKKehrySjmYm_g)
+10-11 23:26:56.525  2657  2869 I Finsky:background: [32136] DS: enqueue with parallel downloads (request_id=4255,groupId=com.inbornapp.mobile:DljPTSauRKKehrySjmYm_g)
+10-11 23:26:56.525  2657  2869 I Finsky:background: [32136] DS: enqueue with parallel downloads (request_id=4256,groupId=com.inbornapp.mobile:DljPTSauRKKehrySjmYm_g)
+10-11 23:26:56.548  2657  2869 I Finsky:background: [32136] DS: enqueue with parallel downloads (request_id=4257,groupId=com.inbornapp.mobile:DljPTSauRKKehrySjmYm_g)
+10-11 23:26:57.767  2657  2657 I Finsky:background: [2] RF: onSuccess request_id=4255, pkg_id=com.inbornapp.mobile artifact_id=config.pt isid=DljPTSauRKKehrySjmYm_g artifact_bytes=
+10-11 23:26:57.792  2657  2657 I Finsky:background: [2] RF: onSuccess request_id=4252, pkg_id=com.inbornapp.mobile artifact_id=com.inbornapp.mobile.dm isid=DljPTSauRKKehrySjmYm_g a
+10-11 23:26:58.569  2657  2657 I Finsky:background: [2] RF: onSuccess request_id=4256, pkg_id=com.inbornapp.mobile artifact_id=config.xxhdpi isid=DljPTSauRKKehrySjmYm_g artifact_by
+10-11 23:26:58.754  2657  2657 I Finsky:background: [2] RF: onSuccess request_id=4257, pkg_id=com.inbornapp.mobile artifact_id=config.en isid=DljPTSauRKKehrySjmYm_g artifact_bytes=
+10-11 23:27:06.857  2657  2657 I Finsky:background: [2] RF: onSuccess request_id=4254, pkg_id=com.inbornapp.mobile artifact_id=com.inbornapp.mobile.apk isid=DljPTSauRKKehrySjmYm_g 
+10-11 23:27:13.512  2657  2657 I Finsky:background: [2] RF: onSuccess request_id=4253, pkg_id=com.inbornapp.mobile artifact_id=config.arm64_v8a isid=DljPTSauRKKehrySjmYm_g artifact
+10-11 23:27:28.535  2657  2869 I Finsky:background: [32136] DS: DS: onRemove(request_id=4252, files_to_download=[com.inbornapp.mobile.dm(size:9815)], context[group_id=com.inbornapp
+10-11 23:27:29.389  2657  2869 I Finsky:background: [32136] DS: DS: onRemove(request_id=4253, files_to_download=[config.arm64_v8a(size:45320363)], context[group_id=com.inbornapp.mo
+10-11 23:27:29.428  2657  2869 I Finsky:background: [32136] DS: DS: onRemove(request_id=4255, files_to_download=[config.pt(size:28489)], context[group_id=com.inbornapp.mobile:DljPT
+10-11 23:27:29.447  2657  2869 I Finsky:background: [32136] DS: DS: onRemove(request_id=4254, files_to_download=[com.inbornapp.mobile.apk(size:28015714)], context[group_id=com.inbo
+10-11 23:27:29.472  2657  2869 I Finsky:background: [32136] DS: DS: onRemove(request_id=4257, files_to_download=[config.en(size:29601)], context[group_id=com.inbornapp.mobile:DljPT
+10-11 23:27:29.486  2657  2869 I Finsky:background: [32136] DS: DS: onRemove(request_id=4256, files_to_download=[config.xxhdpi(size:95525)], context[group_id=com.inbornapp.mobile:D
+--- launch app 23:29
+  +15s Data-Free: 11874212K / 113468064K total = 10% free notif=0 pid=27432
+  +30s Data-Free: 11874212K / 113468064K total = 10% free notif=0 pid=27432
+  +45s Data-Free: 11874200K / 113468064K total = 10% free notif=0 pid=27432
+  +60s Data-Free: 11874196K / 113468064K total = 10% free notif=0 pid=27432
+  +75s Data-Free: 11874212K / 113468064K total = 10% free notif=0 pid=27432
+  +90s Data-Free: 11874176K / 113468064K total = 10% free notif=0 pid=27432
+  +105s Data-Free: 11874176K / 113468064K total = 10% free notif=0 pid=27432
+  +120s Data-Free: 11874780K / 113468064K total = 10% free notif=0 pid=27432
+--- pack lines since launch:
+crash buffer entries for inborn: 0
+end: Data-Free: 11874728K / 113468064K total = 10% free | notif=0 | # done 23:31
+
+RESULT: base update only (apk 28.0 MB + arm64 split 45.3 MB + configs); Play requested 0 asset modules, 0 patches, no PlayCore notification, free space flat (11.87 GB), 0 crashes. Not exercised here: a fresh Play fetch under vc35 (the 6T's models are all vault-owned now) — the new early release is covered by playAdopt.test.ts and by the removePack→removeModule chain seen at 33→34.
