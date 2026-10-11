@@ -1,4 +1,4 @@
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { findExtension, formatModelBytes } from "@inborn/core";
@@ -8,7 +8,8 @@ import { extensionReleases } from "../../extensions/state";
 import { installExtension, resumeExtension } from "../../extensions/store";
 import { useExtension } from "../../extensions/useExtension";
 import { installFailureText } from "../../vault/failureText";
-import { userTap } from "../../vault/intent";
+import { needsConfirm, userTap } from "../../vault/intent";
+import { DownloadConfirm, type PendingDownload } from "./DownloadConfirm";
 import { offlineKey } from "../../lib/offlineWording";
 import { useType } from "../../services/type";
 
@@ -44,6 +45,7 @@ export function ExtensionHoldCard({ extensionId, theme, count, onCancel, onFallb
   const state = useExtension(extensionId);
   const ext = findExtension(extensionId);
   const prev = useRef<string | undefined>(state.kind);
+  const [pending, setPending] = useState<PendingDownload | null>(null);
   useEffect(() => {
     const before = prev.current;
     prev.current = state.kind;
@@ -54,6 +56,7 @@ export function ExtensionHoldCard({ extensionId, theme, count, onCancel, onFallb
   const size = formatModelBytes(state.kind === "missing" || state.kind === "failed" ? state.bytes || ext.bytes : ext.bytes);
   const view = holdView(ext, state, { count, size });
   const offline = typeof navigator !== "undefined" && navigator.onLine === false;
+  const confirmed = (run: () => void) => (needsConfirm(ext.bytes) ? setPending({ id: ext.id, bytes: ext.bytes, run }) : run());
   return (
     <View testID={ids.card} aria-live="polite" style={[styles.card, { backgroundColor: theme.surface1, borderColor: theme.accent }]}>
       {title ? (
@@ -86,14 +89,14 @@ export function ExtensionHoldCard({ extensionId, theme, count, onCancel, onFallb
       ) : null}
       <View style={styles.actions}>
         {view.download ? (
-          <Pressable testID={ids.download} accessibilityRole="button" onPress={() => void installExtension(ext.id, userTap(ext.bytes)).catch(() => undefined)} style={[styles.btn, { backgroundColor: theme.ctaFill }]}>
+          <Pressable testID={ids.download} accessibilityRole="button" onPress={() => confirmed(() => void installExtension(ext.id, userTap(ext.bytes)).catch(() => undefined))} style={[styles.btn, { backgroundColor: theme.ctaFill }]}>
             <Text numberOfLines={1} style={[type.bodySmall, type.strong, { color: theme.ctaText }]}>
               {t(view.download.key, view.download.params)}
             </Text>
           </Pressable>
         ) : null}
         {view.resume ? (
-          <Pressable testID={ids.resume} accessibilityRole="button" onPress={() => void resumeExtension(ext.id, userTap(ext.bytes)).catch(() => undefined)} style={[styles.btn, { backgroundColor: theme.ctaFill }]}>
+          <Pressable testID={ids.resume} accessibilityRole="button" onPress={() => confirmed(() => void resumeExtension(ext.id, userTap(ext.bytes)).catch(() => undefined))} style={[styles.btn, { backgroundColor: theme.ctaFill }]}>
             <Text numberOfLines={1} style={[type.bodySmall, type.strong, { color: theme.ctaText }]}>
               {t("extensions.download", { size })}
             </Text>
@@ -118,6 +121,7 @@ export function ExtensionHoldCard({ extensionId, theme, count, onCancel, onFallb
           <Text style={[type.bodySmall, { color: theme.text2 }]}>{t(view.cancel.key, view.cancel.params)}</Text>
         </Pressable>
       </View>
+      <DownloadConfirm pending={pending} theme={theme} onClose={() => setPending(null)} />
     </View>
   );
 }

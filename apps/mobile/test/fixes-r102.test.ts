@@ -25,6 +25,7 @@ describe("F401 · every modal closes on Esc from its first frame", () => {
     const users = files.filter((f) => /<AppModal\b/.test(f.text)).map((f) => f.rel).sort();
     expect(users).toEqual(
       [
+        "components/chat/DownloadConfirm.tsx",
         "components/chat/Sheet.tsx",
         "components/shell/CommandPalette.tsx",
         "components/shell/Sheet.tsx",

@@ -10,6 +10,8 @@ import { userTap } from "../vault/intent";
  * F406 (round 105): one registry drives the hold card, the vault's Extensions section and the downloader. A third
  * extension must light all three up with one registry entry and one locale block: registered here as `ocr-fake`.
  */
+/* The confirm sheet renders nothing until a tap; its native chrome stays out of the server render. */
+vi.mock("../components/chat/DownloadConfirm", () => ({ DownloadConfirm: () => null }));
 vi.mock("react-native", () => {
   const host = (tag: string) => ({ children, testID }: { children?: ReactNode; testID?: string }) => createElement(tag, { "data-testid": testID }, children);
   return { Pressable: host("button"), View: host("div"), Text: host("span"), StyleSheet: { create: <T>(s: T) => s }, Platform: { OS: "web", select: (o: Record<string, unknown>) => o.web ?? o.default } };

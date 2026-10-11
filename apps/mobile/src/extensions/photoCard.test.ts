@@ -10,6 +10,8 @@ import { userTap } from "../vault/intent";
  * Fast cannot see, then asked for Instant (533 MB). The card now offers only the selected model's own pack, names the
  * cheaper way out with its whole cost, and fetches a way out in one tap.
  */
+/* The confirm sheet renders nothing until a tap; its native chrome stays out of the server render. */
+vi.mock("../components/chat/DownloadConfirm", () => ({ DownloadConfirm: () => null }));
 vi.mock("react-native", () => {
   const host = (tag: string) => ({ children, testID }: { children?: ReactNode; testID?: string }) => createElement(tag, { "data-testid": testID }, children);
   return { Pressable: host("button"), View: host("div"), Text: host("span"), StyleSheet: { create: <T>(s: T) => s }, Platform: { OS: "web", select: (o: Record<string, unknown>) => o.web ?? o.default } };

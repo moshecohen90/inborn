@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
-import { formatModelBytes } from "@inborn/core";
+import { formatModelBytes, type PhotoPath } from "@inborn/core";
 import { MIN_TOUCH, radius, type Theme } from "@inborn/ui";
 import { holdTestIds } from "../../extensions/card";
 import { activePath, photoHoldView, type HeldPhoto, type PhotoRoute } from "../../extensions/photoCard";
 import { installPath, pendingPiece, usePathState } from "../../extensions/photoPath";
 import { storeReachable } from "../../extensions/store";
-import { userTap } from "../../vault/intent";
+import { needsConfirm, userTap } from "../../vault/intent";
+import { DownloadConfirm, type PendingDownload } from "./DownloadConfirm";
 import { installFailureText } from "../../vault/failureText";
 import { offlineKey } from "../../lib/offlineWording";
 import { useType } from "../../services/type";
@@ -33,6 +34,9 @@ export function PhotoHoldCard({ held, theme, count, model, seer, hint, onCancel,
   const [route, setRoute] = useState<PhotoRoute>("own");
   /* The way out is idle until tapped (a path with nothing missing reads "ready" and must not switch on its own). */
   const [started, setStarted] = useState(false);
+  const [pending, setPending] = useState<PendingDownload | null>(null);
+  /* More than 200 MB never starts on one tap of a chat card: the vault's confirm sheet names the size first. */
+  const confirmed = (id: string, bytes: number, run: () => void) => (needsConfirm(bytes) ? setPending({ id, bytes, run }) : run());
   const path = activePath(held, route);
   const onAlt = held.kind === "switch" || route === "alt";
   const live = usePathState(path);
@@ -54,9 +58,11 @@ export function PhotoHoldCard({ held, theme, count, model, seer, hint, onCancel,
     const alt = held.alt;
     if (!alt) return;
     if (alt.missing.length === 0) return onSwitch(alt.model);
-    setRoute("alt");
-    setStarted(true);
-    void installPath(alt, userTap(alt.bytes)).catch(() => undefined);
+    confirmed(alt.model, alt.bytes, () => {
+      setRoute("alt");
+      setStarted(true);
+      void installPath(alt, userTap(alt.bytes)).catch(() => undefined);
+    });
   };
   const act = () => {
     if (!path || !view.primary) return;
@@ -66,11 +72,15 @@ export function PhotoHoldCard({ held, theme, count, model, seer, hint, onCancel,
       case "vault":
         return onOpenVault?.(pendingPiece(path)?.id ?? path.pack);
       case "resume":
-        setStarted(true);
-        return void installPath(path, userTap(path.bytes), true).catch(() => undefined);
+        return confirmed(pathTitleId(path), path.bytes, () => {
+          setStarted(true);
+          void installPath(path, userTap(path.bytes), true).catch(() => undefined);
+        });
       default:
-        setStarted(true);
-        return void installPath(path, userTap(path.bytes)).catch(() => undefined);
+        return confirmed(pathTitleId(path), path.bytes, () => {
+          setStarted(true);
+          void installPath(path, userTap(path.bytes)).catch(() => undefined);
+        });
     }
   };
   const primaryId = view.primary?.action === "switch" ? `${ids.card}-switch` : view.primary?.action === "resume" ? ids.resume : view.primary?.action === "vault" ? ids.vault : ids.download;
@@ -132,9 +142,13 @@ export function PhotoHoldCard({ held, theme, count, model, seer, hint, onCancel,
           {tr(view.caption)}
         </Text>
       ) : null}
+      <DownloadConfirm pending={pending} theme={theme} onClose={() => setPending(null)} />
     </View>
   );
 }
+
+/* A path that still needs its model is titled by the model; a pack alone by the pack. */
+const pathTitleId = (path: PhotoPath): string => (path.missing.some((p) => p.kind === "model") ? path.model : path.pack);
 
 const styles = StyleSheet.create({
   card: { marginHorizontal: 16, marginTop: 8, padding: 12, gap: 6, borderWidth: 1, borderRadius: radius.card },
