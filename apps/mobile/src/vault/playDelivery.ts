@@ -1,7 +1,7 @@
 import { Directory, File, Paths } from "expo-file-system";
 import { modelParts, type CatalogModel, type Delivery, type InstallEvent } from "@inborn/core";
 import { AssetPackErrorCode, AssetPackStatus, addPackListener, cancelPack, fetchPack, getPackPath, getPackState, hasAssetPacks, linkInto, removePack, showPackConfirmation, type AssetPackState } from "../../modules/asset-packs";
-import { isPlayUnavailable, type DeliveryPlan, type ModelDelivery } from "./delivery";
+import { isPlayUnavailable, type DeliverOptions, type DeliveryPlan, type ModelDelivery } from "./delivery";
 
 type PlayPack = Extract<Delivery, { kind: "play-asset-pack" }>;
 
@@ -46,9 +46,19 @@ export class PlayDelivery implements ModelDelivery {
     return dir ? new File(`file://${dir}`, model.file).uri : null;
   }
 
-  async deliver(model: CatalogModel, emit: (e: InstallEvent) => void): Promise<string> {
+  async heldOnDevice(model: CatalogModel): Promise<boolean> {
+    const packs = packsOf(model);
+    if (!packs.length) return false;
+    for (const pack of packs) {
+      const s = await getPackState(pack.pack).catch(() => null);
+      if (s?.status !== AssetPackStatus.COMPLETED) return false;
+    }
+    return true;
+  }
+
+  async deliver(model: CatalogModel, emit: (e: InstallEvent) => void, opts: DeliverOptions = {}): Promise<string> {
     try {
-      return await this.deliverPacks(model, emit);
+      return await this.deliverPacks(model, emit, opts.silent === true);
     } catch (e: unknown) {
       const message = e instanceof Error ? e.message : String(e);
       if (!isPlayUnavailable(message)) throw e;
@@ -57,7 +67,7 @@ export class PlayDelivery implements ModelDelivery {
     }
   }
 
-  private async deliverPacks(model: CatalogModel, emit: (e: InstallEvent) => void): Promise<string> {
+  private async deliverPacks(model: CatalogModel, emit: (e: InstallEvent) => void, silent: boolean): Promise<string> {
     const packs = packsOf(model);
     if (!packs.length) throw new Error(`${model.id} has no Play pack`);
     const located = this.locate(model);
@@ -72,7 +82,7 @@ export class PlayDelivery implements ModelDelivery {
         done += bytes;
         continue;
       }
-      await this.fetchOne(pack, bytes, (b) => emit({ type: "progress", bytes: done + b, total: model.bytes }), emit);
+      await this.fetchOne(pack, bytes, (b) => emit({ type: "progress", bytes: done + b, total: model.bytes }), emit, silent);
       done += bytes;
     }
     const path = this.locate(model);
@@ -80,7 +90,7 @@ export class PlayDelivery implements ModelDelivery {
     return path;
   }
 
-  private fetchOne(pack: PlayPack, bytes: number, progress: (bytes: number) => void, emit: (e: InstallEvent) => void): Promise<void> {
+  private fetchOne(pack: PlayPack, bytes: number, progress: (bytes: number) => void, emit: (e: InstallEvent) => void, silent: boolean): Promise<void> {
     return new Promise<void>((resolve, reject) => {
       let settled = false;
       const asked = { wifi: false, confirm: false };
@@ -93,6 +103,12 @@ export class PlayDelivery implements ModelDelivery {
       };
       const onState = (s: AssetPackState) => {
         if (s.name !== pack.pack) return;
+        /* Play wants a real download after all: without a tap the request is withdrawn, never put to the user as Play's dialog. */
+        if (silent && AWAITING_DIALOG.has(s.status)) {
+          cancelPack(pack.pack);
+          done(() => reject(new Error("canceled")));
+          return;
+        }
         switch (s.status) {
           case AssetPackStatus.PENDING:
           case AssetPackStatus.DOWNLOADING:
@@ -132,7 +148,7 @@ export class PlayDelivery implements ModelDelivery {
         }
       };
       const sub = addPackListener(onState);
-      this.asked.add(pack.pack);
+      if (!silent) this.asked.add(pack.pack);
       fetchPack(pack.pack)
         .then((s) => {
           if (s) onState(s);

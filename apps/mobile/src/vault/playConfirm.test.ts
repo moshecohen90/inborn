@@ -58,6 +58,20 @@ describe("PlayDelivery · Play's dialog approves only what the user tapped", () 
     expect(calls).not.toContain("cancel inborn_model");
   });
 
+  it("a request without a tap withdraws itself when Play wants a real download, and never opens the dialog", async () => {
+    await expect(new PlayDelivery(packs).deliver(instant, () => undefined, { silent: true })).rejects.toThrow("canceled");
+    expect(calls).toEqual(["fetch inborn_model", "cancel inborn_model"]);
+  });
+
+  it("holds a model only when Play reports every pack COMPLETED", async () => {
+    const d = new PlayDelivery(packs);
+    expect(await d.heldOnDevice(instant)).toBe(false);
+    states.set("inborn_model", 4);
+    expect(await d.heldOnDevice(instant)).toBe(true);
+    states.set("inborn_model", WAITING_FOR_WIFI);
+    expect(await d.heldOnDevice(instant)).toBe(false);
+  });
+
   it("leaves a pack Play is already downloading alone: the dialog cannot approve it", async () => {
     states.set("inborn_model_fast", 2);
     await expect(new PlayDelivery(packs).deliver(instant, () => undefined)).rejects.toThrow("canceled");
@@ -77,9 +91,9 @@ describe("S02 guard · where a download may start", () => {
     expect(minting.filter((f) => !/^(screens|components)\//.test(f) && f !== "vault/intent.ts")).toEqual([]);
   });
 
-  it("the vault has no path that installs on its own", () => {
+  it("the vault delivers without a tap only behind Play's COMPLETED, and silently", () => {
     const store = readFileSync(join(src, "vault/store.ts"), "utf8");
-    expect(store).not.toMatch(/requestKnownPacks/);
-    expect([...store.matchAll(/this\.install\(([^)]*)\)/g)].map((m) => m[1])).toEqual(["photos.id, tap", "id, tap"]);
+    const untapped = [...store.matchAll(/^.*this\.deliverModel\(.*$/gm)].map((m) => m[0].trim()).filter((c) => !/silent: false|silent \}\)/.test(c));
+    expect(untapped).toEqual(["if (await this.delivery.heldOnDevice?.(model).catch(() => false)) void this.deliverModel(model.id, { withPhotos: false, silent: true });"]);
   });
 });

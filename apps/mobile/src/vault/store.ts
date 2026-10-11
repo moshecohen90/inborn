@@ -187,6 +187,7 @@ export class VaultStore {
     this.strays = this.scanStrays();
     this.persist();
     this.notify();
+    void this.requestKnownPacks();
   }
 
   /**
@@ -253,6 +254,19 @@ export class VaultStore {
     if (next) this.record.defaultModelId = next;
     else delete this.record.defaultModelId;
     this.persist();
+  }
+
+  /**
+   * Every app update unbinds the on-demand packs while Play keeps their bytes (purchases run §K). A recorded pack is
+   * asked for again without a tap only when Play reports it COMPLETED on this device; anything else stays not-installed
+   * until the user's button that names the size (S02). Runs on the boot scan and on vault open.
+   */
+  async requestKnownPacks(): Promise<void> {
+    for (const model of this.manifest.models) {
+      if (this.states.get(model.id)?.kind !== "not-installed") continue;
+      if (this.record.installs[model.id]?.via !== "play" || this.delivery.plan(model)?.via !== "play") continue;
+      if (await this.delivery.heldOnDevice?.(model).catch(() => false)) void this.deliverModel(model.id, { withPhotos: false, silent: true });
+    }
   }
 
   /**
@@ -498,6 +512,10 @@ export class VaultStore {
   /** `tap`: the user's tap on a button that named the size; a fetch whose pack content changed is a real download (S02). */
   async install(id: string, tap: UserTap, { withPhotos = true }: { withPhotos?: boolean } = {}): Promise<InstallState> {
     if (!isUserTap(tap)) throw new Error(`install ${id} without a user tap`);
+    return this.deliverModel(id, { withPhotos, silent: false });
+  }
+
+  private async deliverModel(id: string, { withPhotos, silent }: { withPhotos: boolean; silent: boolean }): Promise<InstallState> {
     const model = this.model(id);
     if (!model) throw new Error(`unknown model ${id}`);
     const plan = this.manifestStatus.ok ? this.delivery.plan(model) : null;
@@ -505,12 +523,12 @@ export class VaultStore {
     const photos = withPhotos ? this.photoPackOf(id) : null;
     const state = this.dispatch(id, { type: "request", via: plan.via, requiredBytes: requiredFreeBytes(model.bytes + (photos?.bytes ?? 0)), freeBytes: freeDiskBytes() });
     if (state.kind !== "delivering") return state;
-    if (photos && this.state(photos.id).kind === "not-installed") void this.install(photos.id, tap);
+    if (photos && this.state(photos.id).kind === "not-installed") void this.deliverModel(photos.id, { withPhotos: false, silent });
     await this.lanes.acquire(id, model.bytes);
     if (this.state(id).kind !== "delivering") return this.state(id);
     try {
       let lastTick = 0;
-      const path = await this.deliverAcrossDrops(model, (e) => {
+      const path = await this.deliverAcrossDrops(model, silent, (e) => {
         downloadAwake.onEvent(id, e);
         /* Five parallel downloads tick every 100 ms each; one repaint per file per half second keeps the JS thread free for the small file's verify. */
         if (e.type === "progress" && e.bytes < e.total && Date.now() - lastTick < PROGRESS_TICK_MS) return;
@@ -545,10 +563,10 @@ export class VaultStore {
    * again by itself, from the saved resume data or the bytes on disk: no Try again. A path that claims to be up and
    * still fails is retried a few times with backoff, then reported.
    */
-  private async deliverAcrossDrops(model: CatalogModel, emit: (e: InstallEvent) => void): Promise<string> {
+  private async deliverAcrossDrops(model: CatalogModel, silent: boolean, emit: (e: InstallEvent) => void): Promise<string> {
     for (let attempt = 0; ; ) {
       try {
-        return await this.delivery.deliver(model, emit);
+        return await this.delivery.deliver(model, emit, { silent });
       } catch (e: unknown) {
         if (installErrorKind(errorText(e)) !== "offline" || this.state(model.id).kind !== "delivering") throw e;
         const online = (await networkKind()) !== "none";

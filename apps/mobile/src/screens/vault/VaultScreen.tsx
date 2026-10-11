@@ -108,6 +108,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock, focus }: VaultS
 
   useEffect(() => {
     void vault.ready().then(async () => {
+      void vault.requestKnownPacks();
       if (!devBuild() || devHooksRan) return;
       devHooksRan = true;
       if (DEV_AUTOINSTALL && vault.state(DEV_AUTOINSTALL).kind !== "ready") void vault.install(DEV_AUTOINSTALL, devTap(DEV_AUTOINSTALL));

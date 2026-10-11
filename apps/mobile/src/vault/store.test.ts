@@ -10,6 +10,9 @@ const PATH = `file:///data/data/com.inbornapp.mobile/files/assetpacks/inborn_mod
 /* What Play answers this app version: `bound` is what getPackLocation points at, `fetched` what the app asked for. */
 const bound = new Set<string>();
 const fetched: string[] = [];
+/* Packs Play reports COMPLETED on this device (getPackState), and the fetches that carried no tap. */
+const held = new Set<string>();
+const silentFetches: string[] = [];
 const cancelled: string[] = [];
 /* Ids whose delivery stays in flight until cancelled, like a Play pack mid-download. */
 const hang = new Set<string>();
@@ -38,8 +41,10 @@ vi.mock("./playDelivery", () => ({
     plan = (model: CatalogModel) => (model.delivery.some((d) => d.kind === "play-asset-pack") ? { via: "play" as const, origin: "Google Play", bytes: model.bytes } : null);
     locate = (model: CatalogModel) => (model.id === "fast" && bound.has("inborn_model_fast") ? PATH : null);
     /* A pack Play still holds comes back on request without downloading; anything else is not on this device. */
-    deliver = async (model: CatalogModel) => {
+    heldOnDevice = async (model: CatalogModel) => held.has(model.id);
+    deliver = async (model: CatalogModel, _emit: unknown, opts?: { silent?: boolean }) => {
       fetched.push(model.id);
+      if (opts?.silent) silentFetches.push(model.id);
       if (hang.has(model.id)) return new Promise<string>(() => undefined);
       if (model.id !== "fast") throw new Error("pack unavailable");
       bound.add("inborn_model_fast");
@@ -86,13 +91,26 @@ beforeEach(() => {
   sizes.clear();
   bound.clear();
   fetched.length = 0;
+  silentFetches.length = 0;
+  held.clear();
   cancelled.length = 0;
   hang.clear();
 });
 
 describe("VaultStore after a Play version update (purchases run §K)", () => {
-  /* A fetch for a pack whose content changed in the new version is a real download, so it waits for the tap (S02). */
-  it("asks Play for nothing a version update unbound; the user's tap brings it back", async () => {
+  it("rebinds a pack the update unbound when Play reports it COMPLETED, with no tap and no dialog", async () => {
+    record = hadFast();
+    held.add("fast");
+    const vault = new VaultStore();
+    await vault.ready();
+    await settled();
+    await settled();
+    expect(silentFetches).toEqual(["fast"]);
+    expect(vault.state("fast")).toMatchObject({ kind: "ready", path: PATH, via: "play" });
+  });
+
+  /* A fetch for a pack Play no longer holds is a real download, so it waits for the tap (S02). */
+  it("asks Play for nothing a version update unbound unless Play holds it; the user's tap brings it back", async () => {
     record = hadFast();
     const vault = new VaultStore();
     await vault.ready();
@@ -148,13 +166,17 @@ describe("VaultStore after a Play version update (purchases run §K)", () => {
   });
 
   /* Founder, 11.10: Play opened on a 1.94 GB download (Fast 1,280,835,840 B + its projector 668,227,264 B) he never asked for. */
-  it("a phone that once had Fast and its projector fetches neither on boot", async () => {
+  it("a phone that once had Fast and its projector fetches neither on boot or vault open when Play no longer holds them", async () => {
     const vf = BUNDLED_MANIFEST.models.find((m) => m.id === "vision-qwen35-2b") as CatalogModel;
     record = { ...hadFast(), installs: { ...hadFast().installs, "vision-qwen35-2b": { file: vf.file, bytes: vf.bytes, sha256: vf.sha256, via: "play", installedAt: 1 } } };
     const vault = new VaultStore();
     await vault.ready();
     await settled();
+    await vault.requestKnownPacks();
+    await settled();
     expect(fetched).toEqual([]);
+    expect(vault.state("fast").kind).toBe("not-installed");
+    expect(vault.state("vision-qwen35-2b").kind).toBe("not-installed");
   });
 });
 
@@ -190,7 +212,7 @@ describe("VaultStore · a chat model and its photo pack are one choice on Play",
     expect(vault.state("vision-qwen35").kind).toBe("not-installed");
   });
 
-  it("an update fetches nothing, not even a delivered Instant", async () => {
+  it("an update fetches nothing Play does not hold, not even a delivered Instant", async () => {
     const instant = BUNDLED_MANIFEST.models.find((m) => m.id === "instant") as CatalogModel;
     record = { ...emptyRecord(), installs: { instant: { file: instant.file, bytes: instant.bytes, sha256: instant.sha256, via: "play", installedAt: 1 } } };
     const vault = new VaultStore();

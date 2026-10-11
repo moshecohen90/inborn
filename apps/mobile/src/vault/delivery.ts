@@ -10,13 +10,20 @@ export interface DeliveryPlan {
 }
 
 /** One interface per platform (spec §5.4 "the same manifest describes every path"). Events feed the install reducer. */
+/** `silent`: no tap asked for this request, so it may rebind bytes on the phone but never download or show a store dialog. */
+export interface DeliverOptions {
+  silent?: boolean;
+}
+
 export interface ModelDelivery {
   /** Null when this platform cannot deliver the model (sideloaded Android, web): the vault offers import instead. */
   plan(model: CatalogModel): DeliveryPlan | null;
   /** False once the platform's store itself is out of reach (Play not bound on this device); absent = always reachable. */
   reachable?(): boolean;
   /** Starts (or resumes) delivery; resolves with the local file path once bytes are complete, before hashing. */
-  deliver(model: CatalogModel, emit: (e: InstallEvent) => void): Promise<string>;
+  deliver(model: CatalogModel, emit: (e: InstallEvent) => void, opts?: DeliverOptions): Promise<string>;
+  /** True only when the store already holds every byte of the model on this device, so asking for it again downloads nothing. */
+  heldOnDevice?(model: CatalogModel): Promise<boolean>;
   pause(model: CatalogModel): Promise<void>;
   cancel(model: CatalogModel): Promise<void>;
   /** Removes the delivered bytes (pack or file). */
