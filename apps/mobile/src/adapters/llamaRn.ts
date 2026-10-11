@@ -3,6 +3,7 @@ import { isDevice } from "expo-device";
 import { Platform } from "react-native";
 import { ANSWER_CEILING, continuationPrompt, pastPrefill, prefillText, sampling } from "@inborn/core";
 import { phoneImageMaxTokens } from "./imageTokens";
+import { projectorOnGpu } from "./projectorGpu";
 import type { BenchTimings, Capabilities, Delta, Embedder, GenOpts, LoadOptions, LocalLM, Message, ModelRef, Session, Stats } from "@inborn/core";
 
 type Ctx = Awaited<ReturnType<typeof initLlama>>;
@@ -29,9 +30,8 @@ export class LlamaRnLM implements LocalLM {
     if (this.vision && this.mmproj === mmprojPath) return true;
     try {
       const imageMaxTokens = phoneImageMaxTokens(this.session?.model.id, this.session?.nCtx ?? 4096);
-      /* The simulator's Metal driver traps inside the projector's buffer upload (xpc misuse); real iPhones and Android take the GPU. */
       /* unload() waits on it: releasing the context under a projector that is still loading frees memory mtmd is writing. */
-      const init = ctx.initMultimodal({ path: mmprojPath, use_gpu: Platform.OS !== "ios" || isDevice, image_max_tokens: imageMaxTokens });
+      const init = ctx.initMultimodal({ path: mmprojPath, use_gpu: projectorOnGpu(Platform.OS, isDevice), image_max_tokens: imageMaxTokens });
       this.inflight = init;
       const on = await init.finally(() => {
         if (this.inflight === init) this.inflight = null;
