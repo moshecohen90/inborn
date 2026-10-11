@@ -1,6 +1,7 @@
 import { Directory, File, Paths } from "expo-file-system";
 import { modelParts, type CatalogModel, type Delivery, type InstallEvent } from "@inborn/core";
-import { AssetPackErrorCode, AssetPackStatus, addPackListener, cancelPack, fetchPack, getPackPath, getPackState, hasAssetPacks, linkInto, removePack, showPackConfirmation, type AssetPackState } from "../../modules/asset-packs";
+import { AssetPackErrorCode, AssetPackStatus, addPackListener, adoptInto, cancelPack, fetchPack, getPackPath, getPackState, hasAssetPacks, linkInto, removePack, showPackConfirmation, type AssetPackState } from "../../modules/asset-packs";
+import { modelFile, safeDelete, vaultDir } from "./paths";
 import { isPlayUnavailable, type DeliverOptions, type DeliveryPlan, type ModelDelivery } from "./delivery";
 
 type PlayPack = Extract<Delivery, { kind: "play-asset-pack" }>;
@@ -25,7 +26,38 @@ export class PlayDelivery implements ModelDelivery {
     return !this.unavailable && hasAssetPacks();
   }
 
+  /** The vault's own copy first; a pack still bound in Play's directory is the fallback for installs made before adopt(). */
   locate(model: CatalogModel): string | null {
+    return this.owned(model) ?? this.inPlay(model);
+  }
+
+  private owned(model: CatalogModel): string | null {
+    if (!packsOf(model).length) return null;
+    return modelParts(model).every((p) => modelFile(p.file).exists) ? modelFile(model.file).uri : null;
+  }
+
+  /**
+   * Hard-links (else copies) the delivered pack files into the vault directory, so the model no longer needs Play's
+   * pack and release() can take it out of Play: an installed on-demand pack is re-downloaded by Play on every app update.
+   */
+  adopt(model: CatalogModel): string | null {
+    const files: Record<string, string> = {};
+    for (const part of modelParts(model)) {
+      const pack = packsOf(model).find((p) => p.file === part.file) ?? packsOf(model)[0];
+      const dir = pack ? getPackPath(pack.pack) : null;
+      if (!dir || !new File(`file://${dir}`, part.file).exists) return null;
+      files[part.file] = `${dir}/${part.file}`;
+    }
+    return adoptInto(vaultDir().uri.replace(/^file:\/\//, "").replace(/\/$/, ""), files) ? this.owned(model) : null;
+  }
+
+  /** After the vault verified its own copy: Play forgets the packs, so no update re-delivers them. Never fails the install. */
+  async release(model: CatalogModel, path: string): Promise<void> {
+    if (path !== this.owned(model)) return;
+    for (const pack of packsOf(model)) await removePack(pack.pack).catch((e: unknown) => console.warn(`[vault] removePack ${pack.pack}`, e));
+  }
+
+  private inPlay(model: CatalogModel): string | null {
     const packs = packsOf(model);
     const first = packs[0];
     if (!first) return null;
@@ -70,7 +102,7 @@ export class PlayDelivery implements ModelDelivery {
   private async deliverPacks(model: CatalogModel, emit: (e: InstallEvent) => void, silent: boolean): Promise<string> {
     const packs = packsOf(model);
     if (!packs.length) throw new Error(`${model.id} has no Play pack`);
-    const located = this.locate(model);
+    const located = this.owned(model) ?? this.adopt(model) ?? this.inPlay(model);
     if (located) return located;
     /* Packs arrive one after another; progress is cumulative so the card shows one bar for the whole model. */
     let done = 0;
@@ -85,7 +117,7 @@ export class PlayDelivery implements ModelDelivery {
       await this.fetchOne(pack, bytes, (b) => emit({ type: "progress", bytes: done + b, total: model.bytes }), emit, silent);
       done += bytes;
     }
-    const path = this.locate(model);
+    const path = this.adopt(model) ?? this.inPlay(model);
     if (!path) throw new Error(`packs for ${model.id} completed but a shard is missing`);
     return path;
   }
@@ -190,8 +222,10 @@ export class PlayDelivery implements ModelDelivery {
     for (const pack of packsOf(model)) cancelPack(pack.pack);
   }
 
+  /* Idempotent: a pack release() already took out of Play is simply not there to remove. */
   async remove(model: CatalogModel): Promise<void> {
-    for (const pack of packsOf(model)) await removePack(pack.pack);
+    for (const pack of packsOf(model)) await removePack(pack.pack).catch(() => undefined);
+    for (const part of modelParts(model)) safeDelete(modelFile(part.file));
     try {
       new Directory(Paths.document, "assetpacks-joined", model.id).delete();
     } catch {

@@ -24,6 +24,10 @@ export interface ModelDelivery {
   deliver(model: CatalogModel, emit: (e: InstallEvent) => void, opts?: DeliverOptions): Promise<string>;
   /** True only when the store already holds every byte of the model on this device, so asking for it again downloads nothing. */
   heldOnDevice?(model: CatalogModel): Promise<boolean>;
+  /** Moves a model the store delivered and still holds into the app's own files; null when there is nothing to move. */
+  adopt?(model: CatalogModel): string | null;
+  /** Called once the model at `path` verified: the store may drop its own hold on the bytes. */
+  release?(model: CatalogModel, path: string): Promise<void>;
   pause(model: CatalogModel): Promise<void>;
   cancel(model: CatalogModel): Promise<void>;
   /** Removes the delivered bytes (pack or file). */

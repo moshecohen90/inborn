@@ -49,6 +49,7 @@ export interface AssetPackState {
 interface NativeAssetPacks {
   getPackPath(packName: string): string | null;
   linkInto(dir: string, links: Record<string, string>): string | null;
+  adoptInto(dir: string, files: Record<string, string>): string | null;
   fetch(packName: string): Promise<AssetPackState | null>;
   getPackState(packName: string): Promise<AssetPackState | null>;
   cancel(packName: string): AssetPackState | null;
@@ -70,6 +71,11 @@ export function getPackPath(packName: string): string | null {
 /** Creates `dir` and a symlink in it for every `{ name: absoluteSourcePath }`; returns the directory path, or null when a source is missing. */
 export function linkInto(dir: string, links: Record<string, string>): string | null {
   return native?.linkInto(dir, links) ?? null;
+}
+
+/** Hard-links (else copies) every `{ name: absoluteSourcePath }` into `dir`, so the files survive the pack's removal; null when one is missing. */
+export function adoptInto(dir: string, files: Record<string, string>): string | null {
+  return native?.adoptInto(dir, files) ?? null;
 }
 
 /** Asks Play to download the pack; resolves with the state at request time (subscribe with addPackListener for progress). */

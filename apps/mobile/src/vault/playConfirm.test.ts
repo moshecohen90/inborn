@@ -19,6 +19,7 @@ vi.mock("expo-file-system", () => {
   }
   return { File: F, Directory: F, Paths: { document: { uri: "file:///doc" } } };
 });
+vi.mock("./paths", () => ({ modelFile: (name: string) => ({ uri: `file:///vault/${name}`, exists: false }), safeDelete: () => undefined, vaultDir: () => ({ uri: "file:///vault/" }) }));
 vi.mock("../../modules/asset-packs", () => ({
   AssetPackStatus: { PENDING: 1, DOWNLOADING: 2, TRANSFERRING: 3, COMPLETED: 4, FAILED: 5, CANCELED: 6, WAITING_FOR_WIFI, NOT_INSTALLED: 8, REQUIRES_USER_CONFIRMATION },
   AssetPackErrorCode: {},

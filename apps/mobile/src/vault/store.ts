@@ -158,7 +158,15 @@ export class VaultStore {
         continue;
       }
       const rec = this.record.installs[model.id];
-      const located = this.delivery.locate(model);
+      let located = this.delivery.locate(model);
+      /* A verified install that still lives in Play's pack (made before adopt()) moves into the vault and leaves Play. */
+      if (rec?.via === "play" && located && !rec.loading && !rec.quarantined) {
+        const own = this.delivery.adopt?.(model);
+        if (own && onDiskBytes(model, own) === rec.bytes) {
+          void this.delivery.release?.(model, own);
+          located = own;
+        }
+      }
       if (rec && located && onDiskBytes(model, located) === rec.bytes) {
         const via = rec.via;
         this.states.set(model.id, rec.loading || rec.quarantined ? { kind: "quarantined", path: located, bytes: rec.bytes, sha256: rec.sha256, via } : { kind: "ready", path: located, bytes: rec.bytes, sha256: rec.sha256, via });
@@ -335,7 +343,9 @@ export class VaultStore {
         const sha = await fileSha256(file);
         if (sha !== shard.sha256) {
           console.warn(`[vault] ${model.id}: ${shard.file} sha256 ${sha} != catalog ${shard.sha256}`);
-          if (via !== "play") for (const p of modelParts(model)) safeDelete(new File(`${dir}${p.file}`));
+          /* Play owns its pack files; the vault's own copy of them goes, so the next Download fetches again. */
+          const ours = modelParts(model).every((p) => modelFile(p.file).uri === `${dir}${p.file}`);
+          if (via !== "play" || ours) for (const p of modelParts(model)) safeDelete(new File(`${dir}${p.file}`));
           return commit({ kind: "corrupt", reason: "hash-mismatch", via });
         }
         total += fileSize(file);
@@ -343,7 +353,9 @@ export class VaultStore {
       this.record.installs[model.id] = { file: model.file, bytes: total, sha256: model.sha256, via, installedAt: Date.now() };
       if (this.missing === model.id) this.missing = null;
       this.persist();
-      return commit({ kind: "ready", path, bytes: total, sha256: model.sha256, via });
+      const done = commit({ kind: "ready", path, bytes: total, sha256: model.sha256, via });
+      if (via === "play") void this.delivery.release?.(model, path);
+      return done;
     } catch (e: unknown) {
       return commit({ kind: "failed", via, error: errorText(e), retryable: true });
     }

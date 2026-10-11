@@ -66,6 +66,30 @@ class AssetPacksModule : Module() {
       target.path
     }
 
+    /* A hard link survives Play's removePack without a second copy on disk; a byte copy only if the link is refused. */
+    Function("adoptInto") { dir: String, files: Map<String, String> ->
+      val target = File(dir)
+      if (!target.isDirectory && !target.mkdirs()) return@Function null
+      for ((name, source) in files) {
+        val src = File(source)
+        if (!src.exists()) return@Function null
+        val dest = File(target, name)
+        if (dest.exists() && dest.length() == src.length()) continue
+        dest.delete()
+        try {
+          Os.link(source, dest.path)
+        } catch (e: ErrnoException) {
+          try {
+            src.copyTo(dest, overwrite = true)
+          } catch (e: Exception) {
+            dest.delete()
+            return@Function null
+          }
+        }
+      }
+      target.path
+    }
+
     AsyncFunction("fetch") { packName: String, promise: Promise ->
       manager.fetch(listOf(packName))
         .addOnSuccessListener { promise.resolve(stateOf(packName, it)) }

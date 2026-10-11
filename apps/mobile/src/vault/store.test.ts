@@ -13,6 +13,8 @@ const fetched: string[] = [];
 /* Packs Play reports COMPLETED on this device (getPackState), and the fetches that carried no tap. */
 const held = new Set<string>();
 const silentFetches: string[] = [];
+/* Models whose packs the vault let Play forget (release), in order. */
+const released: string[] = [];
 const cancelled: string[] = [];
 /* Ids whose delivery stays in flight until cancelled, like a Play pack mid-download. */
 const hang = new Set<string>();
@@ -42,6 +44,7 @@ vi.mock("./playDelivery", () => ({
     locate = (model: CatalogModel) => (model.id === "fast" && bound.has("inborn_model_fast") ? PATH : null);
     /* A pack Play still holds comes back on request without downloading; anything else is not on this device. */
     heldOnDevice = async (model: CatalogModel) => held.has(model.id);
+    release = async (model: CatalogModel) => void released.push(model.id);
     deliver = async (model: CatalogModel, _emit: unknown, opts?: { silent?: boolean }) => {
       fetched.push(model.id);
       if (opts?.silent) silentFetches.push(model.id);
@@ -92,6 +95,7 @@ beforeEach(() => {
   bound.clear();
   fetched.length = 0;
   silentFetches.length = 0;
+  released.length = 0;
   held.clear();
   cancelled.length = 0;
   hang.clear();
@@ -233,6 +237,26 @@ describe("VaultStore · nothing downloads without the user's tap (S02)", () => {
   });
 });
 
+describe("VaultStore · Play forgets a pack only after the vault's copy verified (vc31 re-delivery)", () => {
+  it("releases a Play install once it verified", async () => {
+    const vault = new VaultStore();
+    await vault.ready();
+    expect(released).toEqual([]);
+    await vault.install("fast", userTap(fast.bytes));
+    expect(vault.state("fast").kind).toBe("ready");
+    expect(released).toEqual(["fast"]);
+  });
+
+  it("keeps Play's pack when the copy fails its hash", async () => {
+    sha = "0".repeat(64);
+    const vault = new VaultStore();
+    await vault.ready();
+    await vault.install("fast", userTap(fast.bytes));
+    expect(vault.state("fast").kind).toBe("corrupt");
+    expect(released).toEqual([]);
+  });
+});
+
 describe("VaultStore.lastDelivery (F206)", () => {
   it("names the pack Play delivered, so the Proof screen can print it after the download is over", async () => {
     record = hadFast();
@@ -255,5 +279,17 @@ describe("VaultStore.lastDelivery (F206)", () => {
     await vault.ready();
     await settled();
     expect(vault.lastDelivery()).toBeNull();
+  });
+});
+
+describe("VaultStore · a vault copy of a Play pack that fails its hash", () => {
+  it("is deleted so the next Download fetches again, while Play's own files stay", async () => {
+    const own = `file:///vault/${fast.file}`;
+    sha = "0".repeat(64);
+    const vault = new VaultStore();
+    await vault.ready();
+    sizes.set(own, fast.bytes);
+    await (vault as unknown as { checkAndRecord: (m: CatalogModel, p: string, v: string, c: (s: unknown) => unknown) => Promise<unknown> }).checkAndRecord(fast, own, "play", (s) => s);
+    expect(deleted).toEqual([own]);
   });
 });
