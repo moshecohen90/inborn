@@ -55,7 +55,8 @@ describe("the document intake doors", () => {
 
   it("no other module calls library.importFile behind the gate's back", () => {
     /* A test drives the library directly on purpose (documents/incognito.test.ts); a door is production code. */
-    const callers = sources.filter((s) => !/\.test\.tsx?$/.test(s.path) && /\.importFile\(/.test(s.src) && !/\bDEV_|devFileUri/.test(s.src)).map((s) => s.path);
+    /* The vault's own importFile (a model file, not a document) is a different door: screens/vault and the onboarding model step call it. */
+    const callers = sources.filter((s) => !/\.test\.tsx?$/.test(s.path) && /(?<!vault)\.importFile\(/.test(s.src) && !/\bDEV_|devFileUri/.test(s.src)).map((s) => s.path);
     for (const c of callers) expect(doors, `${c} calls importFile`).toContain(c);
   });
 });
