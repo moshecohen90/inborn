@@ -28,6 +28,12 @@ export interface ModelDelivery {
   adopt?(model: CatalogModel): string | null;
   /** Called once the model at `path` verified: the store may drop its own hold on the bytes. */
   release?(model: CatalogModel, path: string): Promise<void>;
+  /**
+   * Packs the store put on the phone that no tap asked for: cancelled and taken out of the store, never adopted. `sweep`
+   * also forgets the packs the store does not show right now, so its record of this device is clean. Resolves with the
+   * names dropped. `requested` holds the pack names a record of this vault asked for.
+   */
+  dropUnrequested?(requested: ReadonlySet<string>, sweep: boolean): Promise<string[]>;
   pause(model: CatalogModel): Promise<void>;
   cancel(model: CatalogModel): Promise<void>;
   /** Removes the delivered bytes (pack or file). */

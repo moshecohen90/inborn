@@ -57,6 +57,22 @@ export class PlayDelivery implements ModelDelivery {
     for (const pack of packsOf(model)) await removePack(pack.pack).catch((e: unknown) => console.warn(`[vault] removePack ${pack.pack}`, e));
   }
 
+  /* Play restores every pack it once delivered to this account on each reinstall, before the app runs (OnePlus 11, 12.10: 1.9 GB). */
+  async dropUnrequested(requested: ReadonlySet<string>, sweep: boolean): Promise<string[]> {
+    const dropped: string[] = [];
+    if (!this.reachable()) return dropped;
+    for (const name of this.allPacks) {
+      if (requested.has(name) || this.asked.has(name)) continue;
+      const s = await getPackState(name).catch(() => null);
+      const absent = !s || s.status === AssetPackStatus.NOT_INSTALLED;
+      if (absent && !sweep) continue;
+      if (s && !absent && s.status !== AssetPackStatus.COMPLETED) cancelPack(name);
+      await removePack(name).catch(() => undefined);
+      if (!absent) dropped.push(name);
+    }
+    return dropped;
+  }
+
   private inPlay(model: CatalogModel): string | null {
     const packs = packsOf(model);
     const first = packs[0];

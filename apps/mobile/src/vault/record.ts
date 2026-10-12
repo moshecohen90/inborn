@@ -41,6 +41,8 @@ export interface VaultRecord {
   hf: Record<string, CatalogModel>;
   /** Paused HTTPS downloads that survive a restart (expo-file-system savable state). */
   downloads: Record<string, DownloadPauseState & { etag?: string }>;
+  /** The Play-record sweep this install already ran (store.PLAY_SWEEP). */
+  swept?: number;
 }
 
 /* Fresh maps on every call: a shared empty record would bring back whatever was recorded into it before a wipe. */

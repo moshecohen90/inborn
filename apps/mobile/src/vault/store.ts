@@ -151,6 +151,7 @@ export class VaultStore {
 
   private async scan(): Promise<void> {
     if (Platform.OS === "web") return;
+    await this.dropUnrequestedPacks();
     for (const model of this.deliverable()) {
       const bundled = bundledModelFile(model.id) ?? devBundledStandIn(model.id);
       if (bundled) {
@@ -174,7 +175,12 @@ export class VaultStore {
         continue;
       }
       if (located && !rec) {
-        /* Delivered outside this store (a Play pack this record never saw, a file put in place by hand): verify before trusting. */
+        /* A pack still in Play's directory with no record is Play's restore (dropped above), never a model the user chose. */
+        if (Platform.OS === "android" && !located.startsWith(vaultDir().uri)) {
+          this.states.set(model.id, NOT_INSTALLED);
+          continue;
+        }
+        /* Delivered outside this store (a file put in place by hand): verify before trusting. */
         await this.adopt(model, located, Platform.OS === "android" ? "play" : this.record.hf[model.id] ? "hf" : "https");
         continue;
       }
@@ -275,6 +281,19 @@ export class VaultStore {
       if (this.record.installs[model.id]?.via !== "play" || this.delivery.plan(model)?.via !== "play") continue;
       if (await this.delivery.heldOnDevice?.(model).catch(() => false)) void this.deliverModel(model.id, { withPhotos: false, silent: true });
     }
+  }
+
+  /** Before the boot scan looks at any pack: whatever Play restored on its own goes, and once per install Play's record of this device is swept clean. */
+  private async dropUnrequestedPacks(): Promise<void> {
+    if (!this.delivery.dropUnrequested) return;
+    const requested = new Set<string>();
+    for (const model of this.manifest.models) {
+      if (!this.record.installs[model.id] && !this.record.downloads[model.id]) continue;
+      for (const d of model.delivery) if (d.kind === "play-asset-pack") requested.add(d.pack);
+    }
+    const dropped = await this.delivery.dropUnrequested(requested, this.record.swept !== PLAY_SWEEP).catch(() => [] as string[]);
+    if (dropped.length) console.warn(`[vault] dropped Play packs no tap asked for: ${dropped.join(", ")}`);
+    this.record.swept = PLAY_SWEEP;
   }
 
   /**
@@ -734,6 +753,8 @@ function withDevBaseUrl(manifest: CatalogManifest): CatalogManifest {
 }
 
 const playPackNames = (manifest: CatalogManifest): string[] => manifest.models.flatMap((m) => m.delivery.flatMap((d) => (d.kind === "play-asset-pack" ? [d.pack] : [])));
+/* Bump to sweep Play's record again on every installed phone. */
+const PLAY_SWEEP = 1;
 
 /* A sharded model records the sum of its parts, so the scan must measure every shard next to the first one. */
 function onDiskBytes(model: CatalogModel, firstPart: string): number {
