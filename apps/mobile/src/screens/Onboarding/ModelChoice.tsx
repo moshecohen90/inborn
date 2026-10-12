@@ -108,7 +108,8 @@ function VaultModelChoice() {
     if (id) vault.setDefault(id);
     router.push("/onboarding/sealed");
   };
-  const startNowWith = selected?.state.kind === "download" ? step.startNowWith : null;
+  /* Under a download, and under the failed one the tap pinned (review 12.10): the way to the chat never depends on the store answering. */
+  const startNowWith = selected?.state.kind === "download" ? step.startNowWith : selected?.state.kind === "failed" ? (step.options.find((o) => o.state.kind === "ready" && o.id !== selected.id)?.id ?? null) : null;
   const offline = useOffline();
   /* Queued for a connection: the chat starts on what is here, and the download still takes over the moment it verifies. */
   const waitingOn = selected?.state.kind === "arriving" && selected.state.waiting === "network" ? (step.options.find((o) => o.state.kind === "ready")?.id ?? null) : null;

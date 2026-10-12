@@ -54,6 +54,18 @@ describe("model step offers", () => {
     expect(done.usableNow).toBe(true);
   });
 
+  it("Android: when the recommended Fast download fails, the step opens on Instant (included) and the Fast card keeps its reason", () => {
+    const failedFast: InstallState = { kind: "failed", via: "play", error: "play-error--100", retryable: true };
+    const s = step({
+      platform: "android",
+      entries: [entry(instant, ready("bundled"), { via: "bundled", bytes: instant.bytes }), entry(fast, failedFast, playPlan(fast))],
+      recommendedId: "fast",
+    });
+    expect(s.initialSelection).toBe("instant");
+    expect(s.options[1]!.state).toMatchObject({ kind: "failed", error: "play-error--100", retryable: true });
+    expect(s.usableNow).toBe(true);
+  });
+
   it("Android before the fast-follow pack lands: Instant is still an option, and nothing claims to be usable yet", () => {
     const s = step({ platform: "android", entries: [entry(instant, NOT_INSTALLED, playPlan(instant)), entry(fast, NOT_INSTALLED, playPlan(fast))] });
     expect(s.usableNow).toBe(false);
