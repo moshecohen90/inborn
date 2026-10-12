@@ -9,6 +9,7 @@ interface NativeVault {
   contentHead?(uri: string, n: number): string | null;
   contentSize?(uri: string): number | null;
   copyContent?(uri: string, destPath: string): Promise<number>;
+  moveFile?(from: string, to: string): boolean;
 }
 
 /** iOS + Android; on the web every call falls back (RAM unknown, hashing done in JS by the caller). */
@@ -65,4 +66,10 @@ export function contentSize(uri: string): number | null {
 export async function copyContent(uri: string, destPath: string): Promise<number> {
   if (!native?.copyContent) throw new Error("VaultNative.copyContent unavailable");
   return native.copyContent(uri, destPath);
+}
+
+/** Renames `from` onto `to` (same volume), replacing what was there. */
+export function moveFile(from: string, to: string): void {
+  if (!native?.moveFile) throw new Error("VaultNative.moveFile unavailable");
+  native.moveFile(from, to);
 }

@@ -63,14 +63,15 @@ describe("model step offers", () => {
   });
 
   it("a failed delivery stays on the screen with its reason, even once Play is out of reach, so Try again and the browser route have a card (Play review 12.10)", () => {
-    const failed = (error: string): InstallState => ({ kind: "failed", via: "play", error, retryable: true });
-    const s = step({ platform: "android", entries: [entry(instant, failed("play-error--2"), playPlan(instant)), entry(fast, failed("no-delivery"), null)], recommendedId: "fast" });
+    const failed = (error: string, retryable = true): InstallState => ({ kind: "failed", via: "play", error, retryable });
+    const s = step({ platform: "android", entries: [entry(instant, failed("play-error--2"), playPlan(instant)), entry(fast, failed("no-delivery", false), null)], recommendedId: "fast" });
     expect(s.options.map((o) => [o.id, o.state.kind])).toEqual([
       ["instant", "failed"],
       ["fast", "failed"],
     ]);
-    expect(s.options[0]!.state).toEqual({ kind: "failed", via: "play", error: "play-error--2" });
-    expect(s.options[1]!.state).toEqual({ kind: "failed", via: "play", error: "no-delivery" });
+    expect(s.options[0]!.state).toEqual({ kind: "failed", via: "play", error: "play-error--2", retryable: true });
+    /* Play itself out of reach: the card carries retryable false, so the footer offers the browser instead of a Try again that answers with the same card. */
+    expect(s.options[1]!.state).toEqual({ kind: "failed", via: "play", error: "no-delivery", retryable: false });
     expect(s.usableNow).toBe(false);
     expect(s.initialSelection).toBe("fast");
   });

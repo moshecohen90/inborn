@@ -91,6 +91,15 @@ class VaultNativeModule : Module() {
       }
     }
 
+    /* The copy lands in a .part file; only a verified copy takes the model's name, so a failed re-import never destroys the working one. */
+    Function("moveFile") { from: String, to: String ->
+      val src = File(from.removePrefix("file://"))
+      val dst = File(to.removePrefix("file://"))
+      if (dst.exists() && !dst.delete()) throw IllegalStateException("cannot replace ${dst.name}")
+      if (!src.renameTo(dst)) throw IllegalStateException("rename failed for ${src.name}")
+      true
+    }
+
     AsyncFunction("copyContent") { uri: String, destPath: String, promise: Promise ->
       thread(name = "vault-copy") {
         try {

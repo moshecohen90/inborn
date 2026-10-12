@@ -19,6 +19,7 @@ import { useEntitlement } from "../../licence";
 import { modelCopy } from "../../lib/models";
 import { roomNoteParams } from "../../lib/modelSheetLines";
 import { languagesLine, modelStep, sourceKey, type ModelOption } from "./modelStep";
+import { installFailureText } from "../../vault/failureText";
 import { WebModelStep, webStepActive } from "./webStep";
 import { catalogFailed } from "./catalogError";
 import { font, useType } from "../../services/type";
@@ -146,8 +147,11 @@ function VaultModelChoice() {
               title={t("onboarding.model.download", { name: modelOf(selected.id).name, size: formatModelBytes(selected.bytes) })}
               onPress={() => void download(selected.id, selected.bytes)}
             />
-          ) : selected?.state.kind === "failed" ? (
+          ) : selected?.state.kind === "failed" && (selected.state.retryable || !browserUrl) ? (
             <Button testID="retry-download" title={t("onboarding.model.tryAgain", { size: formatModelBytes(selected.bytes) })} onPress={() => void download(selected.id, selected.bytes)} />
+          ) : selected?.state.kind === "failed" && browserUrl ? (
+            /* The store itself is out of reach: a retry would answer with the same card, so the way around it is the button. */
+            <Button testID="browser-download" title={t("onboarding.model.browser", { size: formatModelBytes(modelOf(selected.id).bytes) })} onPress={() => void Linking.openURL(browserUrl)} />
           ) : (
             <Button
               testID="start-chatting"
@@ -159,7 +163,7 @@ function VaultModelChoice() {
           {startNowWith ? (
             <Button testID="start-now-with" title={t("onboarding.model.startNowWith", { name: modelOf(startNowWith).name })} variant="link" onPress={() => start(startNowWith)} />
           ) : null}
-          {browserUrl && selected ? (
+          {browserUrl && selected?.state.kind === "failed" && selected.state.retryable ? (
             <Button testID="browser-download" title={t("onboarding.model.browser", { size: formatModelBytes(modelOf(selected.id).bytes) })} variant="link" onPress={() => void Linking.openURL(browserUrl)} />
           ) : null}
           {selected?.state.kind === "arriving" ? (
@@ -318,12 +322,11 @@ function OptionCard({ option, model, selected, onSelect }: { option: ModelOption
   );
 }
 
-/** The vault's error text in the reader's words; Play's numeric code stays visible so a screenshot of the card says what Play said. */
-export function failureReason(t: (key: string, params?: Record<string, string>) => string, error: string): string {
+/** The vault's error in the reader's words (installFailureText); Play's numeric code stays visible so a screenshot of the card says what Play said. */
+export function failureReason(t: (key: string, params?: Record<string, unknown>) => string, error: string): string {
   const play = /^play-error-(-?\d+)$/.exec(error);
   if (play) return t("onboarding.model.reason.play", { code: play[1]! });
-  if (error === "no-delivery") return t("onboarding.model.reason.noDelivery");
-  return error;
+  return installFailureText(t, error, PLATFORM);
 }
 
 function Progress({ percent, verifying }: { percent: number; verifying: boolean }) {

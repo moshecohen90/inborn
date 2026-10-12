@@ -31,7 +31,7 @@ import type { DeliveryPlan, ModelDelivery } from "./delivery";
 import { DEV_MODELS_BASE_URL, devBuild } from "./devFlags";
 import { freeDiskBytes, readDevice, type DeviceInfo } from "./device";
 import { networkKind, onNetworkChange } from "./network";
-import { contentHead, contentSize, copyContent, fileGgufHeader, fileSha256 } from "./hash";
+import { contentHead, contentSize, copyContent, fileGgufHeader, fileSha256, moveFile } from "./hash";
 import { DEV_MODEL_HOSTS, HttpsDelivery, NoSpaceError, PausedError, WIFI_POLL_MS } from "./httpsDelivery";
 import { reportStorageFull } from "../services/storageFull";
 import { newestDelivery, type DeliveredInstall, type DeliveryCandidate } from "./lastDelivery";
@@ -704,29 +704,43 @@ export class VaultStore {
     if (fromProvider) {
       if (contentHead(sourceUri, 4) !== GGUF_MAGIC_BASE64) return { ok: false, reason: "not-gguf" };
       const announced = contentSize(sourceUri) ?? 0;
+      /* The same file again (the download opened twice): the verified copy stays, nothing is copied. */
+      const known = this.record.imports[id];
+      if (known && announced > 0 && known.bytes === announced && dest.exists && fileSize(dest) === announced) {
+        this.set(id, { kind: "ready", path: dest.uri, bytes: announced, sha256: known.sha256, via: "import" });
+        return { ok: true, model: importedAsModel(known) };
+      }
       if (freeDiskBytes() < requiredFreeBytes(announced)) return { ok: false, reason: "no-space" };
+      /* Into a .part first: the model's own file changes only once the copy is whole and its header verified. */
+      const part = modelFile(`${fileName}.part`);
+      const before = this.states.get(id) ?? NOT_INSTALLED;
+      const giveUp = (reason: "copy-failed" | "no-space" | "truncated" | GgufError["reason"]) => {
+        safeDelete(part);
+        this.set(id, before);
+        return { ok: false as const, reason };
+      };
       this.set(id, { kind: "verifying", via: "import", bytes: announced });
       try {
-        safeDelete(dest);
-        bytes = await copyContent(sourceUri, dest.uri);
+        safeDelete(part);
+        bytes = await copyContent(sourceUri, part.uri);
       } catch (e: unknown) {
         console.warn("[vault] import copy failed", e);
-        safeDelete(dest);
-        this.set(id, NOT_INSTALLED);
-        return { ok: false, reason: "copy-failed" };
+        if (isNoSpaceError(e)) reportStorageFull();
+        return giveUp(isNoSpaceError(e) ? "no-space" : "copy-failed");
       }
+      if (bytes <= 0 || (announced > 0 && bytes !== announced)) return giveUp("truncated");
       try {
-        header = await fileGgufHeader(dest);
+        header = await fileGgufHeader(part);
       } catch (e: unknown) {
-        safeDelete(dest);
-        this.set(id, NOT_INSTALLED);
-        return { ok: false, reason: (e as Partial<GgufError>).reason ?? "not-gguf" };
+        return giveUp((e as Partial<GgufError>).reason ?? "not-gguf");
       }
       const verdict = assessGguf(header);
-      if (!verdict.ok) {
-        safeDelete(dest);
-        this.set(id, NOT_INSTALLED);
-        return { ok: false, reason: verdict.reason };
+      if (!verdict.ok) return giveUp(verdict.reason);
+      try {
+        moveFile(part.uri, dest.uri);
+      } catch (e: unknown) {
+        console.warn("[vault] import move failed", e);
+        return giveUp("copy-failed");
       }
     } else {
       try {
