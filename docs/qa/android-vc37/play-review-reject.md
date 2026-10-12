@@ -14,32 +14,34 @@ That is the onboarding step after Google Play failed to deliver a pack on that d
 component state that a remount forgets. The reviewer could tap nothing that answered. The Play error code itself was
 never shown, so the screenshot cannot say which one it was.
 
-## Fix (1.0.0 (37))
+## Fix (1.0.0 (37) to (39))
 
 - A failed option stays selectable and prints the reason on the card, with Play's numeric code when there is one
   (`onboarding.model.failedLine`, `failureReason`). It stays on the screen even after Play has refused altogether.
 - The footer offers "Try again · size" for a failed option.
-- Android gets the route around the store, which the app has carried since spec §7.2 but never offered here: "Download with
-  your browser · size" opens the catalog's HTTPS URL on models.inbornapp.com in the browser; Inborn is the registered
-  `.gguf` handler, so opening the finished download lands the file in the vault, which verifies it before use. "Import a
-  model file" picks a file by hand. The app still opens no socket: the browser downloads, Inborn reads a file.
-- The model step now listens for an opened `.gguf` like the vault screen does, so a file arriving during onboarding is
-  taken.
 - A Play fetch that rejects with the code in its message (a sideload gets `-15: Asset Pack Download Error(-15)`) now reads
   like the FAILED state would (`playFetchError`), so the card says "Google Play cannot deliver it on this phone" instead of
   raw Java.
-- 1.0.0 (38): the first walk on a OnePlus 6T (Android 11) found two more holes behind the browser route. The finished
-  download, opened with Inborn, reached the router as `content://media/external/downloads/<id>` and landed on the not-found
-  screen; and expo-file-system cannot read a provider's `content://` item (the picker's either), so even a file that did
-  reach the import answered "Not a valid GGUF file". The router's native-intent hook now hands every file open to the vault's
-  handler (`offerOpenedFile`, held until the model step or the vault is up), and Android content items are read through the
-  ContentResolver in `vault-native` (magic check, size, streamed copy, then header and hash from the copy). The import says
-  "Importing the model file…" at once, the imported model becomes the selected card, and the footer reads "Start chatting".
+- 1.0.0 (39), the decision that removes the failure itself: **Instant ships inside the Android install**, as it always has on
+  iOS. `inborn_model` is an install-time asset pack (`app.config.ts`, catalog `mode: "install-time"`), so it arrives with
+  the APK splits and no Play delivery call is ever made for it. The vault sees the pack as `bundled`, unpacks the model from
+  the APK into its own directory on first boot without a tap (`PlayDelivery.unpackApk`, progress on the card: "inside the
+  app · getting it ready"), hashes it, and the first chat never waits on Play. The install grows by the model's size and the
+  model costs its size twice on disk (the APK keeps its copy); that is the price of a first run that cannot go dead. Fast,
+  Sharp and the projectors stay on-demand through Play, with Try again.
+- (37)/(38) also carried a route around the store for the onboarding step: a browser download of the catalog URL, opened with
+  Inborn as the `.gguf` handler. It worked (proof below) but it is a developer's route, not a flow a normal user follows,
+  so (39) takes it out of the model step. What it fixed underneath stays, for the vault's "import a model file": the router's
+  native-intent hook hands every file open to the vault's handler (`offerOpenedFile`; a file with no importing screen up opens
+  the vault), and Android content items are read through the ContentResolver in `vault-native` (magic check, size, streamed
+  copy into a `.part`, then header and hash from the copy; one import per source at a time; no raw exception text on screen).
 
-`modelStep.test.ts` covers the failed option (kept with its reason, with and without a delivery plan); `playFetchError.test.ts`
-the code mapping; `test/native-intent.test.ts` the router hand-off and the held file.
+`modelStep.test.ts` covers the failed option and the bundled card; `playInstallTime.test.ts` the install-time pack (plan,
+held, unpack once, left alone by the sweep); `store.test.ts` the boot unpack and the content:// import branch;
+`bundleVision.test.ts` that Instant's pack is install-time and nothing is fast-follow; `test/native-intent.test.ts` the router
+hand-off.
 
-## Proof: the reviewer's path, walked (OnePlus 6T, Android 11, pt-BR, QA package beside the store build)
+## Proof of (38): the browser route, walked (OnePlus 6T, Android 11, pt-BR, QA package beside the store build)
 
 | Step | Seen |
 |---|---|
@@ -50,5 +52,21 @@ the code mapping; `test/native-intent.test.ts` the router hand-off and the held 
 | Cold start from the file (app killed first), Continue | The held file is imported on the model step the moment it mounts |
 | The same file opened again while the vault screen is up | Stays on the vault; no not-found |
 
-Screenshots are in the private evidence folder for 12.10 (`6t-qa38d-*.png`). The Play path (install from the listing,
-Download Instant, chat) is walked on the store build once 1.0.0 (38) is on the internal track.
+Screenshots are in the private evidence folder for 12.10 (`6t-qa38d-*.png`).
+
+## Proof of (39): Instant inside the install (OnePlus 6T, Android 11, pt-BR)
+
+QA package (`com.inbornapp.mobile.qa`, `INBORN_PACKS=instant`) built as a bundle and installed with bundletool `--local-testing`,
+the way Play installs it: splits `base, config.arm64_v8a, config.en, config.pt, config.xxhdpi, inborn_model`. Fresh install,
+no Play delivery possible for this package.
+
+| Step | Seen |
+|---|---|
+| Launch, welcome, "Continuar" | "Escolha seu modelo": Instant card "PRONTO AGORA · VEM DENTRO DO APP · NADA PARA BAIXAR" (unpacked during the welcome screen, no tap; its size line read 738 MB, Instant plus the projector it no longer brings, so a ready card now carries the model's own 533 MB, checked on the store build below); Fast card "RECOMENDADO · 1.28 GB · ENTREGUE PELO GOOGLE PLAY"; footer "Baixar Fast · 1.28 GB" with "Começar agora com o Instant" under it |
+| "Começar agora com o Instant" → Selado → Começar → (lock step) Começar | Chat with SELADO · INSTANT, no download anywhere |
+| Suggestion "Rascunhar uma mensagem", send | Answer generated on the device: "Como assistente virtual, posso escrever mensagens curtas e simpáticas para você: …" (three suggestions) |
+| Fresh install again, "Baixar Fast · 1.28 GB" (Play cannot serve this package) | Fast card: "O download falhou: Algo deu errado. Tente de novo"; under the cards "O download não começou. O chat continua funcionando e você pode tentar de novo no cofre."; footer "Tentar de novo · 1.28 GB" with "Começar agora com o Instant" under it (`6t-qa39-s06-fast-failed.png`). No dead end: Instant is one tap away either way |
+
+Screenshots: `6t-qa39-s01-welcome.png`, `6t-qa39-s02-model-included.png`, `6t-qa39-s03-sealed.png`, `6t-qa39-s04-chat.png`,
+`6t-qa39-s05-answer.png` in the private evidence folder for 12.10. The same path is walked again on the store build from the
+internal track once 1.0.0 (39) is uploaded (the real Play install, no bundletool).
