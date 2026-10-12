@@ -7,7 +7,8 @@ export type OptionState =
   | { kind: "arriving"; via: DeliverySource; host?: string; percent: number; verifying: boolean; waiting?: "network" | "wifi" }
   | { kind: "download"; via: DeliverySource; host?: string; bytes: number }
   | { kind: "no-space"; via: DeliverySource; host?: string; freeUpBytes: number }
-  | { kind: "failed"; via: DeliverySource; host?: string };
+  /** `error`: the vault's reason, printed on the card (Play review 12.10: a dead screen said nothing). */
+  | { kind: "failed"; via: DeliverySource; host?: string; error: string };
 
 export interface ModelOption {
   id: string;
@@ -132,8 +133,9 @@ function stateOf(state: InstallState, plan: StepEntry["plan"], freeBytes: number
   }
   if (state.kind === "verifying") return { kind: "arriving", via: state.via, ...host, percent: 100, verifying: true };
   if (loadedByEngine) return { kind: "ready", via: "import" };
+  /* Kept even once the store is out of reach (plan null after Play refused): the card carries the reason and the way around it. */
+  if (state.kind === "failed") return { kind: "failed", via: plan?.via ?? state.via, ...host, error: state.error };
   if (!plan) return null;
-  if (state.kind === "failed") return { kind: "failed", via: plan.via, ...host };
   const required = requiredFreeBytes(bytes);
   if (state.kind === "needs-space" || freeBytes < required) return { kind: "no-space", via: plan.via, ...host, freeUpBytes: required - freeBytes };
   return { kind: "download", via: plan.via, bytes, ...host };

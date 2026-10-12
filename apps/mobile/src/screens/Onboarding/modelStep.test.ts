@@ -62,6 +62,19 @@ describe("model step offers", () => {
     expect(s.showPlayNotice).toBe(false);
   });
 
+  it("a failed delivery stays on the screen with its reason, even once Play is out of reach, so Try again and the browser route have a card (Play review 12.10)", () => {
+    const failed = (error: string): InstallState => ({ kind: "failed", via: "play", error, retryable: true });
+    const s = step({ platform: "android", entries: [entry(instant, failed("play-error--2"), playPlan(instant)), entry(fast, failed("no-delivery"), null)], recommendedId: "fast" });
+    expect(s.options.map((o) => [o.id, o.state.kind])).toEqual([
+      ["instant", "failed"],
+      ["fast", "failed"],
+    ]);
+    expect(s.options[0]!.state).toEqual({ kind: "failed", via: "play", error: "play-error--2" });
+    expect(s.options[1]!.state).toEqual({ kind: "failed", via: "play", error: "no-delivery" });
+    expect(s.usableNow).toBe(false);
+    expect(s.initialSelection).toBe("fast");
+  });
+
   it("a model with no delivery and no copy is dropped, never shown as a dead offer", () => {
     const s = step({ platform: "web", entries: [entry(instant, ready("import"), null), entry(fast, NOT_INSTALLED, null)] });
     expect(s.options.map((o) => o.id)).toEqual(["instant"]);

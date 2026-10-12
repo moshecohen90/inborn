@@ -1,8 +1,8 @@
-import { useMemo, useState } from "react";
-import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
+import { useCallback, useMemo, useState } from "react";
+import { Linking, Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "expo-router";
-import { formatModelBytes, type CatalogModel } from "@inborn/core";
+import { formatModelBytes, httpsUrl, type CatalogModel } from "@inborn/core";
 import { joinList } from "@inborn/i18n";
 import { Icon } from "@inborn/ui";
 
@@ -11,8 +11,9 @@ import { useAppServices } from "../../services/AppServices";
 import { Screen } from "../../components/shell/Screen";
 import { Button, DISABLED_OPACITY, MonoLabel, shellStyles, Toggle } from "../../components/shell/primitives";
 import { ChipGlyph } from "../../components/shell/ChipGlyph";
-import { useVault } from "../../vault";
+import { useGgufOpenHandler, useVault } from "../../vault";
 import { userTap } from "../../vault/intent";
+import { chooseFile } from "../../documents/chooseFile";
 import { useEntitlement } from "../../licence";
 import { modelCopy } from "../../lib/models";
 import { roomNoteParams } from "../../lib/modelSheetLines";
@@ -47,6 +48,29 @@ function VaultModelChoice() {
   const [picked, setPicked] = useState<string | null>(null);
   const [failed, setFailed] = useState(false);
   const [stopped, setStopped] = useState(false);
+  const [importLine, setImportLine] = useState<string | null>(null);
+
+  /* The way around a store that will not deliver (Play review 12.10, Galaxy A33): the browser's download opens in Inborn as the .gguf handler, or a file is picked by hand. */
+  const importUri = useCallback(
+    async (uri: string, name?: string) => {
+      const r = await vault.importFile(uri, name);
+      if (r.ok) setImportLine(t("vault.import.ok", { name: r.model.name }));
+      else {
+        const key = { "not-gguf": "vault.import.notGguf", truncated: "vault.import.truncated", "unsupported-arch": "vault.import.unsupportedArch", "engine-too-old": "vault.import.engineTooOld", "no-space": "vault.import.noSpace", "copy-failed": "vault.import.copyFailed" }[r.reason];
+        setImportLine(t(key, { arch: "?" }));
+      }
+    },
+    [vault, t],
+  );
+  useGgufOpenHandler(useCallback((url: string) => void importUri(url), [importUri]));
+  const pickAndImport = async () => {
+    try {
+      const chosen = await chooseFile();
+      if (chosen) await importUri(chosen.uri, chosen.name);
+    } catch (e: unknown) {
+      console.warn("[onboarding] pick", e);
+    }
+  };
 
   const step = useMemo(
     () =>
@@ -89,6 +113,9 @@ function VaultModelChoice() {
     router.push("/onboarding/sealed");
   };
   const startNowWith = selected?.state.kind === "download" ? step.startNowWith : null;
+  /* Android only: iOS and the desktop download from the host themselves; on Android the browser does, so the app still opens no socket. */
+  const browserUrl = selected?.state.kind === "failed" && PLATFORM === "android" ? httpsUrl(vault.manifest, modelOf(selected.id)) : undefined;
+  const browserHost = browserUrl ? new URL(browserUrl).host : "";
   const offline = useOffline();
   /* Queued for a connection: the chat starts on what is here, and the download still takes over the moment it verifies. */
   const waitingOn = selected?.state.kind === "arriving" && selected.state.waiting === "network" ? (step.options.find((o) => o.state.kind === "ready")?.id ?? null) : null;
@@ -107,6 +134,8 @@ function VaultModelChoice() {
               title={t("onboarding.model.download", { name: modelOf(selected.id).name, size: formatModelBytes(selected.bytes) })}
               onPress={() => void download(selected.id, selected.bytes)}
             />
+          ) : selected?.state.kind === "failed" ? (
+            <Button testID="retry-download" title={t("onboarding.model.tryAgain", { size: formatModelBytes(selected.bytes) })} onPress={() => void download(selected.id, selected.bytes)} />
           ) : (
             <Button
               testID="start-chatting"
@@ -117,6 +146,9 @@ function VaultModelChoice() {
           )}
           {startNowWith ? (
             <Button testID="start-now-with" title={t("onboarding.model.startNowWith", { name: modelOf(startNowWith).name })} variant="link" onPress={() => start(startNowWith)} />
+          ) : null}
+          {browserUrl && selected ? (
+            <Button testID="browser-download" title={t("onboarding.model.browser", { size: formatModelBytes(modelOf(selected.id).bytes) })} variant="link" onPress={() => void Linking.openURL(browserUrl)} />
           ) : null}
           {selected?.state.kind === "arriving" ? (
             <Button
@@ -177,9 +209,21 @@ function VaultModelChoice() {
           {t("onboarding.model.needModel")}
         </Text>
       ) : null}
-      {failed ? (
+      {/* "Chat still works" is only true with a usable model; otherwise the card's own line names the failure. */}
+      {failed && step.usableNow ? (
         <Text testID="download-failed" style={[type.bodySmall, { color: theme.danger }]}>
           {t("onboarding.model.downloadFailed")}
+        </Text>
+      ) : null}
+      {browserUrl ? (
+        <View testID="browser-block" style={[shellStyles.well, styles.wifi, { borderColor: theme.border, backgroundColor: theme.surface1 }]}>
+          <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("onboarding.model.browserLine", { host: browserHost })}</Text>
+          <Button testID="import-model" title={t("onboarding.model.import")} variant="link" onPress={() => void pickAndImport()} />
+        </View>
+      ) : null}
+      {importLine ? (
+        <Text testID="import-line" style={[type.bodySmall, { color: theme.text }]}>
+          {importLine}
         </Text>
       ) : null}
 
@@ -205,7 +249,8 @@ function OptionCard({ option, model, selected, onSelect }: { option: ModelOption
   const { t, i18n } = useTranslation();
   const { theme } = useTheme();
   const state = option.state;
-  const blocked = state.kind === "no-space" || state.kind === "failed";
+  /* A failed delivery stays selectable: the footer's Try again and the browser route need the card. */
+  const blocked = state.kind === "no-space";
   const size = formatModelBytes(option.bytes);
   const names = languagesLine(option.languages.map((c) => t(`language.${c}`, { defaultValue: c })));
   const languages = names.more
@@ -252,8 +297,21 @@ function OptionCard({ option, model, selected, onSelect }: { option: ModelOption
           {t("vault.state.needsSpace", { size: formatModelBytes(state.freeUpBytes) })}
         </Text>
       ) : null}
+      {state.kind === "failed" ? (
+        <Text testID={`model-failed-${option.id}`} style={[type.bodySmall, { color: theme.danger }]}>
+          {t("onboarding.model.failedLine", { reason: failureReason(t, state.error) })}
+        </Text>
+      ) : null}
     </Pressable>
   );
+}
+
+/** The vault's error text in the reader's words; Play's numeric code stays visible so a screenshot of the card says what Play said. */
+export function failureReason(t: (key: string, params?: Record<string, string>) => string, error: string): string {
+  const play = /^play-error-(-?\d+)$/.exec(error);
+  if (play) return t("onboarding.model.reason.play", { code: play[1]! });
+  if (error === "no-delivery") return t("onboarding.model.reason.noDelivery");
+  return error;
 }
 
 function Progress({ percent, verifying }: { percent: number; verifying: boolean }) {
