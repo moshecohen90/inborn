@@ -54,16 +54,27 @@ function VaultModelChoice() {
   /* The way around a store that will not deliver (Play review 12.10, Galaxy A33): the browser's download opens in Inborn as the .gguf handler, or a file is picked by hand. */
   const importUri = useCallback(
     async (uri: string, name?: string) => {
-      const r = await vault.importFile(uri, name);
-      if (r.ok) setImportLine(t("vault.import.ok", { name: r.model.name }));
-      else {
-        const key = { "not-gguf": "vault.import.notGguf", truncated: "vault.import.truncated", "unsupported-arch": "vault.import.unsupportedArch", "engine-too-old": "vault.import.engineTooOld", "no-space": "vault.import.noSpace", "copy-failed": "vault.import.copyFailed" }[r.reason];
-        setImportLine(t(key, { arch: "?" }));
+      /* A 500 MB copy and hash take a while on a phone; the line says so at once, and a throw ends on the screen too, never silent. */
+      setImportLine(t("vault.import.started"));
+      try {
+        const r = await vault.importFile(uri, name ?? openedFileName(uri));
+        if (r.ok) {
+          /* The imported model becomes the selected card, so the footer reads "Start chatting" instead of the failed offer's retry. */
+          setPicked(r.model.id);
+          vault.setDefault(r.model.id);
+          setImportLine(t("vault.import.ok", { name: r.model.name }));
+        } else {
+          const key = { "not-gguf": "vault.import.notGguf", truncated: "vault.import.truncated", "unsupported-arch": "vault.import.unsupportedArch", "engine-too-old": "vault.import.engineTooOld", "no-space": "vault.import.noSpace", "copy-failed": "vault.import.copyFailed" }[r.reason];
+          setImportLine(t(key, { arch: "?" }));
+        }
+      } catch (e: unknown) {
+        console.warn("[onboarding] import", e);
+        setImportLine(`${t("vault.import.copyFailed")} ${e instanceof Error ? e.message : String(e)}`);
       }
     },
     [vault, t],
   );
-  useGgufOpenHandler(useCallback((url: string) => void importUri(url, openedFileName(url)), [importUri]));
+  useGgufOpenHandler(useCallback((url: string) => void importUri(url), [importUri]));
   const pickAndImport = async () => {
     try {
       const chosen = await chooseFile();
@@ -281,7 +292,7 @@ function OptionCard({ option, model, selected, onSelect }: { option: ModelOption
       </View>
       <MonoLabel testID={`model-source-${option.id}`}>{t(sourceKey(state, option.withPhotos), { size, host: "host" in state ? state.host : "" })}</MonoLabel>
       <Text style={[type.bodySmall, { color: theme.text2 }]}>{modelCopy(t, model, { photos: Platform.OS !== "web" }).goodFor}</Text>
-      <Text style={[type.bodySmall, { color: theme.text3 }]}>{languages}</Text>
+      {option.languages.length ? <Text style={[type.bodySmall, { color: theme.text3 }]}>{languages}</Text> : null}
       {state.kind === "arriving" && state.waiting === "network" ? (
         <Text testID={`model-offline-${option.id}`} style={[type.bodySmall, { color: theme.text }]}>
           {t(offlineKey("vault.state.noInternet"))}

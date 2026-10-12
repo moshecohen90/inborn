@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { Linking } from "react-native";
 
 /** URLs the OS hands us as the registered `.gguf` handler (spec §7.2): file:// on iOS, content:// or file:// on Android. */
 export function isGgufOpenUrl(url: string | null | undefined): url is string {
@@ -9,21 +8,35 @@ export function isGgufOpenUrl(url: string | null | undefined): url is string {
   return lower.startsWith("file:") || lower.startsWith("content:");
 }
 
-/** Delivers the launch URL once and every later "open with Inborn" while the app runs. */
+const listeners = new Set<(url: string) => void>();
+let pending: string | null = null;
+
+/**
+ * Every URL the OS opens the app with passes through the router's native-intent hook; a model file is taken here, held
+ * until the screen that imports (model step, vault) is up, and never treated as a route. True when the URL was a file.
+ */
+export function offerOpenedFile(url: string): boolean {
+  if (!isGgufOpenUrl(url)) return false;
+  if (listeners.size === 0) pending = url;
+  else for (const l of listeners) l(url);
+  return true;
+}
+
+/** Delivers the file the app was opened with, and every later "open with Inborn" while this screen is up. */
 export function useGgufOpenHandler(onOpen: (url: string) => void): void {
   useEffect(() => {
-    let alive = true;
-    Linking.getInitialURL()
-      .then((url) => {
-        if (alive && isGgufOpenUrl(url)) onOpen(url);
-      })
-      .catch(() => undefined);
-    const sub = Linking.addEventListener("url", ({ url }) => {
-      if (isGgufOpenUrl(url)) onOpen(url);
-    });
+    listeners.add(onOpen);
+    const held = pending;
+    pending = null;
+    if (held) onOpen(held);
     return () => {
-      alive = false;
-      sub.remove();
+      listeners.delete(onOpen);
     };
   }, [onOpen]);
+}
+
+/** Tests only. */
+export function resetOpenedFiles(): void {
+  listeners.clear();
+  pending = null;
 }

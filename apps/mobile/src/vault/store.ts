@@ -31,7 +31,7 @@ import type { DeliveryPlan, ModelDelivery } from "./delivery";
 import { DEV_MODELS_BASE_URL, devBuild } from "./devFlags";
 import { freeDiskBytes, readDevice, type DeviceInfo } from "./device";
 import { networkKind, onNetworkChange } from "./network";
-import { fileGgufHeader, fileSha256 } from "./hash";
+import { contentHead, contentSize, copyContent, fileGgufHeader, fileSha256 } from "./hash";
 import { DEV_MODEL_HOSTS, HttpsDelivery, NoSpaceError, PausedError, WIFI_POLL_MS } from "./httpsDelivery";
 import { reportStorageFull } from "../services/storageFull";
 import { newestDelivery, type DeliveredInstall, type DeliveryCandidate } from "./lastDelivery";
@@ -42,6 +42,9 @@ import { includedWithApp } from "./included";
 import { readRecord, writeRecord, type ImportedModel, type VaultRecord } from "./record";
 import { downloadAwake } from "./keepAwake";
 import { isUserTap, type UserTap } from "./intent";
+
+/** The four bytes every GGUF starts with ("GGUF"), as the provider head comes back. */
+const GGUF_MAGIC_BASE64 = "R0dVRg==";
 
 /** A .gguf in the vault folder that neither the catalog nor an import registered (copied by hand, a crash mid-import): shown, counted, removable, never loaded. */
 export interface StrayFile {
@@ -688,35 +691,68 @@ export class VaultStore {
 
   /** Import any GGUF the user picked or opened (spec §7.2): header check, copy into the vault, hash, register. */
   async importFile(sourceUri: string, displayName?: string): Promise<{ ok: true; model: CatalogModel } | { ok: false; reason: GgufError["reason"] | "copy-failed" | "no-space" }> {
+    /* A provider's content:// item (Android: the picker, a browser download opened with Inborn) is readable only through
+       the resolver, so it is copied in natively first and checked from the copy; a file:// is checked before it is copied. */
+    const fromProvider = sourceUri.startsWith("content:");
     const source = new File(sourceUri);
-    const name = displayName ?? source.name ?? "model.gguf";
-    let header;
-    try {
-      header = await fileGgufHeader(source);
-    } catch (e: unknown) {
-      const reason = (e as Partial<GgufError>).reason ?? "not-gguf";
-      return { ok: false, reason };
-    }
-    const verdict = assessGguf(header);
-    if (!verdict.ok) return { ok: false, reason: verdict.reason };
-    const bytes = fileSize(source);
-    if (bytes <= 0) return { ok: false, reason: "truncated" };
+    const name = displayName ?? (fromProvider ? undefined : source.name) ?? "model.gguf";
     const id = `import:${name.replace(/[^a-zA-Z0-9._-]+/g, "_")}`;
     const fileName = `${id.slice("import:".length)}`.replace(/\.gguf$/i, "") + ".gguf";
     const dest = modelFile(fileName);
-    /* The same file again (the dev auto-import on every vault mount, a second tap): keep the verified copy, which may be the one the engine has mapped. */
-    const known = this.record.imports[id];
-    if (known && known.bytes === bytes && dest.exists && fileSize(dest) === bytes) {
-      this.set(id, { kind: "ready", path: dest.uri, bytes, sha256: known.sha256, via: "import" });
-      return { ok: true, model: importedAsModel(known) };
-    }
-    if (freeDiskBytes() < requiredFreeBytes(bytes)) return { ok: false, reason: "no-space" };
-    try {
-      safeDelete(dest);
-      await source.copy(dest);
-    } catch (e: unknown) {
-      console.warn("[vault] import copy failed", e);
-      return { ok: false, reason: "copy-failed" };
+    let header;
+    let bytes;
+    if (fromProvider) {
+      if (contentHead(sourceUri, 4) !== GGUF_MAGIC_BASE64) return { ok: false, reason: "not-gguf" };
+      const announced = contentSize(sourceUri) ?? 0;
+      if (freeDiskBytes() < requiredFreeBytes(announced)) return { ok: false, reason: "no-space" };
+      this.set(id, { kind: "verifying", via: "import", bytes: announced });
+      try {
+        safeDelete(dest);
+        bytes = await copyContent(sourceUri, dest.uri);
+      } catch (e: unknown) {
+        console.warn("[vault] import copy failed", e);
+        safeDelete(dest);
+        this.set(id, NOT_INSTALLED);
+        return { ok: false, reason: "copy-failed" };
+      }
+      try {
+        header = await fileGgufHeader(dest);
+      } catch (e: unknown) {
+        safeDelete(dest);
+        this.set(id, NOT_INSTALLED);
+        return { ok: false, reason: (e as Partial<GgufError>).reason ?? "not-gguf" };
+      }
+      const verdict = assessGguf(header);
+      if (!verdict.ok) {
+        safeDelete(dest);
+        this.set(id, NOT_INSTALLED);
+        return { ok: false, reason: verdict.reason };
+      }
+    } else {
+      try {
+        header = await fileGgufHeader(source);
+      } catch (e: unknown) {
+        const reason = (e as Partial<GgufError>).reason ?? "not-gguf";
+        return { ok: false, reason };
+      }
+      const verdict = assessGguf(header);
+      if (!verdict.ok) return { ok: false, reason: verdict.reason };
+      bytes = fileSize(source);
+      if (bytes <= 0) return { ok: false, reason: "truncated" };
+      /* The same file again (the dev auto-import on every vault mount, a second tap): keep the verified copy, which may be the one the engine has mapped. */
+      const known = this.record.imports[id];
+      if (known && known.bytes === bytes && dest.exists && fileSize(dest) === bytes) {
+        this.set(id, { kind: "ready", path: dest.uri, bytes, sha256: known.sha256, via: "import" });
+        return { ok: true, model: importedAsModel(known) };
+      }
+      if (freeDiskBytes() < requiredFreeBytes(bytes)) return { ok: false, reason: "no-space" };
+      try {
+        safeDelete(dest);
+        await source.copy(dest);
+      } catch (e: unknown) {
+        console.warn("[vault] import copy failed", e);
+        return { ok: false, reason: "copy-failed" };
+      }
     }
     this.set(id, { kind: "verifying", via: "import", bytes });
     /* File.copy() returns while Android is still writing (a 508 MB import hashed at 342 MB); hash only once the copy has all the bytes. */

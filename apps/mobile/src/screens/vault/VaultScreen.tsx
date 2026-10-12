@@ -96,16 +96,22 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock, focus }: VaultS
 
   const importUri = useCallback(
     async (uri: string, name?: string) => {
-      const r = await vault.importFile(uri, name);
-      if (r.ok) setToast(t("vault.import.ok", { name: r.model.name }));
-      else {
-        const key = { "not-gguf": "vault.import.notGguf", truncated: "vault.import.truncated", "unsupported-arch": "vault.import.unsupportedArch", "engine-too-old": "vault.import.engineTooOld", "no-space": "vault.import.noSpace", "copy-failed": "vault.import.copyFailed" }[r.reason];
-        setToast(t(key, { arch: "?" }));
+      setToast(t("vault.import.started"));
+      try {
+        const r = await vault.importFile(uri, name ?? openedFileName(uri));
+        if (r.ok) setToast(t("vault.import.ok", { name: r.model.name }));
+        else {
+          const key = { "not-gguf": "vault.import.notGguf", truncated: "vault.import.truncated", "unsupported-arch": "vault.import.unsupportedArch", "engine-too-old": "vault.import.engineTooOld", "no-space": "vault.import.noSpace", "copy-failed": "vault.import.copyFailed" }[r.reason];
+          setToast(t(key, { arch: "?" }));
+        }
+      } catch (e: unknown) {
+        console.warn("[vault] import", e);
+        setToast(t("vault.import.copyFailed"));
       }
     },
     [vault, t],
   );
-  useGgufOpenHandler(useCallback((url: string) => void importUri(url, openedFileName(url)), [importUri]));
+  useGgufOpenHandler(useCallback((url: string) => void importUri(url), [importUri]));
 
   useEffect(() => {
     void vault.ready().then(async () => {
