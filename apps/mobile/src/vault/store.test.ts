@@ -4,6 +4,11 @@ import type { VaultRecord } from "./record";
 import { userTap, type UserTap } from "./intent";
 
 const fast = BUNDLED_MANIFEST.models.find((m) => m.id === "fast") as CatalogModel;
+const instant = BUNDLED_MANIFEST.models.find((m) => m.id === "instant") as CatalogModel;
+/* Where an install-time pack's model lands once the vault unpacked it (PlayDelivery.unpackApk). */
+const INSTANT_PATH = `file:///vault/${instant.file}`;
+/* Instant came with the install itself (Android install-time pack): planned as bundled, held before any request. */
+let apkInstant = false;
 const embed = BUNDLED_MANIFEST.models.find((m) => m.id === "embed-e5") as CatalogModel;
 const PATH = `file:///data/data/com.inbornapp.mobile/files/assetpacks/inborn_model_fast/9/9/assets/${fast.file}`;
 
@@ -40,15 +45,24 @@ vi.mock("expo-file-system", () => ({ File: FakeFile }));
 vi.mock("react-native", () => ({ Platform: { OS: "android" } }));
 vi.mock("./playDelivery", () => ({
   PlayDelivery: class {
-    plan = (model: CatalogModel) => (model.delivery.some((d) => d.kind === "play-asset-pack") ? { via: "play" as const, origin: "Google Play", bytes: model.bytes } : null);
+    plan = (model: CatalogModel) =>
+      model.id === "instant" && apkInstant
+        ? { via: "bundled" as const, origin: "this app", bytes: model.bytes }
+        : model.delivery.some((d) => d.kind === "play-asset-pack")
+          ? { via: "play" as const, origin: "Google Play", bytes: model.bytes }
+          : null;
     locate = (model: CatalogModel) => (model.id === "fast" && bound.has("inborn_model_fast") ? PATH : null);
     /* A pack Play still holds comes back on request without downloading; anything else is not on this device. */
-    heldOnDevice = async (model: CatalogModel) => held.has(model.id);
+    heldOnDevice = async (model: CatalogModel) => held.has(model.id) || (model.id === "instant" && apkInstant);
     release = async (model: CatalogModel) => void released.push(model.id);
     deliver = async (model: CatalogModel, _emit: unknown, opts?: { silent?: boolean }) => {
       fetched.push(model.id);
       if (opts?.silent) silentFetches.push(model.id);
       if (hang.has(model.id)) return new Promise<string>(() => undefined);
+      if (model.id === "instant" && apkInstant) {
+        sizes.set(INSTANT_PATH, instant.bytes);
+        return INSTANT_PATH;
+      }
       if (model.id !== "fast") throw new Error("pack unavailable");
       bound.add("inborn_model_fast");
       sizes.set(PATH, fast.bytes);
@@ -75,7 +89,29 @@ vi.mock("./paths", () => ({
   vaultDir: () => ({ list: () => [] }),
 }));
 vi.mock("./device", () => ({ readDevice: () => ({ os: "android", chip: "mid" }), freeDiskBytes: () => 64 * 1024 ** 3 }));
-vi.mock("./hash", () => ({ fileGgufHeader: async () => null, fileSha256: async () => sha }));
+/* A provider's content:// item, as the native resolver answers for it (store.importFile's content branch). */
+let ggufHeader: { arch: string; name?: string } | null = null;
+const provider = { head: "R0dVRg==", size: 1000, copies: 0, copyBytes: undefined as number | undefined, fail: null as null | "head" | "copy" };
+vi.mock("./hash", () => ({
+  fileGgufHeader: async () => ggufHeader,
+  fileSha256: async () => sha,
+  contentHead: async () => {
+    if (provider.fail === "head") throw new Error("SecurityException: no persistable permission");
+    return provider.head;
+  },
+  contentSize: async () => provider.size,
+  copyContent: async (_uri: string, dest: string) => {
+    provider.copies++;
+    if (provider.fail === "copy") throw new Error("stream closed");
+    const n = provider.copyBytes ?? provider.size;
+    sizes.set(dest, n);
+    return n;
+  },
+  moveFile: (from: string, to: string) => {
+    sizes.set(to, sizes.get(from) ?? 0);
+    sizes.delete(from);
+  },
+}));
 vi.mock("./devFlags", () => ({ DEV_MODELS_BASE_URL: undefined, devBuild: () => false }));
 vi.mock("./network", () => ({ networkKind: async () => "wifi" }));
 vi.mock("../services/storageFull", () => ({ reportStorageFull: () => undefined }));
@@ -89,6 +125,9 @@ const settled = () => new Promise((r) => setTimeout(r, 0));
 
 beforeEach(() => {
   sha = fast.sha256;
+  apkInstant = false;
+  ggufHeader = null;
+  Object.assign(provider, { head: "R0dVRg==", size: 1000, copies: 0, copyBytes: undefined, fail: null });
   deleted.length = 0;
   record = emptyRecord();
   sizes.clear();
@@ -291,5 +330,94 @@ describe("VaultStore · a vault copy of a Play pack that fails its hash", () => 
     sizes.set(own, fast.bytes);
     await (vault as unknown as { checkAndRecord: (m: CatalogModel, p: string, v: string, c: (s: unknown) => unknown) => Promise<unknown> }).checkAndRecord(fast, own, "play", (s) => s);
     expect(deleted).toEqual([own]);
+  });
+});
+
+describe("VaultStore · a model the install itself brought (Android install-time pack)", () => {
+  it("is unpacked on boot without a tap and reads as included, never as a download", async () => {
+    apkInstant = true;
+    sha = instant.sha256;
+    const vault = new VaultStore();
+    await vault.ready();
+    for (let i = 0; i < 20 && vault.state("instant").kind !== "ready"; i++) await settled();
+    expect(silentFetches).toEqual(["instant"]);
+    expect(vault.state("instant")).toMatchObject({ kind: "ready", via: "bundled", path: INSTANT_PATH });
+    expect(record.installs.instant).toMatchObject({ via: "bundled", bytes: instant.bytes });
+  });
+});
+
+describe("VaultStore.importFile · a provider's content:// item (Android: the picker, a download opened with Inborn)", () => {
+  const uri = "content://media/external/downloads/1000050223";
+  const DEST = "file:///vault/model.gguf";
+  const PART = "file:///vault/model.gguf.part";
+  const ID = "import:model.gguf";
+
+  beforeEach(() => {
+    ggufHeader = { arch: "llama", name: "Tiny" };
+  });
+
+  it("copies into a .part, verifies, takes the model's name and registers it", async () => {
+    const vault = new VaultStore();
+    await vault.ready();
+    const r = await vault.importFile(uri);
+    expect(r.ok).toBe(true);
+    expect(sizes.get(DEST)).toBe(1000);
+    expect(sizes.has(PART)).toBe(false);
+    expect(record.imports[ID]).toMatchObject({ bytes: 1000, arch: "llama", name: "Tiny" });
+    expect(vault.state(ID)).toMatchObject({ kind: "ready", via: "import", path: DEST });
+  });
+
+  it("the same download opened twice keeps the verified copy and copies nothing", async () => {
+    const vault = new VaultStore();
+    await vault.ready();
+    await vault.importFile(uri);
+    const again = await vault.importFile(uri);
+    expect(again.ok).toBe(true);
+    expect(provider.copies).toBe(1);
+  });
+
+  it("the same item offered while it copies joins the import in flight", async () => {
+    const vault = new VaultStore();
+    await vault.ready();
+    const [a, b] = await Promise.all([vault.importFile(uri), vault.importFile(uri)]);
+    expect(a.ok && b.ok).toBe(true);
+    expect(provider.copies).toBe(1);
+  });
+
+  it("a copy that stops short is removed and the model's working file is untouched", async () => {
+    const vault = new VaultStore();
+    await vault.ready();
+    await vault.importFile(uri);
+    /* The provider now announces a different file under the same name, and the copy stops short of it. */
+    provider.size = 1200;
+    provider.copyBytes = 600;
+    const r = await vault.importFile(uri);
+    expect(r).toEqual({ ok: false, reason: "truncated" });
+    expect(deleted).toContain(PART);
+    expect(sizes.get(DEST)).toBe(1000);
+    expect(vault.state(ID).kind).toBe("ready");
+  });
+
+  it("a file that does not start with GGUF is refused before a byte is copied", async () => {
+    provider.head = "UklGRg==";
+    const vault = new VaultStore();
+    await vault.ready();
+    expect(await vault.importFile(uri)).toEqual({ ok: false, reason: "not-gguf" });
+    expect(provider.copies).toBe(0);
+  });
+
+  it("no room for the announced size is no-space, with nothing copied", async () => {
+    provider.size = 100 * 1024 ** 3;
+    const vault = new VaultStore();
+    await vault.ready();
+    expect(await vault.importFile(uri)).toEqual({ ok: false, reason: "no-space" });
+    expect(provider.copies).toBe(0);
+  });
+
+  it("a grant the provider no longer honours is a read failure, not a bad file", async () => {
+    provider.fail = "head";
+    const vault = new VaultStore();
+    await vault.ready();
+    expect(await vault.importFile(uri)).toEqual({ ok: false, reason: "copy-failed" });
   });
 });

@@ -28,6 +28,8 @@ vi.mock("./paths", () => ({
 vi.mock("../../modules/asset-packs", () => ({
   AssetPackStatus: S,
   AssetPackErrorCode: {},
+  isApkPack: () => false,
+  copyApkAsset: async () => 0,
   hasAssetPacks: () => true,
   getPackPath: () => null,
   linkInto: () => null,

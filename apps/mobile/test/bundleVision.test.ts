@@ -51,11 +51,18 @@ describe("F340/F341 · Instant's projector ships wherever Instant ships", () => 
   });
 
   /* Founder, 8.10: Play fetched 700 MB of fast-follow packs right after the install, with no way to stop it. */
-  it("no Play pack downloads without a tap: every pack is on-demand, in the catalog and in app.config.ts", () => {
+  it("no Play pack downloads without a tap: a pack comes with the install itself or on demand, never fast-follow, in the catalog and in app.config.ts", () => {
     const { types } = configShips();
     expect(Object.keys(types).sort()).toEqual([...new Set(playPacks(models))].sort());
-    for (const [pack, type] of Object.entries(types)) expect(type, pack).toBe("on-demand");
-    for (const m of models) for (const d of m.delivery) if (d.kind === "play-asset-pack") expect(d.mode, d.pack).toBe("on-demand");
+    for (const [pack, type] of Object.entries(types)) expect(type, pack).not.toBe("fast-follow");
+    for (const m of models) for (const d of m.delivery) if (d.kind === "play-asset-pack") expect(d.mode, d.pack).not.toBe("fast-follow");
+  });
+
+  /* Review 12.10 (Galaxy A33): a device Play would not serve had no model at all. Instant rides inside the install, as on iOS. */
+  it("Instant comes with the Android install (install-time), so the first chat never waits on a Play delivery", () => {
+    const { types } = configShips();
+    expect(types.inborn_model).toBe("install-time");
+    expect(byId("instant").delivery.find((d) => d.kind === "play-asset-pack")).toMatchObject({ pack: "inborn_model", mode: "install-time" });
   });
 });
 

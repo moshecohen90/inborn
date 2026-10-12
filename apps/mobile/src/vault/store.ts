@@ -43,6 +43,8 @@ import { readRecord, writeRecord, type ImportedModel, type VaultRecord } from ".
 import { downloadAwake } from "./keepAwake";
 import { isUserTap, type UserTap } from "./intent";
 
+type ImportResult = { ok: true; model: CatalogModel } | { ok: false; reason: GgufError["reason"] | "copy-failed" | "no-space" };
+
 /** The four bytes every GGUF starts with ("GGUF"), as the provider head comes back. */
 const GGUF_MAGIC_BASE64 = "R0dVRg==";
 
@@ -281,7 +283,10 @@ export class VaultStore {
   async requestKnownPacks(): Promise<void> {
     for (const model of this.manifest.models) {
       if (this.states.get(model.id)?.kind !== "not-installed") continue;
-      if (this.record.installs[model.id]?.via !== "play" || this.delivery.plan(model)?.via !== "play") continue;
+      const plan = this.manifestStatus.ok ? this.delivery.plan(model) : null;
+      /* A model the install itself brought (Android install-time pack) is unpacked without a tap: no byte crosses the network. */
+      const shipped = plan?.via === "bundled";
+      if (!shipped && (this.record.installs[model.id]?.via !== "play" || plan?.via !== "play")) continue;
       if (await this.delivery.heldOnDevice?.(model).catch(() => false)) void this.deliverModel(model.id, { withPhotos: false, silent: true });
     }
   }
@@ -690,7 +695,18 @@ export class VaultStore {
   }
 
   /** Import any GGUF the user picked or opened (spec §7.2): header check, copy into the vault, hash, register. */
-  async importFile(sourceUri: string, displayName?: string): Promise<{ ok: true; model: CatalogModel } | { ok: false; reason: GgufError["reason"] | "copy-failed" | "no-space" }> {
+  async importFile(sourceUri: string, displayName?: string): Promise<ImportResult> {
+    /* The same file offered twice while it copies (opened again, the picker mid-import) joins the import in flight. */
+    const inFlight = this.importing.get(sourceUri);
+    if (inFlight) return inFlight;
+    const run = this.importOnce(sourceUri, displayName).finally(() => this.importing.delete(sourceUri));
+    this.importing.set(sourceUri, run);
+    return run;
+  }
+
+  private readonly importing = new Map<string, Promise<ImportResult>>();
+
+  private async importOnce(sourceUri: string, displayName?: string): Promise<ImportResult> {
     /* A provider's content:// item (Android: the picker, a browser download opened with Inborn) is readable only through
        the resolver, so it is copied in natively first and checked from the copy; a file:// is checked before it is copied. */
     const fromProvider = sourceUri.startsWith("content:");
@@ -702,8 +718,17 @@ export class VaultStore {
     let header;
     let bytes;
     if (fromProvider) {
-      if (contentHead(sourceUri, 4) !== GGUF_MAGIC_BASE64) return { ok: false, reason: "not-gguf" };
-      const announced = contentSize(sourceUri) ?? 0;
+      let head;
+      let announced;
+      try {
+        head = await contentHead(sourceUri, 4);
+        announced = (await contentSize(sourceUri)) ?? 0;
+      } catch (e: unknown) {
+        /* The grant is gone (the provider's item moved, the app restarted): a read error, not a bad file. */
+        console.warn("[vault] provider read failed", e);
+        return { ok: false, reason: "copy-failed" };
+      }
+      if (head !== GGUF_MAGIC_BASE64) return { ok: false, reason: "not-gguf" };
       /* The same file again (the download opened twice): the verified copy stays, nothing is copied. */
       const known = this.record.imports[id];
       if (known && announced > 0 && known.bytes === announced && dest.exists && fileSize(dest) === announced) {

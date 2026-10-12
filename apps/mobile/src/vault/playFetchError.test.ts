@@ -6,6 +6,8 @@ vi.mock("./paths", () => ({ modelFile: () => ({ uri: "", exists: false }), safeD
 vi.mock("../../modules/asset-packs", () => ({
   AssetPackStatus: {},
   AssetPackErrorCode: { PACK_UNAVAILABLE: -2, API_NOT_AVAILABLE: -5, NETWORK_ERROR: -6, INSUFFICIENT_STORAGE: -10, PLAY_STORE_NOT_FOUND: -11, APP_NOT_OWNED: -13, UNRECOGNIZED_INSTALLATION: -15 },
+  isApkPack: () => false,
+  copyApkAsset: async () => 0,
   hasAssetPacks: () => true,
   getPackPath: () => null,
   linkInto: () => null,

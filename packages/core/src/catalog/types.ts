@@ -10,7 +10,7 @@ export type Delivery =
   /** Inside the app bundle (iOS Instant). */
   | { kind: "bundled"; file: string }
   /** Play Asset Delivery: Play downloads, the app never opens a socket (§5.1). */
-  | { kind: "play-asset-pack"; pack: string; mode: "fast-follow" | "on-demand"; file: string }
+  | { kind: "play-asset-pack"; pack: string; mode: "install-time" | "fast-follow" | "on-demand"; file: string }
   | { kind: "apple-asset-pack"; pack: string }
   /** Resolved against `CatalogManifest.baseUrl`; the only network path outside the stores. */
   | { kind: "https"; path: string; mirror?: string }

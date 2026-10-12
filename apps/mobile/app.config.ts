@@ -178,8 +178,9 @@ const BUNDLED_IOS_MODELS = { instant: "Qwen3.5-0.8B-Q4_K_M.gguf", "vision-qwen35
 
 /* Tier keys match the catalog (§5.1); INBORN_PACKS="instant,fast" ships a subset (Play internal testing), unset = all. Pack names and asset names must match the catalog's play-asset-pack deliveries. */
 const ALL_PACKS = {
-  /* Every pack is on-demand: a fast-follow pack starts downloading after install before the user chose anything, and the app cannot stop it. */
-  instant: [{ name: "inborn_model", deliveryType: "on-demand", assets: { "Qwen3.5-0.8B-Q4_K_M.gguf": "Qwen3.5-0.8B-Q4_K_M.gguf" } }],
+  /* Instant comes with the install itself, as on iOS: the first chat never waits on a Play delivery (review 12.10: a device Play would not serve had no model at all). */
+  instant: [{ name: "inborn_model", deliveryType: "install-time", assets: { "Qwen3.5-0.8B-Q4_K_M.gguf": "Qwen3.5-0.8B-Q4_K_M.gguf" } }],
+  /* The rest is on-demand, never fast-follow: a fast-follow pack starts downloading after install before the user chose anything, and the app cannot stop it. */
   fast: [{ name: "inborn_model_fast", deliveryType: "on-demand", assets: { "Qwen3.5-2B-Q4_K_M.gguf": "Qwen3.5-2B-Q4_K_M.gguf" } }],
   /* Document index companion (spec §6.2): Play delivers it too, so the app still opens no socket. */
   embed: [{ name: "inborn_model_embed", deliveryType: "on-demand", assets: { "multilingual-e5-large-instruct-Q6_K.gguf": "multilingual-e5-large-instruct-Q6_K.gguf" } }],

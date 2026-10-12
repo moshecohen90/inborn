@@ -136,6 +136,8 @@ function stateOf(state: InstallState, plan: StepEntry["plan"], freeBytes: number
   /* Kept even once the store is out of reach (plan null after Play refused): the card carries the reason and the way around it. */
   if (state.kind === "failed") return { kind: "failed", via: plan?.via ?? state.via, ...host, error: state.error, retryable: state.retryable };
   if (!plan) return null;
+  /* Shipped inside the install: the vault is unpacking it on its own, so the card never offers a download of what is already here. */
+  if (plan.via === "bundled") return { kind: "arriving", via: "bundled", percent: 0, verifying: false };
   const required = requiredFreeBytes(bytes);
   if (state.kind === "needs-space" || freeBytes < required) return { kind: "no-space", via: plan.via, ...host, freeUpBytes: required - freeBytes };
   return { kind: "download", via: plan.via, bytes, ...host };
@@ -157,6 +159,7 @@ export function languagesLine(names: readonly string[], max = 4): { list: string
 export function sourceKey(state: OptionState, withPhotos = false): string {
   if (state.kind === "ready") return state.via === "bundled" ? "onboarding.model.source.bundled" : "onboarding.model.source.ready";
   if (state.kind === "arriving" && state.via === "play") return "onboarding.model.source.playPending";
+  if (state.kind === "arriving" && state.via === "bundled") return "onboarding.model.source.bundledPending";
   if (state.via === "play") return withPhotos ? "onboarding.model.source.playPhotos" : "onboarding.model.source.play";
   return "onboarding.model.source.https";
 }

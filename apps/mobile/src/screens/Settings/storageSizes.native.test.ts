@@ -52,7 +52,7 @@ class FakeDirectory {
 vi.mock("expo-file-system", () => ({ File: FakeFile, Directory: FakeDirectory, Paths: { document: { uri: `${DOC}/` }, cache: { uri: "file:///container/Library/Caches/" } } }));
 vi.mock("expo-sqlite", () => ({ defaultDatabaseDirectory: `${DOC}/SQLite` }));
 vi.mock("react-native", () => ({ Platform: { OS: "ios" } }));
-vi.mock("../../../modules/asset-packs", () => ({ getPackPath: () => null }));
+vi.mock("../../../modules/asset-packs", () => ({ getPackPath: () => null, isApkPack: () => false }));
 vi.mock("../../vault/hash", () => ({ fileSha256: async () => "" }));
 /* Vitest does not pick `.native` files the way Metro does; the phone's module is the one under test. */
 vi.mock("../../documents/files", () => import("../../documents/files.native"));

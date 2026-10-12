@@ -1,8 +1,8 @@
 import { useCallback, useMemo, useState } from "react";
-import { Linking, Platform, Pressable, StyleSheet, Text, View } from "react-native";
+import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "expo-router";
-import { formatModelBytes, httpsUrl, type CatalogModel } from "@inborn/core";
+import { formatModelBytes, type CatalogModel } from "@inborn/core";
 import { joinList } from "@inborn/i18n";
 import { Icon } from "@inborn/ui";
 
@@ -12,9 +12,8 @@ import { Screen } from "../../components/shell/Screen";
 import { Button, DISABLED_OPACITY, MonoLabel, shellStyles, Toggle } from "../../components/shell/primitives";
 import { ChipGlyph } from "../../components/shell/ChipGlyph";
 import { useGgufOpenHandler, useVault } from "../../vault";
-import { openedFileName } from "../../vault/openedName";
+import { importModel } from "../../vault/importModel";
 import { userTap } from "../../vault/intent";
-import { chooseFile } from "../../documents/chooseFile";
 import { useEntitlement } from "../../licence";
 import { modelCopy } from "../../lib/models";
 import { roomNoteParams } from "../../lib/modelSheetLines";
@@ -52,38 +51,22 @@ function VaultModelChoice() {
   const [stopped, setStopped] = useState(false);
   const [importLine, setImportLine] = useState<string | null>(null);
 
-  /* The way around a store that will not deliver (Play review 12.10, Galaxy A33): the browser's download opens in Inborn as the .gguf handler, or a file is picked by hand. */
+  /* A .gguf opened with Inborn while this step is up (the vault's import route, for people who bring their own model). */
   const importUri = useCallback(
     async (uri: string, name?: string) => {
-      /* A 500 MB copy and hash take a while on a phone; the line says so at once, and a throw ends on the screen too, never silent. */
+      /* A 500 MB copy and hash take a while on a phone; the line says so at once. */
       setImportLine(t("vault.import.started"));
-      try {
-        const r = await vault.importFile(uri, name ?? openedFileName(uri));
-        if (r.ok) {
-          /* The imported model becomes the selected card, so the footer reads "Start chatting" instead of the failed offer's retry. */
-          setPicked(r.model.id);
-          vault.setDefault(r.model.id);
-          setImportLine(t("vault.import.ok", { name: r.model.name }));
-        } else {
-          const key = { "not-gguf": "vault.import.notGguf", truncated: "vault.import.truncated", "unsupported-arch": "vault.import.unsupportedArch", "engine-too-old": "vault.import.engineTooOld", "no-space": "vault.import.noSpace", "copy-failed": "vault.import.copyFailed" }[r.reason];
-          setImportLine(t(key, { arch: "?" }));
-        }
-      } catch (e: unknown) {
-        console.warn("[onboarding] import", e);
-        setImportLine(`${t("vault.import.copyFailed")} ${e instanceof Error ? e.message : String(e)}`);
+      const r = await importModel(t, vault, uri, name);
+      if (r.model) {
+        /* The imported model becomes the selected card, so the footer reads "Start chatting" instead of the failed offer's retry. */
+        setPicked(r.model.id);
+        vault.setDefault(r.model.id);
       }
+      setImportLine(r.line);
     },
     [vault, t],
   );
   useGgufOpenHandler(useCallback((url: string) => void importUri(url), [importUri]));
-  const pickAndImport = async () => {
-    try {
-      const chosen = await chooseFile();
-      if (chosen) await importUri(chosen.uri, chosen.name);
-    } catch (e: unknown) {
-      console.warn("[onboarding] pick", e);
-    }
-  };
 
   const step = useMemo(
     () =>
@@ -126,9 +109,6 @@ function VaultModelChoice() {
     router.push("/onboarding/sealed");
   };
   const startNowWith = selected?.state.kind === "download" ? step.startNowWith : null;
-  /* Android only: iOS and the desktop download from the host themselves; on Android the browser does, so the app still opens no socket. */
-  const browserUrl = selected?.state.kind === "failed" && PLATFORM === "android" ? httpsUrl(vault.manifest, modelOf(selected.id)) : undefined;
-  const browserHost = browserUrl ? new URL(browserUrl).host : "";
   const offline = useOffline();
   /* Queued for a connection: the chat starts on what is here, and the download still takes over the moment it verifies. */
   const waitingOn = selected?.state.kind === "arriving" && selected.state.waiting === "network" ? (step.options.find((o) => o.state.kind === "ready")?.id ?? null) : null;
@@ -147,11 +127,8 @@ function VaultModelChoice() {
               title={t("onboarding.model.download", { name: modelOf(selected.id).name, size: formatModelBytes(selected.bytes) })}
               onPress={() => void download(selected.id, selected.bytes)}
             />
-          ) : selected?.state.kind === "failed" && (selected.state.retryable || !browserUrl) ? (
+          ) : selected?.state.kind === "failed" && selected.state.retryable ? (
             <Button testID="retry-download" title={t("onboarding.model.tryAgain", { size: formatModelBytes(selected.bytes) })} onPress={() => void download(selected.id, selected.bytes)} />
-          ) : selected?.state.kind === "failed" && browserUrl ? (
-            /* The store itself is out of reach: a retry would answer with the same card, so the way around it is the button. */
-            <Button testID="browser-download" title={t("onboarding.model.browser", { size: formatModelBytes(modelOf(selected.id).bytes) })} onPress={() => void Linking.openURL(browserUrl)} />
           ) : (
             <Button
               testID="start-chatting"
@@ -162,9 +139,6 @@ function VaultModelChoice() {
           )}
           {startNowWith ? (
             <Button testID="start-now-with" title={t("onboarding.model.startNowWith", { name: modelOf(startNowWith).name })} variant="link" onPress={() => start(startNowWith)} />
-          ) : null}
-          {browserUrl && selected?.state.kind === "failed" && selected.state.retryable ? (
-            <Button testID="browser-download" title={t("onboarding.model.browser", { size: formatModelBytes(modelOf(selected.id).bytes) })} variant="link" onPress={() => void Linking.openURL(browserUrl)} />
           ) : null}
           {selected?.state.kind === "arriving" ? (
             <Button
@@ -230,12 +204,6 @@ function VaultModelChoice() {
         <Text testID="download-failed" style={[type.bodySmall, { color: theme.danger }]}>
           {t("onboarding.model.downloadFailed")}
         </Text>
-      ) : null}
-      {browserUrl ? (
-        <View testID="browser-block" style={[shellStyles.well, styles.wifi, { borderColor: theme.border, backgroundColor: theme.surface1 }]}>
-          <Text style={[type.bodySmall, { color: theme.text2 }]}>{t("onboarding.model.browserLine", { host: browserHost })}</Text>
-          <Button testID="import-model" title={t("onboarding.model.import")} variant="link" onPress={() => void pickAndImport()} />
-        </View>
       ) : null}
       {importLine ? (
         <Text testID="import-line" style={[type.bodySmall, { color: theme.text }]}>

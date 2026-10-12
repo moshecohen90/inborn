@@ -48,6 +48,8 @@ export interface AssetPackState {
 
 interface NativeAssetPacks {
   getPackPath(packName: string): string | null;
+  isApkPack(packName: string): boolean;
+  copyApkAsset(assetName: string, destPath: string): Promise<number>;
   linkInto(dir: string, links: Record<string, string>): string | null;
   adoptInto(dir: string, files: Record<string, string>): string | null;
   fetch(packName: string): Promise<AssetPackState | null>;
@@ -66,6 +68,17 @@ export const hasAssetPacks = (): boolean => native !== null;
 /** Absolute path of the pack's assets directory once Play has delivered it, else null. */
 export function getPackPath(packName: string): string | null {
   return native?.getPackPath(packName) ?? null;
+}
+
+/** True for a pack the install itself brought (install-time): its files live inside the APK, with no path to link or adopt. */
+export function isApkPack(packName: string): boolean {
+  return native?.isApkPack(packName) ?? false;
+}
+
+/** Copies an install-time pack's asset into `destPath`; resolves with the bytes written. Rejects where there is no Play module. */
+export async function copyApkAsset(assetName: string, destPath: string): Promise<number> {
+  if (!native) throw new Error("AssetPacks unavailable");
+  return native.copyApkAsset(assetName, destPath);
 }
 
 /** Creates `dir` and a symlink in it for every `{ name: absoluteSourcePath }`; returns the directory path, or null when a source is missing. */

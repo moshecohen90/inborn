@@ -8,35 +8,40 @@ export function isGgufOpenUrl(url: string | null | undefined): url is string {
   return lower.startsWith("file:") || lower.startsWith("content:");
 }
 
-const listeners = new Set<(url: string) => void>();
+const listeners: Array<(url: string) => void> = [];
 let pending: string | null = null;
 
 /**
- * Every URL the OS opens the app with passes through the router's native-intent hook; a model file is taken here, held
- * until the screen that imports (model step, vault) is up, and never treated as a route. True when the URL was a file.
+ * Every URL the OS opens the app with passes through the router's native-intent hook. A model file is "taken" by the
+ * screen that imports (the one mounted last: model step or vault), or "held" until one is up; a route is `false`.
  */
-export function offerOpenedFile(url: string): boolean {
+export function offerOpenedFile(url: string): "taken" | "held" | false {
   if (!isGgufOpenUrl(url)) return false;
-  if (listeners.size === 0) pending = url;
-  else for (const l of listeners) l(url);
-  return true;
+  const last = listeners.at(-1);
+  if (!last) {
+    pending = url;
+    return "held";
+  }
+  last(url);
+  return "taken";
 }
 
 /** Delivers the file the app was opened with, and every later "open with Inborn" while this screen is up. */
 export function useGgufOpenHandler(onOpen: (url: string) => void): void {
   useEffect(() => {
-    listeners.add(onOpen);
+    listeners.push(onOpen);
     const held = pending;
     pending = null;
     if (held) onOpen(held);
     return () => {
-      listeners.delete(onOpen);
+      const i = listeners.lastIndexOf(onOpen);
+      if (i >= 0) listeners.splice(i, 1);
     };
   }, [onOpen]);
 }
 
 /** Tests only. */
 export function resetOpenedFiles(): void {
-  listeners.clear();
+  listeners.length = 0;
   pending = null;
 }

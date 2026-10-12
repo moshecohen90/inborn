@@ -16,7 +16,7 @@ import { useEntitlement } from "../../licence";
 import { benchmarkModel, engineModelId, resetEngine, subscribeEngineState } from "../../engine";
 import { useAppServices } from "../../services/AppServices";
 import { useGgufOpenHandler, useVault, type VaultEntry } from "../../vault";
-import { openedFileName } from "../../vault/openedName";
+import { importModel } from "../../vault/importModel";
 import { DEV_AUTOIMPORT, DEV_AUTOINSTALL, DEV_VAULT_FILE, devBuild } from "../../vault/devFlags";
 import { userTap } from "../../vault/intent";
 import { ModelCard } from "./ModelCard";
@@ -97,17 +97,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock, focus }: VaultS
   const importUri = useCallback(
     async (uri: string, name?: string) => {
       setToast(t("vault.import.started"));
-      try {
-        const r = await vault.importFile(uri, name ?? openedFileName(uri));
-        if (r.ok) setToast(t("vault.import.ok", { name: r.model.name }));
-        else {
-          const key = { "not-gguf": "vault.import.notGguf", truncated: "vault.import.truncated", "unsupported-arch": "vault.import.unsupportedArch", "engine-too-old": "vault.import.engineTooOld", "no-space": "vault.import.noSpace", "copy-failed": "vault.import.copyFailed" }[r.reason];
-          setToast(t(key, { arch: "?" }));
-        }
-      } catch (e: unknown) {
-        console.warn("[vault] import", e);
-        setToast(t("vault.import.copyFailed"));
-      }
+      setToast((await importModel(t, vault, uri, name)).line);
     },
     [vault, t],
   );

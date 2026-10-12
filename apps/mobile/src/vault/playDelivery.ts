@@ -1,7 +1,7 @@
 import { Directory, File, Paths } from "expo-file-system";
 import { modelParts, type CatalogModel, type Delivery, type InstallEvent } from "@inborn/core";
-import { AssetPackErrorCode, AssetPackStatus, addPackListener, adoptInto, cancelPack, fetchPack, getPackPath, getPackState, hasAssetPacks, linkInto, removePack, showPackConfirmation, type AssetPackState } from "../../modules/asset-packs";
-import { modelFile, safeDelete, vaultDir } from "./paths";
+import { AssetPackErrorCode, AssetPackStatus, addPackListener, adoptInto, cancelPack, copyApkAsset, fetchPack, getPackPath, getPackState, hasAssetPacks, isApkPack, linkInto, removePack, showPackConfirmation, type AssetPackState } from "../../modules/asset-packs";
+import { fileSize, modelFile, safeDelete, vaultDir } from "./paths";
 import { isPlayUnavailable, type DeliverOptions, type DeliveryPlan, type ModelDelivery } from "./delivery";
 
 type PlayPack = Extract<Delivery, { kind: "play-asset-pack" }>;
@@ -19,7 +19,16 @@ export class PlayDelivery implements ModelDelivery {
   constructor(private readonly allPacks: readonly string[] = []) {}
 
   plan(model: CatalogModel): DeliveryPlan | null {
-    return this.reachable() && packsOf(model).length ? { via: "play", origin: "Google Play", bytes: model.bytes } : null;
+    if (!packsOf(model).length) return null;
+    /* Inside the install (install-time pack): no store call, so the plan holds even where Play refused to bind. */
+    if (this.inApk(model)) return { via: "bundled", origin: "this app", bytes: model.bytes };
+    return this.reachable() ? { via: "play", origin: "Google Play", bytes: model.bytes } : null;
+  }
+
+  /** Every pack of the model came with the install (APK assets): nothing to fetch, the bytes are unpacked into the vault once. */
+  private inApk(model: CatalogModel): boolean {
+    const packs = packsOf(model);
+    return packs.length > 0 && hasAssetPacks() && packs.every((p) => isApkPack(p.pack));
   }
 
   reachable(): boolean {
@@ -53,7 +62,7 @@ export class PlayDelivery implements ModelDelivery {
 
   /** After the vault verified its own copy: Play forgets the packs, so no update re-delivers them. Never fails the install. */
   async release(model: CatalogModel, path: string): Promise<void> {
-    if (path !== this.owned(model)) return;
+    if (path !== this.owned(model) || this.inApk(model)) return;
     for (const pack of packsOf(model)) await removePack(pack.pack).catch((e: unknown) => console.warn(`[vault] removePack ${pack.pack}`, e));
   }
 
@@ -62,7 +71,7 @@ export class PlayDelivery implements ModelDelivery {
     const dropped: string[] = [];
     if (!this.reachable()) return dropped;
     for (const name of this.allPacks) {
-      if (requested.has(name) || this.asked.has(name)) continue;
+      if (requested.has(name) || this.asked.has(name) || isApkPack(name)) continue;
       const s = await getPackState(name).catch(() => null);
       const absent = !s || s.status === AssetPackStatus.NOT_INSTALLED;
       if (absent && !sweep) continue;
@@ -97,6 +106,7 @@ export class PlayDelivery implements ModelDelivery {
   async heldOnDevice(model: CatalogModel): Promise<boolean> {
     const packs = packsOf(model);
     if (!packs.length) return false;
+    if (this.inApk(model)) return true;
     for (const pack of packs) {
       const s = await getPackState(pack.pack).catch(() => null);
       if (s?.status !== AssetPackStatus.COMPLETED) return false;
@@ -120,6 +130,7 @@ export class PlayDelivery implements ModelDelivery {
     if (!packs.length) throw new Error(`${model.id} has no Play pack`);
     const located = this.owned(model) ?? this.adoptAndRelease(model) ?? this.inPlay(model);
     if (located) return located;
+    if (this.inApk(model)) return this.unpackApk(model, emit);
     /* Packs arrive one after another; progress is cumulative so the card shows one bar for the whole model. */
     let done = 0;
     for (const pack of packs) {
@@ -135,6 +146,29 @@ export class PlayDelivery implements ModelDelivery {
     }
     const path = this.adoptAndRelease(model) ?? this.inPlay(model);
     if (!path) throw new Error(`packs for ${model.id} completed but a shard is missing`);
+    return path;
+  }
+
+  /* The APK keeps its copy, so the model costs its size twice on disk; that is the price of a first run that never waits on Play. */
+  private async unpackApk(model: CatalogModel, emit: (e: InstallEvent) => void): Promise<string> {
+    let done = 0;
+    for (const part of modelParts(model)) {
+      const dest = modelFile(part.file);
+      if (dest.exists && fileSize(dest) === part.bytes) {
+        done += part.bytes;
+        continue;
+      }
+      const partial = modelFile(`${part.file}.part`);
+      const tick = setInterval(() => emit({ type: "progress", bytes: done + fileSize(partial), total: model.bytes }), 300);
+      try {
+        done += await copyApkAsset(part.file, dest.uri);
+      } finally {
+        clearInterval(tick);
+      }
+      emit({ type: "progress", bytes: done, total: model.bytes });
+    }
+    const path = this.owned(model);
+    if (!path) throw new Error(`${model.id} unpacked but a shard is missing`);
     return path;
   }
 

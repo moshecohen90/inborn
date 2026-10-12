@@ -36,6 +36,8 @@ vi.mock("react-native", () => ({ Platform: { get OS() { return os; } }, AppState
 vi.mock("../../modules/asset-packs", () => ({
   AssetPackStatus: {},
   AssetPackErrorCode: {},
+  isApkPack: () => false,
+  copyApkAsset: async () => 0,
   hasAssetPacks: () => play,
   getPackPath: () => null,
   fetchPack: async (name: string) => void fetched.push(`play:${name}`),

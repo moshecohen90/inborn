@@ -21,10 +21,13 @@ function mountHandler(onOpen: (url: string) => void): () => void {
 beforeEach(resetOpenedFiles);
 
 describe("redirectSystemPath · a model file opened with Inborn is not a route", () => {
-  it("keeps the screen that is up when the app is warm, and lands on the first screen on a cold start", () => {
+  it("keeps the screen that takes it, opens the vault when no screen can, and lands on the first screen on a cold start", () => {
     const media = "content://media/external/downloads/1000050223";
-    expect(redirectSystemPath({ path: media, initial: false })).toBeNull();
     expect(redirectSystemPath({ path: media, initial: true })).toBe("/");
+    resetOpenedFiles();
+    expect(redirectSystemPath({ path: media, initial: false })).toBe("/vault");
+    resetOpenedFiles();
+    mountHandler(() => undefined);
     expect(redirectSystemPath({ path: "file:///storage/emulated/0/Download/Qwen3.5-0.8B-Q4_K_M.gguf", initial: false })).toBeNull();
   });
 
@@ -37,7 +40,7 @@ describe("redirectSystemPath · a model file opened with Inborn is not a route",
 describe("offerOpenedFile · the file reaches the screen that imports", () => {
   it("a file opened before the model step is up is held and delivered when it mounts, once", () => {
     const cold = "content://media/external/downloads/1000050224";
-    expect(redirectSystemPath({ path: cold, initial: true })).toBe("/");
+    expect(offerOpenedFile(cold)).toBe("held");
     const got: string[] = [];
     const unmount = mountHandler((u) => got.push(u));
     expect(got).toEqual([cold]);
@@ -47,11 +50,17 @@ describe("offerOpenedFile · the file reaches the screen that imports", () => {
     expect(again).toEqual([]);
   });
 
-  it("a file opened while the screen is up goes straight to it; a route is refused", () => {
-    const got: string[] = [];
-    mountHandler((u) => got.push(u));
+  it("a file opened while screens are up goes to the one mounted last only; a route is refused", () => {
+    const first: string[] = [];
+    const second: string[] = [];
+    mountHandler((u) => first.push(u));
+    const unmountSecond = mountHandler((u) => second.push(u));
     expect(offerOpenedFile("inborn://vault")).toBe(false);
-    expect(offerOpenedFile("file:///tmp/a.gguf")).toBe(true);
-    expect(got).toEqual(["file:///tmp/a.gguf"]);
+    expect(offerOpenedFile("file:///tmp/a.gguf")).toBe("taken");
+    expect(first).toEqual([]);
+    expect(second).toEqual(["file:///tmp/a.gguf"]);
+    unmountSecond();
+    expect(offerOpenedFile("file:///tmp/b.gguf")).toBe("taken");
+    expect(first).toEqual(["file:///tmp/b.gguf"]);
   });
 });

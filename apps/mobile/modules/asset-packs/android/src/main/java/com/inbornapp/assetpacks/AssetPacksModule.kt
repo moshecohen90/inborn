@@ -5,11 +5,14 @@ import com.google.android.play.core.assetpacks.AssetPackManagerFactory
 import com.google.android.play.core.assetpacks.AssetPackState
 import com.google.android.play.core.assetpacks.AssetPackStateUpdateListener
 import com.google.android.play.core.assetpacks.AssetPackStates
+import com.google.android.play.core.assetpacks.model.AssetPackStorageMethod
 import expo.modules.kotlin.Promise
 import expo.modules.kotlin.exception.Exceptions
 import expo.modules.kotlin.modules.Module
 import expo.modules.kotlin.modules.ModuleDefinition
 import java.io.File
+import java.io.FileOutputStream
+import kotlin.concurrent.thread
 
 import android.system.ErrnoException
 import android.system.Os
@@ -47,6 +50,42 @@ class AssetPacksModule : Module() {
 
     Function("getPackPath") { packName: String ->
       manager.getPackLocation(packName)?.assetsPath()
+    }
+
+    /* An install-time pack ships inside the app's split APKs: Play reports it with no path, and its assets are read through the AssetManager. */
+    Function("isApkPack") { packName: String ->
+      manager.getPackLocation(packName)?.packStorageMethod() == AssetPackStorageMethod.APK_ASSETS
+    }
+
+    /* Streams an APK asset into `destPath` through a .part (a model file is whole or absent); resolves with the bytes written. */
+    AsyncFunction("copyApkAsset") { assetName: String, destPath: String, promise: Promise ->
+      thread(name = "asset-unpack") {
+        val dest = File(destPath.removePrefix("file://"))
+        val part = File(dest.path + ".part")
+        try {
+          val context = appContext.reactContext ?: throw Exceptions.ReactContextLost()
+          dest.parentFile?.mkdirs()
+          var total = 0L
+          context.assets.open(assetName).use { input ->
+            FileOutputStream(part).use { out ->
+              val buffer = ByteArray(4 * 1024 * 1024)
+              while (true) {
+                val n = input.read(buffer)
+                if (n <= 0) break
+                out.write(buffer, 0, n)
+                total += n
+              }
+              out.fd.sync()
+            }
+          }
+          if (dest.exists() && !dest.delete()) throw IllegalStateException("cannot replace ${dest.name}")
+          if (!part.renameTo(dest)) throw IllegalStateException("rename failed for ${dest.name}")
+          promise.resolve(total.toDouble())
+        } catch (e: Exception) {
+          part.delete()
+          promise.reject("ERR_UNPACK", e.message, e)
+        }
+      }
     }
 
     /* Shards delivered as separate packs are joined by symlinks in app storage so llama.cpp finds them beside each other. */

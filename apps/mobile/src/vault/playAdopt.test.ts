@@ -31,6 +31,8 @@ vi.mock("./paths", () => ({
 vi.mock("../../modules/asset-packs", () => ({
   AssetPackStatus: { PENDING: 1, DOWNLOADING: 2, TRANSFERRING: 3, COMPLETED, FAILED: 5, CANCELED: 6, WAITING_FOR_WIFI: 7, NOT_INSTALLED: 8, REQUIRES_USER_CONFIRMATION: 9 },
   AssetPackErrorCode: {},
+  isApkPack: () => false,
+  copyApkAsset: async () => 0,
   hasAssetPacks: () => true,
   getPackPath: (pack: string) => (calls.includes(`removed ${pack}`) ? null : `${PLAY}/${pack}/31/31/assets`),
   linkInto: () => null,

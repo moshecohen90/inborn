@@ -61,7 +61,8 @@ class VaultNativeModule : Module() {
 
     /* A provider's content:// item (the picker's, a browser download opened with the app) is readable only through the
        resolver that holds the grant; expo-file-system's File reports such a file as unreadable. */
-    Function("contentHead") { uri: String, n: Int ->
+    AsyncFunction("contentHead") { uri: String, n: Int ->
+      require(n in 1..65536) { "head of $n bytes" }
       context.contentResolver.openInputStream(Uri.parse(uri))?.use { input ->
         val buffer = ByteArray(n)
         var read = 0
@@ -74,7 +75,7 @@ class VaultNativeModule : Module() {
       }
     }
 
-    Function("contentSize") { uri: String ->
+    AsyncFunction("contentSize") { uri: String ->
       val parsed = Uri.parse(uri)
       val fromDescriptor = try {
         context.contentResolver.openAssetFileDescriptor(parsed, "r")?.use { it.length }

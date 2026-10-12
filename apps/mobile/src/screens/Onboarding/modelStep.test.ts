@@ -42,6 +42,18 @@ describe("model step offers", () => {
     expect(s.showWifiOnly).toBe(false);
   });
 
+  it("Android: Instant came with the install and is being unpacked, so its card never offers a download", () => {
+    const bundledPlan = { via: "bundled" as const, bytes: instant.bytes };
+    const s = step({ platform: "android", entries: [entry(instant, NOT_INSTALLED, bundledPlan), entry(fast, NOT_INSTALLED, playPlan(fast))] });
+    expect(s.options[0]!.state).toEqual({ kind: "arriving", via: "bundled", percent: 0, verifying: false });
+    expect(sourceKey(s.options[0]!.state)).toBe("onboarding.model.source.bundledPending");
+    const unpacking = step({ platform: "android", entries: [entry(instant, { kind: "delivering", via: "bundled", bytes: instant.bytes / 2, total: instant.bytes, paused: false, waitingForWifi: false, needsConfirmation: false }, bundledPlan)] });
+    expect(unpacking.options[0]!.state).toMatchObject({ kind: "arriving", via: "bundled", percent: 50 });
+    const done = step({ platform: "android", entries: [entry(instant, ready("bundled"), bundledPlan), entry(fast, NOT_INSTALLED, playPlan(fast))] });
+    expect(sourceKey(done.options[0]!.state)).toBe("onboarding.model.source.bundled");
+    expect(done.usableNow).toBe(true);
+  });
+
   it("Android before the fast-follow pack lands: Instant is still an option, and nothing claims to be usable yet", () => {
     const s = step({ platform: "android", entries: [entry(instant, NOT_INSTALLED, playPlan(instant)), entry(fast, NOT_INSTALLED, playPlan(fast))] });
     expect(s.usableNow).toBe(false);
