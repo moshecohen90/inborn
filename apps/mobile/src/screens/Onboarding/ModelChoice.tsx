@@ -295,7 +295,8 @@ function OptionCard({ option, model, selected, onSelect }: { option: ModelOption
 export function failureReason(t: (key: string, params?: Record<string, unknown>) => string, error: string): string {
   const play = /^play-error-(-?\d+)$/.exec(error);
   if (play) return t("onboarding.model.reason.play", { code: play[1]! });
-  return installFailureText(t, error, PLATFORM);
+  /* The line that frames it ends the sentence; a reason that ends its own would print two full stops (6T, 12.10). */
+  return installFailureText(t, error, PLATFORM).replace(/[.。]$/u, "");
 }
 
 function Progress({ percent, verifying }: { percent: number; verifying: boolean }) {
