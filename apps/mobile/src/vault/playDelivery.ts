@@ -215,7 +215,7 @@ export class PlayDelivery implements ModelDelivery {
               .catch(() => undefined);
           }, 1500);
         })
-        .catch((e: unknown) => done(() => reject(e instanceof Error ? e : new Error(String(e)))));
+        .catch((e: unknown) => done(() => reject(playFetchError(e))));
     });
   }
 
@@ -259,6 +259,15 @@ export class PlayDelivery implements ModelDelivery {
 
 let confirming: Promise<number> | null = null;
 const AWAITING_DIALOG = new Set<number>([AssetPackStatus.WAITING_FOR_WIFI, AssetPackStatus.REQUIRES_USER_CONFIRMATION]);
+
+/** `fetch` itself can refuse with Play's code in its message ("-15: Asset Pack Download Error(-15)", a sideload): the same words as a FAILED state. */
+export function playFetchError(e: unknown): Error {
+  const message = e instanceof Error ? e.message : String(e);
+  const m = /Asset Pack Download Error\((-?\d+)\)|^(-?\d+):/.exec(message);
+  const code = m ? Number(m[1] ?? m[2]) : NaN;
+  if (Number.isFinite(code)) return new Error(describePlayError(code), { cause: e });
+  return e instanceof Error ? e : new Error(message);
+}
 
 export function describePlayError(code: number): string {
   switch (code) {
