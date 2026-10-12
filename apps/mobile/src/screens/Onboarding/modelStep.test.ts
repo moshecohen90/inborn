@@ -241,6 +241,12 @@ describe("Android · Instant and its photo pack are one download", () => {
     expect(sourceKey(f!.state, f!.withPhotos)).toBe("onboarding.model.source.play");
   });
 
+  it("Instant that came with the install carries its own size; its projector is the first photo's download, not this card's", () => {
+    const s = step({ platform: "android", entries: [entry(instant, ready("bundled"), { via: "bundled", bytes: instant.bytes }), entries[1]!], photos: photos(NOT_INSTALLED) });
+    expect(s.options[0]).toMatchObject({ id: "instant", bytes: instant.bytes, withPhotos: false });
+    expect(sourceKey(s.options[0]!.state, s.options[0]!.withPhotos)).toBe("onboarding.model.source.bundled");
+  });
+
   it("a projector already here adds nothing to Instant's size", () => {
     const s = step({ platform: "android", entries, photos: photos(ready("play")) });
     expect(s.options[0]).toMatchObject({ bytes: instant.bytes, withPhotos: false });

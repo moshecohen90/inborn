@@ -80,8 +80,9 @@ export function modelStep(input: ModelStepInput): ModelStep {
     /* A model the device cannot hold is not a choice, it is a disappointment; the vault still lists it with the reason. */
     if (ramGB !== null && model.minRamGB > ramGB) continue;
     const photos = input.photos?.(model.id) ?? null;
-    /* While the model still arrives, a photo pack that landed first stays in the size, or the card would shrink mid-download. */
-    const photoBytes = photos && (!INSTALLED.includes(photos.state.kind) || (state.kind === "delivering" || state.kind === "verifying")) ? photos.bytes : 0;
+    /* While the model still arrives, a photo pack that landed first stays in the size, or the card would shrink mid-download.
+       A model already here carries its own size: its projector, if missing, comes with the first photo, not with this card. */
+    const photoBytes = photos && !INSTALLED.includes(state.kind) && (!INSTALLED.includes(photos.state.kind) || (state.kind === "delivering" || state.kind === "verifying")) ? photos.bytes : 0;
     const bytes = model.bytes + photoBytes;
     const optionState = withPhotoProgress(stateOf(state, plan, freeBytes, bytes, model.id === input.engineModelId), state, model.bytes, photos);
     if (!optionState) continue;
