@@ -68,5 +68,16 @@ no Play delivery possible for this package.
 | Fresh install again, "Baixar Fast · 1.28 GB" (Play cannot serve this package) | Fast card: "O download falhou: Algo deu errado. Tente de novo"; under the cards "O download não começou. O chat continua funcionando e você pode tentar de novo no cofre."; footer "Tentar de novo · 1.28 GB" with "Começar agora com o Instant" under it (`6t-qa39-s06-fast-failed.png`). No dead end: Instant is one tap away either way |
 
 Screenshots: `6t-qa39-s01-welcome.png`, `6t-qa39-s02-model-included.png`, `6t-qa39-s03-sealed.png`, `6t-qa39-s04-chat.png`,
-`6t-qa39-s05-answer.png` in the private evidence folder for 12.10. The same path is walked again on the store build from the
-internal track once 1.0.0 (39) is uploaded (the real Play install, no bundletool).
+`6t-qa39-s05-answer.png` in the private evidence folder for 12.10.
+
+### The store build, updated through Google Play (OnePlus 6T, internal track, 1.0.0 (35) to (39))
+
+The real Play install, no bundletool: the Play Store page offered "Atualizar", and after the update `dumpsys package` reads
+`versionCode=39`, `installerPackageName=com.android.vending`, `splits=[base, config.arm64_v8a, config.en, config.pt, config.xxhdpi,
+inborn_model]`. This device had Fast installed through Play on (35), so it is also the upgrade path an existing user takes.
+
+| Step | Seen |
+|---|---|
+| Cold start after the update | Opens straight into the chat, "SELADO · FAST": the model Play delivered on (35) is still in use (`6t-store39-s01-chat-fast.png`) |
+| Model vault | Fast "Carregado · Em uso"; Instant "533 MB · Instalado · Usar este modelo", unpacked from the APK during boot with no tap and no download (`6t-store39-s02-vault.png`, `6t-store39-s03-vault-instant.png`) |
+| Suggestion "Rascunhar uma mensagem", send | Answer generated on the device: "Como você parou a frase, eu não posso finalizar o pedido. Você gostaria de uma mensagem curta e simpática para: Um amigo? …" (`6t-store39-s05-answer.png`) |
