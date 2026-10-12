@@ -76,11 +76,19 @@ export async function commitEdit(api, pkg, editId, opts = {}) {
   const waitMs = opts.waitMs ?? 60_000;
   const sleep = opts.sleep ?? ((ms) => new Promise((r) => setTimeout(r, ms)));
   const log = opts.log ?? (() => {});
+  /* An app with a review already pending (a rejected release awaiting its resubmission) refuses a plain commit; Play asks
+     for the flag that keeps the edit out of review, and the release is then sent for review from the Console. */
+  let query = "";
   for (let attempt = 1; ; attempt++) {
     try {
-      return await api.post(`${API}/${pkg}/edits/${editId}:commit`, null);
+      return await api.post(`${API}/${pkg}/edits/${editId}:commit${query}`, null);
     } catch (e) {
       const message = String(e.message);
+      if (!query && /changesNotSentForReview/.test(message)) {
+        log("commit refused without changesNotSentForReview; committing the edit unsent, to be sent for review from the Console");
+        query = "?changesNotSentForReview=true";
+        continue;
+      }
       if (attempt >= tries || !(STILL_INGESTING.test(message) || TRANSIENT.test(message))) throw e;
       log(`commit ${TRANSIENT.test(message) ? `got ${message.split("\n")[0]}` : "refused while Play finishes ingesting the bundle"}; retrying in ${Math.round(waitMs / 1000)}s (attempt ${attempt}/${tries})`);
       await sleep(waitMs);
