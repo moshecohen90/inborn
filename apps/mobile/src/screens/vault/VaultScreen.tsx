@@ -16,6 +16,7 @@ import { useEntitlement } from "../../licence";
 import { benchmarkModel, engineModelId, resetEngine, subscribeEngineState } from "../../engine";
 import { useAppServices } from "../../services/AppServices";
 import { useGgufOpenHandler, useVault, type VaultEntry } from "../../vault";
+import { openedFileName } from "../../vault/openedName";
 import { DEV_AUTOIMPORT, DEV_AUTOINSTALL, DEV_VAULT_FILE, devBuild } from "../../vault/devFlags";
 import { userTap } from "../../vault/intent";
 import { ModelCard } from "./ModelCard";
@@ -104,7 +105,7 @@ export function VaultScreen({ onClose, onModelChanged, onUnlock, focus }: VaultS
     },
     [vault, t],
   );
-  useGgufOpenHandler(useCallback((url: string) => void importUri(url), [importUri]));
+  useGgufOpenHandler(useCallback((url: string) => void importUri(url, openedFileName(url)), [importUri]));
 
   useEffect(() => {
     void vault.ready().then(async () => {

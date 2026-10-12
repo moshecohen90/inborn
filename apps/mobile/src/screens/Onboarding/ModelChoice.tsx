@@ -12,6 +12,7 @@ import { Screen } from "../../components/shell/Screen";
 import { Button, DISABLED_OPACITY, MonoLabel, shellStyles, Toggle } from "../../components/shell/primitives";
 import { ChipGlyph } from "../../components/shell/ChipGlyph";
 import { useGgufOpenHandler, useVault } from "../../vault";
+import { openedFileName } from "../../vault/openedName";
 import { userTap } from "../../vault/intent";
 import { chooseFile } from "../../documents/chooseFile";
 import { useEntitlement } from "../../licence";
@@ -62,7 +63,7 @@ function VaultModelChoice() {
     },
     [vault, t],
   );
-  useGgufOpenHandler(useCallback((url: string) => void importUri(url), [importUri]));
+  useGgufOpenHandler(useCallback((url: string) => void importUri(url, openedFileName(url)), [importUri]));
   const pickAndImport = async () => {
     try {
       const chosen = await chooseFile();
